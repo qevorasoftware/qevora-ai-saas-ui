@@ -1,0 +1,114 @@
+================================================================================
+  QEVORA AI SAAS — CHANGELOG
+================================================================================
+
+--------------------------------------------------------------------------------
+1.0.0  ·  October 2026  ·  Initial release
+--------------------------------------------------------------------------------
+
+NEW PAGES (81 total)
+
+  Dashboard
+    index.html — KPI cards, revenue chart, AI usage, project and task
+    overview, recent invoices, activity feed.
+
+  AI workspace (6)
+    ai/dashboard.html          AI overview: requests, tokens, cost, latency,
+                               plan limits, model usage, recent generations.
+    ai/chat.html               Chat workspace with conversation list, message
+                               thread, copy and regenerate actions.
+    ai/content-generator.html  Writing workspace with templates, tone and
+                               length controls, reference upload, output card.
+    ai/image-generator.html    Prompt, style presets, aspect ratio, credits
+                               and a generated gallery of placeholders.
+    ai/usage.html              Token consumption, cost breakdown, per-model
+                               usage and quota reporting.
+    ai/history.html            Prompt history with model, tokens, latency,
+                               cost, filters and reuse actions.
+
+  Applications (31)
+    CRM dashboard, leads, customers, customer details, pipeline, projects,
+    project details, kanban, tasks, calendar, team chat, notifications,
+    products, product details, orders, order details, invoices, invoice
+    details, payments, transactions, subscriptions, team, roles, activity,
+    reports, profile, settings, pricing, FAQ, help.
+
+  UI kit (31)
+    Overview, colours, typography, spacing, grid, icons, buttons, badges,
+    avatars, alerts, breadcrumbs, cards, pricing blocks, timeline, empty
+    states, dropdowns, modals, tabs, accordions, tooltips and popovers,
+    toasts, forms, input groups, select and search, file upload, date and
+    time, tables, pagination, charts, progress, spinners, documentation.
+
+  Authentication (6)
+    Login, register, forgot password, reset password, verify email,
+    two-factor verification — split-screen layout with a marketing aside.
+
+  Utility (4)
+    404, 500 (with incident snapshot), maintenance (deployment progress),
+    coming soon (live countdown).
+
+  Documentation (2)
+    documentation/index.html         quick start, folder structure, page
+                                     inventory, customisation, JavaScript
+                                     reference, build script, accessibility,
+                                     credits.
+    documentation/design-system.html colour, type, spacing, radius, elevation,
+                                     dark-mode and RTL token reference.
+
+NEW COMPONENTS
+
+  Buttons: primary, secondary, soft, ghost, gradient, white, icon, sizes.
+  Status: soft badges, solid text-bg badges, dot badges, counter chips,
+          trend up/down/flat indicators.
+  Avatars: six sizes, photo and initials, status dots, groups with overflow
+           counter.
+  Containers: cards (base, stat, KPI tile, feature, profile, glass, hover),
+              pricing cards with a featured plan, timeline, activity feed,
+              kanban board, empty states, skeletons.
+  Navigation: sidebar with nested groups, header with global search,
+              notifications, breadcrumbs, tabs, pills, pagination, list
+              groups, accordions.
+  Feedback: alerts, toasts, modals, tooltips, popovers, spinners, progress
+            bars, stacked progress, SVG rings, animated counters.
+  Data: tables with toolbar, filtering, sorting, selection, pagination and an
+        empty state; 15+ Chart.js configurations.
+  Forms: inputs, selects, checks, switches, ranges, floating labels,
+         validation states, input groups, file upload drop zones, date and
+         time inputs, one-time-code inputs.
+
+FEATURES
+
+  · Light and dark themes, saved in localStorage, following the system
+    preference by default.
+  · Full RTL support: logical CSS properties plus an RTL stylesheet and a
+    runtime Bootstrap RTL swap.
+  · Responsive down to 375 px: collapsible sidebar, off-canvas drawer,
+    responsive tables and card grids.
+  · Component pages with Preview and HTML tabs, syntax highlighting and copy
+    buttons.
+  · All libraries vendored locally — no CDN requests at runtime.
+  · Relative asset paths only, so the template works from any folder or
+    subdirectory.
+  · Optional zero-dependency build script (Node 18+) that assembles pages
+    from shared partials.
+  · Accessibility pass: landmarks, skip links, labelled controls, aria
+    states, reduced-motion support, WCAG AA colour targets.
+
+FIXES DURING DEVELOPMENT
+
+  · Corrected the Bootstrap Icons font path in the shared <head> partial.
+  · Fixed asset depth on the AI image generator page.
+  · Aligned the AI overview "tokens used" counter with its formatted value.
+  · Replaced an invalid sticky utility on the FAQ page.
+  · Corrected table row links and a stale copy-button target in the UI kit.
+  · Registered the chat script only on the two chat pages and the chart
+    script only on pages that render charts.
+
+--------------------------------------------------------------------------------
+Planned for a future release
+--------------------------------------------------------------------------------
+  · Email template set (welcome, invoice, password reset)
+  · Additional chart types (scatter, radar, mixed bar/line)
+  · Optional jQuery-free data-table plugin integration guide
+================================================================================
