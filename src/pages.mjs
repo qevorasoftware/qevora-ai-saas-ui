@@ -162,6 +162,7 @@ export const pages = [
   },
   {
     out: "pages/product-details.html",
+    scripts: CHART_SCRIPTS,
     breadcrumb: ["Business", "Catalog", "Product Details"],
     meta: {
       title: "Product Details | Qevora AI SaaS Admin & UI Kit",
@@ -210,6 +211,7 @@ export const pages = [
   },
   {
     out: "pages/transactions.html",
+    scripts: CHART_SCRIPTS,
     breadcrumb: ["Business", "Finance", "Transactions"],
     meta: {
       title: "Transactions | Qevora AI SaaS Admin & UI Kit",
