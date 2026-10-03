@@ -49,11 +49,21 @@
  *
  *  Print:   <button data-demo-print>                   browser print dialog
  *  Copy:    <button data-demo-copy="#api-key">         clipboard + toast
+  *           <button data-copy-text>                  the nearest message body
+  *  Echo:    <select data-demo-echo="Tone">             answers with a toast
  *  Save:    <button data-demo-save="#settings-form">   values survive a reload
  *  Discard: <button data-demo-discard="#settings-form">
  *  Toggle:  <button data-demo-toggle data-demo-toggle-on="Following"
  *              data-demo-toggle-off="Follow">          two-state control
  *  AI demo: <button data-demo-gen="#output" data-demo-gen-type="text|image|html">
+ *  Pick:    <button data-demo-pick="range" data-demo-pick-active-class="btn-soft-primary"
+ *              data-demo-pick-idle-class="btn-white">Day / Week / Month
+ *  Range:   <button data-demo-range="today|7d|30d|mtd|qtd|q1…q4|ytd|clear"
+ *              data-demo-range-from="#from" data-demo-range-to="#to"
+ *              data-demo-today="2026-10-03">
+ *  Chip ✕:  <button data-demo-remove>          removes the closest .chip
+ *  Plan:    <button data-demo-select="#card">  marks the chosen plan
+ *  Answer:  <button data-demo-regenerate="#thread">
  *  Chat:    <button data-demo-chat="#thread" data-demo-chat-input="#message">
  *
  * Public API: window.QevoraDemo = { init, open, filter, chips, counts, addRow,
@@ -113,6 +123,18 @@
     "data-demo-filter-table",
     "data-demo-filter-mode",
     "data-demo-copy-label",
+    "data-demo-pick-group",
+    "data-demo-pick-active-class",
+    "data-demo-pick-idle-class",
+    "data-demo-pick-done",
+    "data-demo-range-from",
+    "data-demo-range-to",
+    "data-demo-today",
+    "data-demo-remove-label",
+    "data-demo-select-label",
+    "data-demo-plan",
+    "data-demo-plan-name",
+    "data-demo-plan-badge",
     "data-demo-gen-type",
     "data-demo-gen-text",
     "data-demo-gen-title",
@@ -120,6 +142,7 @@
     "data-demo-gen-index",
     "data-demo-gen-working",
     "data-demo-chat-input",
+    "data-demo-chat-thread",
     "data-demo-chat-prompt",
     "data-demo-chat-reply",
     "data-demo-chat-thread",
@@ -143,6 +166,10 @@
     "data-demo-hide-fields",
     "data-demo-chip",
     "data-demo-chip-field",
+    "data-copy-text",
+    "data-demo-echo",
+    "data-demo-gen-opt",
+    "data-demo-gen-opt-label",
     "data-demo-column",
     "data-demo-columns",
     "data-demo-count",
@@ -488,6 +515,21 @@
       form.classList.add("was-validated");
       var invalid = q(":invalid", form) || q("input, select, textarea", form);
       if (invalid && invalid.focus) invalid.focus();
+      return false;
+    }
+
+    /* A composer form writes into the conversation instead of "submitting". */
+    var thread = q(form.getAttribute("data-demo-chat-thread"));
+    if (thread) {
+      var message = q("[data-demo-chat-input]", form) || q("textarea, input[type='text']", form);
+      var text = message ? message.value.trim() : "";
+      if (!text) {
+        if (message && message.focus) message.focus();
+        return false;
+      }
+      message.value = "";
+      emit(message, "input");
+      postChatMessage(thread, text, null);
       return false;
     }
 
@@ -1398,6 +1440,32 @@
     copyText(value, control.getAttribute("data-demo-copy-label") || (source.getAttribute && source.getAttribute("aria-label")));
   }
 
+  /* <button data-copy-text>Copy</button> — with a value it copies that literal,
+     without one it copies the nearest message body, so a chat transcript can
+     offer Copy on every bubble without hand-wiring selectors. */
+  function copyBlock(control) {
+    var literal = control.getAttribute("data-copy-text");
+    if (literal) {
+      copyText(literal, control.getAttribute("data-demo-copy-label"));
+      return;
+    }
+
+    /* Inside a table row the useful text is the first data cell, not the whole
+       card the row happens to live in. */
+    var row = control.closest("tr");
+    var cell = row ? q("td:nth-child(2), td", row) : null;
+
+    var host = control.closest(".msg, [data-demo-copy-block], .card, article, li");
+    var node = cell || (host ? q(".msg__bubble, [data-demo-copy-block-text], pre, p", host) : null);
+    var text = node ? node.textContent.replace(/\s+/g, " ").trim() : "";
+    if (!text) {
+      toast("There was nothing to copy here.", "warning", "Copy");
+      return;
+    }
+
+    copyText(text, control.getAttribute("data-demo-copy-label") || (host && host.classList.contains("msg") ? "Response" : "Text"));
+  }
+
   /* Save / discard: the form state survives a reload through localStorage. */
   function storageKey(node) {
     var name = node.getAttribute("data-demo-save") || node.id || node.getAttribute("data-demo-form-key") || "form";
@@ -1494,6 +1562,25 @@
     ["#10b981", "#0ea5e9"]
   ];
 
+  /* The generator prints the options the draft was written with, so the selects
+     above it are part of the result instead of decoration. */
+  function optionSummary(control) {
+    var names = String(control.getAttribute("data-demo-gen-opt") || "").split(",").map(function (name) {
+      return name.trim();
+    }).filter(Boolean);
+    if (!names.length) return "";
+
+    return names.map(function (name) {
+      var field = q(name.charAt(0) === "#" || name.charAt(0) === "." ? name : "#" + name);
+      if (!field) return "";
+      var option = field.options && field.selectedIndex > -1 ? field.options[field.selectedIndex] : null;
+      var value = String((option ? option.text : field.value) || "").trim();
+      if (!value) return "";
+      var label = field.getAttribute && (field.getAttribute("data-demo-gen-opt-label") || field.getAttribute("aria-label"));
+      return (label || name.replace(/^#/, "")).replace(/^(Choose|Filter by|Select)\s+/i, "") + ": " + value;
+    }).filter(Boolean).join(" · ");
+  }
+
   function generate(control) {
     var target = q(control.getAttribute("data-demo-gen"));
     var kind = control.getAttribute("data-demo-gen-type") || "text";
@@ -1524,7 +1611,8 @@
           '<circle cx="200" cy="120" r="46" fill="rgba(255,255,255,.35)"/>' +
           '<path d="M60 250 L150 170 L215 225 L270 180 L340 250 Z" fill="rgba(255,255,255,.45)"/>' +
           "</svg></div>" +
-          '<p class="fs-8 text-muted-2 mb-0 mt-2">Generated placeholder ' + (index + 1) + " of 3 — swap this for your image model's response.</p>";
+          (optionSummary(control) ? '<p class="fs-8 text-muted-2 mb-0 mt-2">Options — ' + optionSummary(control) + "</p>" : "") +
+          '<p class="fs-8 text-muted-2 mb-0 mt-1">Generated placeholder ' + (index + 1) + " of 3 — swap this for your image model's response.</p>";
         target.removeAttribute("hidden");
       } else if (kind === "html") {
         target.innerHTML = control.getAttribute("data-demo-gen-html") || "";
@@ -1532,10 +1620,12 @@
       } else {
         var text = control.getAttribute("data-demo-gen-text") || GEN_TEXT[index % GEN_TEXT.length];
         var title = control.getAttribute("data-demo-gen-title") || GEN_TITLES[index % GEN_TITLES.length];
+        var options = optionSummary(control);
         target.innerHTML =
           '<p class="fw-600 text-heading mb-2">' + title + "</p>" +
           '<p class="mb-0 text-muted-2">' + text + "</p>" +
-          '<p class="fs-8 text-muted-2 mt-3 mb-0">Draft paragraph ' + (index + 1) + " of 3 · 96 words · generated locally</p>";
+          (options ? '<p class="fs-8 text-muted-2 mt-3 mb-0">Options — ' + options + "</p>" : "") +
+          '<p class="fs-8 text-muted-2 mt-1 mb-0">Draft paragraph ' + (index + 1) + " of 3 · 96 words · generated locally</p>";
         target.removeAttribute("hidden");
       }
 
@@ -1565,6 +1655,17 @@
       return;
     }
 
+    if (input) {
+      input.value = "";
+      emit(input, "input");
+    }
+    postChatMessage(thread, prompt, control.getAttribute("data-demo-chat-reply"));
+  }
+
+  /* One message in, one answer back — used by the suggestion buttons and by the
+     composer forms (data-demo-chat-thread on the <form>). */
+  function postChatMessage(thread, prompt, replyText) {
+
     var index = qa("[data-chat-user]", thread).length % CHAT_REPLIES.length;
     var user = doc.createElement("div");
     user.setAttribute("data-chat-user", "");
@@ -1579,20 +1680,148 @@
     thread.appendChild(typing);
     thread.scrollTop = thread.scrollHeight;
 
-    if (input) {
-      input.value = "";
-      emit(input, "input");
-    }
-
     window.setTimeout(function () {
       typing.remove();
       var reply = doc.createElement("div");
       reply.setAttribute("data-chat-reply", "");
       reply.className = "chat-bubble chat-bubble--in";
-      reply.textContent = control.getAttribute("data-demo-chat-reply") || CHAT_REPLIES[index];
+      reply.textContent = replyText || CHAT_REPLIES[index];
       thread.appendChild(reply);
       thread.scrollTop = thread.scrollHeight;
     }, 700);
+  }
+
+  /* ---------------------------------------------------------------------- */
+  /* 9c. Segmented controls, date ranges, chip removal, plan picking         */
+  /* ---------------------------------------------------------------------- */
+
+  /* A group of buttons where one is chosen: Day/Week/Month, Today/7 days,
+     a plan card, a view mode. data-demo-pick names the group. */
+  function pickButton(control) {
+    var group = control.getAttribute("data-demo-pick");
+    var scope = control.closest("[data-demo-pick-group]") || control.parentElement;
+    var activeClass = control.getAttribute("data-demo-pick-active-class") || "";
+    var idleClass = control.getAttribute("data-demo-pick-idle-class") || "";
+
+    qa("[data-demo-pick='" + group + "']", scope).forEach(function (button) {
+      var picked = button === control;
+      button.classList.toggle("active", picked);
+      button.setAttribute("aria-pressed", picked ? "true" : "false");
+      if (activeClass) button.classList.toggle(activeClass, picked);
+      if (idleClass) button.classList.toggle(idleClass, !picked);
+    });
+
+    var done = control.getAttribute("data-demo-pick-done");
+    if (done) toast(done, "secondary");
+  }
+
+  /* Date range presets. The demo has a fixed "today" (the data is written
+     around it), so the buttons read it from data-demo-today. */
+  function rangeButton(control) {
+    var kind = control.getAttribute("data-demo-range");
+    var from = q(control.getAttribute("data-demo-range-from"));
+    var to = q(control.getAttribute("data-demo-range-to"));
+    if (!from && !to) {
+      toast("Point data-demo-range-from / -to at the two date inputs.", "warning", "Demo");
+      return;
+    }
+
+    var today = control.getAttribute("data-demo-today") ||
+      (control.closest("[data-demo-today]") && control.closest("[data-demo-today]").getAttribute("data-demo-today")) ||
+      new Date().toISOString().slice(0, 10);
+    var base = new Date(today + "T00:00:00Z");
+    var start = new Date(base.getTime());
+    var end = new Date(base.getTime());
+
+    if (kind === "7d") start.setUTCDate(base.getUTCDate() - 6);
+    else if (kind === "30d") start.setUTCDate(base.getUTCDate() - 29);
+    else if (kind === "mtd") start.setUTCDate(1);
+    else if (kind === "qtd") start.setUTCMonth(Math.floor(base.getUTCMonth() / 3) * 3, 1);
+    else if (kind === "ytd") start.setUTCMonth(0, 1);
+    else if (kind === "clear") start = null;
+    else if (/^q[1-4]$/.test(kind)) {
+      /* A named quarter ends on its own last day — tomorrow's "today" must not
+         stretch Q3 into October. */
+      start = new Date(Date.UTC(base.getUTCFullYear(), (parseInt(kind.slice(1), 10) - 1) * 3, 1));
+      end = new Date(Date.UTC(base.getUTCFullYear(), (parseInt(kind.slice(1), 10) - 1) * 3 + 3, 0));
+      if (end.getTime() > base.getTime()) end = new Date(base.getTime());
+    }
+
+    if (from) {
+      from.value = start ? start.toISOString().slice(0, 10) : "";
+      emit(from, "change");
+    }
+    if (to) {
+      to.value = start ? end.toISOString().slice(0, 10) : "";
+      emit(to, "change");
+    }
+    if (!start && !from) {
+      toast("The range was cleared.", "info", "Range");
+    }
+  }
+
+  /* A ✕ inside a filter chip removes that chip. */
+  function removeControl(control) {
+    var target = q(control.getAttribute("data-demo-remove")) ||
+      control.closest(".chip, [data-demo-removable], .card, li");
+    if (!target || !target.parentNode) return;
+
+    var parent = target.parentNode;
+    var next = target.nextElementSibling;
+    target.remove();
+
+    toast((control.getAttribute("data-demo-remove-label") || "Item") + " removed.", "danger", "Removed", {
+      label: "Undo",
+      onClick: function () {
+        parent.insertBefore(target, next);
+      }
+    });
+  }
+
+  /* Choosing a plan (pricing screens): the card is marked as selected. */
+  function selectPlan(control) {
+    var card = q(control.getAttribute("data-demo-select")) ||
+      control.closest("[data-demo-plan], .pricing-card, .card");
+    if (!card) return;
+
+    /* Plans sit in one row: clear the mark across the whole grid, not just the
+       column the button happens to live in. */
+    var scope = card.closest("[data-demo-plan-group], .row, .pricing-grid, .demo-preview") || card.parentElement || doc;
+    qa("[data-demo-plan], .pricing-card, .card", scope).forEach(function (other) {
+      if (other === card) return;
+      other.classList.remove("border-primary");
+      var badge = q("[data-demo-plan-badge]", other);
+      if (badge) badge.remove();
+    });
+
+    card.classList.add("border-primary");
+    var label = control.getAttribute("data-demo-select-label") ||
+      (q("[data-demo-plan-name]", card) || {}).textContent || "Plan";
+    toast(label.trim() + " selected — 14-day trial, cancel any time.", "success", "Plan selected");
+  }
+
+  /* Regenerate: a fresh answer lands in the chat thread. */
+  function regenerate(control) {
+    var thread = q(control.getAttribute("data-demo-regenerate") || "[data-demo-thread]");
+    if (!thread) return;
+
+    var working = doc.createElement("div");
+    working.className = "chat-bubble chat-bubble--in text-muted-2";
+    working.textContent = "Nova AI is writing a new answer…";
+    thread.appendChild(working);
+    if (thread.scrollTop !== undefined) thread.scrollTop = thread.scrollHeight;
+
+    window.setTimeout(function () {
+      working.remove();
+      var reply = doc.createElement("div");
+      reply.className = "chat-bubble chat-bubble--in";
+      reply.setAttribute("data-chat-reply", "");
+      var index = qa("[data-chat-reply]", thread).length % CHAT_REPLIES.length;
+      reply.textContent = CHAT_REPLIES[index];
+      thread.appendChild(reply);
+      if (thread.scrollTop !== undefined) thread.scrollTop = thread.scrollHeight;
+      toast("A new answer is ready.", "success", "Regenerated");
+    }, 800);
   }
 
   /* ---------------------------------------------------------------------- */
@@ -1653,9 +1882,11 @@
       var control = event.target.closest(
         "[data-demo-open], [data-demo-delete], [data-demo-confirm], [data-demo-load]," +
         " [data-demo-print], [data-demo-copy], [data-demo-save], [data-demo-discard]," +
+        " [data-demo-pick], [data-demo-range], [data-demo-remove], [data-demo-select]," +
+        " [data-demo-regenerate], [data-demo-reset-form]," +
         " [data-demo-toggle], [data-demo-gen], [data-demo-chat], [data-demo-new]," +
         " [data-demo-export], [data-demo-export-row], [data-demo-go], [data-demo-view]," +
-        " [data-demo-chip], [data-demo-reset], [data-demo-clear], button, a");
+        " [data-copy-text], [data-demo-chip], [data-demo-reset], [data-demo-clear], button, a");
       if (!control) return;
 
       if (control.hasAttribute("data-demo-open")) {
@@ -1688,9 +1919,61 @@
         return;
       }
 
+      /* A range preset is also a pick button: set the dates, then move the
+         highlight — the order of the two attributes must not matter. */
+      if (control.hasAttribute("data-demo-range")) {
+        event.preventDefault();
+        rangeButton(control);
+        if (control.hasAttribute("data-demo-pick")) pickButton(control);
+        return;
+      }
+
+      if (control.hasAttribute("data-demo-pick")) {
+        event.preventDefault();
+        pickButton(control);
+        return;
+      }
+
+      if (control.hasAttribute("data-demo-remove")) {
+        event.preventDefault();
+        removeControl(control);
+        return;
+      }
+
+      if (control.hasAttribute("data-demo-select")) {
+        event.preventDefault();
+        selectPlan(control);
+        return;
+      }
+
+      if (control.hasAttribute("data-demo-regenerate")) {
+        event.preventDefault();
+        regenerate(control);
+        return;
+      }
+
+      if (control.hasAttribute("data-demo-reset-form")) {
+        event.preventDefault();
+        var targetForm = q(control.getAttribute("data-demo-reset-form"));
+        if (targetForm && targetForm.reset) {
+          targetForm.reset();
+          qa("input, select, textarea", targetForm).forEach(function (field) {
+            emit(field, "change");
+          });
+          toast("The form went back to its starting values.", "info", "Reset");
+        }
+        return;
+      }
+
       if (control.hasAttribute("data-demo-print")) {
         event.preventDefault();
         printPage(control);
+        return;
+      }
+
+      if (control.hasAttribute("data-copy-text")) {
+        event.preventDefault();
+        copyBlock(control);
         return;
       }
 
@@ -1808,7 +2091,26 @@
       if (column) {
         var menu = column.closest("[data-demo-columns]");
         applyColumns(q(menu.getAttribute("data-demo-columns")));
+        return;
       }
+
+      /* A showcase select still has to answer: echo the choice back. */
+      var echo = event.target.closest("[data-demo-echo]");
+      if (echo) {
+        var option = echo.options && echo.selectedIndex > -1 ? echo.options[echo.selectedIndex] : null;
+        var picked = String((option ? option.text : echo.value) || "").trim();
+        var echoLabel = echo.getAttribute("data-demo-echo") || "Selection";
+        toast(echoLabel + " set to " + (picked || "the default") + ".", "info", "Demo");
+      }
+    });
+
+    /* components.js repaints the rows when a page button is pressed; the
+       "Showing x of y" counter has to follow that repaint. */
+    doc.addEventListener("qevora:paginated", function (event) {
+      var wrapper = event.target && event.target.getAttribute ? event.target : null;
+      if (!wrapper || !wrapper.getAttribute) return;
+      var table = q(wrapper.getAttribute("data-paginate"));
+      if (table) updateCounts(table);
     });
 
     doc.addEventListener("input", function (event) {

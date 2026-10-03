@@ -31,12 +31,12 @@
               </button>
               <ul class="dropdown-menu">
                 <li class="dropdown-header">Invoice</li>
-                <li><a class="dropdown-item" href="#"><i class="bi bi-eye"></i> View invoice</a></li>
-                <li><a class="dropdown-item" href="#"><i class="bi bi-pencil"></i> Edit details</a></li>
-                <li><a class="dropdown-item" href="#"><i class="bi bi-send"></i> Send reminder</a></li>
+                <li><a class="dropdown-item" href="#" data-demo-action="View invoice — wire this menu item to your own route."><i class="bi bi-eye"></i> View invoice</a></li>
+                <li><a class="dropdown-item" href="#" data-demo-action="Edit details — demo menu action."><i class="bi bi-pencil"></i> Edit details</a></li>
+                <li><a class="dropdown-item" href="#" data-demo-action="Send reminder — demo menu action."><i class="bi bi-send"></i> Send reminder</a></li>
                 <li><hr class="dropdown-divider"></li>
-                <li><a class="dropdown-item text-danger" href="#"><i class="bi bi-trash3"></i> Delete invoice</a></li>
-                <li><a class="dropdown-item disabled" href="#" aria-disabled="true"><i class="bi bi-lock"></i> Approved — locked</a></li>
+                <li><a class="dropdown-item text-danger" href="#" data-demo-action="Delete invoice — the shared confirm dialog ships with the template; point this item at your own call."><i class="bi bi-trash3"></i> Delete invoice</a></li>
+                <li><a class="dropdown-item disabled" href="#" aria-disabled="true" data-demo-pick="menu" data-demo-pick-active-class="active" data-demo-pick-done="Approved — locked selected."><i class="bi bi-lock"></i> Approved — locked</a></li>
               </ul>
             </div>
 
@@ -45,22 +45,22 @@
                 <i class="bi bi-funnel"></i> Filter
               </button>
               <ul class="dropdown-menu">
-                <li><a class="dropdown-item active" href="#">All customers</a></li>
-                <li><a class="dropdown-item" href="#">Northstar Labs</a></li>
-                <li><a class="dropdown-item" href="#">Vertex Labs</a></li>
-                <li><a class="dropdown-item" href="#">Acme Inc.</a></li>
+                <li><a class="dropdown-item active" href="#" data-demo-pick="menu" data-demo-pick-active-class="active" data-demo-pick-done="All customers selected.">All customers</a></li>
+                <li><a class="dropdown-item" href="#" data-demo-pick="menu" data-demo-pick-active-class="active" data-demo-pick-done="Northstar Labs selected.">Northstar Labs</a></li>
+                <li><a class="dropdown-item" href="#" data-demo-pick="menu" data-demo-pick-active-class="active" data-demo-pick-done="Vertex Labs selected.">Vertex Labs</a></li>
+                <li><a class="dropdown-item" href="#" data-demo-pick="menu" data-demo-pick-active-class="active" data-demo-pick-done="Acme Inc. selected.">Acme Inc.</a></li>
               </ul>
             </div>
 
             <div class="btn-group">
-              <button class="btn btn-white" type="button">Export</button>
+              <button class="btn btn-white" type="button" data-demo-action="Export — dropdown demo action.">Export</button>
               <button class="btn btn-white dropdown-toggle dropdown-toggle-split" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                 <span class="visually-hidden">Export options</span>
               </button>
               <ul class="dropdown-menu dropdown-menu-end">
-                <li><a class="dropdown-item" href="#"><i class="bi bi-filetype-csv"></i> CSV</a></li>
-                <li><a class="dropdown-item" href="#"><i class="bi bi-filetype-xlsx"></i> Excel</a></li>
-                <li><a class="dropdown-item" href="#"><i class="bi bi-filetype-pdf"></i> PDF</a></li>
+                <li><a class="dropdown-item" href="#" data-demo-pick="menu" data-demo-pick-active-class="active" data-demo-pick-done="CSV selected."><i class="bi bi-filetype-csv"></i> CSV</a></li>
+                <li><a class="dropdown-item" href="#" data-demo-pick="menu" data-demo-pick-active-class="active" data-demo-pick-done="Excel selected."><i class="bi bi-filetype-xlsx"></i> Excel</a></li>
+                <li><a class="dropdown-item" href="#" data-demo-pick="menu" data-demo-pick-active-class="active" data-demo-pick-done="PDF selected."><i class="bi bi-filetype-pdf"></i> PDF</a></li>
               </ul>
             </div>
           </div>
@@ -89,32 +89,32 @@
             <div class="dropdown">
               <button class="btn btn-white dropdown-toggle" type="button" data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false">Drop down</button>
               <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="#">Duplicate</a></li>
-                <li><a class="dropdown-item" href="#">Archive</a></li>
+                <li><a class="dropdown-item" href="#" data-demo-action="Duplicate — demo menu action.">Duplicate</a></li>
+                <li><a class="dropdown-item" href="#" data-demo-action="Archive — the shared confirm dialog ships with the template; point this item at your own call.">Archive</a></li>
               </ul>
             </div>
 
             <div class="dropup">
               <button class="btn btn-white dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">Drop up</button>
               <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="#">Move to top</a></li>
-                <li><a class="dropdown-item" href="#">Mark as priority</a></li>
+                <li><a class="dropdown-item" href="#" data-demo-action="Move to top — demo menu action.">Move to top</a></li>
+                <li><a class="dropdown-item" href="#" data-demo-action="Mark as priority — demo menu action.">Mark as priority</a></li>
               </ul>
             </div>
 
             <div class="dropend">
               <button class="btn btn-white dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">Drop end</button>
               <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="#">Open in new tab</a></li>
-                <li><a class="dropdown-item" href="#">Copy link</a></li>
+                <li><a class="dropdown-item" href="#" data-demo-action="Open in new tab — wire this menu item to your own route.">Open in new tab</a></li>
+                <li><a class="dropdown-item" href="#" data-demo-copy-text="https://app.qevora.io/workspace/northstar" data-demo-copy-label="Link">Copy link</a></li>
               </ul>
             </div>
 
             <div class="dropdown">
               <button class="btn btn-white dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">End aligned</button>
               <ul class="dropdown-menu dropdown-menu-end">
-                <li><a class="dropdown-item" href="#">Rename</a></li>
-                <li><a class="dropdown-item" href="#">Move</a></li>
+                <li><a class="dropdown-item" href="#" data-demo-action="Rename — demo menu action.">Rename</a></li>
+                <li><a class="dropdown-item" href="#" data-demo-action="Move — demo menu action.">Move</a></li>
               </ul>
             </div>
           </div>

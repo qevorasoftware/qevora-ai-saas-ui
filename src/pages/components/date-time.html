@@ -76,11 +76,11 @@
         <div class="demo-block__pane is-active" data-demo-pane="preview">
           <div class="demo-preview" id="dtRangePresets">
             <div class="d-flex flex-wrap gap-2 mb-3">
-              <button class="btn btn-sm btn-white" type="button">Today</button>
-              <button class="btn btn-sm btn-white" type="button">Last 7 days</button>
-              <button class="btn btn-sm btn-soft-primary active" type="button">This month</button>
-              <button class="btn btn-sm btn-white" type="button">Q3 2026</button>
-              <button class="btn btn-sm btn-white" type="button">Year to date</button>
+              <button class="btn btn-sm btn-white" type="button" data-demo-range="today" data-demo-range-from="#dtFrom" data-demo-range-to="#dtTo" data-demo-today="2026-10-03" data-demo-pick="dt-range" data-demo-pick-active-class="btn-soft-primary" data-demo-pick-idle-class="btn-white" data-demo-pick-done="Showing today only.">Today</button>
+              <button class="btn btn-sm btn-white" type="button" data-demo-range="7d" data-demo-range-from="#dtFrom" data-demo-range-to="#dtTo" data-demo-today="2026-10-03" data-demo-pick="dt-range" data-demo-pick-active-class="btn-soft-primary" data-demo-pick-idle-class="btn-white" data-demo-pick-done="Showing the last 7 days.">Last 7 days</button>
+              <button class="btn btn-sm btn-soft-primary active" type="button" data-demo-range="mtd" data-demo-range-from="#dtFrom" data-demo-range-to="#dtTo" data-demo-today="2026-10-03" data-demo-pick="dt-range" aria-pressed="true" data-demo-pick-active-class="btn-soft-primary" data-demo-pick-idle-class="btn-white" data-demo-pick-done="Showing this month.">This month</button>
+              <button class="btn btn-sm btn-white" type="button" data-demo-range="q3" data-demo-range-from="#dtFrom" data-demo-range-to="#dtTo" data-demo-today="2026-10-03" data-demo-pick="dt-range" data-demo-pick-active-class="btn-soft-primary" data-demo-pick-idle-class="btn-white" data-demo-pick-done="Showing Q3 2026.">Q3 2026</button>
+              <button class="btn btn-sm btn-white" type="button" data-demo-range="ytd" data-demo-range-from="#dtFrom" data-demo-range-to="#dtTo" data-demo-today="2026-10-03" data-demo-pick="dt-range" data-demo-pick-active-class="btn-soft-primary" data-demo-pick-idle-class="btn-white" data-demo-pick-done="Showing the year to date.">Year to date</button>
             </div>
             <div class="row g-3">
               <div class="col-md-5">
@@ -139,7 +139,7 @@
               </div>
               <div class="col-md-4">
                 <label class="form-label" for="schDuration">Duration</label>
-                <select class="form-select" id="schDuration">
+                <select class="form-select" id="schDuration" data-demo-echo="Duration">
                   <option>15 minutes</option>
                   <option>30 minutes</option>
                   <option selected>45 minutes</option>
@@ -148,7 +148,7 @@
               </div>
               <div class="col-md-6">
                 <label class="form-label" for="schTimezone">Timezone</label>
-                <select class="form-select" id="schTimezone">
+                <select class="form-select" id="schTimezone" data-demo-echo="Timezone">
                   <option>(UTC +00:00) London</option>
                   <option selected>(UTC +08:00) Singapore</option>
                   <option>(UTC +01:00) Berlin</option>
@@ -157,7 +157,7 @@
               </div>
               <div class="col-md-6">
                 <label class="form-label" for="schRepeat">Repeat</label>
-                <select class="form-select" id="schRepeat">
+                <select class="form-select" id="schRepeat" data-demo-echo="Repeat">
                   <option selected>Does not repeat</option>
                   <option>Every weekday</option>
                   <option>Weekly on Tuesday</option>

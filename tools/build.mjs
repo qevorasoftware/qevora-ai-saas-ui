@@ -147,7 +147,7 @@ ${items}
 /* Cache busting: every page links the CSS and JS with ?v=<ASSET_VERSION>, so a
    browser can never apply an old stylesheet to new markup. Bump it whenever you
    change anything in assets/css or assets/js. */
-const ASSET_VERSION = "1.0.0";
+const ASSET_VERSION = "1.1.0";
 
 async function build() {
   const head = await readMaybe(join(ROOT, "src/partials/head.html"));

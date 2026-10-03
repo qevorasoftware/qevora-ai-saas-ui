@@ -51,17 +51,18 @@ original guide text (re-paste it and this line is closed in one pass).
 | 4.2 | RTL-ready | **Done** | Logical CSS properties + `assets/css/rtl.css` + runtime swap to `bootstrap.rtl.min.css`; toggle in the header |
 | 4.3 | Responsive — desktop / tablet / mobile off-canvas | **Done** | Sidebar drawer ≤ 991.98px, compact rail ≤ 1200px, `.table-responsive` on every table |
 | 4.4 | Charts | **Done** | 15+ Chart.js configs, `canvas[data-chart]`, `CHART_SCRIPTS` registered per page (audit verifies wiring) |
-| 4.5 | Accessibility | **Done** | `node tools/audit.mjs` → 82 files × 17 checks → 0 findings |
+| 4.5 | Accessibility | **Done** | `node tools/audit.mjs` → 82 files × 19 checks → 0 findings |
+| 4.6 | Every button, dropdown and pager works | **Done** | a button census over all 82 pages finds no control without behaviour (only `type="submit"` / `type="reset"` remain, and both have live forms behind them); 38 dropdown items are choices, actions or links; every `[data-paginate]` table renders its pager from the rows. Verified by `.tmp/hooks-test.mjs` (61 checks) + `.tmp/lists-test.mjs` (134 checks) + leads/customers/chips/rail/interactions suites (126 checks) → all green |
 
 ## 5. Engineering quality gates
 
 | # | Requirement | Status | Evidence |
 |---|---|---|---|
 | 5.1 | Page generator | **Done** | `node tools/build.mjs` (zero dependencies, Node 18+), `node tools/build.mjs --check` → 81/81 synced |
-| 5.2 | Static QA gate | **Done** | `node tools/audit.mjs` (17 checks: head meta, ids, anchors, aria, images, labels, class existence, data hooks, chart wiring, headings, tag balance, nesting, placeholders, demo-pane contract, link targets) |
+| 5.2 | Static QA gate | **Done** | `node tools/audit.mjs` (19 checks: head meta, ids, anchors, aria, images, labels, class existence, data hooks, chart wiring, headings, tag balance, nesting, placeholders, demo-pane contract, link targets) |
 | 5.3 | Buyer-facing docs in the ZIP | **Done** | `README.txt`, `CHANGELOG.txt`, `LICENSE.txt` (template licence + MIT/OFL attributions) |
 | 5.4 | Reproducible release builds | **Done** | `bash tools/package.sh` → `release/*.zip` (full + html-only) |
-| 5.5 | Every page verified over HTTP | **Done** | all 81 content pages returned 200 from a local server |
+| 5.5 | Every page verified over HTTP | **Done** | all 82 content pages returned 200 from a local server (`node tools/smoke.mjs --strict` also clicks through 8 interaction flows) |
 
 ## 6. Git, GitHub and hosting
 
@@ -84,8 +85,10 @@ original guide text (re-paste it and this line is closed in one pass).
 4. **Re-paste the master guide** to close items 2.6, 3.6 and 3.7 (exact page list, component Levels 1–8,
    development Phases 1–8) — everything else is already verified above.
 
-Completed since the previous revision of this list: the CSS + JS demo panes (item 1.4) and the
-root `404.html` hosting fallback.
+Completed since the previous revision of this list: the CSS + JS demo panes (item 1.4), the
+root `404.html` hosting fallback, the eleven list pages (filters, dialogs, exports, KPIs computed
+from the rows), and the last controls — date-range presets, filter-chip ✕, dropdown menus, the
+generated pagers, the AI history table, the content generator and the plan cards (item 4.6).
 
 ---
 

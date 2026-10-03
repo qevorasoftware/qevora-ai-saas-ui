@@ -27,14 +27,23 @@
                       <h3 class="card-title">Card title</h3>
                       <p class="card-subtitle">Supporting subtitle</p>
                     </div>
-                    <button type="button" class="btn btn-icon btn-sm btn-ghost" aria-label="Card options"><i class="bi bi-three-dots"></i></button>
+                    <div class="dropdown">
+                      <button type="button" class="btn btn-icon btn-sm btn-ghost" aria-label="Card options" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi bi-three-dots"></i></button>
+                      <ul class="dropdown-menu dropdown-menu-end">
+                        <li><button class="dropdown-item" type="button" data-copy-text="https://app.qevora.io/cards/at-a-glance" data-demo-copy-label="Card link"><i class="bi bi-link-45deg"></i> Copy link</button></li>
+                        <li><button class="dropdown-item" type="button" data-demo-action="The card was duplicated below — demo only."><i class="bi bi-files"></i> Duplicate card</button></li>
+                        <li><button class="dropdown-item" type="button" data-demo-action="The card was pinned to the top — demo only."><i class="bi bi-pin-angle"></i> Pin to top</button></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><button class="dropdown-item text-danger" type="button" data-demo-remove=".card" data-demo-remove-label="Card"><i class="bi bi-archive"></i> Archive card</button></li>
+                      </ul>
+                    </div>
                   </div>
                   <div class="card-body">
                     <p class="fs-7 text-muted-2 mb-0">Cards are the primary container in the template. Use the header for the title and one action, and keep long explanations inside the body.</p>
                   </div>
                   <div class="card-footer border-top border-q d-flex justify-content-between align-items-center">
                     <span class="fs-8 text-muted-2">Updated 2 hours ago</span>
-                    <button type="button" class="btn btn-sm btn-soft-primary">Open</button>
+                    <button type="button" class="btn btn-sm btn-soft-primary" data-demo-action="Open — card demo action.">Open</button>
                   </div>
                 </div>
               </div>
@@ -60,9 +69,10 @@
       &lt;h3 class="card-title"&gt;Card title&lt;/h3&gt;
       &lt;p class="card-subtitle"&gt;Supporting subtitle&lt;/p&gt;
     &lt;/div&gt;
-    &lt;button class="btn btn-icon btn-sm btn-ghost" aria-label="Card options"&gt;
+&lt;button class="btn btn-icon btn-sm btn-ghost" aria-label="Card options" data-bs-toggle="dropdown" aria-expanded="false"&gt;
       &lt;i class="bi bi-three-dots"&gt;&lt;/i&gt;
     &lt;/button&gt;
+    &lt;ul class="dropdown-menu dropdown-menu-end"&gt;…&lt;/ul&gt;
   &lt;/div&gt;
   &lt;div class="card-body"&gt;…&lt;/div&gt;
   &lt;div class="card-footer border-top border-q"&gt;…&lt;/div&gt;
@@ -188,8 +198,8 @@
                     <h3 class="card-title mt-3 mb-1">Ava Reynolds</h3>
                     <p class="card-subtitle mb-3">Workspace admin · Northstar Labs</p>
                     <div class="d-flex gap-2">
-                      <button type="button" class="btn btn-sm btn-soft-primary flex-grow-1">Message</button>
-                      <button type="button" class="btn btn-sm btn-white">View profile</button>
+                      <button type="button" class="btn btn-sm btn-soft-primary flex-grow-1" data-demo-action="Message — card demo action.">Message</button>
+                      <button type="button" class="btn btn-sm btn-white" data-demo-action="View profile — card demo action.">View profile</button>
                     </div>
                   </div>
                 </div>

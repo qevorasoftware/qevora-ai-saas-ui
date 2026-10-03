@@ -10,12 +10,12 @@
               <i class="bi bi-cpu"></i> Nova-4 Turbo
             </button>
             <ul class="dropdown-menu dropdown-menu-end">
-              <li><a class="dropdown-item active" href="#">Nova-4 Turbo — best quality</a></li>
-              <li><a class="dropdown-item" href="#">Nova-4 — balanced</a></li>
-              <li><a class="dropdown-item" href="#">Vertex Flash — fastest</a></li>
+              <li><a class="dropdown-item active" href="#" data-demo-pick="menu" data-demo-pick-active-class="active" data-demo-pick-done="Nova-4 Turbo — best quality selected.">Nova-4 Turbo — best quality</a></li>
+              <li><a class="dropdown-item" href="#" data-demo-pick="menu" data-demo-pick-active-class="active" data-demo-pick-done="Nova-4 — balanced selected.">Nova-4 — balanced</a></li>
+              <li><a class="dropdown-item" href="#" data-demo-pick="menu" data-demo-pick-active-class="active" data-demo-pick-done="Vertex Flash — fastest selected.">Vertex Flash — fastest</a></li>
             </ul>
           </div>
-          <button type="button" class="btn btn-primary" data-demo-action="New conversation started — demo interaction only."><i class="bi bi-plus-lg"></i> New chat</button>
+          <button type="button" class="btn btn-primary" data-demo-action="A new conversation is ready — the composer below answers."><i class="bi bi-plus-lg"></i> New chat</button>
         </div>
       </div>
 
@@ -130,7 +130,7 @@
                 <p class="msg__meta">Qevora AI · 09:41 · 1,240 tokens</p>
                 <div class="msg__actions">
                   <button class="btn btn-sm btn-ghost" type="button" data-copy-text><i class="bi bi-clipboard" aria-hidden="true"></i> Copy</button>
-                  <button class="btn btn-sm btn-ghost" type="button" data-regenerate><i class="bi bi-arrow-repeat" aria-hidden="true"></i> Regenerate</button>
+                  <button class="btn btn-sm btn-ghost" type="button" data-demo-regenerate="[data-chat-thread]"><i class="bi bi-arrow-repeat" aria-hidden="true"></i> Regenerate</button>
                   <button class="btn btn-sm btn-ghost" type="button" aria-label="Mark this response as helpful" title="Helpful" data-demo-action="Response rated — demo only."><i class="bi bi-hand-thumbs-up" aria-hidden="true"></i></button>
                   <button class="btn btn-sm btn-ghost" type="button" aria-label="Mark this response as not helpful" title="Not helpful" data-demo-action="Feedback recorded — demo only."><i class="bi bi-hand-thumbs-down" aria-hidden="true"></i></button>
                 </div>
@@ -158,13 +158,13 @@
                 <p class="msg__meta">Qevora AI · 09:43 · 640 tokens</p>
                 <div class="msg__actions">
                   <button class="btn btn-sm btn-ghost" type="button" data-copy-text><i class="bi bi-clipboard" aria-hidden="true"></i> Copy</button>
-                  <button class="btn btn-sm btn-ghost" type="button" data-regenerate><i class="bi bi-arrow-repeat" aria-hidden="true"></i> Regenerate</button>
+                  <button class="btn btn-sm btn-ghost" type="button" data-demo-regenerate="[data-chat-thread]"><i class="bi bi-arrow-repeat" aria-hidden="true"></i> Regenerate</button>
                 </div>
               </div>
             </article>
           </div>
 
-          <form class="composer" data-chat-composer>
+          <form class="composer" data-chat-composer data-demo-form data-demo-chat-thread="[data-chat-thread]">
             <div class="d-flex flex-wrap gap-2 mb-2">
               <button class="chip" type="button" data-demo-action="Prompt template inserted — demo only.">Summarise this page</button>
               <button class="chip" type="button" data-demo-action="Prompt template inserted — demo only.">Rewrite for clarity</button>
@@ -174,7 +174,7 @@
             <div class="d-flex align-items-end gap-2">
               <button class="btn btn-icon btn-ghost" type="button" aria-label="Attach file" data-demo-action="File picker opened — demo only."><i class="bi bi-paperclip"></i></button>
               <label class="visually-hidden" for="ai-chat-input">Ask the assistant</label>
-              <textarea class="form-control" id="ai-chat-input" rows="1" placeholder="Ask anything…" style="resize: none;"></textarea>
+              <textarea class="form-control" id="ai-chat-input" rows="1" placeholder="Ask anything…" style="resize: none;" data-demo-chat-input></textarea>
               <button class="btn btn-primary" type="submit"><i class="bi bi-send"></i> Send</button>
             </div>
             <p class="fs-9 text-muted-2 mt-2 mb-0">

@@ -31,15 +31,15 @@
   </script>
 
   <!-- Vendor styles (bundled locally, see documentation/index.html → Credits) -->
-  <link rel="stylesheet" href="../assets/css/fonts.css?v=1.0.0">
-  <link rel="stylesheet" href="../assets/css/bootstrap.min.css?v=1.0.0">
-  <link rel="stylesheet" href="../assets/icons/bootstrap-icons/bootstrap-icons.min.css?v=1.0.0">
+  <link rel="stylesheet" href="../assets/css/fonts.css?v=1.1.0">
+  <link rel="stylesheet" href="../assets/css/bootstrap.min.css?v=1.1.0">
+  <link rel="stylesheet" href="../assets/icons/bootstrap-icons/bootstrap-icons.min.css?v=1.1.0">
 
   <!-- Qevora theme -->
-  <link rel="stylesheet" href="../assets/css/style.css?v=1.0.0">
-  <link rel="stylesheet" href="../assets/css/components.css?v=1.0.0">
-  <link rel="stylesheet" href="../assets/css/dark.css?v=1.0.0">
-  <link rel="stylesheet" href="../assets/css/rtl.css?v=1.0.0">
+  <link rel="stylesheet" href="../assets/css/style.css?v=1.1.0">
+  <link rel="stylesheet" href="../assets/css/components.css?v=1.1.0">
+  <link rel="stylesheet" href="../assets/css/dark.css?v=1.1.0">
+  <link rel="stylesheet" href="../assets/css/rtl.css?v=1.1.0">
 </head>
 
 <body class="q-app">
@@ -709,8 +709,8 @@
               <p class="state-block__title">No projects yet</p>
               <p class="state-block__text">Create your first project to start tracking tasks, budgets and delivery dates.</p>
               <div class="d-flex justify-content-center gap-2">
-                <button type="button" class="btn btn-primary"><i class="bi bi-plus-lg"></i> New project</button>
-                <button type="button" class="btn btn-white">Import from CSV</button>
+                <button type="button" class="btn btn-primary" data-demo-action="New project — the empty state's call to action; point it at your own flow."><i class="bi bi-plus-lg"></i> New project</button>
+                <button type="button" class="btn btn-white" data-demo-action="Import from CSV — the empty state's call to action; point it at your own flow.">Import from CSV</button>
               </div>
             </div>
           </div>
@@ -803,7 +803,10 @@
         <div class="demo-block__pane" data-demo-pane="js">
           <div class="demo-code-wrap">
             <button class="copy-btn" data-copy-target="#js-components-empty-states-1" type="button"><i class="bi bi-clipboard"></i> Copy JS</button>
-            <pre class="demo-code"><code id="js-components-empty-states-1" data-lang="js">/* No JavaScript required — this block is pure markup and CSS. */</code></pre>
+            <pre class="demo-code"><code id="js-components-empty-states-1" data-lang="js">// Demo-only buttons show a toast instead of calling a backend.
+// &lt;button data-demo-action="Invoice saved" data-demo-variant="success"&gt;
+
+Qevora.toast("Invoice INV-2026-0186 marked as paid", "success", "Payments");</code></pre>
           </div>
         </div>
 
@@ -831,7 +834,7 @@
                     <div class="state-block__icon bg-surface-alt" style="color: var(--q-muted-color);"><i class="bi bi-search"></i></div>
                     <p class="state-block__title">No results found</p>
                     <p class="state-block__text">No invoices match “Orbit”. Try a different keyword or clear the filters.</p>
-                    <button type="button" class="btn btn-soft-primary">Clear filters</button>
+                    <button type="button" class="btn btn-soft-primary" data-demo-action="Clear filters — the empty state's call to action; point it at your own flow.">Clear filters</button>
                   </div>
                 </div>
               </div>
@@ -841,7 +844,7 @@
                     <div class="state-block__icon bg-danger-soft" style="color: var(--q-danger);"><i class="bi bi-exclamation-octagon"></i></div>
                     <p class="state-block__title">Could not load analytics</p>
                     <p class="state-block__text">The reporting service did not respond. Your data is safe — try again in a moment.</p>
-                    <button type="button" class="btn btn-soft-danger"><i class="bi bi-arrow-repeat"></i> Retry</button>
+                    <button type="button" class="btn btn-soft-danger" data-demo-action="Retry — the empty state's call to action; point it at your own flow."><i class="bi bi-arrow-repeat"></i> Retry</button>
                   </div>
                 </div>
               </div>
@@ -946,7 +949,10 @@
         <div class="demo-block__pane" data-demo-pane="js">
           <div class="demo-code-wrap">
             <button class="copy-btn" data-copy-target="#js-components-empty-states-2" type="button"><i class="bi bi-clipboard"></i> Copy JS</button>
-            <pre class="demo-code"><code id="js-components-empty-states-2" data-lang="js">/* No JavaScript required — this block is pure markup and CSS. */</code></pre>
+            <pre class="demo-code"><code id="js-components-empty-states-2" data-lang="js">// Demo-only buttons show a toast instead of calling a backend.
+// &lt;button data-demo-action="Invoice saved" data-demo-variant="success"&gt;
+
+Qevora.toast("Invoice INV-2026-0186 marked as paid", "success", "Payments");</code></pre>
           </div>
         </div>
 
@@ -1142,14 +1148,14 @@
 
     <!-- ================= Scripts ================= -->
     <!-- Vendor: Bootstrap 5 bundle (includes Popper) -->
-    <script src="../assets/js/bootstrap.bundle.min.js?v=1.0.0"></script>
+    <script src="../assets/js/bootstrap.bundle.min.js?v=1.1.0"></script>
 
     <!-- Qevora core -->
-    <script src="../assets/js/theme.js?v=1.0.0"></script>
-    <script src="../assets/js/sidebar.js?v=1.0.0"></script>
-    <script src="../assets/js/app.js?v=1.0.0"></script>
-    <script src="../assets/js/components.js?v=1.0.0"></script>
-    <script src="../assets/js/demo-ui.js?v=1.0.0"></script>
+    <script src="../assets/js/theme.js?v=1.1.0"></script>
+    <script src="../assets/js/sidebar.js?v=1.1.0"></script>
+    <script src="../assets/js/app.js?v=1.1.0"></script>
+    <script src="../assets/js/components.js?v=1.1.0"></script>
+    <script src="../assets/js/demo-ui.js?v=1.1.0"></script>
 
 </body>
 </html>

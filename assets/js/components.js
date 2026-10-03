@@ -332,9 +332,9 @@
 
           var list = wrapper.querySelector(".pagination");
           if (!list) {
-            var nav = doc.createElement("nav");
+            var nav = document.createElement("nav");
             nav.setAttribute("aria-label", "Table pagination");
-            list = doc.createElement("ul");
+            list = document.createElement("ul");
             list.className = "pagination pagination-sm mb-0";
             nav.appendChild(list);
             (wrapper.querySelector(".table-footer__pager") || wrapper).appendChild(nav);
@@ -393,6 +393,17 @@
           }
 
           wrapper.setAttribute("data-current-page", String(page));
+
+          /* demo-ui.js keeps the "Showing x of y" counter honest after a page
+             change; it listens for this event instead of polling. */
+          var repaint;
+          try {
+            repaint = new CustomEvent("qevora:paginated", { bubbles: true });
+          } catch (error) {
+            repaint = document.createEvent("CustomEvent");
+            repaint.initCustomEvent("qevora:paginated", true, false, null);
+          }
+          wrapper.dispatchEvent(repaint);
         }
 
         /* demo-ui.js asks for the first page after a record is added. */

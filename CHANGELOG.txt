@@ -187,6 +187,28 @@ FIXES DURING DEVELOPMENT
       offline "AI" demo on the AI screens, data-demo-chat writes a message and
       an answer into the chat thread, and data-demo-export-row exports one row.
 
+    · Dropdowns and menus are menus now, not decoration. The caret buttons in
+      the page header, the card headers and the tables open a real Bootstrap
+      menu; the 38 menu items that were href="#" placeholders became choices
+      (data-demo-pick moves the tick, e.g. the AI model, the dashboard period,
+      the analytics channel, the customer filter), actions with a confirmation
+      toast, copy-to-clipboard items or links, so a menu never closes on
+      nothing.
+    · Pagination is generated from the rows, on every table that carries
+      data-paginate: the pager is rebuilt when the row count changes, the first
+      and last pages dim the prev/next arrows, and the "Showing x of y" text
+      follows the page — including ai/history.html, which now holds ten prompt
+      rows over two pages instead of claiming "5 of 48,260".
+    · Every remaining control answers: the date-range presets (Today, Last 7
+      days, This month, Q3 2026, Year to date) write real ISO dates into the
+      From/To inputs and highlight themselves, the filter-chip ✕ removes its own
+      chip with an undo toast, the showcase selects echo their choice, the
+      content generator prints the template, tone, length, language and model it
+      used under the draft, the plan cards mark the chosen plan, the card menu
+      can archive a card with an undo, and the pricing "Contact sales" copies
+      the sales address. components/pricing.html button check reports zero
+      controls left without behaviour.
+
   Links, buttons and runtime behaviour
     · The light/dark toggle did nothing when localStorage is unavailable —
       private-mode windows, sandboxed frames and, most importantly, opening the

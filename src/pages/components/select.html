@@ -28,7 +28,7 @@
             <div class="row g-3">
               <div class="col-md-6">
                 <label class="form-label" for="selOwner">Project owner</label>
-                <select class="form-select" id="selOwner">
+                <select class="form-select" id="selOwner" data-demo-echo="Owner">
                   <option selected>Ava Reynolds — Admin</option>
                   <option>Marcus Chen — Manager</option>
                   <option>Lea Novak — Analyst</option>
@@ -37,7 +37,7 @@
               </div>
               <div class="col-md-6">
                 <label class="form-label" for="selStatus">Status</label>
-                <select class="form-select form-select-sm" id="selStatus">
+                <select class="form-select form-select-sm" id="selStatus" data-demo-echo="Status">
                   <option>All statuses</option>
                   <option selected>Active</option>
                   <option>On hold</option>
@@ -46,7 +46,7 @@
               </div>
               <div class="col-md-6">
                 <label class="form-label" for="selPlan">Plan</label>
-                <select class="form-select form-select-lg" id="selPlan">
+                <select class="form-select form-select-lg" id="selPlan" data-demo-echo="Plan">
                   <option>Starter</option>
                   <option selected>Growth</option>
                   <option>Scale</option>
@@ -55,7 +55,7 @@
               </div>
               <div class="col-md-6">
                 <label class="form-label" for="selTimezone">Timezone</label>
-                <select class="form-select" id="selTimezone" aria-describedby="selTimezoneHelp">
+                <select class="form-select" id="selTimezone" data-demo-echo="Timezone" aria-describedby="selTimezoneHelp">
                   <option>(UTC +00:00) London</option>
                   <option selected>(UTC +08:00) Singapore</option>
                   <option>(UTC +01:00) Berlin</option>
@@ -65,7 +65,7 @@
               </div>
               <div class="col-12">
                 <label class="form-label" for="selMulti">Assign reviewers</label>
-                <select class="form-select" id="selMulti" multiple size="4" aria-describedby="selMultiHelp">
+                <select class="form-select" id="selMulti" data-demo-echo="Teams" multiple size="4" aria-describedby="selMultiHelp">
                   <option selected>Ava Reynolds</option>
                   <option selected>Marcus Chen</option>
                   <option>Lea Novak</option>
@@ -140,10 +140,10 @@
           <div class="demo-preview" id="selTags">
             <label class="form-label d-block">Active filters</label>
             <div class="d-flex flex-wrap gap-2 mb-3">
-              <span class="chip">Status: Active <button class="btn-close" type="button" aria-label="Remove Status filter"></button></span>
-              <span class="chip">Owner: Marcus Chen <button class="btn-close" type="button" aria-label="Remove Owner filter"></button></span>
-              <span class="chip">Value: over $10K <button class="btn-close" type="button" aria-label="Remove Value filter"></button></span>
-              <span class="chip">Created: Q3 2026 <button class="btn-close" type="button" aria-label="Remove Created filter"></button></span>
+              <span class="chip">Status: Active <button class="btn-close" type="button" aria-label="Remove Status filter" data-demo-remove data-demo-remove-label="Status filter"></button></span>
+              <span class="chip">Owner: Marcus Chen <button class="btn-close" type="button" aria-label="Remove Owner filter" data-demo-remove data-demo-remove-label="Owner filter"></button></span>
+              <span class="chip">Value: over $10K <button class="btn-close" type="button" aria-label="Remove Value filter" data-demo-remove data-demo-remove-label="Value filter"></button></span>
+              <span class="chip">Created: Q3 2026 <button class="btn-close" type="button" aria-label="Remove Created filter" data-demo-remove data-demo-remove-label="Created filter"></button></span>
             </div>
             <div class="input-group">
               <span class="input-group-text"><i class="bi bi-tags"></i></span>
