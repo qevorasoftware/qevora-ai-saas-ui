@@ -159,6 +159,34 @@ FIXES DURING DEVELOPMENT
       id, and data-<record>-<field> attributes are valid on any table that
       declares data-demo-record.
 
+    · Every list page is a real list now, not a picture of one. Invoices,
+      orders, payments, products, subscriptions, tasks, team, transactions and
+      activity each carry their record values on the rows, so the toolbar
+      filters (gateway, category, status, plan, role, browser, date range), the
+      live search, the generated pager, the "Showing x of y" footer and the KPI
+      tiles all read the same five or six rows and can never disagree with them.
+    · Create, edit and delete work from anywhere: "New invoice", "Record
+      payment", "Add product", "New subscription", "New task", "Invite member"
+      and the rest open the shared dialog, which builds its fields from the
+      table (text, number or a short list of choices) and writes the row back,
+      and every row gained an edit and a delete button beside its existing
+      actions. A record added while a filter is active clears that filter, jumps
+      to page one and flashes, so it is never invisible.
+    · Export is real: the CSV buttons write a file from the rows on screen (a
+      download icon inside a row exports just that row), the export buttons on
+      cards work off the table inside the card, and the KPI tiles are computed
+      from the same data (sum of paid invoices, captured payments, MRR, active
+      products, open tasks …).
+    · A new row keeps the shape of the table: it is cloned from the first row
+      (checkbox, avatar, badge, money formatting and row actions included)
+      instead of being a bare set of cells.
+    · Small actions got real behaviour too: data-demo-print opens the print
+      dialog, data-demo-copy copies to the clipboard, data-demo-save and
+      data-demo-discard persist a form in localStorage, data-demo-toggle flips a
+      two-state button, data-demo-go follows a link, data-demo-gen runs the
+      offline "AI" demo on the AI screens, data-demo-chat writes a message and
+      an answer into the chat thread, and data-demo-export-row exports one row.
+
   Links, buttons and runtime behaviour
     · The light/dark toggle did nothing when localStorage is unavailable —
       private-mode windows, sandboxed frames and, most importantly, opening the

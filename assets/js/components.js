@@ -322,8 +322,36 @@
         var table = document.querySelector(wrapper.getAttribute("data-paginate"));
         if (!table) return;
         var perPage = parseInt(wrapper.getAttribute("data-per-page") || "5", 10);
-        var pages = wrapper.querySelectorAll("[data-page]");
         var info = wrapper.querySelector("[data-page-info]");
+
+        /* A footer without buttons gets them here: the count comes from the rows
+           and the page size, so the pager always describes the real table. */
+        function renderPager(totalPages) {
+          var numeric = wrapper.querySelectorAll('[data-page]:not([data-page="prev"]):not([data-page="next"])');
+          if (numeric.length === totalPages) return;
+
+          var list = wrapper.querySelector(".pagination");
+          if (!list) {
+            var nav = doc.createElement("nav");
+            nav.setAttribute("aria-label", "Table pagination");
+            list = doc.createElement("ul");
+            list.className = "pagination pagination-sm mb-0";
+            nav.appendChild(list);
+            (wrapper.querySelector(".table-footer__pager") || wrapper).appendChild(nav);
+          }
+
+          var html =
+            '<li class="page-item"><a class="page-link" href="#" data-page="prev" aria-label="Previous page">' +
+            '<i class="bi bi-chevron-left"></i></a></li>';
+          for (var page = 1; page <= totalPages; page++) {
+            html += '<li class="page-item' + (page === 1 ? " active" : "") + '"><a class="page-link" href="#" data-page="' +
+              page + '">' + page + "</a></li>";
+          }
+          html +=
+            '<li class="page-item"><a class="page-link" href="#" data-page="next" aria-label="Next page">' +
+            '<i class="bi bi-chevron-right"></i></a></li>';
+          list.innerHTML = html;
+        }
 
         function show(page) {
           var tbody = table.tBodies[0];
@@ -341,16 +369,22 @@
           var total = rows.length;
           var totalPages = Math.max(1, Math.ceil(total / perPage));
           page = Math.min(Math.max(1, page), totalPages);
+          renderPager(totalPages);
 
           for (var r = 0; r < rows.length; r++) {
             rows[r].style.display = (r >= (page - 1) * perPage && r < page * perPage) ? "" : "none";
           }
 
+          var pages = wrapper.querySelectorAll("[data-page]");
           for (var p = 0; p < pages.length; p++) {
             var pageNum = parseInt(pages[p].getAttribute("data-page"), 10);
             pages[p].classList.toggle("active", pageNum === page);
             pages[p].parentElement.classList.toggle("active", pageNum === page);
           }
+          var first = wrapper.querySelector('[data-page="prev"]');
+          var last = wrapper.querySelector('[data-page="next"]');
+          if (first) first.parentElement.classList.toggle("disabled", page <= 1);
+          if (last) last.parentElement.classList.toggle("disabled", page >= totalPages);
 
           if (info) {
             var from = total === 0 ? 0 : (page - 1) * perPage + 1;
@@ -360,6 +394,9 @@
 
           wrapper.setAttribute("data-current-page", String(page));
         }
+
+        /* demo-ui.js asks for the first page after a record is added. */
+        wrapper.__qShow = show;
 
         wrapper.addEventListener("click", function (event) {
           var target = event.target.closest("[data-page]");

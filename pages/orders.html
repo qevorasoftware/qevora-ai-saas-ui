@@ -688,8 +688,8 @@
           <p class="q-page-head__subtitle">Customer orders with payment and fulfilment status.</p>
         </div>
         <div class="d-flex flex-wrap gap-2">
-          <button type="button" class="btn btn-white" data-demo-action="Order export queued — demo only."><i class="bi bi-download"></i> Export</button>
-          <button type="button" class="btn btn-primary" data-demo-action="Manual order form opened — demo interaction only."><i class="bi bi-plus-lg"></i> Create order</button>
+          <button type="button" class="btn btn-white" data-demo-export="#orders-table"><i class="bi bi-download"></i> Export</button>
+          <button type="button" class="btn btn-primary" data-demo-new="#q-demo-record" data-demo-table="#orders-table" data-demo-label="Order"><i class="bi bi-plus-lg"></i> Create order</button>
         </div>
       </div>
 
@@ -699,7 +699,7 @@
             <span class="card-stat__icon bg-primary-soft text-primary-2"><i class="bi bi-cart3"></i></span>
             <div class="kpi-tile__body">
               <p class="kpi-tile__label mb-0">Orders this month</p>
-              <p class="kpi-tile__value" data-counter="1248">1,248</p>
+              <p class="kpi-tile__value" data-counter="1248" data-demo-stat="rows" data-demo-stat-table="#orders-table">1,248</p>
             </div>
           </div>
         </div>
@@ -762,7 +762,7 @@
               </tr>
             </thead>
             <tbody>
-              <tr data-order-status="Paid">
+              <tr data-order-id="#QV-20418" data-order-customer="Northstar Labs" data-order-items="4" data-order-total="18940" data-order-status="Paid" data-order-fulfilment="Shipped">
                 <td><input class="form-check-input" type="checkbox" data-row-select aria-label="Select order"></td>
                 <td><a class="fw-500 text-heading" href="order-details.html">#QV-20418</a><span class="d-block fs-8 text-muted-2">Oct 2, 2026</span></td>
                 <td>Northstar Labs</td>
@@ -770,9 +770,9 @@
                 <td class="text-end fw-600 text-heading">$18,940.00</td>
                 <td><span class="badge badge-soft-success badge-pill">Paid</span></td>
                 <td><span class="badge badge-soft-info badge-pill">Shipped</span></td>
-                <td class="text-end"><a class="btn btn-icon btn-sm btn-ghost" href="order-details.html" aria-label="View order QV-20418"><i class="bi bi-arrow-right"></i></a></td>
+                <td class="text-end"><div class="table-actions justify-content-end"><a class="btn btn-icon btn-sm btn-ghost" href="order-details.html" aria-label="View order QV-20418"><i class="bi bi-arrow-right"></i></a><button type="button" class="btn btn-icon btn-sm btn-ghost" aria-label="Edit #QV-20418" data-demo-new="#q-demo-record" data-demo-table="#orders-table" data-demo-label="Order"><i class="bi bi-pencil"></i></button><button type="button" class="btn btn-icon btn-sm btn-ghost" aria-label="Delete #QV-20418" data-demo-delete data-demo-delete-label="Order"><i class="bi bi-trash"></i></button></div></td>
               </tr>
-              <tr data-order-status="Pending">
+              <tr data-order-id="#QV-20417" data-order-customer="Vertex Labs" data-order-items="2" data-order-total="5290" data-order-status="Pending" data-order-fulfilment="Processing">
                 <td><input class="form-check-input" type="checkbox" data-row-select aria-label="Select order"></td>
                 <td><a class="fw-500 text-heading" href="order-details.html">#QV-20417</a><span class="d-block fs-8 text-muted-2">Oct 2, 2026</span></td>
                 <td>Vertex Labs</td>
@@ -780,9 +780,9 @@
                 <td class="text-end fw-600 text-heading">$5,290.00</td>
                 <td><span class="badge badge-soft-warning badge-pill">Pending</span></td>
                 <td><span class="badge badge-soft-neutral badge-pill">Processing</span></td>
-                <td class="text-end"><a class="btn btn-icon btn-sm btn-ghost" href="order-details.html" aria-label="View order QV-20417"><i class="bi bi-arrow-right"></i></a></td>
+                <td class="text-end"><div class="table-actions justify-content-end"><a class="btn btn-icon btn-sm btn-ghost" href="order-details.html" aria-label="View order QV-20417"><i class="bi bi-arrow-right"></i></a><button type="button" class="btn btn-icon btn-sm btn-ghost" aria-label="Edit #QV-20417" data-demo-new="#q-demo-record" data-demo-table="#orders-table" data-demo-label="Order"><i class="bi bi-pencil"></i></button><button type="button" class="btn btn-icon btn-sm btn-ghost" aria-label="Delete #QV-20417" data-demo-delete data-demo-delete-label="Order"><i class="bi bi-trash"></i></button></div></td>
               </tr>
-              <tr data-order-status="Paid">
+              <tr data-order-id="#QV-20416" data-order-customer="Acme Inc." data-order-items="1" data-order-total="1250" data-order-status="Paid" data-order-fulfilment="Delivered">
                 <td><input class="form-check-input" type="checkbox" data-row-select aria-label="Select order"></td>
                 <td><a class="fw-500 text-heading" href="order-details.html">#QV-20416</a><span class="d-block fs-8 text-muted-2">Oct 1, 2026</span></td>
                 <td>Acme Inc.</td>
@@ -790,9 +790,9 @@
                 <td class="text-end fw-600 text-heading">$1,250.00</td>
                 <td><span class="badge badge-soft-success badge-pill">Paid</span></td>
                 <td><span class="badge badge-soft-success badge-pill">Delivered</span></td>
-                <td class="text-end"><a class="btn btn-icon btn-sm btn-ghost" href="order-details.html" aria-label="View order QV-20416"><i class="bi bi-arrow-right"></i></a></td>
+                <td class="text-end"><div class="table-actions justify-content-end"><a class="btn btn-icon btn-sm btn-ghost" href="order-details.html" aria-label="View order QV-20416"><i class="bi bi-arrow-right"></i></a><button type="button" class="btn btn-icon btn-sm btn-ghost" aria-label="Edit #QV-20416" data-demo-new="#q-demo-record" data-demo-table="#orders-table" data-demo-label="Order"><i class="bi bi-pencil"></i></button><button type="button" class="btn btn-icon btn-sm btn-ghost" aria-label="Delete #QV-20416" data-demo-delete data-demo-delete-label="Order"><i class="bi bi-trash"></i></button></div></td>
               </tr>
-              <tr data-order-status="Failed">
+              <tr data-order-id="#QV-20415" data-order-customer="Orbit Systems" data-order-items="6" data-order-total="32180" data-order-status="Failed" data-order-fulfilment="On hold">
                 <td><input class="form-check-input" type="checkbox" data-row-select aria-label="Select order"></td>
                 <td><a class="fw-500 text-heading" href="order-details.html">#QV-20415</a><span class="d-block fs-8 text-muted-2">Oct 1, 2026</span></td>
                 <td>Orbit Systems</td>
@@ -800,9 +800,9 @@
                 <td class="text-end fw-600 text-heading">$32,180.00</td>
                 <td><span class="badge badge-soft-danger badge-pill">Failed</span></td>
                 <td><span class="badge badge-soft-neutral badge-pill">On hold</span></td>
-                <td class="text-end"><a class="btn btn-icon btn-sm btn-ghost" href="order-details.html" aria-label="View order QV-20415"><i class="bi bi-arrow-right"></i></a></td>
+                <td class="text-end"><div class="table-actions justify-content-end"><a class="btn btn-icon btn-sm btn-ghost" href="order-details.html" aria-label="View order QV-20415"><i class="bi bi-arrow-right"></i></a><button type="button" class="btn btn-icon btn-sm btn-ghost" aria-label="Edit #QV-20415" data-demo-new="#q-demo-record" data-demo-table="#orders-table" data-demo-label="Order"><i class="bi bi-pencil"></i></button><button type="button" class="btn btn-icon btn-sm btn-ghost" aria-label="Delete #QV-20415" data-demo-delete data-demo-delete-label="Order"><i class="bi bi-trash"></i></button></div></td>
               </tr>
-              <tr data-order-status="Paid">
+              <tr data-order-id="#QV-20414" data-order-customer="Horizon Labs" data-order-items="3" data-order-total="9640" data-order-status="Paid" data-order-fulfilment="Shipped">
                 <td><input class="form-check-input" type="checkbox" data-row-select aria-label="Select order"></td>
                 <td><a class="fw-500 text-heading" href="order-details.html">#QV-20414</a><span class="d-block fs-8 text-muted-2">Sep 30, 2026</span></td>
                 <td>Horizon Labs</td>
@@ -810,21 +810,19 @@
                 <td class="text-end fw-600 text-heading">$9,640.00</td>
                 <td><span class="badge badge-soft-success badge-pill">Paid</span></td>
                 <td><span class="badge badge-soft-info badge-pill">Shipped</span></td>
-                <td class="text-end"><a class="btn btn-icon btn-sm btn-ghost" href="order-details.html" aria-label="View order QV-20414"><i class="bi bi-arrow-right"></i></a></td>
+                <td class="text-end"><div class="table-actions justify-content-end"><a class="btn btn-icon btn-sm btn-ghost" href="order-details.html" aria-label="View order QV-20414"><i class="bi bi-arrow-right"></i></a><button type="button" class="btn btn-icon btn-sm btn-ghost" aria-label="Edit #QV-20414" data-demo-new="#q-demo-record" data-demo-table="#orders-table" data-demo-label="Order"><i class="bi bi-pencil"></i></button><button type="button" class="btn btn-icon btn-sm btn-ghost" aria-label="Delete #QV-20414" data-demo-delete data-demo-delete-label="Order"><i class="bi bi-trash"></i></button></div></td>
               </tr>
             </tbody>
           </table>
         </div>
 
-        <div class="table-footer">
-          <span class="fs-8 text-muted-2">Showing 5 of 1,248 orders</span>
+        <div class="table-footer" data-paginate="#orders-table" data-per-page="5">
+          <span class="fs-8 text-muted-2" data-page-info>Showing 1–5 of 5</span>
           <nav aria-label="Order pagination">
             <ul class="pagination pagination-sm mb-0">
-              <li class="page-item disabled"><a class="page-link" href="#" aria-label="Previous"><i class="bi bi-chevron-left"></i></a></li>
-              <li class="page-item active"><a class="page-link" href="#">1</a></li>
-              <li class="page-item"><a class="page-link" href="#">2</a></li>
-              <li class="page-item"><a class="page-link" href="#">3</a></li>
-              <li class="page-item"><a class="page-link" href="#" aria-label="Next"><i class="bi bi-chevron-right"></i></a></li>
+              <li class="page-item"><a class="page-link" href="#" data-page="prev" aria-label="Previous page"><i class="bi bi-chevron-left"></i></a></li>
+              <li class="page-item active"><a class="page-link active" href="#" data-page="1">1</a></li>
+              <li class="page-item"><a class="page-link" href="#" data-page="next" aria-label="Next page"><i class="bi bi-chevron-right"></i></a></li>
             </ul>
           </nav>
         </div>
@@ -868,6 +866,28 @@
           <button type="button" class="btn btn-white" data-bs-dismiss="modal">Cancel</button>
           <button type="button" class="btn btn-danger" data-demo-confirm>Delete</button>
         </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Used by every "Add …" button: demo-ui.js builds the fields from the table
+       the button points at, so a new list page needs no extra markup. -->
+  <div class="modal fade" id="q-demo-record" tabindex="-1" aria-labelledby="q-demo-record-title" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <form data-demo-form novalidate>
+          <div class="modal-header">
+            <h2 class="modal-title fs-6" id="q-demo-record-title" data-demo-title="Add record">Add record</h2>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close dialog"></button>
+          </div>
+          <div class="modal-body">
+            <div class="row g-3" data-demo-record-fields></div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-white" data-bs-dismiss="modal">Cancel</button>
+            <button type="submit" class="btn btn-primary" data-demo-submit>Add record</button>
+          </div>
+        </form>
       </div>
     </div>
   </div>

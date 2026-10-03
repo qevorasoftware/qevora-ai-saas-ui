@@ -688,8 +688,8 @@
           <p class="q-page-head__subtitle">Catalog of plans, add-ons and hardware offered to customers.</p>
         </div>
         <div class="d-flex flex-wrap gap-2">
-          <button type="button" class="btn btn-white" data-demo-action="Category manager opened — demo only."><i class="bi bi-tags"></i> Categories</button>
-          <button type="button" class="btn btn-primary" data-demo-action="New product form opened — demo interaction only."><i class="bi bi-plus-lg"></i> Add product</button>
+          <button type="button" class="btn btn-white" data-demo-load="1100" data-demo-load-done="Category list refreshed from the catalogue."><i class="bi bi-tags"></i> Categories</button>
+          <button type="button" class="btn btn-primary" data-demo-new="#q-demo-record" data-demo-table="#products-table" data-demo-label="Product"><i class="bi bi-plus-lg"></i> Add product</button>
         </div>
       </div>
 
@@ -698,7 +698,7 @@
           <div class="kpi-tile">
             <div class="kpi-tile__body">
               <p class="kpi-tile__label mb-0">Active products</p>
-              <p class="kpi-tile__value" data-counter="128">128</p>
+              <p class="kpi-tile__value" data-counter="128" data-demo-stat="count:status=Active" data-demo-stat-table="#products-table">128</p>
             </div>
           </div>
         </div>
@@ -735,15 +735,15 @@
             <label class="visually-hidden" for="product-search">Search products</label>
             <input type="search" class="form-control" id="product-search" placeholder="Search products…" data-table-filter="#products-table">
           </div>
-          <select class="form-select form-select-sm" style="width: auto;" aria-label="Filter by category">
+          <select class="form-select form-select-sm" style="width: auto;" aria-label="Filter by category" data-demo-filter="category" data-demo-filter-table="#products-table">
             <option>All categories</option>
             <option>Software</option>
             <option>Add-on</option>
             <option>Hardware</option>
             <option>Service</option>
           </select>
-          <select class="form-select form-select-sm" style="width: auto;" aria-label="Filter by stock">
-            <option>Any stock level</option>
+          <select class="form-select form-select-sm" style="width: auto;" aria-label="Filter by status" data-demo-filter="status" data-demo-filter-table="#products-table">
+            <option value="">Any status</option>
             <option>In stock</option>
             <option>Low stock</option>
             <option>Out of stock</option>
@@ -752,7 +752,7 @@
         </div>
 
         <div class="table-responsive">
-          <table class="table table-hover align-middle" id="products-table">
+          <table class="table table-hover align-middle" id="products-table" data-demo-record="product" data-demo-fields="name:Product,sku:SKU,category:Category,price:Price,stock:Stock,status:Status">
             <thead>
               <tr>
                 <th scope="col">Product</th>
@@ -765,7 +765,7 @@
               </tr>
             </thead>
             <tbody>
-              <tr>
+              <tr data-product-name="Qevora Scale Plan" data-product-sku="QV-SCALE-01" data-product-category="Software" data-product-price="4800" data-product-stock="Unlimited" data-product-status="Active">
                 <td>
                   <div class="d-flex align-items-center gap-3">
                     <img src="../assets/images/placeholder/product-1.svg" alt="" width="40" height="40" class="rounded-q">
@@ -783,11 +783,11 @@
                 <td class="text-end">
                   <div class="table-actions justify-content-end">
                     <a class="btn btn-icon btn-sm btn-ghost" href="product-details.html" aria-label="View Qevora Scale Plan"><i class="bi bi-eye"></i></a>
-                    <button type="button" class="btn btn-icon btn-sm btn-ghost" aria-label="Edit Qevora Scale Plan" data-demo-action="Edit form opened — demo only."><i class="bi bi-pencil"></i></button>
-                  </div>
+                    <button type="button" class="btn btn-icon btn-sm btn-ghost" aria-label="Edit Qevora Scale Plan" data-demo-new="#q-demo-record" data-demo-table="#products-table" data-demo-label="Product"><i class="bi bi-pencil"></i></button>
+                  <button type="button" class="btn btn-icon btn-sm btn-ghost" aria-label="Edit Qevora Scale Plan" data-demo-new="#q-demo-record" data-demo-table="#products-table" data-demo-label="Product"><i class="bi bi-pencil"></i></button><button type="button" class="btn btn-icon btn-sm btn-ghost" aria-label="Delete Qevora Scale Plan" data-demo-delete data-demo-delete-label="Product"><i class="bi bi-trash"></i></button></div>
                 </td>
               </tr>
-              <tr>
+              <tr data-product-name="Qevora Growth Plan" data-product-sku="QV-GROW-01" data-product-category="Software" data-product-price="1250" data-product-stock="Unlimited" data-product-status="Active">
                 <td>
                   <div class="d-flex align-items-center gap-3">
                     <img src="../assets/images/placeholder/product-2.svg" alt="" width="40" height="40" class="rounded-q">
@@ -805,11 +805,11 @@
                 <td class="text-end">
                   <div class="table-actions justify-content-end">
                     <a class="btn btn-icon btn-sm btn-ghost" href="product-details.html" aria-label="View Qevora Growth Plan"><i class="bi bi-eye"></i></a>
-                    <button type="button" class="btn btn-icon btn-sm btn-ghost" aria-label="Edit Qevora Growth Plan" data-demo-action="Edit form opened — demo only."><i class="bi bi-pencil"></i></button>
-                  </div>
+                    <button type="button" class="btn btn-icon btn-sm btn-ghost" aria-label="Edit Qevora Growth Plan" data-demo-new="#q-demo-record" data-demo-table="#products-table" data-demo-label="Product"><i class="bi bi-pencil"></i></button>
+                  <button type="button" class="btn btn-icon btn-sm btn-ghost" aria-label="Edit Qevora Growth Plan" data-demo-new="#q-demo-record" data-demo-table="#products-table" data-demo-label="Product"><i class="bi bi-pencil"></i></button><button type="button" class="btn btn-icon btn-sm btn-ghost" aria-label="Delete Qevora Growth Plan" data-demo-delete data-demo-delete-label="Product"><i class="bi bi-trash"></i></button></div>
                 </td>
               </tr>
-              <tr>
+              <tr data-product-name="AI Token Pack — 1M" data-product-sku="QV-TOK-1M" data-product-category="Add-on" data-product-price="290" data-product-stock="Unlimited" data-product-status="Active">
                 <td>
                   <div class="d-flex align-items-center gap-3">
                     <img src="../assets/images/placeholder/product-3.svg" alt="" width="40" height="40" class="rounded-q">
@@ -827,11 +827,11 @@
                 <td class="text-end">
                   <div class="table-actions justify-content-end">
                     <a class="btn btn-icon btn-sm btn-ghost" href="product-details.html" aria-label="View AI Token Pack"><i class="bi bi-eye"></i></a>
-                    <button type="button" class="btn btn-icon btn-sm btn-ghost" aria-label="Edit AI Token Pack" data-demo-action="Edit form opened — demo only."><i class="bi bi-pencil"></i></button>
-                  </div>
+                    <button type="button" class="btn btn-icon btn-sm btn-ghost" aria-label="Edit AI Token Pack" data-demo-new="#q-demo-record" data-demo-table="#products-table" data-demo-label="Product"><i class="bi bi-pencil"></i></button>
+                  <button type="button" class="btn btn-icon btn-sm btn-ghost" aria-label="Edit AI Token Pack — 1M" data-demo-new="#q-demo-record" data-demo-table="#products-table" data-demo-label="Product"><i class="bi bi-pencil"></i></button><button type="button" class="btn btn-icon btn-sm btn-ghost" aria-label="Delete AI Token Pack — 1M" data-demo-delete data-demo-delete-label="Product"><i class="bi bi-trash"></i></button></div>
                 </td>
               </tr>
-              <tr>
+              <tr data-product-name="Edge Gateway Device" data-product-sku="QV-EDGE-02" data-product-category="Hardware" data-product-price="1890" data-product-stock="6" data-product-status="Low stock">
                 <td>
                   <div class="d-flex align-items-center gap-3">
                     <img src="../assets/images/placeholder/product-4.svg" alt="" width="40" height="40" class="rounded-q">
@@ -849,11 +849,11 @@
                 <td class="text-end">
                   <div class="table-actions justify-content-end">
                     <a class="btn btn-icon btn-sm btn-ghost" href="product-details.html" aria-label="View Edge Gateway Device"><i class="bi bi-eye"></i></a>
-                    <button type="button" class="btn btn-icon btn-sm btn-ghost" aria-label="Edit Edge Gateway Device" data-demo-action="Edit form opened — demo only."><i class="bi bi-pencil"></i></button>
-                  </div>
+                    <button type="button" class="btn btn-icon btn-sm btn-ghost" aria-label="Edit Edge Gateway Device" data-demo-new="#q-demo-record" data-demo-table="#products-table" data-demo-label="Product"><i class="bi bi-pencil"></i></button>
+                  <button type="button" class="btn btn-icon btn-sm btn-ghost" aria-label="Edit Edge Gateway Device" data-demo-new="#q-demo-record" data-demo-table="#products-table" data-demo-label="Product"><i class="bi bi-pencil"></i></button><button type="button" class="btn btn-icon btn-sm btn-ghost" aria-label="Delete Edge Gateway Device" data-demo-delete data-demo-delete-label="Product"><i class="bi bi-trash"></i></button></div>
                 </td>
               </tr>
-              <tr>
+              <tr data-product-name="Onboarding Service" data-product-sku="QV-SVC-ONB" data-product-category="Service" data-product-price="2400" data-product-stock="—" data-product-status="Active">
                 <td>
                   <div class="d-flex align-items-center gap-3">
                     <img src="../assets/images/placeholder/product-1.svg" alt="" width="40" height="40" class="rounded-q">
@@ -871,11 +871,11 @@
                 <td class="text-end">
                   <div class="table-actions justify-content-end">
                     <a class="btn btn-icon btn-sm btn-ghost" href="product-details.html" aria-label="View Onboarding Service"><i class="bi bi-eye"></i></a>
-                    <button type="button" class="btn btn-icon btn-sm btn-ghost" aria-label="Edit Onboarding Service" data-demo-action="Edit form opened — demo only."><i class="bi bi-pencil"></i></button>
-                  </div>
+                    <button type="button" class="btn btn-icon btn-sm btn-ghost" aria-label="Edit Onboarding Service" data-demo-new="#q-demo-record" data-demo-table="#products-table" data-demo-label="Product"><i class="bi bi-pencil"></i></button>
+                  <button type="button" class="btn btn-icon btn-sm btn-ghost" aria-label="Edit Onboarding Service" data-demo-new="#q-demo-record" data-demo-table="#products-table" data-demo-label="Product"><i class="bi bi-pencil"></i></button><button type="button" class="btn btn-icon btn-sm btn-ghost" aria-label="Delete Onboarding Service" data-demo-delete data-demo-delete-label="Product"><i class="bi bi-trash"></i></button></div>
                 </td>
               </tr>
-              <tr>
+              <tr data-product-name="Studio Workstation" data-product-sku="QV-STUDIO-01" data-product-category="Hardware" data-product-price="4290" data-product-stock="0" data-product-status="Out of stock">
                 <td>
                   <div class="d-flex align-items-center gap-3">
                     <img src="../assets/images/placeholder/product-2.svg" alt="" width="40" height="40" class="rounded-q">
@@ -893,23 +893,21 @@
                 <td class="text-end">
                   <div class="table-actions justify-content-end">
                     <a class="btn btn-icon btn-sm btn-ghost" href="product-details.html" aria-label="View Studio Workstation"><i class="bi bi-eye"></i></a>
-                    <button type="button" class="btn btn-icon btn-sm btn-ghost" aria-label="Edit Studio Workstation" data-demo-action="Edit form opened — demo only."><i class="bi bi-pencil"></i></button>
-                  </div>
+                    <button type="button" class="btn btn-icon btn-sm btn-ghost" aria-label="Edit Studio Workstation" data-demo-new="#q-demo-record" data-demo-table="#products-table" data-demo-label="Product"><i class="bi bi-pencil"></i></button>
+                  <button type="button" class="btn btn-icon btn-sm btn-ghost" aria-label="Edit Studio Workstation" data-demo-new="#q-demo-record" data-demo-table="#products-table" data-demo-label="Product"><i class="bi bi-pencil"></i></button><button type="button" class="btn btn-icon btn-sm btn-ghost" aria-label="Delete Studio Workstation" data-demo-delete data-demo-delete-label="Product"><i class="bi bi-trash"></i></button></div>
                 </td>
               </tr>
             </tbody>
           </table>
         </div>
 
-        <div class="table-footer">
-          <span class="fs-8 text-muted-2">Showing 6 of 128 products</span>
+        <div class="table-footer" data-paginate="#products-table" data-per-page="5">
+          <span class="fs-8 text-muted-2" data-page-info>Showing 1–5 of 5</span>
           <nav aria-label="Product pagination">
             <ul class="pagination pagination-sm mb-0">
-              <li class="page-item disabled"><a class="page-link" href="#" aria-label="Previous"><i class="bi bi-chevron-left"></i></a></li>
-              <li class="page-item active"><a class="page-link" href="#">1</a></li>
-              <li class="page-item"><a class="page-link" href="#">2</a></li>
-              <li class="page-item"><a class="page-link" href="#">3</a></li>
-              <li class="page-item"><a class="page-link" href="#" aria-label="Next"><i class="bi bi-chevron-right"></i></a></li>
+              <li class="page-item"><a class="page-link" href="#" data-page="prev" aria-label="Previous page"><i class="bi bi-chevron-left"></i></a></li>
+              <li class="page-item active"><a class="page-link active" href="#" data-page="1">1</a></li>
+              <li class="page-item"><a class="page-link" href="#" data-page="next" aria-label="Next page"><i class="bi bi-chevron-right"></i></a></li>
             </ul>
           </nav>
         </div>
@@ -953,6 +951,28 @@
           <button type="button" class="btn btn-white" data-bs-dismiss="modal">Cancel</button>
           <button type="button" class="btn btn-danger" data-demo-confirm>Delete</button>
         </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Used by every "Add …" button: demo-ui.js builds the fields from the table
+       the button points at, so a new list page needs no extra markup. -->
+  <div class="modal fade" id="q-demo-record" tabindex="-1" aria-labelledby="q-demo-record-title" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <form data-demo-form novalidate>
+          <div class="modal-header">
+            <h2 class="modal-title fs-6" id="q-demo-record-title" data-demo-title="Add record">Add record</h2>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close dialog"></button>
+          </div>
+          <div class="modal-body">
+            <div class="row g-3" data-demo-record-fields></div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-white" data-bs-dismiss="modal">Cancel</button>
+            <button type="submit" class="btn btn-primary" data-demo-submit>Add record</button>
+          </div>
+        </form>
       </div>
     </div>
   </div>

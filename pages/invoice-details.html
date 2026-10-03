@@ -862,6 +862,28 @@
     </div>
   </div>
 
+  <!-- Used by every "Add …" button: demo-ui.js builds the fields from the table
+       the button points at, so a new list page needs no extra markup. -->
+  <div class="modal fade" id="q-demo-record" tabindex="-1" aria-labelledby="q-demo-record-title" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <form data-demo-form novalidate>
+          <div class="modal-header">
+            <h2 class="modal-title fs-6" id="q-demo-record-title" data-demo-title="Add record">Add record</h2>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close dialog"></button>
+          </div>
+          <div class="modal-body">
+            <div class="row g-3" data-demo-record-fields></div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-white" data-bs-dismiss="modal">Cancel</button>
+            <button type="submit" class="btn btn-primary" data-demo-submit>Add record</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
     <!-- ================= Scripts ================= -->
     <!-- Vendor: Bootstrap 5 bundle (includes Popper) -->
     <script src="../assets/js/bootstrap.bundle.min.js?v=1.0.0"></script>

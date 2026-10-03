@@ -5,8 +5,8 @@
           <p class="q-page-head__subtitle">Issued invoices with payment state, totals and reminders.</p>
         </div>
         <div class="d-flex flex-wrap gap-2">
-          <button type="button" class="btn btn-white" data-demo-action="Reminder emails queued — demo only."><i class="bi bi-envelope"></i> Send reminders</button>
-          <button type="button" class="btn btn-primary" data-demo-action="New invoice form opened — demo interaction only."><i class="bi bi-plus-lg"></i> New invoice</button>
+          <button type="button" class="btn btn-white" data-demo-load="1200" data-demo-load-done="Reminder emails queued for the 2 overdue invoices."><i class="bi bi-envelope"></i> Send reminders</button>
+          <button type="button" class="btn btn-primary" data-demo-new="#q-demo-record" data-demo-table="#invoices-table" data-demo-label="Invoice"><i class="bi bi-plus-lg"></i> New invoice</button>
         </div>
       </div>
 
@@ -15,7 +15,7 @@
           <div class="kpi-tile">
             <div class="kpi-tile__body">
               <p class="kpi-tile__label mb-0">Paid this month</p>
-              <p class="kpi-tile__value" data-counter="186400" data-prefix="$">$186,400</p>
+              <p class="kpi-tile__value" data-counter="186400" data-prefix="$" data-demo-stat="sum:amount" data-demo-stat-table="#invoices-table" data-demo-stat-where="status=Paid">$186,400</p>
             </div>
             <span class="trend trend-up"><i class="bi bi-arrow-up-short"></i> 9%</span>
           </div>
@@ -78,7 +78,7 @@
               </tr>
             </thead>
             <tbody>
-              <tr data-invoice-status="Paid">
+              <tr data-invoice-id="INV-2026-0184" data-invoice-customer="Northstar Labs" data-invoice-issued="Sep 28, 2026" data-invoice-due="Oct 28, 2026" data-invoice-amount="12400" data-invoice-status="Paid">
                 <td><a class="fw-500 text-heading" href="invoice-details.html">INV-2026-0184</a></td>
                 <td>Northstar Labs</td>
                 <td class="text-muted-2">Sep 28, 2026</td>
@@ -88,11 +88,11 @@
                 <td class="text-end">
                   <div class="table-actions justify-content-end">
                     <a class="btn btn-icon btn-sm btn-ghost" href="invoice-details.html" aria-label="View invoice INV-2026-0184"><i class="bi bi-eye"></i></a>
-                    <button type="button" class="btn btn-icon btn-sm btn-ghost" aria-label="Download invoice INV-2026-0184" data-demo-action="Invoice PDF download started — demo only."><i class="bi bi-download"></i></button>
-                  </div>
+                    <button type="button" class="btn btn-icon btn-sm btn-ghost" aria-label="Download invoice INV-2026-0184" data-demo-export-row><i class="bi bi-download"></i></button>
+                  <button type="button" class="btn btn-icon btn-sm btn-ghost" aria-label="Edit INV-2026-0184" data-demo-new="#q-demo-record" data-demo-table="#invoices-table" data-demo-label="Invoice"><i class="bi bi-pencil"></i></button><button type="button" class="btn btn-icon btn-sm btn-ghost" aria-label="Delete INV-2026-0184" data-demo-delete data-demo-delete-label="Invoice"><i class="bi bi-trash"></i></button></div>
                 </td>
               </tr>
-              <tr data-invoice-status="Pending">
+              <tr data-invoice-id="INV-2026-0186" data-invoice-customer="Vertex Labs" data-invoice-issued="Oct 1, 2026" data-invoice-due="Oct 31, 2026" data-invoice-amount="1250" data-invoice-status="Pending">
                 <td><a class="fw-500 text-heading" href="invoice-details.html">INV-2026-0186</a></td>
                 <td>Vertex Labs</td>
                 <td class="text-muted-2">Oct 1, 2026</td>
@@ -102,11 +102,11 @@
                 <td class="text-end">
                   <div class="table-actions justify-content-end">
                     <a class="btn btn-icon btn-sm btn-ghost" href="invoice-details.html" aria-label="View invoice INV-2026-0186"><i class="bi bi-eye"></i></a>
-                    <button type="button" class="btn btn-icon btn-sm btn-ghost" aria-label="Download invoice INV-2026-0186" data-demo-action="Invoice PDF download started — demo only."><i class="bi bi-download"></i></button>
-                  </div>
+                    <button type="button" class="btn btn-icon btn-sm btn-ghost" aria-label="Download invoice INV-2026-0186" data-demo-export-row><i class="bi bi-download"></i></button>
+                  <button type="button" class="btn btn-icon btn-sm btn-ghost" aria-label="Edit INV-2026-0186" data-demo-new="#q-demo-record" data-demo-table="#invoices-table" data-demo-label="Invoice"><i class="bi bi-pencil"></i></button><button type="button" class="btn btn-icon btn-sm btn-ghost" aria-label="Delete INV-2026-0186" data-demo-delete data-demo-delete-label="Invoice"><i class="bi bi-trash"></i></button></div>
                 </td>
               </tr>
-              <tr data-invoice-status="Overdue">
+              <tr data-invoice-id="INV-2026-0191" data-invoice-customer="Orbit Systems" data-invoice-issued="Sep 12, 2026" data-invoice-due="Oct 12, 2026" data-invoice-amount="8600" data-invoice-status="Overdue">
                 <td><a class="fw-500 text-heading" href="invoice-details.html">INV-2026-0191</a></td>
                 <td>Orbit Systems</td>
                 <td class="text-muted-2">Sep 12, 2026</td>
@@ -116,11 +116,11 @@
                 <td class="text-end">
                   <div class="table-actions justify-content-end">
                     <a class="btn btn-icon btn-sm btn-ghost" href="invoice-details.html" aria-label="View invoice INV-2026-0191"><i class="bi bi-eye"></i></a>
-                    <button type="button" class="btn btn-icon btn-sm btn-ghost" aria-label="Download invoice INV-2026-0191" data-demo-action="Invoice PDF download started — demo only."><i class="bi bi-download"></i></button>
-                  </div>
+                    <button type="button" class="btn btn-icon btn-sm btn-ghost" aria-label="Download invoice INV-2026-0191" data-demo-export-row><i class="bi bi-download"></i></button>
+                  <button type="button" class="btn btn-icon btn-sm btn-ghost" aria-label="Edit INV-2026-0191" data-demo-new="#q-demo-record" data-demo-table="#invoices-table" data-demo-label="Invoice"><i class="bi bi-pencil"></i></button><button type="button" class="btn btn-icon btn-sm btn-ghost" aria-label="Delete INV-2026-0191" data-demo-delete data-demo-delete-label="Invoice"><i class="bi bi-trash"></i></button></div>
                 </td>
               </tr>
-              <tr data-invoice-status="Paid">
+              <tr data-invoice-id="INV-2026-0179" data-invoice-customer="Horizon Labs" data-invoice-issued="Sep 28, 2026" data-invoice-due="Oct 28, 2026" data-invoice-amount="9640" data-invoice-status="Paid">
                 <td><a class="fw-500 text-heading" href="invoice-details.html">INV-2026-0179</a></td>
                 <td>Horizon Labs</td>
                 <td class="text-muted-2">Sep 28, 2026</td>
@@ -130,11 +130,11 @@
                 <td class="text-end">
                   <div class="table-actions justify-content-end">
                     <a class="btn btn-icon btn-sm btn-ghost" href="invoice-details.html" aria-label="View invoice INV-2026-0179"><i class="bi bi-eye"></i></a>
-                    <button type="button" class="btn btn-icon btn-sm btn-ghost" aria-label="Download invoice INV-2026-0179" data-demo-action="Invoice PDF download started — demo only."><i class="bi bi-download"></i></button>
-                  </div>
+                    <button type="button" class="btn btn-icon btn-sm btn-ghost" aria-label="Download invoice INV-2026-0179" data-demo-export-row><i class="bi bi-download"></i></button>
+                  <button type="button" class="btn btn-icon btn-sm btn-ghost" aria-label="Edit INV-2026-0179" data-demo-new="#q-demo-record" data-demo-table="#invoices-table" data-demo-label="Invoice"><i class="bi bi-pencil"></i></button><button type="button" class="btn btn-icon btn-sm btn-ghost" aria-label="Delete INV-2026-0179" data-demo-delete data-demo-delete-label="Invoice"><i class="bi bi-trash"></i></button></div>
                 </td>
               </tr>
-              <tr data-invoice-status="Draft">
+              <tr data-invoice-id="INV-2026-0172" data-invoice-customer="Acme Inc." data-invoice-issued="Sep 20, 2026" data-invoice-due="Oct 20, 2026" data-invoice-amount="1250" data-invoice-status="Draft">
                 <td><a class="fw-500 text-heading" href="invoice-details.html">INV-2026-0172</a></td>
                 <td>Acme Inc.</td>
                 <td class="text-muted-2">Sep 20, 2026</td>
@@ -144,23 +144,21 @@
                 <td class="text-end">
                   <div class="table-actions justify-content-end">
                     <a class="btn btn-icon btn-sm btn-ghost" href="invoice-details.html" aria-label="View invoice INV-2026-0172"><i class="bi bi-eye"></i></a>
-                    <button type="button" class="btn btn-icon btn-sm btn-ghost" aria-label="Download invoice INV-2026-0172" data-demo-action="Invoice PDF download started — demo only."><i class="bi bi-download"></i></button>
-                  </div>
+                    <button type="button" class="btn btn-icon btn-sm btn-ghost" aria-label="Download invoice INV-2026-0172" data-demo-export-row><i class="bi bi-download"></i></button>
+                  <button type="button" class="btn btn-icon btn-sm btn-ghost" aria-label="Edit INV-2026-0172" data-demo-new="#q-demo-record" data-demo-table="#invoices-table" data-demo-label="Invoice"><i class="bi bi-pencil"></i></button><button type="button" class="btn btn-icon btn-sm btn-ghost" aria-label="Delete INV-2026-0172" data-demo-delete data-demo-delete-label="Invoice"><i class="bi bi-trash"></i></button></div>
                 </td>
               </tr>
             </tbody>
           </table>
         </div>
 
-        <div class="table-footer">
-          <span class="fs-8 text-muted-2">Showing 5 of 216 invoices</span>
+        <div class="table-footer" data-paginate="#invoices-table" data-per-page="5">
+          <span class="fs-8 text-muted-2" data-page-info>Showing 1–5 of 5</span>
           <nav aria-label="Invoice pagination">
             <ul class="pagination pagination-sm mb-0">
-              <li class="page-item disabled"><a class="page-link" href="#" aria-label="Previous"><i class="bi bi-chevron-left"></i></a></li>
-              <li class="page-item active"><a class="page-link" href="#">1</a></li>
-              <li class="page-item"><a class="page-link" href="#">2</a></li>
-              <li class="page-item"><a class="page-link" href="#">3</a></li>
-              <li class="page-item"><a class="page-link" href="#" aria-label="Next"><i class="bi bi-chevron-right"></i></a></li>
+              <li class="page-item"><a class="page-link" href="#" data-page="prev" aria-label="Previous page"><i class="bi bi-chevron-left"></i></a></li>
+              <li class="page-item active"><a class="page-link active" href="#" data-page="1">1</a></li>
+              <li class="page-item"><a class="page-link" href="#" data-page="next" aria-label="Next page"><i class="bi bi-chevron-right"></i></a></li>
             </ul>
           </nav>
         </div>

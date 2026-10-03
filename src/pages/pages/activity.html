@@ -5,8 +5,8 @@
           <p class="q-page-head__subtitle">Audit trail of every action taken in the workspace.</p>
         </div>
         <div class="d-flex flex-wrap gap-2">
-          <button type="button" class="btn btn-white" data-demo-action="Log export queued — demo only."><i class="bi bi-download"></i> Export log</button>
-          <button type="button" class="btn btn-primary" data-demo-action="Retention settings opened — demo only."><i class="bi bi-gear"></i> Retention</button>
+          <button type="button" class="btn btn-white" data-demo-export="#activity-table"><i class="bi bi-download"></i> Export log</button>
+          <button type="button" class="btn btn-primary" data-demo-go="settings.html"><i class="bi bi-gear"></i> Retention</button>
         </div>
       </div>
 
@@ -17,24 +17,24 @@
             <label class="visually-hidden" for="activity-search">Search activity</label>
             <input type="search" class="form-control" id="activity-search" placeholder="Search by actor or action…" data-table-filter="#activity-table">
           </div>
-          <select class="form-select form-select-sm" style="width: auto;" aria-label="Filter by action type">
-            <option>All actions</option>
-            <option>Create</option>
-            <option>Update</option>
-            <option>Delete</option>
-            <option>Login</option>
+          <select class="form-select form-select-sm" style="width: auto;" aria-label="Filter by browser" data-demo-filter="device" data-demo-filter-mode="contains" data-demo-filter-table="#activity-table">
+            <option value="">All browsers</option>
+            <option>Chrome</option>
+            <option>Firefox</option>
+            <option>Safari</option>
+            <option>Edge</option>
           </select>
           <div class="d-flex gap-2 ms-auto align-items-center">
             <label class="visually-hidden" for="activity-date-from">From</label>
-            <input type="date" class="form-control form-control-sm" id="activity-date-from" value="2026-09-26">
+            <input type="date" class="form-control form-control-sm" id="activity-date-from" value="2026-09-26" data-demo-filter-date="day" data-demo-filter-role="from" data-demo-filter-table="#activity-table">
             <span class="fs-8 text-muted-2">to</span>
             <label class="visually-hidden" for="activity-date-to">To</label>
-            <input type="date" class="form-control form-control-sm" id="activity-date-to" value="2026-10-03">
+            <input type="date" class="form-control form-control-sm" id="activity-date-to" value="2026-10-03" data-demo-filter-date="day" data-demo-filter-role="to" data-demo-filter-table="#activity-table">
           </div>
         </div>
 
         <div class="table-responsive">
-          <table class="table table-hover align-middle" id="activity-table">
+          <table class="table table-hover align-middle" id="activity-table" data-demo-record="activity" data-demo-hide-fields="day" data-demo-fields="actor:Actor,action:Action,target:Target,ip:IP address,device:Device,time:Timestamp,day:Day">
             <thead>
               <tr>
                 <th scope="col">Actor</th>
@@ -46,7 +46,7 @@
               </tr>
             </thead>
             <tbody>
-              <tr>
+              <tr data-activity-actor="Ava Reynolds" data-activity-action="Update changed subscription seats" data-activity-target="Northstar Labs" data-activity-ip="203.0.113.24" data-activity-device="Chrome · macOS" data-activity-time="Oct 3, 09:42" data-activity-day="2026-10-03">
                 <td><div class="d-flex align-items-center gap-2"><span class="avatar avatar-xs bg-avatar-1">AR</span><span class="fs-7">Ava Reynolds</span></div></td>
                 <td><span class="badge badge-soft-primary badge-pill">Update</span> changed subscription seats</td>
                 <td>Northstar Labs</td>
@@ -54,7 +54,7 @@
                 <td class="text-muted-2">Chrome · macOS</td>
                 <td class="text-muted-2">Oct 3, 09:42</td>
               </tr>
-              <tr>
+              <tr data-activity-actor="Lea Novak" data-activity-action="Create generated an AI report" data-activity-target="Q3 revenue summary" data-activity-ip="198.51.100.7" data-activity-device="Firefox · Windows" data-activity-time="Oct 3, 08:16" data-activity-day="2026-10-03">
                 <td><div class="d-flex align-items-center gap-2"><span class="avatar avatar-xs bg-avatar-6">LN</span><span class="fs-7">Lea Novak</span></div></td>
                 <td><span class="badge badge-soft-success badge-pill">Create</span> generated an AI report</td>
                 <td>Q3 revenue summary</td>
@@ -62,7 +62,7 @@
                 <td class="text-muted-2">Firefox · Windows</td>
                 <td class="text-muted-2">Oct 3, 08:16</td>
               </tr>
-              <tr>
+              <tr data-activity-actor="Marcus Chen" data-activity-action="Login signed in with SSO" data-activity-target="Workspace" data-activity-ip="203.0.113.88" data-activity-device="Safari · iOS" data-activity-time="Oct 2, 21:05" data-activity-day="2026-10-02">
                 <td><div class="d-flex align-items-center gap-2"><span class="avatar avatar-xs bg-avatar-3">MC</span><span class="fs-7">Marcus Chen</span></div></td>
                 <td><span class="badge badge-soft-info badge-pill">Login</span> signed in with SSO</td>
                 <td>Workspace</td>
@@ -70,7 +70,7 @@
                 <td class="text-muted-2">Safari · iOS</td>
                 <td class="text-muted-2">Oct 2, 21:05</td>
               </tr>
-              <tr>
+              <tr data-activity-actor="Daniel Okafor" data-activity-action="Delete removed an API key" data-activity-target="key_prod_legacy" data-activity-ip="192.0.2.14" data-activity-device="Chrome · Linux" data-activity-time="Oct 2, 16:31" data-activity-day="2026-10-02">
                 <td><div class="d-flex align-items-center gap-2"><span class="avatar avatar-xs bg-avatar-4">DO</span><span class="fs-7">Daniel Okafor</span></div></td>
                 <td><span class="badge badge-soft-danger badge-pill">Delete</span> removed an API key</td>
                 <td>key_prod_legacy</td>
@@ -78,7 +78,7 @@
                 <td class="text-muted-2">Chrome · Linux</td>
                 <td class="text-muted-2">Oct 2, 16:31</td>
               </tr>
-              <tr>
+              <tr data-activity-actor="Yuki Tanaka" data-activity-action="Update refunded a payment" data-activity-target="PAY-90401" data-activity-ip="198.51.100.42" data-activity-device="Edge · Windows" data-activity-time="Oct 1, 11:20" data-activity-day="2026-10-01">
                 <td><div class="d-flex align-items-center gap-2"><span class="avatar avatar-xs bg-avatar-5">YT</span><span class="fs-7">Yuki Tanaka</span></div></td>
                 <td><span class="badge badge-soft-primary badge-pill">Update</span> refunded a payment</td>
                 <td>PAY-90401</td>
@@ -86,7 +86,7 @@
                 <td class="text-muted-2">Edge · Windows</td>
                 <td class="text-muted-2">Oct 1, 11:20</td>
               </tr>
-              <tr>
+              <tr data-activity-actor="Priya Sharma" data-activity-action="Create issued an invoice" data-activity-target="INV-2026-0184" data-activity-ip="203.0.113.190" data-activity-device="Chrome · Windows" data-activity-time="Sep 28, 10:02" data-activity-day="2026-09-28">
                 <td><div class="d-flex align-items-center gap-2"><span class="avatar avatar-xs bg-avatar-2">PS</span><span class="fs-7">Priya Sharma</span></div></td>
                 <td><span class="badge badge-soft-success badge-pill">Create</span> issued an invoice</td>
                 <td>INV-2026-0184</td>
@@ -98,16 +98,13 @@
           </table>
         </div>
 
-        <div class="table-footer">
-          <span class="fs-8 text-muted-2">Showing 6 of 12,480 events</span>
-          <nav aria-label="Activity pagination">
+        <div class="table-footer" data-paginate="#activity-table" data-per-page="5">
+          <span class="fs-8 text-muted-2" data-page-info>Showing 1–5 of 5</span>
+          <nav aria-label="Event pagination">
             <ul class="pagination pagination-sm mb-0">
-              <li class="page-item disabled"><a class="page-link" href="#" aria-label="Previous"><i class="bi bi-chevron-left"></i></a></li>
-              <li class="page-item active"><a class="page-link" href="#">1</a></li>
-              <li class="page-item"><a class="page-link" href="#">2</a></li>
-              <li class="page-item"><a class="page-link" href="#">…</a></li>
-              <li class="page-item"><a class="page-link" href="#">208</a></li>
-              <li class="page-item"><a class="page-link" href="#" aria-label="Next"><i class="bi bi-chevron-right"></i></a></li>
+              <li class="page-item"><a class="page-link" href="#" data-page="prev" aria-label="Previous page"><i class="bi bi-chevron-left"></i></a></li>
+              <li class="page-item active"><a class="page-link active" href="#" data-page="1">1</a></li>
+              <li class="page-item"><a class="page-link" href="#" data-page="next" aria-label="Next page"><i class="bi bi-chevron-right"></i></a></li>
             </ul>
           </nav>
         </div>

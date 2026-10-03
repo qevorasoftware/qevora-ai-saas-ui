@@ -5,8 +5,8 @@
           <p class="q-page-head__subtitle">Workspace members, roles and workload distribution.</p>
         </div>
         <div class="d-flex flex-wrap gap-2">
-          <button type="button" class="btn btn-white" data-demo-action="Team export queued — demo only."><i class="bi bi-download"></i> Export</button>
-          <button type="button" class="btn btn-primary" data-demo-action="Invite dialog opened — demo interaction only."><i class="bi bi-person-plus"></i> Invite member</button>
+          <button type="button" class="btn btn-white" data-demo-export="#team-table"><i class="bi bi-download"></i> Export</button>
+          <button type="button" class="btn btn-primary" data-demo-new="#q-demo-record" data-demo-table="#team-table" data-demo-label="Member"><i class="bi bi-person-plus"></i> Invite member</button>
         </div>
       </div>
 
@@ -15,7 +15,7 @@
           <div class="kpi-tile">
             <div class="kpi-tile__body">
               <p class="kpi-tile__label mb-0">Members</p>
-              <p class="kpi-tile__value" data-counter="48">48</p>
+              <p class="kpi-tile__value" data-counter="48" data-demo-stat="rows" data-demo-stat-table="#team-table">48</p>
             </div>
           </div>
         </div>
@@ -52,18 +52,19 @@
             <label class="visually-hidden" for="team-search">Search members</label>
             <input type="search" class="form-control" id="team-search" placeholder="Search members…" data-table-filter="#team-table">
           </div>
-          <select class="form-select form-select-sm" style="width: auto;" aria-label="Filter by role">
+          <select class="form-select form-select-sm" style="width: auto;" aria-label="Filter by role" data-demo-filter="role" data-demo-filter-table="#team-table">
             <option>All roles</option>
             <option>Admin</option>
             <option>Manager</option>
             <option>Analyst</option>
             <option>Support</option>
+            <option>Engineer</option>
           </select>
           <span class="ms-auto fs-8 text-muted-2">6 of 48 members</span>
         </div>
 
         <div class="table-responsive">
-          <table class="table table-hover align-middle" id="team-table">
+          <table class="table table-hover align-middle" id="team-table" data-demo-record="member" data-demo-fields="name:Member,role:Role,department:Department,location:Location,status:Status">
             <thead>
               <tr>
                 <th scope="col">Member</th>
@@ -76,7 +77,7 @@
               </tr>
             </thead>
             <tbody>
-              <tr>
+              <tr data-member-name="Ava Reynolds" data-member-role="Admin" data-member-department="Product" data-member-location="London, UK" data-member-status="Active" data-member-email="ava@qevora.io">
                 <td>
                   <div class="d-flex align-items-center gap-2">
                     <span class="avatar avatar-sm bg-avatar-1">AR</span>
@@ -91,9 +92,9 @@
                 <td class="text-muted-2">London, UK</td>
                 <td><div class="progress progress-sm"><div class="progress-bar" style="width: 72%"></div></div></td>
                 <td><span class="badge badge-soft-success badge-pill">Active</span></td>
-                <td class="text-end"><button type="button" class="btn btn-icon btn-sm btn-ghost" aria-label="Member options" data-demo-action="Member menu opened — demo only."><i class="bi bi-three-dots"></i></button></td>
+                <td class="text-end"><div class="table-actions justify-content-end"><button type="button" class="btn btn-icon btn-sm btn-ghost" aria-label="Edit Ava Reynolds" data-demo-new="#q-demo-record" data-demo-table="#team-table" data-demo-label="Member"><i class="bi bi-pencil"></i></button><button type="button" class="btn btn-icon btn-sm btn-ghost" aria-label="Delete Ava Reynolds" data-demo-delete data-demo-delete-label="Member"><i class="bi bi-trash"></i></button></div></td>
               </tr>
-              <tr>
+              <tr data-member-name="Marcus Chen" data-member-role="Manager" data-member-department="Engineering" data-member-location="Singapore" data-member-status="Active" data-member-email="marcus@qevora.io">
                 <td>
                   <div class="d-flex align-items-center gap-2">
                     <span class="avatar avatar-sm bg-avatar-3">MC</span>
@@ -108,9 +109,9 @@
                 <td class="text-muted-2">Singapore</td>
                 <td><div class="progress progress-sm"><div class="progress-bar bg-info" style="width: 48%"></div></div></td>
                 <td><span class="badge badge-soft-success badge-pill">Active</span></td>
-                <td class="text-end"><button type="button" class="btn btn-icon btn-sm btn-ghost" aria-label="Member options" data-demo-action="Member menu opened — demo only."><i class="bi bi-three-dots"></i></button></td>
+                <td class="text-end"><div class="table-actions justify-content-end"><button type="button" class="btn btn-icon btn-sm btn-ghost" aria-label="Edit Marcus Chen" data-demo-new="#q-demo-record" data-demo-table="#team-table" data-demo-label="Member"><i class="bi bi-pencil"></i></button><button type="button" class="btn btn-icon btn-sm btn-ghost" aria-label="Delete Marcus Chen" data-demo-delete data-demo-delete-label="Member"><i class="bi bi-trash"></i></button></div></td>
               </tr>
-              <tr>
+              <tr data-member-name="Lea Novak" data-member-role="Analyst" data-member-department="Data" data-member-location="Berlin, DE" data-member-status="Active" data-member-email="lea@qevora.io">
                 <td>
                   <div class="d-flex align-items-center gap-2">
                     <span class="avatar avatar-sm bg-avatar-6">LN</span>
@@ -125,9 +126,9 @@
                 <td class="text-muted-2">Berlin, DE</td>
                 <td><div class="progress progress-sm"><div class="progress-bar bg-warning" style="width: 86%"></div></div></td>
                 <td><span class="badge badge-soft-success badge-pill">Active</span></td>
-                <td class="text-end"><button type="button" class="btn btn-icon btn-sm btn-ghost" aria-label="Member options" data-demo-action="Member menu opened — demo only."><i class="bi bi-three-dots"></i></button></td>
+                <td class="text-end"><div class="table-actions justify-content-end"><button type="button" class="btn btn-icon btn-sm btn-ghost" aria-label="Edit Lea Novak" data-demo-new="#q-demo-record" data-demo-table="#team-table" data-demo-label="Member"><i class="bi bi-pencil"></i></button><button type="button" class="btn btn-icon btn-sm btn-ghost" aria-label="Delete Lea Novak" data-demo-delete data-demo-delete-label="Member"><i class="bi bi-trash"></i></button></div></td>
               </tr>
-              <tr>
+              <tr data-member-name="Daniel Okafor" data-member-role="Engineer" data-member-department="Engineering" data-member-location="Lagos, NG" data-member-status="Active" data-member-email="daniel@qevora.io">
                 <td>
                   <div class="d-flex align-items-center gap-2">
                     <span class="avatar avatar-sm bg-avatar-4">DO</span>
@@ -142,9 +143,9 @@
                 <td class="text-muted-2">Lagos, NG</td>
                 <td><div class="progress progress-sm"><div class="progress-bar bg-success" style="width: 64%"></div></div></td>
                 <td><span class="badge badge-soft-success badge-pill">Active</span></td>
-                <td class="text-end"><button type="button" class="btn btn-icon btn-sm btn-ghost" aria-label="Member options" data-demo-action="Member menu opened — demo only."><i class="bi bi-three-dots"></i></button></td>
+                <td class="text-end"><div class="table-actions justify-content-end"><button type="button" class="btn btn-icon btn-sm btn-ghost" aria-label="Edit Daniel Okafor" data-demo-new="#q-demo-record" data-demo-table="#team-table" data-demo-label="Member"><i class="bi bi-pencil"></i></button><button type="button" class="btn btn-icon btn-sm btn-ghost" aria-label="Delete Daniel Okafor" data-demo-delete data-demo-delete-label="Member"><i class="bi bi-trash"></i></button></div></td>
               </tr>
-              <tr>
+              <tr data-member-name="Yuki Tanaka" data-member-role="Support" data-member-department="Customer success" data-member-location="Tokyo, JP" data-member-status="Away" data-member-email="yuki@qevora.io">
                 <td>
                   <div class="d-flex align-items-center gap-2">
                     <span class="avatar avatar-sm bg-avatar-5">YT</span>
@@ -159,9 +160,9 @@
                 <td class="text-muted-2">Tokyo, JP</td>
                 <td><div class="progress progress-sm"><div class="progress-bar bg-info" style="width: 52%"></div></div></td>
                 <td><span class="badge badge-soft-warning badge-pill">Away</span></td>
-                <td class="text-end"><button type="button" class="btn btn-icon btn-sm btn-ghost" aria-label="Member options" data-demo-action="Member menu opened — demo only."><i class="bi bi-three-dots"></i></button></td>
+                <td class="text-end"><div class="table-actions justify-content-end"><button type="button" class="btn btn-icon btn-sm btn-ghost" aria-label="Edit Yuki Tanaka" data-demo-new="#q-demo-record" data-demo-table="#team-table" data-demo-label="Member"><i class="bi bi-pencil"></i></button><button type="button" class="btn btn-icon btn-sm btn-ghost" aria-label="Delete Yuki Tanaka" data-demo-delete data-demo-delete-label="Member"><i class="bi bi-trash"></i></button></div></td>
               </tr>
-              <tr>
+              <tr data-member-name="Priya Sharma" data-member-role="Manager" data-member-department="Finance" data-member-location="Toronto, CA" data-member-status="Invited" data-member-email="priya@qevora.io">
                 <td>
                   <div class="d-flex align-items-center gap-2">
                     <span class="avatar avatar-sm bg-avatar-2">PS</span>
@@ -176,20 +177,19 @@
                 <td class="text-muted-2">Toronto, CA</td>
                 <td><div class="progress progress-sm"><div class="progress-bar" style="width: 41%"></div></div></td>
                 <td><span class="badge badge-soft-neutral badge-pill">Invited</span></td>
-                <td class="text-end"><button type="button" class="btn btn-icon btn-sm btn-ghost" aria-label="Member options" data-demo-action="Member menu opened — demo only."><i class="bi bi-three-dots"></i></button></td>
+                <td class="text-end"><div class="table-actions justify-content-end"><button type="button" class="btn btn-icon btn-sm btn-ghost" aria-label="Edit Priya Sharma" data-demo-new="#q-demo-record" data-demo-table="#team-table" data-demo-label="Member"><i class="bi bi-pencil"></i></button><button type="button" class="btn btn-icon btn-sm btn-ghost" aria-label="Delete Priya Sharma" data-demo-delete data-demo-delete-label="Member"><i class="bi bi-trash"></i></button></div></td>
               </tr>
             </tbody>
           </table>
         </div>
 
-        <div class="table-footer">
-          <span class="fs-8 text-muted-2">Showing 6 of 48 members</span>
-          <nav aria-label="Team pagination">
+        <div class="table-footer" data-paginate="#team-table" data-per-page="5">
+          <span class="fs-8 text-muted-2" data-page-info>Showing 1–5 of 5</span>
+          <nav aria-label="Member pagination">
             <ul class="pagination pagination-sm mb-0">
-              <li class="page-item disabled"><a class="page-link" href="#" aria-label="Previous"><i class="bi bi-chevron-left"></i></a></li>
-              <li class="page-item active"><a class="page-link" href="#">1</a></li>
-              <li class="page-item"><a class="page-link" href="#">2</a></li>
-              <li class="page-item"><a class="page-link" href="#" aria-label="Next"><i class="bi bi-chevron-right"></i></a></li>
+              <li class="page-item"><a class="page-link" href="#" data-page="prev" aria-label="Previous page"><i class="bi bi-chevron-left"></i></a></li>
+              <li class="page-item active"><a class="page-link active" href="#" data-page="1">1</a></li>
+              <li class="page-item"><a class="page-link" href="#" data-page="next" aria-label="Next page"><i class="bi bi-chevron-right"></i></a></li>
             </ul>
           </nav>
         </div>

@@ -687,8 +687,8 @@
           <p class="q-page-head__subtitle">Recurring plans, billing cycles and renewal risk.</p>
         </div>
         <div class="d-flex flex-wrap gap-2">
-          <button type="button" class="btn btn-white" data-demo-action="Plan comparison opened — demo only."><i class="bi bi-columns-gap"></i> Compare plans</button>
-          <button type="button" class="btn btn-primary" data-demo-action="Subscription created — demo interaction only."><i class="bi bi-plus-lg"></i> New subscription</button>
+          <button type="button" class="btn btn-white" data-demo-go="pricing.html"><i class="bi bi-columns-gap"></i> Compare plans</button>
+          <button type="button" class="btn btn-primary" data-demo-new="#q-demo-record" data-demo-table="#subs-table" data-demo-label="Subscription"><i class="bi bi-plus-lg"></i> New subscription</button>
         </div>
       </div>
 
@@ -697,7 +697,7 @@
           <div class="kpi-tile">
             <div class="kpi-tile__body">
               <p class="kpi-tile__label mb-0">Monthly recurring revenue</p>
-              <p class="kpi-tile__value" data-counter="107040" data-prefix="$">$107,040</p>
+              <p class="kpi-tile__value" data-counter="107040" data-prefix="$" data-demo-stat="sum:mrr" data-demo-stat-table="#subs-table">$107,040</p>
             </div>
             <span class="trend trend-up"><i class="bi bi-arrow-up-short"></i> 6.4%</span>
           </div>
@@ -706,7 +706,7 @@
           <div class="kpi-tile">
             <div class="kpi-tile__body">
               <p class="kpi-tile__label mb-0">Active subscriptions</p>
-              <p class="kpi-tile__value" data-counter="1846">1,846</p>
+              <p class="kpi-tile__value" data-counter="1846" data-demo-stat="count:status=Active" data-demo-stat-table="#subs-table">1,846</p>
             </div>
             <span class="trend trend-up"><i class="bi bi-arrow-up-short"></i> 42 new</span>
           </div>
@@ -795,8 +795,8 @@
             <label class="visually-hidden" for="sub-search">Search subscriptions</label>
             <input type="search" class="form-control" id="sub-search" placeholder="Search subscriptions…" data-table-filter="#subs-table">
           </div>
-          <select class="form-select form-select-sm" style="width: auto;" aria-label="Filter by plan">
-            <option>All plans</option>
+          <select class="form-select form-select-sm" style="width: auto;" aria-label="Filter by plan" data-demo-filter="plan" data-demo-filter-table="#subs-table">
+            <option value="">All plans</option>
             <option>Scale</option>
             <option>Growth</option>
             <option>Starter</option>
@@ -804,7 +804,7 @@
         </div>
 
         <div class="table-responsive">
-          <table class="table table-hover align-middle" id="subs-table">
+          <table class="table table-hover align-middle" id="subs-table" data-demo-record="subscription" data-demo-fields="customer:Customer,plan:Plan,cycle:Cycle,seats:Seats,mrr:MRR,renews:Renews,status:Status">
             <thead>
               <tr>
                 <th scope="col">Customer</th>
@@ -818,7 +818,7 @@
               </tr>
             </thead>
             <tbody>
-              <tr>
+              <tr data-subscription-customer="Northstar Labs" data-subscription-plan="Scale" data-subscription-cycle="Annual" data-subscription-seats="142" data-subscription-mrr="10340" data-subscription-renews="Mar 12, 2027" data-subscription-status="Active">
                 <td class="fw-500 text-heading">Northstar Labs</td>
                 <td><span class="badge badge-soft-primary badge-pill">Scale</span></td>
                 <td>Annual</td>
@@ -826,9 +826,9 @@
                 <td class="text-end fw-600 text-heading">$10,340</td>
                 <td class="text-muted-2">Mar 12, 2027</td>
                 <td><span class="badge badge-soft-success badge-pill">Active</span></td>
-                <td class="text-end"><button type="button" class="btn btn-icon btn-sm btn-ghost" aria-label="Subscription options" data-demo-action="Subscription options opened — demo only."><i class="bi bi-three-dots"></i></button></td>
+                <td class="text-end"><div class="table-actions justify-content-end"><button type="button" class="btn btn-icon btn-sm btn-ghost" aria-label="Edit Northstar Labs" data-demo-new="#q-demo-record" data-demo-table="#subs-table" data-demo-label="Subscription"><i class="bi bi-pencil"></i></button><button type="button" class="btn btn-icon btn-sm btn-ghost" aria-label="Delete Northstar Labs" data-demo-delete data-demo-delete-label="Subscription"><i class="bi bi-trash"></i></button></div></td>
               </tr>
-              <tr>
+              <tr data-subscription-customer="Vertex Labs" data-subscription-plan="Growth" data-subscription-cycle="Annual" data-subscription-seats="64" data-subscription-mrr="2180" data-subscription-renews="Jan 08, 2027" data-subscription-status="Active">
                 <td class="fw-500 text-heading">Vertex Labs</td>
                 <td><span class="badge badge-soft-info badge-pill">Growth</span></td>
                 <td>Annual</td>
@@ -836,9 +836,9 @@
                 <td class="text-end fw-600 text-heading">$2,180</td>
                 <td class="text-muted-2">Jan 08, 2027</td>
                 <td><span class="badge badge-soft-success badge-pill">Active</span></td>
-                <td class="text-end"><button type="button" class="btn btn-icon btn-sm btn-ghost" aria-label="Subscription options" data-demo-action="Subscription options opened — demo only."><i class="bi bi-three-dots"></i></button></td>
+                <td class="text-end"><div class="table-actions justify-content-end"><button type="button" class="btn btn-icon btn-sm btn-ghost" aria-label="Edit Vertex Labs" data-demo-new="#q-demo-record" data-demo-table="#subs-table" data-demo-label="Subscription"><i class="bi bi-pencil"></i></button><button type="button" class="btn btn-icon btn-sm btn-ghost" aria-label="Delete Vertex Labs" data-demo-delete data-demo-delete-label="Subscription"><i class="bi bi-trash"></i></button></div></td>
               </tr>
-              <tr>
+              <tr data-subscription-customer="Orbit Systems" data-subscription-plan="Scale" data-subscription-cycle="Annual" data-subscription-seats="210" data-subscription-mrr="14960" data-subscription-renews="Oct 12, 2026" data-subscription-status="At risk">
                 <td class="fw-500 text-heading">Orbit Systems</td>
                 <td><span class="badge badge-soft-primary badge-pill">Scale</span></td>
                 <td>Annual</td>
@@ -846,9 +846,9 @@
                 <td class="text-end fw-600 text-heading">$14,960</td>
                 <td class="text-danger">Oct 12, 2026</td>
                 <td><span class="badge badge-soft-warning badge-pill">At risk</span></td>
-                <td class="text-end"><button type="button" class="btn btn-icon btn-sm btn-ghost" aria-label="Subscription options" data-demo-action="Subscription options opened — demo only."><i class="bi bi-three-dots"></i></button></td>
+                <td class="text-end"><div class="table-actions justify-content-end"><button type="button" class="btn btn-icon btn-sm btn-ghost" aria-label="Edit Orbit Systems" data-demo-new="#q-demo-record" data-demo-table="#subs-table" data-demo-label="Subscription"><i class="bi bi-pencil"></i></button><button type="button" class="btn btn-icon btn-sm btn-ghost" aria-label="Delete Orbit Systems" data-demo-delete data-demo-delete-label="Subscription"><i class="bi bi-trash"></i></button></div></td>
               </tr>
-              <tr>
+              <tr data-subscription-customer="Horizon Labs" data-subscription-plan="Growth" data-subscription-cycle="Monthly" data-subscription-seats="48" data-subscription-mrr="1640" data-subscription-renews="Nov 01, 2026" data-subscription-status="Active">
                 <td class="fw-500 text-heading">Horizon Labs</td>
                 <td><span class="badge badge-soft-info badge-pill">Growth</span></td>
                 <td>Monthly</td>
@@ -856,9 +856,9 @@
                 <td class="text-end fw-600 text-heading">$1,640</td>
                 <td class="text-muted-2">Nov 01, 2026</td>
                 <td><span class="badge badge-soft-success badge-pill">Active</span></td>
-                <td class="text-end"><button type="button" class="btn btn-icon btn-sm btn-ghost" aria-label="Subscription options" data-demo-action="Subscription options opened — demo only."><i class="bi bi-three-dots"></i></button></td>
+                <td class="text-end"><div class="table-actions justify-content-end"><button type="button" class="btn btn-icon btn-sm btn-ghost" aria-label="Edit Horizon Labs" data-demo-new="#q-demo-record" data-demo-table="#subs-table" data-demo-label="Subscription"><i class="bi bi-pencil"></i></button><button type="button" class="btn btn-icon btn-sm btn-ghost" aria-label="Delete Horizon Labs" data-demo-delete data-demo-delete-label="Subscription"><i class="bi bi-trash"></i></button></div></td>
               </tr>
-              <tr>
+              <tr data-subscription-customer="Acme Inc." data-subscription-plan="Starter" data-subscription-cycle="Monthly" data-subscription-seats="18" data-subscription-mrr="290" data-subscription-renews="Oct 04, 2026" data-subscription-status="Past due">
                 <td class="fw-500 text-heading">Acme Inc.</td>
                 <td><span class="badge badge-soft-neutral badge-pill">Starter</span></td>
                 <td>Monthly</td>
@@ -866,21 +866,19 @@
                 <td class="text-end fw-600 text-heading">$290</td>
                 <td class="text-danger">Oct 04, 2026</td>
                 <td><span class="badge badge-soft-danger badge-pill">Past due</span></td>
-                <td class="text-end"><button type="button" class="btn btn-icon btn-sm btn-ghost" aria-label="Subscription options" data-demo-action="Subscription options opened — demo only."><i class="bi bi-three-dots"></i></button></td>
+                <td class="text-end"><div class="table-actions justify-content-end"><button type="button" class="btn btn-icon btn-sm btn-ghost" aria-label="Edit Acme Inc." data-demo-new="#q-demo-record" data-demo-table="#subs-table" data-demo-label="Subscription"><i class="bi bi-pencil"></i></button><button type="button" class="btn btn-icon btn-sm btn-ghost" aria-label="Delete Acme Inc." data-demo-delete data-demo-delete-label="Subscription"><i class="bi bi-trash"></i></button></div></td>
               </tr>
             </tbody>
           </table>
         </div>
 
-        <div class="table-footer">
-          <span class="fs-8 text-muted-2">Showing 5 of 1,846 subscriptions</span>
+        <div class="table-footer" data-paginate="#subs-table" data-per-page="5">
+          <span class="fs-8 text-muted-2" data-page-info>Showing 1–5 of 5</span>
           <nav aria-label="Subscription pagination">
             <ul class="pagination pagination-sm mb-0">
-              <li class="page-item disabled"><a class="page-link" href="#" aria-label="Previous"><i class="bi bi-chevron-left"></i></a></li>
-              <li class="page-item active"><a class="page-link" href="#">1</a></li>
-              <li class="page-item"><a class="page-link" href="#">2</a></li>
-              <li class="page-item"><a class="page-link" href="#">3</a></li>
-              <li class="page-item"><a class="page-link" href="#" aria-label="Next"><i class="bi bi-chevron-right"></i></a></li>
+              <li class="page-item"><a class="page-link" href="#" data-page="prev" aria-label="Previous page"><i class="bi bi-chevron-left"></i></a></li>
+              <li class="page-item active"><a class="page-link active" href="#" data-page="1">1</a></li>
+              <li class="page-item"><a class="page-link" href="#" data-page="next" aria-label="Next page"><i class="bi bi-chevron-right"></i></a></li>
             </ul>
           </nav>
         </div>
@@ -924,6 +922,28 @@
           <button type="button" class="btn btn-white" data-bs-dismiss="modal">Cancel</button>
           <button type="button" class="btn btn-danger" data-demo-confirm>Delete</button>
         </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Used by every "Add …" button: demo-ui.js builds the fields from the table
+       the button points at, so a new list page needs no extra markup. -->
+  <div class="modal fade" id="q-demo-record" tabindex="-1" aria-labelledby="q-demo-record-title" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <form data-demo-form novalidate>
+          <div class="modal-header">
+            <h2 class="modal-title fs-6" id="q-demo-record-title" data-demo-title="Add record">Add record</h2>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close dialog"></button>
+          </div>
+          <div class="modal-body">
+            <div class="row g-3" data-demo-record-fields></div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-white" data-bs-dismiss="modal">Cancel</button>
+            <button type="submit" class="btn btn-primary" data-demo-submit>Add record</button>
+          </div>
+        </form>
       </div>
     </div>
   </div>

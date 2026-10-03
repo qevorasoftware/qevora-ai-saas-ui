@@ -284,6 +284,14 @@
     initCounters();
     initAutoYear();
     initDemoActions();
+
+    /* The derived KPI tiles (demo-ui.js) rewrite data-counter, so the animation
+       has to start again from the new value. */
+    document.addEventListener("qevora:counters", initCounters);
+
+    /* The derived KPI tiles (demo-ui.js) rewrite data-counter, so the animation
+       has to start again from the new value. */
+    document.addEventListener("qevora:counters", initCounters);
     initPlaceholderLinks();
     initDropdownHygiene();
   }
