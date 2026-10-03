@@ -48,7 +48,9 @@ if [ "${#missing[@]}" -gt 0 ]; then
 fi
 
 mkdir -p "$OUT"
-rm -f "$BUYER" "$DEVELOPER"
+# remove this version's previous builds AND any earlier naming (…-full.zip,
+# …-html-only.zip), so the release folder can never show a stale package
+rm -f "$BUYER" "$DEVELOPER" "$OUT"/*-full.zip "$OUT"/*-html-only.zip
 
 # ------------------------------------------------------------- buyer ZIP ----
 # Staged into a single top-level folder, exactly like the recommended
