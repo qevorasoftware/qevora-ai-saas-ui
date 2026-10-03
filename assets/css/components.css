@@ -1195,6 +1195,11 @@
   min-height: 160px;
 }
 
+/* Drop target for drag & drop boards; the markup adds d-flex flex-column */
+.kanban__col-body {
+  min-height: 36px;
+}
+
 .kanban__col-head {
   display: flex;
   align-items: center;

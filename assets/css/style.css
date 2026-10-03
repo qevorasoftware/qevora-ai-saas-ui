@@ -892,8 +892,13 @@ body.q-sidebar-open .q-sidebar-backdrop {
 .fs-8 { font-size: 0.75rem !important; }
 .fs-9 { font-size: 0.6875rem !important; }
 
+.fw-400 { font-weight: 400 !important; }
 .fw-500 { font-weight: 500 !important; }
 .fw-600 { font-weight: 600 !important; }
+.fw-700 { font-weight: 700 !important; }
+
+/* Flex children need this to allow ellipsis truncation */
+.min-w-0 { min-width: 0 !important; }
 
 .bg-surface { background-color: var(--q-surface) !important; }
 .bg-surface-alt { background-color: var(--q-surface-alt) !important; }
@@ -902,6 +907,7 @@ body.q-sidebar-open .q-sidebar-backdrop {
 .bg-warning-soft { background-color: var(--q-warning-soft) !important; }
 .bg-danger-soft { background-color: var(--q-danger-soft) !important; }
 .bg-info-soft { background-color: var(--q-info-soft) !important; }
+.bg-accent { background-color: var(--q-accent) !important; }
 .bg-accent-soft { background-color: var(--q-accent-soft) !important; }
 
 .text-primary-2 { color: var(--q-primary) !important; }
