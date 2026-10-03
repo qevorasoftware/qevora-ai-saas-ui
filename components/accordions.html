@@ -705,6 +705,8 @@
         <div class="demo-block__tabs">
           <button class="demo-tab is-active" data-demo-tab="preview" aria-selected="true">Preview</button>
           <button class="demo-tab" data-demo-tab="html" aria-selected="false">HTML</button>
+          <button class="demo-tab" data-demo-tab="css" aria-selected="false">CSS</button>
+          <button class="demo-tab" data-demo-tab="js" aria-selected="false">JS</button>
         </div>
         <div class="demo-block__pane is-active" data-demo-pane="preview">
           <div class="demo-preview" id="accBasic">
@@ -756,6 +758,51 @@
             <pre class="demo-code"><code id="codeAccBasic" data-auto-code="#accBasic"></code></pre>
           </div>
         </div>
+        <div class="demo-block__pane" data-demo-pane="css">
+          <div class="demo-code-wrap">
+            <button class="copy-btn" data-copy-target="#css-components-accordions-1" type="button"><i class="bi bi-clipboard"></i> Copy CSS</button>
+            <pre class="demo-code"><code id="css-components-accordions-1" data-lang="css">/* Qevora styles used by this block — from assets/css/components.css + assets/css/style.css */
+
+.accordion {
+  --bs-accordion-bg: transparent;
+  --bs-accordion-border-color: var(--q-border-color);
+  --bs-accordion-border-radius: var(--q-radius);
+  --bs-accordion-btn-color: var(--q-heading-color);
+  --bs-accordion-btn-focus-box-shadow: 0 0 0 3px rgba(var(--q-primary-rgb), 0.16);
+  --bs-accordion-active-color: var(--q-primary);
+  --bs-accordion-active-bg: rgba(var(--q-primary-rgb), 0.06);
+  --bs-accordion-btn-icon-width: 1rem;
+  --bs-accordion-body-padding-x: 1.25rem;
+  --bs-accordion-body-padding-y: 1rem;
+}
+
+.accordion-button {
+  font-size: 0.9375rem;
+  font-weight: 500;
+}
+
+.accordion-body {
+  font-size: 0.875rem;
+  color: var(--q-muted-color);
+}
+
+.fs-7 {
+  font-size: 0.8125rem !important;
+}
+
+.text-muted-2 {
+  color: var(--q-muted-color) !important;
+}</code></pre>
+          </div>
+        </div>
+
+        <div class="demo-block__pane" data-demo-pane="js">
+          <div class="demo-code-wrap">
+            <button class="copy-btn" data-copy-target="#js-components-accordions-1" type="button"><i class="bi bi-clipboard"></i> Copy JS</button>
+            <pre class="demo-code"><code id="js-components-accordions-1" data-lang="js">// No custom JavaScript: Bootstrap's data API expands these panels.</code></pre>
+          </div>
+        </div>
+
       </div>
 
       <div class="demo-block" data-demo>
@@ -768,6 +815,8 @@
         <div class="demo-block__tabs">
           <button class="demo-tab is-active" data-demo-tab="preview" aria-selected="true">Preview</button>
           <button class="demo-tab" data-demo-tab="html" aria-selected="false">HTML</button>
+          <button class="demo-tab" data-demo-tab="css" aria-selected="false">CSS</button>
+          <button class="demo-tab" data-demo-tab="js" aria-selected="false">JS</button>
         </div>
         <div class="demo-block__pane is-active" data-demo-pane="preview">
           <div class="demo-preview" id="accFlush">
@@ -825,6 +874,89 @@
             <pre class="demo-code"><code id="codeAccFlush" data-auto-code="#accFlush"></code></pre>
           </div>
         </div>
+        <div class="demo-block__pane" data-demo-pane="css">
+          <div class="demo-code-wrap">
+            <button class="copy-btn" data-copy-target="#css-components-accordions-2" type="button"><i class="bi bi-clipboard"></i> Copy CSS</button>
+            <pre class="demo-code"><code id="css-components-accordions-2" data-lang="css">/* Qevora styles used by this block — from assets/css/components.css + assets/css/style.css */
+
+.card {
+  --bs-card-bg: var(--q-surface);
+  --bs-card-border-color: var(--q-border-color);
+  --bs-card-border-radius: var(--q-radius-lg);
+  --bs-card-inner-border-radius: calc(var(--q-radius-lg) - 1px);
+  --bs-card-cap-bg: transparent;
+  --bs-card-cap-padding-y: 1rem;
+  --bs-card-cap-padding-x: 1.25rem;
+  --bs-card-spacer-y: 1.25rem;
+  --bs-card-spacer-x: 1.25rem;
+  box-shadow: var(--q-shadow-xs);
+  transition: box-shadow var(--q-transition), transform var(--q-transition);
+}
+
+.card-header {
+  border-bottom: 1px solid var(--q-border-color);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.card-title {
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 0.125rem;
+  color: var(--q-heading-color);
+}
+
+.accordion {
+  --bs-accordion-bg: transparent;
+  --bs-accordion-border-color: var(--q-border-color);
+  --bs-accordion-border-radius: var(--q-radius);
+  --bs-accordion-btn-color: var(--q-heading-color);
+  --bs-accordion-btn-focus-box-shadow: 0 0 0 3px rgba(var(--q-primary-rgb), 0.16);
+  --bs-accordion-active-color: var(--q-primary);
+  --bs-accordion-active-bg: rgba(var(--q-primary-rgb), 0.06);
+  --bs-accordion-btn-icon-width: 1rem;
+  --bs-accordion-body-padding-x: 1.25rem;
+  --bs-accordion-body-padding-y: 1rem;
+}
+
+.accordion-button {
+  font-size: 0.9375rem;
+  font-weight: 500;
+}
+
+.accordion-body {
+  font-size: 0.875rem;
+  color: var(--q-muted-color);
+}
+
+.fs-7 {
+  font-size: 0.8125rem !important;
+}
+
+.text-muted-2 {
+  color: var(--q-muted-color) !important;
+}
+
+.btn {
+/* … sample trimmed for length */</code></pre>
+          </div>
+        </div>
+
+        <div class="demo-block__pane" data-demo-pane="js">
+          <div class="demo-code-wrap">
+            <button class="copy-btn" data-copy-target="#js-components-accordions-2" type="button"><i class="bi bi-clipboard"></i> Copy JS</button>
+            <pre class="demo-code"><code id="js-components-accordions-2" data-lang="js">// Demo-only buttons show a toast instead of calling a backend.
+// &lt;button data-demo-action="Invoice saved" data-demo-variant="success"&gt;
+
+Qevora.toast("Invoice INV-2026-0186 marked as paid", "success", "Payments");
+
+// No custom JavaScript: Bootstrap's data API expands these panels.</code></pre>
+          </div>
+        </div>
+
       </div>
 
       <div class="demo-block" data-demo>
@@ -837,6 +969,8 @@
         <div class="demo-block__tabs">
           <button class="demo-tab is-active" data-demo-tab="preview" aria-selected="true">Preview</button>
           <button class="demo-tab" data-demo-tab="html" aria-selected="false">HTML</button>
+          <button class="demo-tab" data-demo-tab="css" aria-selected="false">CSS</button>
+          <button class="demo-tab" data-demo-tab="js" aria-selected="false">JS</button>
         </div>
         <div class="demo-block__pane is-active" data-demo-pane="preview">
           <div class="demo-preview" id="accIndependent">
@@ -862,6 +996,84 @@
             <pre class="demo-code"><code id="codeAccIndependent" data-auto-code="#accIndependent"></code></pre>
           </div>
         </div>
+        <div class="demo-block__pane" data-demo-pane="css">
+          <div class="demo-code-wrap">
+            <button class="copy-btn" data-copy-target="#css-components-accordions-3" type="button"><i class="bi bi-clipboard"></i> Copy CSS</button>
+            <pre class="demo-code"><code id="css-components-accordions-3" data-lang="css">/* Qevora styles used by this block — from assets/css/components.css + assets/css/style.css */
+
+.btn {
+  --bs-btn-font-size: 0.875rem;
+  --bs-btn-font-weight: 500;
+  --bs-btn-padding-y: 0.5rem;
+  --bs-btn-padding-x: 1rem;
+  --bs-btn-border-radius: var(--q-radius-sm);
+  --bs-btn-focus-box-shadow: 0 0 0 3px rgba(var(--q-primary-rgb), 0.25);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  transition: all var(--q-transition);
+}
+
+.btn i {
+  font-size: 1.05em;
+  line-height: 1;
+}
+
+.btn-soft-primary {
+  --bs-btn-color: var(--q-primary);
+  --bs-btn-bg: var(--q-primary-soft);
+  --bs-btn-border-color: transparent;
+  --bs-btn-hover-color: var(--q-primary-active);
+  --bs-btn-hover-bg: rgba(var(--q-primary-rgb), 0.18);
+  --bs-btn-hover-border-color: transparent;
+  --bs-btn-active-color: var(--q-primary-active);
+  --bs-btn-active-bg: rgba(var(--q-primary-rgb), 0.24);
+}
+
+.card {
+  --bs-card-bg: var(--q-surface);
+  --bs-card-border-color: var(--q-border-color);
+  --bs-card-border-radius: var(--q-radius-lg);
+  --bs-card-inner-border-radius: calc(var(--q-radius-lg) - 1px);
+  --bs-card-cap-bg: transparent;
+  --bs-card-cap-padding-y: 1rem;
+  --bs-card-cap-padding-x: 1.25rem;
+  --bs-card-spacer-y: 1.25rem;
+  --bs-card-spacer-x: 1.25rem;
+  box-shadow: var(--q-shadow-xs);
+  transition: box-shadow var(--q-transition), transform var(--q-transition);
+}
+
+.fs-7 {
+  font-size: 0.8125rem !important;
+}
+
+.text-muted-2 {
+  color: var(--q-muted-color) !important;
+}
+
+.text-heading {
+  color: var(--q-heading-color) !important;
+}
+
+.fw-500 {
+  font-weight: 500 !important;
+}
+
+.fw-600 {
+  font-weight: 600 !important;
+/* … sample trimmed for length */</code></pre>
+          </div>
+        </div>
+
+        <div class="demo-block__pane" data-demo-pane="js">
+          <div class="demo-code-wrap">
+            <button class="copy-btn" data-copy-target="#js-components-accordions-3" type="button"><i class="bi bi-clipboard"></i> Copy JS</button>
+            <pre class="demo-code"><code id="js-components-accordions-3" data-lang="js">// No custom JavaScript: Bootstrap's data API expands these panels.</code></pre>
+          </div>
+        </div>
+
       </div>
 
       <div class="card">

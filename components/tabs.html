@@ -705,6 +705,8 @@
         <div class="demo-block__tabs">
           <button class="demo-tab is-active" data-demo-tab="preview" aria-selected="true">Preview</button>
           <button class="demo-tab" data-demo-tab="html" aria-selected="false">HTML</button>
+          <button class="demo-tab" data-demo-tab="css" aria-selected="false">CSS</button>
+          <button class="demo-tab" data-demo-tab="js" aria-selected="false">JS</button>
         </div>
         <div class="demo-block__pane is-active" data-demo-pane="preview">
           <div class="demo-preview" id="tabsUnderline">
@@ -744,6 +746,84 @@
             <pre class="demo-code"><code id="codeTabsUnderline" data-auto-code="#tabsUnderline"></code></pre>
           </div>
         </div>
+        <div class="demo-block__pane" data-demo-pane="css">
+          <div class="demo-code-wrap">
+            <button class="copy-btn" data-copy-target="#css-components-tabs-1" type="button"><i class="bi bi-clipboard"></i> Copy CSS</button>
+            <pre class="demo-code"><code id="css-components-tabs-1" data-lang="css">/* Qevora styles used by this block — from assets/css/components.css + assets/css/style.css */
+
+.nav-tabs {
+  --bs-nav-tabs-border-color: var(--q-border-color);
+  --bs-nav-tabs-link-active-color: var(--q-primary);
+  --bs-nav-tabs-link-active-bg: transparent;
+  --bs-nav-tabs-link-active-border-color: var(--q-border-color) var(--q-border-color) transparent;
+  --bs-nav-link-color: var(--q-muted-color);
+  --bs-nav-link-hover-color: var(--q-heading-color);
+  gap: 0.15rem;
+}
+
+.nav-tabs .nav-link {
+  font-size: 0.875rem;
+  font-weight: 500;
+  border-radius: var(--q-radius-sm) var(--q-radius-sm) 0 0;
+}
+
+.nav-pills .nav-link {
+  font-size: 0.8438rem;
+  font-weight: 500;
+  color: var(--q-muted-color);
+  padding: 0.45rem 0.9rem;
+}
+
+.nav-pills .nav-link:hover {
+  color: var(--q-heading-color);
+  background: var(--q-surface-hover);
+}
+
+.nav-pills .nav-link.active {
+  color: #fff;
+}
+
+.breadcrumb-item.active {
+  color: var(--q-heading-color);
+  font-weight: 500;
+}
+
+.dropdown-item.active i, .dropdown-item:active i {
+  color: inherit;
+}
+
+.badge {
+  --bs-badge-font-size: 0.6875rem;
+  --bs-badge-font-weight: 600;
+  --bs-badge-padding-x: 0.5rem;
+  --bs-badge-padding-y: 0.28rem;
+  --bs-badge-border-radius: var(--q-radius-xs);
+  letter-spacing: 0.02em;
+  line-height: 1.2;
+}
+
+.badge-soft-primary {
+  background: var(--q-primary-soft);
+  color: var(--q-primary);
+}
+
+.fs-7 {
+  font-size: 0.8125rem !important;
+}
+
+.text-muted-2 {
+  color: var(--q-muted-color) !important;
+/* … sample trimmed for length */</code></pre>
+          </div>
+        </div>
+
+        <div class="demo-block__pane" data-demo-pane="js">
+          <div class="demo-code-wrap">
+            <button class="copy-btn" data-copy-target="#js-components-tabs-1" type="button"><i class="bi bi-clipboard"></i> Copy JS</button>
+            <pre class="demo-code"><code id="js-components-tabs-1" data-lang="js">// No custom JavaScript: Bootstrap's data API switches these panes.</code></pre>
+          </div>
+        </div>
+
       </div>
 
       <div class="demo-block" data-demo>
@@ -756,6 +836,8 @@
         <div class="demo-block__tabs">
           <button class="demo-tab is-active" data-demo-tab="preview" aria-selected="true">Preview</button>
           <button class="demo-tab" data-demo-tab="html" aria-selected="false">HTML</button>
+          <button class="demo-tab" data-demo-tab="css" aria-selected="false">CSS</button>
+          <button class="demo-tab" data-demo-tab="js" aria-selected="false">JS</button>
         </div>
         <div class="demo-block__pane is-active" data-demo-pane="preview">
           <div class="demo-preview" id="tabsPills">
@@ -796,6 +878,84 @@
             <pre class="demo-code"><code id="codeTabsPills" data-auto-code="#tabsPills"></code></pre>
           </div>
         </div>
+        <div class="demo-block__pane" data-demo-pane="css">
+          <div class="demo-code-wrap">
+            <button class="copy-btn" data-copy-target="#css-components-tabs-2" type="button"><i class="bi bi-clipboard"></i> Copy CSS</button>
+            <pre class="demo-code"><code id="css-components-tabs-2" data-lang="css">/* Qevora styles used by this block — from assets/css/components.css + assets/css/style.css */
+
+.nav-pills {
+  --bs-nav-pills-border-radius: var(--q-radius-sm);
+  --bs-nav-pills-link-active-bg: var(--q-primary);
+  --bs-nav-pills-link-active-color: #fff;
+  gap: 0.25rem;
+}
+
+.nav-pills .nav-link {
+  font-size: 0.8438rem;
+  font-weight: 500;
+  color: var(--q-muted-color);
+  padding: 0.45rem 0.9rem;
+}
+
+.nav-pills .nav-link:hover {
+  color: var(--q-heading-color);
+  background: var(--q-surface-hover);
+}
+
+.nav-pills .nav-link.active {
+  color: #fff;
+}
+
+.nav-tabs .nav-link {
+  font-size: 0.875rem;
+  font-weight: 500;
+  border-radius: var(--q-radius-sm) var(--q-radius-sm) 0 0;
+}
+
+.breadcrumb-item.active {
+  color: var(--q-heading-color);
+  font-weight: 500;
+}
+
+.dropdown-item.active i, .dropdown-item:active i {
+  color: inherit;
+}
+
+.fs-7 {
+  font-size: 0.8125rem !important;
+}
+
+.text-muted-2 {
+  color: var(--q-muted-color) !important;
+}
+
+.btn {
+  --bs-btn-font-size: 0.875rem;
+  --bs-btn-font-weight: 500;
+  --bs-btn-padding-y: 0.5rem;
+  --bs-btn-padding-x: 1rem;
+  --bs-btn-border-radius: var(--q-radius-sm);
+  --bs-btn-focus-box-shadow: 0 0 0 3px rgba(var(--q-primary-rgb), 0.25);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  transition: all var(--q-transition);
+}
+
+.btn i {
+  font-size: 1.05em;
+/* … sample trimmed for length */</code></pre>
+          </div>
+        </div>
+
+        <div class="demo-block__pane" data-demo-pane="js">
+          <div class="demo-code-wrap">
+            <button class="copy-btn" data-copy-target="#js-components-tabs-2" type="button"><i class="bi bi-clipboard"></i> Copy JS</button>
+            <pre class="demo-code"><code id="js-components-tabs-2" data-lang="js">// No custom JavaScript: Bootstrap's data API switches these panes.</code></pre>
+          </div>
+        </div>
+
       </div>
 
       <div class="demo-block" data-demo>
@@ -808,6 +968,8 @@
         <div class="demo-block__tabs">
           <button class="demo-tab is-active" data-demo-tab="preview" aria-selected="true">Preview</button>
           <button class="demo-tab" data-demo-tab="html" aria-selected="false">HTML</button>
+          <button class="demo-tab" data-demo-tab="css" aria-selected="false">CSS</button>
+          <button class="demo-tab" data-demo-tab="js" aria-selected="false">JS</button>
         </div>
         <div class="demo-block__pane is-active" data-demo-pane="preview">
           <div class="demo-preview" id="tabsVertical">
@@ -856,6 +1018,70 @@
             <pre class="demo-code"><code id="codeTabsVertical" data-auto-code="#tabsVertical"></code></pre>
           </div>
         </div>
+        <div class="demo-block__pane" data-demo-pane="css">
+          <div class="demo-code-wrap">
+            <button class="copy-btn" data-copy-target="#css-components-tabs-3" type="button"><i class="bi bi-clipboard"></i> Copy CSS</button>
+            <pre class="demo-code"><code id="css-components-tabs-3" data-lang="css">/* Qevora styles used by this block — from assets/css/components.css + assets/css/style.css */
+
+.nav-pills {
+  --bs-nav-pills-border-radius: var(--q-radius-sm);
+  --bs-nav-pills-link-active-bg: var(--q-primary);
+  --bs-nav-pills-link-active-color: #fff;
+  gap: 0.25rem;
+}
+
+.nav-pills .nav-link {
+  font-size: 0.8438rem;
+  font-weight: 500;
+  color: var(--q-muted-color);
+  padding: 0.45rem 0.9rem;
+}
+
+.nav-pills .nav-link:hover {
+  color: var(--q-heading-color);
+  background: var(--q-surface-hover);
+}
+
+.nav-pills .nav-link.active {
+  color: #fff;
+}
+
+.nav-tabs .nav-link {
+  font-size: 0.875rem;
+  font-weight: 500;
+  border-radius: var(--q-radius-sm) var(--q-radius-sm) 0 0;
+}
+
+.breadcrumb-item.active {
+  color: var(--q-heading-color);
+  font-weight: 500;
+}
+
+.dropdown-item.active i, .dropdown-item:active i {
+  color: inherit;
+}
+
+.text-heading {
+  color: var(--q-heading-color) !important;
+}
+
+.fs-7 {
+  font-size: 0.8125rem !important;
+}
+
+.text-muted-2 {
+  color: var(--q-muted-color) !important;
+}</code></pre>
+          </div>
+        </div>
+
+        <div class="demo-block__pane" data-demo-pane="js">
+          <div class="demo-code-wrap">
+            <button class="copy-btn" data-copy-target="#js-components-tabs-3" type="button"><i class="bi bi-clipboard"></i> Copy JS</button>
+            <pre class="demo-code"><code id="js-components-tabs-3" data-lang="js">// No custom JavaScript: Bootstrap's data API switches these panes.</code></pre>
+          </div>
+        </div>
+
       </div>
 
       <div class="card">

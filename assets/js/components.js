@@ -140,6 +140,84 @@
     return escaped;
   }
 
+  function span(cls, text) {
+    return '<span class="' + cls + '">' + text + "</span>";
+  }
+
+  /* CSS samples: comments, selectors, properties, tokens and values. */
+  function highlightCss(code) {
+    return code
+      .split("\n")
+      .map(function (line) {
+        var trimmed = line.trim();
+        if (!trimmed) return "";
+
+        if (trimmed.indexOf("/*") === 0 || trimmed.indexOf("*") === 0 || trimmed.slice(-2) === "*/") {
+          return span("tok-com", escapeHtml(line));
+        }
+
+        var escaped = escapeHtml(line);
+
+        // Closing brace on its own line
+        if (trimmed === "}") return span("tok-tag", escaped);
+
+        // Rule line: selector { or at-rule {
+        if (/\{\s*$/.test(trimmed) && !/^[a-z-]+\s*:/.test(trimmed)) {
+          escaped = escaped.replace(/(@[a-z-]+|\.[A-Za-z_][A-Za-z0-9_-]*|#[A-Za-z_][A-Za-z0-9_-]*|::[a-z-]+|:[a-z-]+(?=[\s,{)]))/g, function (m) {
+            return span("tok-key", m);
+          });
+          return escaped.replace(/\{\s*$/, function (m) { return span("tok-tag", m); });
+        }
+
+        // Declaration line: property: value;
+        return escaped.replace(/^(\s*)(-{0,2}[A-Za-z][A-Za-z0-9-]*)(\s*:\s*)([\s\S]*)$/, function (match, indent, prop, colon, value) {
+          var tail = "";
+          if (/;\s*$/.test(value)) {
+            value = value.replace(/;\s*$/, "");
+            tail = ";";
+          }
+          var highlighted = value
+            .replace(/(--[a-z0-9-]+)/g, function (m) { return span("tok-key", m); })
+            .replace(/(#[0-9a-fA-F]{3,8}\b)/g, function (m) { return span("tok-num", m); })
+            .replace(/(\b\d*\.?\d+(?:px|rem|em|%|s|ms|vh|vw|deg|ch|fr)?\b)/g, function (m) { return span("tok-num", m); });
+          return indent + span("tok-attr", prop) + colon + highlighted + span("tok-tag", tail);
+        });
+      })
+      .join("\n");
+  }
+
+  /* JavaScript samples: comments, strings, keywords and numbers. */
+  function highlightJs(code) {
+    return code
+      .split("\n")
+      .map(function (line) {
+        var trimmed = line.trim();
+        if (!trimmed) return "";
+
+        if (trimmed.indexOf("//") === 0 || trimmed.indexOf("/*") === 0 || trimmed.indexOf("*") === 0 || trimmed.slice(-2) === "*/") {
+          return span("tok-com", escapeHtml(line));
+        }
+
+        var escaped = escapeHtml(line);
+
+        // Strings first, so later passes cannot reach inside them.
+        escaped = escaped.replace(/"[^"]*"/g, function (m) { return span("tok-str", m); });
+
+        // Keywords after whitespace, a dot or a bracket — never inside a span tag.
+        escaped = escaped.replace(/(^|[\s(.,=[])(var|let|const|function|return|new|if|else|for|while|try|catch|typeof|instanceof|this|true|false|null|undefined|document|window|bootstrap)(?![\w-])/g,
+          function (m, lead, word) { return lead + span("tok-key", word); });
+
+        // Method calls: .toast( , .querySelectorAll(
+        escaped = escaped.replace(/(\.)([a-zA-Z_$][\w$]*)(?=\()/g, function (m, dot, name) {
+          return dot + span("tok-key", name);
+        });
+
+        escaped = escaped.replace(/\b(\d+(?:\.\d+)?)\b/g, function (m) { return span("tok-num", m); });
+        return escaped;
+      })
+      .join("\n");
+  }
+
   function highlightCode() {
     var blocks = document.querySelectorAll(".demo-code code, code[data-highlight]");
 
@@ -148,9 +226,15 @@
       if (el.getAttribute("data-highlighted") === "true") continue;
 
       var raw = el.textContent;
+      var pane = el.closest("[data-demo-pane]");
+      var lang = el.getAttribute("data-lang") || (pane ? pane.getAttribute("data-demo-pane") : "html");
 
-      // Skip nested-span damage: only highlight markup-shaped snippets.
-      if (raw.indexOf("<") !== -1) {
+      if (lang === "css") {
+        el.innerHTML = highlightCss(raw);
+      } else if (lang === "js") {
+        el.innerHTML = highlightJs(raw);
+      } else if (raw.indexOf("<") !== -1) {
+        // Skip nested-span damage: only highlight markup-shaped snippets.
         el.innerHTML = highlightMarkup(raw);
       }
 

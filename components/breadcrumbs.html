@@ -699,6 +699,8 @@
         <div class="demo-block__tabs">
           <button class="demo-tab is-active" data-demo-tab="preview" aria-selected="true">Preview</button>
           <button class="demo-tab" data-demo-tab="html" aria-selected="false">HTML</button>
+          <button class="demo-tab" data-demo-tab="css" aria-selected="false">CSS</button>
+          <button class="demo-tab" data-demo-tab="js" aria-selected="false">JS</button>
         </div>
         <div class="demo-block__pane is-active" data-demo-pane="preview">
           <div class="demo-preview">
@@ -733,6 +735,55 @@
 &lt;/nav&gt;</code></pre>
           </div>
         </div>
+        <div class="demo-block__pane" data-demo-pane="css">
+          <div class="demo-code-wrap">
+            <button class="copy-btn" data-copy-target="#css-components-breadcrumbs-1" type="button"><i class="bi bi-clipboard"></i> Copy CSS</button>
+            <pre class="demo-code"><code id="css-components-breadcrumbs-1" data-lang="css">/* Qevora styles used by this block — from assets/css/style.css + assets/css/components.css */
+
+.breadcrumb {
+  --bs-breadcrumb-divider-color: var(--q-faint-color);
+  --bs-breadcrumb-item-padding-x: 0.5rem;
+  margin: 0;
+  font-size: 0.8125rem;
+}
+
+.breadcrumb-item &gt; a {
+  color: var(--q-muted-color);
+}
+
+.breadcrumb-item &gt; a:hover {
+  color: var(--q-primary);
+}
+
+.breadcrumb-item.active {
+  color: var(--q-heading-color);
+  font-weight: 500;
+}
+
+.dropdown-item.active i, .dropdown-item:active i {
+  color: inherit;
+}
+
+.nav-pills .nav-link.active {
+  color: #fff;
+}
+
+.divider-y {
+  height: 1px;
+  background: var(--q-border-color);
+  border: 0;
+  margin: 1rem 0;
+}</code></pre>
+          </div>
+        </div>
+
+        <div class="demo-block__pane" data-demo-pane="js">
+          <div class="demo-code-wrap">
+            <button class="copy-btn" data-copy-target="#js-components-breadcrumbs-1" type="button"><i class="bi bi-clipboard"></i> Copy JS</button>
+            <pre class="demo-code"><code id="js-components-breadcrumbs-1" data-lang="js">/* No JavaScript required — this block is pure markup and CSS. */</code></pre>
+          </div>
+        </div>
+
       </div>
 
       <div class="demo-block" data-demo>
@@ -745,6 +796,8 @@
         <div class="demo-block__tabs">
           <button class="demo-tab is-active" data-demo-tab="preview" aria-selected="true">Preview</button>
           <button class="demo-tab" data-demo-tab="html" aria-selected="false">HTML</button>
+          <button class="demo-tab" data-demo-tab="css" aria-selected="false">CSS</button>
+          <button class="demo-tab" data-demo-tab="js" aria-selected="false">JS</button>
         </div>
         <div class="demo-block__pane is-active" data-demo-pane="preview">
           <div class="demo-preview">
@@ -790,6 +843,84 @@
 &lt;/div&gt;</code></pre>
           </div>
         </div>
+        <div class="demo-block__pane" data-demo-pane="css">
+          <div class="demo-code-wrap">
+            <button class="copy-btn" data-copy-target="#css-components-breadcrumbs-2" type="button"><i class="bi bi-clipboard"></i> Copy CSS</button>
+            <pre class="demo-code"><code id="css-components-breadcrumbs-2" data-lang="css">/* Qevora styles used by this block — from assets/css/style.css + assets/css/components.css */
+
+.q-page-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.breadcrumb {
+  --bs-breadcrumb-divider-color: var(--q-faint-color);
+  --bs-breadcrumb-item-padding-x: 0.5rem;
+  margin: 0;
+  font-size: 0.8125rem;
+}
+
+.breadcrumb-item &gt; a {
+  color: var(--q-muted-color);
+}
+
+.breadcrumb-item &gt; a:hover {
+  color: var(--q-primary);
+}
+
+.breadcrumb-item.active {
+  color: var(--q-heading-color);
+  font-weight: 500;
+}
+
+.dropdown-item.active i, .dropdown-item:active i {
+  color: inherit;
+}
+
+.nav-pills .nav-link.active {
+  color: #fff;
+}
+
+.q-page-head__title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin: 0 0 0.25rem;
+}
+
+.q-page-head__subtitle {
+  color: var(--q-muted-color);
+  font-size: 0.875rem;
+  margin: 0;
+  max-width: 68ch;
+}
+
+.btn {
+  --bs-btn-font-size: 0.875rem;
+  --bs-btn-font-weight: 500;
+  --bs-btn-padding-y: 0.5rem;
+  --bs-btn-padding-x: 1rem;
+  --bs-btn-border-radius: var(--q-radius-sm);
+  --bs-btn-focus-box-shadow: 0 0 0 3px rgba(var(--q-primary-rgb), 0.25);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+/* … sample trimmed for length */</code></pre>
+          </div>
+        </div>
+
+        <div class="demo-block__pane" data-demo-pane="js">
+          <div class="demo-code-wrap">
+            <button class="copy-btn" data-copy-target="#js-components-breadcrumbs-2" type="button"><i class="bi bi-clipboard"></i> Copy JS</button>
+            <pre class="demo-code"><code id="js-components-breadcrumbs-2" data-lang="js">/* No JavaScript required — this block is pure markup and CSS. */</code></pre>
+          </div>
+        </div>
+
       </div>
 
       <div class="card">

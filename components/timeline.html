@@ -699,6 +699,8 @@
         <div class="demo-block__tabs">
           <button class="demo-tab is-active" data-demo-tab="preview" aria-selected="true">Preview</button>
           <button class="demo-tab" data-demo-tab="html" aria-selected="false">HTML</button>
+          <button class="demo-tab" data-demo-tab="css" aria-selected="false">CSS</button>
+          <button class="demo-tab" data-demo-tab="js" aria-selected="false">JS</button>
         </div>
         <div class="demo-block__pane is-active" data-demo-pane="preview">
           <div class="demo-preview">
@@ -748,6 +750,84 @@
 &lt;/ul&gt;</code></pre>
           </div>
         </div>
+        <div class="demo-block__pane" data-demo-pane="css">
+          <div class="demo-code-wrap">
+            <button class="copy-btn" data-copy-target="#css-components-timeline-1" type="button"><i class="bi bi-clipboard"></i> Copy CSS</button>
+            <pre class="demo-code"><code id="css-components-timeline-1" data-lang="css">/* Qevora styles used by this block — from assets/css/components.css */
+
+.timeline {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  position: relative;
+}
+
+.timeline__item {
+  position: relative;
+  padding-inline-start: 2rem;
+  padding-bottom: 1.5rem;
+}
+
+.timeline__item:last-child {
+  padding-bottom: 0;
+}
+
+.timeline__item::before {
+  content: "";
+  position: absolute;
+  inset-inline-start: 8px;
+  top: 20px;
+  bottom: 0;
+  width: 2px;
+  background: var(--q-border-color);
+}
+
+.timeline__item:last-child::before {
+  display: none;
+}
+
+.timeline__dot {
+  position: absolute;
+  inset-inline-start: 0;
+  top: 3px;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  border: 3px solid var(--q-surface);
+  background: var(--q-primary);
+  box-shadow: 0 0 0 1px var(--q-border-color);
+}
+
+.timeline__dot--success {
+  background: var(--q-success);
+}
+
+.timeline__title {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--q-heading-color);
+  margin-bottom: 0.2rem;
+}
+
+.timeline__meta {
+  font-size: 0.75rem;
+  color: var(--q-faint-color);
+}
+
+.timeline__text {
+  font-size: 0.8125rem;
+  color: var(--q-muted-color);
+/* … sample trimmed for length */</code></pre>
+          </div>
+        </div>
+
+        <div class="demo-block__pane" data-demo-pane="js">
+          <div class="demo-code-wrap">
+            <button class="copy-btn" data-copy-target="#js-components-timeline-1" type="button"><i class="bi bi-clipboard"></i> Copy JS</button>
+            <pre class="demo-code"><code id="js-components-timeline-1" data-lang="js">/* No JavaScript required — this block is pure markup and CSS. */</code></pre>
+          </div>
+        </div>
+
       </div>
 
       <div class="demo-block" data-demo>
@@ -760,6 +840,8 @@
         <div class="demo-block__tabs">
           <button class="demo-tab is-active" data-demo-tab="preview" aria-selected="true">Preview</button>
           <button class="demo-tab" data-demo-tab="html" aria-selected="false">HTML</button>
+          <button class="demo-tab" data-demo-tab="css" aria-selected="false">CSS</button>
+          <button class="demo-tab" data-demo-tab="js" aria-selected="false">JS</button>
         </div>
         <div class="demo-block__pane is-active" data-demo-pane="preview">
           <div class="demo-preview">
@@ -802,6 +884,84 @@
 &lt;/ul&gt;</code></pre>
           </div>
         </div>
+        <div class="demo-block__pane" data-demo-pane="css">
+          <div class="demo-code-wrap">
+            <button class="copy-btn" data-copy-target="#css-components-timeline-2" type="button"><i class="bi bi-clipboard"></i> Copy CSS</button>
+            <pre class="demo-code"><code id="css-components-timeline-2" data-lang="css">/* Qevora styles used by this block — from assets/css/components.css */
+
+.activity {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.activity__item {
+  display: flex;
+  gap: 0.85rem;
+  padding: 0.75rem 0;
+  border-bottom: 1px solid var(--q-border-color);
+}
+
+.activity__item:last-child {
+  border-bottom: 0;
+  padding-bottom: 0;
+}
+
+.activity__item:first-child {
+  padding-top: 0;
+}
+
+.avatar {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  flex: 0 0 auto;
+  font-weight: 600;
+  font-size: 0.8125rem;
+  color: #fff;
+  background: var(--q-primary);
+  overflow: hidden;
+  text-transform: uppercase;
+  letter-spacing: 0.01em;
+}
+
+.avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.avatar-group .avatar {
+  border: 2px solid var(--q-surface);
+  margin-inline-start: -10px;
+}
+
+.avatar-group .avatar:first-child {
+  margin-inline-start: 0;
+}
+
+.avatar-group .avatar:hover {
+  z-index: 2;
+  transform: translateY(-2px);
+}
+
+.avatar-sm {
+  width: 32px;
+/* … sample trimmed for length */</code></pre>
+          </div>
+        </div>
+
+        <div class="demo-block__pane" data-demo-pane="js">
+          <div class="demo-code-wrap">
+            <button class="copy-btn" data-copy-target="#js-components-timeline-2" type="button"><i class="bi bi-clipboard"></i> Copy JS</button>
+            <pre class="demo-code"><code id="js-components-timeline-2" data-lang="js">/* No JavaScript required — this block is pure markup and CSS. */</code></pre>
+          </div>
+        </div>
+
       </div>
     </main>
 

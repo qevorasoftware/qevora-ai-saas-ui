@@ -24,10 +24,13 @@
     13.  Placeholders       - no lorem ipsum / TODO / FIXME in shipped pages
     14.  Tag balance        - every container opens and closes exactly once
     15.  Paragraph nesting  - no block elements inside <p>
+    16.  Demo blocks        - every demo offers Preview / HTML / CSS / JS with a copy button
+    17.  Link targets       - every relative href/src resolves to a file that exists
    ========================================================================== */
 
 import { readdirSync, readFileSync, existsSync, statSync } from "node:fs";
-import { join, relative, dirname, extname } from "node:path";
+import { findElementEnd } from "./demo-samples.mjs";
+import { join, relative, dirname, extname, resolve } from "node:path";
 
 const ROOT = process.cwd();
 const args = process.argv.slice(2);
@@ -132,7 +135,7 @@ const VOID = new Set(["area", "base", "br", "col", "embed", "hr", "img", "input"
 /** Strip escaped code samples (<pre class="demo-code"> blocks) so demos never count as markup. */
 function stripCodeBlocks(html) {
   return html
-    .replace(/<pre class="demo-code"[\s\S]*?<\/pre>/g, "")
+    .replace(/<pre class="demo-code[^"]*"[\s\S]*?<\/pre>/g, "")
     .replace(/<code[^>]*data-auto-code[\s\S]*?<\/code>/g, "");
 }
 
@@ -195,6 +198,58 @@ function hasAccessibleName(tag) {
   const inner = tag.replace(/<[^>]*>/g, " ").replace(/&nbsp;/g, " ");
   const text = inner.replace(/<i[^>]*class="[^"]*\bbi\b[^"]*"[^>]*>\s*<\/i>/g, "").trim();
   return /[A-Za-z0-9]/.test(text);
+}
+
+
+/** Every component demo must offer the same four panes, each with a copy button. */
+function checkDemoBlocks(html, add) {
+  const WANTED = ["preview", "html", "css", "js"];
+  const blockRe = /<div[^>]*class="[^"]*\bdemo-block\b[^"]*"[^>]*\bdata-demo\b/g;
+  let hit;
+
+  while ((hit = blockRe.exec(html))) {
+    const end = findElementEnd(html, hit.index);
+    if (end === -1) continue;
+    const block = html.slice(hit.index, end);
+
+    const tabs = [...block.matchAll(/data-demo-tab="([^"]+)"/g)].map((m) => m[1]);
+    const panes = [...block.matchAll(/data-demo-pane="([^"]+)"/g)].map((m) => m[1]);
+    const title = (block.match(/demo-block__title">([^<]+)/) || [, "untitled"])[1];
+
+    if (tabs.join(",") !== WANTED.join(",")) {
+      add("demo-tabs", `"${title}" has tabs [${tabs.join(", ")}] instead of [${WANTED.join(", ")}]`);
+    }
+    if (panes.join(",") !== WANTED.join(",")) {
+      add("demo-tabs", `"${title}" has panes [${panes.join(", ")}] instead of [${WANTED.join(", ")}]`);
+    }
+
+    // Each code pane needs its own copy button pointing at the code element.
+    for (const pane of ["html", "css", "js"]) {
+      const at = block.indexOf(`data-demo-pane="${pane}"`);
+      if (at === -1) continue;
+      const paneEnd = findElementEnd(block, block.lastIndexOf("<div", at));
+      const paneHtml = block.slice(at, paneEnd === -1 ? block.length : paneEnd);
+      if (paneHtml.includes("demo-code") && !/data-copy-target="#[^"]+"/.test(paneHtml)) {
+        add("demo-tabs", `"${title}" ${pane.toUpperCase()} pane has no copy button`);
+      }
+      if (paneHtml.includes("demo-code") && !/<code id="[^"]+"/.test(paneHtml)) {
+        add("demo-tabs", `"${title}" ${pane.toUpperCase()} pane code has no id`);
+      }
+    }
+  }
+}
+
+
+/** Every relative link, script, stylesheet and image must exist on disk. */
+function checkLinkTargets(html, file, add) {
+  for (const m of html.matchAll(/(?:href|src)="([^"]+)"/g)) {
+    const url = m[1];
+    if (/^(https?:|mailto:|tel:|data:|#|javascript:)/.test(url)) continue;
+    const target = url.split("#")[0].split("?")[0];
+    if (!target) continue;
+    const absolute = resolve(dirname(join(ROOT, file)), target);
+    if (!existsSync(absolute)) add("link", `${url} does not exist`);
+  }
 }
 
 /* -------------------------------------------------------------------------- */
@@ -364,6 +419,15 @@ for (const file of files) {
   /* 15. paragraph nesting ------------------------------------------------- */
   stats.checks++;
   checkParagraphNesting(html, add);
+
+  /* 16. component demo blocks --------------------------------------------- */
+  /* Runs on the raw markup: the panes themselves contain the code samples. */
+  stats.checks++;
+  checkDemoBlocks(raw, add);
+
+  /* 17. link and asset targets -------------------------------------------- */
+  stats.checks++;
+  checkLinkTargets(html, file, add);
 }
 
 /* -------------------------------------------------------------------------- */

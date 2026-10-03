@@ -95,14 +95,36 @@ FEATURES
   · Accessibility pass: landmarks, skip links, labelled controls, aria
     states, reduced-motion support, WCAG AA colour targets.
 
+COMPONENT DEMOS — FOUR PANES
+
+  · Every demo block on the 31 UI kit pages now offers Preview / HTML / CSS / JS
+    tabs, each with its own copy button (86 blocks in total).
+  · The CSS sample is generated at build time: the real rules for the classes used
+    in that block are lifted from assets/css/style.css and components.css, and
+    classes that come from stock Bootstrap are listed instead of pasted.
+  · The JS sample is generated too: it reports the hooks that block actually uses
+    — a short API snippet for Qevora's own behaviour, or a clear "no custom
+    JavaScript required" note where Bootstrap's data API does the work.
+  · components.js gained dependency-free CSS and JavaScript tokenisers, so all
+    four panes are highlighted with the same tok-* palette.
+  · tools/demo-samples.mjs holds the generator; tools/audit.mjs gained a
+    four-pane contract check (86 blocks verified).
+
+HOSTING
+
+  · tools/build.mjs mirrors utility/404.html to the repository root as 404.html
+    (root-relative paths, robots noindex) because GitHub Pages serves /404.html
+    from the site root. 82 HTML files ship: 81 pages plus that hosting fallback.
+
 QUALITY TOOLING
 
-  · tools/audit.mjs — static QA gate that runs 15 checks over all 81 generated
+  · tools/audit.mjs — static QA gate that runs 17 checks over all 82 generated
     pages: document head, duplicate ids, anchor targets, aria/label references,
     image alt text, accessible names on buttons and icon links, form labels,
     class existence against the shipped stylesheets, data-hook coverage,
     chart registry and script wiring, heading outline, tag balance, paragraph
-    nesting, interactive nesting and placeholder markers.
+    nesting, interactive nesting, placeholder markers and the four-pane demo
+    contract.
       node tools/audit.mjs            report
       node tools/audit.mjs --part ai  audit one section
       node tools/audit.mjs --strict   non-zero exit when anything is found

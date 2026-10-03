@@ -705,6 +705,8 @@
         <div class="demo-block__tabs">
           <button class="demo-tab is-active" data-demo-tab="preview" aria-selected="true">Preview</button>
           <button class="demo-tab" data-demo-tab="html" aria-selected="false">HTML</button>
+          <button class="demo-tab" data-demo-tab="css" aria-selected="false">CSS</button>
+          <button class="demo-tab" data-demo-tab="js" aria-selected="false">JS</button>
         </div>
         <div class="demo-block__pane is-active" data-demo-pane="preview">
           <div class="demo-preview" id="igBasic">
@@ -762,6 +764,89 @@
             <pre class="demo-code"><code id="codeIgBasic" data-auto-code="#igBasic"></code></pre>
           </div>
         </div>
+        <div class="demo-block__pane" data-demo-pane="css">
+          <div class="demo-code-wrap">
+            <button class="copy-btn" data-copy-target="#css-components-input-groups-1" type="button"><i class="bi bi-clipboard"></i> Copy CSS</button>
+            <pre class="demo-code"><code id="css-components-input-groups-1" data-lang="css">/* Qevora styles used by this block — from assets/css/components.css + assets/css/style.css */
+
+.form-label {
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: var(--q-heading-color);
+  margin-bottom: 0.375rem;
+}
+
+.input-group-text {
+  background: var(--q-surface-hover);
+  border-color: var(--q-border-color);
+  color: var(--q-muted-color);
+  font-size: 0.875rem;
+  border-radius: var(--q-radius-sm);
+}
+
+.q-header__search .form-control {
+  padding-inline-start: 2.4rem;
+  background: var(--q-surface-hover);
+  border-color: transparent;
+}
+
+.q-header__search .form-control:focus {
+  background: var(--q-surface);
+}
+
+.form-control, .form-select {
+  --bs-body-bg: var(--q-surface);
+  background-color: var(--q-surface);
+  border-color: var(--q-border-color);
+  border-radius: var(--q-radius-sm);
+  color: var(--q-body-color);
+  font-size: 0.875rem;
+  padding: 0.5rem 0.85rem;
+  transition: border-color var(--q-transition), box-shadow var(--q-transition);
+}
+
+.form-control::placeholder {
+  color: var(--q-faint-color);
+}
+
+.form-control:focus, .form-select:focus {
+  background-color: var(--q-surface);
+  border-color: var(--q-primary);
+  box-shadow: 0 0 0 3px rgba(var(--q-primary-rgb), 0.16);
+  color: var(--q-body-color);
+}
+
+.form-control:disabled, .form-select:disabled {
+  background-color: var(--q-surface-hover);
+  color: var(--q-muted-color);
+}
+
+.form-control.is-invalid, .form-select.is-invalid {
+  border-color: var(--q-danger);
+}
+
+.form-control.is-valid, .form-select.is-valid {
+  border-color: var(--q-success);
+}
+
+.search-field .form-control {
+  padding-inline-start: 2.35rem;
+/* … sample trimmed for length */</code></pre>
+          </div>
+        </div>
+
+        <div class="demo-block__pane" data-demo-pane="js">
+          <div class="demo-code-wrap">
+            <button class="copy-btn" data-copy-target="#js-components-input-groups-1" type="button"><i class="bi bi-clipboard"></i> Copy JS</button>
+            <pre class="demo-code"><code id="js-components-input-groups-1" data-lang="js">// Demo-only buttons show a toast instead of calling a backend.
+// &lt;button data-demo-action="Invoice saved" data-demo-variant="success"&gt;
+
+Qevora.toast("Invoice INV-2026-0186 marked as paid", "success", "Payments");
+
+// No custom JavaScript: Bootstrap's data API opens this dropdown.</code></pre>
+          </div>
+        </div>
+
       </div>
 
       <div class="demo-block" data-demo>
@@ -774,6 +859,8 @@
         <div class="demo-block__tabs">
           <button class="demo-tab is-active" data-demo-tab="preview" aria-selected="true">Preview</button>
           <button class="demo-tab" data-demo-tab="html" aria-selected="false">HTML</button>
+          <button class="demo-tab" data-demo-tab="css" aria-selected="false">CSS</button>
+          <button class="demo-tab" data-demo-tab="js" aria-selected="false">JS</button>
         </div>
         <div class="demo-block__pane is-active" data-demo-pane="preview">
           <div class="demo-preview" id="igSizes">
@@ -818,6 +905,87 @@
             <pre class="demo-code"><code id="codeIgSizes" data-auto-code="#igSizes"></code></pre>
           </div>
         </div>
+        <div class="demo-block__pane" data-demo-pane="css">
+          <div class="demo-code-wrap">
+            <button class="copy-btn" data-copy-target="#css-components-input-groups-2" type="button"><i class="bi bi-clipboard"></i> Copy CSS</button>
+            <pre class="demo-code"><code id="css-components-input-groups-2" data-lang="css">/* Qevora styles used by this block — from assets/css/components.css + assets/css/style.css */
+
+.form-label {
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: var(--q-heading-color);
+  margin-bottom: 0.375rem;
+}
+
+.input-group-text {
+  background: var(--q-surface-hover);
+  border-color: var(--q-border-color);
+  color: var(--q-muted-color);
+  font-size: 0.875rem;
+  border-radius: var(--q-radius-sm);
+}
+
+.q-header__search .form-control {
+  padding-inline-start: 2.4rem;
+  background: var(--q-surface-hover);
+  border-color: transparent;
+}
+
+.q-header__search .form-control:focus {
+  background: var(--q-surface);
+}
+
+.form-control, .form-select {
+  --bs-body-bg: var(--q-surface);
+  background-color: var(--q-surface);
+  border-color: var(--q-border-color);
+  border-radius: var(--q-radius-sm);
+  color: var(--q-body-color);
+  font-size: 0.875rem;
+  padding: 0.5rem 0.85rem;
+  transition: border-color var(--q-transition), box-shadow var(--q-transition);
+}
+
+.form-control::placeholder {
+  color: var(--q-faint-color);
+}
+
+.form-control:focus, .form-select:focus {
+  background-color: var(--q-surface);
+  border-color: var(--q-primary);
+  box-shadow: 0 0 0 3px rgba(var(--q-primary-rgb), 0.16);
+  color: var(--q-body-color);
+}
+
+.form-control:disabled, .form-select:disabled {
+  background-color: var(--q-surface-hover);
+  color: var(--q-muted-color);
+}
+
+.form-control.is-invalid, .form-select.is-invalid {
+  border-color: var(--q-danger);
+}
+
+.form-control.is-valid, .form-select.is-valid {
+  border-color: var(--q-success);
+}
+
+.search-field .form-control {
+  padding-inline-start: 2.35rem;
+/* … sample trimmed for length */</code></pre>
+          </div>
+        </div>
+
+        <div class="demo-block__pane" data-demo-pane="js">
+          <div class="demo-code-wrap">
+            <button class="copy-btn" data-copy-target="#js-components-input-groups-2" type="button"><i class="bi bi-clipboard"></i> Copy JS</button>
+            <pre class="demo-code"><code id="js-components-input-groups-2" data-lang="js">// Demo-only buttons show a toast instead of calling a backend.
+// &lt;button data-demo-action="Invoice saved" data-demo-variant="success"&gt;
+
+Qevora.toast("Invoice INV-2026-0186 marked as paid", "success", "Payments");</code></pre>
+          </div>
+        </div>
+
       </div>
 
       <div class="card">

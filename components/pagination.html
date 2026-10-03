@@ -705,6 +705,8 @@
         <div class="demo-block__tabs">
           <button class="demo-tab is-active" data-demo-tab="preview" aria-selected="true">Preview</button>
           <button class="demo-tab" data-demo-tab="html" aria-selected="false">HTML</button>
+          <button class="demo-tab" data-demo-tab="css" aria-selected="false">CSS</button>
+          <button class="demo-tab" data-demo-tab="js" aria-selected="false">JS</button>
         </div>
         <div class="demo-block__pane is-active" data-demo-pane="preview">
           <div class="demo-preview" id="pgStyles">
@@ -742,6 +744,61 @@
             <pre class="demo-code"><code id="codePgStyles" data-auto-code="#pgStyles"></code></pre>
           </div>
         </div>
+        <div class="demo-block__pane" data-demo-pane="css">
+          <div class="demo-code-wrap">
+            <button class="copy-btn" data-copy-target="#css-components-pagination-1" type="button"><i class="bi bi-clipboard"></i> Copy CSS</button>
+            <pre class="demo-code"><code id="css-components-pagination-1" data-lang="css">/* Qevora styles used by this block — from assets/css/style.css + assets/css/components.css */
+
+.breadcrumb-item.active {
+  color: var(--q-heading-color);
+  font-weight: 500;
+}
+
+.dropdown-item.active i, .dropdown-item:active i {
+  color: inherit;
+}
+
+.nav-pills .nav-link.active {
+  color: #fff;
+}
+
+.btn {
+  --bs-btn-font-size: 0.875rem;
+  --bs-btn-font-weight: 500;
+  --bs-btn-padding-y: 0.5rem;
+  --bs-btn-padding-x: 1rem;
+  --bs-btn-border-radius: var(--q-radius-sm);
+  --bs-btn-focus-box-shadow: 0 0 0 3px rgba(var(--q-primary-rgb), 0.25);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  transition: all var(--q-transition);
+}
+
+.btn i {
+  font-size: 1.05em;
+  line-height: 1;
+}
+
+.btn-white {
+  --bs-btn-bg: var(--q-surface);
+  --bs-btn-border-color: var(--q-border-color);
+  --bs-btn-color: var(--q-heading-color);
+  --bs-btn-hover-bg: var(--q-surface-hover);
+  --bs-btn-hover-border-color: var(--q-border-strong);
+  --bs-btn-hover-color: var(--q-heading-color);
+}</code></pre>
+          </div>
+        </div>
+
+        <div class="demo-block__pane" data-demo-pane="js">
+          <div class="demo-code-wrap">
+            <button class="copy-btn" data-copy-target="#js-components-pagination-1" type="button"><i class="bi bi-clipboard"></i> Copy JS</button>
+            <pre class="demo-code"><code id="js-components-pagination-1" data-lang="js">/* No JavaScript required — this block is pure markup and CSS. */</code></pre>
+          </div>
+        </div>
+
       </div>
 
       <div class="demo-block" data-demo>
@@ -757,6 +814,8 @@
         <div class="demo-block__tabs">
           <button class="demo-tab is-active" data-demo-tab="preview" aria-selected="true">Preview</button>
           <button class="demo-tab" data-demo-tab="html" aria-selected="false">HTML</button>
+          <button class="demo-tab" data-demo-tab="css" aria-selected="false">CSS</button>
+          <button class="demo-tab" data-demo-tab="js" aria-selected="false">JS</button>
         </div>
         <div class="demo-block__pane is-active" data-demo-pane="preview">
           <div class="demo-preview demo-preview--plain" id="pgTable">
@@ -819,6 +878,87 @@
             <pre class="demo-code"><code id="codePgTable" data-auto-code="#pgTable"></code></pre>
           </div>
         </div>
+        <div class="demo-block__pane" data-demo-pane="css">
+          <div class="demo-code-wrap">
+            <button class="copy-btn" data-copy-target="#css-components-pagination-2" type="button"><i class="bi bi-clipboard"></i> Copy CSS</button>
+            <pre class="demo-code"><code id="css-components-pagination-2" data-lang="css">/* Qevora styles used by this block — from assets/css/components.css */
+
+.card {
+  --bs-card-bg: var(--q-surface);
+  --bs-card-border-color: var(--q-border-color);
+  --bs-card-border-radius: var(--q-radius-lg);
+  --bs-card-inner-border-radius: calc(var(--q-radius-lg) - 1px);
+  --bs-card-cap-bg: transparent;
+  --bs-card-cap-padding-y: 1rem;
+  --bs-card-cap-padding-x: 1.25rem;
+  --bs-card-spacer-y: 1.25rem;
+  --bs-card-spacer-x: 1.25rem;
+  box-shadow: var(--q-shadow-xs);
+  transition: box-shadow var(--q-transition), transform var(--q-transition);
+}
+
+.card-header {
+  border-bottom: 1px solid var(--q-border-color);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.card-title {
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 0.125rem;
+  color: var(--q-heading-color);
+}
+
+.card-subtitle {
+  font-size: 0.8125rem;
+  color: var(--q-muted-color);
+  margin-bottom: 0;
+}
+
+.table-responsive {
+  border-radius: 0 0 var(--q-radius-lg) var(--q-radius-lg);
+}
+
+.table {
+  --bs-table-bg: transparent;
+  --bs-table-border-color: var(--q-border-color);
+  --bs-table-hover-bg: var(--q-surface-hover);
+  --bs-table-striped-bg: var(--q-surface-alt);
+  --bs-table-color: var(--q-body-color);
+  margin-bottom: 0;
+  font-size: 0.875rem;
+  vertical-align: middle;
+}
+
+.table &gt; thead th {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--q-muted-color);
+  background: var(--q-surface-alt);
+  border-bottom: 1px solid var(--q-border-color);
+  padding: 0.75rem 1rem;
+  white-space: nowrap;
+}
+/* … sample trimmed for length */</code></pre>
+          </div>
+        </div>
+
+        <div class="demo-block__pane" data-demo-pane="js">
+          <div class="demo-code-wrap">
+            <button class="copy-btn" data-copy-target="#js-components-pagination-2" type="button"><i class="bi bi-clipboard"></i> Copy JS</button>
+            <pre class="demo-code"><code id="js-components-pagination-2" data-lang="js">// Table footer pagination.
+// &lt;div class="table-footer" data-paginate="#invoices" data-per-page="3"&gt;
+//   &lt;span data-page-info&gt;&lt;/span&gt;
+//   &lt;a data-page="prev"&gt;&lt;/a&gt; &lt;a data-page="1"&gt;&lt;/a&gt; &lt;a data-page="next"&gt;&lt;/a&gt;</code></pre>
+          </div>
+        </div>
+
       </div>
 
       <div class="card">

@@ -713,6 +713,8 @@
         <div class="demo-block__tabs">
           <button class="demo-tab is-active" data-demo-tab="preview" aria-selected="true">Preview</button>
           <button class="demo-tab" data-demo-tab="html" aria-selected="false">HTML</button>
+          <button class="demo-tab" data-demo-tab="css" aria-selected="false">CSS</button>
+          <button class="demo-tab" data-demo-tab="js" aria-selected="false">JS</button>
         </div>
         <div class="demo-block__pane is-active" data-demo-pane="preview">
           <div class="demo-preview" id="modalBasic">
@@ -760,6 +762,89 @@
             <pre class="demo-code"><code id="codeModalBasic" data-auto-code="#modalBasic"></code></pre>
           </div>
         </div>
+        <div class="demo-block__pane" data-demo-pane="css">
+          <div class="demo-code-wrap">
+            <button class="copy-btn" data-copy-target="#css-components-modals-1" type="button"><i class="bi bi-clipboard"></i> Copy CSS</button>
+            <pre class="demo-code"><code id="css-components-modals-1" data-lang="css">/* Qevora styles used by this block — from assets/css/components.css + assets/css/style.css */
+
+.btn {
+  --bs-btn-font-size: 0.875rem;
+  --bs-btn-font-weight: 500;
+  --bs-btn-padding-y: 0.5rem;
+  --bs-btn-padding-x: 1rem;
+  --bs-btn-border-radius: var(--q-radius-sm);
+  --bs-btn-focus-box-shadow: 0 0 0 3px rgba(var(--q-primary-rgb), 0.25);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  transition: all var(--q-transition);
+}
+
+.btn i {
+  font-size: 1.05em;
+  line-height: 1;
+}
+
+.btn-primary {
+  --bs-btn-bg: var(--q-primary);
+  --bs-btn-border-color: var(--q-primary);
+  --bs-btn-hover-bg: var(--q-primary-hover);
+  --bs-btn-hover-border-color: var(--q-primary-hover);
+  --bs-btn-active-bg: var(--q-primary-active);
+  --bs-btn-active-border-color: var(--q-primary-active);
+  --bs-btn-disabled-bg: var(--q-primary);
+  --bs-btn-disabled-border-color: var(--q-primary);
+  --bs-btn-focus-shadow-rgb: var(--q-primary-rgb);
+  --bs-btn-color: #fff;
+  --bs-btn-hover-color: #fff;
+  --bs-btn-active-color: #fff;
+  --bs-btn-disabled-color: #fff;
+}
+
+.modal-content {
+  --bs-modal-bg: var(--q-surface);
+  border: 1px solid var(--q-border-color);
+  border-radius: var(--q-radius-lg);
+  box-shadow: var(--q-shadow-lg);
+}
+
+.modal-header, .modal-footer {
+  border-color: var(--q-border-color);
+}
+
+.modal-title {
+  font-size: 1.0625rem;
+  font-weight: 600;
+}
+
+.form-label {
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: var(--q-heading-color);
+  margin-bottom: 0.375rem;
+}
+
+.q-header__search .form-control {
+  padding-inline-start: 2.4rem;
+  background: var(--q-surface-hover);
+  border-color: transparent;
+/* … sample trimmed for length */</code></pre>
+          </div>
+        </div>
+
+        <div class="demo-block__pane" data-demo-pane="js">
+          <div class="demo-code-wrap">
+            <button class="copy-btn" data-copy-target="#js-components-modals-1" type="button"><i class="bi bi-clipboard"></i> Copy JS</button>
+            <pre class="demo-code"><code id="js-components-modals-1" data-lang="js">// Demo-only buttons show a toast instead of calling a backend.
+// &lt;button data-demo-action="Invoice saved" data-demo-variant="success"&gt;
+
+Qevora.toast("Invoice INV-2026-0186 marked as paid", "success", "Payments");
+
+// No custom JavaScript: Bootstrap's data API opens this dialog.</code></pre>
+          </div>
+        </div>
+
       </div>
 
       <div class="demo-block" data-demo>
@@ -772,6 +857,8 @@
         <div class="demo-block__tabs">
           <button class="demo-tab is-active" data-demo-tab="preview" aria-selected="true">Preview</button>
           <button class="demo-tab" data-demo-tab="html" aria-selected="false">HTML</button>
+          <button class="demo-tab" data-demo-tab="css" aria-selected="false">CSS</button>
+          <button class="demo-tab" data-demo-tab="js" aria-selected="false">JS</button>
         </div>
         <div class="demo-block__pane is-active" data-demo-pane="preview">
           <div class="demo-preview" id="modalSizes">
@@ -851,6 +938,89 @@
             <pre class="demo-code"><code id="codeModalSizes" data-auto-code="#modalSizes"></code></pre>
           </div>
         </div>
+        <div class="demo-block__pane" data-demo-pane="css">
+          <div class="demo-code-wrap">
+            <button class="copy-btn" data-copy-target="#css-components-modals-2" type="button"><i class="bi bi-clipboard"></i> Copy CSS</button>
+            <pre class="demo-code"><code id="css-components-modals-2" data-lang="css">/* Qevora styles used by this block — from assets/css/components.css + assets/css/style.css */
+
+.btn {
+  --bs-btn-font-size: 0.875rem;
+  --bs-btn-font-weight: 500;
+  --bs-btn-padding-y: 0.5rem;
+  --bs-btn-padding-x: 1rem;
+  --bs-btn-border-radius: var(--q-radius-sm);
+  --bs-btn-focus-box-shadow: 0 0 0 3px rgba(var(--q-primary-rgb), 0.25);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  transition: all var(--q-transition);
+}
+
+.btn i {
+  font-size: 1.05em;
+  line-height: 1;
+}
+
+.btn-soft-primary {
+  --bs-btn-color: var(--q-primary);
+  --bs-btn-bg: var(--q-primary-soft);
+  --bs-btn-border-color: transparent;
+  --bs-btn-hover-color: var(--q-primary-active);
+  --bs-btn-hover-bg: rgba(var(--q-primary-rgb), 0.18);
+  --bs-btn-hover-border-color: transparent;
+  --bs-btn-active-color: var(--q-primary-active);
+  --bs-btn-active-bg: rgba(var(--q-primary-rgb), 0.24);
+}
+
+.modal-content {
+  --bs-modal-bg: var(--q-surface);
+  border: 1px solid var(--q-border-color);
+  border-radius: var(--q-radius-lg);
+  box-shadow: var(--q-shadow-lg);
+}
+
+.modal-header, .modal-footer {
+  border-color: var(--q-border-color);
+}
+
+.modal-title {
+  font-size: 1.0625rem;
+  font-weight: 600;
+}
+
+.fs-7 {
+  font-size: 0.8125rem !important;
+}
+
+.btn-white {
+  --bs-btn-bg: var(--q-surface);
+  --bs-btn-border-color: var(--q-border-color);
+  --bs-btn-color: var(--q-heading-color);
+  --bs-btn-hover-bg: var(--q-surface-hover);
+  --bs-btn-hover-border-color: var(--q-border-strong);
+  --bs-btn-hover-color: var(--q-heading-color);
+}
+
+.btn-sm {
+  --bs-btn-font-size: 0.8125rem;
+  --bs-btn-padding-y: 0.375rem;
+/* … sample trimmed for length */</code></pre>
+          </div>
+        </div>
+
+        <div class="demo-block__pane" data-demo-pane="js">
+          <div class="demo-code-wrap">
+            <button class="copy-btn" data-copy-target="#js-components-modals-2" type="button"><i class="bi bi-clipboard"></i> Copy JS</button>
+            <pre class="demo-code"><code id="js-components-modals-2" data-lang="js">// Demo-only buttons show a toast instead of calling a backend.
+// &lt;button data-demo-action="Invoice saved" data-demo-variant="success"&gt;
+
+Qevora.toast("Invoice INV-2026-0186 marked as paid", "success", "Payments");
+
+// No custom JavaScript: Bootstrap's data API opens this dialog.</code></pre>
+          </div>
+        </div>
+
       </div>
 
       <div class="demo-block" data-demo>
@@ -863,6 +1033,8 @@
         <div class="demo-block__tabs">
           <button class="demo-tab is-active" data-demo-tab="preview" aria-selected="true">Preview</button>
           <button class="demo-tab" data-demo-tab="html" aria-selected="false">HTML</button>
+          <button class="demo-tab" data-demo-tab="css" aria-selected="false">CSS</button>
+          <button class="demo-tab" data-demo-tab="js" aria-selected="false">JS</button>
         </div>
         <div class="demo-block__pane is-active" data-demo-pane="preview">
           <div class="demo-preview" id="modalDanger">
@@ -900,6 +1072,89 @@
             <pre class="demo-code"><code id="codeModalDanger" data-auto-code="#modalDanger"></code></pre>
           </div>
         </div>
+        <div class="demo-block__pane" data-demo-pane="css">
+          <div class="demo-code-wrap">
+            <button class="copy-btn" data-copy-target="#css-components-modals-3" type="button"><i class="bi bi-clipboard"></i> Copy CSS</button>
+            <pre class="demo-code"><code id="css-components-modals-3" data-lang="css">/* Qevora styles used by this block — from assets/css/components.css + assets/css/style.css */
+
+.btn {
+  --bs-btn-font-size: 0.875rem;
+  --bs-btn-font-weight: 500;
+  --bs-btn-padding-y: 0.5rem;
+  --bs-btn-padding-x: 1rem;
+  --bs-btn-border-radius: var(--q-radius-sm);
+  --bs-btn-focus-box-shadow: 0 0 0 3px rgba(var(--q-primary-rgb), 0.25);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  transition: all var(--q-transition);
+}
+
+.btn i {
+  font-size: 1.05em;
+  line-height: 1;
+}
+
+.btn-soft-danger {
+  --bs-btn-color: var(--q-danger-hover);
+  --bs-btn-bg: var(--q-danger-soft);
+  --bs-btn-border-color: transparent;
+  --bs-btn-hover-bg: rgba(var(--q-danger-rgb), 0.2);
+  --bs-btn-hover-color: var(--q-danger-hover);
+  --bs-btn-hover-border-color: transparent;
+}
+
+.modal-content {
+  --bs-modal-bg: var(--q-surface);
+  border: 1px solid var(--q-border-color);
+  border-radius: var(--q-radius-lg);
+  box-shadow: var(--q-shadow-lg);
+}
+
+.modal-header, .modal-footer {
+  border-color: var(--q-border-color);
+}
+
+.modal-title {
+  font-size: 1.0625rem;
+  font-weight: 600;
+}
+
+.alert {
+  --bs-alert-border-radius: var(--q-radius);
+  --bs-alert-padding-x: 1rem;
+  --bs-alert-padding-y: 0.875rem;
+  border: 1px solid transparent;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  font-size: 0.875rem;
+}
+
+.alert i.alert-icon {
+  font-size: 1.1rem;
+  line-height: 1.4;
+  flex: 0 0 auto;
+}
+
+.alert-danger {
+/* … sample trimmed for length */</code></pre>
+          </div>
+        </div>
+
+        <div class="demo-block__pane" data-demo-pane="js">
+          <div class="demo-code-wrap">
+            <button class="copy-btn" data-copy-target="#js-components-modals-3" type="button"><i class="bi bi-clipboard"></i> Copy JS</button>
+            <pre class="demo-code"><code id="js-components-modals-3" data-lang="js">// Demo-only buttons show a toast instead of calling a backend.
+// &lt;button data-demo-action="Invoice saved" data-demo-variant="success"&gt;
+
+Qevora.toast("Invoice INV-2026-0186 marked as paid", "success", "Payments");
+
+// No custom JavaScript: Bootstrap's data API opens this dialog.</code></pre>
+          </div>
+        </div>
+
       </div>
 
       <div class="card">

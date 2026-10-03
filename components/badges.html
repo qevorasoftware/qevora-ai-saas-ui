@@ -699,6 +699,8 @@
         <div class="demo-block__tabs">
           <button class="demo-tab is-active" data-demo-tab="preview" aria-selected="true">Preview</button>
           <button class="demo-tab" data-demo-tab="html" aria-selected="false">HTML</button>
+          <button class="demo-tab" data-demo-tab="css" aria-selected="false">CSS</button>
+          <button class="demo-tab" data-demo-tab="js" aria-selected="false">JS</button>
         </div>
         <div class="demo-block__pane is-active" data-demo-pane="preview">
           <div class="demo-preview">
@@ -731,6 +733,82 @@
 &lt;span class="badge text-bg-success"&gt;Solid success&lt;/span&gt;</code></pre>
           </div>
         </div>
+        <div class="demo-block__pane" data-demo-pane="css">
+          <div class="demo-code-wrap">
+            <button class="copy-btn" data-copy-target="#css-components-badges-1" type="button"><i class="bi bi-clipboard"></i> Copy CSS</button>
+            <pre class="demo-code"><code id="css-components-badges-1" data-lang="css">/* Qevora styles used by this block — from assets/css/components.css */
+
+.badge {
+  --bs-badge-font-size: 0.6875rem;
+  --bs-badge-font-weight: 600;
+  --bs-badge-padding-x: 0.5rem;
+  --bs-badge-padding-y: 0.28rem;
+  --bs-badge-border-radius: var(--q-radius-xs);
+  letter-spacing: 0.02em;
+  line-height: 1.2;
+}
+
+.badge-soft-success {
+  background: var(--q-success-soft);
+  color: var(--q-success-hover);
+}
+
+[data-bs-theme="dark"] .badge-soft-success {
+  color: var(--q-success);
+}
+
+.badge-pill {
+  border-radius: var(--q-radius-pill);
+}
+
+.badge-soft-warning {
+  background: var(--q-warning-soft);
+  color: var(--q-warning-hover);
+}
+
+[data-bs-theme="dark"] .badge-soft-warning {
+  color: var(--q-warning);
+}
+
+.badge-soft-danger {
+  background: var(--q-danger-soft);
+  color: var(--q-danger-hover);
+}
+
+[data-bs-theme="dark"] .badge-soft-danger {
+  color: var(--q-danger);
+}
+
+.badge-soft-info {
+  background: var(--q-info-soft);
+  color: var(--q-info-hover);
+}
+
+[data-bs-theme="dark"] .badge-soft-info {
+  color: var(--q-info);
+}
+
+.badge-soft-primary {
+  background: var(--q-primary-soft);
+  color: var(--q-primary);
+}
+
+.badge-soft-neutral {
+  background: var(--q-surface-hover);
+  color: var(--q-muted-color);
+}
+
+/* … 4 more rule(s) apply to these classes */</code></pre>
+          </div>
+        </div>
+
+        <div class="demo-block__pane" data-demo-pane="js">
+          <div class="demo-code-wrap">
+            <button class="copy-btn" data-copy-target="#js-components-badges-1" type="button"><i class="bi bi-clipboard"></i> Copy JS</button>
+            <pre class="demo-code"><code id="js-components-badges-1" data-lang="js">/* No JavaScript required — this block is pure markup and CSS. */</code></pre>
+          </div>
+        </div>
+
       </div>
 
       <div class="demo-block" data-demo>
@@ -743,6 +821,8 @@
         <div class="demo-block__tabs">
           <button class="demo-tab is-active" data-demo-tab="preview" aria-selected="true">Preview</button>
           <button class="demo-tab" data-demo-tab="html" aria-selected="false">HTML</button>
+          <button class="demo-tab" data-demo-tab="css" aria-selected="false">CSS</button>
+          <button class="demo-tab" data-demo-tab="js" aria-selected="false">JS</button>
         </div>
         <div class="demo-block__pane is-active" data-demo-pane="preview">
           <div class="demo-preview">
@@ -774,6 +854,84 @@
 &lt;/span&gt;</code></pre>
           </div>
         </div>
+        <div class="demo-block__pane" data-demo-pane="css">
+          <div class="demo-code-wrap">
+            <button class="copy-btn" data-copy-target="#css-components-badges-2" type="button"><i class="bi bi-clipboard"></i> Copy CSS</button>
+            <pre class="demo-code"><code id="css-components-badges-2" data-lang="css">/* Qevora styles used by this block — from assets/css/components.css */
+
+.badge {
+  --bs-badge-font-size: 0.6875rem;
+  --bs-badge-font-weight: 600;
+  --bs-badge-padding-x: 0.5rem;
+  --bs-badge-padding-y: 0.28rem;
+  --bs-badge-border-radius: var(--q-radius-xs);
+  letter-spacing: 0.02em;
+  line-height: 1.2;
+}
+
+.badge-soft-success {
+  background: var(--q-success-soft);
+  color: var(--q-success-hover);
+}
+
+[data-bs-theme="dark"] .badge-soft-success {
+  color: var(--q-success);
+}
+
+.badge-dot {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.badge-dot::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: currentColor;
+}
+
+.badge-soft-danger {
+  background: var(--q-danger-soft);
+  color: var(--q-danger-hover);
+}
+
+[data-bs-theme="dark"] .badge-soft-danger {
+  color: var(--q-danger);
+}
+
+.badge-soft-warning {
+  background: var(--q-warning-soft);
+  color: var(--q-warning-hover);
+}
+
+[data-bs-theme="dark"] .badge-soft-warning {
+  color: var(--q-warning);
+}
+
+.badge-soft-neutral {
+  background: var(--q-surface-hover);
+  color: var(--q-muted-color);
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.3rem 0.65rem;
+  border-radius: var(--q-radius-pill);
+/* … sample trimmed for length */</code></pre>
+          </div>
+        </div>
+
+        <div class="demo-block__pane" data-demo-pane="js">
+          <div class="demo-code-wrap">
+            <button class="copy-btn" data-copy-target="#js-components-badges-2" type="button"><i class="bi bi-clipboard"></i> Copy JS</button>
+            <pre class="demo-code"><code id="js-components-badges-2" data-lang="js">/* No JavaScript required — this block is pure markup and CSS. */</code></pre>
+          </div>
+        </div>
+
       </div>
 
       <div class="demo-block" data-demo>
@@ -786,6 +944,8 @@
         <div class="demo-block__tabs">
           <button class="demo-tab is-active" data-demo-tab="preview" aria-selected="true">Preview</button>
           <button class="demo-tab" data-demo-tab="html" aria-selected="false">HTML</button>
+          <button class="demo-tab" data-demo-tab="css" aria-selected="false">CSS</button>
+          <button class="demo-tab" data-demo-tab="js" aria-selected="false">JS</button>
         </div>
         <div class="demo-block__pane is-active" data-demo-pane="preview">
           <div class="demo-preview">
@@ -804,6 +964,53 @@
 &lt;span class="trend trend-flat"&gt;&lt;i class="bi bi-dash-lg"&gt;&lt;/i&gt; steady&lt;/span&gt;</code></pre>
           </div>
         </div>
+        <div class="demo-block__pane" data-demo-pane="css">
+          <div class="demo-code-wrap">
+            <button class="copy-btn" data-copy-target="#css-components-badges-3" type="button"><i class="bi bi-clipboard"></i> Copy CSS</button>
+            <pre class="demo-code"><code id="css-components-badges-3" data-lang="css">/* Qevora styles used by this block — from assets/css/components.css */
+
+.trend {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 0.15rem 0.45rem;
+  border-radius: var(--q-radius-xs);
+}
+
+.trend-up {
+  color: var(--q-success-hover);
+  background: var(--q-success-soft);
+}
+
+[data-bs-theme="dark"] .trend-up {
+  color: var(--q-success);
+}
+
+.trend-down {
+  color: var(--q-danger-hover);
+  background: var(--q-danger-soft);
+}
+
+[data-bs-theme="dark"] .trend-down {
+  color: var(--q-danger);
+}
+
+.trend-flat {
+  color: var(--q-muted-color);
+  background: var(--q-surface-hover);
+}</code></pre>
+          </div>
+        </div>
+
+        <div class="demo-block__pane" data-demo-pane="js">
+          <div class="demo-code-wrap">
+            <button class="copy-btn" data-copy-target="#js-components-badges-3" type="button"><i class="bi bi-clipboard"></i> Copy JS</button>
+            <pre class="demo-code"><code id="js-components-badges-3" data-lang="js">/* No JavaScript required — this block is pure markup and CSS. */</code></pre>
+          </div>
+        </div>
+
       </div>
     </main>
 

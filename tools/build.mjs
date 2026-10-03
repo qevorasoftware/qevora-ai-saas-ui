@@ -22,6 +22,7 @@ import { fileURLToPath } from "node:url";
 
 import { nav } from "../src/nav.mjs";
 import { pages } from "../src/pages.mjs";
+import { enhanceDemoBlocks, loadCssIndex } from "./demo-samples.mjs";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
 const checkOnly = process.argv.includes("--check");
@@ -153,6 +154,15 @@ async function build() {
   const missing = [];
   const buildPages = [];
   let built = 0;
+  let hostMirror = false;
+  let cssIndex = null;
+  const sampleStats = { blocks: 0, css: 0, js: 0 };
+
+  try {
+    cssIndex = loadCssIndex(ROOT);
+  } catch (error) {
+    console.log(`  ! Component demo samples disabled: ${error.message}`);
+  }
 
   for (const page of pages) {
     const out = page.out;
@@ -181,6 +191,16 @@ async function build() {
       if (!(await exists(sourcePath))) missing.push(out);
       buildPages.push(out);
       continue;
+    }
+
+    /* Component pages: grow every demo block to Preview / HTML / CSS / JS. */
+    if (cssIndex) {
+      const pageSlug = slug(out.replace(/\.html$/, "").replace(/\//g, "-"));
+      const enhanced = enhanceDemoBlocks(content, pageSlug, cssIndex);
+      content = enhanced.html;
+      sampleStats.blocks += enhanced.stats.blocks;
+      sampleStats.css += enhanced.stats.css;
+      sampleStats.js += enhanced.stats.js;
     }
 
     const tokens = {
@@ -247,6 +267,25 @@ ${fill(scripts)}</body>
     buildPages.push(out);
   }
 
+  /* ------------------------------------------------- GitHub Pages 404 mirror */
+  /* Pages serves /404.html from the site root. The template's own 404 page
+     lives one level down (utility/404.html), so mirror it with root-relative
+     paths instead of shipping a second, hand-maintained copy. */
+  if (!checkOnly) {
+    const source404 = await readMaybe(join(ROOT, "utility/404.html"));
+    if (source404) {
+      const mirrored = source404
+        .replace(/"\.\.\//g, '"')
+        .replace('<meta name="robots" content="index, follow">', '<meta name="robots" content="noindex, follow">');
+      if (mirrored.includes("../")) {
+        console.log("  ! 404 mirror skipped: relative paths remained after rewrite");
+      } else {
+        await writeFile(join(ROOT, "404.html"), mirrored, "utf8");
+        hostMirror = true;
+      }
+    }
+  }
+
   /* ---------------------------------------------------------------- checks */
 
   const problems = [];
@@ -285,6 +324,8 @@ ${fill(scripts)}</body>
   console.log(`Navigation links   : ${navTargets.length}`);
   if (!checkOnly) console.log(`Pages written      : ${built}`);
   console.log(`Documentation only : ${unreachable.filter((o) => o.startsWith("documentation/")).join(", ") || "—"}`);
+  if (!checkOnly) console.log(`Host 404 mirror    : ${hostMirror ? "404.html" : "—"}`);
+  if (!checkOnly) console.log(`Demo blocks grown  : ${sampleStats.blocks} (CSS + JS panes)`);
   console.log("");
 
   if (problems.length) {

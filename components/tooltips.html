@@ -705,6 +705,8 @@
         <div class="demo-block__tabs">
           <button class="demo-tab is-active" data-demo-tab="preview" aria-selected="true">Preview</button>
           <button class="demo-tab" data-demo-tab="html" aria-selected="false">HTML</button>
+          <button class="demo-tab" data-demo-tab="css" aria-selected="false">CSS</button>
+          <button class="demo-tab" data-demo-tab="js" aria-selected="false">JS</button>
         </div>
         <div class="demo-block__pane is-active" data-demo-pane="preview">
           <div class="demo-preview" id="tipPlacements">
@@ -731,6 +733,67 @@
             <pre class="demo-code"><code id="codeTipPlacements" data-auto-code="#tipPlacements"></code></pre>
           </div>
         </div>
+        <div class="demo-block__pane" data-demo-pane="css">
+          <div class="demo-code-wrap">
+            <button class="copy-btn" data-copy-target="#css-components-tooltips-1" type="button"><i class="bi bi-clipboard"></i> Copy CSS</button>
+            <pre class="demo-code"><code id="css-components-tooltips-1" data-lang="css">/* Qevora styles used by this block — from assets/css/components.css */
+
+.btn {
+  --bs-btn-font-size: 0.875rem;
+  --bs-btn-font-weight: 500;
+  --bs-btn-padding-y: 0.5rem;
+  --bs-btn-padding-x: 1rem;
+  --bs-btn-border-radius: var(--q-radius-sm);
+  --bs-btn-focus-box-shadow: 0 0 0 3px rgba(var(--q-primary-rgb), 0.25);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  transition: all var(--q-transition);
+}
+
+.btn i {
+  font-size: 1.05em;
+  line-height: 1;
+}
+
+.btn-white {
+  --bs-btn-bg: var(--q-surface);
+  --bs-btn-border-color: var(--q-border-color);
+  --bs-btn-color: var(--q-heading-color);
+  --bs-btn-hover-bg: var(--q-surface-hover);
+  --bs-btn-hover-border-color: var(--q-border-strong);
+  --bs-btn-hover-color: var(--q-heading-color);
+}
+
+.btn-primary {
+  --bs-btn-bg: var(--q-primary);
+  --bs-btn-border-color: var(--q-primary);
+  --bs-btn-hover-bg: var(--q-primary-hover);
+  --bs-btn-hover-border-color: var(--q-primary-hover);
+  --bs-btn-active-bg: var(--q-primary-active);
+  --bs-btn-active-border-color: var(--q-primary-active);
+  --bs-btn-disabled-bg: var(--q-primary);
+  --bs-btn-disabled-border-color: var(--q-primary);
+  --bs-btn-focus-shadow-rgb: var(--q-primary-rgb);
+  --bs-btn-color: #fff;
+  --bs-btn-hover-color: #fff;
+  --bs-btn-active-color: #fff;
+  --bs-btn-disabled-color: #fff;
+}</code></pre>
+          </div>
+        </div>
+
+        <div class="demo-block__pane" data-demo-pane="js">
+          <div class="demo-code-wrap">
+            <button class="copy-btn" data-copy-target="#js-components-tooltips-1" type="button"><i class="bi bi-clipboard"></i> Copy JS</button>
+            <pre class="demo-code"><code id="js-components-tooltips-1" data-lang="js">// app.js initialises every tooltip and popover on the page:
+document.querySelectorAll('[data-bs-toggle="tooltip"]').forEach(function (el) {
+  new bootstrap.Tooltip(el);
+});</code></pre>
+          </div>
+        </div>
+
       </div>
 
       <div class="demo-block" data-demo>
@@ -743,6 +806,8 @@
         <div class="demo-block__tabs">
           <button class="demo-tab is-active" data-demo-tab="preview" aria-selected="true">Preview</button>
           <button class="demo-tab" data-demo-tab="html" aria-selected="false">HTML</button>
+          <button class="demo-tab" data-demo-tab="css" aria-selected="false">CSS</button>
+          <button class="demo-tab" data-demo-tab="js" aria-selected="false">JS</button>
         </div>
         <div class="demo-block__pane is-active" data-demo-pane="preview">
           <div class="demo-preview" id="tipIcons">
@@ -764,6 +829,87 @@
             <pre class="demo-code"><code id="codeTipIcons" data-auto-code="#tipIcons"></code></pre>
           </div>
         </div>
+        <div class="demo-block__pane" data-demo-pane="css">
+          <div class="demo-code-wrap">
+            <button class="copy-btn" data-copy-target="#css-components-tooltips-2" type="button"><i class="bi bi-clipboard"></i> Copy CSS</button>
+            <pre class="demo-code"><code id="css-components-tooltips-2" data-lang="css">/* Qevora styles used by this block — from assets/css/components.css */
+
+.btn {
+  --bs-btn-font-size: 0.875rem;
+  --bs-btn-font-weight: 500;
+  --bs-btn-padding-y: 0.5rem;
+  --bs-btn-padding-x: 1rem;
+  --bs-btn-border-radius: var(--q-radius-sm);
+  --bs-btn-focus-box-shadow: 0 0 0 3px rgba(var(--q-primary-rgb), 0.25);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  transition: all var(--q-transition);
+}
+
+.btn i {
+  font-size: 1.05em;
+  line-height: 1;
+}
+
+.btn-icon {
+  width: 40px;
+  height: 40px;
+  padding: 0;
+}
+
+.btn-icon.btn-sm {
+  width: 32px;
+  height: 32px;
+  padding: 0;
+}
+
+.btn-icon.btn-lg {
+  width: 48px;
+  height: 48px;
+  padding: 0;
+}
+
+.btn-white {
+  --bs-btn-bg: var(--q-surface);
+  --bs-btn-border-color: var(--q-border-color);
+  --bs-btn-color: var(--q-heading-color);
+  --bs-btn-hover-bg: var(--q-surface-hover);
+  --bs-btn-hover-border-color: var(--q-border-strong);
+  --bs-btn-hover-color: var(--q-heading-color);
+}
+
+.btn-soft-danger {
+  --bs-btn-color: var(--q-danger-hover);
+  --bs-btn-bg: var(--q-danger-soft);
+  --bs-btn-border-color: transparent;
+  --bs-btn-hover-bg: rgba(var(--q-danger-rgb), 0.2);
+  --bs-btn-hover-color: var(--q-danger-hover);
+  --bs-btn-hover-border-color: transparent;
+}
+
+.avatar {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+/* … sample trimmed for length */</code></pre>
+          </div>
+        </div>
+
+        <div class="demo-block__pane" data-demo-pane="js">
+          <div class="demo-code-wrap">
+            <button class="copy-btn" data-copy-target="#js-components-tooltips-2" type="button"><i class="bi bi-clipboard"></i> Copy JS</button>
+            <pre class="demo-code"><code id="js-components-tooltips-2" data-lang="js">// app.js initialises every tooltip and popover on the page:
+document.querySelectorAll('[data-bs-toggle="tooltip"]').forEach(function (el) {
+  new bootstrap.Tooltip(el);
+});</code></pre>
+          </div>
+        </div>
+
       </div>
 
       <div class="demo-block" data-demo>
@@ -776,6 +922,8 @@
         <div class="demo-block__tabs">
           <button class="demo-tab is-active" data-demo-tab="preview" aria-selected="true">Preview</button>
           <button class="demo-tab" data-demo-tab="html" aria-selected="false">HTML</button>
+          <button class="demo-tab" data-demo-tab="css" aria-selected="false">CSS</button>
+          <button class="demo-tab" data-demo-tab="js" aria-selected="false">JS</button>
         </div>
         <div class="demo-block__pane is-active" data-demo-pane="preview">
           <div class="demo-preview" id="tipPopovers">
@@ -796,6 +944,80 @@
             <pre class="demo-code"><code id="codeTipPopovers" data-auto-code="#tipPopovers"></code></pre>
           </div>
         </div>
+        <div class="demo-block__pane" data-demo-pane="css">
+          <div class="demo-code-wrap">
+            <button class="copy-btn" data-copy-target="#css-components-tooltips-3" type="button"><i class="bi bi-clipboard"></i> Copy CSS</button>
+            <pre class="demo-code"><code id="css-components-tooltips-3" data-lang="css">/* Qevora styles used by this block — from assets/css/components.css */
+
+.btn {
+  --bs-btn-font-size: 0.875rem;
+  --bs-btn-font-weight: 500;
+  --bs-btn-padding-y: 0.5rem;
+  --bs-btn-padding-x: 1rem;
+  --bs-btn-border-radius: var(--q-radius-sm);
+  --bs-btn-focus-box-shadow: 0 0 0 3px rgba(var(--q-primary-rgb), 0.25);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  transition: all var(--q-transition);
+}
+
+.btn i {
+  font-size: 1.05em;
+  line-height: 1;
+}
+
+.btn-soft-primary {
+  --bs-btn-color: var(--q-primary);
+  --bs-btn-bg: var(--q-primary-soft);
+  --bs-btn-border-color: transparent;
+  --bs-btn-hover-color: var(--q-primary-active);
+  --bs-btn-hover-bg: rgba(var(--q-primary-rgb), 0.18);
+  --bs-btn-hover-border-color: transparent;
+  --bs-btn-active-color: var(--q-primary-active);
+  --bs-btn-active-bg: rgba(var(--q-primary-rgb), 0.24);
+}
+
+.btn-white {
+  --bs-btn-bg: var(--q-surface);
+  --bs-btn-border-color: var(--q-border-color);
+  --bs-btn-color: var(--q-heading-color);
+  --bs-btn-hover-bg: var(--q-surface-hover);
+  --bs-btn-hover-border-color: var(--q-border-strong);
+  --bs-btn-hover-color: var(--q-heading-color);
+}
+
+.btn-icon {
+  width: 40px;
+  height: 40px;
+  padding: 0;
+}
+
+.btn-icon.btn-sm {
+  width: 32px;
+  height: 32px;
+  padding: 0;
+}
+
+.btn-icon.btn-lg {
+  width: 48px;
+  height: 48px;
+  padding: 0;
+}</code></pre>
+          </div>
+        </div>
+
+        <div class="demo-block__pane" data-demo-pane="js">
+          <div class="demo-code-wrap">
+            <button class="copy-btn" data-copy-target="#js-components-tooltips-3" type="button"><i class="bi bi-clipboard"></i> Copy JS</button>
+            <pre class="demo-code"><code id="js-components-tooltips-3" data-lang="js">// app.js initialises every tooltip and popover on the page:
+document.querySelectorAll('[data-bs-toggle="tooltip"]').forEach(function (el) {
+  new bootstrap.Tooltip(el);
+});</code></pre>
+          </div>
+        </div>
+
       </div>
 
       <div class="card">

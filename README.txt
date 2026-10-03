@@ -39,7 +39,7 @@ or internet connection is required to use the template.
   · Full RTL support (sidebar script swaps in Bootstrap's RTL build)
   · Responsive layout: desktop, tablet and mobile off-canvas navigation
   · 15+ Chart.js charts, all theme-aware
-  · Component pages with Preview / HTML tabs and copy buttons
+  · Component pages with Preview / HTML / CSS / JS tabs and copy buttons
   · Every library vendored locally - the template never calls a CDN
 
 --------------------------------------------------------------------------------
@@ -65,6 +65,7 @@ or internet connection is required to use the template.
 --------------------------------------------------------------------------------
 
   index.html                  Dashboard overview
+  404.html                    Hosting fallback (mirrors utility/404.html)
   pages/                      Application pages (31)
   ai/                         AI workspace pages (6)
   components/                 UI kit pages (31)
@@ -94,9 +95,10 @@ or internet connection is required to use the template.
 
   src/            Body fragments, partials and the page inventory that the
                   optional build script assembles (see section 6)
-  tools/          build.mjs   optional build script (Node 18+, no dependencies)
-                  audit.mjs   QA: 15 static checks on every generated page
-                  package.sh  builds the release ZIPs
+  tools/          build.mjs         optional build script (Node 18+, no dependencies)
+                  demo-samples.mjs  generates the CSS/JS panes of every demo
+                  audit.mjs         QA: 17 static checks on every generated page
+                  package.sh        builds the release ZIPs
 
 --------------------------------------------------------------------------------
 4. CHANGING THE LOOK
@@ -151,7 +153,7 @@ or internet connection is required to use the template.
       [data-paginate]         table pagination footer
       th[data-sort]           click-to-sort column
       [data-upload-zone]      drag & drop file list
-      [data-demo-tab]         Preview / HTML tabs on component pages
+      [data-demo-tab]         Preview / HTML / CSS / JS tabs on component pages
       [data-copy-target]      copy button
       [data-demo-action]      demo-only button, shows a toast
       canvas[data-chart]      Chart.js chart (see components/charts.html)
@@ -169,7 +171,7 @@ or internet connection is required to use the template.
 
       node tools/build.mjs            rebuild every page
       node tools/build.mjs --check    validate only, report problems
-      node tools/audit.mjs            run the 15-point quality audit
+      node tools/audit.mjs            run the 17-point quality audit
 
   Source fragments live in src/pages/ (one file per page, same paths as the
   output), the shell lives in src/partials/, the page inventory in

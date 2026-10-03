@@ -699,6 +699,8 @@
         <div class="demo-block__tabs">
           <button class="demo-tab is-active" data-demo-tab="preview" aria-selected="true">Preview</button>
           <button class="demo-tab" data-demo-tab="html" aria-selected="false">HTML</button>
+          <button class="demo-tab" data-demo-tab="css" aria-selected="false">CSS</button>
+          <button class="demo-tab" data-demo-tab="js" aria-selected="false">JS</button>
         </div>
         <div class="demo-block__pane is-active" data-demo-pane="preview">
           <div class="demo-preview d-flex flex-column gap-3">
@@ -756,6 +758,84 @@
 &lt;div class="alert alert-primary" role="alert"&gt;…&lt;/div&gt;</code></pre>
           </div>
         </div>
+        <div class="demo-block__pane" data-demo-pane="css">
+          <div class="demo-code-wrap">
+            <button class="copy-btn" data-copy-target="#css-components-alerts-1" type="button"><i class="bi bi-clipboard"></i> Copy CSS</button>
+            <pre class="demo-code"><code id="css-components-alerts-1" data-lang="css">/* Qevora styles used by this block — from assets/css/components.css + assets/css/style.css */
+
+.alert {
+  --bs-alert-border-radius: var(--q-radius);
+  --bs-alert-padding-x: 1rem;
+  --bs-alert-padding-y: 0.875rem;
+  border: 1px solid transparent;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  font-size: 0.875rem;
+}
+
+.alert i.alert-icon {
+  font-size: 1.1rem;
+  line-height: 1.4;
+  flex: 0 0 auto;
+}
+
+.alert-success {
+  --bs-alert-bg: var(--q-success-soft);
+  --bs-alert-color: #04684f;
+  --bs-alert-border-color: rgba(var(--q-success-rgb), 0.22);
+}
+
+[data-bs-theme="dark"] .alert-success {
+  --bs-alert-color: #86efc4;
+}
+
+.fs-8 {
+  font-size: 0.75rem !important;
+}
+
+.alert-warning {
+  --bs-alert-bg: var(--q-warning-soft);
+  --bs-alert-color: #8a5205;
+  --bs-alert-border-color: rgba(var(--q-warning-rgb), 0.24);
+}
+
+[data-bs-theme="dark"] .alert-warning {
+  --bs-alert-color: #fcd873;
+}
+
+.alert-danger {
+  --bs-alert-bg: var(--q-danger-soft);
+  --bs-alert-color: #a01d1d;
+  --bs-alert-border-color: rgba(var(--q-danger-rgb), 0.22);
+}
+
+[data-bs-theme="dark"] .alert-danger {
+  --bs-alert-color: #fca5a5;
+}
+
+.alert-info {
+  --bs-alert-bg: var(--q-info-soft);
+  --bs-alert-color: #075985;
+  --bs-alert-border-color: rgba(var(--q-info-rgb), 0.22);
+}
+
+[data-bs-theme="dark"] .alert-info {
+  --bs-alert-color: #7dd3fc;
+}
+
+.alert-primary {
+/* … sample trimmed for length */</code></pre>
+          </div>
+        </div>
+
+        <div class="demo-block__pane" data-demo-pane="js">
+          <div class="demo-code-wrap">
+            <button class="copy-btn" data-copy-target="#js-components-alerts-1" type="button"><i class="bi bi-clipboard"></i> Copy JS</button>
+            <pre class="demo-code"><code id="js-components-alerts-1" data-lang="js">/* No JavaScript required — this block is pure markup and CSS. */</code></pre>
+          </div>
+        </div>
+
       </div>
 
       <div class="demo-block" data-demo>
@@ -768,6 +848,8 @@
         <div class="demo-block__tabs">
           <button class="demo-tab is-active" data-demo-tab="preview" aria-selected="true">Preview</button>
           <button class="demo-tab" data-demo-tab="html" aria-selected="false">HTML</button>
+          <button class="demo-tab" data-demo-tab="css" aria-selected="false">CSS</button>
+          <button class="demo-tab" data-demo-tab="js" aria-selected="false">JS</button>
         </div>
         <div class="demo-block__pane is-active" data-demo-pane="preview">
           <div class="demo-preview d-flex flex-column gap-3">
@@ -806,6 +888,69 @@
 &lt;/div&gt;</code></pre>
           </div>
         </div>
+        <div class="demo-block__pane" data-demo-pane="css">
+          <div class="demo-code-wrap">
+            <button class="copy-btn" data-copy-target="#css-components-alerts-2" type="button"><i class="bi bi-clipboard"></i> Copy CSS</button>
+            <pre class="demo-code"><code id="css-components-alerts-2" data-lang="css">/* Qevora styles used by this block — from assets/css/components.css */
+
+.alert {
+  --bs-alert-border-radius: var(--q-radius);
+  --bs-alert-padding-x: 1rem;
+  --bs-alert-padding-y: 0.875rem;
+  border: 1px solid transparent;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  font-size: 0.875rem;
+}
+
+.alert i.alert-icon {
+  font-size: 1.1rem;
+  line-height: 1.4;
+  flex: 0 0 auto;
+}
+
+.alert-info {
+  --bs-alert-bg: var(--q-info-soft);
+  --bs-alert-color: #075985;
+  --bs-alert-border-color: rgba(var(--q-info-rgb), 0.22);
+}
+
+[data-bs-theme="dark"] .alert-info {
+  --bs-alert-color: #7dd3fc;
+}
+
+.alert-success {
+  --bs-alert-bg: var(--q-success-soft);
+  --bs-alert-color: #04684f;
+  --bs-alert-border-color: rgba(var(--q-success-rgb), 0.22);
+}
+
+[data-bs-theme="dark"] .alert-success {
+  --bs-alert-color: #86efc4;
+}
+
+.alert-solid-primary {
+  background: var(--q-primary);
+  color: #fff;
+  border-color: transparent;
+}
+
+.alert-solid-warning {
+  background: var(--q-warning);
+  color: #1b1a12;
+  border-color: transparent;
+}</code></pre>
+          </div>
+        </div>
+
+        <div class="demo-block__pane" data-demo-pane="js">
+          <div class="demo-code-wrap">
+            <button class="copy-btn" data-copy-target="#js-components-alerts-2" type="button"><i class="bi bi-clipboard"></i> Copy JS</button>
+            <pre class="demo-code"><code id="js-components-alerts-2" data-lang="js">// No custom JavaScript: Bootstrap removes the alert on dismiss.</code></pre>
+          </div>
+        </div>
+
       </div>
 
       <div class="card">

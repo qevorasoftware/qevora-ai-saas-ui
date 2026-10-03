@@ -18,7 +18,7 @@ No framework, no build step and no CDN required — open `index.html` and the da
 | **RTL** | Full right-to-left support via logical CSS + `bootstrap.rtl.min.css` swap at runtime |
 | **Responsive** | Desktop, tablet and mobile off-canvas navigation; tables and grids adapt down to 375 px |
 | **Charts** | 15+ Chart.js configurations, theme-aware, driven by `canvas[data-chart]` |
-| **Components** | Buttons, badges, avatars, alerts, cards, KPI tiles, tables, forms, modals, toasts, tabs, accordions, timelines, kanban, pricing, empty states, progress rings, spinners |
+| **Components** | Buttons, badges, avatars, alerts, cards, KPI tiles, tables, forms, modals, toasts, tabs, accordions, timelines, kanban, pricing, empty states, progress rings, spinners — every demo has Preview / HTML / CSS / JS panes with copy buttons |
 | **Vendored** | Bootstrap 5.3.3, Bootstrap Icons 1.11.3, Chart.js 4.4.3, Inter — all local, zero runtime CDN calls |
 | **Accessibility** | Landmarks, skip links, labelled controls, aria states, reduced-motion support, WCAG AA colour targets |
 
@@ -41,7 +41,7 @@ python3 -m http.server 5500
 index.html            Dashboard overview
 pages/                31 application pages (CRM, projects, billing, team, reports…)
 ai/                   6 AI workspace pages (chat, content and image generators, usage, history)
-components/           31 UI kit pages, each with Preview / HTML tabs and copy buttons
+components/           31 UI kit pages, each with Preview / HTML / CSS / JS tabs and copy buttons
 auth/                 6 authentication pages
 utility/              4 utility pages (404, 500, maintenance, coming soon)
 documentation/        Getting-started guide + design system reference
@@ -57,6 +57,9 @@ src/partials/         head, sidebar, header, footer, scripts
 src/nav.mjs           Sidebar menu definition
 src/pages.mjs         Page inventory: titles, descriptions, breadcrumbs, scripts
 tools/build.mjs       Optional zero-dependency builder (Node 18+)
+tools/demo-samples.mjs Generates the CSS and JS panes of every component demo
+                       from the shipped stylesheets and scripts
+404.html              GitHub Pages fallback, mirrored from utility/404.html
 tools/audit.mjs       Static QA gate: head meta, ids, anchors, aria, images,
                       labels, class existence, data hooks, charts, headings,
                       nesting, placeholders, tag balance
@@ -87,7 +90,7 @@ The 81 pages share one shell. To change the sidebar or header once instead of 81
 ```bash
 node tools/build.mjs            # regenerate every page from src/
 node tools/build.mjs --check    # validate: missing bodies, dead navigation links
-node tools/audit.mjs            # 15 static QA checks on all 81 generated pages
+node tools/audit.mjs            # 17 static QA checks on all generated pages
 node tools/audit.mjs --strict   # same, but exit non-zero when anything is found
 ```
 

@@ -705,6 +705,8 @@
         <div class="demo-block__tabs">
           <button class="demo-tab is-active" data-demo-tab="preview" aria-selected="true">Preview</button>
           <button class="demo-tab" data-demo-tab="html" aria-selected="false">HTML</button>
+          <button class="demo-tab" data-demo-tab="css" aria-selected="false">CSS</button>
+          <button class="demo-tab" data-demo-tab="js" aria-selected="false">JS</button>
         </div>
         <div class="demo-block__pane is-active" data-demo-pane="preview">
           <div class="demo-preview" id="ddBasic">
@@ -754,6 +756,84 @@
             <pre class="demo-code"><code id="codeDdBasic" data-auto-code="#ddBasic"></code></pre>
           </div>
         </div>
+        <div class="demo-block__pane" data-demo-pane="css">
+          <div class="demo-code-wrap">
+            <button class="copy-btn" data-copy-target="#css-components-dropdowns-1" type="button"><i class="bi bi-clipboard"></i> Copy CSS</button>
+            <pre class="demo-code"><code id="css-components-dropdowns-1" data-lang="css">/* Qevora styles used by this block — from assets/css/components.css + assets/css/style.css */
+
+.btn {
+  --bs-btn-font-size: 0.875rem;
+  --bs-btn-font-weight: 500;
+  --bs-btn-padding-y: 0.5rem;
+  --bs-btn-padding-x: 1rem;
+  --bs-btn-border-radius: var(--q-radius-sm);
+  --bs-btn-focus-box-shadow: 0 0 0 3px rgba(var(--q-primary-rgb), 0.25);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  transition: all var(--q-transition);
+}
+
+.btn i {
+  font-size: 1.05em;
+  line-height: 1;
+}
+
+.btn-primary {
+  --bs-btn-bg: var(--q-primary);
+  --bs-btn-border-color: var(--q-primary);
+  --bs-btn-hover-bg: var(--q-primary-hover);
+  --bs-btn-hover-border-color: var(--q-primary-hover);
+  --bs-btn-active-bg: var(--q-primary-active);
+  --bs-btn-active-border-color: var(--q-primary-active);
+  --bs-btn-disabled-bg: var(--q-primary);
+  --bs-btn-disabled-border-color: var(--q-primary);
+  --bs-btn-focus-shadow-rgb: var(--q-primary-rgb);
+  --bs-btn-color: #fff;
+  --bs-btn-hover-color: #fff;
+  --bs-btn-active-color: #fff;
+  --bs-btn-disabled-color: #fff;
+}
+
+.dropdown-menu {
+  --bs-dropdown-bg: var(--q-surface);
+  --bs-dropdown-border-color: var(--q-border-color);
+  --bs-dropdown-border-radius: var(--q-radius);
+  --bs-dropdown-link-hover-bg: var(--q-surface-hover);
+  --bs-dropdown-link-active-bg: rgba(var(--q-primary-rgb), 0.12);
+  --bs-dropdown-link-active-color: var(--q-primary);
+  --bs-dropdown-font-size: 0.875rem;
+  --bs-dropdown-item-padding-y: 0.45rem;
+  --bs-dropdown-item-padding-x: 0.85rem;
+  --bs-dropdown-header-color: var(--q-faint-color);
+  box-shadow: var(--q-shadow);
+  padding: 0.4rem;
+  min-width: 12rem;
+}
+
+.dropdown-header {
+  font-size: 0.6875rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  padding: 0.5rem 0.85rem 0.35rem;
+}
+
+.dropdown-item {
+  border-radius: var(--q-radius-xs);
+  display: flex;
+/* … sample trimmed for length */</code></pre>
+          </div>
+        </div>
+
+        <div class="demo-block__pane" data-demo-pane="js">
+          <div class="demo-code-wrap">
+            <button class="copy-btn" data-copy-target="#js-components-dropdowns-1" type="button"><i class="bi bi-clipboard"></i> Copy JS</button>
+            <pre class="demo-code"><code id="js-components-dropdowns-1" data-lang="js">// No custom JavaScript: Bootstrap's data API opens this dropdown.</code></pre>
+          </div>
+        </div>
+
       </div>
 
       <div class="demo-block" data-demo>
@@ -766,6 +846,8 @@
         <div class="demo-block__tabs">
           <button class="demo-tab is-active" data-demo-tab="preview" aria-selected="true">Preview</button>
           <button class="demo-tab" data-demo-tab="html" aria-selected="false">HTML</button>
+          <button class="demo-tab" data-demo-tab="css" aria-selected="false">CSS</button>
+          <button class="demo-tab" data-demo-tab="js" aria-selected="false">JS</button>
         </div>
         <div class="demo-block__pane is-active" data-demo-pane="preview">
           <div class="demo-preview" id="ddPlacement">
@@ -808,6 +890,80 @@
             <pre class="demo-code"><code id="codeDdPlacement" data-auto-code="#ddPlacement"></code></pre>
           </div>
         </div>
+        <div class="demo-block__pane" data-demo-pane="css">
+          <div class="demo-code-wrap">
+            <button class="copy-btn" data-copy-target="#css-components-dropdowns-2" type="button"><i class="bi bi-clipboard"></i> Copy CSS</button>
+            <pre class="demo-code"><code id="css-components-dropdowns-2" data-lang="css">/* Qevora styles used by this block — from assets/css/components.css */
+
+.btn {
+  --bs-btn-font-size: 0.875rem;
+  --bs-btn-font-weight: 500;
+  --bs-btn-padding-y: 0.5rem;
+  --bs-btn-padding-x: 1rem;
+  --bs-btn-border-radius: var(--q-radius-sm);
+  --bs-btn-focus-box-shadow: 0 0 0 3px rgba(var(--q-primary-rgb), 0.25);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  transition: all var(--q-transition);
+}
+
+.btn i {
+  font-size: 1.05em;
+  line-height: 1;
+}
+
+.btn-white {
+  --bs-btn-bg: var(--q-surface);
+  --bs-btn-border-color: var(--q-border-color);
+  --bs-btn-color: var(--q-heading-color);
+  --bs-btn-hover-bg: var(--q-surface-hover);
+  --bs-btn-hover-border-color: var(--q-border-strong);
+  --bs-btn-hover-color: var(--q-heading-color);
+}
+
+.dropdown-menu {
+  --bs-dropdown-bg: var(--q-surface);
+  --bs-dropdown-border-color: var(--q-border-color);
+  --bs-dropdown-border-radius: var(--q-radius);
+  --bs-dropdown-link-hover-bg: var(--q-surface-hover);
+  --bs-dropdown-link-active-bg: rgba(var(--q-primary-rgb), 0.12);
+  --bs-dropdown-link-active-color: var(--q-primary);
+  --bs-dropdown-font-size: 0.875rem;
+  --bs-dropdown-item-padding-y: 0.45rem;
+  --bs-dropdown-item-padding-x: 0.85rem;
+  --bs-dropdown-header-color: var(--q-faint-color);
+  box-shadow: var(--q-shadow);
+  padding: 0.4rem;
+  min-width: 12rem;
+}
+
+.dropdown-item {
+  border-radius: var(--q-radius-xs);
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+}
+
+.dropdown-item i {
+  font-size: 1rem;
+  color: var(--q-muted-color);
+}
+
+.dropdown-item.active i, .dropdown-item:active i {
+  color: inherit;
+}</code></pre>
+          </div>
+        </div>
+
+        <div class="demo-block__pane" data-demo-pane="js">
+          <div class="demo-code-wrap">
+            <button class="copy-btn" data-copy-target="#js-components-dropdowns-2" type="button"><i class="bi bi-clipboard"></i> Copy JS</button>
+            <pre class="demo-code"><code id="js-components-dropdowns-2" data-lang="js">// No custom JavaScript: Bootstrap's data API opens this dropdown.</code></pre>
+          </div>
+        </div>
+
       </div>
 
       <div class="demo-block" data-demo>
@@ -820,6 +976,8 @@
         <div class="demo-block__tabs">
           <button class="demo-tab is-active" data-demo-tab="preview" aria-selected="true">Preview</button>
           <button class="demo-tab" data-demo-tab="html" aria-selected="false">HTML</button>
+          <button class="demo-tab" data-demo-tab="css" aria-selected="false">CSS</button>
+          <button class="demo-tab" data-demo-tab="js" aria-selected="false">JS</button>
         </div>
         <div class="demo-block__pane is-active" data-demo-pane="preview">
           <div class="demo-preview" id="ddNotify">
@@ -867,6 +1025,84 @@
             <pre class="demo-code"><code id="codeDdNotify" data-auto-code="#ddNotify"></code></pre>
           </div>
         </div>
+        <div class="demo-block__pane" data-demo-pane="css">
+          <div class="demo-code-wrap">
+            <button class="copy-btn" data-copy-target="#css-components-dropdowns-3" type="button"><i class="bi bi-clipboard"></i> Copy CSS</button>
+            <pre class="demo-code"><code id="css-components-dropdowns-3" data-lang="css">/* Qevora styles used by this block — from assets/css/components.css */
+
+.btn {
+  --bs-btn-font-size: 0.875rem;
+  --bs-btn-font-weight: 500;
+  --bs-btn-padding-y: 0.5rem;
+  --bs-btn-padding-x: 1rem;
+  --bs-btn-border-radius: var(--q-radius-sm);
+  --bs-btn-focus-box-shadow: 0 0 0 3px rgba(var(--q-primary-rgb), 0.25);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  transition: all var(--q-transition);
+}
+
+.btn i {
+  font-size: 1.05em;
+  line-height: 1;
+}
+
+.btn-icon {
+  width: 40px;
+  height: 40px;
+  padding: 0;
+}
+
+.btn-icon.btn-sm {
+  width: 32px;
+  height: 32px;
+  padding: 0;
+}
+
+.btn-icon.btn-lg {
+  width: 48px;
+  height: 48px;
+  padding: 0;
+}
+
+.btn-white {
+  --bs-btn-bg: var(--q-surface);
+  --bs-btn-border-color: var(--q-border-color);
+  --bs-btn-color: var(--q-heading-color);
+  --bs-btn-hover-bg: var(--q-surface-hover);
+  --bs-btn-hover-border-color: var(--q-border-strong);
+  --bs-btn-hover-color: var(--q-heading-color);
+}
+
+.badge {
+  --bs-badge-font-size: 0.6875rem;
+  --bs-badge-font-weight: 600;
+  --bs-badge-padding-x: 0.5rem;
+  --bs-badge-padding-y: 0.28rem;
+  --bs-badge-border-radius: var(--q-radius-xs);
+  letter-spacing: 0.02em;
+  line-height: 1.2;
+}
+
+.badge-dot {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+/* … sample trimmed for length */</code></pre>
+          </div>
+        </div>
+
+        <div class="demo-block__pane" data-demo-pane="js">
+          <div class="demo-code-wrap">
+            <button class="copy-btn" data-copy-target="#js-components-dropdowns-3" type="button"><i class="bi bi-clipboard"></i> Copy JS</button>
+            <pre class="demo-code"><code id="js-components-dropdowns-3" data-lang="js">// No custom JavaScript: Bootstrap's data API opens this dropdown.</code></pre>
+          </div>
+        </div>
+
       </div>
 
       <div class="card">

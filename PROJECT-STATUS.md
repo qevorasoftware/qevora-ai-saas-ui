@@ -16,7 +16,7 @@ original guide text (re-paste it and this line is closed in one pass).
 | 1.1 | Static front-end HTML template (no framework, no build required) | **Done** | Open `index.html`; zero dependencies, all libraries vendored |
 | 1.2 | Bootstrap 5 | **Done** | `assets/css/bootstrap.min.css` 5.3.3 + `bootstrap.bundle.min.js` |
 | 1.3 | Admin dashboard shell | **Done** | `index.html` — sidebar, header, KPI cards, charts, activity feed |
-| 1.4 | Component library with Preview / HTML / **CSS** / **JS** tabs + copy buttons | **Partial** | Preview + HTML + copy buttons ship on 30 pages / 86 demo blocks. **CSS and JS tabs are not implemented** (`grep -rl 'data-demo-tab="css"' src/pages` → 0) |
+| 1.4 | Component library with Preview / HTML / **CSS** / **JS** tabs + copy buttons | **Done** | All **86 demo blocks** on the 31 UI kit pages carry four panes with a copy button each. CSS samples are extracted from the shipped stylesheets at build time (`tools/demo-samples.mjs`); JS samples report the hooks each block uses. Verified by the audit's four-pane check |
 | 1.5 | Beginner-friendly English documentation | **Done** | `documentation/index.html` (quick start, folder map, inventory, customising, JS reference, builder, a11y, credits) + `documentation/design-system.html` |
 | 1.6 | ThemeForest-style packaging | **Partial** | Clean ZIPs, no `.git`/`node_modules`/logs/secrets, relative paths only → `bash tools/package.sh`. Remaining: ZIPs are not attached to the GitHub release (sandbox cannot reach `uploads.github.com`) and there is no marketplace preview/thumbnail image set |
 
@@ -29,7 +29,7 @@ original guide text (re-paste it and this line is closed in one pass).
 | 2.3 | Business modules — CRM, customers, projects, tasks, calendar, chat, products, orders, invoices, payments, subscriptions, transactions, team, roles, reports | **Done** | all present in `pages/` (31 pages), plus leads, pipeline, kanban, products/orders/invoices detail views, activity, profile, settings, pricing, FAQ, help |
 | 2.4 | Auth pages — login, register, forgot, reset, verify, 2FA | **Done** | `auth/` (6 pages) |
 | 2.5 | Utility pages — 404, 500, maintenance, coming soon | **Done** | `utility/` (4 pages) |
-| 2.6 | **Exact page inventory matches the guide's list** | **Needs guide** | Repository ships **81 pages**. The guide's list cannot be re-verified because the file was never saved to this workspace — re-paste it and every extra/missing page is reconciled |
+| 2.6 | **Exact page inventory matches the guide's list** | **Needs guide** | Repository ships **81 content pages + 1 hosting fallback (`404.html`) = 82 HTML files**. The guide's list cannot be re-verified because the file was never saved to this workspace — re-paste it and every extra/missing page is reconciled |
 
 ## 3. Structure, naming and content rules
 
@@ -51,17 +51,17 @@ original guide text (re-paste it and this line is closed in one pass).
 | 4.2 | RTL-ready | **Done** | Logical CSS properties + `assets/css/rtl.css` + runtime swap to `bootstrap.rtl.min.css`; toggle in the header |
 | 4.3 | Responsive — desktop / tablet / mobile off-canvas | **Done** | Sidebar drawer ≤ 991.98px, compact rail ≤ 1200px, `.table-responsive` on every table |
 | 4.4 | Charts | **Done** | 15+ Chart.js configs, `canvas[data-chart]`, `CHART_SCRIPTS` registered per page (audit verifies wiring) |
-| 4.5 | Accessibility | **Done** | `node tools/audit.mjs` → 81 pages × 15 checks → 0 findings |
+| 4.5 | Accessibility | **Done** | `node tools/audit.mjs` → 82 files × 17 checks → 0 findings |
 
 ## 5. Engineering quality gates
 
 | # | Requirement | Status | Evidence |
 |---|---|---|---|
 | 5.1 | Page generator | **Done** | `node tools/build.mjs` (zero dependencies, Node 18+), `node tools/build.mjs --check` → 81/81 synced |
-| 5.2 | Static QA gate | **Done** | `node tools/audit.mjs` (15 checks: head meta, ids, anchors, aria, images, labels, class existence, data hooks, chart wiring, headings, tag balance, nesting, placeholders) |
+| 5.2 | Static QA gate | **Done** | `node tools/audit.mjs` (17 checks: head meta, ids, anchors, aria, images, labels, class existence, data hooks, chart wiring, headings, tag balance, nesting, placeholders, demo-pane contract, link targets) |
 | 5.3 | Buyer-facing docs in the ZIP | **Done** | `README.txt`, `CHANGELOG.txt`, `LICENSE.txt` (template licence + MIT/OFL attributions) |
 | 5.4 | Reproducible release builds | **Done** | `bash tools/package.sh` → `release/*.zip` (full + html-only) |
-| 5.5 | Every page verified over HTTP | **Done** | all 81 pages returned 200 from a local server |
+| 5.5 | Every page verified over HTTP | **Done** | all 81 content pages returned 200 from a local server |
 
 ## 6. Git, GitHub and hosting
 
@@ -69,23 +69,23 @@ original guide text (re-paste it and this line is closed in one pass).
 |---|---|---|---|
 | 6.1 | All work pushed to the session branch | **Done** | `arena/01a10137-qevora-ai-saas-ui` — working tree clean, local == origin |
 | 6.2 | Changes land on `main` | **Blocked (user action)** | `main` still points at the initial commit; **PR #1 is open and mergeable** → merge it at `/pull/1` |
-| 6.3 | Live demo URL | **Done** | GitHub Pages serves this branch: https://qevorasoftware.github.io/qevora-ai-saas-ui/ (`.nojekyll` added) |
+| 6.3 | Live demo URL | **Done** | GitHub Pages serves this branch: https://qevorasoftware.github.io/qevora-ai-saas-ui/ (`.nojekyll` added; root `404.html` mirrors the template's own 404 page) |
 | 6.4 | Downloadable release binaries on GitHub | **Blocked (network)** | Release `v1.0.0` exists with notes; asset upload fails because the sandbox cannot reach `uploads.github.com`. Fix: run `bash tools/package.sh` and drag the two ZIPs into the release, or commit them into the repo on request |
 
 ---
 
 ## Remaining work — short list
 
-1. **CSS + JS tabs in the component library** (guide requirement 1.4). Currently 86 demo blocks show
-   Preview and HTML only. Adding the two tabs means writing a CSS sample and a JS sample for every
-   documented block and teaching `components.js`/`highlightMarkup()` to tokenise CSS and JS.
-2. **Merge PR #1** so `main` carries the project (user action, one click).
-3. **Attach the two ZIPs to the `v1.0.0` release** (drag & drop after `bash tools/package.sh`), or ask for
+1. **Merge PR #1** so `main` carries the project (user action, one click).
+2. **Attach the two ZIPs to the `v1.0.0` release** (drag & drop after `bash tools/package.sh`), or ask for
    them to be committed into the repository.
-4. **Optional:** switch GitHub Pages to `main` after the merge, and add a marketplace preview/thumbnail
+3. **Optional:** switch GitHub Pages to `main` after the merge, and add a marketplace preview/thumbnail
    image if the package is going to be listed on a marketplace.
-5. **Re-paste the master guide** to close items 2.6, 3.6 and 3.7 (exact page list, component levels,
-   development phases) — everything else is already verified above.
+4. **Re-paste the master guide** to close items 2.6, 3.6 and 3.7 (exact page list, component Levels 1–8,
+   development Phases 1–8) — everything else is already verified above.
+
+Completed since the previous revision of this list: the CSS + JS demo panes (item 1.4) and the
+root `404.html` hosting fallback.
 
 ---
 

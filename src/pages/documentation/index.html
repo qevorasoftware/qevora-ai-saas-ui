@@ -73,6 +73,7 @@
                 <button class="copy-btn" data-copy-target="#docTree" type="button"><i class="bi bi-clipboard"></i> Copy</button>
                 <pre class="demo-code"><code id="docTree">qevora-ai-saas-ui/
 ├── index.html                 Dashboard overview
+├── 404.html                   Hosting fallback, mirrored from utility/404.html
 ├── pages/                     Application pages (31)
 │   ├── analytics.html  crm.html  leads.html  customers.html
 │   ├── projects.html   tasks.html  calendar.html  chat.html
@@ -101,7 +102,8 @@
 │   └── pages.mjs page inventory, titles, breadcrumbs and scripts
 └── tools/
     ├── build.mjs              Optional build script (Node 18+, no dependencies)
-    ├── audit.mjs              Static QA: 15 checks on every generated page
+    ├── demo-samples.mjs       Generates the CSS and JS panes of every component demo
+    ├── audit.mjs              Static QA: 16 checks on every generated page
     └── package.sh             Builds the release ZIPs into release/</code></pre>
               </div>
             </div>
@@ -251,7 +253,7 @@
                   </tr>
                   <tr>
                     <td><code>components.js</code></td>
-                    <td class="fs-7 text-muted-2">Preview/HTML tabs, copy buttons, syntax highlighting, table sort, pagination, kanban, upload zones</td>
+                    <td class="fs-7 text-muted-2">Preview / HTML / CSS / JS demo tabs, copy buttons, syntax highlighting, table sort, pagination, kanban, upload zones</td>
                     <td class="fs-7"><code>QevoraComponents.init()</code>, <code>[data-demo-tab]</code>, <code>[data-copy-target]</code>, <code>th[data-sort]</code>, <code>[data-paginate]</code>, <code>[data-upload-zone]</code></td>
                   </tr>
                   <tr>
@@ -287,7 +289,7 @@
                 <button class="copy-btn" data-copy-target="#docBuild" type="button"><i class="bi bi-clipboard"></i> Copy</button>
                 <pre class="demo-code"><code id="docBuild">node tools/build.mjs             # write every page in src/pages.mjs
 node tools/build.mjs --check     # validate only: report missing bodies and dead links
-node tools/audit.mjs             # 15 static QA checks on every generated page
+node tools/audit.mjs             # 17 static QA checks on every generated page
 node tools/audit.mjs --part ai   # audit one section at a time</code></pre>
               </div>
 
@@ -317,13 +319,23 @@ node tools/audit.mjs --part ai   # audit one section at a time</code></pre>
                 </table>
               </div>
 
+              <p class="fw-600 text-heading fs-7 mb-2">How the component pages are built</p>
+              <p class="fs-7 text-muted-2">
+                Every demo block on a component page carries four panes: <strong>Preview</strong>,
+                <strong>HTML</strong>, <strong>CSS</strong> and <strong>JS</strong>. You author the preview and the
+                HTML sample; the builder writes the other two from what actually ships — the CSS rules are lifted out
+                of <code>assets/css/style.css</code> and <code>components.css</code> for the exact classes used in that
+                block, and the JS pane lists the hooks the block relies on (Bootstrap data attributes are reported as
+                "no custom script required"). That way the samples can never drift from the code.
+              </p>
+
               <p class="fw-600 text-heading fs-7 mb-2">Adding a new page in four steps</p>
               <ol class="fs-7 text-muted-2 d-flex flex-column gap-2 mb-0">
                 <li>Create the body file, for example <code>src/pages/pages/roadmap.html</code>.</li>
                 <li>Add an entry to <code>src/pages.mjs</code> with its <code>out</code> path, metadata and breadcrumb.</li>
                 <li>Add the menu link to <code>src/nav.mjs</code>.</li>
                 <li>Run <code>node tools/build.mjs</code> — the new page appears with the correct title, breadcrumb and navigation in every other page.</li>
-                <li>Run <code>node tools/audit.mjs</code> — it checks headings, labels, ids, anchors, class names, data hooks and chart wiring before you ship.</li>
+                <li>Run <code>node tools/audit.mjs</code> — it checks headings, labels, ids, anchors, class names, data hooks, chart wiring, link targets and the four-pane demo contract before you ship.</li>
               </ol>
 
               <div class="alert alert-warning d-flex align-items-start gap-2 mt-4 mb-0" role="alert">

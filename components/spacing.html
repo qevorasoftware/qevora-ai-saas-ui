@@ -730,6 +730,8 @@
         <div class="demo-block__tabs">
           <button class="demo-tab is-active" data-demo-tab="preview" aria-selected="true">Preview</button>
           <button class="demo-tab" data-demo-tab="html" aria-selected="false">HTML</button>
+          <button class="demo-tab" data-demo-tab="css" aria-selected="false">CSS</button>
+          <button class="demo-tab" data-demo-tab="js" aria-selected="false">JS</button>
         </div>
         <div class="demo-block__pane is-active" data-demo-pane="preview">
           <div class="demo-preview">
@@ -780,6 +782,32 @@
 }</code></pre>
           </div>
         </div>
+        <div class="demo-block__pane" data-demo-pane="css">
+          <div class="demo-code-wrap">
+            <button class="copy-btn" data-copy-target="#css-components-spacing-1" type="button"><i class="bi bi-clipboard"></i> Copy CSS</button>
+            <pre class="demo-code"><code id="css-components-spacing-1" data-lang="css">/* Qevora styles used by this block — from assets/css/style.css */
+
+.fs-8 {
+  font-size: 0.75rem !important;
+}
+
+.text-muted-2 {
+  color: var(--q-muted-color) !important;
+}
+
+.bg-primary-soft {
+  background-color: var(--q-primary-soft) !important;
+}</code></pre>
+          </div>
+        </div>
+
+        <div class="demo-block__pane" data-demo-pane="js">
+          <div class="demo-code-wrap">
+            <button class="copy-btn" data-copy-target="#js-components-spacing-1" type="button"><i class="bi bi-clipboard"></i> Copy JS</button>
+            <pre class="demo-code"><code id="js-components-spacing-1" data-lang="js">/* No JavaScript required — this block is pure markup and CSS. */</code></pre>
+          </div>
+        </div>
+
       </div>
 
       <div class="row g-3">
@@ -794,7 +822,9 @@
             <div class="demo-block__tabs">
               <button class="demo-tab is-active" data-demo-tab="preview" aria-selected="true">Preview</button>
               <button class="demo-tab" data-demo-tab="html" aria-selected="false">HTML</button>
-            </div>
+          <button class="demo-tab" data-demo-tab="css" aria-selected="false">CSS</button>
+          <button class="demo-tab" data-demo-tab="js" aria-selected="false">JS</button>
+        </div>
             <div class="demo-block__pane is-active" data-demo-pane="preview">
               <div class="demo-preview">
                 <div class="q-section">
@@ -814,6 +844,46 @@
 &lt;div class="card"&gt;…&lt;/div&gt;</code></pre>
               </div>
             </div>
+        <div class="demo-block__pane" data-demo-pane="css">
+          <div class="demo-code-wrap">
+            <button class="copy-btn" data-copy-target="#css-components-spacing-2" type="button"><i class="bi bi-clipboard"></i> Copy CSS</button>
+            <pre class="demo-code"><code id="css-components-spacing-2" data-lang="css">/* Qevora styles used by this block — from assets/css/style.css + assets/css/components.css */
+
+.q-section {
+  margin-bottom: 1.5rem;
+}
+
+.q-section:last-child {
+  margin-bottom: 0;
+}
+
+.card {
+  --bs-card-bg: var(--q-surface);
+  --bs-card-border-color: var(--q-border-color);
+  --bs-card-border-radius: var(--q-radius-lg);
+  --bs-card-inner-border-radius: calc(var(--q-radius-lg) - 1px);
+  --bs-card-cap-bg: transparent;
+  --bs-card-cap-padding-y: 1rem;
+  --bs-card-cap-padding-x: 1.25rem;
+  --bs-card-spacer-y: 1.25rem;
+  --bs-card-spacer-x: 1.25rem;
+  box-shadow: var(--q-shadow-xs);
+  transition: box-shadow var(--q-transition), transform var(--q-transition);
+}
+
+.fs-7 {
+  font-size: 0.8125rem !important;
+}</code></pre>
+          </div>
+        </div>
+
+        <div class="demo-block__pane" data-demo-pane="js">
+          <div class="demo-code-wrap">
+            <button class="copy-btn" data-copy-target="#js-components-spacing-2" type="button"><i class="bi bi-clipboard"></i> Copy JS</button>
+            <pre class="demo-code"><code id="js-components-spacing-2" data-lang="js">/* No JavaScript required — this block is pure markup and CSS. */</code></pre>
+          </div>
+        </div>
+
           </div>
         </div>
 
@@ -828,7 +898,9 @@
             <div class="demo-block__tabs">
               <button class="demo-tab is-active" data-demo-tab="preview" aria-selected="true">Preview</button>
               <button class="demo-tab" data-demo-tab="html" aria-selected="false">HTML</button>
-            </div>
+          <button class="demo-tab" data-demo-tab="css" aria-selected="false">CSS</button>
+          <button class="demo-tab" data-demo-tab="js" aria-selected="false">JS</button>
+        </div>
             <div class="demo-block__pane is-active" data-demo-pane="preview">
               <div class="demo-preview">
                 <div class="row g-3">
@@ -873,6 +945,36 @@
 }</code></pre>
               </div>
             </div>
+        <div class="demo-block__pane" data-demo-pane="css">
+          <div class="demo-code-wrap">
+            <button class="copy-btn" data-copy-target="#css-components-spacing-3" type="button"><i class="bi bi-clipboard"></i> Copy CSS</button>
+            <pre class="demo-code"><code id="css-components-spacing-3" data-lang="css">/* Qevora styles used by this block — from assets/css/style.css */
+
+.bg-surface {
+  background-color: var(--q-surface) !important;
+}
+
+.border-q {
+  border-color: var(--q-border-color) !important;
+}
+
+.fs-8 {
+  font-size: 0.75rem !important;
+}
+
+.text-muted-2 {
+  color: var(--q-muted-color) !important;
+}</code></pre>
+          </div>
+        </div>
+
+        <div class="demo-block__pane" data-demo-pane="js">
+          <div class="demo-code-wrap">
+            <button class="copy-btn" data-copy-target="#js-components-spacing-3" type="button"><i class="bi bi-clipboard"></i> Copy JS</button>
+            <pre class="demo-code"><code id="js-components-spacing-3" data-lang="js">/* No JavaScript required — this block is pure markup and CSS. */</code></pre>
+          </div>
+        </div>
+
           </div>
         </div>
       </div>
