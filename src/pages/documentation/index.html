@@ -243,7 +243,7 @@
                   </tr>
                   <tr>
                     <td><code>sidebar.js</code></td>
-                    <td class="fs-7 text-muted-2">Mobile drawer, compact rail, RTL switching</td>
+                    <td class="fs-7 text-muted-2">Mobile drawer, icon-only compact rail with hover hints, RTL switching</td>
                     <td class="fs-7"><code>QevoraSidebar.toggle()</code>, <code>[data-sidebar-toggle]</code>, <code>[data-sidebar-compact]</code>, <code>[data-dir-toggle]</code></td>
                   </tr>
                   <tr>
@@ -273,6 +273,12 @@
                   </tr>
                 </tbody>
               </table>
+              <p class="fs-7 text-muted-2 mb-0">
+                On screens 992px and wider the header button collapses the sidebar to a 78px icon rail: the brand keeps
+                its mark, every nav item shows a tooltip on hover or focus, submenus open as fly-out panels, and the
+                labels stay in the markup so screen readers still announce each link. Press the same button — now a
+                chevron — to expand the sidebar again. The choice is remembered in <code>localStorage</code>.
+              </p>
             </div>
           </div>
 

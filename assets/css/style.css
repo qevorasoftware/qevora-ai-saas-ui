@@ -535,18 +535,53 @@ hr {
     width: var(--q-sidebar-width-compact);
   }
 
+  /* Labels are clipped rather than removed, so every icon-only link keeps its
+     accessible name for screen readers and keyboard users. The popover
+     submenus further down restore the visible text. */
   body.q-sidebar-compact .q-brand__text,
   body.q-sidebar-compact .q-nav__text,
-  body.q-sidebar-compact .q-nav__caret,
   body.q-sidebar-compact .q-nav__badge,
   body.q-sidebar-compact .q-sidebar__group-label,
   body.q-sidebar-compact .q-sidebar__footer-detail {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    clip-path: inset(50%);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  /* Decorative only — the chevron carries no information on its own. */
+  body.q-sidebar-compact .q-nav__caret {
     display: none;
+  }
+
+  /* The settings shortcut duplicates the header account menu: remove it instead
+     of clipping it, so the rail never hides an invisible focus stop. */
+  body.q-sidebar-compact a.q-sidebar__footer-detail {
+    display: none;
+  }
+
+  /* Only the avatar is left in the footer, so centre it on the rail. */
+  body.q-sidebar-compact .q-sidebar__footer > div {
+    justify-content: center;
   }
 
   body.q-sidebar-compact .q-sidebar__brand {
     justify-content: center;
-    padding-inline: 0;
+    padding-inline: 0.5rem;
+  }
+
+  /* The 78px rail only has room for the 38px brand mark, so the inline
+     collapse button steps aside instead of being clipped by the brand's
+     overflow. Desktop users expand the sidebar again from the header button
+     (it toggles compact mode) or via QevoraSidebar.toggleCompact(). */
+  body.q-sidebar-compact .q-sidebar__brand > [data-sidebar-compact] {
+    display: none !important;
   }
 
   body.q-sidebar-compact .q-nav__link {
@@ -589,6 +624,20 @@ hr {
 
   body.q-sidebar-compact .q-nav__sub .q-nav__link::before {
     inset-inline-start: 0.75rem;
+  }
+
+  /* Inside the popover the labels are visible again — the clipped treatment
+     above is only for the rail itself. */
+  body.q-sidebar-compact .q-nav__sub .q-nav__text,
+  body.q-sidebar-compact .q-nav__sub .q-nav__badge {
+    position: static;
+    width: auto;
+    height: auto;
+    margin: 0;
+    overflow: visible;
+    clip: auto;
+    clip-path: none;
+    white-space: normal;
   }
 }
 

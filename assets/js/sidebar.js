@@ -63,17 +63,22 @@
     return window.innerWidth < BREAKPOINT;
   }
 
+  function setDrawerExpanded(value) {
+    var togglers = document.querySelectorAll("[data-sidebar-toggle]");
+    for (var i = 0; i < togglers.length; i++) {
+      togglers[i].setAttribute("aria-expanded", value ? "true" : "false");
+    }
+  }
+
   function open() {
     body.classList.add("q-sidebar-open");
     backdrop();
-    var toggler = document.querySelector("[data-sidebar-toggle]");
-    if (toggler) toggler.setAttribute("aria-expanded", "true");
+    setDrawerExpanded(true);
   }
 
   function close() {
     body.classList.remove("q-sidebar-open");
-    var toggler = document.querySelector("[data-sidebar-toggle]");
-    if (toggler) toggler.setAttribute("aria-expanded", "false");
+    setDrawerExpanded(false);
   }
 
   function toggle() {
@@ -100,6 +105,8 @@
     for (var i = 0; i < buttons.length; i++) {
       buttons[i].setAttribute("aria-pressed", value ? "true" : "false");
     }
+
+    syncCompactAffordances();
   }
 
   function isCompact() {
@@ -108,6 +115,101 @@
 
   function toggleCompact() {
     setCompact(!isCompact());
+  }
+
+  /* ------------------------------------------------------------------ */
+  /* Compact rail affordances (icon-only navigation)                     */
+  /* ------------------------------------------------------------------ */
+
+  var HEADER_ICON = "bi-list";
+  var EXPAND_ICON = "bi-chevron-double-right";
+  var EXPAND_ICON_RTL = "bi-chevron-double-left";
+
+  function isRtl() {
+    return (document.documentElement.getAttribute("dir") || "ltr").toLowerCase() === "rtl";
+  }
+
+  function isDesktop() {
+    return window.innerWidth >= BREAKPOINT;
+  }
+
+  function headerToggler() {
+    return document.querySelector(".q-header__toggle");
+  }
+
+  function navLabel(link) {
+    var text = link.querySelector(".q-nav__text");
+    return text ? text.textContent.replace(/\s+/g, " ").trim() : "";
+  }
+
+  function disposeTooltip(el) {
+    if (window.bootstrap && window.bootstrap.Tooltip) {
+      var instance = window.bootstrap.Tooltip.getInstance(el);
+      if (instance) instance.dispose();
+    }
+    el.removeAttribute("data-q-tooltip");
+    el.removeAttribute("title");
+  }
+
+  /* The header button collapses the sidebar on desktop, so it should say what
+     it does next: expand (chevron pointing away from the rail) or collapse. */
+  function syncHeaderToggler() {
+    var btn = headerToggler();
+    if (!btn) return;
+
+    var collapsed = isCompact() && isDesktop();
+    var label = !isDesktop()
+      ? "Toggle navigation"
+      : (collapsed ? "Expand navigation" : "Collapse navigation");
+
+    btn.setAttribute("title", label);
+    btn.setAttribute("aria-label", label);
+
+    var icon = btn.querySelector("i");
+    if (!icon) return;
+
+    icon.classList.remove(HEADER_ICON, EXPAND_ICON, EXPAND_ICON_RTL);
+    icon.classList.add(collapsed ? (isRtl() ? EXPAND_ICON_RTL : EXPAND_ICON) : HEADER_ICON);
+  }
+
+  /* Tooltips let sighted users read the icon-only rail without expanding it.
+     Links are matched to their label, which also stays in the DOM for screen
+     readers (see the compact rules in style.css). */
+  function syncNavTooltips() {
+    var links = document.querySelectorAll(".q-sidebar .q-nav__link");
+    var collapsed = isCompact() && isDesktop();
+
+    for (var i = 0; i < links.length; i++) {
+      var link = links[i];
+      disposeTooltip(link);
+      // Links inside a fly-out panel keep their label on screen.
+      if (!collapsed || link.closest(".q-nav__sub")) continue;
+
+      var label = navLabel(link);
+      if (!label) continue;
+
+      // Submenu parents already open a fly-out panel, so their hint goes above
+      // the row instead of on top of the panel.
+      var opensPanel = !!link.closest(".q-nav-item") &&
+        !!link.closest(".q-nav-item").querySelector(".q-nav__sub");
+
+      if (window.bootstrap && window.bootstrap.Tooltip) {
+        window.bootstrap.Tooltip.getOrCreateInstance(link, {
+          title: label,
+          placement: opensPanel ? "top" : (isRtl() ? "left" : "right"),
+          container: "body",
+          trigger: "hover focus"
+        });
+      } else {
+        link.setAttribute("title", label);
+      }
+      link.setAttribute("data-q-tooltip", "1");
+    }
+  }
+
+  function syncCompactAffordances() {
+    syncHeaderToggler();
+    syncNavTooltips();
   }
 
   /* ------------------------------------------------------------------ */
@@ -151,6 +253,9 @@
       btn.setAttribute("aria-pressed", dir === "rtl" ? "true" : "false");
       btn.setAttribute("title", dir === "rtl" ? "Switch to LTR layout" : "Switch to RTL layout");
     }
+
+    // The expand chevron and tooltip side follow the text direction.
+    syncCompactAffordances();
   }
 
   function toggleDirection() {
@@ -179,6 +284,16 @@
     } else if (savedCompact === null && window.innerWidth >= BREAKPOINT && window.innerWidth < COMPACT_BREAKPOINT) {
       setCompact(true);
     }
+
+    // Compact rail labels, tooltips and the header button all describe the
+    // current state — refresh them on load, on a direction change and on resize.
+    syncCompactAffordances();
+
+    var resizeTimer = null;
+    window.addEventListener("resize", function () {
+      if (resizeTimer) window.clearTimeout(resizeTimer);
+      resizeTimer = window.setTimeout(syncCompactAffordances, 150);
+    });
 
     document.addEventListener("click", function (event) {
       var toggleBtn = event.target.closest("[data-sidebar-toggle]");

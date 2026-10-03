@@ -131,6 +131,22 @@ QUALITY TOOLING
 
 FIXES DURING DEVELOPMENT
 
+  Shell — collapsed sidebar
+    · The 78px icon rail used to hold both the brand mark and the inline
+      collapse button, so the two overflowed the rail and the logo was clipped
+      against the left edge. The rail now centres the mark on its own and the
+      inline button steps aside: the header button collapses and expands the
+      sidebar (it is now labelled "Expand navigation" / "Collapse navigation"
+      and swaps to a chevron while collapsed).
+    · Compact labels were hidden with display:none, which stripped the
+      accessible name from every icon-only link and left the fly-out submenus
+      showing empty rows. Labels are clipped instead of removed, the submenu
+      popovers show their text again, and each rail icon gets a tooltip on
+      hover or focus.
+    · Both sidebar togglers now report aria-expanded together, and tooltip
+      instances are created through getOrCreateInstance so no duplicate
+      Bootstrap instance is ever registered.
+
   Core and design system
     · Four classes used by the pages were never defined in CSS: .min-w-0 (used
       on 71 pages for header and sidebar truncation), .fw-400, .fw-700 and

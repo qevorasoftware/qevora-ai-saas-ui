@@ -70,14 +70,16 @@
   function initBootstrapBits() {
     if (!window.bootstrap) return;
 
+    // getOrCreateInstance keeps this idempotent: the shell (sidebar.js) may have
+    // created a tooltip on an element already, and a second instance would warn.
     var tooltips = document.querySelectorAll('[data-bs-toggle="tooltip"]');
     for (var i = 0; i < tooltips.length; i++) {
-      new window.bootstrap.Tooltip(tooltips[i]);
+      window.bootstrap.Tooltip.getOrCreateInstance(tooltips[i]);
     }
 
     var popovers = document.querySelectorAll('[data-bs-toggle="popover"]');
     for (var j = 0; j < popovers.length; j++) {
-      new window.bootstrap.Popover(popovers[j]);
+      window.bootstrap.Popover.getOrCreateInstance(popovers[j]);
     }
   }
 
