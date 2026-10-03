@@ -144,6 +144,11 @@ ${items}
 /* Shell                                                                      */
 /* -------------------------------------------------------------------------- */
 
+/* Cache busting: every page links the CSS and JS with ?v=<ASSET_VERSION>, so a
+   browser can never apply an old stylesheet to new markup. Bump it whenever you
+   change anything in assets/css or assets/js. */
+const ASSET_VERSION = "1.0.0";
+
 async function build() {
   const head = await readMaybe(join(ROOT, "src/partials/head.html"));
   const sidebar = await readMaybe(join(ROOT, "src/partials/sidebar.html"));
@@ -171,7 +176,7 @@ async function build() {
     const sourcePath = join(ROOT, page.source || `src/pages/${out}`);
     const layout = page.layout || "app";
     const scriptsExtra = (page.scripts || [])
-      .map((src) => `    <script src="${depth}${src}"></script>\n`)
+      .map((src) => `    <script src="${depth}${src}?v=${ASSET_VERSION}"></script>\n`)
       .join("");
     const headExtra = (page.head || [])
       .map((tag) => `  ${tag}\n`)
@@ -213,6 +218,7 @@ async function build() {
       "{{CONTENT}}": content.trimEnd(),
       "{{HEAD_EXTRA}}": headExtra,
       "{{PAGE_SCRIPTS}}": scriptsExtra,
+      "{{ASSET_VERSION}}": ASSET_VERSION,
       "{{MODALS}}": modals
     };
 

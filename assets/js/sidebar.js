@@ -107,6 +107,20 @@
     body.classList.toggle("q-sidebar-compact", !!value);
     store(COMPACT_KEY, value ? "1" : "0");
 
+    /* Sections opened while the sidebar was wide must not stay open behind the
+       rail — they would reappear on the next expand, and a leftover .show can
+       only confuse the collapsed state. */
+    if (value) {
+      var panels = document.querySelectorAll(".q-sidebar .q-nav__sub.show");
+      for (var p = 0; p < panels.length; p++) {
+        if (window.bootstrap && window.bootstrap.Collapse) {
+          window.bootstrap.Collapse.getOrCreateInstance(panels[p], { toggle: false }).hide();
+        } else {
+          panels[p].classList.remove("show");
+        }
+      }
+    }
+
     var buttons = document.querySelectorAll("[data-sidebar-compact]");
     for (var i = 0; i < buttons.length; i++) {
       buttons[i].setAttribute("aria-pressed", value ? "true" : "false");
