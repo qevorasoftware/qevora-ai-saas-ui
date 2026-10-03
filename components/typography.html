@@ -708,7 +708,7 @@
         </div>
         <div class="demo-block__pane is-active" data-demo-pane="preview">
           <div class="demo-preview">
-            <h1 class="mb-3">Heading one <span class="fs-8 text-muted-2 fw-400">1.75rem / 600</span></h1>
+            <p class="h1 mb-3">Heading one <span class="fs-8 text-muted-2 fw-400">1.75rem / 600</span></p>
             <h2 class="mb-3">Heading two <span class="fs-8 text-muted-2 fw-400">1.5rem / 600</span></h2>
             <h3 class="mb-3">Heading three <span class="fs-8 text-muted-2 fw-400">1.25rem / 600</span></h3>
             <h4 class="mb-3">Heading four <span class="fs-8 text-muted-2 fw-400">1.0625rem / 600</span></h4>
@@ -719,15 +719,16 @@
         <div class="demo-block__pane" data-demo-pane="html">
           <div class="demo-code-wrap">
             <button class="copy-btn" data-copy-target="#headings"><i class="bi bi-clipboard"></i> Copy HTML</button>
-            <pre class="demo-code"><code id="headings">&lt;h1&gt;Heading one&lt;/h1&gt;
+            <pre class="demo-code"><code id="headings">&lt;!-- Visual sizes: use .h1 - .h6 when an element only looks like a heading --&gt;
+&lt;p class="h1"&gt;Heading one&lt;/p&gt;
 &lt;h2&gt;Heading two&lt;/h2&gt;
 &lt;h3&gt;Heading three&lt;/h3&gt;
 &lt;h4&gt;Heading four&lt;/h4&gt;
 &lt;h5&gt;Heading five&lt;/h5&gt;
 &lt;h6&gt;Heading six&lt;/h6&gt;
 
-&lt;!-- Utility classes for visual size without changing semantics --&gt;
-&lt;p class="h4 fw-600 text-heading"&gt;Looks like a heading, is still a paragraph&lt;/p&gt;</code></pre>
+&lt;!-- On a real page the biggest heading is a true &lt;h1&gt;, once per document --&gt;
+&lt;h1&gt;Page title&lt;/h1&gt;</code></pre>
           </div>
         </div>
       </div>
