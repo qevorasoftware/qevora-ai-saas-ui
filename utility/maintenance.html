@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="en" data-bs-theme="light" dir="ltr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#4f46e5">
+  <title>Maintenance | Qevora AI SaaS</title>
+  <meta name="description" content="Scheduled maintenance page with status details and notification signup.">
+  <meta name="author" content="Qevora Software">
+  <meta name="robots" content="index, follow">
+
+  <!-- Open Graph / social preview -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Maintenance | Qevora AI SaaS">
+  <meta property="og:description" content="Scheduled maintenance page with status details and notification signup.">
+  <meta property="og:site_name" content="Qevora AI SaaS">
+
+  <link rel="icon" type="image/svg+xml" href="../assets/images/favicon.svg">
+  <link rel="apple-touch-icon" href="../assets/images/favicon.svg">
+
+  <!-- Apply the stored colour mode before first paint to avoid a theme flash -->
+  <script>
+    (function () {
+      try {
+        var stored = localStorage.getItem("qevora-theme");
+        var prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+        var theme = (stored === "dark" || stored === "light") ? stored : (prefersDark ? "dark" : "light");
+        document.documentElement.setAttribute("data-bs-theme", theme);
+      } catch (e) { /* storage blocked — fall back to the default theme */ }
+    })();
+  </script>
+
+  <!-- Vendor styles (bundled locally, see documentation/index.html → Credits) -->
+  <link rel="stylesheet" href="../assets/css/fonts.css">
+  <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
+  <link rel="stylesheet" href="../assets/icons/bootstrap-icons/bootstrap-icons.min.css">
+
+  <!-- Qevora theme -->
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="stylesheet" href="../assets/css/components.css">
+  <link rel="stylesheet" href="../assets/css/dark.css">
+  <link rel="stylesheet" href="../assets/css/rtl.css">
+</head>
+
+<body class="q-app q-app-fluid">
+  <a class="visually-hidden-focusable" href="#q-content">Skip to main content</a>
+
+  <!-- ================= Content ================= -->
+  <main class="q-main" id="q-content">
+      <div class="util-shell">
+        <div class="position-absolute top-0 end-0 p-3 d-flex gap-2">
+          <button class="btn btn-icon btn-white" type="button" data-dir-toggle aria-pressed="false" aria-label="Toggle text direction" title="Toggle RTL layout">
+            <i class="bi bi-translate"></i>
+          </button>
+          <button class="btn btn-icon btn-white" type="button" data-theme-toggle aria-pressed="false" aria-label="Toggle dark mode" title="Switch to dark mode">
+            <i class="bi bi-moon-stars" data-theme-icon></i>
+          </button>
+        </div>
+
+        <div style="max-width: 640px;">
+          <a class="d-inline-flex align-items-center gap-2 text-decoration-none mb-4" href="../index.html">
+            <span class="q-brand__mark" aria-hidden="true">Q</span>
+            <span class="q-brand__text text-start">
+              <span class="q-brand__name">Qevora</span>
+              <span class="q-brand__sub">AI SaaS Suite</span>
+            </span>
+          </a>
+
+          <span class="state-block__icon bg-warning-subtle text-warning mx-auto d-grid mb-3"><i class="bi bi-tools"></i></span>
+
+          <h1 class="h3 text-heading mb-2">We are upgrading Qevora</h1>
+          <p class="fs-7 text-muted-2 mb-4">
+            Scheduled maintenance is running now. Billing, AI generations and data exports are paused — the dashboard
+            remains read-only, and nothing is lost. Expected back online by <strong class="text-heading">11:30 UTC</strong>.
+          </p>
+
+          <div class="card text-start mb-4">
+            <div class="card-body">
+              <div class="d-flex justify-content-between fs-8 mb-2">
+                <span class="text-muted-2">Deployment progress</span>
+                <span class="fw-500 text-heading">72%</span>
+              </div>
+              <div class="progress progress-lg mb-4" role="progressbar" aria-label="Deployment progress" aria-valuenow="72" aria-valuemin="0" aria-valuemax="100">
+                <div class="progress-bar progress-bar-striped progress-bar-animated" style="width: 72%;"></div>
+              </div>
+
+              <ul class="list-unstyled d-flex flex-column gap-2 fs-7 mb-0">
+                <li class="d-flex align-items-center justify-content-between">
+                  <span><i class="bi bi-check-circle-fill text-success me-2"></i> Database migration</span>
+                  <span class="badge badge-soft-success">Done</span>
+                </li>
+                <li class="d-flex align-items-center justify-content-between">
+                  <span><i class="bi bi-arrow-repeat text-warning me-2"></i> Search index rebuild</span>
+                  <span class="badge badge-soft-warning">Running</span>
+                </li>
+                <li class="d-flex align-items-center justify-content-between">
+                  <span><i class="bi bi-dot me-2"></i> Cache warm-up</span>
+                  <span class="badge badge-soft-neutral">Queued</span>
+                </li>
+                <li class="d-flex align-items-center justify-content-between">
+                  <span><i class="bi bi-dot me-2"></i> Health checks</span>
+                  <span class="badge badge-soft-neutral">Queued</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <form class="row g-2 justify-content-center mb-3">
+            <div class="col-sm-7">
+              <label class="visually-hidden" for="maintEmail">Email address</label>
+              <input type="email" class="form-control" id="maintEmail" placeholder="you@company.com" autocomplete="email">
+            </div>
+            <div class="col-sm-auto">
+              <button class="btn btn-primary w-100" type="button" data-demo-action="You are on the notify list — demo only." data-demo-variant="success">
+                <i class="bi bi-bell"></i> Notify me
+              </button>
+            </div>
+          </form>
+
+          <p class="fs-8 text-muted-2 mb-0">
+            Live updates at <a href="#">status.qevora.io</a> · Emergency support: <a href="#">support@qevora.io</a>
+          </p>
+        </div>
+      </div>
+  </main>
+
+    <!-- ================= Scripts ================= -->
+    <!-- Vendor: Bootstrap 5 bundle (includes Popper) -->
+    <script src="../assets/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Qevora core -->
+    <script src="../assets/js/theme.js"></script>
+    <script src="../assets/js/sidebar.js"></script>
+    <script src="../assets/js/app.js"></script>
+    <script src="../assets/js/components.js"></script>
+
+</body>
+</html>

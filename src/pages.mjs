@@ -21,6 +21,9 @@ const CHART_SCRIPTS = ["assets/js/chart.umd.js", "assets/js/pages/charts.js"];
 /* The chat workspace script is only loaded on the two chat pages. */
 const CHAT_SCRIPTS = ["assets/js/pages/chat.js"];
 
+/* OTP inputs and countdowns — authentication and utility pages only. */
+const AUTH_SCRIPTS = ["assets/js/pages/auth.js"];
+
 export const pages = [
   /* ---------------------------------------------------------------- Dashboard */
   {
@@ -651,6 +654,7 @@ export const pages = [
   {
     out: "auth/verify-email.html",
     layout: "blank",
+    scripts: AUTH_SCRIPTS,
     breadcrumb: ["Authentication", "Verify Email"],
     meta: {
       title: "Verify Email | Qevora AI SaaS",
@@ -660,6 +664,7 @@ export const pages = [
   {
     out: "auth/two-factor.html",
     layout: "blank",
+    scripts: AUTH_SCRIPTS,
     breadcrumb: ["Authentication", "Two Factor"],
     meta: {
       title: "Two Factor Authentication | Qevora AI SaaS",
@@ -698,6 +703,7 @@ export const pages = [
   {
     out: "utility/coming-soon.html",
     layout: "blank",
+    scripts: AUTH_SCRIPTS,
     breadcrumb: ["Utility", "Coming Soon"],
     meta: {
       title: "Coming Soon | Qevora AI SaaS",

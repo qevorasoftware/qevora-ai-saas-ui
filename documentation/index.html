@@ -4,15 +4,15 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#4f46e5">
-  <title>Breadcrumbs | Qevora AI SaaS UI Kit</title>
-  <meta name="description" content="Breadcrumb styles including icon separators and the dashboard page header bar.">
+  <title>Documentation | Qevora AI SaaS</title>
+  <meta name="description" content="Installation, folder structure, customisation and component usage guide for the Qevora AI SaaS template.">
   <meta name="author" content="Qevora Software">
   <meta name="robots" content="index, follow">
 
   <!-- Open Graph / social preview -->
   <meta property="og:type" content="website">
-  <meta property="og:title" content="Breadcrumbs | Qevora AI SaaS UI Kit">
-  <meta property="og:description" content="Breadcrumb styles including icon separators and the dashboard page header bar.">
+  <meta property="og:title" content="Documentation | Qevora AI SaaS">
+  <meta property="og:description" content="Installation, folder structure, customisation and component usage guide for the Qevora AI SaaS template.">
   <meta property="og:site_name" content="Qevora AI SaaS">
 
   <link rel="icon" type="image/svg+xml" href="../assets/images/favicon.svg">
@@ -679,130 +679,399 @@
         <div>
                   <nav aria-label="Breadcrumb">
           <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="../index.html">UI Kit</a></li>
-          <li class="breadcrumb-item"><a href="#">Basic</a></li>
-          <li class="breadcrumb-item active" aria-current="page">Breadcrumbs</li>
+          <li class="breadcrumb-item"><a href="../index.html">Documentation</a></li>
+          <li class="breadcrumb-item active" aria-current="page">Getting Started</li>
           </ol>
         </nav>
-          <h1 class="q-page-head__title mt-2">Breadcrumbs</h1>
-          <p class="q-page-head__subtitle">Page location indicators used at the top of every inner page, with the dashboard page-head pattern.</p>
+          <h1 class="q-page-head__title mt-2">Documentation</h1>
+          <p class="q-page-head__subtitle">
+            Everything you need to open, edit and ship Qevora AI SaaS. No prior build-tool knowledge is required — the
+            template works as plain HTML, and the optional build script simply saves you copy-paste work.
+          </p>
+        </div>
+        <div class="d-flex flex-wrap gap-2">
+          <a class="btn btn-white" href="design-system.html"><i class="bi bi-palette"></i> Design system</a>
+          <a class="btn btn-primary" href="../components/index.html"><i class="bi bi-grid-1x2"></i> Browse components</a>
         </div>
       </div>
 
-      <div class="demo-block" data-demo>
-        <div class="demo-block__head">
-          <div>
-            <h2 class="demo-block__title">Default breadcrumb</h2>
-            <p class="demo-block__desc">Wrapped in <code>&lt;nav aria-label="Breadcrumb"&gt;</code> with an ordered list, as recommended by the WAI-ARIA authoring practices.</p>
-          </div>
-        </div>
-        <div class="demo-block__tabs">
-          <button class="demo-tab is-active" data-demo-tab="preview" aria-selected="true">Preview</button>
-          <button class="demo-tab" data-demo-tab="html" aria-selected="false">HTML</button>
-        </div>
-        <div class="demo-block__pane is-active" data-demo-pane="preview">
-          <div class="demo-preview">
-            <nav aria-label="Breadcrumb example">
-              <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
-                <li class="breadcrumb-item"><a href="#">Applications</a></li>
-                <li class="breadcrumb-item"><a href="#">CRM</a></li>
-                <li class="breadcrumb-item active" aria-current="page">Customers</li>
-              </ol>
-            </nav>
-            <hr class="divider-y">
-            <nav aria-label="Breadcrumb example two">
-              <ol class="breadcrumb mb-0">
-                <li class="breadcrumb-item"><a href="#"><i class="bi bi-house-door"></i> Home</a></li>
-                <li class="breadcrumb-item"><a href="#">Business</a></li>
-                <li class="breadcrumb-item active" aria-current="page">Invoices</li>
-              </ol>
-            </nav>
-          </div>
-        </div>
-        <div class="demo-block__pane" data-demo-pane="html">
-          <div class="demo-code-wrap">
-            <button class="copy-btn" data-copy-target="#crumbBasic"><i class="bi bi-clipboard"></i> Copy HTML</button>
-            <pre class="demo-code"><code id="crumbBasic">&lt;nav aria-label="Breadcrumb"&gt;
-  &lt;ol class="breadcrumb"&gt;
-    &lt;li class="breadcrumb-item"&gt;&lt;a href="../index.html"&gt;Dashboard&lt;/a&gt;&lt;/li&gt;
-    &lt;li class="breadcrumb-item"&gt;&lt;a href="#"&gt;Applications&lt;/a&gt;&lt;/li&gt;
-    &lt;li class="breadcrumb-item"&gt;&lt;a href="#"&gt;CRM&lt;/a&gt;&lt;/li&gt;
-    &lt;li class="breadcrumb-item active" aria-current="page"&gt;Customers&lt;/li&gt;
-  &lt;/ol&gt;
-&lt;/nav&gt;</code></pre>
-          </div>
-        </div>
-      </div>
-
-      <div class="demo-block" data-demo>
-        <div class="demo-block__head">
-          <div>
-            <h2 class="demo-block__title">Page header with breadcrumb</h2>
-            <p class="demo-block__desc">The standard Qevora header used on every inner page: breadcrumb, title, subtitle and right-aligned actions.</p>
-          </div>
-        </div>
-        <div class="demo-block__tabs">
-          <button class="demo-tab is-active" data-demo-tab="preview" aria-selected="true">Preview</button>
-          <button class="demo-tab" data-demo-tab="html" aria-selected="false">HTML</button>
-        </div>
-        <div class="demo-block__pane is-active" data-demo-pane="preview">
-          <div class="demo-preview">
-            <div class="q-page-head mb-0">
-              <div>
-                <nav aria-label="Breadcrumb">
-                  <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="#">Business</a></li>
-                    <li class="breadcrumb-item"><a href="#">Finance</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">Invoices</li>
-                  </ol>
-                </nav>
-                <h2 class="q-page-head__title mt-2">Invoices</h2>
-                <p class="q-page-head__subtitle">Issued invoices with payment state, totals and reminders.</p>
-              </div>
-              <div class="d-flex flex-wrap gap-2">
-                <button class="btn btn-white"><i class="bi bi-download"></i> Export</button>
-                <button class="btn btn-primary"><i class="bi bi-plus-lg"></i> New invoice</button>
+      <div class="row g-4">
+        <div class="col-xl-9">
+          <div class="card mb-4">
+            <div class="card-body">
+              <div class="row g-4 align-items-center">
+                <div class="col-md-8">
+                  <h2 class="h5 text-heading mb-2">What you received</h2>
+                  <p class="fs-7 text-muted-2 mb-3">
+                    A complete static admin template: <strong class="text-heading">81 HTML pages</strong>, a component
+                    library with copy-ready snippets, light and dark themes, RTL support and every library vendored
+                    locally — the template never calls a CDN at runtime.
+                  </p>
+                  <div class="d-flex flex-wrap gap-2">
+                    <span class="badge badge-soft-primary">Bootstrap 5.3.3</span>
+                    <span class="badge badge-soft-primary">Bootstrap Icons 1.11.3</span>
+                    <span class="badge badge-soft-primary">Chart.js 4.4.3</span>
+                    <span class="badge badge-soft-primary">Inter (self-hosted)</span>
+                    <span class="badge badge-soft-success">Light + dark</span>
+                    <span class="badge badge-soft-success">RTL ready</span>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="card bg-body-tertiary border mb-0">
+                    <div class="card-body py-3">
+                      <p class="fs-8 text-muted-2 mb-1 text-uppercase">Version</p>
+                      <p class="fw-600 text-heading mb-2">1.0.0 · October 2026</p>
+                      <p class="fs-8 text-muted-2 mb-0">Verified in Chrome, Edge, Firefox and Safari (last two major versions).</p>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-        <div class="demo-block__pane" data-demo-pane="html">
-          <div class="demo-code-wrap">
-            <button class="copy-btn" data-copy-target="#crumbPageHead"><i class="bi bi-clipboard"></i> Copy HTML</button>
-            <pre class="demo-code"><code id="crumbPageHead">&lt;div class="q-page-head"&gt;
-  &lt;div&gt;
-    &lt;nav aria-label="Breadcrumb"&gt;
-      &lt;ol class="breadcrumb"&gt;
-        &lt;li class="breadcrumb-item"&gt;&lt;a href="../index.html"&gt;Dashboard&lt;/a&gt;&lt;/li&gt;
-        &lt;li class="breadcrumb-item"&gt;&lt;a href="#"&gt;Business&lt;/a&gt;&lt;/li&gt;
-        &lt;li class="breadcrumb-item active" aria-current="page"&gt;Invoices&lt;/li&gt;
-      &lt;/ol&gt;
-    &lt;/nav&gt;
-    &lt;h1 class="q-page-head__title mt-2"&gt;Invoices&lt;/h1&gt;
-    &lt;p class="q-page-head__subtitle"&gt;Issued invoices with payment state.&lt;/p&gt;
-  &lt;/div&gt;
 
-  &lt;div class="d-flex flex-wrap gap-2"&gt;
-    &lt;button class="btn btn-white"&gt;&lt;i class="bi bi-download"&gt;&lt;/i&gt; Export&lt;/button&gt;
-    &lt;button class="btn btn-primary"&gt;&lt;i class="bi bi-plus-lg"&gt;&lt;/i&gt; New invoice&lt;/button&gt;
-  &lt;/div&gt;
-&lt;/div&gt;</code></pre>
+          <div class="card mb-4" id="quick-start">
+            <div class="card-header"><h2 class="card-title mb-0">1. Quick start</h2></div>
+            <div class="card-body">
+              <ol class="fs-7 text-muted-2 d-flex flex-column gap-2 mb-4">
+                <li>Unzip the package anywhere on your computer.</li>
+                <li>Double-click <code>index.html</code> — the dashboard opens in your browser immediately.</li>
+                <li>Use the search box in the component pages, toggle the theme from the header, and explore.</li>
+                <li>To edit, open the HTML file you want in any code editor (VS Code, Notepad++, Sublime Text).</li>
+              </ol>
+
+              <div class="alert alert-info d-flex align-items-start gap-2 mb-4" role="alert">
+                <i class="bi bi-info-circle alert-icon"></i>
+                <div class="fs-8">
+                  <strong class="d-block fs-7">Do you need a local server?</strong>
+                  No. Every path in the template is relative, so opening the files directly from disk works. A local
+                  server is only handy if you want to test on a phone: run
+                  <code>python3 -m http.server 5500</code> inside the folder and open
+                  <code>http://localhost:5500</code>.
+                </div>
+              </div>
+
+              <p class="fw-600 text-heading fs-7 mb-2">Folder structure</p>
+              <div class="demo-code-wrap">
+                <button class="copy-btn" data-copy-target="#docTree" type="button"><i class="bi bi-clipboard"></i> Copy</button>
+                <pre class="demo-code"><code id="docTree">qevora-ai-saas-ui/
+├── index.html                 Dashboard overview
+├── pages/                     Application pages (31)
+│   ├── analytics.html  crm.html  leads.html  customers.html
+│   ├── projects.html   tasks.html  calendar.html  chat.html
+│   ├── invoices.html   payments.html  subscriptions.html
+│   └── team.html       roles.html  reports.html  settings.html  …
+├── ai/                        AI workspace (6)
+│   ├── dashboard.html  chat.html  content-generator.html
+│   └── image-generator.html  usage.html  history.html
+├── components/                UI kit (31, includes this documentation)
+├── auth/                      Authentication (6)
+├── utility/                   Utility pages (4)
+├── documentation/             This guide + design system
+├── assets/
+│   ├── css/    style.css  components.css  dark.css  rtl.css  fonts.css
+│   │           bootstrap.min.css  bootstrap.rtl.min.css
+│   ├── js/     theme.js  sidebar.js  app.js  components.js
+│   │           bootstrap.bundle.min.js  chart.umd.js
+│   │           pages/  charts.js  chat.js  auth.js
+│   ├── fonts/  inter/files/*.woff2
+│   ├── icons/  bootstrap-icons/
+│   └── images/ logo/  placeholder/  favicon.svg  og-cover.svg
+├── src/                       Source fragments used by the optional builder
+│   ├── pages/    one body file per page (same paths as the output)
+│   ├── partials/ head.html  sidebar.html  header.html  footer.html  scripts.html
+│   ├── nav.mjs   sidebar navigation
+│   └── pages.mjs page inventory, titles, breadcrumbs and scripts
+└── tools/build.mjs            Optional build script (Node 18+, no dependencies)</code></pre>
+              </div>
+            </div>
+          </div>
+
+          <div class="card mb-4" id="inventory">
+            <div class="card-header"><h2 class="card-title mb-0">2. Page inventory</h2></div>
+            <div class="table-responsive">
+              <table class="table table-hover align-middle mb-0">
+                <thead>
+                  <tr>
+                    <th scope="col">Section</th>
+                    <th scope="col">Folder</th>
+                    <th scope="col" class="text-end">Pages</th>
+                    <th scope="col">Highlights</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="fw-500 text-heading">Dashboard</td>
+                    <td><code>/</code></td>
+                    <td class="text-end">1</td>
+                    <td class="fs-7 text-muted-2">KPI cards, revenue chart, AI usage, activity feed</td>
+                  </tr>
+                  <tr>
+                    <td class="fw-500 text-heading">AI workspace</td>
+                    <td><code>ai/</code></td>
+                    <td class="text-end">6</td>
+                    <td class="fs-7 text-muted-2">AI overview, chat, content and image generators, usage, history</td>
+                  </tr>
+                  <tr>
+                    <td class="fw-500 text-heading">Applications</td>
+                    <td><code>pages/</code></td>
+                    <td class="text-end">31</td>
+                    <td class="fs-7 text-muted-2">CRM, customers, projects, tasks, calendar, chat, billing, team, reports, settings</td>
+                  </tr>
+                  <tr>
+                    <td class="fw-500 text-heading">UI kit</td>
+                    <td><code>components/</code></td>
+                    <td class="text-end">31</td>
+                    <td class="fs-7 text-muted-2">Colours, typography, grid, buttons, forms, tables, charts, feedback and more</td>
+                  </tr>
+                  <tr>
+                    <td class="fw-500 text-heading">Authentication</td>
+                    <td><code>auth/</code></td>
+                    <td class="text-end">6</td>
+                    <td class="fs-7 text-muted-2">Login, register, forgot and reset password, verify email, two-factor</td>
+                  </tr>
+                  <tr>
+                    <td class="fw-500 text-heading">Utility</td>
+                    <td><code>utility/</code></td>
+                    <td class="text-end">4</td>
+                    <td class="fs-7 text-muted-2">404, 500, maintenance and coming soon</td>
+                  </tr>
+                  <tr>
+                    <td class="fw-500 text-heading">Documentation</td>
+                    <td><code>documentation/</code></td>
+                    <td class="text-end">2</td>
+                    <td class="fs-7 text-muted-2">This guide and the design system reference</td>
+                  </tr>
+                </tbody>
+                <tfoot>
+                  <tr>
+                    <th scope="row" class="fw-600 text-heading">Total</th>
+                    <td></td>
+                    <td class="text-end fw-600 text-heading">81</td>
+                    <td class="fs-7 text-muted-2">Every page is linked from the sidebar or this guide</td>
+                  </tr>
+                </tfoot>
+              </table>
+            </div>
+          </div>
+
+          <div class="card mb-4" id="customise">
+            <div class="card-header"><h2 class="card-title mb-0">3. Customising the template</h2></div>
+            <div class="card-body">
+              <p class="fs-7 text-muted-2">
+                Almost every visual decision lives in one CSS variable block at the top of
+                <code>assets/css/style.css</code>. Change the value there and the whole template follows — buttons,
+                charts, badges, the sidebar and dark mode.
+              </p>
+
+              <div class="row g-4 mb-4">
+                <div class="col-md-6">
+                  <p class="fw-600 text-heading fs-7 mb-2">Brand colour</p>
+                  <div class="demo-code-wrap">
+                    <button class="copy-btn" data-copy-target="#docBrand" type="button"><i class="bi bi-clipboard"></i> Copy</button>
+                    <pre class="demo-code"><code id="docBrand">:root {
+  --q-primary: #4f46e5;
+  --q-primary-rgb: 79, 70, 229;   /* keep in sync */
+  --q-primary-hover: #4338ca;
+  --q-primary-soft: #eef0ff;
+}</code></pre>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <p class="fw-600 text-heading fs-7 mb-2">Layout measurements</p>
+                  <div class="demo-code-wrap">
+                    <button class="copy-btn" data-copy-target="#docLayout" type="button"><i class="bi bi-clipboard"></i> Copy</button>
+                    <pre class="demo-code"><code id="docLayout">:root {
+  --q-sidebar-width: 268px;
+  --q-sidebar-width-compact: 78px;
+  --q-header-height: 66px;
+  --q-content-max: 1560px;
+}</code></pre>
+                  </div>
+                </div>
+              </div>
+
+              <ul class="fs-7 text-muted-2 d-flex flex-column gap-2 mb-0">
+                <li><strong class="text-heading">Radius:</strong> <code>--q-radius-xs</code> to <code>--q-radius-xl</code> drive every rounded corner, including cards and inputs.</li>
+                <li><strong class="text-heading">Fonts:</strong> Inter is self-hosted in <code>assets/fonts/inter/</code>. Swap the <code>@font-face</code> block in <code>assets/css/fonts.css</code> and the <code>--q-font-sans</code> token to change it.</li>
+                <li><strong class="text-heading">Logo:</strong> replace <code>assets/images/logo/logo.svg</code> and <code>logo-white.svg</code> (used on the auth pages), and <code>favicon.svg</code> for the browser tab.</li>
+                <li><strong class="text-heading">Sidebar menu:</strong> with the builder, edit <code>src/nav.mjs</code> and rebuild. Without it, edit the <code>&lt;aside class="q-sidebar"&gt;</code> block in each page.</li>
+                <li><strong class="text-heading">Dark mode:</strong> toggle with any <code>[data-theme-toggle]</code> button — the choice is stored under the <code>qevora-theme</code> key in localStorage.</li>
+                <li><strong class="text-heading">RTL:</strong> click the translate icon in the header (or add <code>dir="rtl"</code> to the <code>&lt;html&gt;</code> tag) — the sidebar script swaps in <code>bootstrap.rtl.min.css</code> automatically.</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="card mb-4" id="javascript">
+            <div class="card-header"><h2 class="card-title mb-0">4. JavaScript reference</h2></div>
+            <div class="table-responsive">
+              <table class="table table-hover align-middle mb-0">
+                <thead>
+                  <tr>
+                    <th scope="col">File</th>
+                    <th scope="col">Responsibility</th>
+                    <th scope="col">Public API / hooks</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><code>theme.js</code></td>
+                    <td class="fs-7 text-muted-2">Light/dark switching, saved preference, system default</td>
+                    <td class="fs-7"><code>QevoraTheme.set()</code>, <code>.toggle()</code>, <code>[data-theme-toggle]</code></td>
+                  </tr>
+                  <tr>
+                    <td><code>sidebar.js</code></td>
+                    <td class="fs-7 text-muted-2">Mobile drawer, compact rail, RTL switching</td>
+                    <td class="fs-7"><code>QevoraSidebar.toggle()</code>, <code>[data-sidebar-toggle]</code>, <code>[data-sidebar-compact]</code>, <code>[data-dir-toggle]</code></td>
+                  </tr>
+                  <tr>
+                    <td><code>app.js</code></td>
+                    <td class="fs-7 text-muted-2">Toasts, counters, tooltips, table search, demo actions, active nav</td>
+                    <td class="fs-7"><code>Qevora.toast()</code>, <code>Qevora.copyText()</code>, <code>[data-counter]</code>, <code>[data-table-filter]</code>, <code>[data-demo-action]</code></td>
+                  </tr>
+                  <tr>
+                    <td><code>components.js</code></td>
+                    <td class="fs-7 text-muted-2">Preview/HTML tabs, copy buttons, syntax highlighting, table sort, pagination, kanban, upload zones</td>
+                    <td class="fs-7"><code>QevoraComponents.init()</code>, <code>[data-demo-tab]</code>, <code>[data-copy-target]</code>, <code>th[data-sort]</code>, <code>[data-paginate]</code>, <code>[data-upload-zone]</code></td>
+                  </tr>
+                  <tr>
+                    <td><code>pages/charts.js</code></td>
+                    <td class="fs-7 text-muted-2">Chart.js registry, progress rings, re-theming</td>
+                    <td class="fs-7"><code>QevoraCharts.rebuild()</code>, <code>canvas[data-chart]</code>, <code>[data-ring]</code></td>
+                  </tr>
+                  <tr>
+                    <td><code>pages/chat.js</code></td>
+                    <td class="fs-7 text-muted-2">Chat composer, canned replies, conversation filter (team chat and AI chat)</td>
+                    <td class="fs-7"><code>[data-chat-composer]</code>, <code>[data-chat-thread]</code>, <code>[data-conversation-search]</code></td>
+                  </tr>
+                  <tr>
+                    <td><code>pages/auth.js</code></td>
+                    <td class="fs-7 text-muted-2">One-time-code inputs and live countdowns</td>
+                    <td class="fs-7"><code>[data-otp]</code>, <code>[data-countdown]</code></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <div class="card mb-4" id="builder">
+            <div class="card-header"><h2 class="card-title mb-0">5. The optional build script</h2></div>
+            <div class="card-body">
+              <p class="fs-7 text-muted-2">
+                Editing 81 files every time the header changes is tedious, so the template ships a tiny builder. It
+                stitches the shell partials and each page body into the final HTML files. It has no dependencies and
+                needs Node 18 or newer.
+              </p>
+
+              <div class="demo-code-wrap mb-4">
+                <button class="copy-btn" data-copy-target="#docBuild" type="button"><i class="bi bi-clipboard"></i> Copy</button>
+                <pre class="demo-code"><code id="docBuild">node tools/build.mjs            # write every page in src/pages.mjs
+node tools/build.mjs --check    # validate only: report missing bodies and dead links</code></pre>
+              </div>
+
+              <p class="fw-600 text-heading fs-7 mb-2">How a page is assembled</p>
+              <p class="fs-7 text-muted-2">
+                Each entry in <code>src/pages.mjs</code> declares the output path, the page title and description, the
+                breadcrumb trail, an optional layout (<code>app</code> for the dashboard shell, <code>blank</code> for
+                auth and utility pages) and any extra scripts. The builder then replaces these tokens inside the
+                partials and the body:
+              </p>
+
+              <div class="table-responsive mb-4">
+                <table class="table table-sm align-middle mb-0">
+                  <thead>
+                    <tr><th scope="col">Token</th><th scope="col">Replaced with</th></tr>
+                  </thead>
+                  <tbody class="fs-7">
+                    <tr><td><code>&#123;&#123;META_TITLE&#125;&#125;</code></td><td class="text-muted-2">The page <code>&lt;title&gt;</code></td></tr>
+                    <tr><td><code>&#123;&#123;META_DESC&#125;&#125;</code></td><td class="text-muted-2">The meta description</td></tr>
+                    <tr><td><code>&#123;&#123;DEPTH&#125;&#125;</code></td><td class="text-muted-2">Relative prefix (<code>../</code>) so every asset path stays correct at any folder depth</td></tr>
+                    <tr><td><code>&#123;&#123;NAV&#125;&#125;</code></td><td class="text-muted-2">The full sidebar menu, built from <code>src/nav.mjs</code></td></tr>
+                    <tr><td><code>&#123;&#123;BREADCRUMB&#125;&#125;</code></td><td class="text-muted-2">The page-header breadcrumb</td></tr>
+                    <tr><td><code>&#123;&#123;CONTENT&#125;&#125;</code></td><td class="text-muted-2">The body file from <code>src/pages/</code></td></tr>
+                    <tr><td><code>&#123;&#123;PAGE_SCRIPTS&#125;&#125;</code></td><td class="text-muted-2">Extra scripts such as Chart.js for chart pages</td></tr>
+                    <tr><td><code>&#123;&#123;HEAD_EXTRA&#125;&#125;</code></td><td class="text-muted-2">Optional extra tags for the <code>&lt;head&gt;</code></td></tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <p class="fw-600 text-heading fs-7 mb-2">Adding a new page in four steps</p>
+              <ol class="fs-7 text-muted-2 d-flex flex-column gap-2 mb-0">
+                <li>Create the body file, for example <code>src/pages/pages/roadmap.html</code>.</li>
+                <li>Add an entry to <code>src/pages.mjs</code> with its <code>out</code> path, metadata and breadcrumb.</li>
+                <li>Add the menu link to <code>src/nav.mjs</code>.</li>
+                <li>Run <code>node tools/build.mjs</code> — the new page appears with the correct title, breadcrumb and navigation in every other page.</li>
+              </ol>
+
+              <div class="alert alert-warning d-flex align-items-start gap-2 mt-4 mb-0" role="alert">
+                <i class="bi bi-exclamation-triangle alert-icon"></i>
+                <div class="fs-8">
+                  <strong class="d-block fs-7">If you edit the HTML directly, stop using the builder</strong>
+                  The build script overwrites the generated files at the repository root. Either work in
+                  <code>src/</code> and rebuild, or edit the generated HTML and ignore <code>src/</code> — mixing both
+                  will lose work.
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="card mb-4" id="accessibility">
+            <div class="card-header"><h2 class="card-title mb-0">6. Accessibility &amp; browser support</h2></div>
+            <div class="card-body">
+              <ul class="fs-7 text-muted-2 d-flex flex-column gap-2 mb-0">
+                <li>Skip links, landmarks, labelled forms and <code>aria-*</code> states are included on every page.</li>
+                <li>Icon-only controls always carry an <code>aria-label</code>; decorative icons use <code>aria-hidden="true"</code>.</li>
+                <li>Colour contrast targets WCAG AA in both themes — the dark palette re-tunes the brand colour rather than only inverting it.</li>
+                <li>Animated counters respect <code>prefers-reduced-motion</code> and print the final value immediately.</li>
+                <li>Tables, pagination and cards are keyboard reachable; the mobile drawer closes on <code>Esc</code>.</li>
+                <li>Tested in Chrome, Edge, Firefox and Safari (last two major versions) plus iOS Safari and Chrome on Android.</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="card" id="credits">
+            <div class="card-header"><h2 class="card-title mb-0">7. Credits &amp; licences</h2></div>
+            <div class="table-responsive">
+              <table class="table align-middle mb-0">
+                <thead>
+                  <tr><th scope="col">Resource</th><th scope="col">Version</th><th scope="col">Licence</th></tr>
+                </thead>
+                <tbody class="fs-7">
+                  <tr><td>Bootstrap</td><td>5.3.3</td><td class="text-muted-2">MIT</td></tr>
+                  <tr><td>Bootstrap Icons</td><td>1.11.3</td><td class="text-muted-2">MIT</td></tr>
+                  <tr><td>Chart.js</td><td>4.4.3</td><td class="text-muted-2">MIT</td></tr>
+                  <tr><td>Inter (font)</td><td>5.0.18</td><td class="text-muted-2">SIL Open Font License 1.1 — see <code>assets/fonts/inter/LICENSE.txt</code></td></tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="card-body">
+              <p class="fs-8 text-muted-2 mb-0">
+                All images in this template are CSS or SVG placeholders created for the kit — no third-party photography
+                is bundled, so you can ship the template commercially without extra attribution.
+              </p>
+            </div>
           </div>
         </div>
-      </div>
 
-      <div class="card">
-        <div class="card-header">
-          <h2 class="card-title mb-0">Usage notes</h2>
-        </div>
-        <div class="card-body">
-          <ul class="fs-7 text-muted-2 mb-0 d-flex flex-column gap-2">
-            <li>The separator is drawn by Bootstrap's <code>--bs-breadcrumb-divider</code>, which Qevora sets to a muted token and mirrors automatically in RTL.</li>
-            <li>Keep the trail to four levels or fewer; deeper hierarchies are easier to navigate from the sidebar.</li>
-            <li>Only the final item gets <code>.active</code> and <code>aria-current="page"</code>.</li>
-            <li>On the dashboard page the first crumb points at <code>index.html</code>; in nested folders prefix it with <code>../</code>.</li>
-          </ul>
+        <div class="col-xl-3">
+          <div class="card sticky-lg-top" style="top: 86px;">
+            <div class="card-header"><h2 class="card-title mb-0">On this page</h2></div>
+            <div class="card-body">
+              <nav aria-label="Documentation sections">
+                <ul class="list-unstyled d-flex flex-column gap-2 fs-7 mb-0">
+                  <li><a href="#quick-start"><i class="bi bi-arrow-right-short"></i> Quick start</a></li>
+                  <li><a href="#inventory"><i class="bi bi-arrow-right-short"></i> Page inventory</a></li>
+                  <li><a href="#customise"><i class="bi bi-arrow-right-short"></i> Customising</a></li>
+                  <li><a href="#javascript"><i class="bi bi-arrow-right-short"></i> JavaScript reference</a></li>
+                  <li><a href="#builder"><i class="bi bi-arrow-right-short"></i> Build script</a></li>
+                  <li><a href="#accessibility"><i class="bi bi-arrow-right-short"></i> Accessibility</a></li>
+                  <li><a href="#credits"><i class="bi bi-arrow-right-short"></i> Credits</a></li>
+                </ul>
+              </nav>
+            </div>
+            <div class="card-footer">
+              <a class="btn btn-sm btn-soft-primary w-100" href="design-system.html"><i class="bi bi-palette"></i> Design system</a>
+            </div>
+          </div>
         </div>
       </div>
     </main>

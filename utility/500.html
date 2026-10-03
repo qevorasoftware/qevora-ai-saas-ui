@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="en" data-bs-theme="light" dir="ltr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#4f46e5">
+  <title>500 Server Error | Qevora AI SaaS</title>
+  <meta name="description" content="Server error page with status line, retry action and support link.">
+  <meta name="author" content="Qevora Software">
+  <meta name="robots" content="index, follow">
+
+  <!-- Open Graph / social preview -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="500 Server Error | Qevora AI SaaS">
+  <meta property="og:description" content="Server error page with status line, retry action and support link.">
+  <meta property="og:site_name" content="Qevora AI SaaS">
+
+  <link rel="icon" type="image/svg+xml" href="../assets/images/favicon.svg">
+  <link rel="apple-touch-icon" href="../assets/images/favicon.svg">
+
+  <!-- Apply the stored colour mode before first paint to avoid a theme flash -->
+  <script>
+    (function () {
+      try {
+        var stored = localStorage.getItem("qevora-theme");
+        var prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+        var theme = (stored === "dark" || stored === "light") ? stored : (prefersDark ? "dark" : "light");
+        document.documentElement.setAttribute("data-bs-theme", theme);
+      } catch (e) { /* storage blocked — fall back to the default theme */ }
+    })();
+  </script>
+
+  <!-- Vendor styles (bundled locally, see documentation/index.html → Credits) -->
+  <link rel="stylesheet" href="../assets/css/fonts.css">
+  <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
+  <link rel="stylesheet" href="../assets/icons/bootstrap-icons/bootstrap-icons.min.css">
+
+  <!-- Qevora theme -->
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="stylesheet" href="../assets/css/components.css">
+  <link rel="stylesheet" href="../assets/css/dark.css">
+  <link rel="stylesheet" href="../assets/css/rtl.css">
+</head>
+
+<body class="q-app q-app-fluid">
+  <a class="visually-hidden-focusable" href="#q-content">Skip to main content</a>
+
+  <!-- ================= Content ================= -->
+  <main class="q-main" id="q-content">
+      <div class="util-shell">
+        <div class="position-absolute top-0 end-0 p-3 d-flex gap-2">
+          <button class="btn btn-icon btn-white" type="button" data-dir-toggle aria-pressed="false" aria-label="Toggle text direction" title="Toggle RTL layout">
+            <i class="bi bi-translate"></i>
+          </button>
+          <button class="btn btn-icon btn-white" type="button" data-theme-toggle aria-pressed="false" aria-label="Toggle dark mode" title="Switch to dark mode">
+            <i class="bi bi-moon-stars" data-theme-icon></i>
+          </button>
+        </div>
+
+        <div style="max-width: 620px;">
+          <a class="d-inline-flex align-items-center gap-2 text-decoration-none mb-4" href="../index.html">
+            <span class="q-brand__mark" aria-hidden="true">Q</span>
+            <span class="q-brand__text text-start">
+              <span class="q-brand__name">Qevora</span>
+              <span class="q-brand__sub">AI SaaS Suite</span>
+            </span>
+          </a>
+
+          <p class="util-code mb-3">500</p>
+
+          <h1 class="h3 text-heading mb-2">Something went wrong on our side</h1>
+          <p class="fs-7 text-muted-2 mb-4">
+            The request could not be completed. Our team has been notified automatically — your data was not changed.
+            Please retry in a moment.
+          </p>
+
+          <div class="d-flex flex-wrap justify-content-center gap-2 mb-4">
+            <button class="btn btn-primary" type="button" data-demo-action="Retrying the request — demo only.">
+              <i class="bi bi-arrow-clockwise"></i> Try again
+            </button>
+            <a class="btn btn-white" href="../index.html"><i class="bi bi-house"></i> Back to dashboard</a>
+            <a class="btn btn-soft-primary" href="maintenance.html"><i class="bi bi-tools"></i> Status &amp; maintenance</a>
+          </div>
+
+          <div class="card text-start">
+            <div class="card-header">
+              <h2 class="card-title mb-0">Incident snapshot</h2>
+              <span class="badge badge-soft-warning">Monitoring</span>
+            </div>
+            <div class="card-body">
+              <ul class="timeline mb-0">
+                <li class="timeline__item">
+                  <span class="timeline__dot timeline__dot--warning"></span>
+                  <p class="timeline__title">Elevated error rate on the reports service</p>
+                  <p class="timeline__meta">Oct 3, 2026 · 10:42 UTC · investigating</p>
+                </li>
+                <li class="timeline__item">
+                  <span class="timeline__dot timeline__dot--success"></span>
+                  <p class="timeline__title">Dashboard and AI workspace unaffected</p>
+                  <p class="timeline__meta">Checked Oct 3, 2026 · 10:44 UTC</p>
+                </li>
+                <li class="timeline__item">
+                  <span class="timeline__dot timeline__dot--muted"></span>
+                  <p class="timeline__title">Next update within 30 minutes</p>
+                  <p class="timeline__meta">Posted by the platform team</p>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <p class="fs-8 text-muted-2 mt-4 mb-0">
+            Reference <code>ERR-500 · req_9f2c41</code> · Status updates at <a href="#">status.qevora.io</a>
+          </p>
+        </div>
+      </div>
+  </main>
+
+    <!-- ================= Scripts ================= -->
+    <!-- Vendor: Bootstrap 5 bundle (includes Popper) -->
+    <script src="../assets/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Qevora core -->
+    <script src="../assets/js/theme.js"></script>
+    <script src="../assets/js/sidebar.js"></script>
+    <script src="../assets/js/app.js"></script>
+    <script src="../assets/js/components.js"></script>
+
+</body>
+</html>
