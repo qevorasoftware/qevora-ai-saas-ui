@@ -4,15 +4,15 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#4f46e5">
-  <title>AI Image Generator | Qevora AI SaaS Admin & UI Kit</title>
-  <meta name="description" content="AI image generation UI with prompt, style presets, aspect ratio and generated gallery.">
+  <title>Tabs | Qevora AI SaaS UI Kit</title>
+  <meta name="description" content="Tabs, pills and vertical navigation patterns with copy-ready markup.">
   <meta name="author" content="Qevora Software">
   <meta name="robots" content="index, follow">
 
   <!-- Open Graph / social preview -->
   <meta property="og:type" content="website">
-  <meta property="og:title" content="AI Image Generator | Qevora AI SaaS Admin & UI Kit">
-  <meta property="og:description" content="AI image generation UI with prompt, style presets, aspect ratio and generated gallery.">
+  <meta property="og:title" content="Tabs | Qevora AI SaaS UI Kit">
+  <meta property="og:description" content="Tabs, pills and vertical navigation patterns with copy-ready markup.">
   <meta property="og:site_name" content="Qevora AI SaaS">
 
   <link rel="icon" type="image/svg+xml" href="../assets/images/favicon.svg">
@@ -679,201 +679,197 @@
         <div>
                   <nav aria-label="Breadcrumb">
           <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="../index.html">AI Workspace</a></li>
-          <li class="breadcrumb-item active" aria-current="page">Image Generator</li>
+          <li class="breadcrumb-item"><a href="../index.html">UI Kit</a></li>
+          <li class="breadcrumb-item"><a href="#">Interaction</a></li>
+          <li class="breadcrumb-item active" aria-current="page">Tabs</li>
           </ol>
         </nav>
-          <h1 class="q-page-head__title mt-2">Image generator</h1>
-          <p class="q-page-head__subtitle">Create on-brand visuals from a prompt. Gallery items are CSS placeholders, not stock photography.</p>
+          <h1 class="q-page-head__title mt-2">Tabs</h1>
+          <p class="q-page-head__subtitle">
+            Switch between related views without leaving the page. Qevora ships underline tabs, pill tabs, vertical tabs
+            and card-header tabs — all built on the Bootstrap nav component.
+          </p>
         </div>
         <div class="d-flex flex-wrap gap-2">
-          <button class="btn btn-white" data-demo-action="Prompt library opened — demo only."><i class="bi bi-collection"></i> Prompt library</button>
-          <a class="btn btn-primary" href="history.html"><i class="bi bi-clock-history"></i> History</a>
+          <a class="btn btn-white" href="../documentation/index.html"><i class="bi bi-book"></i> Docs</a>
         </div>
       </div>
 
-      <div class="row g-3">
-        <div class="col-xl-4">
-          <div class="card">
-            <div class="card-header">
-              <div>
-                <h2 class="card-title">Create</h2>
-                <p class="card-subtitle">Describe the image you need</p>
+      <div class="demo-block" data-demo>
+        <div class="demo-block__head">
+          <div>
+            <h2 class="demo-block__title">Underline tabs</h2>
+            <p class="demo-block__desc">The default for the settings and details pages — quiet until active, with a coloured underline.</p>
+          </div>
+        </div>
+        <div class="demo-block__tabs">
+          <button class="demo-tab is-active" data-demo-tab="preview" aria-selected="true">Preview</button>
+          <button class="demo-tab" data-demo-tab="html" aria-selected="false">HTML</button>
+        </div>
+        <div class="demo-block__pane is-active" data-demo-pane="preview">
+          <div class="demo-preview" id="tabsUnderline">
+            <ul class="nav nav-tabs mb-3" role="tablist">
+              <li class="nav-item" role="presentation">
+                <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#tabOverview" type="button" role="tab" aria-selected="true">Overview</button>
+              </li>
+              <li class="nav-item" role="presentation">
+                <button class="nav-link" data-bs-toggle="tab" data-bs-target="#tabInvoices" type="button" role="tab" aria-selected="false">Invoices <span class="badge badge-soft-primary ms-1">4</span></button>
+              </li>
+              <li class="nav-item" role="presentation">
+                <button class="nav-link" data-bs-toggle="tab" data-bs-target="#tabTeam" type="button" role="tab" aria-selected="false">Team</button>
+              </li>
+              <li class="nav-item" role="presentation">
+                <button class="nav-link disabled" type="button" role="tab" aria-selected="false" disabled>Integrations</button>
+              </li>
+            </ul>
+            <div class="tab-content">
+              <div class="tab-pane fade show active" id="tabOverview" role="tabpanel">
+                <p class="fs-7 text-muted-2 mb-0">
+                  Acme Inc. has been on the Growth plan since March 2026. Seats are at <strong>18 of 25</strong> and the
+                  workspace renews on Sep 30, 2026.
+                </p>
               </div>
-            </div>
-            <div class="card-body">
-              <div class="mb-3">
-                <label class="form-label" for="ig-prompt">Prompt</label>
-                <textarea class="form-control" id="ig-prompt" rows="4">Minimal abstract gradient background in indigo and cyan for a SaaS dashboard hero section, soft light, no text.</textarea>
+              <div class="tab-pane fade" id="tabInvoices" role="tabpanel">
+                <p class="fs-7 text-muted-2 mb-0">INV-2026-0184 · $2,400 paid — INV-2026-0186 · $2,400 due Oct 12, 2026.</p>
               </div>
-
-              <div class="mb-3">
-                <label class="form-label">Style preset</label>
-                <div class="row g-2">
-                  <div class="col-6">
-                    <button class="component-tile w-100 text-start is-active" type="button" data-demo-action="Style set to Gradient — demo only.">
-                      <span class="component-tile__icon"><i class="bi bi-brightness-high"></i></span>
-                      <span class="component-tile__title">Gradient</span>
-                    </button>
-                  </div>
-                  <div class="col-6">
-                    <button class="component-tile w-100 text-start" type="button" data-demo-action="Style set to 3D render — demo only.">
-                      <span class="component-tile__icon"><i class="bi bi-box"></i></span>
-                      <span class="component-tile__title">3D render</span>
-                    </button>
-                  </div>
-                  <div class="col-6">
-                    <button class="component-tile w-100 text-start" type="button" data-demo-action="Style set to Line art — demo only.">
-                      <span class="component-tile__icon"><i class="bi bi-pencil"></i></span>
-                      <span class="component-tile__title">Line art</span>
-                    </button>
-                  </div>
-                  <div class="col-6">
-                    <button class="component-tile w-100 text-start" type="button" data-demo-action="Style set to Photo — demo only.">
-                      <span class="component-tile__icon"><i class="bi bi-camera"></i></span>
-                      <span class="component-tile__title">Photo</span>
-                    </button>
-                  </div>
-                </div>
+              <div class="tab-pane fade" id="tabTeam" role="tabpanel">
+                <p class="fs-7 text-muted-2 mb-0">Marcus Chen (Manager), Lea Novak (Analyst) and 16 workspace members.</p>
               </div>
-
-              <div class="mb-3">
-                <label class="form-label" for="ig-ratio">Aspect ratio</label>
-                <select class="form-select" id="ig-ratio">
-                  <option selected>16:9 — hero banner</option>
-                  <option>1:1 — square</option>
-                  <option>4:5 — social portrait</option>
-                  <option>9:16 — story</option>
-                </select>
-              </div>
-
-              <div class="mb-3">
-                <label class="form-label" for="ig-count">Images</label>
-                <select class="form-select" id="ig-count">
-                  <option>1</option>
-                  <option selected>4</option>
-                  <option>8</option>
-                </select>
-              </div>
-
-              <div class="mb-3">
-                <label class="form-label" for="ig-negative">Negative prompt <span class="text-muted-2 fw-400">(optional)</span></label>
-                <input type="text" class="form-control" id="ig-negative" placeholder="text, watermark, faces">
-              </div>
-
-              <button class="btn btn-gradient w-100" data-demo-action="Image generation queued — demo interaction only.">
-                <i class="bi bi-magic"></i> Generate images
-              </button>
-              <p class="fs-8 text-muted-2 text-center mt-2 mb-0">4 images · 0.4 credits · about 8 seconds</p>
             </div>
           </div>
         </div>
+        <div class="demo-block__pane" data-demo-pane="html">
+          <div class="demo-code-wrap">
+            <button class="copy-btn" data-copy-target="#codeTabsUnderline" type="button"><i class="bi bi-clipboard"></i> Copy HTML</button>
+            <pre class="demo-code"><code id="codeTabsUnderline" data-auto-code="#tabsUnderline"></code></pre>
+          </div>
+        </div>
+      </div>
 
-        <div class="col-xl-8">
-          <div class="card mb-3">
-            <div class="card-header">
-              <div>
-                <h2 class="card-title">Results</h2>
-                <p class="card-subtitle">4 images · Orbit Vision · 16:9</p>
+      <div class="demo-block" data-demo>
+        <div class="demo-block__head">
+          <div>
+            <h2 class="demo-block__title">Pills and button-group tabs</h2>
+            <p class="demo-block__desc">Use pills when the tabs sit on a card or toolbar surface rather than a page.</p>
+          </div>
+        </div>
+        <div class="demo-block__tabs">
+          <button class="demo-tab is-active" data-demo-tab="preview" aria-selected="true">Preview</button>
+          <button class="demo-tab" data-demo-tab="html" aria-selected="false">HTML</button>
+        </div>
+        <div class="demo-block__pane is-active" data-demo-pane="preview">
+          <div class="demo-preview" id="tabsPills">
+            <ul class="nav nav-pills mb-3" role="tablist">
+              <li class="nav-item" role="presentation">
+                <button class="nav-link active" data-bs-toggle="pill" data-bs-target="#pillMonthly" type="button" role="tab" aria-selected="true">Monthly</button>
+              </li>
+              <li class="nav-item" role="presentation">
+                <button class="nav-link" data-bs-toggle="pill" data-bs-target="#pillQuarterly" type="button" role="tab" aria-selected="false">Quarterly</button>
+              </li>
+              <li class="nav-item" role="presentation">
+                <button class="nav-link" data-bs-toggle="pill" data-bs-target="#pillYearly" type="button" role="tab" aria-selected="false">Yearly</button>
+              </li>
+            </ul>
+            <div class="tab-content">
+              <div class="tab-pane fade show active" id="pillMonthly" role="tabpanel">
+                <p class="fs-7 text-muted-2 mb-0">MRR <strong>$107,040</strong> — 38 new subscriptions, 4 cancellations.</p>
               </div>
-              <div class="btn-group btn-group-sm" role="group" aria-label="Gallery view">
-                <button class="btn btn-white active" aria-label="Grid view" data-demo-action="Grid view selected — demo only."><i class="bi bi-grid"></i></button>
-                <button class="btn btn-white" aria-label="List view" data-demo-action="List view selected — demo only."><i class="bi bi-list-ul"></i></button>
+              <div class="tab-pane fade" id="pillQuarterly" role="tabpanel">
+                <p class="fs-7 text-muted-2 mb-0">Q3 revenue <strong>$318,600</strong> — up 12.4% on Q2 2026.</p>
+              </div>
+              <div class="tab-pane fade" id="pillYearly" role="tabpanel">
+                <p class="fs-7 text-muted-2 mb-0">Annual run rate <strong>$1.28M</strong> with 20% saved on annual billing.</p>
               </div>
             </div>
-            <div class="card-body">
-              <div class="row g-3">
-                <div class="col-sm-6">
-                  <figure class="mb-0">
-                    <img src="../assets/images/placeholder/product-1.svg" alt="Generated gradient placeholder in indigo tones" class="img-fluid rounded-q w-100">
-                    <figcaption class="d-flex align-items-center justify-content-between mt-2">
-                      <span class="fs-8 text-muted-2">Variation 1 · 1344 × 768</span>
-                      <span class="d-flex gap-1">
-                        <button class="btn btn-icon btn-sm btn-ghost" aria-label="Download variation 1" data-demo-action="Download started — demo only."><i class="bi bi-download"></i></button>
-                        <button class="btn btn-icon btn-sm btn-ghost" aria-label="Use variation 1" data-demo-action="Image attached to draft — demo only."><i class="bi bi-check2"></i></button>
-                      </span>
-                    </figcaption>
-                  </figure>
-                </div>
-                <div class="col-sm-6">
-                  <figure class="mb-0">
-                    <img src="../assets/images/placeholder/product-2.svg" alt="Generated gradient placeholder in teal tones" class="img-fluid rounded-q w-100">
-                    <figcaption class="d-flex align-items-center justify-content-between mt-2">
-                      <span class="fs-8 text-muted-2">Variation 2 · 1344 × 768</span>
-                      <span class="d-flex gap-1">
-                        <button class="btn btn-icon btn-sm btn-ghost" aria-label="Download variation 2" data-demo-action="Download started — demo only."><i class="bi bi-download"></i></button>
-                        <button class="btn btn-icon btn-sm btn-ghost" aria-label="Use variation 2" data-demo-action="Image attached to draft — demo only."><i class="bi bi-check2"></i></button>
-                      </span>
-                    </figcaption>
-                  </figure>
-                </div>
-                <div class="col-sm-6">
-                  <figure class="mb-0">
-                    <img src="../assets/images/placeholder/product-3.svg" alt="Generated gradient placeholder in amber tones" class="img-fluid rounded-q w-100">
-                    <figcaption class="d-flex align-items-center justify-content-between mt-2">
-                      <span class="fs-8 text-muted-2">Variation 3 · 1344 × 768</span>
-                      <span class="d-flex gap-1">
-                        <button class="btn btn-icon btn-sm btn-ghost" aria-label="Download variation 3" data-demo-action="Download started — demo only."><i class="bi bi-download"></i></button>
-                        <button class="btn btn-icon btn-sm btn-ghost" aria-label="Use variation 3" data-demo-action="Image attached to draft — demo only."><i class="bi bi-check2"></i></button>
-                      </span>
-                    </figcaption>
-                  </figure>
-                </div>
-                <div class="col-sm-6">
-                  <figure class="mb-0">
-                    <img src="../assets/images/placeholder/product-4.svg" alt="Generated gradient placeholder in sky blue tones" class="img-fluid rounded-q w-100">
-                    <figcaption class="d-flex align-items-center justify-content-between mt-2">
-                      <span class="fs-8 text-muted-2">Variation 4 · 1344 × 768</span>
-                      <span class="d-flex gap-1">
-                        <button class="btn btn-icon btn-sm btn-ghost" aria-label="Download variation 4" data-demo-action="Download started — demo only."><i class="bi bi-download"></i></button>
-                        <button class="btn btn-icon btn-sm btn-ghost" aria-label="Use variation 4" data-demo-action="Image attached to draft — demo only."><i class="bi bi-check2"></i></button>
-                      </span>
-                    </figcaption>
-                  </figure>
-                </div>
-              </div>
+
+            <div class="btn-group mt-4" role="group" aria-label="Range selector">
+              <button type="button" class="btn btn-white active">Day</button>
+              <button type="button" class="btn btn-white">Week</button>
+              <button type="button" class="btn btn-white">Month</button>
+              <button type="button" class="btn btn-white">Year</button>
             </div>
           </div>
+        </div>
+        <div class="demo-block__pane" data-demo-pane="html">
+          <div class="demo-code-wrap">
+            <button class="copy-btn" data-copy-target="#codeTabsPills" type="button"><i class="bi bi-clipboard"></i> Copy HTML</button>
+            <pre class="demo-code"><code id="codeTabsPills" data-auto-code="#tabsPills"></code></pre>
+          </div>
+        </div>
+      </div>
 
-          <div class="row g-3">
-            <div class="col-md-6">
-              <div class="card h-100">
-                <div class="card-header">
-                  <h3 class="card-title mb-0">Credits</h3>
-                </div>
-                <div class="card-body">
-                  <div class="d-flex align-items-center justify-content-between mb-2">
-                    <span class="fs-7 text-muted-2">Image credits used</span>
-                    <span class="fw-600 text-heading">128 / 500</span>
-                  </div>
-                  <div class="progress progress-sm mb-3"><div class="progress-bar" style="width: 26%"></div></div>
-                  <p class="fs-8 text-muted-2 mb-3">Credits reset on Nov 1, 2026. Unused credits do not roll over.</p>
-                  <a href="../pages/pricing.html" class="btn btn-sm btn-soft-primary">Buy more credits</a>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-6">
-              <div class="card h-100">
-                <div class="card-header">
-                  <h3 class="card-title mb-0">Recent prompts</h3>
-                </div>
-                <ul class="list-group list-group-flush">
-                  <li class="list-group-item">
-                    <span class="d-block fs-7 fw-500 text-heading">Dashboard hero gradient</span>
-                    <span class="d-block fs-8 text-muted-2">4 images · 12 minutes ago</span>
+      <div class="demo-block" data-demo>
+        <div class="demo-block__head">
+          <div>
+            <h2 class="demo-block__title">Vertical tabs</h2>
+            <p class="demo-block__desc">Settings pages use a vertical rail so the section list stays visible while the panel scrolls.</p>
+          </div>
+        </div>
+        <div class="demo-block__tabs">
+          <button class="demo-tab is-active" data-demo-tab="preview" aria-selected="true">Preview</button>
+          <button class="demo-tab" data-demo-tab="html" aria-selected="false">HTML</button>
+        </div>
+        <div class="demo-block__pane is-active" data-demo-pane="preview">
+          <div class="demo-preview" id="tabsVertical">
+            <div class="row g-4">
+              <div class="col-md-4">
+                <ul class="nav nav-pills flex-column" role="tablist">
+                  <li class="nav-item" role="presentation">
+                    <button class="nav-link active text-start w-100" data-bs-toggle="pill" data-bs-target="#vertGeneral" type="button" role="tab" aria-selected="true">
+                      <i class="bi bi-sliders me-2"></i> General
+                    </button>
                   </li>
-                  <li class="list-group-item">
-                    <span class="d-block fs-7 fw-500 text-heading">Abstract data mesh illustration</span>
-                    <span class="d-block fs-8 text-muted-2">2 images · yesterday</span>
+                  <li class="nav-item" role="presentation">
+                    <button class="nav-link text-start w-100" data-bs-toggle="pill" data-bs-target="#vertBilling" type="button" role="tab" aria-selected="false">
+                      <i class="bi bi-credit-card me-2"></i> Billing
+                    </button>
                   </li>
-                  <li class="list-group-item">
-                    <span class="d-block fs-7 fw-500 text-heading">Empty state spot illustration</span>
-                    <span class="d-block fs-8 text-muted-2">1 image · Sep 30, 2026</span>
+                  <li class="nav-item" role="presentation">
+                    <button class="nav-link text-start w-100" data-bs-toggle="pill" data-bs-target="#vertSecurity" type="button" role="tab" aria-selected="false">
+                      <i class="bi bi-shield-lock me-2"></i> Security
+                    </button>
                   </li>
                 </ul>
               </div>
+              <div class="col-md-8">
+                <div class="tab-content">
+                  <div class="tab-pane fade show active" id="vertGeneral" role="tabpanel">
+                    <h3 class="fs-6 text-heading">General</h3>
+                    <p class="fs-7 text-muted-2 mb-0">Workspace name, default timezone (UTC) and language settings live here.</p>
+                  </div>
+                  <div class="tab-pane fade" id="vertBilling" role="tabpanel">
+                    <h3 class="fs-6 text-heading">Billing</h3>
+                    <p class="fs-7 text-muted-2 mb-0">Growth plan, $99 per month, renews Oct 30, 2026. Card ending 4242.</p>
+                  </div>
+                  <div class="tab-pane fade" id="vertSecurity" role="tabpanel">
+                    <h3 class="fs-6 text-heading">Security</h3>
+                    <p class="fs-7 text-muted-2 mb-0">Two-factor authentication is enabled for 5 of 6 admins.</p>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
+        </div>
+        <div class="demo-block__pane" data-demo-pane="html">
+          <div class="demo-code-wrap">
+            <button class="copy-btn" data-copy-target="#codeTabsVertical" type="button"><i class="bi bi-clipboard"></i> Copy HTML</button>
+            <pre class="demo-code"><code id="codeTabsVertical" data-auto-code="#tabsVertical"></code></pre>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <h2 class="card-title mb-0">Usage notes</h2>
+        </div>
+        <div class="card-body">
+          <ul class="fs-7 text-muted-2 mb-0 d-flex flex-column gap-2">
+            <li>Pair every <code>data-bs-target</code> with a matching <code>.tab-pane</code> id — the template never uses JavaScript tab logic.</li>
+            <li>Keep tab labels to one or two words; move filters and ranges into a toolbar above the tabs.</li>
+            <li>Underline tabs belong to page sections, pills belong to a card or a toolbar, vertical tabs belong to settings.</li>
+            <li>Add a count badge inside a label when the tab reveals a list — it saves users a click.</li>
+            <li>Panels animate with Bootstrap's <code>fade</code> class; respect reduced-motion users by leaving the default fade as-is (it is short).</li>
+          </ul>
         </div>
       </div>
     </main>
@@ -902,8 +898,6 @@
     <script src="../assets/js/sidebar.js"></script>
     <script src="../assets/js/app.js"></script>
     <script src="../assets/js/components.js"></script>
-    <script src="../assets/js/chart.umd.js"></script>
-    <script src="../assets/js/pages/charts.js"></script>
 
 </body>
 </html>

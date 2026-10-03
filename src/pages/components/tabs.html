@@ -1,0 +1,191 @@
+      <div class="q-page-head">
+        <div>
+          {{BREADCRUMB}}
+          <h1 class="q-page-head__title mt-2">Tabs</h1>
+          <p class="q-page-head__subtitle">
+            Switch between related views without leaving the page. Qevora ships underline tabs, pill tabs, vertical tabs
+            and card-header tabs — all built on the Bootstrap nav component.
+          </p>
+        </div>
+        <div class="d-flex flex-wrap gap-2">
+          <a class="btn btn-white" href="../documentation/index.html"><i class="bi bi-book"></i> Docs</a>
+        </div>
+      </div>
+
+      <div class="demo-block" data-demo>
+        <div class="demo-block__head">
+          <div>
+            <h2 class="demo-block__title">Underline tabs</h2>
+            <p class="demo-block__desc">The default for the settings and details pages — quiet until active, with a coloured underline.</p>
+          </div>
+        </div>
+        <div class="demo-block__tabs">
+          <button class="demo-tab is-active" data-demo-tab="preview" aria-selected="true">Preview</button>
+          <button class="demo-tab" data-demo-tab="html" aria-selected="false">HTML</button>
+        </div>
+        <div class="demo-block__pane is-active" data-demo-pane="preview">
+          <div class="demo-preview" id="tabsUnderline">
+            <ul class="nav nav-tabs mb-3" role="tablist">
+              <li class="nav-item" role="presentation">
+                <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#tabOverview" type="button" role="tab" aria-selected="true">Overview</button>
+              </li>
+              <li class="nav-item" role="presentation">
+                <button class="nav-link" data-bs-toggle="tab" data-bs-target="#tabInvoices" type="button" role="tab" aria-selected="false">Invoices <span class="badge badge-soft-primary ms-1">4</span></button>
+              </li>
+              <li class="nav-item" role="presentation">
+                <button class="nav-link" data-bs-toggle="tab" data-bs-target="#tabTeam" type="button" role="tab" aria-selected="false">Team</button>
+              </li>
+              <li class="nav-item" role="presentation">
+                <button class="nav-link disabled" type="button" role="tab" aria-selected="false" disabled>Integrations</button>
+              </li>
+            </ul>
+            <div class="tab-content">
+              <div class="tab-pane fade show active" id="tabOverview" role="tabpanel">
+                <p class="fs-7 text-muted-2 mb-0">
+                  Acme Inc. has been on the Growth plan since March 2026. Seats are at <strong>18 of 25</strong> and the
+                  workspace renews on Sep 30, 2026.
+                </p>
+              </div>
+              <div class="tab-pane fade" id="tabInvoices" role="tabpanel">
+                <p class="fs-7 text-muted-2 mb-0">INV-2026-0184 · $2,400 paid — INV-2026-0186 · $2,400 due Oct 12, 2026.</p>
+              </div>
+              <div class="tab-pane fade" id="tabTeam" role="tabpanel">
+                <p class="fs-7 text-muted-2 mb-0">Marcus Chen (Manager), Lea Novak (Analyst) and 16 workspace members.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="demo-block__pane" data-demo-pane="html">
+          <div class="demo-code-wrap">
+            <button class="copy-btn" data-copy-target="#codeTabsUnderline" type="button"><i class="bi bi-clipboard"></i> Copy HTML</button>
+            <pre class="demo-code"><code id="codeTabsUnderline" data-auto-code="#tabsUnderline"></code></pre>
+          </div>
+        </div>
+      </div>
+
+      <div class="demo-block" data-demo>
+        <div class="demo-block__head">
+          <div>
+            <h2 class="demo-block__title">Pills and button-group tabs</h2>
+            <p class="demo-block__desc">Use pills when the tabs sit on a card or toolbar surface rather than a page.</p>
+          </div>
+        </div>
+        <div class="demo-block__tabs">
+          <button class="demo-tab is-active" data-demo-tab="preview" aria-selected="true">Preview</button>
+          <button class="demo-tab" data-demo-tab="html" aria-selected="false">HTML</button>
+        </div>
+        <div class="demo-block__pane is-active" data-demo-pane="preview">
+          <div class="demo-preview" id="tabsPills">
+            <ul class="nav nav-pills mb-3" role="tablist">
+              <li class="nav-item" role="presentation">
+                <button class="nav-link active" data-bs-toggle="pill" data-bs-target="#pillMonthly" type="button" role="tab" aria-selected="true">Monthly</button>
+              </li>
+              <li class="nav-item" role="presentation">
+                <button class="nav-link" data-bs-toggle="pill" data-bs-target="#pillQuarterly" type="button" role="tab" aria-selected="false">Quarterly</button>
+              </li>
+              <li class="nav-item" role="presentation">
+                <button class="nav-link" data-bs-toggle="pill" data-bs-target="#pillYearly" type="button" role="tab" aria-selected="false">Yearly</button>
+              </li>
+            </ul>
+            <div class="tab-content">
+              <div class="tab-pane fade show active" id="pillMonthly" role="tabpanel">
+                <p class="fs-7 text-muted-2 mb-0">MRR <strong>$107,040</strong> — 38 new subscriptions, 4 cancellations.</p>
+              </div>
+              <div class="tab-pane fade" id="pillQuarterly" role="tabpanel">
+                <p class="fs-7 text-muted-2 mb-0">Q3 revenue <strong>$318,600</strong> — up 12.4% on Q2 2026.</p>
+              </div>
+              <div class="tab-pane fade" id="pillYearly" role="tabpanel">
+                <p class="fs-7 text-muted-2 mb-0">Annual run rate <strong>$1.28M</strong> with 20% saved on annual billing.</p>
+              </div>
+            </div>
+
+            <div class="btn-group mt-4" role="group" aria-label="Range selector">
+              <button type="button" class="btn btn-white active">Day</button>
+              <button type="button" class="btn btn-white">Week</button>
+              <button type="button" class="btn btn-white">Month</button>
+              <button type="button" class="btn btn-white">Year</button>
+            </div>
+          </div>
+        </div>
+        <div class="demo-block__pane" data-demo-pane="html">
+          <div class="demo-code-wrap">
+            <button class="copy-btn" data-copy-target="#codeTabsPills" type="button"><i class="bi bi-clipboard"></i> Copy HTML</button>
+            <pre class="demo-code"><code id="codeTabsPills" data-auto-code="#tabsPills"></code></pre>
+          </div>
+        </div>
+      </div>
+
+      <div class="demo-block" data-demo>
+        <div class="demo-block__head">
+          <div>
+            <h2 class="demo-block__title">Vertical tabs</h2>
+            <p class="demo-block__desc">Settings pages use a vertical rail so the section list stays visible while the panel scrolls.</p>
+          </div>
+        </div>
+        <div class="demo-block__tabs">
+          <button class="demo-tab is-active" data-demo-tab="preview" aria-selected="true">Preview</button>
+          <button class="demo-tab" data-demo-tab="html" aria-selected="false">HTML</button>
+        </div>
+        <div class="demo-block__pane is-active" data-demo-pane="preview">
+          <div class="demo-preview" id="tabsVertical">
+            <div class="row g-4">
+              <div class="col-md-4">
+                <ul class="nav nav-pills flex-column" role="tablist">
+                  <li class="nav-item" role="presentation">
+                    <button class="nav-link active text-start w-100" data-bs-toggle="pill" data-bs-target="#vertGeneral" type="button" role="tab" aria-selected="true">
+                      <i class="bi bi-sliders me-2"></i> General
+                    </button>
+                  </li>
+                  <li class="nav-item" role="presentation">
+                    <button class="nav-link text-start w-100" data-bs-toggle="pill" data-bs-target="#vertBilling" type="button" role="tab" aria-selected="false">
+                      <i class="bi bi-credit-card me-2"></i> Billing
+                    </button>
+                  </li>
+                  <li class="nav-item" role="presentation">
+                    <button class="nav-link text-start w-100" data-bs-toggle="pill" data-bs-target="#vertSecurity" type="button" role="tab" aria-selected="false">
+                      <i class="bi bi-shield-lock me-2"></i> Security
+                    </button>
+                  </li>
+                </ul>
+              </div>
+              <div class="col-md-8">
+                <div class="tab-content">
+                  <div class="tab-pane fade show active" id="vertGeneral" role="tabpanel">
+                    <h3 class="fs-6 text-heading">General</h3>
+                    <p class="fs-7 text-muted-2 mb-0">Workspace name, default timezone (UTC) and language settings live here.</p>
+                  </div>
+                  <div class="tab-pane fade" id="vertBilling" role="tabpanel">
+                    <h3 class="fs-6 text-heading">Billing</h3>
+                    <p class="fs-7 text-muted-2 mb-0">Growth plan, $99 per month, renews Oct 30, 2026. Card ending 4242.</p>
+                  </div>
+                  <div class="tab-pane fade" id="vertSecurity" role="tabpanel">
+                    <h3 class="fs-6 text-heading">Security</h3>
+                    <p class="fs-7 text-muted-2 mb-0">Two-factor authentication is enabled for 5 of 6 admins.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="demo-block__pane" data-demo-pane="html">
+          <div class="demo-code-wrap">
+            <button class="copy-btn" data-copy-target="#codeTabsVertical" type="button"><i class="bi bi-clipboard"></i> Copy HTML</button>
+            <pre class="demo-code"><code id="codeTabsVertical" data-auto-code="#tabsVertical"></code></pre>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <h2 class="card-title mb-0">Usage notes</h2>
+        </div>
+        <div class="card-body">
+          <ul class="fs-7 text-muted-2 mb-0 d-flex flex-column gap-2">
+            <li>Pair every <code>data-bs-target</code> with a matching <code>.tab-pane</code> id — the template never uses JavaScript tab logic.</li>
+            <li>Keep tab labels to one or two words; move filters and ranges into a toolbar above the tabs.</li>
+            <li>Underline tabs belong to page sections, pills belong to a card or a toolbar, vertical tabs belong to settings.</li>
+            <li>Add a count badge inside a label when the tab reveals a list — it saves users a click.</li>
+            <li>Panels animate with Bootstrap's <code>fade</code> class; respect reduced-motion users by leaving the default fade as-is (it is short).</li>
+          </ul>
+        </div>
+      </div>

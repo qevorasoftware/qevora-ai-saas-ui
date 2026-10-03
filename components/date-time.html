@@ -4,15 +4,15 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#4f46e5">
-  <title>AI Image Generator | Qevora AI SaaS Admin & UI Kit</title>
-  <meta name="description" content="AI image generation UI with prompt, style presets, aspect ratio and generated gallery.">
+  <title>Date & Time Inputs | Qevora AI SaaS UI Kit</title>
+  <meta name="description" content="Date, time, month and datetime-local inputs with helper text and validation.">
   <meta name="author" content="Qevora Software">
   <meta name="robots" content="index, follow">
 
   <!-- Open Graph / social preview -->
   <meta property="og:type" content="website">
-  <meta property="og:title" content="AI Image Generator | Qevora AI SaaS Admin & UI Kit">
-  <meta property="og:description" content="AI image generation UI with prompt, style presets, aspect ratio and generated gallery.">
+  <meta property="og:title" content="Date & Time Inputs | Qevora AI SaaS UI Kit">
+  <meta property="og:description" content="Date, time, month and datetime-local inputs with helper text and validation.">
   <meta property="og:site_name" content="Qevora AI SaaS">
 
   <link rel="icon" type="image/svg+xml" href="../assets/images/favicon.svg">
@@ -679,201 +679,201 @@
         <div>
                   <nav aria-label="Breadcrumb">
           <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="../index.html">AI Workspace</a></li>
-          <li class="breadcrumb-item active" aria-current="page">Image Generator</li>
+          <li class="breadcrumb-item"><a href="../index.html">UI Kit</a></li>
+          <li class="breadcrumb-item"><a href="#">Forms</a></li>
+          <li class="breadcrumb-item active" aria-current="page">Date & Time</li>
           </ol>
         </nav>
-          <h1 class="q-page-head__title mt-2">Image generator</h1>
-          <p class="q-page-head__subtitle">Create on-brand visuals from a prompt. Gallery items are CSS placeholders, not stock photography.</p>
+          <h1 class="q-page-head__title mt-2">Date &amp; time</h1>
+          <p class="q-page-head__subtitle">
+            Native date, time and month inputs plus date-range and scheduling patterns. Qevora intentionally ships no
+            date-picker plugin — the browser's own picker is faster, smaller and accessible.
+          </p>
         </div>
         <div class="d-flex flex-wrap gap-2">
-          <button class="btn btn-white" data-demo-action="Prompt library opened — demo only."><i class="bi bi-collection"></i> Prompt library</button>
-          <a class="btn btn-primary" href="history.html"><i class="bi bi-clock-history"></i> History</a>
+          <a class="btn btn-white" href="../documentation/index.html"><i class="bi bi-book"></i> Docs</a>
         </div>
       </div>
 
-      <div class="row g-3">
-        <div class="col-xl-4">
-          <div class="card">
-            <div class="card-header">
-              <div>
-                <h2 class="card-title">Create</h2>
-                <p class="card-subtitle">Describe the image you need</p>
+      <div class="demo-block" data-demo>
+        <div class="demo-block__head">
+          <div>
+            <h2 class="demo-block__title">Native pickers</h2>
+            <p class="demo-block__desc">Date, time, month, week and datetime-local — all styled to match the rest of the form system.</p>
+          </div>
+        </div>
+        <div class="demo-block__tabs">
+          <button class="demo-tab is-active" data-demo-tab="preview" aria-selected="true">Preview</button>
+          <button class="demo-tab" data-demo-tab="html" aria-selected="false">HTML</button>
+        </div>
+        <div class="demo-block__pane is-active" data-demo-pane="preview">
+          <div class="demo-preview" id="dtNative">
+            <div class="row g-3">
+              <div class="col-md-4">
+                <label class="form-label" for="dtDate">Date</label>
+                <input type="date" class="form-control" id="dtDate" value="2026-10-03">
               </div>
-            </div>
-            <div class="card-body">
-              <div class="mb-3">
-                <label class="form-label" for="ig-prompt">Prompt</label>
-                <textarea class="form-control" id="ig-prompt" rows="4">Minimal abstract gradient background in indigo and cyan for a SaaS dashboard hero section, soft light, no text.</textarea>
+              <div class="col-md-4">
+                <label class="form-label" for="dtTime">Time</label>
+                <input type="time" class="form-control" id="dtTime" value="09:30">
               </div>
-
-              <div class="mb-3">
-                <label class="form-label">Style preset</label>
-                <div class="row g-2">
-                  <div class="col-6">
-                    <button class="component-tile w-100 text-start is-active" type="button" data-demo-action="Style set to Gradient — demo only.">
-                      <span class="component-tile__icon"><i class="bi bi-brightness-high"></i></span>
-                      <span class="component-tile__title">Gradient</span>
-                    </button>
-                  </div>
-                  <div class="col-6">
-                    <button class="component-tile w-100 text-start" type="button" data-demo-action="Style set to 3D render — demo only.">
-                      <span class="component-tile__icon"><i class="bi bi-box"></i></span>
-                      <span class="component-tile__title">3D render</span>
-                    </button>
-                  </div>
-                  <div class="col-6">
-                    <button class="component-tile w-100 text-start" type="button" data-demo-action="Style set to Line art — demo only.">
-                      <span class="component-tile__icon"><i class="bi bi-pencil"></i></span>
-                      <span class="component-tile__title">Line art</span>
-                    </button>
-                  </div>
-                  <div class="col-6">
-                    <button class="component-tile w-100 text-start" type="button" data-demo-action="Style set to Photo — demo only.">
-                      <span class="component-tile__icon"><i class="bi bi-camera"></i></span>
-                      <span class="component-tile__title">Photo</span>
-                    </button>
-                  </div>
-                </div>
+              <div class="col-md-4">
+                <label class="form-label" for="dtDateTime">Date &amp; time</label>
+                <input type="datetime-local" class="form-control" id="dtDateTime" value="2026-10-03T09:30">
               </div>
-
-              <div class="mb-3">
-                <label class="form-label" for="ig-ratio">Aspect ratio</label>
-                <select class="form-select" id="ig-ratio">
-                  <option selected>16:9 — hero banner</option>
-                  <option>1:1 — square</option>
-                  <option>4:5 — social portrait</option>
-                  <option>9:16 — story</option>
-                </select>
+              <div class="col-md-4">
+                <label class="form-label" for="dtMonth">Billing month</label>
+                <input type="month" class="form-control" id="dtMonth" value="2026-10">
               </div>
-
-              <div class="mb-3">
-                <label class="form-label" for="ig-count">Images</label>
-                <select class="form-select" id="ig-count">
-                  <option>1</option>
-                  <option selected>4</option>
-                  <option>8</option>
-                </select>
+              <div class="col-md-4">
+                <label class="form-label" for="dtWeek">Reporting week</label>
+                <input type="week" class="form-control" id="dtWeek" value="2026-W40">
               </div>
-
-              <div class="mb-3">
-                <label class="form-label" for="ig-negative">Negative prompt <span class="text-muted-2 fw-400">(optional)</span></label>
-                <input type="text" class="form-control" id="ig-negative" placeholder="text, watermark, faces">
+              <div class="col-md-4">
+                <label class="form-label" for="dtRange">Deadline with limits</label>
+                <input type="date" class="form-control" id="dtRange" value="2026-10-12" min="2026-10-03" max="2026-12-31" aria-describedby="dtRangeHelp">
+                <div class="form-text" id="dtRangeHelp">Between Oct 3 and Dec 31, 2026.</div>
               </div>
-
-              <button class="btn btn-gradient w-100" data-demo-action="Image generation queued — demo interaction only.">
-                <i class="bi bi-magic"></i> Generate images
-              </button>
-              <p class="fs-8 text-muted-2 text-center mt-2 mb-0">4 images · 0.4 credits · about 8 seconds</p>
             </div>
           </div>
         </div>
+        <div class="demo-block__pane" data-demo-pane="html">
+          <div class="demo-code-wrap">
+            <button class="copy-btn" data-copy-target="#codeDtNative" type="button"><i class="bi bi-clipboard"></i> Copy HTML</button>
+            <pre class="demo-code"><code id="codeDtNative" data-auto-code="#dtNative"></code></pre>
+          </div>
+        </div>
+      </div>
 
-        <div class="col-xl-8">
-          <div class="card mb-3">
-            <div class="card-header">
-              <div>
-                <h2 class="card-title">Results</h2>
-                <p class="card-subtitle">4 images · Orbit Vision · 16:9</p>
-              </div>
-              <div class="btn-group btn-group-sm" role="group" aria-label="Gallery view">
-                <button class="btn btn-white active" aria-label="Grid view" data-demo-action="Grid view selected — demo only."><i class="bi bi-grid"></i></button>
-                <button class="btn btn-white" aria-label="List view" data-demo-action="List view selected — demo only."><i class="bi bi-list-ul"></i></button>
-              </div>
+      <div class="demo-block" data-demo>
+        <div class="demo-block__head">
+          <div>
+            <h2 class="demo-block__title">Date range with quick presets</h2>
+            <p class="demo-block__desc">Two inputs in one group, with the ranges people actually pick as buttons above them.</p>
+          </div>
+        </div>
+        <div class="demo-block__tabs">
+          <button class="demo-tab is-active" data-demo-tab="preview" aria-selected="true">Preview</button>
+          <button class="demo-tab" data-demo-tab="html" aria-selected="false">HTML</button>
+        </div>
+        <div class="demo-block__pane is-active" data-demo-pane="preview">
+          <div class="demo-preview" id="dtRangePresets">
+            <div class="d-flex flex-wrap gap-2 mb-3">
+              <button class="btn btn-sm btn-white" type="button">Today</button>
+              <button class="btn btn-sm btn-white" type="button">Last 7 days</button>
+              <button class="btn btn-sm btn-soft-primary active" type="button">This month</button>
+              <button class="btn btn-sm btn-white" type="button">Q3 2026</button>
+              <button class="btn btn-sm btn-white" type="button">Year to date</button>
             </div>
-            <div class="card-body">
-              <div class="row g-3">
-                <div class="col-sm-6">
-                  <figure class="mb-0">
-                    <img src="../assets/images/placeholder/product-1.svg" alt="Generated gradient placeholder in indigo tones" class="img-fluid rounded-q w-100">
-                    <figcaption class="d-flex align-items-center justify-content-between mt-2">
-                      <span class="fs-8 text-muted-2">Variation 1 · 1344 × 768</span>
-                      <span class="d-flex gap-1">
-                        <button class="btn btn-icon btn-sm btn-ghost" aria-label="Download variation 1" data-demo-action="Download started — demo only."><i class="bi bi-download"></i></button>
-                        <button class="btn btn-icon btn-sm btn-ghost" aria-label="Use variation 1" data-demo-action="Image attached to draft — demo only."><i class="bi bi-check2"></i></button>
-                      </span>
-                    </figcaption>
-                  </figure>
+            <div class="row g-3">
+              <div class="col-md-5">
+                <label class="form-label" for="dtFrom">From</label>
+                <div class="input-group">
+                  <span class="input-group-text"><i class="bi bi-calendar3"></i></span>
+                  <input type="date" class="form-control" id="dtFrom" value="2026-10-01">
                 </div>
-                <div class="col-sm-6">
-                  <figure class="mb-0">
-                    <img src="../assets/images/placeholder/product-2.svg" alt="Generated gradient placeholder in teal tones" class="img-fluid rounded-q w-100">
-                    <figcaption class="d-flex align-items-center justify-content-between mt-2">
-                      <span class="fs-8 text-muted-2">Variation 2 · 1344 × 768</span>
-                      <span class="d-flex gap-1">
-                        <button class="btn btn-icon btn-sm btn-ghost" aria-label="Download variation 2" data-demo-action="Download started — demo only."><i class="bi bi-download"></i></button>
-                        <button class="btn btn-icon btn-sm btn-ghost" aria-label="Use variation 2" data-demo-action="Image attached to draft — demo only."><i class="bi bi-check2"></i></button>
-                      </span>
-                    </figcaption>
-                  </figure>
+              </div>
+              <div class="col-md-5">
+                <label class="form-label" for="dtTo">To</label>
+                <div class="input-group">
+                  <span class="input-group-text"><i class="bi bi-calendar3"></i></span>
+                  <input type="date" class="form-control" id="dtTo" value="2026-10-03">
                 </div>
-                <div class="col-sm-6">
-                  <figure class="mb-0">
-                    <img src="../assets/images/placeholder/product-3.svg" alt="Generated gradient placeholder in amber tones" class="img-fluid rounded-q w-100">
-                    <figcaption class="d-flex align-items-center justify-content-between mt-2">
-                      <span class="fs-8 text-muted-2">Variation 3 · 1344 × 768</span>
-                      <span class="d-flex gap-1">
-                        <button class="btn btn-icon btn-sm btn-ghost" aria-label="Download variation 3" data-demo-action="Download started — demo only."><i class="bi bi-download"></i></button>
-                        <button class="btn btn-icon btn-sm btn-ghost" aria-label="Use variation 3" data-demo-action="Image attached to draft — demo only."><i class="bi bi-check2"></i></button>
-                      </span>
-                    </figcaption>
-                  </figure>
-                </div>
-                <div class="col-sm-6">
-                  <figure class="mb-0">
-                    <img src="../assets/images/placeholder/product-4.svg" alt="Generated gradient placeholder in sky blue tones" class="img-fluid rounded-q w-100">
-                    <figcaption class="d-flex align-items-center justify-content-between mt-2">
-                      <span class="fs-8 text-muted-2">Variation 4 · 1344 × 768</span>
-                      <span class="d-flex gap-1">
-                        <button class="btn btn-icon btn-sm btn-ghost" aria-label="Download variation 4" data-demo-action="Download started — demo only."><i class="bi bi-download"></i></button>
-                        <button class="btn btn-icon btn-sm btn-ghost" aria-label="Use variation 4" data-demo-action="Image attached to draft — demo only."><i class="bi bi-check2"></i></button>
-                      </span>
-                    </figcaption>
-                  </figure>
-                </div>
+              </div>
+              <div class="col-md-2 d-flex align-items-end">
+                <button class="btn btn-primary w-100" type="button" data-demo-action="Report refreshed for Oct 1–3, 2026 — demo only.">Apply</button>
               </div>
             </div>
           </div>
-
-          <div class="row g-3">
-            <div class="col-md-6">
-              <div class="card h-100">
-                <div class="card-header">
-                  <h3 class="card-title mb-0">Credits</h3>
-                </div>
-                <div class="card-body">
-                  <div class="d-flex align-items-center justify-content-between mb-2">
-                    <span class="fs-7 text-muted-2">Image credits used</span>
-                    <span class="fw-600 text-heading">128 / 500</span>
-                  </div>
-                  <div class="progress progress-sm mb-3"><div class="progress-bar" style="width: 26%"></div></div>
-                  <p class="fs-8 text-muted-2 mb-3">Credits reset on Nov 1, 2026. Unused credits do not roll over.</p>
-                  <a href="../pages/pricing.html" class="btn btn-sm btn-soft-primary">Buy more credits</a>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-6">
-              <div class="card h-100">
-                <div class="card-header">
-                  <h3 class="card-title mb-0">Recent prompts</h3>
-                </div>
-                <ul class="list-group list-group-flush">
-                  <li class="list-group-item">
-                    <span class="d-block fs-7 fw-500 text-heading">Dashboard hero gradient</span>
-                    <span class="d-block fs-8 text-muted-2">4 images · 12 minutes ago</span>
-                  </li>
-                  <li class="list-group-item">
-                    <span class="d-block fs-7 fw-500 text-heading">Abstract data mesh illustration</span>
-                    <span class="d-block fs-8 text-muted-2">2 images · yesterday</span>
-                  </li>
-                  <li class="list-group-item">
-                    <span class="d-block fs-7 fw-500 text-heading">Empty state spot illustration</span>
-                    <span class="d-block fs-8 text-muted-2">1 image · Sep 30, 2026</span>
-                  </li>
-                </ul>
-              </div>
-            </div>
+        </div>
+        <div class="demo-block__pane" data-demo-pane="html">
+          <div class="demo-code-wrap">
+            <button class="copy-btn" data-copy-target="#codeDtRangePresets" type="button"><i class="bi bi-clipboard"></i> Copy HTML</button>
+            <pre class="demo-code"><code id="codeDtRangePresets" data-auto-code="#dtRangePresets"></code></pre>
           </div>
+        </div>
+      </div>
+
+      <div class="demo-block" data-demo>
+        <div class="demo-block__head">
+          <div>
+            <h2 class="demo-block__title">Scheduling a meeting</h2>
+            <p class="demo-block__desc">Date, time, duration and timezone in one row — the markup behind the calendar's "new event" dialog.</p>
+          </div>
+        </div>
+        <div class="demo-block__tabs">
+          <button class="demo-tab is-active" data-demo-tab="preview" aria-selected="true">Preview</button>
+          <button class="demo-tab" data-demo-tab="html" aria-selected="false">HTML</button>
+        </div>
+        <div class="demo-block__pane is-active" data-demo-pane="preview">
+          <div class="demo-preview" id="dtSchedule">
+            <form class="row g-3">
+              <div class="col-12">
+                <label class="form-label" for="schTitle">Meeting title</label>
+                <input type="text" class="form-control" id="schTitle" value="Q4 roadmap review">
+              </div>
+              <div class="col-md-4">
+                <label class="form-label" for="schDate">Date</label>
+                <input type="date" class="form-control" id="schDate" value="2026-10-06">
+              </div>
+              <div class="col-md-4">
+                <label class="form-label" for="schStart">Starts</label>
+                <input type="time" class="form-control" id="schStart" value="14:00">
+              </div>
+              <div class="col-md-4">
+                <label class="form-label" for="schDuration">Duration</label>
+                <select class="form-select" id="schDuration">
+                  <option>15 minutes</option>
+                  <option>30 minutes</option>
+                  <option selected>45 minutes</option>
+                  <option>1 hour</option>
+                </select>
+              </div>
+              <div class="col-md-6">
+                <label class="form-label" for="schTimezone">Timezone</label>
+                <select class="form-select" id="schTimezone">
+                  <option>(UTC +00:00) London</option>
+                  <option selected>(UTC +08:00) Singapore</option>
+                  <option>(UTC +01:00) Berlin</option>
+                  <option>(UTC +09:00) Tokyo</option>
+                </select>
+              </div>
+              <div class="col-md-6">
+                <label class="form-label" for="schRepeat">Repeat</label>
+                <select class="form-select" id="schRepeat">
+                  <option selected>Does not repeat</option>
+                  <option>Every weekday</option>
+                  <option>Weekly on Tuesday</option>
+                  <option>Monthly on the first Tuesday</option>
+                </select>
+              </div>
+              <div class="col-12 d-flex gap-2">
+                <button class="btn btn-primary" type="button" data-demo-action="Meeting scheduled for Oct 6, 2026 — demo only." data-demo-variant="success">Schedule meeting</button>
+                <button class="btn btn-white" type="reset">Clear</button>
+              </div>
+            </form>
+          </div>
+        </div>
+        <div class="demo-block__pane" data-demo-pane="html">
+          <div class="demo-code-wrap">
+            <button class="copy-btn" data-copy-target="#codeDtSchedule" type="button"><i class="bi bi-clipboard"></i> Copy HTML</button>
+            <pre class="demo-code"><code id="codeDtSchedule" data-auto-code="#dtSchedule"></code></pre>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <h2 class="card-title mb-0">Usage notes</h2>
+        </div>
+        <div class="card-body">
+          <ul class="fs-7 text-muted-2 mb-0 d-flex flex-column gap-2">
+            <li>Native inputs always submit <code>YYYY-MM-DD</code> and <code>HH:MM</code> values — store those formats and format for display in your own layer.</li>
+            <li>Use <code>min</code>/<code>max</code> to block impossible dates, but still validate on the server.</li>
+            <li>Show the timezone next to any time the user schedules, or store UTC and display the workspace timezone.</li>
+            <li>Add quick range buttons above a range picker — nine out of ten users pick a preset rather than a custom range.</li>
+            <li>Date inputs are never empty-styled: always set a sensible default so the field does not render blank in demos.</li>
+          </ul>
         </div>
       </div>
     </main>
@@ -902,8 +902,6 @@
     <script src="../assets/js/sidebar.js"></script>
     <script src="../assets/js/app.js"></script>
     <script src="../assets/js/components.js"></script>
-    <script src="../assets/js/chart.umd.js"></script>
-    <script src="../assets/js/pages/charts.js"></script>
 
 </body>
 </html>

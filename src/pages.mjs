@@ -18,6 +18,9 @@
 /* Charts are only loaded on pages that actually render a chart. */
 const CHART_SCRIPTS = ["assets/js/chart.umd.js", "assets/js/pages/charts.js"];
 
+/* The chat workspace script is only loaded on the two chat pages. */
+const CHAT_SCRIPTS = ["assets/js/pages/chat.js"];
+
 export const pages = [
   /* ---------------------------------------------------------------- Dashboard */
   {
@@ -128,6 +131,7 @@ export const pages = [
   },
   {
     out: "pages/chat.html",
+    scripts: CHAT_SCRIPTS,
     breadcrumb: ["Applications", "Chat"],
     meta: {
       title: "Team Chat | Qevora AI SaaS Admin & UI Kit",
@@ -231,6 +235,7 @@ export const pages = [
   },
   {
     out: "ai/chat.html",
+    scripts: CHAT_SCRIPTS,
     breadcrumb: ["AI Workspace", "AI Chat"],
     meta: {
       title: "AI Chat | Qevora AI SaaS Admin & UI Kit",

@@ -1,0 +1,128 @@
+      <div class="q-page-head">
+        <div>
+          {{BREADCRUMB}}
+          <h1 class="q-page-head__title mt-2">Toasts</h1>
+          <p class="q-page-head__subtitle">
+            Lightweight feedback that appears in the bottom-right corner and dismisses itself. Every demo button on this
+            page is wired to the template's own <code>Qevora.toast()</code> helper.
+          </p>
+        </div>
+        <div class="d-flex flex-wrap gap-2">
+          <a class="btn btn-white" href="../documentation/index.html"><i class="bi bi-book"></i> Docs</a>
+        </div>
+      </div>
+
+      <div class="demo-block" data-demo>
+        <div class="demo-block__head">
+          <div>
+            <h2 class="demo-block__title">Live toasts</h2>
+            <p class="demo-block__desc">Click a button — the toast is created at runtime, exactly like the template does after a save action.</p>
+          </div>
+        </div>
+        <div class="demo-block__tabs">
+          <button class="demo-tab is-active" data-demo-tab="preview" aria-selected="true">Preview</button>
+          <button class="demo-tab" data-demo-tab="html" aria-selected="false">HTML</button>
+        </div>
+        <div class="demo-block__pane is-active" data-demo-pane="preview">
+          <div class="demo-preview" id="toastLive">
+            <button class="btn btn-primary" type="button" data-demo-action="Primary toast fired from the demo button.">Primary toast</button>
+            <button class="btn btn-soft-success" type="button" data-demo-action="Invoice INV-2026-0186 marked as paid." data-demo-variant="success">Success toast</button>
+            <button class="btn btn-soft-warning" type="button" data-demo-action="Seat limit reached — upgrade to add more members." data-demo-variant="warning">Warning toast</button>
+            <button class="btn btn-soft-danger" type="button" data-demo-action="Payment PAY-90412 failed to capture." data-demo-variant="danger">Danger toast</button>
+            <button class="btn btn-soft-info" type="button" data-demo-action="Export is being prepared in the background." data-demo-variant="info">Info toast</button>
+          </div>
+        </div>
+        <div class="demo-block__pane" data-demo-pane="html">
+          <div class="demo-code-wrap">
+            <button class="copy-btn" data-copy-target="#codeToastLive" type="button"><i class="bi bi-clipboard"></i> Copy HTML</button>
+            <pre class="demo-code"><code id="codeToastLive" data-auto-code="#toastLive"></code></pre>
+          </div>
+        </div>
+      </div>
+
+      <div class="demo-block" data-demo>
+        <div class="demo-block__head">
+          <div>
+            <h2 class="demo-block__title">Static toast markup</h2>
+            <p class="demo-block__desc">Server-rendered or template-owned toasts use plain Bootstrap markup with <code>.toast</code> inside <code>.q-toast-host</code>.</p>
+          </div>
+        </div>
+        <div class="demo-block__tabs">
+          <button class="demo-tab is-active" data-demo-tab="preview" aria-selected="true">Preview</button>
+          <button class="demo-tab" data-demo-tab="html" aria-selected="false">HTML</button>
+        </div>
+        <div class="demo-block__pane is-active" data-demo-pane="preview">
+          <div class="demo-preview demo-preview--plain" id="toastStatic">
+            <div class="d-flex flex-column gap-3" style="max-width: 360px;">
+              <div class="toast show w-100" role="alert" aria-live="assertive" aria-atomic="true">
+                <div class="toast-header">
+                  <span class="avatar avatar-xs bg-avatar-1 me-2"><i class="bi bi-stars"></i></span>
+                  <strong class="me-auto">Qevora AI</strong>
+                  <small class="text-muted-2">just now</small>
+                  <button type="button" class="btn-close ms-2" data-bs-dismiss="toast" aria-label="Close notification"></button>
+                </div>
+                <div class="toast-body fs-7">
+                  Your content draft is ready — 1,240 words generated with Nova-4 Turbo.
+                </div>
+              </div>
+
+              <div class="toast show align-items-center text-bg-success border-0 w-100" role="alert" aria-live="polite" aria-atomic="true">
+                <div class="d-flex">
+                  <div class="toast-body d-flex align-items-center gap-2">
+                    <i class="bi bi-check-circle"></i>
+                    <span>Payment PAY-90411 captured successfully.</span>
+                  </div>
+                  <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close notification"></button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="demo-block__pane" data-demo-pane="html">
+          <div class="demo-code-wrap">
+            <button class="copy-btn" data-copy-target="#codeToastStatic" type="button"><i class="bi bi-clipboard"></i> Copy HTML</button>
+            <pre class="demo-code"><code id="codeToastStatic" data-auto-code="#toastStatic"></code></pre>
+          </div>
+        </div>
+      </div>
+
+      <div class="demo-block" data-demo>
+        <div class="demo-block__head">
+          <div>
+            <h2 class="demo-block__title">Calling it from JavaScript</h2>
+            <p class="demo-block__desc">Two lines anywhere in your own script — the host element is created on first call if it does not exist.</p>
+          </div>
+        </div>
+        <div class="demo-block__tabs">
+          <button class="demo-tab is-active" data-demo-tab="preview" aria-selected="true">Preview</button>
+          <button class="demo-tab" data-demo-tab="html" aria-selected="false">HTML</button>
+        </div>
+        <div class="demo-block__pane is-active" data-demo-pane="preview">
+          <div class="demo-preview demo-preview--plain" id="toastApi">
+            <button class="btn btn-gradient" type="button" data-demo-action="Reports are being generated — demo only." data-demo-variant="primary">
+              <i class="bi bi-play-circle"></i> Run demo action
+            </button>
+          </div>
+        </div>
+        <div class="demo-block__pane" data-demo-pane="html">
+          <div class="demo-code-wrap">
+            <button class="copy-btn" data-copy-target="#codeToastApi" type="button"><i class="bi bi-clipboard"></i> Copy HTML</button>
+            <pre class="demo-code"><code id="codeToastApi" data-auto-code="#toastApi"></code></pre>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <h2 class="card-title mb-0">Usage notes</h2>
+        </div>
+        <div class="card-body">
+          <ul class="fs-7 text-muted-2 mb-0 d-flex flex-column gap-2">
+            <li>Programmatic toasts: <code>Qevora.toast("Saved", "success", "Customers")</code> — title is optional.</li>
+            <li>Variants map to Bootstrap colours: <code>primary</code>, <code>success</code>, <code>warning</code>, <code>danger</code>, <code>info</code>.</li>
+            <li>Toasts auto-dismiss after 3.2 seconds and stack upwards from the bottom-right corner.</li>
+            <li>Use a toast for confirmation of an action the user just took — never for validation errors, which belong next to the field.</li>
+            <li>Keep the message under 90 characters; put the record name first so it is readable at a glance.</li>
+          </ul>
+        </div>
+      </div>

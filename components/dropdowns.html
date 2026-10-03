@@ -4,15 +4,15 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#4f46e5">
-  <title>AI Image Generator | Qevora AI SaaS Admin & UI Kit</title>
-  <meta name="description" content="AI image generation UI with prompt, style presets, aspect ratio and generated gallery.">
+  <title>Dropdowns | Qevora AI SaaS UI Kit</title>
+  <meta name="description" content="Dropdown menus, split buttons, notification panels and user menus.">
   <meta name="author" content="Qevora Software">
   <meta name="robots" content="index, follow">
 
   <!-- Open Graph / social preview -->
   <meta property="og:type" content="website">
-  <meta property="og:title" content="AI Image Generator | Qevora AI SaaS Admin & UI Kit">
-  <meta property="og:description" content="AI image generation UI with prompt, style presets, aspect ratio and generated gallery.">
+  <meta property="og:title" content="Dropdowns | Qevora AI SaaS UI Kit">
+  <meta property="og:description" content="Dropdown menus, split buttons, notification panels and user menus.">
   <meta property="og:site_name" content="Qevora AI SaaS">
 
   <link rel="icon" type="image/svg+xml" href="../assets/images/favicon.svg">
@@ -679,201 +679,208 @@
         <div>
                   <nav aria-label="Breadcrumb">
           <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="../index.html">AI Workspace</a></li>
-          <li class="breadcrumb-item active" aria-current="page">Image Generator</li>
+          <li class="breadcrumb-item"><a href="../index.html">UI Kit</a></li>
+          <li class="breadcrumb-item"><a href="#">Interaction</a></li>
+          <li class="breadcrumb-item active" aria-current="page">Dropdowns</li>
           </ol>
         </nav>
-          <h1 class="q-page-head__title mt-2">Image generator</h1>
-          <p class="q-page-head__subtitle">Create on-brand visuals from a prompt. Gallery items are CSS placeholders, not stock photography.</p>
+          <h1 class="q-page-head__title mt-2">Dropdowns</h1>
+          <p class="q-page-head__subtitle">
+            Menu surfaces for row actions, toolbars and the header. All dropdowns are plain Bootstrap 5 markup — Qevora
+            only adds the surface, radius and shadow tokens.
+          </p>
         </div>
         <div class="d-flex flex-wrap gap-2">
-          <button class="btn btn-white" data-demo-action="Prompt library opened — demo only."><i class="bi bi-collection"></i> Prompt library</button>
-          <a class="btn btn-primary" href="history.html"><i class="bi bi-clock-history"></i> History</a>
+          <a class="btn btn-white" href="../documentation/index.html"><i class="bi bi-book"></i> Docs</a>
         </div>
       </div>
 
-      <div class="row g-3">
-        <div class="col-xl-4">
-          <div class="card">
-            <div class="card-header">
-              <div>
-                <h2 class="card-title">Create</h2>
-                <p class="card-subtitle">Describe the image you need</p>
-              </div>
-            </div>
-            <div class="card-body">
-              <div class="mb-3">
-                <label class="form-label" for="ig-prompt">Prompt</label>
-                <textarea class="form-control" id="ig-prompt" rows="4">Minimal abstract gradient background in indigo and cyan for a SaaS dashboard hero section, soft light, no text.</textarea>
-              </div>
-
-              <div class="mb-3">
-                <label class="form-label">Style preset</label>
-                <div class="row g-2">
-                  <div class="col-6">
-                    <button class="component-tile w-100 text-start is-active" type="button" data-demo-action="Style set to Gradient — demo only.">
-                      <span class="component-tile__icon"><i class="bi bi-brightness-high"></i></span>
-                      <span class="component-tile__title">Gradient</span>
-                    </button>
-                  </div>
-                  <div class="col-6">
-                    <button class="component-tile w-100 text-start" type="button" data-demo-action="Style set to 3D render — demo only.">
-                      <span class="component-tile__icon"><i class="bi bi-box"></i></span>
-                      <span class="component-tile__title">3D render</span>
-                    </button>
-                  </div>
-                  <div class="col-6">
-                    <button class="component-tile w-100 text-start" type="button" data-demo-action="Style set to Line art — demo only.">
-                      <span class="component-tile__icon"><i class="bi bi-pencil"></i></span>
-                      <span class="component-tile__title">Line art</span>
-                    </button>
-                  </div>
-                  <div class="col-6">
-                    <button class="component-tile w-100 text-start" type="button" data-demo-action="Style set to Photo — demo only.">
-                      <span class="component-tile__icon"><i class="bi bi-camera"></i></span>
-                      <span class="component-tile__title">Photo</span>
-                    </button>
-                  </div>
-                </div>
-              </div>
-
-              <div class="mb-3">
-                <label class="form-label" for="ig-ratio">Aspect ratio</label>
-                <select class="form-select" id="ig-ratio">
-                  <option selected>16:9 — hero banner</option>
-                  <option>1:1 — square</option>
-                  <option>4:5 — social portrait</option>
-                  <option>9:16 — story</option>
-                </select>
-              </div>
-
-              <div class="mb-3">
-                <label class="form-label" for="ig-count">Images</label>
-                <select class="form-select" id="ig-count">
-                  <option>1</option>
-                  <option selected>4</option>
-                  <option>8</option>
-                </select>
-              </div>
-
-              <div class="mb-3">
-                <label class="form-label" for="ig-negative">Negative prompt <span class="text-muted-2 fw-400">(optional)</span></label>
-                <input type="text" class="form-control" id="ig-negative" placeholder="text, watermark, faces">
-              </div>
-
-              <button class="btn btn-gradient w-100" data-demo-action="Image generation queued — demo interaction only.">
-                <i class="bi bi-magic"></i> Generate images
+      <div class="demo-block" data-demo>
+        <div class="demo-block__head">
+          <div>
+            <h2 class="demo-block__title">Basic dropdown</h2>
+            <p class="demo-block__desc">Trigger, menu, items, dividers and disabled states. Use one menu per action group.</p>
+          </div>
+        </div>
+        <div class="demo-block__tabs">
+          <button class="demo-tab is-active" data-demo-tab="preview" aria-selected="true">Preview</button>
+          <button class="demo-tab" data-demo-tab="html" aria-selected="false">HTML</button>
+        </div>
+        <div class="demo-block__pane is-active" data-demo-pane="preview">
+          <div class="demo-preview" id="ddBasic">
+            <div class="dropdown">
+              <button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Actions
               </button>
-              <p class="fs-8 text-muted-2 text-center mt-2 mb-0">4 images · 0.4 credits · about 8 seconds</p>
+              <ul class="dropdown-menu">
+                <li><h6 class="dropdown-header">Invoice</h6></li>
+                <li><a class="dropdown-item" href="#"><i class="bi bi-eye"></i> View invoice</a></li>
+                <li><a class="dropdown-item" href="#"><i class="bi bi-pencil"></i> Edit details</a></li>
+                <li><a class="dropdown-item" href="#"><i class="bi bi-send"></i> Send reminder</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item text-danger" href="#"><i class="bi bi-trash3"></i> Delete invoice</a></li>
+                <li><a class="dropdown-item disabled" href="#" aria-disabled="true"><i class="bi bi-lock"></i> Approved — locked</a></li>
+              </ul>
+            </div>
+
+            <div class="dropdown">
+              <button class="btn btn-soft-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <i class="bi bi-funnel"></i> Filter
+              </button>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item active" href="#">All customers</a></li>
+                <li><a class="dropdown-item" href="#">Northstar Labs</a></li>
+                <li><a class="dropdown-item" href="#">Vertex Labs</a></li>
+                <li><a class="dropdown-item" href="#">Acme Inc.</a></li>
+              </ul>
+            </div>
+
+            <div class="btn-group">
+              <button class="btn btn-white" type="button">Export</button>
+              <button class="btn btn-white dropdown-toggle dropdown-toggle-split" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <span class="visually-hidden">Export options</span>
+              </button>
+              <ul class="dropdown-menu dropdown-menu-end">
+                <li><a class="dropdown-item" href="#"><i class="bi bi-filetype-csv"></i> CSV</a></li>
+                <li><a class="dropdown-item" href="#"><i class="bi bi-filetype-xlsx"></i> Excel</a></li>
+                <li><a class="dropdown-item" href="#"><i class="bi bi-filetype-pdf"></i> PDF</a></li>
+              </ul>
             </div>
           </div>
         </div>
+        <div class="demo-block__pane" data-demo-pane="html">
+          <div class="demo-code-wrap">
+            <button class="copy-btn" data-copy-target="#codeDdBasic" type="button"><i class="bi bi-clipboard"></i> Copy HTML</button>
+            <pre class="demo-code"><code id="codeDdBasic" data-auto-code="#ddBasic"></code></pre>
+          </div>
+        </div>
+      </div>
 
-        <div class="col-xl-8">
-          <div class="card mb-3">
-            <div class="card-header">
-              <div>
-                <h2 class="card-title">Results</h2>
-                <p class="card-subtitle">4 images · Orbit Vision · 16:9</p>
-              </div>
-              <div class="btn-group btn-group-sm" role="group" aria-label="Gallery view">
-                <button class="btn btn-white active" aria-label="Grid view" data-demo-action="Grid view selected — demo only."><i class="bi bi-grid"></i></button>
-                <button class="btn btn-white" aria-label="List view" data-demo-action="List view selected — demo only."><i class="bi bi-list-ul"></i></button>
-              </div>
+      <div class="demo-block" data-demo>
+        <div class="demo-block__head">
+          <div>
+            <h2 class="demo-block__title">Placement &amp; alignment</h2>
+            <p class="demo-block__desc">Drop directions and menu alignment — useful in table footers and page headers.</p>
+          </div>
+        </div>
+        <div class="demo-block__tabs">
+          <button class="demo-tab is-active" data-demo-tab="preview" aria-selected="true">Preview</button>
+          <button class="demo-tab" data-demo-tab="html" aria-selected="false">HTML</button>
+        </div>
+        <div class="demo-block__pane is-active" data-demo-pane="preview">
+          <div class="demo-preview" id="ddPlacement">
+            <div class="dropdown">
+              <button class="btn btn-white dropdown-toggle" type="button" data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false">Drop down</button>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="#">Duplicate</a></li>
+                <li><a class="dropdown-item" href="#">Archive</a></li>
+              </ul>
             </div>
-            <div class="card-body">
-              <div class="row g-3">
-                <div class="col-sm-6">
-                  <figure class="mb-0">
-                    <img src="../assets/images/placeholder/product-1.svg" alt="Generated gradient placeholder in indigo tones" class="img-fluid rounded-q w-100">
-                    <figcaption class="d-flex align-items-center justify-content-between mt-2">
-                      <span class="fs-8 text-muted-2">Variation 1 · 1344 × 768</span>
-                      <span class="d-flex gap-1">
-                        <button class="btn btn-icon btn-sm btn-ghost" aria-label="Download variation 1" data-demo-action="Download started — demo only."><i class="bi bi-download"></i></button>
-                        <button class="btn btn-icon btn-sm btn-ghost" aria-label="Use variation 1" data-demo-action="Image attached to draft — demo only."><i class="bi bi-check2"></i></button>
-                      </span>
-                    </figcaption>
-                  </figure>
+
+            <div class="dropup">
+              <button class="btn btn-white dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">Drop up</button>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="#">Move to top</a></li>
+                <li><a class="dropdown-item" href="#">Mark as priority</a></li>
+              </ul>
+            </div>
+
+            <div class="dropend">
+              <button class="btn btn-white dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">Drop end</button>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="#">Open in new tab</a></li>
+                <li><a class="dropdown-item" href="#">Copy link</a></li>
+              </ul>
+            </div>
+
+            <div class="dropdown">
+              <button class="btn btn-white dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">End aligned</button>
+              <ul class="dropdown-menu dropdown-menu-end">
+                <li><a class="dropdown-item" href="#">Rename</a></li>
+                <li><a class="dropdown-item" href="#">Move</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="demo-block__pane" data-demo-pane="html">
+          <div class="demo-code-wrap">
+            <button class="copy-btn" data-copy-target="#codeDdPlacement" type="button"><i class="bi bi-clipboard"></i> Copy HTML</button>
+            <pre class="demo-code"><code id="codeDdPlacement" data-auto-code="#ddPlacement"></code></pre>
+          </div>
+        </div>
+      </div>
+
+      <div class="demo-block" data-demo>
+        <div class="demo-block__head">
+          <div>
+            <h2 class="demo-block__title">Notification menu</h2>
+            <p class="demo-block__desc">The same dropdown used by the header bell icon, with its own <code>.dropdown-notify</code> surface.</p>
+          </div>
+        </div>
+        <div class="demo-block__tabs">
+          <button class="demo-tab is-active" data-demo-tab="preview" aria-selected="true">Preview</button>
+          <button class="demo-tab" data-demo-tab="html" aria-selected="false">HTML</button>
+        </div>
+        <div class="demo-block__pane is-active" data-demo-pane="preview">
+          <div class="demo-preview" id="ddNotify">
+            <div class="dropdown">
+              <button class="btn btn-icon btn-white position-relative" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Open notifications">
+                <i class="bi bi-bell"></i>
+                <span class="badge badge-dot bg-danger position-absolute top-0 end-0 mt-1 me-1"></span>
+              </button>
+              <div class="dropdown-menu dropdown-menu-end dropdown-notify">
+                <div class="dropdown-notify__head">
+                  <span class="fw-600 text-heading">Notifications</span>
+                  <span class="badge badge-soft-primary">3 new</span>
                 </div>
-                <div class="col-sm-6">
-                  <figure class="mb-0">
-                    <img src="../assets/images/placeholder/product-2.svg" alt="Generated gradient placeholder in teal tones" class="img-fluid rounded-q w-100">
-                    <figcaption class="d-flex align-items-center justify-content-between mt-2">
-                      <span class="fs-8 text-muted-2">Variation 2 · 1344 × 768</span>
-                      <span class="d-flex gap-1">
-                        <button class="btn btn-icon btn-sm btn-ghost" aria-label="Download variation 2" data-demo-action="Download started — demo only."><i class="bi bi-download"></i></button>
-                        <button class="btn btn-icon btn-sm btn-ghost" aria-label="Use variation 2" data-demo-action="Image attached to draft — demo only."><i class="bi bi-check2"></i></button>
-                      </span>
-                    </figcaption>
-                  </figure>
+                <div class="dropdown-notify__list">
+                  <a class="dropdown-notify__item" href="#">
+                    <span class="avatar avatar-sm bg-avatar-1"><i class="bi bi-receipt"></i></span>
+                    <span class="flex-grow-1 min-w-0">
+                      <span class="dropdown-notify__title d-block">Invoice INV-2026-0186 was paid</span>
+                      <span class="dropdown-notify__meta">Payments · 12 minutes ago</span>
+                    </span>
+                  </a>
+                  <a class="dropdown-notify__item" href="#">
+                    <span class="avatar avatar-sm bg-avatar-3"><i class="bi bi-people"></i></span>
+                    <span class="flex-grow-1 min-w-0">
+                      <span class="dropdown-notify__title d-block">Marcus Chen joined the Growth workspace</span>
+                      <span class="dropdown-notify__meta">Team · 1 hour ago</span>
+                    </span>
+                  </a>
+                  <a class="dropdown-notify__item" href="#">
+                    <span class="avatar avatar-sm bg-avatar-6"><i class="bi bi-stars"></i></span>
+                    <span class="flex-grow-1 min-w-0">
+                      <span class="dropdown-notify__title d-block">Nova-4 Turbo quota reached 68%</span>
+                      <span class="dropdown-notify__meta">AI usage · 3 hours ago</span>
+                    </span>
+                  </a>
                 </div>
-                <div class="col-sm-6">
-                  <figure class="mb-0">
-                    <img src="../assets/images/placeholder/product-3.svg" alt="Generated gradient placeholder in amber tones" class="img-fluid rounded-q w-100">
-                    <figcaption class="d-flex align-items-center justify-content-between mt-2">
-                      <span class="fs-8 text-muted-2">Variation 3 · 1344 × 768</span>
-                      <span class="d-flex gap-1">
-                        <button class="btn btn-icon btn-sm btn-ghost" aria-label="Download variation 3" data-demo-action="Download started — demo only."><i class="bi bi-download"></i></button>
-                        <button class="btn btn-icon btn-sm btn-ghost" aria-label="Use variation 3" data-demo-action="Image attached to draft — demo only."><i class="bi bi-check2"></i></button>
-                      </span>
-                    </figcaption>
-                  </figure>
-                </div>
-                <div class="col-sm-6">
-                  <figure class="mb-0">
-                    <img src="../assets/images/placeholder/product-4.svg" alt="Generated gradient placeholder in sky blue tones" class="img-fluid rounded-q w-100">
-                    <figcaption class="d-flex align-items-center justify-content-between mt-2">
-                      <span class="fs-8 text-muted-2">Variation 4 · 1344 × 768</span>
-                      <span class="d-flex gap-1">
-                        <button class="btn btn-icon btn-sm btn-ghost" aria-label="Download variation 4" data-demo-action="Download started — demo only."><i class="bi bi-download"></i></button>
-                        <button class="btn btn-icon btn-sm btn-ghost" aria-label="Use variation 4" data-demo-action="Image attached to draft — demo only."><i class="bi bi-check2"></i></button>
-                      </span>
-                    </figcaption>
-                  </figure>
-                </div>
+                <div class="dropdown-notify__foot"><a href="#">View all notifications</a></div>
               </div>
             </div>
           </div>
-
-          <div class="row g-3">
-            <div class="col-md-6">
-              <div class="card h-100">
-                <div class="card-header">
-                  <h3 class="card-title mb-0">Credits</h3>
-                </div>
-                <div class="card-body">
-                  <div class="d-flex align-items-center justify-content-between mb-2">
-                    <span class="fs-7 text-muted-2">Image credits used</span>
-                    <span class="fw-600 text-heading">128 / 500</span>
-                  </div>
-                  <div class="progress progress-sm mb-3"><div class="progress-bar" style="width: 26%"></div></div>
-                  <p class="fs-8 text-muted-2 mb-3">Credits reset on Nov 1, 2026. Unused credits do not roll over.</p>
-                  <a href="../pages/pricing.html" class="btn btn-sm btn-soft-primary">Buy more credits</a>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-6">
-              <div class="card h-100">
-                <div class="card-header">
-                  <h3 class="card-title mb-0">Recent prompts</h3>
-                </div>
-                <ul class="list-group list-group-flush">
-                  <li class="list-group-item">
-                    <span class="d-block fs-7 fw-500 text-heading">Dashboard hero gradient</span>
-                    <span class="d-block fs-8 text-muted-2">4 images · 12 minutes ago</span>
-                  </li>
-                  <li class="list-group-item">
-                    <span class="d-block fs-7 fw-500 text-heading">Abstract data mesh illustration</span>
-                    <span class="d-block fs-8 text-muted-2">2 images · yesterday</span>
-                  </li>
-                  <li class="list-group-item">
-                    <span class="d-block fs-7 fw-500 text-heading">Empty state spot illustration</span>
-                    <span class="d-block fs-8 text-muted-2">1 image · Sep 30, 2026</span>
-                  </li>
-                </ul>
-              </div>
-            </div>
+        </div>
+        <div class="demo-block__pane" data-demo-pane="html">
+          <div class="demo-code-wrap">
+            <button class="copy-btn" data-copy-target="#codeDdNotify" type="button"><i class="bi bi-clipboard"></i> Copy HTML</button>
+            <pre class="demo-code"><code id="codeDdNotify" data-auto-code="#ddNotify"></code></pre>
           </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <h2 class="card-title mb-0">Usage notes</h2>
+        </div>
+        <div class="card-body">
+          <ul class="fs-7 text-muted-2 mb-0 d-flex flex-column gap-2">
+            <li>Every dropdown needs <code>data-bs-toggle="dropdown"</code> on the trigger and <code>.dropdown-menu</code> as the next sibling.</li>
+            <li>Add <code>.dropdown-menu-end</code> for right-aligned menus — required in table action columns so the menu stays on screen.</li>
+            <li>Put row actions in a <code>.btn-icon</code> trigger with an <code>aria-label</code>; text triggers are for page-level actions only.</li>
+            <li>Icons inside items are decorative — the item label always carries the meaning.</li>
+            <li>Dropdowns close on <code>Esc</code> out of the box; keep destructive actions in the last group, after a divider.</li>
+          </ul>
         </div>
       </div>
     </main>
@@ -902,8 +909,6 @@
     <script src="../assets/js/sidebar.js"></script>
     <script src="../assets/js/app.js"></script>
     <script src="../assets/js/components.js"></script>
-    <script src="../assets/js/chart.umd.js"></script>
-    <script src="../assets/js/pages/charts.js"></script>
 
 </body>
 </html>

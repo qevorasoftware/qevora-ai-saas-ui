@@ -1,0 +1,195 @@
+      <div class="q-page-head">
+        <div>
+          {{BREADCRUMB}}
+          <h1 class="q-page-head__title mt-2">Date &amp; time</h1>
+          <p class="q-page-head__subtitle">
+            Native date, time and month inputs plus date-range and scheduling patterns. Qevora intentionally ships no
+            date-picker plugin — the browser's own picker is faster, smaller and accessible.
+          </p>
+        </div>
+        <div class="d-flex flex-wrap gap-2">
+          <a class="btn btn-white" href="../documentation/index.html"><i class="bi bi-book"></i> Docs</a>
+        </div>
+      </div>
+
+      <div class="demo-block" data-demo>
+        <div class="demo-block__head">
+          <div>
+            <h2 class="demo-block__title">Native pickers</h2>
+            <p class="demo-block__desc">Date, time, month, week and datetime-local — all styled to match the rest of the form system.</p>
+          </div>
+        </div>
+        <div class="demo-block__tabs">
+          <button class="demo-tab is-active" data-demo-tab="preview" aria-selected="true">Preview</button>
+          <button class="demo-tab" data-demo-tab="html" aria-selected="false">HTML</button>
+        </div>
+        <div class="demo-block__pane is-active" data-demo-pane="preview">
+          <div class="demo-preview" id="dtNative">
+            <div class="row g-3">
+              <div class="col-md-4">
+                <label class="form-label" for="dtDate">Date</label>
+                <input type="date" class="form-control" id="dtDate" value="2026-10-03">
+              </div>
+              <div class="col-md-4">
+                <label class="form-label" for="dtTime">Time</label>
+                <input type="time" class="form-control" id="dtTime" value="09:30">
+              </div>
+              <div class="col-md-4">
+                <label class="form-label" for="dtDateTime">Date &amp; time</label>
+                <input type="datetime-local" class="form-control" id="dtDateTime" value="2026-10-03T09:30">
+              </div>
+              <div class="col-md-4">
+                <label class="form-label" for="dtMonth">Billing month</label>
+                <input type="month" class="form-control" id="dtMonth" value="2026-10">
+              </div>
+              <div class="col-md-4">
+                <label class="form-label" for="dtWeek">Reporting week</label>
+                <input type="week" class="form-control" id="dtWeek" value="2026-W40">
+              </div>
+              <div class="col-md-4">
+                <label class="form-label" for="dtRange">Deadline with limits</label>
+                <input type="date" class="form-control" id="dtRange" value="2026-10-12" min="2026-10-03" max="2026-12-31" aria-describedby="dtRangeHelp">
+                <div class="form-text" id="dtRangeHelp">Between Oct 3 and Dec 31, 2026.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="demo-block__pane" data-demo-pane="html">
+          <div class="demo-code-wrap">
+            <button class="copy-btn" data-copy-target="#codeDtNative" type="button"><i class="bi bi-clipboard"></i> Copy HTML</button>
+            <pre class="demo-code"><code id="codeDtNative" data-auto-code="#dtNative"></code></pre>
+          </div>
+        </div>
+      </div>
+
+      <div class="demo-block" data-demo>
+        <div class="demo-block__head">
+          <div>
+            <h2 class="demo-block__title">Date range with quick presets</h2>
+            <p class="demo-block__desc">Two inputs in one group, with the ranges people actually pick as buttons above them.</p>
+          </div>
+        </div>
+        <div class="demo-block__tabs">
+          <button class="demo-tab is-active" data-demo-tab="preview" aria-selected="true">Preview</button>
+          <button class="demo-tab" data-demo-tab="html" aria-selected="false">HTML</button>
+        </div>
+        <div class="demo-block__pane is-active" data-demo-pane="preview">
+          <div class="demo-preview" id="dtRangePresets">
+            <div class="d-flex flex-wrap gap-2 mb-3">
+              <button class="btn btn-sm btn-white" type="button">Today</button>
+              <button class="btn btn-sm btn-white" type="button">Last 7 days</button>
+              <button class="btn btn-sm btn-soft-primary active" type="button">This month</button>
+              <button class="btn btn-sm btn-white" type="button">Q3 2026</button>
+              <button class="btn btn-sm btn-white" type="button">Year to date</button>
+            </div>
+            <div class="row g-3">
+              <div class="col-md-5">
+                <label class="form-label" for="dtFrom">From</label>
+                <div class="input-group">
+                  <span class="input-group-text"><i class="bi bi-calendar3"></i></span>
+                  <input type="date" class="form-control" id="dtFrom" value="2026-10-01">
+                </div>
+              </div>
+              <div class="col-md-5">
+                <label class="form-label" for="dtTo">To</label>
+                <div class="input-group">
+                  <span class="input-group-text"><i class="bi bi-calendar3"></i></span>
+                  <input type="date" class="form-control" id="dtTo" value="2026-10-03">
+                </div>
+              </div>
+              <div class="col-md-2 d-flex align-items-end">
+                <button class="btn btn-primary w-100" type="button" data-demo-action="Report refreshed for Oct 1–3, 2026 — demo only.">Apply</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="demo-block__pane" data-demo-pane="html">
+          <div class="demo-code-wrap">
+            <button class="copy-btn" data-copy-target="#codeDtRangePresets" type="button"><i class="bi bi-clipboard"></i> Copy HTML</button>
+            <pre class="demo-code"><code id="codeDtRangePresets" data-auto-code="#dtRangePresets"></code></pre>
+          </div>
+        </div>
+      </div>
+
+      <div class="demo-block" data-demo>
+        <div class="demo-block__head">
+          <div>
+            <h2 class="demo-block__title">Scheduling a meeting</h2>
+            <p class="demo-block__desc">Date, time, duration and timezone in one row — the markup behind the calendar's "new event" dialog.</p>
+          </div>
+        </div>
+        <div class="demo-block__tabs">
+          <button class="demo-tab is-active" data-demo-tab="preview" aria-selected="true">Preview</button>
+          <button class="demo-tab" data-demo-tab="html" aria-selected="false">HTML</button>
+        </div>
+        <div class="demo-block__pane is-active" data-demo-pane="preview">
+          <div class="demo-preview" id="dtSchedule">
+            <form class="row g-3">
+              <div class="col-12">
+                <label class="form-label" for="schTitle">Meeting title</label>
+                <input type="text" class="form-control" id="schTitle" value="Q4 roadmap review">
+              </div>
+              <div class="col-md-4">
+                <label class="form-label" for="schDate">Date</label>
+                <input type="date" class="form-control" id="schDate" value="2026-10-06">
+              </div>
+              <div class="col-md-4">
+                <label class="form-label" for="schStart">Starts</label>
+                <input type="time" class="form-control" id="schStart" value="14:00">
+              </div>
+              <div class="col-md-4">
+                <label class="form-label" for="schDuration">Duration</label>
+                <select class="form-select" id="schDuration">
+                  <option>15 minutes</option>
+                  <option>30 minutes</option>
+                  <option selected>45 minutes</option>
+                  <option>1 hour</option>
+                </select>
+              </div>
+              <div class="col-md-6">
+                <label class="form-label" for="schTimezone">Timezone</label>
+                <select class="form-select" id="schTimezone">
+                  <option>(UTC +00:00) London</option>
+                  <option selected>(UTC +08:00) Singapore</option>
+                  <option>(UTC +01:00) Berlin</option>
+                  <option>(UTC +09:00) Tokyo</option>
+                </select>
+              </div>
+              <div class="col-md-6">
+                <label class="form-label" for="schRepeat">Repeat</label>
+                <select class="form-select" id="schRepeat">
+                  <option selected>Does not repeat</option>
+                  <option>Every weekday</option>
+                  <option>Weekly on Tuesday</option>
+                  <option>Monthly on the first Tuesday</option>
+                </select>
+              </div>
+              <div class="col-12 d-flex gap-2">
+                <button class="btn btn-primary" type="button" data-demo-action="Meeting scheduled for Oct 6, 2026 — demo only." data-demo-variant="success">Schedule meeting</button>
+                <button class="btn btn-white" type="reset">Clear</button>
+              </div>
+            </form>
+          </div>
+        </div>
+        <div class="demo-block__pane" data-demo-pane="html">
+          <div class="demo-code-wrap">
+            <button class="copy-btn" data-copy-target="#codeDtSchedule" type="button"><i class="bi bi-clipboard"></i> Copy HTML</button>
+            <pre class="demo-code"><code id="codeDtSchedule" data-auto-code="#dtSchedule"></code></pre>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <h2 class="card-title mb-0">Usage notes</h2>
+        </div>
+        <div class="card-body">
+          <ul class="fs-7 text-muted-2 mb-0 d-flex flex-column gap-2">
+            <li>Native inputs always submit <code>YYYY-MM-DD</code> and <code>HH:MM</code> values — store those formats and format for display in your own layer.</li>
+            <li>Use <code>min</code>/<code>max</code> to block impossible dates, but still validate on the server.</li>
+            <li>Show the timezone next to any time the user schedules, or store UTC and display the workspace timezone.</li>
+            <li>Add quick range buttons above a range picker — nine out of ten users pick a preset rather than a custom range.</li>
+            <li>Date inputs are never empty-styled: always set a sensible default so the field does not render blank in demos.</li>
+          </ul>
+        </div>
+      </div>

@@ -4,15 +4,15 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#4f46e5">
-  <title>AI Image Generator | Qevora AI SaaS Admin & UI Kit</title>
-  <meta name="description" content="AI image generation UI with prompt, style presets, aspect ratio and generated gallery.">
+  <title>Progress | Qevora AI SaaS UI Kit</title>
+  <meta name="description" content="Progress bars, stacked progress, circular rings, skeletons and counters.">
   <meta name="author" content="Qevora Software">
   <meta name="robots" content="index, follow">
 
   <!-- Open Graph / social preview -->
   <meta property="og:type" content="website">
-  <meta property="og:title" content="AI Image Generator | Qevora AI SaaS Admin & UI Kit">
-  <meta property="og:description" content="AI image generation UI with prompt, style presets, aspect ratio and generated gallery.">
+  <meta property="og:title" content="Progress | Qevora AI SaaS UI Kit">
+  <meta property="og:description" content="Progress bars, stacked progress, circular rings, skeletons and counters.">
   <meta property="og:site_name" content="Qevora AI SaaS">
 
   <link rel="icon" type="image/svg+xml" href="../assets/images/favicon.svg">
@@ -679,201 +679,250 @@
         <div>
                   <nav aria-label="Breadcrumb">
           <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="../index.html">AI Workspace</a></li>
-          <li class="breadcrumb-item active" aria-current="page">Image Generator</li>
+          <li class="breadcrumb-item"><a href="../index.html">UI Kit</a></li>
+          <li class="breadcrumb-item"><a href="#">Feedback</a></li>
+          <li class="breadcrumb-item active" aria-current="page">Progress</li>
           </ol>
         </nav>
-          <h1 class="q-page-head__title mt-2">Image generator</h1>
-          <p class="q-page-head__subtitle">Create on-brand visuals from a prompt. Gallery items are CSS placeholders, not stock photography.</p>
+          <h1 class="q-page-head__title mt-2">Progress</h1>
+          <p class="q-page-head__subtitle">
+            Progress bars, stacked bars, circular rings and animated counters. Use bars for goal completion, rings for
+            quota usage, and counters for headline numbers.
+          </p>
         </div>
         <div class="d-flex flex-wrap gap-2">
-          <button class="btn btn-white" data-demo-action="Prompt library opened — demo only."><i class="bi bi-collection"></i> Prompt library</button>
-          <a class="btn btn-primary" href="history.html"><i class="bi bi-clock-history"></i> History</a>
+          <a class="btn btn-white" href="../documentation/index.html"><i class="bi bi-book"></i> Docs</a>
         </div>
       </div>
 
-      <div class="row g-3">
-        <div class="col-xl-4">
-          <div class="card">
-            <div class="card-header">
-              <div>
-                <h2 class="card-title">Create</h2>
-                <p class="card-subtitle">Describe the image you need</p>
+      <div class="demo-block" data-demo>
+        <div class="demo-block__head">
+          <div>
+            <h2 class="demo-block__title">Progress bars</h2>
+            <p class="demo-block__desc">Sizes, colour variants and labels. The height comes from <code>--bs-progress-height</code>, so <code>.progress-sm</code> and <code>.progress-lg</code> are one token each.</p>
+          </div>
+        </div>
+        <div class="demo-block__tabs">
+          <button class="demo-tab is-active" data-demo-tab="preview" aria-selected="true">Preview</button>
+          <button class="demo-tab" data-demo-tab="html" aria-selected="false">HTML</button>
+        </div>
+        <div class="demo-block__pane is-active" data-demo-pane="preview">
+          <div class="demo-preview" id="prBars">
+            <div class="mb-3">
+              <div class="d-flex justify-content-between fs-8 mb-1"><span class="text-muted-2">Project completion</span><span class="fw-500 text-heading">76%</span></div>
+              <div class="progress" role="progressbar" aria-label="Project completion" aria-valuenow="76" aria-valuemin="0" aria-valuemax="100">
+                <div class="progress-bar" style="width: 76%;"></div>
               </div>
             </div>
-            <div class="card-body">
-              <div class="mb-3">
-                <label class="form-label" for="ig-prompt">Prompt</label>
-                <textarea class="form-control" id="ig-prompt" rows="4">Minimal abstract gradient background in indigo and cyan for a SaaS dashboard hero section, soft light, no text.</textarea>
-              </div>
 
-              <div class="mb-3">
-                <label class="form-label">Style preset</label>
-                <div class="row g-2">
-                  <div class="col-6">
-                    <button class="component-tile w-100 text-start is-active" type="button" data-demo-action="Style set to Gradient — demo only.">
-                      <span class="component-tile__icon"><i class="bi bi-brightness-high"></i></span>
-                      <span class="component-tile__title">Gradient</span>
-                    </button>
-                  </div>
-                  <div class="col-6">
-                    <button class="component-tile w-100 text-start" type="button" data-demo-action="Style set to 3D render — demo only.">
-                      <span class="component-tile__icon"><i class="bi bi-box"></i></span>
-                      <span class="component-tile__title">3D render</span>
-                    </button>
-                  </div>
-                  <div class="col-6">
-                    <button class="component-tile w-100 text-start" type="button" data-demo-action="Style set to Line art — demo only.">
-                      <span class="component-tile__icon"><i class="bi bi-pencil"></i></span>
-                      <span class="component-tile__title">Line art</span>
-                    </button>
-                  </div>
-                  <div class="col-6">
-                    <button class="component-tile w-100 text-start" type="button" data-demo-action="Style set to Photo — demo only.">
-                      <span class="component-tile__icon"><i class="bi bi-camera"></i></span>
-                      <span class="component-tile__title">Photo</span>
-                    </button>
-                  </div>
-                </div>
+            <div class="mb-3">
+              <div class="d-flex justify-content-between fs-8 mb-1"><span class="text-muted-2">Monthly AI quota</span><span class="fw-500 text-heading">680K of 1M tokens</span></div>
+              <div class="progress progress-lg" role="progressbar" aria-label="Monthly AI quota used" aria-valuenow="68" aria-valuemin="0" aria-valuemax="100">
+                <div class="progress-bar bg-warning" style="width: 68%;"></div>
               </div>
+            </div>
 
-              <div class="mb-3">
-                <label class="form-label" for="ig-ratio">Aspect ratio</label>
-                <select class="form-select" id="ig-ratio">
-                  <option selected>16:9 — hero banner</option>
-                  <option>1:1 — square</option>
-                  <option>4:5 — social portrait</option>
-                  <option>9:16 — story</option>
-                </select>
+            <div class="mb-3">
+              <div class="d-flex justify-content-between fs-8 mb-1"><span class="text-muted-2">Seats in use</span><span class="fw-500 text-heading">48 of 60</span></div>
+              <div class="progress progress-sm" role="progressbar" aria-label="Seats in use" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100">
+                <div class="progress-bar bg-success" style="width: 80%;"></div>
               </div>
+            </div>
 
-              <div class="mb-3">
-                <label class="form-label" for="ig-count">Images</label>
-                <select class="form-select" id="ig-count">
-                  <option>1</option>
-                  <option selected>4</option>
-                  <option>8</option>
-                </select>
+            <div class="row g-3">
+              <div class="col-md-6">
+                <div class="progress mb-2" role="progressbar" aria-label="Primary bar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100"><div class="progress-bar" style="width: 45%;">45%</div></div>
+                <div class="progress mb-2" role="progressbar" aria-label="Success bar" aria-valuenow="62" aria-valuemin="0" aria-valuemax="100"><div class="progress-bar bg-success" style="width: 62%;">62%</div></div>
+                <div class="progress mb-2" role="progressbar" aria-label="Info bar" aria-valuenow="38" aria-valuemin="0" aria-valuemax="100"><div class="progress-bar bg-info" style="width: 38%;">38%</div></div>
               </div>
-
-              <div class="mb-3">
-                <label class="form-label" for="ig-negative">Negative prompt <span class="text-muted-2 fw-400">(optional)</span></label>
-                <input type="text" class="form-control" id="ig-negative" placeholder="text, watermark, faces">
+              <div class="col-md-6">
+                <div class="progress mb-2" role="progressbar" aria-label="Warning bar" aria-valuenow="88" aria-valuemin="0" aria-valuemax="100"><div class="progress-bar bg-warning" style="width: 88%;">88%</div></div>
+                <div class="progress mb-2" role="progressbar" aria-label="Danger bar" aria-valuenow="24" aria-valuemin="0" aria-valuemax="100"><div class="progress-bar bg-danger" style="width: 24%;">24%</div></div>
+                <div class="progress" role="progressbar" aria-label="Striped bar" aria-valuenow="55" aria-valuemin="0" aria-valuemax="100"><div class="progress-bar progress-bar-striped progress-bar-animated" style="width: 55%;">55%</div></div>
               </div>
-
-              <button class="btn btn-gradient w-100" data-demo-action="Image generation queued — demo interaction only.">
-                <i class="bi bi-magic"></i> Generate images
-              </button>
-              <p class="fs-8 text-muted-2 text-center mt-2 mb-0">4 images · 0.4 credits · about 8 seconds</p>
             </div>
           </div>
         </div>
+        <div class="demo-block__pane" data-demo-pane="html">
+          <div class="demo-code-wrap">
+            <button class="copy-btn" data-copy-target="#codePrBars" type="button"><i class="bi bi-clipboard"></i> Copy HTML</button>
+            <pre class="demo-code"><code id="codePrBars" data-auto-code="#prBars"></code></pre>
+          </div>
+        </div>
+      </div>
 
-        <div class="col-xl-8">
-          <div class="card mb-3">
-            <div class="card-header">
-              <div>
-                <h2 class="card-title">Results</h2>
-                <p class="card-subtitle">4 images · Orbit Vision · 16:9</p>
+      <div class="demo-block" data-demo>
+        <div class="demo-block__head">
+          <div>
+            <h2 class="demo-block__title">Stacked progress</h2>
+            <p class="demo-block__desc">One bar that shows how a total splits — plan mix, storage breakdown or token spend by model.</p>
+          </div>
+        </div>
+        <div class="demo-block__tabs">
+          <button class="demo-tab is-active" data-demo-tab="preview" aria-selected="true">Preview</button>
+          <button class="demo-tab" data-demo-tab="html" aria-selected="false">HTML</button>
+        </div>
+        <div class="demo-block__pane is-active" data-demo-pane="preview">
+          <div class="demo-preview" id="prStacked">
+            <div class="card mb-3">
+              <div class="card-header">
+                <div>
+                  <h3 class="card-title mb-0">Plan mix</h3>
+                  <p class="card-subtitle">128 active customers</p>
+                </div>
               </div>
-              <div class="btn-group btn-group-sm" role="group" aria-label="Gallery view">
-                <button class="btn btn-white active" aria-label="Grid view" data-demo-action="Grid view selected — demo only."><i class="bi bi-grid"></i></button>
-                <button class="btn btn-white" aria-label="List view" data-demo-action="List view selected — demo only."><i class="bi bi-list-ul"></i></button>
+              <div class="card-body">
+                <div class="progress progress-lg mb-3" role="progressbar" aria-label="Customers by plan" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">
+                  <div class="progress-bar" style="width: 42%;"></div>
+                  <div class="progress-bar bg-accent" style="width: 29%;"></div>
+                  <div class="progress-bar bg-success" style="width: 18%;"></div>
+                  <div class="progress-bar bg-warning" style="width: 11%;"></div>
+                </div>
+                <div class="legend">
+                  <span class="legend__item"><span class="legend__dot"></span> Scale 42%</span>
+                  <span class="legend__item"><span class="legend__dot" style="background: var(--q-accent);"></span> Growth 29%</span>
+                  <span class="legend__item"><span class="legend__dot" style="background: var(--q-success);"></span> Starter 18%</span>
+                  <span class="legend__item"><span class="legend__dot" style="background: var(--q-warning);"></span> Trial 11%</span>
+                </div>
               </div>
             </div>
-            <div class="card-body">
-              <div class="row g-3">
-                <div class="col-sm-6">
-                  <figure class="mb-0">
-                    <img src="../assets/images/placeholder/product-1.svg" alt="Generated gradient placeholder in indigo tones" class="img-fluid rounded-q w-100">
-                    <figcaption class="d-flex align-items-center justify-content-between mt-2">
-                      <span class="fs-8 text-muted-2">Variation 1 · 1344 × 768</span>
-                      <span class="d-flex gap-1">
-                        <button class="btn btn-icon btn-sm btn-ghost" aria-label="Download variation 1" data-demo-action="Download started — demo only."><i class="bi bi-download"></i></button>
-                        <button class="btn btn-icon btn-sm btn-ghost" aria-label="Use variation 1" data-demo-action="Image attached to draft — demo only."><i class="bi bi-check2"></i></button>
-                      </span>
-                    </figcaption>
-                  </figure>
+
+            <div class="card">
+              <div class="card-header"><h3 class="card-title mb-0">Storage used</h3></div>
+              <div class="card-body">
+                <div class="progress progress-sm mb-3" role="progressbar" aria-label="Storage used by media type" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">
+                  <div class="progress-bar bg-danger" style="width: 34%;"></div>
+                  <div class="progress-bar bg-info" style="width: 26%;"></div>
+                  <div class="progress-bar bg-success" style="width: 22%;"></div>
+                  <div class="progress-bar bg-warning" style="width: 18%;"></div>
                 </div>
-                <div class="col-sm-6">
-                  <figure class="mb-0">
-                    <img src="../assets/images/placeholder/product-2.svg" alt="Generated gradient placeholder in teal tones" class="img-fluid rounded-q w-100">
-                    <figcaption class="d-flex align-items-center justify-content-between mt-2">
-                      <span class="fs-8 text-muted-2">Variation 2 · 1344 × 768</span>
-                      <span class="d-flex gap-1">
-                        <button class="btn btn-icon btn-sm btn-ghost" aria-label="Download variation 2" data-demo-action="Download started — demo only."><i class="bi bi-download"></i></button>
-                        <button class="btn btn-icon btn-sm btn-ghost" aria-label="Use variation 2" data-demo-action="Image attached to draft — demo only."><i class="bi bi-check2"></i></button>
-                      </span>
-                    </figcaption>
-                  </figure>
-                </div>
-                <div class="col-sm-6">
-                  <figure class="mb-0">
-                    <img src="../assets/images/placeholder/product-3.svg" alt="Generated gradient placeholder in amber tones" class="img-fluid rounded-q w-100">
-                    <figcaption class="d-flex align-items-center justify-content-between mt-2">
-                      <span class="fs-8 text-muted-2">Variation 3 · 1344 × 768</span>
-                      <span class="d-flex gap-1">
-                        <button class="btn btn-icon btn-sm btn-ghost" aria-label="Download variation 3" data-demo-action="Download started — demo only."><i class="bi bi-download"></i></button>
-                        <button class="btn btn-icon btn-sm btn-ghost" aria-label="Use variation 3" data-demo-action="Image attached to draft — demo only."><i class="bi bi-check2"></i></button>
-                      </span>
-                    </figcaption>
-                  </figure>
-                </div>
-                <div class="col-sm-6">
-                  <figure class="mb-0">
-                    <img src="../assets/images/placeholder/product-4.svg" alt="Generated gradient placeholder in sky blue tones" class="img-fluid rounded-q w-100">
-                    <figcaption class="d-flex align-items-center justify-content-between mt-2">
-                      <span class="fs-8 text-muted-2">Variation 4 · 1344 × 768</span>
-                      <span class="d-flex gap-1">
-                        <button class="btn btn-icon btn-sm btn-ghost" aria-label="Download variation 4" data-demo-action="Download started — demo only."><i class="bi bi-download"></i></button>
-                        <button class="btn btn-icon btn-sm btn-ghost" aria-label="Use variation 4" data-demo-action="Image attached to draft — demo only."><i class="bi bi-check2"></i></button>
-                      </span>
-                    </figcaption>
-                  </figure>
+                <div class="d-flex flex-wrap gap-4 fs-8 text-muted-2">
+                  <span><strong class="text-heading">34%</strong> images</span>
+                  <span><strong class="text-heading">26%</strong> video</span>
+                  <span><strong class="text-heading">22%</strong> documents</span>
+                  <span><strong class="text-heading">18%</strong> attachments</span>
                 </div>
               </div>
             </div>
           </div>
+        </div>
+        <div class="demo-block__pane" data-demo-pane="html">
+          <div class="demo-code-wrap">
+            <button class="copy-btn" data-copy-target="#codePrStacked" type="button"><i class="bi bi-clipboard"></i> Copy HTML</button>
+            <pre class="demo-code"><code id="codePrStacked" data-auto-code="#prStacked"></code></pre>
+          </div>
+        </div>
+      </div>
 
-          <div class="row g-3">
-            <div class="col-md-6">
-              <div class="card h-100">
-                <div class="card-header">
-                  <h3 class="card-title mb-0">Credits</h3>
-                </div>
-                <div class="card-body">
-                  <div class="d-flex align-items-center justify-content-between mb-2">
-                    <span class="fs-7 text-muted-2">Image credits used</span>
-                    <span class="fw-600 text-heading">128 / 500</span>
-                  </div>
-                  <div class="progress progress-sm mb-3"><div class="progress-bar" style="width: 26%"></div></div>
-                  <p class="fs-8 text-muted-2 mb-3">Credits reset on Nov 1, 2026. Unused credits do not roll over.</p>
-                  <a href="../pages/pricing.html" class="btn btn-sm btn-soft-primary">Buy more credits</a>
-                </div>
+      <div class="demo-block" data-demo>
+        <div class="demo-block__head">
+          <div>
+            <h2 class="demo-block__title">Circular rings</h2>
+            <p class="demo-block__desc">
+              SVG rings drawn from a single attribute: <code>data-ring="68"</code> for the percentage, plus optional
+              <code>data-ring-size</code>, <code>data-ring-stroke</code> and <code>data-ring-color</code>.
+            </p>
+          </div>
+        </div>
+        <div class="demo-block__tabs">
+          <button class="demo-tab is-active" data-demo-tab="preview" aria-selected="true">Preview</button>
+          <button class="demo-tab" data-demo-tab="html" aria-selected="false">HTML</button>
+        </div>
+        <div class="demo-block__pane is-active" data-demo-pane="preview">
+          <div class="demo-preview" id="prRings">
+            <div class="row g-4 align-items-center">
+              <div class="col-6 col-md-3 text-center">
+                <div data-ring="68" data-ring-size="120" data-ring-stroke="11" aria-label="68 percent of quota used"></div>
+                <p class="fs-8 text-muted-2 mt-2 mb-0">AI quota used</p>
               </div>
-            </div>
-            <div class="col-md-6">
-              <div class="card h-100">
-                <div class="card-header">
-                  <h3 class="card-title mb-0">Recent prompts</h3>
-                </div>
-                <ul class="list-group list-group-flush">
-                  <li class="list-group-item">
-                    <span class="d-block fs-7 fw-500 text-heading">Dashboard hero gradient</span>
-                    <span class="d-block fs-8 text-muted-2">4 images · 12 minutes ago</span>
-                  </li>
-                  <li class="list-group-item">
-                    <span class="d-block fs-7 fw-500 text-heading">Abstract data mesh illustration</span>
-                    <span class="d-block fs-8 text-muted-2">2 images · yesterday</span>
-                  </li>
-                  <li class="list-group-item">
-                    <span class="d-block fs-7 fw-500 text-heading">Empty state spot illustration</span>
-                    <span class="d-block fs-8 text-muted-2">1 image · Sep 30, 2026</span>
-                  </li>
-                </ul>
+              <div class="col-6 col-md-3 text-center">
+                <div data-ring="42" data-ring-size="120" data-ring-stroke="11" data-ring-color="#10b981" aria-label="42 percent of storage used"></div>
+                <p class="fs-8 text-muted-2 mt-2 mb-0">Storage used</p>
+              </div>
+              <div class="col-6 col-md-3 text-center">
+                <div data-ring="92" data-ring-size="120" data-ring-stroke="11" data-ring-color="#f59e0b" aria-label="92 percent of seats used"></div>
+                <p class="fs-8 text-muted-2 mt-2 mb-0">Seats used</p>
+              </div>
+              <div class="col-6 col-md-3 text-center">
+                <div data-ring="12" data-ring-size="120" data-ring-stroke="11" data-ring-color="#ef4444" aria-label="12 percent of overage used"></div>
+                <p class="fs-8 text-muted-2 mt-2 mb-0">Overage tier</p>
               </div>
             </div>
           </div>
+        </div>
+        <div class="demo-block__pane" data-demo-pane="html">
+          <div class="demo-code-wrap">
+            <button class="copy-btn" data-copy-target="#codePrRings" type="button"><i class="bi bi-clipboard"></i> Copy HTML</button>
+            <pre class="demo-code"><code id="codePrRings" data-auto-code="#prRings"></code></pre>
+          </div>
+        </div>
+      </div>
+
+      <div class="demo-block" data-demo>
+        <div class="demo-block__head">
+          <div>
+            <h2 class="demo-block__title">Animated counters</h2>
+            <p class="demo-block__desc">Numbers that count up when the page loads. Set the target in <code>data-counter</code> and add a prefix or suffix.</p>
+          </div>
+        </div>
+        <div class="demo-block__tabs">
+          <button class="demo-tab is-active" data-demo-tab="preview" aria-selected="true">Preview</button>
+          <button class="demo-tab" data-demo-tab="html" aria-selected="false">HTML</button>
+        </div>
+        <div class="demo-block__pane is-active" data-demo-pane="preview">
+          <div class="demo-preview demo-preview--plain" id="prCounters">
+            <div class="row g-3">
+              <div class="col-sm-6 col-lg-3">
+                <div class="kpi-tile h-100">
+                  <p class="kpi-tile__label">Monthly revenue</p>
+                  <p class="kpi-tile__value" data-counter="107040" data-prefix="$">$107,040</p>
+                  <span class="trend trend-up"><i class="bi bi-arrow-up-right"></i> 12.4%</span>
+                </div>
+              </div>
+              <div class="col-sm-6 col-lg-3">
+                <div class="kpi-tile h-100">
+                  <p class="kpi-tile__label">AI requests</p>
+                  <p class="kpi-tile__value" data-counter="48260">48,260</p>
+                  <span class="trend trend-up"><i class="bi bi-arrow-up-right"></i> 8.1%</span>
+                </div>
+              </div>
+              <div class="col-sm-6 col-lg-3">
+                <div class="kpi-tile h-100">
+                  <p class="kpi-tile__label">Avg. latency</p>
+                  <p class="kpi-tile__value" data-counter="1.4" data-decimals="1" data-suffix="s">1.4s</p>
+                  <span class="trend trend-flat"><i class="bi bi-dash"></i> 0.0%</span>
+                </div>
+              </div>
+              <div class="col-sm-6 col-lg-3">
+                <div class="kpi-tile h-100">
+                  <p class="kpi-tile__label">Churn rate</p>
+                  <p class="kpi-tile__value" data-counter="1.8" data-decimals="1" data-suffix="%">1.8%</p>
+                  <span class="trend trend-down"><i class="bi bi-arrow-down-right"></i> 0.4%</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="demo-block__pane" data-demo-pane="html">
+          <div class="demo-code-wrap">
+            <button class="copy-btn" data-copy-target="#codePrCounters" type="button"><i class="bi bi-clipboard"></i> Copy HTML</button>
+            <pre class="demo-code"><code id="codePrCounters" data-auto-code="#prCounters"></code></pre>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <h2 class="card-title mb-0">Usage notes</h2>
+        </div>
+        <div class="card-body">
+          <ul class="fs-7 text-muted-2 mb-0 d-flex flex-column gap-2">
+            <li>Every progress bar needs <code>role="progressbar"</code> with <code>aria-valuenow</code>, <code>aria-valuemin</code> and <code>aria-valuemax</code>.</li>
+            <li>Show the number as text next to the bar — a bar alone cannot tell the user whether 68% is good or bad.</li>
+            <li>Reserve amber for "close to a limit" and red for "at or over a limit" so the colours keep their meaning.</li>
+            <li>Rings update on theme change because they are drawn from the same colour tokens as the charts.</li>
+            <li>Counters respect <code>prefers-reduced-motion</code>: the final value is written immediately for those users.</li>
+          </ul>
         </div>
       </div>
     </main>

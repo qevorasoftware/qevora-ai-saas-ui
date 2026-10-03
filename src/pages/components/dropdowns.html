@@ -1,0 +1,202 @@
+      <div class="q-page-head">
+        <div>
+          {{BREADCRUMB}}
+          <h1 class="q-page-head__title mt-2">Dropdowns</h1>
+          <p class="q-page-head__subtitle">
+            Menu surfaces for row actions, toolbars and the header. All dropdowns are plain Bootstrap 5 markup — Qevora
+            only adds the surface, radius and shadow tokens.
+          </p>
+        </div>
+        <div class="d-flex flex-wrap gap-2">
+          <a class="btn btn-white" href="../documentation/index.html"><i class="bi bi-book"></i> Docs</a>
+        </div>
+      </div>
+
+      <div class="demo-block" data-demo>
+        <div class="demo-block__head">
+          <div>
+            <h2 class="demo-block__title">Basic dropdown</h2>
+            <p class="demo-block__desc">Trigger, menu, items, dividers and disabled states. Use one menu per action group.</p>
+          </div>
+        </div>
+        <div class="demo-block__tabs">
+          <button class="demo-tab is-active" data-demo-tab="preview" aria-selected="true">Preview</button>
+          <button class="demo-tab" data-demo-tab="html" aria-selected="false">HTML</button>
+        </div>
+        <div class="demo-block__pane is-active" data-demo-pane="preview">
+          <div class="demo-preview" id="ddBasic">
+            <div class="dropdown">
+              <button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Actions
+              </button>
+              <ul class="dropdown-menu">
+                <li><h6 class="dropdown-header">Invoice</h6></li>
+                <li><a class="dropdown-item" href="#"><i class="bi bi-eye"></i> View invoice</a></li>
+                <li><a class="dropdown-item" href="#"><i class="bi bi-pencil"></i> Edit details</a></li>
+                <li><a class="dropdown-item" href="#"><i class="bi bi-send"></i> Send reminder</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item text-danger" href="#"><i class="bi bi-trash3"></i> Delete invoice</a></li>
+                <li><a class="dropdown-item disabled" href="#" aria-disabled="true"><i class="bi bi-lock"></i> Approved — locked</a></li>
+              </ul>
+            </div>
+
+            <div class="dropdown">
+              <button class="btn btn-soft-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <i class="bi bi-funnel"></i> Filter
+              </button>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item active" href="#">All customers</a></li>
+                <li><a class="dropdown-item" href="#">Northstar Labs</a></li>
+                <li><a class="dropdown-item" href="#">Vertex Labs</a></li>
+                <li><a class="dropdown-item" href="#">Acme Inc.</a></li>
+              </ul>
+            </div>
+
+            <div class="btn-group">
+              <button class="btn btn-white" type="button">Export</button>
+              <button class="btn btn-white dropdown-toggle dropdown-toggle-split" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <span class="visually-hidden">Export options</span>
+              </button>
+              <ul class="dropdown-menu dropdown-menu-end">
+                <li><a class="dropdown-item" href="#"><i class="bi bi-filetype-csv"></i> CSV</a></li>
+                <li><a class="dropdown-item" href="#"><i class="bi bi-filetype-xlsx"></i> Excel</a></li>
+                <li><a class="dropdown-item" href="#"><i class="bi bi-filetype-pdf"></i> PDF</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="demo-block__pane" data-demo-pane="html">
+          <div class="demo-code-wrap">
+            <button class="copy-btn" data-copy-target="#codeDdBasic" type="button"><i class="bi bi-clipboard"></i> Copy HTML</button>
+            <pre class="demo-code"><code id="codeDdBasic" data-auto-code="#ddBasic"></code></pre>
+          </div>
+        </div>
+      </div>
+
+      <div class="demo-block" data-demo>
+        <div class="demo-block__head">
+          <div>
+            <h2 class="demo-block__title">Placement &amp; alignment</h2>
+            <p class="demo-block__desc">Drop directions and menu alignment — useful in table footers and page headers.</p>
+          </div>
+        </div>
+        <div class="demo-block__tabs">
+          <button class="demo-tab is-active" data-demo-tab="preview" aria-selected="true">Preview</button>
+          <button class="demo-tab" data-demo-tab="html" aria-selected="false">HTML</button>
+        </div>
+        <div class="demo-block__pane is-active" data-demo-pane="preview">
+          <div class="demo-preview" id="ddPlacement">
+            <div class="dropdown">
+              <button class="btn btn-white dropdown-toggle" type="button" data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false">Drop down</button>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="#">Duplicate</a></li>
+                <li><a class="dropdown-item" href="#">Archive</a></li>
+              </ul>
+            </div>
+
+            <div class="dropup">
+              <button class="btn btn-white dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">Drop up</button>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="#">Move to top</a></li>
+                <li><a class="dropdown-item" href="#">Mark as priority</a></li>
+              </ul>
+            </div>
+
+            <div class="dropend">
+              <button class="btn btn-white dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">Drop end</button>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="#">Open in new tab</a></li>
+                <li><a class="dropdown-item" href="#">Copy link</a></li>
+              </ul>
+            </div>
+
+            <div class="dropdown">
+              <button class="btn btn-white dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">End aligned</button>
+              <ul class="dropdown-menu dropdown-menu-end">
+                <li><a class="dropdown-item" href="#">Rename</a></li>
+                <li><a class="dropdown-item" href="#">Move</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="demo-block__pane" data-demo-pane="html">
+          <div class="demo-code-wrap">
+            <button class="copy-btn" data-copy-target="#codeDdPlacement" type="button"><i class="bi bi-clipboard"></i> Copy HTML</button>
+            <pre class="demo-code"><code id="codeDdPlacement" data-auto-code="#ddPlacement"></code></pre>
+          </div>
+        </div>
+      </div>
+
+      <div class="demo-block" data-demo>
+        <div class="demo-block__head">
+          <div>
+            <h2 class="demo-block__title">Notification menu</h2>
+            <p class="demo-block__desc">The same dropdown used by the header bell icon, with its own <code>.dropdown-notify</code> surface.</p>
+          </div>
+        </div>
+        <div class="demo-block__tabs">
+          <button class="demo-tab is-active" data-demo-tab="preview" aria-selected="true">Preview</button>
+          <button class="demo-tab" data-demo-tab="html" aria-selected="false">HTML</button>
+        </div>
+        <div class="demo-block__pane is-active" data-demo-pane="preview">
+          <div class="demo-preview" id="ddNotify">
+            <div class="dropdown">
+              <button class="btn btn-icon btn-white position-relative" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Open notifications">
+                <i class="bi bi-bell"></i>
+                <span class="badge badge-dot bg-danger position-absolute top-0 end-0 mt-1 me-1"></span>
+              </button>
+              <div class="dropdown-menu dropdown-menu-end dropdown-notify">
+                <div class="dropdown-notify__head">
+                  <span class="fw-600 text-heading">Notifications</span>
+                  <span class="badge badge-soft-primary">3 new</span>
+                </div>
+                <div class="dropdown-notify__list">
+                  <a class="dropdown-notify__item" href="#">
+                    <span class="avatar avatar-sm bg-avatar-1"><i class="bi bi-receipt"></i></span>
+                    <span class="flex-grow-1 min-w-0">
+                      <span class="dropdown-notify__title d-block">Invoice INV-2026-0186 was paid</span>
+                      <span class="dropdown-notify__meta">Payments · 12 minutes ago</span>
+                    </span>
+                  </a>
+                  <a class="dropdown-notify__item" href="#">
+                    <span class="avatar avatar-sm bg-avatar-3"><i class="bi bi-people"></i></span>
+                    <span class="flex-grow-1 min-w-0">
+                      <span class="dropdown-notify__title d-block">Marcus Chen joined the Growth workspace</span>
+                      <span class="dropdown-notify__meta">Team · 1 hour ago</span>
+                    </span>
+                  </a>
+                  <a class="dropdown-notify__item" href="#">
+                    <span class="avatar avatar-sm bg-avatar-6"><i class="bi bi-stars"></i></span>
+                    <span class="flex-grow-1 min-w-0">
+                      <span class="dropdown-notify__title d-block">Nova-4 Turbo quota reached 68%</span>
+                      <span class="dropdown-notify__meta">AI usage · 3 hours ago</span>
+                    </span>
+                  </a>
+                </div>
+                <div class="dropdown-notify__foot"><a href="#">View all notifications</a></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="demo-block__pane" data-demo-pane="html">
+          <div class="demo-code-wrap">
+            <button class="copy-btn" data-copy-target="#codeDdNotify" type="button"><i class="bi bi-clipboard"></i> Copy HTML</button>
+            <pre class="demo-code"><code id="codeDdNotify" data-auto-code="#ddNotify"></code></pre>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <h2 class="card-title mb-0">Usage notes</h2>
+        </div>
+        <div class="card-body">
+          <ul class="fs-7 text-muted-2 mb-0 d-flex flex-column gap-2">
+            <li>Every dropdown needs <code>data-bs-toggle="dropdown"</code> on the trigger and <code>.dropdown-menu</code> as the next sibling.</li>
+            <li>Add <code>.dropdown-menu-end</code> for right-aligned menus — required in table action columns so the menu stays on screen.</li>
+            <li>Put row actions in a <code>.btn-icon</code> trigger with an <code>aria-label</code>; text triggers are for page-level actions only.</li>
+            <li>Icons inside items are decorative — the item label always carries the meaning.</li>
+            <li>Dropdowns close on <code>Esc</code> out of the box; keep destructive actions in the last group, after a divider.</li>
+          </ul>
+        </div>
+      </div>

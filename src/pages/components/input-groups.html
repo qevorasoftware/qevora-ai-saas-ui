@@ -1,0 +1,153 @@
+      <div class="q-page-head">
+        <div>
+          {{BREADCRUMB}}
+          <h1 class="q-page-head__title mt-2">Input groups</h1>
+          <p class="q-page-head__subtitle">
+            Attach labels, icons, buttons and units to a field without breaking its alignment. Used in the search bar,
+            billing forms and every filter toolbar.
+          </p>
+        </div>
+        <div class="d-flex flex-wrap gap-2">
+          <a class="btn btn-white" href="../documentation/index.html"><i class="bi bi-book"></i> Docs</a>
+        </div>
+      </div>
+
+      <div class="demo-block" data-demo>
+        <div class="demo-block__head">
+          <div>
+            <h2 class="demo-block__title">Basic input groups</h2>
+            <p class="demo-block__desc">Text, icons and units on either side of the field.</p>
+          </div>
+        </div>
+        <div class="demo-block__tabs">
+          <button class="demo-tab is-active" data-demo-tab="preview" aria-selected="true">Preview</button>
+          <button class="demo-tab" data-demo-tab="html" aria-selected="false">HTML</button>
+        </div>
+        <div class="demo-block__pane is-active" data-demo-pane="preview">
+          <div class="demo-preview" id="igBasic">
+            <div class="row g-3">
+              <div class="col-md-6">
+                <label class="form-label" for="igSite">Website</label>
+                <div class="input-group">
+                  <span class="input-group-text">https://</span>
+                  <input type="text" class="form-control" id="igSite" value="novalabs.com" placeholder="yoursite.com">
+                </div>
+              </div>
+              <div class="col-md-6">
+                <label class="form-label" for="igEmail">Email address</label>
+                <div class="input-group">
+                  <span class="input-group-text"><i class="bi bi-envelope"></i></span>
+                  <input type="email" class="form-control" id="igEmail" value="ava@novalabs.com">
+                  <span class="input-group-text">@</span>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <label class="form-label" for="igAmount">Invoice amount</label>
+                <div class="input-group">
+                  <span class="input-group-text">$</span>
+                  <input type="number" class="form-control" id="igAmount" value="2400" step="10">
+                  <span class="input-group-text">USD</span>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <label class="form-label" for="igCoupon">Coupon code</label>
+                <div class="input-group">
+                  <input type="text" class="form-control" id="igCoupon" placeholder="QEVORA20">
+                  <button class="btn btn-soft-primary" type="button" data-demo-action="Coupon QEVORA20 applied — demo only." data-demo-variant="success">Apply</button>
+                </div>
+              </div>
+              <div class="col-12">
+                <label class="form-label" for="igSearch">Search customers</label>
+                <div class="input-group">
+                  <span class="input-group-text"><i class="bi bi-search"></i></span>
+                  <input type="search" class="form-control" id="igSearch" placeholder="Type a customer name…">
+                  <button class="btn btn-white dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">All statuses</button>
+                  <ul class="dropdown-menu dropdown-menu-end">
+                    <li><a class="dropdown-item active" href="#">All statuses</a></li>
+                    <li><a class="dropdown-item" href="#">Active</a></li>
+                    <li><a class="dropdown-item" href="#">Trial</a></li>
+                    <li><a class="dropdown-item" href="#">Churned</a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="demo-block__pane" data-demo-pane="html">
+          <div class="demo-code-wrap">
+            <button class="copy-btn" data-copy-target="#codeIgBasic" type="button"><i class="bi bi-clipboard"></i> Copy HTML</button>
+            <pre class="demo-code"><code id="codeIgBasic" data-auto-code="#igBasic"></code></pre>
+          </div>
+        </div>
+      </div>
+
+      <div class="demo-block" data-demo>
+        <div class="demo-block__head">
+          <div>
+            <h2 class="demo-block__title">Sizes and multi-field groups</h2>
+            <p class="demo-block__desc">Small groups fit toolbars; multi-field groups are for OTP-style and date-part inputs.</p>
+          </div>
+        </div>
+        <div class="demo-block__tabs">
+          <button class="demo-tab is-active" data-demo-tab="preview" aria-selected="true">Preview</button>
+          <button class="demo-tab" data-demo-tab="html" aria-selected="false">HTML</button>
+        </div>
+        <div class="demo-block__pane is-active" data-demo-pane="preview">
+          <div class="demo-preview" id="igSizes">
+            <div class="row g-3 align-items-end">
+              <div class="col-md-4">
+                <label class="form-label" for="igSmall">Small</label>
+                <div class="input-group input-group-sm">
+                  <span class="input-group-text">Seats</span>
+                  <input type="number" class="form-control" id="igSmall" value="48">
+                </div>
+              </div>
+              <div class="col-md-4">
+                <label class="form-label" for="igDefault">Default</label>
+                <div class="input-group">
+                  <span class="input-group-text">Seats</span>
+                  <input type="number" class="form-control" id="igDefault" value="48">
+                </div>
+              </div>
+              <div class="col-md-4">
+                <label class="form-label" for="igLarge">Large</label>
+                <div class="input-group input-group-lg">
+                  <span class="input-group-text">Seats</span>
+                  <input type="number" class="form-control" id="igLarge" value="48">
+                </div>
+              </div>
+              <div class="col-12">
+                <label class="form-label" for="igDateFrom">Reporting period</label>
+                <div class="input-group">
+                  <span class="input-group-text"><i class="bi bi-calendar3"></i></span>
+                  <input type="date" class="form-control" id="igDateFrom" value="2026-09-01">
+                  <span class="input-group-text">to</span>
+                  <input type="date" class="form-control" aria-label="Period end" value="2026-09-30">
+                  <button class="btn btn-primary" type="button" data-demo-action="Report regenerated for Sep 2026 — demo only.">Run report</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="demo-block__pane" data-demo-pane="html">
+          <div class="demo-code-wrap">
+            <button class="copy-btn" data-copy-target="#codeIgSizes" type="button"><i class="bi bi-clipboard"></i> Copy HTML</button>
+            <pre class="demo-code"><code id="codeIgSizes" data-auto-code="#igSizes"></code></pre>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <h2 class="card-title mb-0">Usage notes</h2>
+        </div>
+        <div class="card-body">
+          <ul class="fs-7 text-muted-2 mb-0 d-flex flex-column gap-2">
+            <li>Wrap the field and its add-ons in one <code>.input-group</code>; never place a group inside another group.</li>
+            <li><code>.input-group-sm</code> and <code>-lg</code> must be applied to the group, not to the input, so the add-ons match the height.</li>
+            <li>Give bare inputs inside a group an <code>aria-label</code> when their visible label only covers the first field.</li>
+            <li>Buttons inside groups keep the <code>btn</code> radius rules — use <code>.btn-soft-*</code> to keep the group quiet.</li>
+            <li>Do not mix a <code>.form-floating</code> wrapper with an input group; choose one pattern per field.</li>
+          </ul>
+        </div>
+      </div>

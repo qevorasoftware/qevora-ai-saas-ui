@@ -4,15 +4,15 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#4f46e5">
-  <title>AI Image Generator | Qevora AI SaaS Admin & UI Kit</title>
-  <meta name="description" content="AI image generation UI with prompt, style presets, aspect ratio and generated gallery.">
+  <title>Spinners | Qevora AI SaaS UI Kit</title>
+  <meta name="description" content="Bootstrap spinners and the Qevora loading spinner in every size and colour.">
   <meta name="author" content="Qevora Software">
   <meta name="robots" content="index, follow">
 
   <!-- Open Graph / social preview -->
   <meta property="og:type" content="website">
-  <meta property="og:title" content="AI Image Generator | Qevora AI SaaS Admin & UI Kit">
-  <meta property="og:description" content="AI image generation UI with prompt, style presets, aspect ratio and generated gallery.">
+  <meta property="og:title" content="Spinners | Qevora AI SaaS UI Kit">
+  <meta property="og:description" content="Bootstrap spinners and the Qevora loading spinner in every size and colour.">
   <meta property="og:site_name" content="Qevora AI SaaS">
 
   <link rel="icon" type="image/svg+xml" href="../assets/images/favicon.svg">
@@ -679,201 +679,236 @@
         <div>
                   <nav aria-label="Breadcrumb">
           <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="../index.html">AI Workspace</a></li>
-          <li class="breadcrumb-item active" aria-current="page">Image Generator</li>
+          <li class="breadcrumb-item"><a href="../index.html">UI Kit</a></li>
+          <li class="breadcrumb-item"><a href="#">Feedback</a></li>
+          <li class="breadcrumb-item active" aria-current="page">Spinners</li>
           </ol>
         </nav>
-          <h1 class="q-page-head__title mt-2">Image generator</h1>
-          <p class="q-page-head__subtitle">Create on-brand visuals from a prompt. Gallery items are CSS placeholders, not stock photography.</p>
+          <h1 class="q-page-head__title mt-2">Spinners</h1>
+          <p class="q-page-head__subtitle">
+            Loading indicators: Bootstrap spinners for short waits, the Qevora spinner for branded moments, and skeleton
+            blocks for content that is still arriving.
+          </p>
         </div>
         <div class="d-flex flex-wrap gap-2">
-          <button class="btn btn-white" data-demo-action="Prompt library opened — demo only."><i class="bi bi-collection"></i> Prompt library</button>
-          <a class="btn btn-primary" href="history.html"><i class="bi bi-clock-history"></i> History</a>
+          <a class="btn btn-white" href="../documentation/index.html"><i class="bi bi-book"></i> Docs</a>
         </div>
       </div>
 
-      <div class="row g-3">
-        <div class="col-xl-4">
-          <div class="card">
-            <div class="card-header">
-              <div>
-                <h2 class="card-title">Create</h2>
-                <p class="card-subtitle">Describe the image you need</p>
-              </div>
+      <div class="demo-block" data-demo>
+        <div class="demo-block__head">
+          <div>
+            <h2 class="demo-block__title">Bootstrap spinners</h2>
+            <p class="demo-block__desc">Border and grow styles, small and default sizes, in every semantic colour.</p>
+          </div>
+        </div>
+        <div class="demo-block__tabs">
+          <button class="demo-tab is-active" data-demo-tab="preview" aria-selected="true">Preview</button>
+          <button class="demo-tab" data-demo-tab="html" aria-selected="false">HTML</button>
+        </div>
+        <div class="demo-block__pane is-active" data-demo-pane="preview">
+          <div class="demo-preview" id="spBootstrap">
+            <div class="d-flex flex-wrap align-items-center gap-4 mb-4">
+              <div class="spinner-border text-primary" role="status"><span class="visually-hidden">Loading</span></div>
+              <div class="spinner-border spinner-border-sm text-primary" role="status"><span class="visually-hidden">Loading</span></div>
+              <div class="spinner-grow text-primary" role="status"><span class="visually-hidden">Loading</span></div>
+              <div class="spinner-grow spinner-grow-sm text-primary" role="status"><span class="visually-hidden">Loading</span></div>
             </div>
-            <div class="card-body">
-              <div class="mb-3">
-                <label class="form-label" for="ig-prompt">Prompt</label>
-                <textarea class="form-control" id="ig-prompt" rows="4">Minimal abstract gradient background in indigo and cyan for a SaaS dashboard hero section, soft light, no text.</textarea>
-              </div>
 
-              <div class="mb-3">
-                <label class="form-label">Style preset</label>
-                <div class="row g-2">
-                  <div class="col-6">
-                    <button class="component-tile w-100 text-start is-active" type="button" data-demo-action="Style set to Gradient — demo only.">
-                      <span class="component-tile__icon"><i class="bi bi-brightness-high"></i></span>
-                      <span class="component-tile__title">Gradient</span>
-                    </button>
-                  </div>
-                  <div class="col-6">
-                    <button class="component-tile w-100 text-start" type="button" data-demo-action="Style set to 3D render — demo only.">
-                      <span class="component-tile__icon"><i class="bi bi-box"></i></span>
-                      <span class="component-tile__title">3D render</span>
-                    </button>
-                  </div>
-                  <div class="col-6">
-                    <button class="component-tile w-100 text-start" type="button" data-demo-action="Style set to Line art — demo only.">
-                      <span class="component-tile__icon"><i class="bi bi-pencil"></i></span>
-                      <span class="component-tile__title">Line art</span>
-                    </button>
-                  </div>
-                  <div class="col-6">
-                    <button class="component-tile w-100 text-start" type="button" data-demo-action="Style set to Photo — demo only.">
-                      <span class="component-tile__icon"><i class="bi bi-camera"></i></span>
-                      <span class="component-tile__title">Photo</span>
-                    </button>
-                  </div>
-                </div>
-              </div>
-
-              <div class="mb-3">
-                <label class="form-label" for="ig-ratio">Aspect ratio</label>
-                <select class="form-select" id="ig-ratio">
-                  <option selected>16:9 — hero banner</option>
-                  <option>1:1 — square</option>
-                  <option>4:5 — social portrait</option>
-                  <option>9:16 — story</option>
-                </select>
-              </div>
-
-              <div class="mb-3">
-                <label class="form-label" for="ig-count">Images</label>
-                <select class="form-select" id="ig-count">
-                  <option>1</option>
-                  <option selected>4</option>
-                  <option>8</option>
-                </select>
-              </div>
-
-              <div class="mb-3">
-                <label class="form-label" for="ig-negative">Negative prompt <span class="text-muted-2 fw-400">(optional)</span></label>
-                <input type="text" class="form-control" id="ig-negative" placeholder="text, watermark, faces">
-              </div>
-
-              <button class="btn btn-gradient w-100" data-demo-action="Image generation queued — demo interaction only.">
-                <i class="bi bi-magic"></i> Generate images
-              </button>
-              <p class="fs-8 text-muted-2 text-center mt-2 mb-0">4 images · 0.4 credits · about 8 seconds</p>
+            <div class="d-flex flex-wrap align-items-center gap-4">
+              <div class="spinner-border text-success" role="status"><span class="visually-hidden">Loading</span></div>
+              <div class="spinner-border text-info" role="status"><span class="visually-hidden">Loading</span></div>
+              <div class="spinner-border text-warning" role="status"><span class="visually-hidden">Loading</span></div>
+              <div class="spinner-border text-danger" role="status"><span class="visually-hidden">Loading</span></div>
+              <div class="spinner-border text-secondary" role="status"><span class="visually-hidden">Loading</span></div>
             </div>
           </div>
         </div>
+        <div class="demo-block__pane" data-demo-pane="html">
+          <div class="demo-code-wrap">
+            <button class="copy-btn" data-copy-target="#codeSpBootstrap" type="button"><i class="bi bi-clipboard"></i> Copy HTML</button>
+            <pre class="demo-code"><code id="codeSpBootstrap" data-auto-code="#spBootstrap"></code></pre>
+          </div>
+        </div>
+      </div>
 
-        <div class="col-xl-8">
-          <div class="card mb-3">
-            <div class="card-header">
-              <div>
-                <h2 class="card-title">Results</h2>
-                <p class="card-subtitle">4 images · Orbit Vision · 16:9</p>
+      <div class="demo-block" data-demo>
+        <div class="demo-block__head">
+          <div>
+            <h2 class="demo-block__title">Qevora spinner</h2>
+            <p class="demo-block__desc">The branded ring used for full-block loading states — sized with a single inline width and height.</p>
+          </div>
+        </div>
+        <div class="demo-block__tabs">
+          <button class="demo-tab is-active" data-demo-tab="preview" aria-selected="true">Preview</button>
+          <button class="demo-tab" data-demo-tab="html" aria-selected="false">HTML</button>
+        </div>
+        <div class="demo-block__pane is-active" data-demo-pane="preview">
+          <div class="demo-preview" id="spQevora">
+            <div class="row g-4 align-items-center">
+              <div class="col-md-4 text-center">
+                <div class="spinner-q mx-auto" style="width: 20px; height: 20px; border-width: 2px;" role="status"><span class="visually-hidden">Loading</span></div>
+                <p class="fs-8 text-muted-2 mt-2 mb-0">Small · 20px</p>
               </div>
-              <div class="btn-group btn-group-sm" role="group" aria-label="Gallery view">
-                <button class="btn btn-white active" aria-label="Grid view" data-demo-action="Grid view selected — demo only."><i class="bi bi-grid"></i></button>
-                <button class="btn btn-white" aria-label="List view" data-demo-action="List view selected — demo only."><i class="bi bi-list-ul"></i></button>
+              <div class="col-md-4 text-center">
+                <div class="spinner-q mx-auto" role="status"><span class="visually-hidden">Loading</span></div>
+                <p class="fs-8 text-muted-2 mt-2 mb-0">Default · 32px</p>
               </div>
-            </div>
-            <div class="card-body">
-              <div class="row g-3">
-                <div class="col-sm-6">
-                  <figure class="mb-0">
-                    <img src="../assets/images/placeholder/product-1.svg" alt="Generated gradient placeholder in indigo tones" class="img-fluid rounded-q w-100">
-                    <figcaption class="d-flex align-items-center justify-content-between mt-2">
-                      <span class="fs-8 text-muted-2">Variation 1 · 1344 × 768</span>
-                      <span class="d-flex gap-1">
-                        <button class="btn btn-icon btn-sm btn-ghost" aria-label="Download variation 1" data-demo-action="Download started — demo only."><i class="bi bi-download"></i></button>
-                        <button class="btn btn-icon btn-sm btn-ghost" aria-label="Use variation 1" data-demo-action="Image attached to draft — demo only."><i class="bi bi-check2"></i></button>
-                      </span>
-                    </figcaption>
-                  </figure>
-                </div>
-                <div class="col-sm-6">
-                  <figure class="mb-0">
-                    <img src="../assets/images/placeholder/product-2.svg" alt="Generated gradient placeholder in teal tones" class="img-fluid rounded-q w-100">
-                    <figcaption class="d-flex align-items-center justify-content-between mt-2">
-                      <span class="fs-8 text-muted-2">Variation 2 · 1344 × 768</span>
-                      <span class="d-flex gap-1">
-                        <button class="btn btn-icon btn-sm btn-ghost" aria-label="Download variation 2" data-demo-action="Download started — demo only."><i class="bi bi-download"></i></button>
-                        <button class="btn btn-icon btn-sm btn-ghost" aria-label="Use variation 2" data-demo-action="Image attached to draft — demo only."><i class="bi bi-check2"></i></button>
-                      </span>
-                    </figcaption>
-                  </figure>
-                </div>
-                <div class="col-sm-6">
-                  <figure class="mb-0">
-                    <img src="../assets/images/placeholder/product-3.svg" alt="Generated gradient placeholder in amber tones" class="img-fluid rounded-q w-100">
-                    <figcaption class="d-flex align-items-center justify-content-between mt-2">
-                      <span class="fs-8 text-muted-2">Variation 3 · 1344 × 768</span>
-                      <span class="d-flex gap-1">
-                        <button class="btn btn-icon btn-sm btn-ghost" aria-label="Download variation 3" data-demo-action="Download started — demo only."><i class="bi bi-download"></i></button>
-                        <button class="btn btn-icon btn-sm btn-ghost" aria-label="Use variation 3" data-demo-action="Image attached to draft — demo only."><i class="bi bi-check2"></i></button>
-                      </span>
-                    </figcaption>
-                  </figure>
-                </div>
-                <div class="col-sm-6">
-                  <figure class="mb-0">
-                    <img src="../assets/images/placeholder/product-4.svg" alt="Generated gradient placeholder in sky blue tones" class="img-fluid rounded-q w-100">
-                    <figcaption class="d-flex align-items-center justify-content-between mt-2">
-                      <span class="fs-8 text-muted-2">Variation 4 · 1344 × 768</span>
-                      <span class="d-flex gap-1">
-                        <button class="btn btn-icon btn-sm btn-ghost" aria-label="Download variation 4" data-demo-action="Download started — demo only."><i class="bi bi-download"></i></button>
-                        <button class="btn btn-icon btn-sm btn-ghost" aria-label="Use variation 4" data-demo-action="Image attached to draft — demo only."><i class="bi bi-check2"></i></button>
-                      </span>
-                    </figcaption>
-                  </figure>
-                </div>
+              <div class="col-md-4 text-center">
+                <div class="spinner-q mx-auto" style="width: 48px; height: 48px; border-width: 4px;" role="status"><span class="visually-hidden">Loading</span></div>
+                <p class="fs-8 text-muted-2 mt-2 mb-0">Large · 48px</p>
               </div>
             </div>
           </div>
+        </div>
+        <div class="demo-block__pane" data-demo-pane="html">
+          <div class="demo-code-wrap">
+            <button class="copy-btn" data-copy-target="#codeSpQevora" type="button"><i class="bi bi-clipboard"></i> Copy HTML</button>
+            <pre class="demo-code"><code id="codeSpQevora" data-auto-code="#spQevora"></code></pre>
+          </div>
+        </div>
+      </div>
 
-          <div class="row g-3">
-            <div class="col-md-6">
-              <div class="card h-100">
-                <div class="card-header">
-                  <h3 class="card-title mb-0">Credits</h3>
-                </div>
-                <div class="card-body">
-                  <div class="d-flex align-items-center justify-content-between mb-2">
-                    <span class="fs-7 text-muted-2">Image credits used</span>
-                    <span class="fw-600 text-heading">128 / 500</span>
+      <div class="demo-block" data-demo>
+        <div class="demo-block__head">
+          <div>
+            <h2 class="demo-block__title">Buttons and inline loading</h2>
+            <p class="demo-block__desc">Spinners inside buttons, and the pattern for a toolbar button that is waiting on a request.</p>
+          </div>
+        </div>
+        <div class="demo-block__tabs">
+          <button class="demo-tab is-active" data-demo-tab="preview" aria-selected="true">Preview</button>
+          <button class="demo-tab" data-demo-tab="html" aria-selected="false">HTML</button>
+        </div>
+        <div class="demo-block__pane is-active" data-demo-pane="preview">
+          <div class="demo-preview" id="spButtons">
+            <div class="d-flex flex-wrap align-items-center gap-2">
+              <button class="btn btn-primary" type="button" disabled>
+                <span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span> Saving…
+              </button>
+              <button class="btn btn-white" type="button" disabled>
+                <span class="spinner-grow spinner-grow-sm me-2" role="status" aria-hidden="true"></span> Uploading…
+              </button>
+              <button class="btn btn-soft-primary" type="button" disabled>
+                <span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span> Generating report
+              </button>
+              <button class="btn btn-outline-primary" type="button">
+                <i class="bi bi-arrow-clockwise me-2"></i> Refresh data
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="demo-block__pane" data-demo-pane="html">
+          <div class="demo-code-wrap">
+            <button class="copy-btn" data-copy-target="#codeSpButtons" type="button"><i class="bi bi-clipboard"></i> Copy HTML</button>
+            <pre class="demo-code"><code id="codeSpButtons" data-auto-code="#spButtons"></code></pre>
+          </div>
+        </div>
+      </div>
+
+      <div class="demo-block" data-demo>
+        <div class="demo-block__head">
+          <div>
+            <h2 class="demo-block__title">Skeleton placeholders</h2>
+            <p class="demo-block__desc">Preferred over a spinner when you know the shape of the content that is loading — it prevents layout shift.</p>
+          </div>
+        </div>
+        <div class="demo-block__tabs">
+          <button class="demo-tab is-active" data-demo-tab="preview" aria-selected="true">Preview</button>
+          <button class="demo-tab" data-demo-tab="html" aria-selected="false">HTML</button>
+        </div>
+        <div class="demo-block__pane is-active" data-demo-pane="preview">
+          <div class="demo-preview demo-preview--plain" id="spSkeleton">
+            <div class="card">
+              <div class="card-header d-block">
+                <div class="skeleton mb-2" style="width: 38%; height: 16px;"></div>
+                <div class="skeleton" style="width: 22%;"></div>
+              </div>
+              <div class="card-body">
+                <div class="d-flex gap-3 mb-3">
+                  <div class="skeleton rounded-circle" style="width: 40px; height: 40px; flex: 0 0 auto;"></div>
+                  <div class="flex-grow-1">
+                    <div class="skeleton mb-2" style="width: 55%;"></div>
+                    <div class="skeleton" style="width: 32%;"></div>
                   </div>
-                  <div class="progress progress-sm mb-3"><div class="progress-bar" style="width: 26%"></div></div>
-                  <p class="fs-8 text-muted-2 mb-3">Credits reset on Nov 1, 2026. Unused credits do not roll over.</p>
-                  <a href="../pages/pricing.html" class="btn btn-sm btn-soft-primary">Buy more credits</a>
                 </div>
-              </div>
-            </div>
-            <div class="col-md-6">
-              <div class="card h-100">
-                <div class="card-header">
-                  <h3 class="card-title mb-0">Recent prompts</h3>
+                <div class="skeleton mb-2" style="width: 100%;"></div>
+                <div class="skeleton mb-2" style="width: 92%;"></div>
+                <div class="skeleton mb-4" style="width: 74%;"></div>
+                <div class="d-flex gap-2">
+                  <div class="skeleton" style="width: 96px; height: 34px;"></div>
+                  <div class="skeleton" style="width: 96px; height: 34px;"></div>
                 </div>
-                <ul class="list-group list-group-flush">
-                  <li class="list-group-item">
-                    <span class="d-block fs-7 fw-500 text-heading">Dashboard hero gradient</span>
-                    <span class="d-block fs-8 text-muted-2">4 images · 12 minutes ago</span>
-                  </li>
-                  <li class="list-group-item">
-                    <span class="d-block fs-7 fw-500 text-heading">Abstract data mesh illustration</span>
-                    <span class="d-block fs-8 text-muted-2">2 images · yesterday</span>
-                  </li>
-                  <li class="list-group-item">
-                    <span class="d-block fs-7 fw-500 text-heading">Empty state spot illustration</span>
-                    <span class="d-block fs-8 text-muted-2">1 image · Sep 30, 2026</span>
-                  </li>
-                </ul>
               </div>
             </div>
           </div>
+        </div>
+        <div class="demo-block__pane" data-demo-pane="html">
+          <div class="demo-code-wrap">
+            <button class="copy-btn" data-copy-target="#codeSpSkeleton" type="button"><i class="bi bi-clipboard"></i> Copy HTML</button>
+            <pre class="demo-code"><code id="codeSpSkeleton" data-auto-code="#spSkeleton"></code></pre>
+          </div>
+        </div>
+      </div>
+
+      <div class="demo-block" data-demo>
+        <div class="demo-block__head">
+          <div>
+            <h2 class="demo-block__title">Loading inside a table</h2>
+            <p class="demo-block__desc">A single centred row keeps the table's column widths stable while data loads.</p>
+          </div>
+        </div>
+        <div class="demo-block__tabs">
+          <button class="demo-tab is-active" data-demo-tab="preview" aria-selected="true">Preview</button>
+          <button class="demo-tab" data-demo-tab="html" aria-selected="false">HTML</button>
+        </div>
+        <div class="demo-block__pane is-active" data-demo-pane="preview">
+          <div class="demo-preview demo-preview--plain" id="spTable">
+            <div class="card">
+              <div class="card-header"><h3 class="card-title mb-0">Payments</h3></div>
+              <div class="table-responsive">
+                <table class="table align-middle mb-0">
+                  <thead>
+                    <tr>
+                      <th scope="col">Reference</th>
+                      <th scope="col">Customer</th>
+                      <th scope="col">Method</th>
+                      <th scope="col" class="text-end">Amount</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td colspan="4" class="text-center py-5">
+                        <div class="spinner-q mx-auto mb-3" role="status"><span class="visually-hidden">Loading payments</span></div>
+                        <p class="fs-7 text-muted-2 mb-0">Loading payments…</p>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="demo-block__pane" data-demo-pane="html">
+          <div class="demo-code-wrap">
+            <button class="copy-btn" data-copy-target="#codeSpTable" type="button"><i class="bi bi-clipboard"></i> Copy HTML</button>
+            <pre class="demo-code"><code id="codeSpTable" data-auto-code="#spTable"></code></pre>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <h2 class="card-title mb-0">Usage notes</h2>
+        </div>
+        <div class="card-body">
+          <ul class="fs-7 text-muted-2 mb-0 d-flex flex-column gap-2">
+            <li>Every spinner needs <code>role="status"</code> and a <code>.visually-hidden</code> label so screen readers announce the wait.</li>
+            <li>Keep indicators under about one second of perceived delay; anything longer deserves a skeleton or a progress bar.</li>
+            <li>Disable the triggering button while it is loading, or users will submit the same action twice.</li>
+            <li>Match the spinner colour to the button it sits in — <code>.spinner-border-sm</code> plus the button's own text colour works everywhere.</li>
+            <li>Never stack a spinner on top of stale data; either keep the old rows visible with a subtle overlay, or show skeletons.</li>
+          </ul>
         </div>
       </div>
     </main>
@@ -902,8 +937,6 @@
     <script src="../assets/js/sidebar.js"></script>
     <script src="../assets/js/app.js"></script>
     <script src="../assets/js/components.js"></script>
-    <script src="../assets/js/chart.umd.js"></script>
-    <script src="../assets/js/pages/charts.js"></script>
 
 </body>
 </html>

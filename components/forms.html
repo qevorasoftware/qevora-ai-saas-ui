@@ -4,15 +4,15 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#4f46e5">
-  <title>AI Image Generator | Qevora AI SaaS Admin & UI Kit</title>
-  <meta name="description" content="AI image generation UI with prompt, style presets, aspect ratio and generated gallery.">
+  <title>Form Controls | Qevora AI SaaS UI Kit</title>
+  <meta name="description" content="Inputs, textareas, checks, radios, switches, range and validation states.">
   <meta name="author" content="Qevora Software">
   <meta name="robots" content="index, follow">
 
   <!-- Open Graph / social preview -->
   <meta property="og:type" content="website">
-  <meta property="og:title" content="AI Image Generator | Qevora AI SaaS Admin & UI Kit">
-  <meta property="og:description" content="AI image generation UI with prompt, style presets, aspect ratio and generated gallery.">
+  <meta property="og:title" content="Form Controls | Qevora AI SaaS UI Kit">
+  <meta property="og:description" content="Inputs, textareas, checks, radios, switches, range and validation states.">
   <meta property="og:site_name" content="Qevora AI SaaS">
 
   <link rel="icon" type="image/svg+xml" href="../assets/images/favicon.svg">
@@ -679,201 +679,278 @@
         <div>
                   <nav aria-label="Breadcrumb">
           <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="../index.html">AI Workspace</a></li>
-          <li class="breadcrumb-item active" aria-current="page">Image Generator</li>
+          <li class="breadcrumb-item"><a href="../index.html">UI Kit</a></li>
+          <li class="breadcrumb-item"><a href="#">Forms</a></li>
+          <li class="breadcrumb-item active" aria-current="page">Form Controls</li>
           </ol>
         </nav>
-          <h1 class="q-page-head__title mt-2">Image generator</h1>
-          <p class="q-page-head__subtitle">Create on-brand visuals from a prompt. Gallery items are CSS placeholders, not stock photography.</p>
+          <h1 class="q-page-head__title mt-2">Form controls</h1>
+          <p class="q-page-head__subtitle">
+            Inputs, labels, selects, checks, switches and validation. Forms are the backbone of this admin — the settings,
+            CRM and billing screens are all built from these blocks.
+          </p>
         </div>
         <div class="d-flex flex-wrap gap-2">
-          <button class="btn btn-white" data-demo-action="Prompt library opened — demo only."><i class="bi bi-collection"></i> Prompt library</button>
-          <a class="btn btn-primary" href="history.html"><i class="bi bi-clock-history"></i> History</a>
+          <a class="btn btn-white" href="../documentation/index.html"><i class="bi bi-book"></i> Docs</a>
         </div>
       </div>
 
-      <div class="row g-3">
-        <div class="col-xl-4">
-          <div class="card">
-            <div class="card-header">
-              <div>
-                <h2 class="card-title">Create</h2>
-                <p class="card-subtitle">Describe the image you need</p>
+      <div class="demo-block" data-demo>
+        <div class="demo-block__head">
+          <div>
+            <h2 class="demo-block__title">Text inputs</h2>
+            <p class="demo-block__desc">Default, small, large, read-only and disabled states with helper text.</p>
+          </div>
+        </div>
+        <div class="demo-block__tabs">
+          <button class="demo-tab is-active" data-demo-tab="preview" aria-selected="true">Preview</button>
+          <button class="demo-tab" data-demo-tab="html" aria-selected="false">HTML</button>
+        </div>
+        <div class="demo-block__pane is-active" data-demo-pane="preview">
+          <div class="demo-preview" id="formInputs">
+            <div class="row g-3">
+              <div class="col-md-6">
+                <label class="form-label" for="fcName">Full name</label>
+                <input type="text" class="form-control" id="fcName" placeholder="Ava Reynolds" value="Ava Reynolds">
               </div>
-            </div>
-            <div class="card-body">
-              <div class="mb-3">
-                <label class="form-label" for="ig-prompt">Prompt</label>
-                <textarea class="form-control" id="ig-prompt" rows="4">Minimal abstract gradient background in indigo and cyan for a SaaS dashboard hero section, soft light, no text.</textarea>
+              <div class="col-md-6">
+                <label class="form-label" for="fcEmail">Work email</label>
+                <input type="email" class="form-control" id="fcEmail" placeholder="ava@novalabs.com" value="ava@novalabs.com">
+                <div class="form-text">We only use this for account and billing emails.</div>
               </div>
-
-              <div class="mb-3">
-                <label class="form-label">Style preset</label>
-                <div class="row g-2">
-                  <div class="col-6">
-                    <button class="component-tile w-100 text-start is-active" type="button" data-demo-action="Style set to Gradient — demo only.">
-                      <span class="component-tile__icon"><i class="bi bi-brightness-high"></i></span>
-                      <span class="component-tile__title">Gradient</span>
-                    </button>
-                  </div>
-                  <div class="col-6">
-                    <button class="component-tile w-100 text-start" type="button" data-demo-action="Style set to 3D render — demo only.">
-                      <span class="component-tile__icon"><i class="bi bi-box"></i></span>
-                      <span class="component-tile__title">3D render</span>
-                    </button>
-                  </div>
-                  <div class="col-6">
-                    <button class="component-tile w-100 text-start" type="button" data-demo-action="Style set to Line art — demo only.">
-                      <span class="component-tile__icon"><i class="bi bi-pencil"></i></span>
-                      <span class="component-tile__title">Line art</span>
-                    </button>
-                  </div>
-                  <div class="col-6">
-                    <button class="component-tile w-100 text-start" type="button" data-demo-action="Style set to Photo — demo only.">
-                      <span class="component-tile__icon"><i class="bi bi-camera"></i></span>
-                      <span class="component-tile__title">Photo</span>
-                    </button>
-                  </div>
-                </div>
+              <div class="col-md-6">
+                <label class="form-label" for="fcCompany">Company</label>
+                <input type="text" class="form-control form-control-sm" id="fcCompany" value="Nova Labs">
               </div>
-
-              <div class="mb-3">
-                <label class="form-label" for="ig-ratio">Aspect ratio</label>
-                <select class="form-select" id="ig-ratio">
-                  <option selected>16:9 — hero banner</option>
-                  <option>1:1 — square</option>
-                  <option>4:5 — social portrait</option>
-                  <option>9:16 — story</option>
-                </select>
+              <div class="col-md-6">
+                <label class="form-label" for="fcWorkspace">Workspace URL</label>
+                <input type="text" class="form-control form-control-lg" id="fcWorkspace" value="qevora.app/nova-labs">
               </div>
-
-              <div class="mb-3">
-                <label class="form-label" for="ig-count">Images</label>
-                <select class="form-select" id="ig-count">
-                  <option>1</option>
-                  <option selected>4</option>
-                  <option>8</option>
-                </select>
+              <div class="col-md-6">
+                <label class="form-label" for="fcReadonly">Plan</label>
+                <input type="text" class="form-control" id="fcReadonly" value="Growth — $99 / month" readonly>
               </div>
-
-              <div class="mb-3">
-                <label class="form-label" for="ig-negative">Negative prompt <span class="text-muted-2 fw-400">(optional)</span></label>
-                <input type="text" class="form-control" id="ig-negative" placeholder="text, watermark, faces">
+              <div class="col-md-6">
+                <label class="form-label" for="fcDisabled">Billing contact</label>
+                <input type="text" class="form-control" id="fcDisabled" value="Managed by the workspace owner" disabled>
               </div>
-
-              <button class="btn btn-gradient w-100" data-demo-action="Image generation queued — demo interaction only.">
-                <i class="bi bi-magic"></i> Generate images
-              </button>
-              <p class="fs-8 text-muted-2 text-center mt-2 mb-0">4 images · 0.4 credits · about 8 seconds</p>
+              <div class="col-12">
+                <label class="form-label" for="fcNote">Internal note <span class="text-muted-2 fw-400">(optional)</span></label>
+                <textarea class="form-control" id="fcNote" rows="3" placeholder="Visible to admins only"></textarea>
+              </div>
             </div>
           </div>
         </div>
+        <div class="demo-block__pane" data-demo-pane="html">
+          <div class="demo-code-wrap">
+            <button class="copy-btn" data-copy-target="#codeFormInputs" type="button"><i class="bi bi-clipboard"></i> Copy HTML</button>
+            <pre class="demo-code"><code id="codeFormInputs" data-auto-code="#formInputs"></code></pre>
+          </div>
+        </div>
+      </div>
 
-        <div class="col-xl-8">
-          <div class="card mb-3">
-            <div class="card-header">
-              <div>
-                <h2 class="card-title">Results</h2>
-                <p class="card-subtitle">4 images · Orbit Vision · 16:9</p>
+      <div class="demo-block" data-demo>
+        <div class="demo-block__head">
+          <div>
+            <h2 class="demo-block__title">Checks, radios and switches</h2>
+            <p class="demo-block__desc">Use switches for settings that apply immediately, checkboxes for selections in a form.</p>
+          </div>
+        </div>
+        <div class="demo-block__tabs">
+          <button class="demo-tab is-active" data-demo-tab="preview" aria-selected="true">Preview</button>
+          <button class="demo-tab" data-demo-tab="html" aria-selected="false">HTML</button>
+        </div>
+        <div class="demo-block__pane is-active" data-demo-pane="preview">
+          <div class="demo-preview" id="formChecks">
+            <div class="row g-4">
+              <div class="col-md-4">
+                <p class="fw-600 text-heading fs-7 mb-2">Checkboxes</p>
+                <div class="form-check mb-2">
+                  <input class="form-check-input" type="checkbox" id="chkInvoices" checked>
+                  <label class="form-check-label" for="chkInvoices">Invoice emails</label>
+                </div>
+                <div class="form-check mb-2">
+                  <input class="form-check-input" type="checkbox" id="chkDeadlines" checked>
+                  <label class="form-check-label" for="chkDeadlines">Project deadlines</label>
+                </div>
+                <div class="form-check mb-2">
+                  <input class="form-check-input" type="checkbox" id="chkQuota">
+                  <label class="form-check-label" for="chkQuota">AI quota alerts</label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" id="chkDisabled" disabled>
+                  <label class="form-check-label text-muted-2" for="chkDisabled">Weekly digest (Pro)</label>
+                </div>
               </div>
-              <div class="btn-group btn-group-sm" role="group" aria-label="Gallery view">
-                <button class="btn btn-white active" aria-label="Grid view" data-demo-action="Grid view selected — demo only."><i class="bi bi-grid"></i></button>
-                <button class="btn btn-white" aria-label="List view" data-demo-action="List view selected — demo only."><i class="bi bi-list-ul"></i></button>
+              <div class="col-md-4">
+                <p class="fw-600 text-heading fs-7 mb-2">Radio group</p>
+                <div class="form-check mb-2">
+                  <input class="form-check-input" type="radio" name="fcPlan" id="planStarter">
+                  <label class="form-check-label" for="planStarter">Starter — $29</label>
+                </div>
+                <div class="form-check mb-2">
+                  <input class="form-check-input" type="radio" name="fcPlan" id="planGrowth" checked>
+                  <label class="form-check-label" for="planGrowth">Growth — $99</label>
+                </div>
+                <div class="form-check mb-2">
+                  <input class="form-check-input" type="radio" name="fcPlan" id="planScale">
+                  <label class="form-check-label" for="planScale">Scale — $400</label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="fcPlan" id="planEnterprise">
+                  <label class="form-check-label" for="planEnterprise">Enterprise — custom</label>
+                </div>
               </div>
-            </div>
-            <div class="card-body">
-              <div class="row g-3">
-                <div class="col-sm-6">
-                  <figure class="mb-0">
-                    <img src="../assets/images/placeholder/product-1.svg" alt="Generated gradient placeholder in indigo tones" class="img-fluid rounded-q w-100">
-                    <figcaption class="d-flex align-items-center justify-content-between mt-2">
-                      <span class="fs-8 text-muted-2">Variation 1 · 1344 × 768</span>
-                      <span class="d-flex gap-1">
-                        <button class="btn btn-icon btn-sm btn-ghost" aria-label="Download variation 1" data-demo-action="Download started — demo only."><i class="bi bi-download"></i></button>
-                        <button class="btn btn-icon btn-sm btn-ghost" aria-label="Use variation 1" data-demo-action="Image attached to draft — demo only."><i class="bi bi-check2"></i></button>
-                      </span>
-                    </figcaption>
-                  </figure>
+              <div class="col-md-4">
+                <p class="fw-600 text-heading fs-7 mb-2">Switches</p>
+                <div class="form-check form-switch mb-2">
+                  <input class="form-check-input" type="checkbox" role="switch" id="swTwoFactor" checked>
+                  <label class="form-check-label" for="swTwoFactor">Two-factor auth</label>
                 </div>
-                <div class="col-sm-6">
-                  <figure class="mb-0">
-                    <img src="../assets/images/placeholder/product-2.svg" alt="Generated gradient placeholder in teal tones" class="img-fluid rounded-q w-100">
-                    <figcaption class="d-flex align-items-center justify-content-between mt-2">
-                      <span class="fs-8 text-muted-2">Variation 2 · 1344 × 768</span>
-                      <span class="d-flex gap-1">
-                        <button class="btn btn-icon btn-sm btn-ghost" aria-label="Download variation 2" data-demo-action="Download started — demo only."><i class="bi bi-download"></i></button>
-                        <button class="btn btn-icon btn-sm btn-ghost" aria-label="Use variation 2" data-demo-action="Image attached to draft — demo only."><i class="bi bi-check2"></i></button>
-                      </span>
-                    </figcaption>
-                  </figure>
+                <div class="form-check form-switch mb-2">
+                  <input class="form-check-input" type="checkbox" role="switch" id="swAutopay" checked>
+                  <label class="form-check-label" for="swAutopay">Auto-pay invoices</label>
                 </div>
-                <div class="col-sm-6">
-                  <figure class="mb-0">
-                    <img src="../assets/images/placeholder/product-3.svg" alt="Generated gradient placeholder in amber tones" class="img-fluid rounded-q w-100">
-                    <figcaption class="d-flex align-items-center justify-content-between mt-2">
-                      <span class="fs-8 text-muted-2">Variation 3 · 1344 × 768</span>
-                      <span class="d-flex gap-1">
-                        <button class="btn btn-icon btn-sm btn-ghost" aria-label="Download variation 3" data-demo-action="Download started — demo only."><i class="bi bi-download"></i></button>
-                        <button class="btn btn-icon btn-sm btn-ghost" aria-label="Use variation 3" data-demo-action="Image attached to draft — demo only."><i class="bi bi-check2"></i></button>
-                      </span>
-                    </figcaption>
-                  </figure>
+                <div class="form-check form-switch mb-2">
+                  <input class="form-check-input" type="checkbox" role="switch" id="swBeta">
+                  <label class="form-check-label" for="swBeta">Beta features</label>
                 </div>
-                <div class="col-sm-6">
-                  <figure class="mb-0">
-                    <img src="../assets/images/placeholder/product-4.svg" alt="Generated gradient placeholder in sky blue tones" class="img-fluid rounded-q w-100">
-                    <figcaption class="d-flex align-items-center justify-content-between mt-2">
-                      <span class="fs-8 text-muted-2">Variation 4 · 1344 × 768</span>
-                      <span class="d-flex gap-1">
-                        <button class="btn btn-icon btn-sm btn-ghost" aria-label="Download variation 4" data-demo-action="Download started — demo only."><i class="bi bi-download"></i></button>
-                        <button class="btn btn-icon btn-sm btn-ghost" aria-label="Use variation 4" data-demo-action="Image attached to draft — demo only."><i class="bi bi-check2"></i></button>
-                      </span>
-                    </figcaption>
-                  </figure>
+                <div class="form-check form-switch">
+                  <input class="form-check-input" type="checkbox" role="switch" id="swMaintenance" disabled>
+                  <label class="form-check-label text-muted-2" for="swMaintenance">Maintenance mode</label>
                 </div>
               </div>
             </div>
           </div>
+        </div>
+        <div class="demo-block__pane" data-demo-pane="html">
+          <div class="demo-code-wrap">
+            <button class="copy-btn" data-copy-target="#codeFormChecks" type="button"><i class="bi bi-clipboard"></i> Copy HTML</button>
+            <pre class="demo-code"><code id="codeFormChecks" data-auto-code="#formChecks"></code></pre>
+          </div>
+        </div>
+      </div>
 
-          <div class="row g-3">
-            <div class="col-md-6">
-              <div class="card h-100">
-                <div class="card-header">
-                  <h3 class="card-title mb-0">Credits</h3>
-                </div>
-                <div class="card-body">
-                  <div class="d-flex align-items-center justify-content-between mb-2">
-                    <span class="fs-7 text-muted-2">Image credits used</span>
-                    <span class="fw-600 text-heading">128 / 500</span>
-                  </div>
-                  <div class="progress progress-sm mb-3"><div class="progress-bar" style="width: 26%"></div></div>
-                  <p class="fs-8 text-muted-2 mb-3">Credits reset on Nov 1, 2026. Unused credits do not roll over.</p>
-                  <a href="../pages/pricing.html" class="btn btn-sm btn-soft-primary">Buy more credits</a>
-                </div>
+      <div class="demo-block" data-demo>
+        <div class="demo-block__head">
+          <div>
+            <h2 class="demo-block__title">Validation states</h2>
+            <p class="demo-block__desc">Valid and invalid feedback is placed directly under the field and always names the problem.</p>
+          </div>
+        </div>
+        <div class="demo-block__tabs">
+          <button class="demo-tab is-active" data-demo-tab="preview" aria-selected="true">Preview</button>
+          <button class="demo-tab" data-demo-tab="html" aria-selected="false">HTML</button>
+        </div>
+        <div class="demo-block__pane is-active" data-demo-pane="preview">
+          <div class="demo-preview" id="formValidation">
+            <div class="row g-3">
+              <div class="col-md-6">
+                <label class="form-label" for="valEmail">Billing email</label>
+                <input type="email" class="form-control is-valid" id="valEmail" value="finance@northstarlabs.com">
+                <div class="valid-feedback">Looks good — invoices will be sent here.</div>
               </div>
-            </div>
-            <div class="col-md-6">
-              <div class="card h-100">
-                <div class="card-header">
-                  <h3 class="card-title mb-0">Recent prompts</h3>
-                </div>
-                <ul class="list-group list-group-flush">
-                  <li class="list-group-item">
-                    <span class="d-block fs-7 fw-500 text-heading">Dashboard hero gradient</span>
-                    <span class="d-block fs-8 text-muted-2">4 images · 12 minutes ago</span>
-                  </li>
-                  <li class="list-group-item">
-                    <span class="d-block fs-7 fw-500 text-heading">Abstract data mesh illustration</span>
-                    <span class="d-block fs-8 text-muted-2">2 images · yesterday</span>
-                  </li>
-                  <li class="list-group-item">
-                    <span class="d-block fs-7 fw-500 text-heading">Empty state spot illustration</span>
-                    <span class="d-block fs-8 text-muted-2">1 image · Sep 30, 2026</span>
-                  </li>
-                </ul>
+              <div class="col-md-6">
+                <label class="form-label" for="valTax">Tax ID</label>
+                <input type="text" class="form-control is-invalid" id="valTax" value="XX-000" aria-describedby="valTaxError">
+                <div class="invalid-feedback" id="valTaxError">Enter a valid tax ID — 8 to 14 characters, digits and dashes only.</div>
+              </div>
+              <div class="col-md-6">
+                <label class="form-label" for="valSeats">Seats</label>
+                <input type="number" class="form-control" id="valSeats" value="25" min="3" max="250">
+                <div class="form-text">Between 3 and 250 seats on the Growth plan.</div>
+              </div>
+              <div class="col-md-6">
+                <label class="form-label" for="valBudget">Monthly budget</label>
+                <input type="range" class="form-range mt-2" id="valBudget" min="29" max="400" step="1" value="99">
               </div>
             </div>
           </div>
+        </div>
+        <div class="demo-block__pane" data-demo-pane="html">
+          <div class="demo-code-wrap">
+            <button class="copy-btn" data-copy-target="#codeFormValidation" type="button"><i class="bi bi-clipboard"></i> Copy HTML</button>
+            <pre class="demo-code"><code id="codeFormValidation" data-auto-code="#formValidation"></code></pre>
+          </div>
+        </div>
+      </div>
+
+      <div class="demo-block" data-demo>
+        <div class="demo-block__head">
+          <div>
+            <h2 class="demo-block__title">Floating labels &amp; a full form</h2>
+            <p class="demo-block__desc">Floating labels save vertical space in dialogs — this block is a complete, ready-to-copy form.</p>
+          </div>
+        </div>
+        <div class="demo-block__tabs">
+          <button class="demo-tab is-active" data-demo-tab="preview" aria-selected="true">Preview</button>
+          <button class="demo-tab" data-demo-tab="html" aria-selected="false">HTML</button>
+        </div>
+        <div class="demo-block__pane is-active" data-demo-pane="preview">
+          <div class="demo-preview" id="formFloating">
+            <form class="row g-3" novalidate>
+              <div class="col-md-6">
+                <div class="form-floating">
+                  <input type="text" class="form-control" id="flCompany" placeholder="Company" value="Orbit Systems">
+                  <label for="flCompany">Company name</label>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-floating">
+                  <input type="email" class="form-control" id="flEmail" placeholder="Email" value="ops@orbitsystems.com">
+                  <label for="flEmail">Billing email</label>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="form-floating">
+                  <select class="form-select" id="flCountry" aria-label="Country">
+                    <option>United Kingdom</option>
+                    <option selected>Singapore</option>
+                    <option>Germany</option>
+                    <option>Japan</option>
+                  </select>
+                  <label for="flCountry">Country</label>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="form-floating">
+                  <input type="text" class="form-control" id="flCity" placeholder="City" value="Singapore">
+                  <label for="flCity">City</label>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="form-floating">
+                  <input type="text" class="form-control" id="flZip" placeholder="Postal code" value="018956">
+                  <label for="flZip">Postal code</label>
+                </div>
+              </div>
+              <div class="col-12 d-flex gap-2">
+                <button class="btn btn-primary" type="button" data-demo-action="Company profile saved — demo only." data-demo-variant="success">Save changes</button>
+                <button class="btn btn-white" type="reset">Reset</button>
+              </div>
+            </form>
+          </div>
+        </div>
+        <div class="demo-block__pane" data-demo-pane="html">
+          <div class="demo-code-wrap">
+            <button class="copy-btn" data-copy-target="#codeFormFloating" type="button"><i class="bi bi-clipboard"></i> Copy HTML</button>
+            <pre class="demo-code"><code id="codeFormFloating" data-auto-code="#formFloating"></code></pre>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <h2 class="card-title mb-0">Usage notes</h2>
+        </div>
+        <div class="card-body">
+          <ul class="fs-7 text-muted-2 mb-0 d-flex flex-column gap-2">
+            <li>Every input needs a <code>&lt;label&gt;</code> tied to it by <code>for</code>/<code>id</code>. Placeholders are examples, never labels.</li>
+            <li>Use <code>.form-control-sm</code> inside table toolbars and <code>.form-control-lg</code> for single-field pages such as auth screens.</li>
+            <li>Keep helper text in <code>.form-text</code> and error text in <code>.invalid-feedback</code> — do not mix them.</li>
+            <li>Validate on submit (and on blur for long forms), never on every keystroke.</li>
+            <li>Group related fields in <code>.row g-3</code> so form spacing stays identical on every page.</li>
+          </ul>
         </div>
       </div>
     </main>
@@ -902,8 +979,6 @@
     <script src="../assets/js/sidebar.js"></script>
     <script src="../assets/js/app.js"></script>
     <script src="../assets/js/components.js"></script>
-    <script src="../assets/js/chart.umd.js"></script>
-    <script src="../assets/js/pages/charts.js"></script>
 
 </body>
 </html>

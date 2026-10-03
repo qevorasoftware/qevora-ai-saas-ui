@@ -1,0 +1,197 @@
+      <div class="q-page-head">
+        <div>
+          {{BREADCRUMB}}
+          <h1 class="q-page-head__title mt-2">Accordions</h1>
+          <p class="q-page-head__subtitle">
+            Collapsible panels for long forms, settings groups and FAQs. Standard Bootstrap 5 accordion markup with the
+            Qevora surface tokens applied.
+          </p>
+        </div>
+        <div class="d-flex flex-wrap gap-2">
+          <a class="btn btn-white" href="../documentation/index.html"><i class="bi bi-book"></i> Docs</a>
+        </div>
+      </div>
+
+      <div class="demo-block" data-demo>
+        <div class="demo-block__head">
+          <div>
+            <h2 class="demo-block__title">Basic accordion</h2>
+            <p class="demo-block__desc">One panel stays open at a time. The first item opens by default so the pattern is obvious.</p>
+          </div>
+        </div>
+        <div class="demo-block__tabs">
+          <button class="demo-tab is-active" data-demo-tab="preview" aria-selected="true">Preview</button>
+          <button class="demo-tab" data-demo-tab="html" aria-selected="false">HTML</button>
+        </div>
+        <div class="demo-block__pane is-active" data-demo-pane="preview">
+          <div class="demo-preview" id="accBasic">
+            <div class="accordion" id="accordionBasic">
+              <div class="accordion-item">
+                <h3 class="accordion-header">
+                  <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#accItemOne" aria-expanded="true" aria-controls="accItemOne">
+                    How do I invite a teammate?
+                  </button>
+                </h3>
+                <div id="accItemOne" class="accordion-collapse collapse show" data-bs-parent="#accordionBasic">
+                  <div class="accordion-body fs-7 text-muted-2">
+                    Open <strong>Team → Invite member</strong>, enter the work email and choose a role. Admins and Managers
+                    can invite; Analysts and Support members can only request access.
+                  </div>
+                </div>
+              </div>
+              <div class="accordion-item">
+                <h3 class="accordion-header">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#accItemTwo" aria-expanded="false" aria-controls="accItemTwo">
+                    Which AI models are available?
+                  </button>
+                </h3>
+                <div id="accItemTwo" class="accordion-collapse collapse" data-bs-parent="#accordionBasic">
+                  <div class="accordion-body fs-7 text-muted-2">
+                    Nova-4 Turbo, Nova-4, Vertex Flash and Orbit Vision. Model availability depends on your plan — see the
+                    AI usage page for the current split.
+                  </div>
+                </div>
+              </div>
+              <div class="accordion-item">
+                <h3 class="accordion-header">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#accItemThree" aria-expanded="false" aria-controls="accItemThree">
+                    Can I export my data?
+                  </button>
+                </h3>
+                <div id="accItemThree" class="accordion-collapse collapse" data-bs-parent="#accordionBasic">
+                  <div class="accordion-body fs-7 text-muted-2">
+                    Yes. Reports can be exported to CSV, Excel and PDF from any table toolbar on the Growth plan and above.
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="demo-block__pane" data-demo-pane="html">
+          <div class="demo-code-wrap">
+            <button class="copy-btn" data-copy-target="#codeAccBasic" type="button"><i class="bi bi-clipboard"></i> Copy HTML</button>
+            <pre class="demo-code"><code id="codeAccBasic" data-auto-code="#accBasic"></code></pre>
+          </div>
+        </div>
+      </div>
+
+      <div class="demo-block" data-demo>
+        <div class="demo-block__head">
+          <div>
+            <h2 class="demo-block__title">Flush accordion in a card</h2>
+            <p class="demo-block__desc">Drop the outer border and radius with <code>.accordion-flush</code> when the accordion already sits inside a card.</p>
+          </div>
+        </div>
+        <div class="demo-block__tabs">
+          <button class="demo-tab is-active" data-demo-tab="preview" aria-selected="true">Preview</button>
+          <button class="demo-tab" data-demo-tab="html" aria-selected="false">HTML</button>
+        </div>
+        <div class="demo-block__pane is-active" data-demo-pane="preview">
+          <div class="demo-preview" id="accFlush">
+            <div class="card">
+              <div class="card-header">
+                <h3 class="card-title mb-0">Workspace settings</h3>
+              </div>
+              <div class="accordion accordion-flush" id="accordionFlush">
+                <div class="accordion-item">
+                  <h4 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flushBranding" aria-expanded="false" aria-controls="flushBranding">
+                      <i class="bi bi-palette me-2"></i> Branding
+                    </button>
+                  </h4>
+                  <div id="flushBranding" class="accordion-collapse collapse" data-bs-parent="#accordionFlush">
+                    <div class="accordion-body fs-7 text-muted-2">
+                      Logo, accent colour and email footer. Uploads accept SVG and PNG up to 2 MB.
+                    </div>
+                  </div>
+                </div>
+                <div class="accordion-item">
+                  <h4 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flushNotifications" aria-expanded="false" aria-controls="flushNotifications">
+                      <i class="bi bi-bell me-2"></i> Notifications
+                    </button>
+                  </h4>
+                  <div id="flushNotifications" class="accordion-collapse collapse" data-bs-parent="#accordionFlush">
+                    <div class="accordion-body fs-7 text-muted-2">
+                      Choose which events email the workspace admins: new invoices, project deadlines and AI quota alerts.
+                    </div>
+                  </div>
+                </div>
+                <div class="accordion-item">
+                  <h4 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flushDanger" aria-expanded="false" aria-controls="flushDanger">
+                      <i class="bi bi-exclamation-octagon me-2 text-danger"></i> Danger zone
+                    </button>
+                  </h4>
+                  <div id="flushDanger" class="accordion-collapse collapse" data-bs-parent="#accordionFlush">
+                    <div class="accordion-body">
+                      <p class="fs-7 text-muted-2">Deleting a workspace removes every project, invoice and AI generation permanently.</p>
+                      <button class="btn btn-sm btn-soft-danger" type="button" data-demo-action="Workspace deletion is disabled in the demo.">
+                        <i class="bi bi-trash3"></i> Delete workspace
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="demo-block__pane" data-demo-pane="html">
+          <div class="demo-code-wrap">
+            <button class="copy-btn" data-copy-target="#codeAccFlush" type="button"><i class="bi bi-clipboard"></i> Copy HTML</button>
+            <pre class="demo-code"><code id="codeAccFlush" data-auto-code="#accFlush"></code></pre>
+          </div>
+        </div>
+      </div>
+
+      <div class="demo-block" data-demo>
+        <div class="demo-block__head">
+          <div>
+            <h2 class="demo-block__title">Independently collapsible</h2>
+            <p class="demo-block__desc">Omit <code>data-bs-parent</code> to let several panels stay open together — best for step-by-step forms.</p>
+          </div>
+        </div>
+        <div class="demo-block__tabs">
+          <button class="demo-tab is-active" data-demo-tab="preview" aria-selected="true">Preview</button>
+          <button class="demo-tab" data-demo-tab="html" aria-selected="false">HTML</button>
+        </div>
+        <div class="demo-block__pane is-active" data-demo-pane="preview">
+          <div class="demo-preview" id="accIndependent">
+            <button class="btn btn-soft-primary mb-3" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSummary" aria-expanded="true" aria-controls="collapseSummary">
+              <i class="bi bi-layout-text-window-reverse"></i> Toggle order summary
+            </button>
+            <div class="collapse show" id="collapseSummary">
+              <div class="card">
+                <div class="card-body">
+                  <div class="d-flex justify-content-between fs-7 mb-2"><span class="text-muted-2">Growth plan · annual</span><span class="text-heading fw-500">$950.40</span></div>
+                  <div class="d-flex justify-content-between fs-7 mb-2"><span class="text-muted-2">Extra seats (4)</span><span class="text-heading fw-500">$396.00</span></div>
+                  <div class="d-flex justify-content-between fs-7 mb-2"><span class="text-muted-2">AI credit top-up</span><span class="text-heading fw-500">$120.00</span></div>
+                  <hr class="my-2">
+                  <div class="d-flex justify-content-between"><span class="fw-600 text-heading">Total due today</span><span class="fw-600 text-heading">$1,466.40</span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="demo-block__pane" data-demo-pane="html">
+          <div class="demo-code-wrap">
+            <button class="copy-btn" data-copy-target="#codeAccIndependent" type="button"><i class="bi bi-clipboard"></i> Copy HTML</button>
+            <pre class="demo-code"><code id="codeAccIndependent" data-auto-code="#accIndependent"></code></pre>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <h2 class="card-title mb-0">Usage notes</h2>
+        </div>
+        <div class="card-body">
+          <ul class="fs-7 text-muted-2 mb-0 d-flex flex-column gap-2">
+            <li>The toggle button always needs <code>aria-expanded</code> and <code>aria-controls</code> — the demo markup includes both.</li>
+            <li>Use <code>data-bs-parent</code> for FAQ lists, and leave it out for wizard-style forms where users compare panels.</li>
+            <li>Never nest an accordion inside another accordion panel; use a card with a header instead.</li>
+            <li>Headings use real <code>&lt;h3&gt;</code>/<code>&lt;h4&gt;</code> elements so the page outline stays valid for screen readers.</li>
+            <li>Keep panel bodies short — if a panel needs more than three paragraphs, it belongs on its own page.</li>
+          </ul>
+        </div>
+      </div>

@@ -4,15 +4,15 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#4f46e5">
-  <title>AI Image Generator | Qevora AI SaaS Admin & UI Kit</title>
-  <meta name="description" content="AI image generation UI with prompt, style presets, aspect ratio and generated gallery.">
+  <title>Modals | Qevora AI SaaS UI Kit</title>
+  <meta name="description" content="Modal dialogs, sizes, confirmation dialogs and scrollable content.">
   <meta name="author" content="Qevora Software">
   <meta name="robots" content="index, follow">
 
   <!-- Open Graph / social preview -->
   <meta property="og:type" content="website">
-  <meta property="og:title" content="AI Image Generator | Qevora AI SaaS Admin & UI Kit">
-  <meta property="og:description" content="AI image generation UI with prompt, style presets, aspect ratio and generated gallery.">
+  <meta property="og:title" content="Modals | Qevora AI SaaS UI Kit">
+  <meta property="og:description" content="Modal dialogs, sizes, confirmation dialogs and scrollable content.">
   <meta property="og:site_name" content="Qevora AI SaaS">
 
   <link rel="icon" type="image/svg+xml" href="../assets/images/favicon.svg">
@@ -679,201 +679,241 @@
         <div>
                   <nav aria-label="Breadcrumb">
           <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="../index.html">AI Workspace</a></li>
-          <li class="breadcrumb-item active" aria-current="page">Image Generator</li>
+          <li class="breadcrumb-item"><a href="../index.html">UI Kit</a></li>
+          <li class="breadcrumb-item"><a href="#">Interaction</a></li>
+          <li class="breadcrumb-item active" aria-current="page">Modals</li>
           </ol>
         </nav>
-          <h1 class="q-page-head__title mt-2">Image generator</h1>
-          <p class="q-page-head__subtitle">Create on-brand visuals from a prompt. Gallery items are CSS placeholders, not stock photography.</p>
+          <h1 class="q-page-head__title mt-2">Modals</h1>
+          <p class="q-page-head__subtitle">
+            Dialog patterns for confirmations, forms and detail previews. Markup is standard Bootstrap 5 — Qevora styles
+            the surface, header and footer spacing.
+          </p>
         </div>
         <div class="d-flex flex-wrap gap-2">
-          <button class="btn btn-white" data-demo-action="Prompt library opened — demo only."><i class="bi bi-collection"></i> Prompt library</button>
-          <a class="btn btn-primary" href="history.html"><i class="bi bi-clock-history"></i> History</a>
+          <a class="btn btn-white" href="../documentation/index.html"><i class="bi bi-book"></i> Docs</a>
         </div>
       </div>
 
-      <div class="row g-3">
-        <div class="col-xl-4">
-          <div class="card">
-            <div class="card-header">
-              <div>
-                <h2 class="card-title">Create</h2>
-                <p class="card-subtitle">Describe the image you need</p>
-              </div>
-            </div>
-            <div class="card-body">
-              <div class="mb-3">
-                <label class="form-label" for="ig-prompt">Prompt</label>
-                <textarea class="form-control" id="ig-prompt" rows="4">Minimal abstract gradient background in indigo and cyan for a SaaS dashboard hero section, soft light, no text.</textarea>
-              </div>
+      <div class="alert alert-info d-flex align-items-start gap-2" role="alert">
+        <i class="bi bi-info-circle alert-icon"></i>
+        <div class="fs-7">
+          These dialogs are live demos. On this showcase page the triggers work exactly as they do in the dashboard —
+          open one and press <kbd>Esc</kbd> to close it.
+        </div>
+      </div>
 
-              <div class="mb-3">
-                <label class="form-label">Style preset</label>
-                <div class="row g-2">
-                  <div class="col-6">
-                    <button class="component-tile w-100 text-start is-active" type="button" data-demo-action="Style set to Gradient — demo only.">
-                      <span class="component-tile__icon"><i class="bi bi-brightness-high"></i></span>
-                      <span class="component-tile__title">Gradient</span>
-                    </button>
+      <div class="demo-block" data-demo>
+        <div class="demo-block__head">
+          <div>
+            <h2 class="demo-block__title">Basic modal</h2>
+            <p class="demo-block__desc">Trigger button, dialog, header with close button, body, and a footer with a secondary and primary action.</p>
+          </div>
+        </div>
+        <div class="demo-block__tabs">
+          <button class="demo-tab is-active" data-demo-tab="preview" aria-selected="true">Preview</button>
+          <button class="demo-tab" data-demo-tab="html" aria-selected="false">HTML</button>
+        </div>
+        <div class="demo-block__pane is-active" data-demo-pane="preview">
+          <div class="demo-preview" id="modalBasic">
+            <button class="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#demoBasicModal">
+              <i class="bi bi-plus-lg"></i> New project
+            </button>
+
+            <div class="modal fade" id="demoBasicModal" tabindex="-1" aria-labelledby="demoBasicModalLabel" aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h2 class="modal-title fs-6" id="demoBasicModalLabel">Create project</h2>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close dialog"></button>
                   </div>
-                  <div class="col-6">
-                    <button class="component-tile w-100 text-start" type="button" data-demo-action="Style set to 3D render — demo only.">
-                      <span class="component-tile__icon"><i class="bi bi-box"></i></span>
-                      <span class="component-tile__title">3D render</span>
-                    </button>
+                  <div class="modal-body">
+                    <div class="mb-3">
+                      <label class="form-label" for="demoProjectName">Project name</label>
+                      <input type="text" class="form-control" id="demoProjectName" placeholder="Website redesign" value="Website redesign">
+                    </div>
+                    <div class="mb-3">
+                      <label class="form-label" for="demoProjectOwner">Owner</label>
+                      <select class="form-select" id="demoProjectOwner">
+                        <option>Ava Reynolds</option>
+                        <option>Marcus Chen</option>
+                        <option>Lea Novak</option>
+                      </select>
+                    </div>
+                    <div class="mb-0">
+                      <label class="form-label" for="demoProjectDesc">Description <span class="text-muted-2 fw-400">(optional)</span></label>
+                      <textarea class="form-control" id="demoProjectDesc" rows="3" placeholder="What is this project for?"></textarea>
+                    </div>
                   </div>
-                  <div class="col-6">
-                    <button class="component-tile w-100 text-start" type="button" data-demo-action="Style set to Line art — demo only.">
-                      <span class="component-tile__icon"><i class="bi bi-pencil"></i></span>
-                      <span class="component-tile__title">Line art</span>
-                    </button>
-                  </div>
-                  <div class="col-6">
-                    <button class="component-tile w-100 text-start" type="button" data-demo-action="Style set to Photo — demo only.">
-                      <span class="component-tile__icon"><i class="bi bi-camera"></i></span>
-                      <span class="component-tile__title">Photo</span>
-                    </button>
+                  <div class="modal-footer">
+                    <button class="btn btn-white" type="button" data-bs-dismiss="modal">Cancel</button>
+                    <button class="btn btn-primary" type="button" data-demo-action data-demo-variant="success">Create project</button>
                   </div>
                 </div>
               </div>
-
-              <div class="mb-3">
-                <label class="form-label" for="ig-ratio">Aspect ratio</label>
-                <select class="form-select" id="ig-ratio">
-                  <option selected>16:9 — hero banner</option>
-                  <option>1:1 — square</option>
-                  <option>4:5 — social portrait</option>
-                  <option>9:16 — story</option>
-                </select>
-              </div>
-
-              <div class="mb-3">
-                <label class="form-label" for="ig-count">Images</label>
-                <select class="form-select" id="ig-count">
-                  <option>1</option>
-                  <option selected>4</option>
-                  <option>8</option>
-                </select>
-              </div>
-
-              <div class="mb-3">
-                <label class="form-label" for="ig-negative">Negative prompt <span class="text-muted-2 fw-400">(optional)</span></label>
-                <input type="text" class="form-control" id="ig-negative" placeholder="text, watermark, faces">
-              </div>
-
-              <button class="btn btn-gradient w-100" data-demo-action="Image generation queued — demo interaction only.">
-                <i class="bi bi-magic"></i> Generate images
-              </button>
-              <p class="fs-8 text-muted-2 text-center mt-2 mb-0">4 images · 0.4 credits · about 8 seconds</p>
             </div>
           </div>
         </div>
-
-        <div class="col-xl-8">
-          <div class="card mb-3">
-            <div class="card-header">
-              <div>
-                <h2 class="card-title">Results</h2>
-                <p class="card-subtitle">4 images · Orbit Vision · 16:9</p>
-              </div>
-              <div class="btn-group btn-group-sm" role="group" aria-label="Gallery view">
-                <button class="btn btn-white active" aria-label="Grid view" data-demo-action="Grid view selected — demo only."><i class="bi bi-grid"></i></button>
-                <button class="btn btn-white" aria-label="List view" data-demo-action="List view selected — demo only."><i class="bi bi-list-ul"></i></button>
-              </div>
-            </div>
-            <div class="card-body">
-              <div class="row g-3">
-                <div class="col-sm-6">
-                  <figure class="mb-0">
-                    <img src="../assets/images/placeholder/product-1.svg" alt="Generated gradient placeholder in indigo tones" class="img-fluid rounded-q w-100">
-                    <figcaption class="d-flex align-items-center justify-content-between mt-2">
-                      <span class="fs-8 text-muted-2">Variation 1 · 1344 × 768</span>
-                      <span class="d-flex gap-1">
-                        <button class="btn btn-icon btn-sm btn-ghost" aria-label="Download variation 1" data-demo-action="Download started — demo only."><i class="bi bi-download"></i></button>
-                        <button class="btn btn-icon btn-sm btn-ghost" aria-label="Use variation 1" data-demo-action="Image attached to draft — demo only."><i class="bi bi-check2"></i></button>
-                      </span>
-                    </figcaption>
-                  </figure>
-                </div>
-                <div class="col-sm-6">
-                  <figure class="mb-0">
-                    <img src="../assets/images/placeholder/product-2.svg" alt="Generated gradient placeholder in teal tones" class="img-fluid rounded-q w-100">
-                    <figcaption class="d-flex align-items-center justify-content-between mt-2">
-                      <span class="fs-8 text-muted-2">Variation 2 · 1344 × 768</span>
-                      <span class="d-flex gap-1">
-                        <button class="btn btn-icon btn-sm btn-ghost" aria-label="Download variation 2" data-demo-action="Download started — demo only."><i class="bi bi-download"></i></button>
-                        <button class="btn btn-icon btn-sm btn-ghost" aria-label="Use variation 2" data-demo-action="Image attached to draft — demo only."><i class="bi bi-check2"></i></button>
-                      </span>
-                    </figcaption>
-                  </figure>
-                </div>
-                <div class="col-sm-6">
-                  <figure class="mb-0">
-                    <img src="../assets/images/placeholder/product-3.svg" alt="Generated gradient placeholder in amber tones" class="img-fluid rounded-q w-100">
-                    <figcaption class="d-flex align-items-center justify-content-between mt-2">
-                      <span class="fs-8 text-muted-2">Variation 3 · 1344 × 768</span>
-                      <span class="d-flex gap-1">
-                        <button class="btn btn-icon btn-sm btn-ghost" aria-label="Download variation 3" data-demo-action="Download started — demo only."><i class="bi bi-download"></i></button>
-                        <button class="btn btn-icon btn-sm btn-ghost" aria-label="Use variation 3" data-demo-action="Image attached to draft — demo only."><i class="bi bi-check2"></i></button>
-                      </span>
-                    </figcaption>
-                  </figure>
-                </div>
-                <div class="col-sm-6">
-                  <figure class="mb-0">
-                    <img src="../assets/images/placeholder/product-4.svg" alt="Generated gradient placeholder in sky blue tones" class="img-fluid rounded-q w-100">
-                    <figcaption class="d-flex align-items-center justify-content-between mt-2">
-                      <span class="fs-8 text-muted-2">Variation 4 · 1344 × 768</span>
-                      <span class="d-flex gap-1">
-                        <button class="btn btn-icon btn-sm btn-ghost" aria-label="Download variation 4" data-demo-action="Download started — demo only."><i class="bi bi-download"></i></button>
-                        <button class="btn btn-icon btn-sm btn-ghost" aria-label="Use variation 4" data-demo-action="Image attached to draft — demo only."><i class="bi bi-check2"></i></button>
-                      </span>
-                    </figcaption>
-                  </figure>
-                </div>
-              </div>
-            </div>
+        <div class="demo-block__pane" data-demo-pane="html">
+          <div class="demo-code-wrap">
+            <button class="copy-btn" data-copy-target="#codeModalBasic" type="button"><i class="bi bi-clipboard"></i> Copy HTML</button>
+            <pre class="demo-code"><code id="codeModalBasic" data-auto-code="#modalBasic"></code></pre>
           </div>
+        </div>
+      </div>
 
-          <div class="row g-3">
-            <div class="col-md-6">
-              <div class="card h-100">
-                <div class="card-header">
-                  <h3 class="card-title mb-0">Credits</h3>
-                </div>
-                <div class="card-body">
-                  <div class="d-flex align-items-center justify-content-between mb-2">
-                    <span class="fs-7 text-muted-2">Image credits used</span>
-                    <span class="fw-600 text-heading">128 / 500</span>
+      <div class="demo-block" data-demo>
+        <div class="demo-block__head">
+          <div>
+            <h2 class="demo-block__title">Sizes, centering and scroll</h2>
+            <p class="demo-block__desc">Add one modifier class to <code>.modal-dialog</code> — no extra markup needed.</p>
+          </div>
+        </div>
+        <div class="demo-block__tabs">
+          <button class="demo-tab is-active" data-demo-tab="preview" aria-selected="true">Preview</button>
+          <button class="demo-tab" data-demo-tab="html" aria-selected="false">HTML</button>
+        </div>
+        <div class="demo-block__pane is-active" data-demo-pane="preview">
+          <div class="demo-preview" id="modalSizes">
+            <button class="btn btn-soft-primary" type="button" data-bs-toggle="modal" data-bs-target="#demoSmallModal">Small dialog</button>
+            <button class="btn btn-soft-primary" type="button" data-bs-toggle="modal" data-bs-target="#demoCenteredModal">Centered</button>
+            <button class="btn btn-soft-primary" type="button" data-bs-toggle="modal" data-bs-target="#demoScrollModal">Long content</button>
+
+            <div class="modal fade" id="demoSmallModal" tabindex="-1" aria-labelledby="demoSmallModalLabel" aria-hidden="true">
+              <div class="modal-dialog modal-sm">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h2 class="modal-title fs-6" id="demoSmallModalLabel">Quick note</h2>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close dialog"></button>
                   </div>
-                  <div class="progress progress-sm mb-3"><div class="progress-bar" style="width: 26%"></div></div>
-                  <p class="fs-8 text-muted-2 mb-3">Credits reset on Nov 1, 2026. Unused credits do not roll over.</p>
-                  <a href="../pages/pricing.html" class="btn btn-sm btn-soft-primary">Buy more credits</a>
+                  <div class="modal-body fs-7">Small dialogs fit short confirmations and single-field forms.</div>
+                  <div class="modal-footer">
+                    <button class="btn btn-white btn-sm" type="button" data-bs-dismiss="modal">Close</button>
+                  </div>
                 </div>
               </div>
             </div>
-            <div class="col-md-6">
-              <div class="card h-100">
-                <div class="card-header">
-                  <h3 class="card-title mb-0">Recent prompts</h3>
+
+            <div class="modal fade" id="demoCenteredModal" tabindex="-1" aria-labelledby="demoCenteredModalLabel" aria-hidden="true">
+              <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content text-center">
+                  <div class="modal-body p-4">
+                    <span class="state-block__icon bg-success-subtle text-success mx-auto mb-3"><i class="bi bi-check2-circle"></i></span>
+                    <h2 class="fs-5 text-heading mb-1" id="demoCenteredModalLabel">Payment approved</h2>
+                    <p class="fs-7 text-muted-2 mb-0">Invoice INV-2026-0186 has been marked as paid.</p>
+                  </div>
+                  <div class="modal-footer justify-content-center border-0 pt-0">
+                    <button class="btn btn-primary" type="button" data-bs-dismiss="modal">Done</button>
+                  </div>
                 </div>
-                <ul class="list-group list-group-flush">
-                  <li class="list-group-item">
-                    <span class="d-block fs-7 fw-500 text-heading">Dashboard hero gradient</span>
-                    <span class="d-block fs-8 text-muted-2">4 images · 12 minutes ago</span>
-                  </li>
-                  <li class="list-group-item">
-                    <span class="d-block fs-7 fw-500 text-heading">Abstract data mesh illustration</span>
-                    <span class="d-block fs-8 text-muted-2">2 images · yesterday</span>
-                  </li>
-                  <li class="list-group-item">
-                    <span class="d-block fs-7 fw-500 text-heading">Empty state spot illustration</span>
-                    <span class="d-block fs-8 text-muted-2">1 image · Sep 30, 2026</span>
-                  </li>
-                </ul>
+              </div>
+            </div>
+
+            <div class="modal fade" id="demoScrollModal" tabindex="-1" aria-labelledby="demoScrollModalLabel" aria-hidden="true">
+              <div class="modal-dialog modal-dialog-scrollable modal-lg">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h2 class="modal-title fs-6" id="demoScrollModalLabel">Audit log — Acme Inc.</h2>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close dialog"></button>
+                  </div>
+                  <div class="modal-body fs-7">
+                    <p class="text-muted-2">Scrollable dialogs keep a long body inside a fixed maximum height. The header and footer stay visible while the middle scrolls.</p>
+                    <ul class="timeline mb-0">
+                      <li class="timeline__item">
+                        <span class="timeline__dot timeline__dot--success"></span>
+                        <p class="timeline__title">Subscription renewed</p>
+                        <p class="timeline__meta">Growth plan · Sep 30, 2026</p>
+                      </li>
+                      <li class="timeline__item">
+                        <span class="timeline__dot"></span>
+                        <p class="timeline__title">Seats increased to 25</p>
+                        <p class="timeline__meta">Marcus Chen · Sep 18, 2026</p>
+                      </li>
+                      <li class="timeline__item">
+                        <span class="timeline__dot timeline__dot--muted"></span>
+                        <p class="timeline__title">Payment method updated</p>
+                        <p class="timeline__meta">Finance · Sep 04, 2026</p>
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="modal-footer">
+                    <button class="btn btn-white" type="button" data-bs-dismiss="modal">Close</button>
+                    <button class="btn btn-soft-primary" type="button" data-demo-action>Export log</button>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
+        </div>
+        <div class="demo-block__pane" data-demo-pane="html">
+          <div class="demo-code-wrap">
+            <button class="copy-btn" data-copy-target="#codeModalSizes" type="button"><i class="bi bi-clipboard"></i> Copy HTML</button>
+            <pre class="demo-code"><code id="codeModalSizes" data-auto-code="#modalSizes"></code></pre>
+          </div>
+        </div>
+      </div>
+
+      <div class="demo-block" data-demo>
+        <div class="demo-block__head">
+          <div>
+            <h2 class="demo-block__title">Destructive confirmation</h2>
+            <p class="demo-block__desc">A danger-accented dialog for irreversible actions. Always name the record in the body text.</p>
+          </div>
+        </div>
+        <div class="demo-block__tabs">
+          <button class="demo-tab is-active" data-demo-tab="preview" aria-selected="true">Preview</button>
+          <button class="demo-tab" data-demo-tab="html" aria-selected="false">HTML</button>
+        </div>
+        <div class="demo-block__pane is-active" data-demo-pane="preview">
+          <div class="demo-preview" id="modalDanger">
+            <button class="btn btn-soft-danger" type="button" data-bs-toggle="modal" data-bs-target="#demoDeleteModal">
+              <i class="bi bi-trash3"></i> Delete record
+            </button>
+
+            <div class="modal fade" id="demoDeleteModal" tabindex="-1" aria-labelledby="demoDeleteModalLabel" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
+              <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h2 class="modal-title fs-6" id="demoDeleteModalLabel">Delete customer</h2>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close dialog"></button>
+                  </div>
+                  <div class="modal-body">
+                    <div class="alert alert-danger d-flex align-items-start gap-2 mb-3" role="alert">
+                      <i class="bi bi-exclamation-triangle alert-icon"></i>
+                      <span class="fs-7"><strong>Horizon Labs</strong> has 4 active projects and 12 invoices. Deleting the customer hides all of them.</span>
+                    </div>
+                    <label class="form-label" for="demoDeleteConfirm">Type <strong>Horizon Labs</strong> to confirm</label>
+                    <input type="text" class="form-control" id="demoDeleteConfirm" placeholder="Horizon Labs">
+                  </div>
+                  <div class="modal-footer">
+                    <button class="btn btn-white" type="button" data-bs-dismiss="modal">Keep customer</button>
+                    <button class="btn btn-danger" type="button" data-demo-action data-demo-variant="danger">Delete permanently</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="demo-block__pane" data-demo-pane="html">
+          <div class="demo-code-wrap">
+            <button class="copy-btn" data-copy-target="#codeModalDanger" type="button"><i class="bi bi-clipboard"></i> Copy HTML</button>
+            <pre class="demo-code"><code id="codeModalDanger" data-auto-code="#modalDanger"></code></pre>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <h2 class="card-title mb-0">Usage notes</h2>
+        </div>
+        <div class="card-body">
+          <ul class="fs-7 text-muted-2 mb-0 d-flex flex-column gap-2">
+            <li>Always give the dialog <code>aria-labelledby</code> pointing at the visible <code>.modal-title</code> and an <code>aria-label</code> on the close button.</li>
+            <li>Add <code>data-bs-backdrop="static"</code> only for destructive confirmations — users must not lose the dialog by accident.</li>
+            <li>Keep footers to two buttons: a white or ghost cancel on the left, one primary action on the right.</li>
+            <li>Use <code>.modal-dialog-scrollable</code> for logs and activity lists instead of inventing a custom maximum height.</li>
+            <li>Focus is handled by Bootstrap: the first focusable element receives it on open and returns on close.</li>
+          </ul>
         </div>
       </div>
     </main>
@@ -902,8 +942,6 @@
     <script src="../assets/js/sidebar.js"></script>
     <script src="../assets/js/app.js"></script>
     <script src="../assets/js/components.js"></script>
-    <script src="../assets/js/chart.umd.js"></script>
-    <script src="../assets/js/pages/charts.js"></script>
 
 </body>
 </html>

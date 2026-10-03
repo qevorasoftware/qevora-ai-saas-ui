@@ -1,0 +1,230 @@
+      <div class="q-page-head">
+        <div>
+          {{BREADCRUMB}}
+          <h1 class="q-page-head__title mt-2">Spinners</h1>
+          <p class="q-page-head__subtitle">
+            Loading indicators: Bootstrap spinners for short waits, the Qevora spinner for branded moments, and skeleton
+            blocks for content that is still arriving.
+          </p>
+        </div>
+        <div class="d-flex flex-wrap gap-2">
+          <a class="btn btn-white" href="../documentation/index.html"><i class="bi bi-book"></i> Docs</a>
+        </div>
+      </div>
+
+      <div class="demo-block" data-demo>
+        <div class="demo-block__head">
+          <div>
+            <h2 class="demo-block__title">Bootstrap spinners</h2>
+            <p class="demo-block__desc">Border and grow styles, small and default sizes, in every semantic colour.</p>
+          </div>
+        </div>
+        <div class="demo-block__tabs">
+          <button class="demo-tab is-active" data-demo-tab="preview" aria-selected="true">Preview</button>
+          <button class="demo-tab" data-demo-tab="html" aria-selected="false">HTML</button>
+        </div>
+        <div class="demo-block__pane is-active" data-demo-pane="preview">
+          <div class="demo-preview" id="spBootstrap">
+            <div class="d-flex flex-wrap align-items-center gap-4 mb-4">
+              <div class="spinner-border text-primary" role="status"><span class="visually-hidden">Loading</span></div>
+              <div class="spinner-border spinner-border-sm text-primary" role="status"><span class="visually-hidden">Loading</span></div>
+              <div class="spinner-grow text-primary" role="status"><span class="visually-hidden">Loading</span></div>
+              <div class="spinner-grow spinner-grow-sm text-primary" role="status"><span class="visually-hidden">Loading</span></div>
+            </div>
+
+            <div class="d-flex flex-wrap align-items-center gap-4">
+              <div class="spinner-border text-success" role="status"><span class="visually-hidden">Loading</span></div>
+              <div class="spinner-border text-info" role="status"><span class="visually-hidden">Loading</span></div>
+              <div class="spinner-border text-warning" role="status"><span class="visually-hidden">Loading</span></div>
+              <div class="spinner-border text-danger" role="status"><span class="visually-hidden">Loading</span></div>
+              <div class="spinner-border text-secondary" role="status"><span class="visually-hidden">Loading</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="demo-block__pane" data-demo-pane="html">
+          <div class="demo-code-wrap">
+            <button class="copy-btn" data-copy-target="#codeSpBootstrap" type="button"><i class="bi bi-clipboard"></i> Copy HTML</button>
+            <pre class="demo-code"><code id="codeSpBootstrap" data-auto-code="#spBootstrap"></code></pre>
+          </div>
+        </div>
+      </div>
+
+      <div class="demo-block" data-demo>
+        <div class="demo-block__head">
+          <div>
+            <h2 class="demo-block__title">Qevora spinner</h2>
+            <p class="demo-block__desc">The branded ring used for full-block loading states — sized with a single inline width and height.</p>
+          </div>
+        </div>
+        <div class="demo-block__tabs">
+          <button class="demo-tab is-active" data-demo-tab="preview" aria-selected="true">Preview</button>
+          <button class="demo-tab" data-demo-tab="html" aria-selected="false">HTML</button>
+        </div>
+        <div class="demo-block__pane is-active" data-demo-pane="preview">
+          <div class="demo-preview" id="spQevora">
+            <div class="row g-4 align-items-center">
+              <div class="col-md-4 text-center">
+                <div class="spinner-q mx-auto" style="width: 20px; height: 20px; border-width: 2px;" role="status"><span class="visually-hidden">Loading</span></div>
+                <p class="fs-8 text-muted-2 mt-2 mb-0">Small · 20px</p>
+              </div>
+              <div class="col-md-4 text-center">
+                <div class="spinner-q mx-auto" role="status"><span class="visually-hidden">Loading</span></div>
+                <p class="fs-8 text-muted-2 mt-2 mb-0">Default · 32px</p>
+              </div>
+              <div class="col-md-4 text-center">
+                <div class="spinner-q mx-auto" style="width: 48px; height: 48px; border-width: 4px;" role="status"><span class="visually-hidden">Loading</span></div>
+                <p class="fs-8 text-muted-2 mt-2 mb-0">Large · 48px</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="demo-block__pane" data-demo-pane="html">
+          <div class="demo-code-wrap">
+            <button class="copy-btn" data-copy-target="#codeSpQevora" type="button"><i class="bi bi-clipboard"></i> Copy HTML</button>
+            <pre class="demo-code"><code id="codeSpQevora" data-auto-code="#spQevora"></code></pre>
+          </div>
+        </div>
+      </div>
+
+      <div class="demo-block" data-demo>
+        <div class="demo-block__head">
+          <div>
+            <h2 class="demo-block__title">Buttons and inline loading</h2>
+            <p class="demo-block__desc">Spinners inside buttons, and the pattern for a toolbar button that is waiting on a request.</p>
+          </div>
+        </div>
+        <div class="demo-block__tabs">
+          <button class="demo-tab is-active" data-demo-tab="preview" aria-selected="true">Preview</button>
+          <button class="demo-tab" data-demo-tab="html" aria-selected="false">HTML</button>
+        </div>
+        <div class="demo-block__pane is-active" data-demo-pane="preview">
+          <div class="demo-preview" id="spButtons">
+            <div class="d-flex flex-wrap align-items-center gap-2">
+              <button class="btn btn-primary" type="button" disabled>
+                <span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span> Saving…
+              </button>
+              <button class="btn btn-white" type="button" disabled>
+                <span class="spinner-grow spinner-grow-sm me-2" role="status" aria-hidden="true"></span> Uploading…
+              </button>
+              <button class="btn btn-soft-primary" type="button" disabled>
+                <span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span> Generating report
+              </button>
+              <button class="btn btn-outline-primary" type="button">
+                <i class="bi bi-arrow-clockwise me-2"></i> Refresh data
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="demo-block__pane" data-demo-pane="html">
+          <div class="demo-code-wrap">
+            <button class="copy-btn" data-copy-target="#codeSpButtons" type="button"><i class="bi bi-clipboard"></i> Copy HTML</button>
+            <pre class="demo-code"><code id="codeSpButtons" data-auto-code="#spButtons"></code></pre>
+          </div>
+        </div>
+      </div>
+
+      <div class="demo-block" data-demo>
+        <div class="demo-block__head">
+          <div>
+            <h2 class="demo-block__title">Skeleton placeholders</h2>
+            <p class="demo-block__desc">Preferred over a spinner when you know the shape of the content that is loading — it prevents layout shift.</p>
+          </div>
+        </div>
+        <div class="demo-block__tabs">
+          <button class="demo-tab is-active" data-demo-tab="preview" aria-selected="true">Preview</button>
+          <button class="demo-tab" data-demo-tab="html" aria-selected="false">HTML</button>
+        </div>
+        <div class="demo-block__pane is-active" data-demo-pane="preview">
+          <div class="demo-preview demo-preview--plain" id="spSkeleton">
+            <div class="card">
+              <div class="card-header d-block">
+                <div class="skeleton mb-2" style="width: 38%; height: 16px;"></div>
+                <div class="skeleton" style="width: 22%;"></div>
+              </div>
+              <div class="card-body">
+                <div class="d-flex gap-3 mb-3">
+                  <div class="skeleton rounded-circle" style="width: 40px; height: 40px; flex: 0 0 auto;"></div>
+                  <div class="flex-grow-1">
+                    <div class="skeleton mb-2" style="width: 55%;"></div>
+                    <div class="skeleton" style="width: 32%;"></div>
+                  </div>
+                </div>
+                <div class="skeleton mb-2" style="width: 100%;"></div>
+                <div class="skeleton mb-2" style="width: 92%;"></div>
+                <div class="skeleton mb-4" style="width: 74%;"></div>
+                <div class="d-flex gap-2">
+                  <div class="skeleton" style="width: 96px; height: 34px;"></div>
+                  <div class="skeleton" style="width: 96px; height: 34px;"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="demo-block__pane" data-demo-pane="html">
+          <div class="demo-code-wrap">
+            <button class="copy-btn" data-copy-target="#codeSpSkeleton" type="button"><i class="bi bi-clipboard"></i> Copy HTML</button>
+            <pre class="demo-code"><code id="codeSpSkeleton" data-auto-code="#spSkeleton"></code></pre>
+          </div>
+        </div>
+      </div>
+
+      <div class="demo-block" data-demo>
+        <div class="demo-block__head">
+          <div>
+            <h2 class="demo-block__title">Loading inside a table</h2>
+            <p class="demo-block__desc">A single centred row keeps the table's column widths stable while data loads.</p>
+          </div>
+        </div>
+        <div class="demo-block__tabs">
+          <button class="demo-tab is-active" data-demo-tab="preview" aria-selected="true">Preview</button>
+          <button class="demo-tab" data-demo-tab="html" aria-selected="false">HTML</button>
+        </div>
+        <div class="demo-block__pane is-active" data-demo-pane="preview">
+          <div class="demo-preview demo-preview--plain" id="spTable">
+            <div class="card">
+              <div class="card-header"><h3 class="card-title mb-0">Payments</h3></div>
+              <div class="table-responsive">
+                <table class="table align-middle mb-0">
+                  <thead>
+                    <tr>
+                      <th scope="col">Reference</th>
+                      <th scope="col">Customer</th>
+                      <th scope="col">Method</th>
+                      <th scope="col" class="text-end">Amount</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td colspan="4" class="text-center py-5">
+                        <div class="spinner-q mx-auto mb-3" role="status"><span class="visually-hidden">Loading payments</span></div>
+                        <p class="fs-7 text-muted-2 mb-0">Loading payments…</p>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="demo-block__pane" data-demo-pane="html">
+          <div class="demo-code-wrap">
+            <button class="copy-btn" data-copy-target="#codeSpTable" type="button"><i class="bi bi-clipboard"></i> Copy HTML</button>
+            <pre class="demo-code"><code id="codeSpTable" data-auto-code="#spTable"></code></pre>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <h2 class="card-title mb-0">Usage notes</h2>
+        </div>
+        <div class="card-body">
+          <ul class="fs-7 text-muted-2 mb-0 d-flex flex-column gap-2">
+            <li>Every spinner needs <code>role="status"</code> and a <code>.visually-hidden</code> label so screen readers announce the wait.</li>
+            <li>Keep indicators under about one second of perceived delay; anything longer deserves a skeleton or a progress bar.</li>
+            <li>Disable the triggering button while it is loading, or users will submit the same action twice.</li>
+            <li>Match the spinner colour to the button it sits in — <code>.spinner-border-sm</code> plus the button's own text colour works everywhere.</li>
+            <li>Never stack a spinner on top of stale data; either keep the old rows visible with a subtle overlay, or show skeletons.</li>
+          </ul>
+        </div>
+      </div>
