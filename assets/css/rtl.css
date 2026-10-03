@@ -55,14 +55,6 @@
   transform: rotate(90deg);
 }
 
-@media (min-width: 992px) {
-  [dir="rtl"] body.q-sidebar-compact .q-nav-item:hover > .q-nav__sub,
-  [dir="rtl"] body.q-sidebar-compact .q-nav-item:focus-within > .q-nav__sub {
-    inset-inline-start: 100%;
-    inset-inline-end: auto;
-  }
-}
-
 /* --- Forms -------------------------------------------------------------- */
 
 [dir="rtl"] .form-select {

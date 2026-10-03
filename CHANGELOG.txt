@@ -132,6 +132,12 @@ QUALITY TOOLING
 FIXES DURING DEVELOPMENT
 
   Shell — collapsed sidebar
+    · Clicking a section icon in the collapsed rail used to open a fly-out
+      submenu panel, but the navigation column is a scroll container
+      (overflow-x: hidden), so the panel was clipped to the width of the rail
+      and all the reader saw was an empty white sliver. The rail no longer opens
+      a panel at all: a click expands the sidebar and opens that section, and
+      hovering shows the section name as a tooltip.
     · The 78px icon rail used to hold both the brand mark and the inline
       collapse button, so the two overflowed the rail and the logo was clipped
       against the left edge. The rail now centres the mark on its own and the

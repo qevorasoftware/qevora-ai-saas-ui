@@ -275,9 +275,11 @@
               </table>
               <p class="fs-7 text-muted-2 mb-0">
                 On screens 992px and wider the header button collapses the sidebar to a 78px icon rail: the brand keeps
-                its mark, every nav item shows a tooltip on hover or focus, submenus open as fly-out panels, and the
-                labels stay in the markup so screen readers still announce each link. Press the same button — now a
-                chevron — to expand the sidebar again. The choice is remembered in <code>localStorage</code>.
+                its mark, every item shows its name as a tooltip on hover or focus, and the labels stay in the markup so
+                screen readers still announce each link. Clicking a section icon expands the sidebar with that section
+                already open — the rail never opens a panel of its own, because the navigation column clips anything
+                wider than itself. Press the header button — now a chevron — to collapse it again; the choice is
+                remembered in <code>localStorage</code>.
               </p>
             </div>
           </div>

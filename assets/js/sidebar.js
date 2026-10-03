@@ -188,15 +188,10 @@
       var label = navLabel(link);
       if (!label) continue;
 
-      // Submenu parents already open a fly-out panel, so their hint goes above
-      // the row instead of on top of the panel.
-      var opensPanel = !!link.closest(".q-nav-item") &&
-        !!link.closest(".q-nav-item").querySelector(".q-nav__sub");
-
       if (window.bootstrap && window.bootstrap.Tooltip) {
         window.bootstrap.Tooltip.getOrCreateInstance(link, {
           title: label,
-          placement: opensPanel ? "top" : (isRtl() ? "left" : "right"),
+          placement: isRtl() ? "left" : "right",
           container: "body",
           trigger: "hover focus"
         });
@@ -294,6 +289,38 @@
       if (resizeTimer) window.clearTimeout(resizeTimer);
       resizeTimer = window.setTimeout(syncCompactAffordances, 150);
     });
+
+    // In the collapsed rail a section icon has no room for a fly-out panel: the
+    // nav is a scroll container that clips it. So a click expands the sidebar
+    // and opens that section instead, which also keeps the labels reachable on
+    // touch and with the keyboard. Capture phase: Bootstrap's own collapse data
+    // API listens on the same element.
+    document.addEventListener("click", function (event) {
+      if (!isCompact() || !isDesktop()) return;
+      var target = event.target;
+      if (!target || typeof target.closest !== "function") return;
+
+      var sectionToggle = target.closest('.q-sidebar .q-nav__link[data-bs-toggle="collapse"]');
+      if (!sectionToggle) return;
+
+      var selector = sectionToggle.getAttribute("data-bs-target") ||
+        (sectionToggle.getAttribute("href") || "").trim();
+      if (selector.charAt(0) !== "#") return;
+
+      event.preventDefault();
+      event.stopPropagation();
+
+      setCompact(false);
+
+      var panel = document.querySelector(selector);
+      if (panel && window.bootstrap && window.bootstrap.Collapse) {
+        window.bootstrap.Collapse.getOrCreateInstance(panel, { toggle: false }).show();
+      }
+      sectionToggle.setAttribute("aria-expanded", "true");
+      if (sectionToggle.scrollIntoView) {
+        sectionToggle.scrollIntoView({ block: "nearest" });
+      }
+    }, true);
 
     document.addEventListener("click", function (event) {
       var toggleBtn = event.target.closest("[data-sidebar-toggle]");

@@ -418,6 +418,12 @@ hr {
   gap: 2px;
 }
 
+/* One top-level entry; keeps its own stacking context for the submenu caret
+   and gives buyers a stable hook for their own customisations. */
+.q-nav-item {
+  position: relative;
+}
+
 .q-nav__link {
   display: flex;
   align-items: center;
@@ -593,51 +599,14 @@ hr {
     font-size: 1.2rem;
   }
 
-  /* Compact mode: submenus become popovers on hover/focus */
+  /* Submenus stay closed inside the rail. A fly-out panel cannot work here: the
+     nav lives in a scroll container (overflow-x: hidden), which clips anything
+     that tries to escape the 78px column and leaves an empty white sliver —
+     worse than no panel at all. Clicking a section icon expands the sidebar and
+     opens that section instead (sidebar.js), and hovering shows its name as a
+     tooltip. */
   body.q-sidebar-compact .q-nav__sub {
-    display: none;
-  }
-
-  body.q-sidebar-compact .q-nav-item {
-    position: relative;
-  }
-
-  body.q-sidebar-compact .q-nav-item:hover > .q-nav__sub,
-  body.q-sidebar-compact .q-nav-item:focus-within > .q-nav__sub {
-    display: flex;
-    position: absolute;
-    inset-inline-start: 100%;
-    top: 0;
-    min-width: 14rem;
-    background: var(--q-surface);
-    border: 1px solid var(--q-border-color);
-    border-radius: var(--q-radius);
-    box-shadow: var(--q-shadow-lg);
-    padding: 0.5rem;
-    z-index: 20;
-  }
-
-  body.q-sidebar-compact .q-nav__sub .q-nav__link {
-    justify-content: flex-start;
-    padding-inline-start: 1.75rem;
-  }
-
-  body.q-sidebar-compact .q-nav__sub .q-nav__link::before {
-    inset-inline-start: 0.75rem;
-  }
-
-  /* Inside the popover the labels are visible again — the clipped treatment
-     above is only for the rail itself. */
-  body.q-sidebar-compact .q-nav__sub .q-nav__text,
-  body.q-sidebar-compact .q-nav__sub .q-nav__badge {
-    position: static;
-    width: auto;
-    height: auto;
-    margin: 0;
-    overflow: visible;
-    clip: auto;
-    clip-path: none;
-    white-space: normal;
+    display: none !important;
   }
 }
 
