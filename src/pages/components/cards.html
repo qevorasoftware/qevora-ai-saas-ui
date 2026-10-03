@@ -1,0 +1,224 @@
+      <div class="q-page-head">
+        <div>
+          {{BREADCRUMB}}
+          <h1 class="q-page-head__title mt-2">Cards</h1>
+          <p class="q-page-head__subtitle">Base cards, KPI tiles, profile cards and feature cards — the containers everything else sits in.</p>
+        </div>
+      </div>
+
+      <div class="demo-block" data-demo>
+        <div class="demo-block__head">
+          <div>
+            <h2 class="demo-block__title">Base card</h2>
+            <p class="demo-block__desc">Header with title and subtitle, body, and an optional footer. Radius, border and shadow all come from tokens.</p>
+          </div>
+        </div>
+        <div class="demo-block__tabs">
+          <button class="demo-tab is-active" data-demo-tab="preview" aria-selected="true">Preview</button>
+          <button class="demo-tab" data-demo-tab="html" aria-selected="false">HTML</button>
+        </div>
+        <div class="demo-block__pane is-active" data-demo-pane="preview">
+          <div class="demo-preview">
+            <div class="row g-3">
+              <div class="col-md-6">
+                <div class="card h-100">
+                  <div class="card-header">
+                    <div>
+                      <h3 class="card-title">Card title</h3>
+                      <p class="card-subtitle">Supporting subtitle</p>
+                    </div>
+                    <button class="btn btn-icon btn-sm btn-ghost" aria-label="Card options"><i class="bi bi-three-dots"></i></button>
+                  </div>
+                  <div class="card-body">
+                    <p class="fs-7 text-muted-2 mb-0">Cards are the primary container in the template. Use the header for the title and one action, and keep long explanations inside the body.</p>
+                  </div>
+                  <div class="card-footer border-top border-q d-flex justify-content-between align-items-center">
+                    <span class="fs-8 text-muted-2">Updated 2 hours ago</span>
+                    <button class="btn btn-sm btn-soft-primary">Open</button>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="card card-hover h-100">
+                  <div class="card-body">
+                    <h3 class="card-title">Hoverable card</h3>
+                    <p class="card-subtitle mb-3">Adds a lift on hover</p>
+                    <p class="fs-7 text-muted-2 mb-3">Used for project tiles, product grids and any card the user can open.</p>
+                    <a href="#" class="btn btn-sm btn-soft-primary">View details</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="demo-block__pane" data-demo-pane="html">
+          <div class="demo-code-wrap">
+            <button class="copy-btn" data-copy-target="#cardBase"><i class="bi bi-clipboard"></i> Copy HTML</button>
+            <pre class="demo-code"><code id="cardBase">&lt;div class="card"&gt;
+  &lt;div class="card-header"&gt;
+    &lt;div&gt;
+      &lt;h3 class="card-title"&gt;Card title&lt;/h3&gt;
+      &lt;p class="card-subtitle"&gt;Supporting subtitle&lt;/p&gt;
+    &lt;/div&gt;
+    &lt;button class="btn btn-icon btn-sm btn-ghost" aria-label="Card options"&gt;
+      &lt;i class="bi bi-three-dots"&gt;&lt;/i&gt;
+    &lt;/button&gt;
+  &lt;/div&gt;
+  &lt;div class="card-body"&gt;…&lt;/div&gt;
+  &lt;div class="card-footer border-top border-q"&gt;…&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;!-- Hover lift --&gt;
+&lt;div class="card card-hover"&gt;…&lt;/div&gt;</code></pre>
+          </div>
+        </div>
+      </div>
+
+      <div class="demo-block" data-demo>
+        <div class="demo-block__head">
+          <div>
+            <h2 class="demo-block__title">KPI stat cards</h2>
+            <p class="demo-block__desc">The pattern used on the dashboard, CRM, AI and finance pages. Sparklines come from the shared chart registry.</p>
+          </div>
+        </div>
+        <div class="demo-block__tabs">
+          <button class="demo-tab is-active" data-demo-tab="preview" aria-selected="true">Preview</button>
+          <button class="demo-tab" data-demo-tab="html" aria-selected="false">HTML</button>
+        </div>
+        <div class="demo-block__pane is-active" data-demo-pane="preview">
+          <div class="demo-preview">
+            <div class="row g-3">
+              <div class="col-sm-6">
+                <div class="card card-stat h-100">
+                  <div class="card-body">
+                    <div class="d-flex align-items-start justify-content-between gap-3">
+                      <div>
+                        <p class="card-stat__label">Total revenue</p>
+                        <p class="card-stat__value" data-counter="1284500" data-prefix="$">$1,284,500</p>
+                      </div>
+                      <span class="card-stat__icon bg-primary-soft text-primary-2"><i class="bi bi-currency-dollar"></i></span>
+                    </div>
+                    <div class="d-flex align-items-center gap-2">
+                      <span class="trend trend-up"><i class="bi bi-arrow-up-short"></i> 12.4%</span>
+                      <span class="fs-8 text-muted-2">vs last year</span>
+                    </div>
+                    <div class="card-stat__spark"><canvas data-chart="sparkline-primary" data-no-legend="true"></canvas></div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-6">
+                <div class="kpi-tile">
+                  <span class="card-stat__icon bg-info-soft text-info"><i class="bi bi-people"></i></span>
+                  <div class="kpi-tile__body">
+                    <p class="kpi-tile__label mb-0">Active users</p>
+                    <p class="kpi-tile__value" data-counter="24812">24,812</p>
+                    <span class="trend trend-up"><i class="bi bi-arrow-up-short"></i> 8.1%</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="demo-block__pane" data-demo-pane="html">
+          <div class="demo-code-wrap">
+            <button class="copy-btn" data-copy-target="#cardStat"><i class="bi bi-clipboard"></i> Copy HTML</button>
+            <pre class="demo-code"><code id="cardStat">&lt;!-- Stat card with icon, trend and sparkline --&gt;
+&lt;div class="card card-stat"&gt;
+  &lt;div class="card-body"&gt;
+    &lt;div class="d-flex align-items-start justify-content-between gap-3"&gt;
+      &lt;div&gt;
+        &lt;p class="card-stat__label"&gt;Total revenue&lt;/p&gt;
+        &lt;p class="card-stat__value" data-counter="1284500" data-prefix="$"&gt;$1,284,500&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;span class="card-stat__icon bg-primary-soft text-primary-2"&gt;
+        &lt;i class="bi bi-currency-dollar"&gt;&lt;/i&gt;
+      &lt;/span&gt;
+    &lt;/div&gt;
+    &lt;div class="d-flex align-items-center gap-2"&gt;
+      &lt;span class="trend trend-up"&gt;&lt;i class="bi bi-arrow-up-short"&gt;&lt;/i&gt; 12.4%&lt;/span&gt;
+      &lt;span class="fs-8 text-muted-2"&gt;vs last year&lt;/span&gt;
+    &lt;/div&gt;
+    &lt;div class="card-stat__spark"&gt;
+      &lt;canvas data-chart="sparkline-primary" data-no-legend="true"&gt;&lt;/canvas&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;!-- Compact KPI tile --&gt;
+&lt;div class="kpi-tile"&gt;
+  &lt;span class="card-stat__icon bg-info-soft text-info"&gt;&lt;i class="bi bi-people"&gt;&lt;/i&gt;&lt;/span&gt;
+  &lt;div class="kpi-tile__body"&gt;
+    &lt;p class="kpi-tile__label mb-0"&gt;Active users&lt;/p&gt;
+    &lt;p class="kpi-tile__value"&gt;24,812&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+          </div>
+        </div>
+      </div>
+
+      <div class="demo-block" data-demo>
+        <div class="demo-block__head">
+          <div>
+            <h2 class="demo-block__title">Feature and profile cards</h2>
+            <p class="demo-block__desc">Feature cards sell a capability; profile cards summarise a person or an account.</p>
+          </div>
+        </div>
+        <div class="demo-block__tabs">
+          <button class="demo-tab is-active" data-demo-tab="preview" aria-selected="true">Preview</button>
+          <button class="demo-tab" data-demo-tab="html" aria-selected="false">HTML</button>
+        </div>
+        <div class="demo-block__pane is-active" data-demo-pane="preview">
+          <div class="demo-preview">
+            <div class="row g-3">
+              <div class="col-md-6">
+                <div class="card card-feature h-100">
+                  <div class="card-body">
+                    <span class="card-feature__icon"><i class="bi bi-shield-check"></i></span>
+                    <h3 class="card-title">Enterprise controls</h3>
+                    <p class="fs-7 text-muted-2 mb-3">SSO, SCIM provisioning and audit logs are included on the Scale plan.</p>
+                    <a href="#" class="btn btn-sm btn-soft-primary">Learn more</a>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="card overflow-hidden">
+                  <div class="card-profile__cover"></div>
+                  <div class="card-body pt-0">
+                    <span class="avatar avatar-lg bg-avatar-1 card-profile__avatar">AR</span>
+                    <h3 class="card-title mt-3 mb-1">Ava Reynolds</h3>
+                    <p class="card-subtitle mb-3">Workspace admin · Northstar Labs</p>
+                    <div class="d-flex gap-2">
+                      <button class="btn btn-sm btn-soft-primary flex-grow-1">Message</button>
+                      <button class="btn btn-sm btn-white">View profile</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="demo-block__pane" data-demo-pane="html">
+          <div class="demo-code-wrap">
+            <button class="copy-btn" data-copy-target="#cardFeature"><i class="bi bi-clipboard"></i> Copy HTML</button>
+            <pre class="demo-code"><code id="cardFeature">&lt;!-- Feature card --&gt;
+&lt;div class="card card-feature"&gt;
+  &lt;div class="card-body"&gt;
+    &lt;span class="card-feature__icon"&gt;&lt;i class="bi bi-shield-check"&gt;&lt;/i&gt;&lt;/span&gt;
+    &lt;h3 class="card-title"&gt;Enterprise controls&lt;/h3&gt;
+    &lt;p class="fs-7 text-muted-2"&gt;SSO, SCIM and audit logs.&lt;/p&gt;
+    &lt;a href="#" class="btn btn-sm btn-soft-primary"&gt;Learn more&lt;/a&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;!-- Profile card --&gt;
+&lt;div class="card overflow-hidden"&gt;
+  &lt;div class="card-profile__cover"&gt;&lt;/div&gt;
+  &lt;div class="card-body pt-0"&gt;
+    &lt;span class="avatar avatar-lg bg-avatar-1 card-profile__avatar"&gt;AR&lt;/span&gt;
+    &lt;h3 class="card-title mt-3 mb-1"&gt;Ava Reynolds&lt;/h3&gt;
+    &lt;p class="card-subtitle"&gt;Workspace admin · Northstar Labs&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+          </div>
+        </div>
+      </div>

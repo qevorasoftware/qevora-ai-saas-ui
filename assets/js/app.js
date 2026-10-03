@@ -1,0 +1,307 @@
+/* ==========================================================================
+   Qevora AI SaaS — Bootstrap 5 Admin & UI Kit
+   app.js — Shared application behaviour
+   --------------------------------------------------------------------------
+   Contents
+   1.  Active navigation state
+   2.  Bootstrap component bootstrapping (tooltips, popovers)
+   3.  Demo helpers (toasts, confirm, copy, counters)
+   4.  Misc UI behaviour (auto-year, table filters, auto-dismiss)
+   ========================================================================== */
+
+(function () {
+  "use strict";
+
+  /* ====================================================================== */
+  /* 1. ACTIVE NAVIGATION STATE                                             */
+  /* ====================================================================== */
+
+  /* Marks the sidebar link that matches the current page, opens its parent
+     submenu and highlights it. Keeps 60+ static pages consistent without a
+     server-side include. */
+
+  function currentPath() {
+    var path = window.location.pathname.split("/").pop() || "index.html";
+    return path.toLowerCase();
+  }
+
+  function markActiveNav() {
+    var links = document.querySelectorAll(".q-sidebar .q-nav__link[href]");
+    if (!links.length) return;
+
+    var page = currentPath();
+
+    for (var i = 0; i < links.length; i++) {
+      var link = links[i];
+      var href = (link.getAttribute("href") || "").split("#")[0];
+
+      // Ignore in-page anchors and placeholder links.
+      if (!href || href === "#" || href.indexOf("javascript:") === 0) continue;
+
+      var file = href.split("/").pop().toLowerCase();
+      if (file === page) {
+        link.classList.add("is-active");
+        link.setAttribute("aria-current", "page");
+
+        // Highlight the top-level group as well.
+        var sub = link.closest(".q-nav__sub");
+        if (sub) {
+          var parentLink = sub.parentElement.querySelector(":scope > .q-nav__link");
+          if (parentLink) {
+            parentLink.classList.add("is-active");
+            parentLink.setAttribute("aria-expanded", "true");
+            var sibling = sub;
+            if (window.bootstrap && window.bootstrap.Collapse) {
+              var instance = window.bootstrap.Collapse.getOrCreateInstance(sibling, { toggle: false });
+              instance.show();
+            } else {
+              sibling.classList.add("show");
+            }
+          }
+        }
+      }
+    }
+  }
+
+  /* ====================================================================== */
+  /* 2. BOOTSTRAP BOOTSTRAP-ING                                            */
+  /* ====================================================================== */
+
+  function initBootstrapBits() {
+    if (!window.bootstrap) return;
+
+    var tooltips = document.querySelectorAll('[data-bs-toggle="tooltip"]');
+    for (var i = 0; i < tooltips.length; i++) {
+      new window.bootstrap.Tooltip(tooltips[i]);
+    }
+
+    var popovers = document.querySelectorAll('[data-bs-toggle="popover"]');
+    for (var j = 0; j < popovers.length; j++) {
+      new window.bootstrap.Popover(popovers[j]);
+    }
+  }
+
+  /* ====================================================================== */
+  /* 3. DEMO HELPERS                                                        */
+  /* ====================================================================== */
+
+  var ICONS = {
+    success: "bi-check-circle",
+    danger: "bi-x-circle",
+    warning: "bi-exclamation-triangle",
+    info: "bi-info-circle",
+    primary: "bi-stars"
+  };
+
+  /* Floating toast, used by the demo actions across the template. */
+  function toast(message, variant, title) {
+    variant = variant || "primary";
+
+    var host = document.querySelector(".q-toast-host");
+    if (!host) {
+      host = document.createElement("div");
+      host.className = "q-toast-host position-fixed bottom-0 end-0 p-3";
+      host.style.zIndex = "1090";
+      document.body.appendChild(host);
+    }
+
+    var el = document.createElement("div");
+    el.className = "toast align-items-center border-0 show mb-2";
+    el.setAttribute("role", "status");
+    el.setAttribute("aria-live", "polite");
+    el.innerHTML =
+      '<div class="d-flex">' +
+      '  <div class="toast-body d-flex align-items-center gap-2">' +
+      '    <i class="bi ' + (ICONS[variant] || ICONS.primary) + ' text-' + variant + '"></i>' +
+      '    <span>' + (title ? "<strong>" + title + "</strong> " : "") + message + "</span>" +
+      "  </div>" +
+      '  <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>' +
+      "</div>";
+
+    host.appendChild(el);
+
+    if (window.bootstrap && window.bootstrap.Toast) {
+      var instance = new window.bootstrap.Toast(el, { delay: 3200 });
+      instance.show();
+      el.addEventListener("hidden.bs.toast", function () {
+        el.remove();
+      });
+    } else {
+      window.setTimeout(function () {
+        el.remove();
+      }, 3200);
+    }
+  }
+
+  /* Copy text to the clipboard with a safe fallback for file:// previews. */
+  function copyText(text) {
+    if (navigator.clipboard && window.isSecureContext) {
+      return navigator.clipboard.writeText(text);
+    }
+
+    return new Promise(function (resolve, reject) {
+      var area = document.createElement("textarea");
+      area.value = text;
+      area.setAttribute("readonly", "");
+      area.style.position = "fixed";
+      area.style.opacity = "0";
+      document.body.appendChild(area);
+      area.select();
+      try {
+        document.execCommand("copy");
+        resolve();
+      } catch (e) {
+        reject(e);
+      } finally {
+        area.remove();
+      }
+    });
+  }
+
+  /* Animated number counters: <span data-counter="128000" data-decimals="0"> */
+  function initCounters() {
+    var nodes = document.querySelectorAll("[data-counter]");
+    if (!nodes.length) return;
+
+    var reduceMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    for (var i = 0; i < nodes.length; i++) {
+      (function (node) {
+        var target = parseFloat(node.getAttribute("data-counter")) || 0;
+        var decimals = parseInt(node.getAttribute("data-decimals") || "0", 10);
+        var prefix = node.getAttribute("data-prefix") || "";
+        var suffix = node.getAttribute("data-suffix") || "";
+
+        function format(value) {
+          return prefix + value.toLocaleString("en-US", {
+            minimumFractionDigits: decimals,
+            maximumFractionDigits: decimals
+          }) + suffix;
+        }
+
+        if (reduceMotion) {
+          node.textContent = format(target);
+          return;
+        }
+
+        var duration = 900;
+        var start = null;
+
+        function step(timestamp) {
+          if (start === null) start = timestamp;
+          var progress = Math.min((timestamp - start) / duration, 1);
+          var eased = 1 - Math.pow(1 - progress, 3);
+          node.textContent = format(target * eased);
+          if (progress < 1) window.requestAnimationFrame(step);
+        }
+
+        window.requestAnimationFrame(step);
+      })(nodes[i]);
+    }
+  }
+
+  /* ====================================================================== */
+  /* 4. MISC UI BEHAVIOUR                                                   */
+  /* ====================================================================== */
+
+  function initAutoYear() {
+    var nodes = document.querySelectorAll("[data-current-year]");
+    var year = new Date().getFullYear();
+    for (var i = 0; i < nodes.length; i++) {
+      nodes[i].textContent = year;
+    }
+  }
+
+  /* Simple client-side table search: input[data-table-filter="#tableId"] */
+  function initTableFilters() {
+    var inputs = document.querySelectorAll("[data-table-filter]");
+    for (var i = 0; i < inputs.length; i++) {
+      (function (input) {
+        var selector = input.getAttribute("data-table-filter");
+        var table = document.querySelector(selector);
+        if (!table) return;
+        var tbody = table.tBodies[0];
+        if (!tbody) return;
+
+        input.addEventListener("input", function () {
+          var term = input.value.trim().toLowerCase();
+          var rows = tbody.rows;
+          var visible = 0;
+
+          for (var r = 0; r < rows.length; r++) {
+            var text = rows[r].textContent.toLowerCase();
+            var match = text.indexOf(term) !== -1;
+            rows[r].style.display = match ? "" : "none";
+            if (match) visible++;
+          }
+
+          var empty = table.parentElement.querySelector("[data-table-empty]");
+          if (empty) empty.classList.toggle("d-none", visible !== 0);
+        });
+      })(inputs[i]);
+    }
+  }
+
+  /* Demo-only actions: buttons marked data-demo-action show a toast instead of
+     needing a backend. */
+  function initDemoActions() {
+    document.addEventListener("click", function (event) {
+      var trigger = event.target.closest("[data-demo-action]");
+      if (!trigger) return;
+      event.preventDefault();
+      var message = trigger.getAttribute("data-demo-action") || "This action is part of the demo interface.";
+      toast(message, trigger.getAttribute("data-demo-variant") || "primary");
+    });
+  }
+
+  /* Placeholder links (#) should not jump the page. */
+  function initPlaceholderLinks() {
+    document.addEventListener("click", function (event) {
+      var link = event.target.closest('a[href="#"]');
+      if (link) event.preventDefault();
+    });
+  }
+
+  /* Keep dropdown menus tidy: close other open dropdowns when one opens. */
+  function initDropdownHygiene() {
+    document.addEventListener("show.bs.dropdown", function (event) {
+      var open = document.querySelectorAll(".dropdown-menu.show");
+      for (var i = 0; i < open.length; i++) {
+        var parent = open[i].closest(".dropdown");
+        if (parent && parent !== event.target) {
+          var btn = parent.querySelector('[data-bs-toggle="dropdown"]');
+          if (btn && window.bootstrap) {
+            window.bootstrap.Dropdown.getOrCreateInstance(btn).hide();
+          }
+        }
+      }
+    });
+  }
+
+  /* ====================================================================== */
+  /* INIT                                                                   */
+  /* ====================================================================== */
+
+  function init() {
+    markActiveNav();
+    initBootstrapBits();
+    initCounters();
+    initAutoYear();
+    initTableFilters();
+    initDemoActions();
+    initPlaceholderLinks();
+    initDropdownHygiene();
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", init);
+  } else {
+    init();
+  }
+
+  window.Qevora = {
+    toast: toast,
+    copyText: copyText,
+    refresh: init
+  };
+})();

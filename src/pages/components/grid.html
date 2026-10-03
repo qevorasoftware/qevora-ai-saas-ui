@@ -1,0 +1,167 @@
+      <div class="q-page-head">
+        <div>
+          {{BREADCRUMB}}
+          <h1 class="q-page-head__title mt-2">Grid</h1>
+          <p class="q-page-head__subtitle">
+            The template uses Bootstrap 5's twelve-column flex grid. These are the combinations used most often
+            across the dashboard, CRM, finance and AI pages.
+          </p>
+        </div>
+      </div>
+
+      <div class="card q-section">
+        <div class="card-header">
+          <div>
+            <h2 class="card-title">Breakpoints</h2>
+            <p class="card-subtitle">Every layout is verified at these widths</p>
+          </div>
+        </div>
+        <div class="table-responsive">
+          <table class="table align-middle">
+            <thead>
+              <tr>
+                <th scope="col">Breakpoint</th>
+                <th scope="col">Class infix</th>
+                <th scope="col">Width</th>
+                <th scope="col">Sidebar behaviour</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>Mobile</td><td><code>xs</code></td><td>&lt; 576px</td><td>Off-canvas drawer with backdrop</td></tr>
+              <tr><td>Large mobile</td><td><code>sm</code></td><td>≥ 576px</td><td>Drawer, two-column cards</td></tr>
+              <tr><td>Tablet</td><td><code>md</code></td><td>≥ 768px</td><td>Drawer, header search visible</td></tr>
+              <tr><td>Desktop</td><td><code>lg</code></td><td>≥ 992px</td><td>Fixed sidebar, collapsible</td></tr>
+              <tr><td>Large desktop</td><td><code>xl</code></td><td>≥ 1200px</td><td>Fixed sidebar, four-column KPIs</td></tr>
+              <tr><td>Extra large</td><td><code>xxl</code></td><td>≥ 1400px</td><td>Wider content padding</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="demo-block" data-demo>
+        <div class="demo-block__head">
+          <div>
+            <h2 class="demo-block__title">KPI row</h2>
+            <p class="demo-block__desc">Two columns on small screens, four from 1200px. This is the pattern used on every dashboard.</p>
+          </div>
+        </div>
+        <div class="demo-block__tabs">
+          <button class="demo-tab is-active" data-demo-tab="preview" aria-selected="true">Preview</button>
+          <button class="demo-tab" data-demo-tab="html" aria-selected="false">HTML</button>
+        </div>
+        <div class="demo-block__pane is-active" data-demo-pane="preview">
+          <div class="demo-preview">
+            <div class="row g-3">
+              <div class="col-sm-6 col-xl-3"><div class="kpi-tile"><div class="kpi-tile__body"><p class="kpi-tile__label mb-0">Total revenue</p><p class="kpi-tile__value">$1.28M</p></div></div></div>
+              <div class="col-sm-6 col-xl-3"><div class="kpi-tile"><div class="kpi-tile__body"><p class="kpi-tile__label mb-0">Active users</p><p class="kpi-tile__value">24,812</p></div></div></div>
+              <div class="col-sm-6 col-xl-3"><div class="kpi-tile"><div class="kpi-tile__body"><p class="kpi-tile__label mb-0">New customers</p><p class="kpi-tile__value">1,846</p></div></div></div>
+              <div class="col-sm-6 col-xl-3"><div class="kpi-tile"><div class="kpi-tile__body"><p class="kpi-tile__label mb-0">Conversion</p><p class="kpi-tile__value">3.9%</p></div></div></div>
+            </div>
+          </div>
+        </div>
+        <div class="demo-block__pane" data-demo-pane="html">
+          <div class="demo-code-wrap">
+            <button class="copy-btn" data-copy-target="#gridKpi"><i class="bi bi-clipboard"></i> Copy HTML</button>
+            <pre class="demo-code"><code id="gridKpi">&lt;div class="row g-3"&gt;
+  &lt;div class="col-sm-6 col-xl-3"&gt;
+    &lt;div class="kpi-tile"&gt;
+      &lt;div class="kpi-tile__body"&gt;
+        &lt;p class="kpi-tile__label mb-0"&gt;Total revenue&lt;/p&gt;
+        &lt;p class="kpi-tile__value"&gt;$1.28M&lt;/p&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;!-- repeat for the remaining columns --&gt;
+&lt;/div&gt;</code></pre>
+          </div>
+        </div>
+      </div>
+
+      <div class="demo-block" data-demo>
+        <div class="demo-block__head">
+          <div>
+            <h2 class="demo-block__title">Content plus sidebar</h2>
+            <p class="demo-block__desc">Eight and four columns on desktop, stacked on mobile. Used on customer, project and invoice detail pages.</p>
+          </div>
+        </div>
+        <div class="demo-block__tabs">
+          <button class="demo-tab is-active" data-demo-tab="preview" aria-selected="true">Preview</button>
+          <button class="demo-tab" data-demo-tab="html" aria-selected="false">HTML</button>
+        </div>
+        <div class="demo-block__pane is-active" data-demo-pane="preview">
+          <div class="demo-preview">
+            <div class="row g-3">
+              <div class="col-xl-8">
+                <div class="card h-100"><div class="card-body"><p class="fs-7 fw-600 text-heading mb-1">Main column</p><p class="fs-8 text-muted-2 mb-0">Charts, tables and detail content.</p></div></div>
+              </div>
+              <div class="col-xl-4">
+                <div class="card h-100"><div class="card-body"><p class="fs-7 fw-600 text-heading mb-1">Side column</p><p class="fs-8 text-muted-2 mb-0">Summaries, files and activity.</p></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="demo-block__pane" data-demo-pane="html">
+          <div class="demo-code-wrap">
+            <button class="copy-btn" data-copy-target="#gridSplit"><i class="bi bi-clipboard"></i> Copy HTML</button>
+            <pre class="demo-code"><code id="gridSplit">&lt;div class="row g-3"&gt;
+  &lt;div class="col-xl-8"&gt;
+    &lt;div class="card h-100"&gt;…&lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class="col-xl-4"&gt;
+    &lt;div class="card h-100"&gt;…&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+          </div>
+        </div>
+      </div>
+
+      <div class="demo-block" data-demo>
+        <div class="demo-block__head">
+          <div>
+            <h2 class="demo-block__title">Form grid</h2>
+            <p class="demo-block__desc">Half-width fields from 768px, full-width fields on mobile.</p>
+          </div>
+          <button class="copy-btn" data-copy-target="#gridForm" hidden>Copy</button>
+        </div>
+        <div class="demo-block__tabs">
+          <button class="demo-tab is-active" data-demo-tab="preview" aria-selected="true">Preview</button>
+          <button class="demo-tab" data-demo-tab="html" aria-selected="false">HTML</button>
+        </div>
+        <div class="demo-block__pane is-active" data-demo-pane="preview">
+          <div class="demo-preview">
+            <div class="row g-3">
+              <div class="col-md-6">
+                <label class="form-label" for="grid-first">First name</label>
+                <input type="text" class="form-control" id="grid-first" placeholder="Ava">
+              </div>
+              <div class="col-md-6">
+                <label class="form-label" for="grid-last">Last name</label>
+                <input type="text" class="form-control" id="grid-last" placeholder="Reynolds">
+              </div>
+              <div class="col-12">
+                <label class="form-label" for="grid-email">Email</label>
+                <input type="email" class="form-control" id="grid-email" placeholder="ava@qevora.io">
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="demo-block__pane" data-demo-pane="html">
+          <div class="demo-code-wrap">
+            <button class="copy-btn" data-copy-target="#gridFormCode"><i class="bi bi-clipboard"></i> Copy HTML</button>
+            <pre class="demo-code"><code id="gridFormCode">&lt;div class="row g-3"&gt;
+  &lt;div class="col-md-6"&gt;
+    &lt;label class="form-label" for="firstName"&gt;First name&lt;/label&gt;
+    &lt;input type="text" class="form-control" id="firstName"&gt;
+  &lt;/div&gt;
+  &lt;div class="col-md-6"&gt;
+    &lt;label class="form-label" for="lastName"&gt;Last name&lt;/label&gt;
+    &lt;input type="text" class="form-control" id="lastName"&gt;
+  &lt;/div&gt;
+  &lt;div class="col-12"&gt;
+    &lt;label class="form-label" for="email"&gt;Email&lt;/label&gt;
+    &lt;input type="email" class="form-control" id="email"&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+          </div>
+        </div>
+      </div>

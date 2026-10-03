@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" role="img" aria-label="Product placeholder">
+  <defs><linearGradient id="p4" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#e5f4fe"/><stop offset="100%" stop-color="#eef0ff"/></linearGradient></defs>
+  <rect width="400" height="300" fill="url(#p4)"/>
+  <circle cx="200" cy="150" r="58" fill="#0ea5e9" fill-opacity="0.12"/>
+  <rect x="176" y="126" width="48" height="48" rx="12" fill="#0ea5e9" fill-opacity="0.55"/>
+</svg>

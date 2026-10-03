@@ -1,0 +1,147 @@
+      <div class="q-page-head">
+        <div>
+          {{BREADCRUMB}}
+          <h1 class="q-page-head__title mt-2">Notifications</h1>
+          <p class="q-page-head__subtitle">Everything that happened while you were away.</p>
+        </div>
+        <div class="d-flex flex-wrap gap-2">
+          <button class="btn btn-white" data-demo-action="All notifications marked as read — demo only."><i class="bi bi-check2-all"></i> Mark all read</button>
+          <button class="btn btn-primary" data-demo-action="Notification settings opened — demo only."><i class="bi bi-sliders"></i> Preferences</button>
+        </div>
+      </div>
+
+      <div class="row g-3">
+        <div class="col-lg-3">
+          <div class="card">
+            <div class="card-body">
+              <div class="nav flex-column nav-pills" role="tablist" aria-label="Notification filters">
+                <a class="nav-link active d-flex align-items-center gap-2" href="#">
+                  <i class="bi bi-inbox"></i> <span class="flex-grow-1">All</span>
+                  <span class="badge badge-soft-primary badge-pill">24</span>
+                </a>
+                <a class="nav-link d-flex align-items-center gap-2" href="#">
+                  <i class="bi bi-circle-fill text-primary" style="font-size: 7px;"></i> <span class="flex-grow-1">Unread</span>
+                  <span class="badge badge-soft-neutral badge-pill">8</span>
+                </a>
+                <a class="nav-link d-flex align-items-center gap-2" href="#">
+                  <i class="bi bi-receipt"></i> <span class="flex-grow-1">Billing</span>
+                  <span class="badge badge-soft-neutral badge-pill">5</span>
+                </a>
+                <a class="nav-link d-flex align-items-center gap-2" href="#">
+                  <i class="bi bi-stars"></i> <span class="flex-grow-1">AI events</span>
+                  <span class="badge badge-soft-neutral badge-pill">6</span>
+                </a>
+                <a class="nav-link d-flex align-items-center gap-2" href="#">
+                  <i class="bi bi-people"></i> <span class="flex-grow-1">Team</span>
+                  <span class="badge badge-soft-neutral badge-pill">3</span>
+                </a>
+                <a class="nav-link d-flex align-items-center gap-2" href="#">
+                  <i class="bi bi-shield-check"></i> <span class="flex-grow-1">Security</span>
+                  <span class="badge badge-soft-neutral badge-pill">2</span>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <div class="card mt-3">
+            <div class="card-body">
+              <h2 class="fs-7 fw-600 text-heading mb-3">Delivery</h2>
+              <div class="form-check form-switch mb-2">
+                <input class="form-check-input" type="checkbox" id="notif-email" checked>
+                <label class="form-check-label" for="notif-email">Email digest</label>
+              </div>
+              <div class="form-check form-switch mb-2">
+                <input class="form-check-input" type="checkbox" id="notif-push" checked>
+                <label class="form-check-label" for="notif-push">Browser push</label>
+              </div>
+              <div class="form-check form-switch">
+                <input class="form-check-input" type="checkbox" id="notif-slack">
+                <label class="form-check-label" for="notif-slack">Slack integration</label>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-9">
+          <div class="card">
+            <div class="card-header">
+              <div>
+                <h2 class="card-title">Today</h2>
+                <p class="card-subtitle">3 unread notifications</p>
+              </div>
+              <span class="badge badge-soft-primary badge-pill">3 new</span>
+            </div>
+            <div class="card-body p-0">
+              <div class="d-flex gap-3 p-3 border-bottom border-q" style="background: var(--q-primary-soft);">
+                <span class="avatar avatar-md bg-avatar-1"><i class="bi bi-stars"></i></span>
+                <div class="flex-grow-1 min-w-0">
+                  <p class="mb-1 fs-7 text-heading"><strong>Content generation finished</strong></p>
+                  <p class="mb-1 fs-8 text-muted-2">Your 1,200-word product update is ready in the content generator.</p>
+                  <p class="mb-0 fs-9 text-faint">32 seconds ago</p>
+                </div>
+                <a href="../ai/content-generator.html" class="btn btn-sm btn-soft-primary align-self-start">Open</a>
+              </div>
+
+              <div class="d-flex gap-3 p-3 border-bottom border-q" style="background: var(--q-primary-soft);">
+                <span class="avatar avatar-md bg-avatar-3"><i class="bi bi-receipt"></i></span>
+                <div class="flex-grow-1 min-w-0">
+                  <p class="mb-1 fs-7 text-heading"><strong>Invoice INV-2026-0184 was paid</strong></p>
+                  <p class="mb-1 fs-8 text-muted-2">Northstar Labs paid $12,400.00 by card ending 4242.</p>
+                  <p class="mb-0 fs-9 text-faint">2 hours ago</p>
+                </div>
+                <a href="../pages/invoice-details.html" class="btn btn-sm btn-soft-primary align-self-start">View</a>
+              </div>
+
+              <div class="d-flex gap-3 p-3 border-bottom border-q" style="background: var(--q-primary-soft);">
+                <span class="avatar avatar-md bg-avatar-5"><i class="bi bi-shield-exclamation"></i></span>
+                <div class="flex-grow-1 min-w-0">
+                  <p class="mb-1 fs-7 text-heading"><strong>New sign-in from an unrecognised device</strong></p>
+                  <p class="mb-1 fs-8 text-muted-2">Chrome on macOS · Berlin, DE · If this was not you, secure your account.</p>
+                  <p class="mb-0 fs-9 text-faint">5 hours ago</p>
+                </div>
+                <a href="../pages/settings.html" class="btn btn-sm btn-soft-danger align-self-start">Review</a>
+              </div>
+
+              <div class="p-3">
+                <h3 class="fs-8 fw-600 text-uppercase text-faint mb-3" style="letter-spacing: .08em;">Earlier</h3>
+
+                <div class="d-flex gap-3 py-2 border-bottom border-q">
+                  <span class="avatar avatar-md bg-avatar-6"><i class="bi bi-person-plus"></i></span>
+                  <div class="flex-grow-1 min-w-0">
+                    <p class="mb-1 fs-7 text-heading">Ava Reynolds invited <strong>lea@qevora.io</strong> to the workspace</p>
+                    <p class="mb-0 fs-9 text-faint">Yesterday · 16:40</p>
+                  </div>
+                  <button class="btn btn-sm btn-ghost align-self-start" aria-label="Dismiss" data-demo-action="Notification dismissed — demo only."><i class="bi bi-x-lg"></i></button>
+                </div>
+
+                <div class="d-flex gap-3 py-2 border-bottom border-q">
+                  <span class="avatar avatar-md bg-avatar-4"><i class="bi bi-kanban"></i></span>
+                  <div class="flex-grow-1 min-w-0">
+                    <p class="mb-1 fs-7 text-heading">Task <strong>Load-test the new cluster</strong> moved to In progress</p>
+                    <p class="mb-0 fs-9 text-faint">Yesterday · 11:02</p>
+                  </div>
+                  <button class="btn btn-sm btn-ghost align-self-start" aria-label="Dismiss" data-demo-action="Notification dismissed — demo only."><i class="bi bi-x-lg"></i></button>
+                </div>
+
+                <div class="d-flex gap-3 py-2 border-bottom border-q">
+                  <span class="avatar avatar-md bg-avatar-2"><i class="bi bi-arrow-repeat"></i></span>
+                  <div class="flex-grow-1 min-w-0">
+                    <p class="mb-1 fs-7 text-heading">Subscription renewed — <strong>Scale plan, 142 seats</strong></p>
+                    <p class="mb-0 fs-9 text-faint">Sep 28 · 09:00</p>
+                  </div>
+                  <button class="btn btn-sm btn-ghost align-self-start" aria-label="Dismiss" data-demo-action="Notification dismissed — demo only."><i class="bi bi-x-lg"></i></button>
+                </div>
+
+                <div class="d-flex gap-3 py-2">
+                  <span class="avatar avatar-md bg-avatar-7"><i class="bi bi-bar-chart"></i></span>
+                  <div class="flex-grow-1 min-w-0">
+                    <p class="mb-1 fs-7 text-heading">Monthly report <strong>September 2026</strong> is available</p>
+                    <p class="mb-0 fs-9 text-faint">Sep 27 · 08:00</p>
+                  </div>
+                  <a href="../pages/reports.html" class="btn btn-sm btn-ghost align-self-start">Open</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>

@@ -1,0 +1,235 @@
+      <div class="q-page-head">
+        <div>
+          {{BREADCRUMB}}
+          <h1 class="q-page-head__title mt-2">Atlas platform migration</h1>
+          <p class="q-page-head__subtitle">Modernise the reporting stack and move workloads to the new cluster.</p>
+        </div>
+        <div class="d-flex flex-wrap gap-2">
+          <button class="btn btn-white" data-demo-action="Project shared — demo interaction only."><i class="bi bi-share"></i> Share</button>
+          <button class="btn btn-primary" data-demo-action="Task created — demo interaction only."><i class="bi bi-plus-lg"></i> Add task</button>
+        </div>
+      </div>
+
+      <div class="row g-3 q-section">
+        <div class="col-xl-8 d-flex flex-column gap-3">
+          <div class="card">
+            <div class="card-body">
+              <div class="d-flex flex-wrap align-items-center justify-content-between gap-3 mb-3">
+                <div class="d-flex flex-wrap gap-2">
+                  <span class="badge badge-soft-primary badge-pill">In progress</span>
+                  <span class="chip"><i class="bi bi-flag"></i> High priority</span>
+                  <span class="chip"><i class="bi bi-calendar3"></i> Due Nov 18, 2026</span>
+                </div>
+                <div class="avatar-group">
+                  <span class="avatar avatar-sm bg-avatar-1" data-bs-toggle="tooltip" title="Ava Reynolds">AR</span>
+                  <span class="avatar avatar-sm bg-avatar-3" data-bs-toggle="tooltip" title="Marcus Chen">MC</span>
+                  <span class="avatar avatar-sm bg-avatar-6" data-bs-toggle="tooltip" title="Lea Novak">LN</span>
+                  <span class="avatar avatar-sm avatar-more" data-bs-toggle="tooltip" title="3 more members">+3</span>
+                </div>
+              </div>
+
+              <div class="row g-3">
+                <div class="col-sm-4">
+                  <p class="fs-8 text-muted-2 mb-1">Overall progress</p>
+                  <div class="d-flex align-items-center gap-2">
+                    <div class="progress progress-sm flex-grow-1"><div class="progress-bar" style="width: 76%"></div></div>
+                    <span class="fs-8 fw-600 text-heading">76%</span>
+                  </div>
+                </div>
+                <div class="col-sm-4">
+                  <p class="fs-8 text-muted-2 mb-1">Budget used</p>
+                  <div class="d-flex align-items-center gap-2">
+                    <div class="progress progress-sm flex-grow-1"><div class="progress-bar bg-warning" style="width: 62%"></div></div>
+                    <span class="fs-8 fw-600 text-heading">62%</span>
+                  </div>
+                </div>
+                <div class="col-sm-4">
+                  <p class="fs-8 text-muted-2 mb-1">Tasks completed</p>
+                  <div class="d-flex align-items-center gap-2">
+                    <div class="progress progress-sm flex-grow-1"><div class="progress-bar bg-success" style="width: 84%"></div></div>
+                    <span class="fs-8 fw-600 text-heading">84%</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-header">
+              <div>
+                <h2 class="card-title">Tasks</h2>
+                <p class="card-subtitle">Work items in the current sprint</p>
+              </div>
+              <a href="tasks.html" class="btn btn-sm btn-soft-secondary">Open task list</a>
+            </div>
+            <div class="table-responsive">
+              <table class="table table-hover align-middle">
+                <thead>
+                  <tr>
+                    <th scope="col" style="width: 40px;"><input class="form-check-input" type="checkbox" data-select-all="#project-tasks" aria-label="Select all tasks"></th>
+                    <th scope="col">Task</th>
+                    <th scope="col">Assignee</th>
+                    <th scope="col">Priority</th>
+                    <th scope="col">Due</th>
+                    <th scope="col">Status</th>
+                  </tr>
+                </thead>
+                <tbody id="project-tasks">
+                  <tr>
+                    <td><input class="form-check-input" type="checkbox" data-row-select aria-label="Select task"></td>
+                    <td class="fw-500 text-heading">Migrate reporting queries</td>
+                    <td><span class="avatar avatar-xs bg-avatar-3" data-bs-toggle="tooltip" title="Marcus Chen">MC</span></td>
+                    <td><span class="badge badge-soft-danger badge-pill">High</span></td>
+                    <td class="text-muted-2">Oct 12</td>
+                    <td><span class="badge badge-soft-primary badge-pill">In progress</span></td>
+                  </tr>
+                  <tr>
+                    <td><input class="form-check-input" type="checkbox" data-row-select aria-label="Select task"></td>
+                    <td class="fw-500 text-heading">Cut over nightly ETL jobs</td>
+                    <td><span class="avatar avatar-xs bg-avatar-6" data-bs-toggle="tooltip" title="Lea Novak">LN</span></td>
+                    <td><span class="badge badge-soft-warning badge-pill">Medium</span></td>
+                    <td class="text-muted-2">Oct 18</td>
+                    <td><span class="badge badge-soft-neutral badge-pill">To do</span></td>
+                  </tr>
+                  <tr>
+                    <td><input class="form-check-input" type="checkbox" data-row-select aria-label="Select task"></td>
+                    <td class="fw-500 text-heading">Update runbooks and alerts</td>
+                    <td><span class="avatar avatar-xs bg-avatar-1" data-bs-toggle="tooltip" title="Ava Reynolds">AR</span></td>
+                    <td><span class="badge badge-soft-neutral badge-pill">Low</span></td>
+                    <td class="text-muted-2">Oct 24</td>
+                    <td><span class="badge badge-soft-success badge-pill">Done</span></td>
+                  </tr>
+                  <tr>
+                    <td><input class="form-check-input" type="checkbox" data-row-select aria-label="Select task"></td>
+                    <td class="fw-500 text-heading">Load-test the new cluster</td>
+                    <td><span class="avatar avatar-xs bg-avatar-4" data-bs-toggle="tooltip" title="Daniel Okafor">DO</span></td>
+                    <td><span class="badge badge-soft-danger badge-pill">High</span></td>
+                    <td class="text-muted-2">Oct 27</td>
+                    <td><span class="badge badge-soft-primary badge-pill">In progress</span></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-header">
+              <div>
+                <h2 class="card-title">Project activity</h2>
+                <p class="card-subtitle">Latest updates from the team</p>
+              </div>
+            </div>
+            <div class="card-body">
+              <ul class="timeline">
+                <li class="timeline__item">
+                  <span class="timeline__dot timeline__dot--success"></span>
+                  <p class="timeline__title">Milestone reached — data parity verified</p>
+                  <p class="timeline__meta">Lea Novak · 3 hours ago</p>
+                </li>
+                <li class="timeline__item">
+                  <span class="timeline__dot"></span>
+                  <p class="timeline__title">Comment added on “Cut over nightly ETL jobs”</p>
+                  <p class="timeline__meta">Marcus Chen · 6 hours ago</p>
+                </li>
+                <li class="timeline__item">
+                  <span class="timeline__dot timeline__dot--warning"></span>
+                  <p class="timeline__title">Budget threshold at 60%</p>
+                  <p class="timeline__meta">Automated alert · yesterday</p>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-xl-4 d-flex flex-column gap-3">
+          <div class="card">
+            <div class="card-header">
+              <h2 class="card-title mb-0">Progress</h2>
+            </div>
+            <div class="card-body text-center">
+              <div class="d-inline-block" data-ring="76" data-ring-size="140" data-ring-stroke="12"></div>
+              <p class="fs-8 text-muted-2 mt-3 mb-0">19 of 25 tasks completed</p>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-header">
+              <h2 class="card-title mb-0">Team</h2>
+            </div>
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item">
+                <div class="list-item-row">
+                  <span class="avatar avatar-sm bg-avatar-1">AR</span>
+                  <span class="flex-grow-1">
+                    <span class="d-block fs-7 fw-500 text-heading">Ava Reynolds</span>
+                    <span class="d-block fs-8 text-muted-2">Project lead</span>
+                  </span>
+                  <span class="badge badge-soft-success badge-pill">Online</span>
+                </div>
+              </li>
+              <li class="list-group-item">
+                <div class="list-item-row">
+                  <span class="avatar avatar-sm bg-avatar-3">MC</span>
+                  <span class="flex-grow-1">
+                    <span class="d-block fs-7 fw-500 text-heading">Marcus Chen</span>
+                    <span class="d-block fs-8 text-muted-2">Backend</span>
+                  </span>
+                  <span class="badge badge-soft-neutral badge-pill">Away</span>
+                </div>
+              </li>
+              <li class="list-group-item">
+                <div class="list-item-row">
+                  <span class="avatar avatar-sm bg-avatar-6">LN</span>
+                  <span class="flex-grow-1">
+                    <span class="d-block fs-7 fw-500 text-heading">Lea Novak</span>
+                    <span class="d-block fs-8 text-muted-2">Data</span>
+                  </span>
+                  <span class="badge badge-soft-success badge-pill">Online</span>
+                </div>
+              </li>
+              <li class="list-group-item">
+                <div class="list-item-row">
+                  <span class="avatar avatar-sm bg-avatar-4">DO</span>
+                  <span class="flex-grow-1">
+                    <span class="d-block fs-7 fw-500 text-heading">Daniel Okafor</span>
+                    <span class="d-block fs-8 text-muted-2">Platform</span>
+                  </span>
+                  <span class="badge badge-soft-neutral badge-pill">Offline</span>
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          <div class="card">
+            <div class="card-header">
+              <h2 class="card-title mb-0">Files</h2>
+            </div>
+            <div class="card-body">
+              <div class="file-row">
+                <span class="file-row__icon"><i class="bi bi-file-earmark-pdf"></i></span>
+                <span class="flex-grow-1 min-w-0">
+                  <span class="d-block fs-7 fw-500 text-heading text-truncate">Migration plan v4.pdf</span>
+                  <span class="d-block fs-8 text-muted-2">2.4 MB · Oct 1</span>
+                </span>
+                <button class="btn btn-icon btn-sm btn-ghost" aria-label="Download migration plan" data-demo-action="Download started — demo only."><i class="bi bi-download"></i></button>
+              </div>
+              <div class="file-row">
+                <span class="file-row__icon"><i class="bi bi-file-earmark-spreadsheet"></i></span>
+                <span class="flex-grow-1 min-w-0">
+                  <span class="d-block fs-7 fw-500 text-heading text-truncate">Budget tracker.xlsx</span>
+                  <span class="d-block fs-8 text-muted-2">864 KB · Sep 26</span>
+                </span>
+                <button class="btn btn-icon btn-sm btn-ghost" aria-label="Download budget tracker" data-demo-action="Download started — demo only."><i class="bi bi-download"></i></button>
+              </div>
+              <div class="file-row">
+                <span class="file-row__icon"><i class="bi bi-file-earmark-image"></i></span>
+                <span class="flex-grow-1 min-w-0">
+                  <span class="d-block fs-7 fw-500 text-heading text-truncate">Architecture.png</span>
+                  <span class="d-block fs-8 text-muted-2">1.1 MB · Sep 20</span>
+                </span>
+                <button class="btn btn-icon btn-sm btn-ghost" aria-label="Download architecture diagram" data-demo-action="Download started — demo only."><i class="bi bi-download"></i></button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>

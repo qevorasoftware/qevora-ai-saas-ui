@@ -1,0 +1,141 @@
+      <!-- ================= Header ================= -->
+      <header class="q-header">
+        <button class="q-header__toggle" type="button" data-sidebar-toggle
+                aria-expanded="false" aria-controls="qevora-sidebar" aria-label="Toggle navigation">
+          <i class="bi bi-list"></i>
+        </button>
+
+        <div class="q-header__search d-none d-md-block">
+          <i class="bi bi-search q-header__search-icon" aria-hidden="true"></i>
+          <label class="visually-hidden" for="q-header-search">Search the workspace</label>
+          <input type="search" class="form-control" id="q-header-search" placeholder="Search…" autocomplete="off">
+          <span class="q-header__kbd" aria-hidden="true">⌘K</span>
+        </div>
+
+        <div class="q-header__actions">
+          <!-- RTL toggle -->
+          <button class="q-icon-btn d-none d-sm-inline-grid" type="button" data-dir-toggle
+                  aria-pressed="false" title="Switch to RTL layout" aria-label="Toggle text direction">
+            <span class="fs-8 fw-600" data-dir-label>RTL</span>
+          </button>
+
+          <!-- Colour mode -->
+          <button class="q-icon-btn" type="button" data-theme-toggle aria-pressed="false"
+                  title="Switch to dark mode" aria-label="Toggle colour mode">
+            <i class="bi bi-moon-stars" data-theme-icon aria-hidden="true"></i>
+          </button>
+
+          <!-- Apps -->
+          <div class="dropdown d-none d-sm-block">
+            <button class="q-icon-btn" type="button" data-bs-toggle="dropdown" aria-expanded="false"
+                    aria-label="Quick apps" title="Quick apps">
+              <i class="bi bi-grid-3x3-gap" aria-hidden="true"></i>
+            </button>
+            <div class="dropdown-menu dropdown-menu-end p-3" style="width: 280px;">
+              <p class="fs-8 fw-600 text-uppercase text-faint mb-2">Quick access</p>
+              <div class="row g-2">
+                <div class="col-4">
+                  <a class="component-tile text-center p-2" href="{{DEPTH}}index.html">
+                    <i class="bi bi-grid-1x2 fs-5 text-primary-2 d-block mb-1"></i>
+                    <span class="fs-9">Home</span>
+                  </a>
+                </div>
+                <div class="col-4">
+                  <a class="component-tile text-center p-2" href="{{DEPTH}}ai/dashboard.html">
+                    <i class="bi bi-stars fs-5 text-primary-2 d-block mb-1"></i>
+                    <span class="fs-9">AI</span>
+                  </a>
+                </div>
+                <div class="col-4">
+                  <a class="component-tile text-center p-2" href="{{DEPTH}}pages/crm.html">
+                    <i class="bi bi-people fs-5 text-primary-2 d-block mb-1"></i>
+                    <span class="fs-9">CRM</span>
+                  </a>
+                </div>
+                <div class="col-4">
+                  <a class="component-tile text-center p-2" href="{{DEPTH}}pages/invoices.html">
+                    <i class="bi bi-receipt fs-5 text-primary-2 d-block mb-1"></i>
+                    <span class="fs-9">Finance</span>
+                  </a>
+                </div>
+                <div class="col-4">
+                  <a class="component-tile text-center p-2" href="{{DEPTH}}components/index.html">
+                    <i class="bi bi-collection fs-5 text-primary-2 d-block mb-1"></i>
+                    <span class="fs-9">UI Kit</span>
+                  </a>
+                </div>
+                <div class="col-4">
+                  <a class="component-tile text-center p-2" href="{{DEPTH}}documentation/index.html">
+                    <i class="bi bi-book fs-5 text-primary-2 d-block mb-1"></i>
+                    <span class="fs-9">Docs</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Notifications -->
+          <div class="dropdown">
+            <button class="q-icon-btn" type="button" data-bs-toggle="dropdown" aria-expanded="false"
+                    aria-label="Notifications" title="Notifications">
+              <i class="bi bi-bell" aria-hidden="true"></i>
+              <span class="q-icon-btn__dot" aria-hidden="true"></span>
+            </button>
+            <div class="dropdown-menu dropdown-menu-end dropdown-notify">
+              <div class="dropdown-notify__head">
+                <span class="fw-600 text-heading">Notifications</span>
+                <span class="badge badge-soft-primary badge-pill">3 new</span>
+              </div>
+              <div class="dropdown-notify__list q-scroll">
+                <a class="dropdown-notify__item" href="{{DEPTH}}ai/history.html">
+                  <span class="avatar avatar-sm bg-avatar-1"><i class="bi bi-stars"></i></span>
+                  <span class="min-w-0">
+                    <span class="d-block dropdown-notify__title">Content generation finished</span>
+                    <span class="d-block dropdown-notify__meta">32 seconds ago</span>
+                  </span>
+                </a>
+                <a class="dropdown-notify__item" href="{{DEPTH}}pages/invoices.html">
+                  <span class="avatar avatar-sm bg-avatar-3"><i class="bi bi-receipt"></i></span>
+                  <span class="min-w-0">
+                    <span class="d-block dropdown-notify__title">Invoice INV-2026-0184 was paid</span>
+                    <span class="d-block dropdown-notify__meta">2 hours ago</span>
+                  </span>
+                </a>
+                <a class="dropdown-notify__item" href="{{DEPTH}}pages/team.html">
+                  <span class="avatar avatar-sm bg-avatar-6"><i class="bi bi-person-plus"></i></span>
+                  <span class="min-w-0">
+                    <span class="d-block dropdown-notify__title">Ava Reynolds invited a teammate</span>
+                    <span class="d-block dropdown-notify__meta">Yesterday</span>
+                  </span>
+                </a>
+              </div>
+              <div class="dropdown-notify__foot">
+                <a href="{{DEPTH}}pages/notifications.html" class="fw-500">View all notifications</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- User -->
+          <div class="dropdown">
+            <button class="q-header__user" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <span class="avatar avatar-sm bg-avatar-1" aria-hidden="true">AR</span>
+              <span class="q-header__user-meta">
+                <span class="d-block q-header__user-name">Ava Reynolds</span>
+                <span class="d-block q-header__user-role">Workspace admin</span>
+              </span>
+              <i class="bi bi-chevron-down fs-8 text-muted-2 d-none d-md-block" aria-hidden="true"></i>
+            </button>
+            <ul class="dropdown-menu dropdown-menu-end">
+              <li class="dropdown-header">Signed in as ava@qevora.io</li>
+              <li><a class="dropdown-item" href="{{DEPTH}}pages/profile.html"><i class="bi bi-person"></i> My profile</a></li>
+              <li><a class="dropdown-item" href="{{DEPTH}}pages/settings.html"><i class="bi bi-gear"></i> Account settings</a></li>
+              <li><a class="dropdown-item" href="{{DEPTH}}ai/usage.html"><i class="bi bi-speedometer2"></i> AI usage</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" href="{{DEPTH}}documentation/index.html"><i class="bi bi-book"></i> Documentation</a></li>
+              <li><a class="dropdown-item" href="{{DEPTH}}pages/help.html"><i class="bi bi-life-preserver"></i> Help center</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item text-danger" href="{{DEPTH}}auth/login.html"><i class="bi bi-box-arrow-right"></i> Sign out</a></li>
+            </ul>
+          </div>
+        </div>
+      </header>

@@ -1,0 +1,580 @@
+      <div class="q-page-head">
+        <div>
+          {{BREADCRUMB}}
+          <h1 class="q-page-head__title mt-2">Welcome back, Ava</h1>
+          <p class="q-page-head__subtitle">
+            Here is what changed across your workspace since yesterday. All figures on this page are demo data.
+          </p>
+        </div>
+        <div class="d-flex flex-wrap gap-2">
+          <div class="dropdown">
+            <button class="btn btn-white dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <i class="bi bi-calendar3"></i> Last 12 months
+            </button>
+            <ul class="dropdown-menu dropdown-menu-end">
+              <li><a class="dropdown-item active" href="#">Last 12 months</a></li>
+              <li><a class="dropdown-item" href="#">Last 6 months</a></li>
+              <li><a class="dropdown-item" href="#">This quarter</a></li>
+              <li><a class="dropdown-item" href="#">This month</a></li>
+            </ul>
+          </div>
+          <button class="btn btn-primary" data-demo-action="Report export queued — demo interaction only." data-demo-variant="success">
+            <i class="bi bi-download"></i> Export report
+          </button>
+        </div>
+      </div>
+
+      <!-- ============ KPI cards ============ -->
+      <div class="row g-3 q-section">
+        <div class="col-sm-6 col-xl-3">
+          <div class="card card-stat h-100">
+            <div class="card-body">
+              <div class="d-flex align-items-start justify-content-between gap-3">
+                <div>
+                  <p class="card-stat__label">Total revenue</p>
+                  <p class="card-stat__value" data-counter="1284500" data-prefix="$" data-suffix="" data-decimals="0">$1,284,500</p>
+                </div>
+                <span class="card-stat__icon bg-primary-soft text-primary-2"><i class="bi bi-currency-dollar"></i></span>
+              </div>
+              <div class="d-flex align-items-center gap-2">
+                <span class="trend trend-up"><i class="bi bi-arrow-up-short"></i> 12.4%</span>
+                <span class="fs-8 text-muted-2">vs last year</span>
+              </div>
+              <div class="card-stat__spark"><canvas data-chart="sparkline-primary" data-no-legend="true"></canvas></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-6 col-xl-3">
+          <div class="card card-stat h-100">
+            <div class="card-body">
+              <div class="d-flex align-items-start justify-content-between gap-3">
+                <div>
+                  <p class="card-stat__label">Active users</p>
+                  <p class="card-stat__value" data-counter="24812">24,812</p>
+                </div>
+                <span class="card-stat__icon bg-info-soft text-info"><i class="bi bi-people"></i></span>
+              </div>
+              <div class="d-flex align-items-center gap-2">
+                <span class="trend trend-up"><i class="bi bi-arrow-up-short"></i> 8.1%</span>
+                <span class="fs-8 text-muted-2">vs last month</span>
+              </div>
+              <div class="card-stat__spark"><canvas data-chart="sparkline-info" data-no-legend="true"></canvas></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-6 col-xl-3">
+          <div class="card card-stat h-100">
+            <div class="card-body">
+              <div class="d-flex align-items-start justify-content-between gap-3">
+                <div>
+                  <p class="card-stat__label">New customers</p>
+                  <p class="card-stat__value" data-counter="1846">1,846</p>
+                </div>
+                <span class="card-stat__icon bg-success-soft text-success"><i class="bi bi-person-plus"></i></span>
+              </div>
+              <div class="d-flex align-items-center gap-2">
+                <span class="trend trend-up"><i class="bi bi-arrow-up-short"></i> 5.7%</span>
+                <span class="fs-8 text-muted-2">vs last month</span>
+              </div>
+              <div class="card-stat__spark"><canvas data-chart="sparkline-success" data-no-legend="true"></canvas></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-6 col-xl-3">
+          <div class="card card-stat h-100">
+            <div class="card-body">
+              <div class="d-flex align-items-start justify-content-between gap-3">
+                <div>
+                  <p class="card-stat__label">Conversion rate</p>
+                  <p class="card-stat__value" data-counter="3.9" data-decimals="1" data-suffix="%">3.9%</p>
+                </div>
+                <span class="card-stat__icon bg-warning-soft text-warning"><i class="bi bi-graph-up-arrow"></i></span>
+              </div>
+              <div class="d-flex align-items-center gap-2">
+                <span class="trend trend-down"><i class="bi bi-arrow-down-short"></i> 0.4%</span>
+                <span class="fs-8 text-muted-2">vs last month</span>
+              </div>
+              <div class="card-stat__spark"><canvas data-chart="sparkline-warning" data-no-legend="true"></canvas></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ============ Charts ============ -->
+      <div class="row g-3 q-section">
+        <div class="col-xl-8">
+          <div class="card h-100">
+            <div class="card-header">
+              <div>
+                <h2 class="card-title">Revenue</h2>
+                <p class="card-subtitle">Recurring revenue against target</p>
+              </div>
+              <div class="legend d-none d-md-flex">
+                <span class="legend__item"><span class="legend__dot" style="background: var(--q-primary)"></span> Revenue</span>
+                <span class="legend__item"><span class="legend__dot" style="background: var(--q-accent)"></span> Target</span>
+              </div>
+            </div>
+            <div class="card-body">
+              <div class="chart-holder chart-holder--lg">
+                <canvas data-chart="revenue"></canvas>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-xl-4">
+          <div class="card h-100">
+            <div class="card-header">
+              <div>
+                <h2 class="card-title">AI usage</h2>
+                <p class="card-subtitle">Requests per day</p>
+              </div>
+              <a href="ai/usage.html" class="btn btn-sm btn-soft-primary">Details</a>
+            </div>
+            <div class="card-body">
+              <div class="chart-holder chart-holder--lg">
+                <canvas data-chart="aiUsage" data-no-legend="true"></canvas>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row g-3 q-section">
+        <div class="col-xl-4">
+          <div class="card h-100">
+            <div class="card-header">
+              <div>
+                <h2 class="card-title">Model usage</h2>
+                <p class="card-subtitle">Share of requests this month</p>
+              </div>
+            </div>
+            <div class="card-body">
+              <div class="chart-holder chart-holder--md">
+                <canvas data-chart="modelUsage"></canvas>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-xl-4">
+          <div class="card h-100">
+            <div class="card-header">
+              <div>
+                <h2 class="card-title">User growth</h2>
+                <p class="card-subtitle">New and returning users</p>
+              </div>
+            </div>
+            <div class="card-body">
+              <div class="chart-holder chart-holder--md">
+                <canvas data-chart="users"></canvas>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-xl-4">
+          <div class="card h-100">
+            <div class="card-header">
+              <div>
+                <h2 class="card-title">Traffic sources</h2>
+                <p class="card-subtitle">Where visitors come from</p>
+              </div>
+            </div>
+            <div class="card-body">
+              <div class="chart-holder chart-holder--md">
+                <canvas data-chart="traffic"></canvas>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ============ Transactions + AI summary ============ -->
+      <div class="row g-3 q-section">
+        <div class="col-xl-8">
+          <div class="card">
+            <div class="card-header">
+              <div>
+                <h2 class="card-title">Recent transactions</h2>
+                <p class="card-subtitle">Latest payments across all plans</p>
+              </div>
+              <a href="pages/transactions.html" class="btn btn-sm btn-soft-secondary">View all</a>
+            </div>
+
+            <div class="table-responsive">
+              <table class="table table-hover align-middle">
+                <thead>
+                  <tr>
+                    <th scope="col">Transaction</th>
+                    <th scope="col">Customer</th>
+                    <th scope="col">Plan</th>
+                    <th scope="col" class="text-end">Amount</th>
+                    <th scope="col">Status</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="fw-500 text-heading">#TXN-90412</span><span class="d-block fs-8 text-muted-2">Oct 2, 2026 · 09:24</span></td>
+                    <td>
+                      <div class="d-flex align-items-center gap-2">
+                        <span class="avatar avatar-xs bg-avatar-1">NL</span>
+                        <span class="fs-7">Northstar Labs</span>
+                      </div>
+                    </td>
+                    <td>Scale</td>
+                    <td class="text-end fw-600 text-heading">$4,800.00</td>
+                    <td><span class="badge badge-soft-success badge-pill">Paid</span></td>
+                  </tr>
+                  <tr>
+                    <td><span class="fw-500 text-heading">#TXN-90411</span><span class="d-block fs-8 text-muted-2">Oct 2, 2026 · 08:11</span></td>
+                    <td>
+                      <div class="d-flex align-items-center gap-2">
+                        <span class="avatar avatar-xs bg-avatar-2">VL</span>
+                        <span class="fs-7">Vertex Labs</span>
+                      </div>
+                    </td>
+                    <td>Growth</td>
+                    <td class="text-end fw-600 text-heading">$1,250.00</td>
+                    <td><span class="badge badge-soft-warning badge-pill">Pending</span></td>
+                  </tr>
+                  <tr>
+                    <td><span class="fw-500 text-heading">#TXN-90410</span><span class="d-block fs-8 text-muted-2">Oct 1, 2026 · 17:45</span></td>
+                    <td>
+                      <div class="d-flex align-items-center gap-2">
+                        <span class="avatar avatar-xs bg-avatar-3">AI</span>
+                        <span class="fs-7">Acme Inc.</span>
+                      </div>
+                    </td>
+                    <td>Starter</td>
+                    <td class="text-end fw-600 text-heading">$290.00</td>
+                    <td><span class="badge badge-soft-success badge-pill">Paid</span></td>
+                  </tr>
+                  <tr>
+                    <td><span class="fw-500 text-heading">#TXN-90409</span><span class="d-block fs-8 text-muted-2">Oct 1, 2026 · 15:02</span></td>
+                    <td>
+                      <div class="d-flex align-items-center gap-2">
+                        <span class="avatar avatar-xs bg-avatar-4">OS</span>
+                        <span class="fs-7">Orbit Systems</span>
+                      </div>
+                    </td>
+                    <td>Scale</td>
+                    <td class="text-end fw-600 text-heading">$4,800.00</td>
+                    <td><span class="badge badge-soft-danger badge-pill">Failed</span></td>
+                  </tr>
+                  <tr>
+                    <td><span class="fw-500 text-heading">#TXN-90408</span><span class="d-block fs-8 text-muted-2">Oct 1, 2026 · 11:36</span></td>
+                    <td>
+                      <div class="d-flex align-items-center gap-2">
+                        <span class="avatar avatar-xs bg-avatar-5">HL</span>
+                        <span class="fs-7">Horizon Labs</span>
+                      </div>
+                    </td>
+                    <td>Growth</td>
+                    <td class="text-end fw-600 text-heading">$1,250.00</td>
+                    <td><span class="badge badge-soft-success badge-pill">Paid</span></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-xl-4">
+          <div class="card h-100 q-hero-glow">
+            <div class="card-body">
+              <div class="d-flex align-items-center justify-content-between mb-3">
+                <h2 class="card-title mb-0">AI usage summary</h2>
+                <span class="badge badge-soft-primary badge-pill">Scale plan</span>
+              </div>
+
+              <div class="d-flex align-items-center gap-3 mb-3">
+                <div data-ring="68" data-ring-size="92" data-ring-stroke="9" aria-label="68 percent of monthly AI quota used"></div>
+                <div class="min-w-0">
+                  <p class="fs-7 text-heading fw-600 mb-1">680K of 1M tokens</p>
+                  <p class="fs-8 text-muted-2 mb-0">Quota resets on Nov 1, 2026</p>
+                </div>
+              </div>
+
+              <div class="divider-y"></div>
+
+              <ul class="activity">
+                <li class="activity__item">
+                  <span class="avatar avatar-sm bg-avatar-1"><i class="bi bi-stars"></i></span>
+                  <div class="activity__body">
+                    <p class="activity__text">Content generation — <strong>Nova-4 Turbo</strong></p>
+                    <p class="activity__time">1,240 tokens · 32s ago</p>
+                  </div>
+                </li>
+                <li class="activity__item">
+                  <span class="avatar avatar-sm bg-avatar-6"><i class="bi bi-image"></i></span>
+                  <div class="activity__body">
+                    <p class="activity__text">Image generation — <strong>Orbit Vision</strong></p>
+                    <p class="activity__time">4 images · 18m ago</p>
+                  </div>
+                </li>
+                <li class="activity__item">
+                  <span class="avatar avatar-sm bg-avatar-7"><i class="bi bi-chat-square-text"></i></span>
+                  <div class="activity__body">
+                    <p class="activity__text">Support assistant chat — <strong>Vertex Flash</strong></p>
+                    <p class="activity__time">860 tokens · 1h ago</p>
+                  </div>
+                </li>
+              </ul>
+
+              <a href="ai/dashboard.html" class="btn btn-soft-primary w-100 mt-3">
+                <i class="bi bi-stars"></i> Open AI workspace
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ============ Projects + activity + quick actions ============ -->
+      <div class="row g-3 q-section">
+        <div class="col-xl-4">
+          <div class="card h-100">
+            <div class="card-header">
+              <div>
+                <h2 class="card-title">Project progress</h2>
+                <p class="card-subtitle">Active projects this quarter</p>
+              </div>
+              <a href="pages/projects.html" class="btn btn-sm btn-soft-secondary">All</a>
+            </div>
+            <div class="card-body d-flex flex-column gap-3">
+              <div>
+                <div class="d-flex justify-content-between align-items-center mb-2">
+                  <span class="fs-7 fw-500 text-heading">Atlas platform migration</span>
+                  <span class="fs-8 text-muted-2">76%</span>
+                </div>
+                <div class="progress progress-sm"><div class="progress-bar" style="width: 76%" role="progressbar" aria-valuenow="76" aria-valuemin="0" aria-valuemax="100"></div></div>
+              </div>
+              <div>
+                <div class="d-flex justify-content-between align-items-center mb-2">
+                  <span class="fs-7 fw-500 text-heading">Nova AI assistant</span>
+                  <span class="fs-8 text-muted-2">54%</span>
+                </div>
+                <div class="progress progress-sm"><div class="progress-bar bg-info" style="width: 54%" role="progressbar" aria-valuenow="54" aria-valuemin="0" aria-valuemax="100"></div></div>
+              </div>
+              <div>
+                <div class="d-flex justify-content-between align-items-center mb-2">
+                  <span class="fs-7 fw-500 text-heading">Billing revamp</span>
+                  <span class="fs-8 text-muted-2">92%</span>
+                </div>
+                <div class="progress progress-sm"><div class="progress-bar bg-success" style="width: 92%" role="progressbar" aria-valuenow="92" aria-valuemin="0" aria-valuemax="100"></div></div>
+              </div>
+              <div>
+                <div class="d-flex justify-content-between align-items-center mb-2">
+                  <span class="fs-7 fw-500 text-heading">Mobile app v3</span>
+                  <span class="fs-8 text-muted-2">31%</span>
+                </div>
+                <div class="progress progress-sm"><div class="progress-bar bg-warning" style="width: 31%" role="progressbar" aria-valuenow="31" aria-valuemin="0" aria-valuemax="100"></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-xl-4">
+          <div class="card h-100">
+            <div class="card-header">
+              <div>
+                <h2 class="card-title">Recent activity</h2>
+                <p class="card-subtitle">Workspace events</p>
+              </div>
+            </div>
+            <div class="card-body">
+              <ul class="timeline">
+                <li class="timeline__item">
+                  <span class="timeline__dot timeline__dot--success"></span>
+                  <p class="timeline__title">Invoice INV-2026-0184 paid</p>
+                  <p class="timeline__meta">Northstar Labs · $12,400 · 2h ago</p>
+                </li>
+                <li class="timeline__item">
+                  <span class="timeline__dot"></span>
+                  <p class="timeline__title">New project created</p>
+                  <p class="timeline__meta">Horizon Labs onboarding · 5h ago</p>
+                </li>
+                <li class="timeline__item">
+                  <span class="timeline__dot timeline__dot--warning"></span>
+                  <p class="timeline__title">API rate limit reached</p>
+                  <p class="timeline__meta">Vertex Labs key · 8h ago</p>
+                </li>
+                <li class="timeline__item">
+                  <span class="timeline__dot timeline__dot--muted"></span>
+                  <p class="timeline__title">Team member invited</p>
+                  <p class="timeline__meta">lea@qevora.io · yesterday</p>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-xl-4">
+          <div class="card h-100">
+            <div class="card-header">
+              <div>
+                <h2 class="card-title">Quick actions</h2>
+                <p class="card-subtitle">Common workspace tasks</p>
+              </div>
+            </div>
+            <div class="card-body">
+              <div class="row g-2">
+                <div class="col-6">
+                  <a class="component-tile" href="ai/content-generator.html">
+                    <span class="component-tile__icon"><i class="bi bi-pencil-square"></i></span>
+                    <span class="component-tile__title">Write content</span>
+                    <span class="component-tile__text">AI copy</span>
+                  </a>
+                </div>
+                <div class="col-6">
+                  <a class="component-tile" href="ai/image-generator.html">
+                    <span class="component-tile__icon"><i class="bi bi-image"></i></span>
+                    <span class="component-tile__title">Generate image</span>
+                    <span class="component-tile__text">AI visuals</span>
+                  </a>
+                </div>
+                <div class="col-6">
+                  <a class="component-tile" href="pages/invoices.html">
+                    <span class="component-tile__icon"><i class="bi bi-receipt"></i></span>
+                    <span class="component-tile__title">New invoice</span>
+                    <span class="component-tile__text">Billing</span>
+                  </a>
+                </div>
+                <div class="col-6">
+                  <a class="component-tile" href="pages/team.html">
+                    <span class="component-tile__icon"><i class="bi bi-person-plus"></i></span>
+                    <span class="component-tile__title">Invite member</span>
+                    <span class="component-tile__text">Team</span>
+                  </a>
+                </div>
+              </div>
+
+              <div class="alert alert-primary mt-3 mb-0" role="alert">
+                <i class="bi bi-lightbulb alert-icon"></i>
+                <div>
+                  <strong class="d-block">Try the UI Kit</strong>
+                  <span class="fs-8">Every component ships with copy-ready HTML.</span>
+                </div>
+                <a href="components/index.html" class="btn btn-sm btn-soft-primary ms-auto">Browse</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ============ Team activity table ============ -->
+      <div class="card q-section">
+        <div class="card-header">
+          <div>
+            <h2 class="card-title">Team activity</h2>
+            <p class="card-subtitle">Last 24 hours</p>
+          </div>
+          <a href="pages/team.html" class="btn btn-sm btn-soft-secondary">Manage team</a>
+        </div>
+        <div class="table-responsive">
+          <table class="table table-hover align-middle">
+            <thead>
+              <tr>
+                <th scope="col">Member</th>
+                <th scope="col">Role</th>
+                <th scope="col">Last active</th>
+                <th scope="col">Workload</th>
+                <th scope="col" class="text-end">Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  <div class="d-flex align-items-center gap-2">
+                    <span class="avatar avatar-sm bg-avatar-1">AR</span>
+                    <span>
+                      <span class="d-block fs-7 fw-500 text-heading">Ava Reynolds</span>
+                      <span class="d-block fs-8 text-muted-2">ava@qevora.io</span>
+                    </span>
+                  </div>
+                </td>
+                <td>Workspace admin</td>
+                <td class="text-muted-2">Just now</td>
+                <td style="min-width: 140px;">
+                  <div class="progress progress-sm"><div class="progress-bar" style="width: 72%"></div></div>
+                </td>
+                <td class="text-end">
+                  <div class="table-actions justify-content-end">
+                    <button class="btn btn-icon btn-sm btn-ghost" aria-label="Message Ava" data-bs-toggle="tooltip" title="Message"><i class="bi bi-chat"></i></button>
+                    <button class="btn btn-icon btn-sm btn-ghost" aria-label="More options" data-bs-toggle="tooltip" title="More"><i class="bi bi-three-dots"></i></button>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <div class="d-flex align-items-center gap-2">
+                    <span class="avatar avatar-sm bg-avatar-3">MC</span>
+                    <span>
+                      <span class="d-block fs-7 fw-500 text-heading">Marcus Chen</span>
+                      <span class="d-block fs-8 text-muted-2">marcus@qevora.io</span>
+                    </span>
+                  </div>
+                </td>
+                <td>Product manager</td>
+                <td class="text-muted-2">12 minutes ago</td>
+                <td style="min-width: 140px;">
+                  <div class="progress progress-sm"><div class="progress-bar bg-info" style="width: 48%"></div></div>
+                </td>
+                <td class="text-end">
+                  <div class="table-actions justify-content-end">
+                    <button class="btn btn-icon btn-sm btn-ghost" aria-label="Message Marcus" data-bs-toggle="tooltip" title="Message"><i class="bi bi-chat"></i></button>
+                    <button class="btn btn-icon btn-sm btn-ghost" aria-label="More options" data-bs-toggle="tooltip" title="More"><i class="bi bi-three-dots"></i></button>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <div class="d-flex align-items-center gap-2">
+                    <span class="avatar avatar-sm bg-avatar-6">LN</span>
+                    <span>
+                      <span class="d-block fs-7 fw-500 text-heading">Lea Novak</span>
+                      <span class="d-block fs-8 text-muted-2">lea@qevora.io</span>
+                    </span>
+                  </div>
+                </td>
+                <td>Data analyst</td>
+                <td class="text-muted-2">1 hour ago</td>
+                <td style="min-width: 140px;">
+                  <div class="progress progress-sm"><div class="progress-bar bg-warning" style="width: 86%"></div></div>
+                </td>
+                <td class="text-end">
+                  <div class="table-actions justify-content-end">
+                    <button class="btn btn-icon btn-sm btn-ghost" aria-label="Message Lea" data-bs-toggle="tooltip" title="Message"><i class="bi bi-chat"></i></button>
+                    <button class="btn btn-icon btn-sm btn-ghost" aria-label="More options" data-bs-toggle="tooltip" title="More"><i class="bi bi-three-dots"></i></button>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <div class="d-flex align-items-center gap-2">
+                    <span class="avatar avatar-sm bg-avatar-4">DO</span>
+                    <span>
+                      <span class="d-block fs-7 fw-500 text-heading">Daniel Okafor</span>
+                      <span class="d-block fs-8 text-muted-2">daniel@qevora.io</span>
+                    </span>
+                  </div>
+                </td>
+                <td>Frontend engineer</td>
+                <td class="text-muted-2">3 hours ago</td>
+                <td style="min-width: 140px;">
+                  <div class="progress progress-sm"><div class="progress-bar bg-success" style="width: 64%"></div></div>
+                </td>
+                <td class="text-end">
+                  <div class="table-actions justify-content-end">
+                    <button class="btn btn-icon btn-sm btn-ghost" aria-label="Message Daniel" data-bs-toggle="tooltip" title="Message"><i class="bi bi-chat"></i></button>
+                    <button class="btn btn-icon btn-sm btn-ghost" aria-label="More options" data-bs-toggle="tooltip" title="More"><i class="bi bi-three-dots"></i></button>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>

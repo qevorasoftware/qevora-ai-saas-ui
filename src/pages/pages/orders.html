@@ -1,0 +1,148 @@
+      <div class="q-page-head">
+        <div>
+          {{BREADCRUMB}}
+          <h1 class="q-page-head__title mt-2">Orders</h1>
+          <p class="q-page-head__subtitle">Customer orders with payment and fulfilment status.</p>
+        </div>
+        <div class="d-flex flex-wrap gap-2">
+          <button class="btn btn-white" data-demo-action="Order export queued — demo only."><i class="bi bi-download"></i> Export</button>
+          <button class="btn btn-primary" data-demo-action="Manual order form opened — demo interaction only."><i class="bi bi-plus-lg"></i> Create order</button>
+        </div>
+      </div>
+
+      <div class="row g-3 q-section">
+        <div class="col-sm-6 col-xl-3">
+          <div class="kpi-tile">
+            <span class="card-stat__icon bg-primary-soft text-primary-2"><i class="bi bi-cart3"></i></span>
+            <div class="kpi-tile__body">
+              <p class="kpi-tile__label mb-0">Orders this month</p>
+              <p class="kpi-tile__value" data-counter="1248">1,248</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-6 col-xl-3">
+          <div class="kpi-tile">
+            <span class="card-stat__icon bg-success-soft text-success"><i class="bi bi-check2-circle"></i></span>
+            <div class="kpi-tile__body">
+              <p class="kpi-tile__label mb-0">Fulfilled</p>
+              <p class="kpi-tile__value">1,196</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-6 col-xl-3">
+          <div class="kpi-tile">
+            <span class="card-stat__icon bg-warning-soft text-warning"><i class="bi bi-hourglass-split"></i></span>
+            <div class="kpi-tile__body">
+              <p class="kpi-tile__label mb-0">Awaiting payment</p>
+              <p class="kpi-tile__value">38</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-6 col-xl-3">
+          <div class="kpi-tile">
+            <span class="card-stat__icon bg-danger-soft text-danger"><i class="bi bi-x-circle"></i></span>
+            <div class="kpi-tile__body">
+              <p class="kpi-tile__label mb-0">Cancelled</p>
+              <p class="kpi-tile__value">14</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="table-toolbar">
+          <div class="search-field" style="max-width: 280px;">
+            <i class="bi bi-search search-field__icon" aria-hidden="true"></i>
+            <label class="visually-hidden" for="order-search">Search orders</label>
+            <input type="search" class="form-control" id="order-search" placeholder="Search orders…" data-table-filter="#orders-table">
+          </div>
+          <div class="nav nav-pills" role="tablist">
+            <button class="nav-link active" type="button">All</button>
+            <button class="nav-link" type="button">Paid</button>
+            <button class="nav-link" type="button">Pending</button>
+            <button class="nav-link" type="button">Refunded</button>
+          </div>
+        </div>
+
+        <div class="table-responsive">
+          <table class="table table-hover align-middle" id="orders-table">
+            <thead>
+              <tr>
+                <th scope="col" style="width: 40px;"><input class="form-check-input" type="checkbox" data-select-all="#orders-table" aria-label="Select all orders"></th>
+                <th scope="col">Order</th>
+                <th scope="col">Customer</th>
+                <th scope="col">Items</th>
+                <th scope="col" data-sort="number" class="text-end">Total <i class="bi bi-arrow-down-up"></i></th>
+                <th scope="col">Payment</th>
+                <th scope="col">Fulfilment</th>
+                <th scope="col" class="text-end">Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><input class="form-check-input" type="checkbox" data-row-select aria-label="Select order"></td>
+                <td><a class="fw-500 text-heading" href="order-details.html">#QV-20418</a><span class="d-block fs-8 text-muted-2">Oct 2, 2026</span></td>
+                <td>Northstar Labs</td>
+                <td>4</td>
+                <td class="text-end fw-600 text-heading">$18,940.00</td>
+                <td><span class="badge badge-soft-success badge-pill">Paid</span></td>
+                <td><span class="badge badge-soft-info badge-pill">Shipped</span></td>
+                <td class="text-end"><a class="btn btn-icon btn-sm btn-ghost" href="order-details.html" aria-label="View order QV-20418"><i class="bi bi-arrow-right"></i></a></td>
+              </tr>
+              <tr>
+                <td><input class="form-check-input" type="checkbox" data-row-select aria-label="Select order"></td>
+                <td><a class="fw-500 text-heading" href="order-details.html">#QV-20417</a><span class="d-block fs-8 text-muted-2">Oct 2, 2026</span></td>
+                <td>Vertex Labs</td>
+                <td>2</td>
+                <td class="text-end fw-600 text-heading">$5,290.00</td>
+                <td><span class="badge badge-soft-warning badge-pill">Pending</span></td>
+                <td><span class="badge badge-soft-neutral badge-pill">Processing</span></td>
+                <td class="text-end"><a class="btn btn-icon btn-sm btn-ghost" href="order-details.html" aria-label="View order QV-20417"><i class="bi bi-arrow-right"></i></a></td>
+              </tr>
+              <tr>
+                <td><input class="form-check-input" type="checkbox" data-row-select aria-label="Select order"></td>
+                <td><a class="fw-500 text-heading" href="order-details.html">#QV-20416</a><span class="d-block fs-8 text-muted-2">Oct 1, 2026</span></td>
+                <td>Acme Inc.</td>
+                <td>1</td>
+                <td class="text-end fw-600 text-heading">$1,250.00</td>
+                <td><span class="badge badge-soft-success badge-pill">Paid</span></td>
+                <td><span class="badge badge-soft-success badge-pill">Delivered</span></td>
+                <td class="text-end"><a class="btn btn-icon btn-sm btn-ghost" href="order-details.html" aria-label="View order QV-20416"><i class="bi bi-arrow-right"></i></a></td>
+              </tr>
+              <tr>
+                <td><input class="form-check-input" type="checkbox" data-row-select aria-label="Select order"></td>
+                <td><a class="fw-500 text-heading" href="order-details.html">#QV-20415</a><span class="d-block fs-8 text-muted-2">Oct 1, 2026</span></td>
+                <td>Orbit Systems</td>
+                <td>6</td>
+                <td class="text-end fw-600 text-heading">$32,180.00</td>
+                <td><span class="badge badge-soft-danger badge-pill">Failed</span></td>
+                <td><span class="badge badge-soft-neutral badge-pill">On hold</span></td>
+                <td class="text-end"><a class="btn btn-icon btn-sm btn-ghost" href="order-details.html" aria-label="View order QV-20415"><i class="bi bi-arrow-right"></i></a></td>
+              </tr>
+              <tr>
+                <td><input class="form-check-input" type="checkbox" data-row-select aria-label="Select order"></td>
+                <td><a class="fw-500 text-heading" href="order-details.html">#QV-20414</a><span class="d-block fs-8 text-muted-2">Sep 30, 2026</span></td>
+                <td>Horizon Labs</td>
+                <td>3</td>
+                <td class="text-end fw-600 text-heading">$9,640.00</td>
+                <td><span class="badge badge-soft-success badge-pill">Paid</span></td>
+                <td><span class="badge badge-soft-info badge-pill">Shipped</span></td>
+                <td class="text-end"><a class="btn btn-icon btn-sm btn-ghost" href="order-details.html" aria-label="View order QV-20414"><i class="bi bi-arrow-right"></i></a></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="table-footer">
+          <span class="fs-8 text-muted-2">Showing 5 of 1,248 orders</span>
+          <nav aria-label="Order pagination">
+            <ul class="pagination pagination-sm mb-0">
+              <li class="page-item disabled"><a class="page-link" href="#" aria-label="Previous"><i class="bi bi-chevron-left"></i></a></li>
+              <li class="page-item active"><a class="page-link" href="#">1</a></li>
+              <li class="page-item"><a class="page-link" href="#">2</a></li>
+              <li class="page-item"><a class="page-link" href="#">3</a></li>
+              <li class="page-item"><a class="page-link" href="#" aria-label="Next"><i class="bi bi-chevron-right"></i></a></li>
+            </ul>
+          </nav>
+        </div>
+      </div>

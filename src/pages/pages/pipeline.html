@@ -1,0 +1,184 @@
+      <div class="q-page-head">
+        <div>
+          {{BREADCRUMB}}
+          <h1 class="q-page-head__title mt-2">Sales pipeline</h1>
+          <p class="q-page-head__subtitle">Drag deal cards between stages to update the forecast — demo interaction.</p>
+        </div>
+        <div class="d-flex flex-wrap gap-2">
+          <div class="btn-group" role="group" aria-label="Pipeline view">
+            <button class="btn btn-white active" data-demo-action="Board view selected — demo only.">Board</button>
+            <button class="btn btn-white" data-demo-action="Forecast view selected — demo only.">Forecast</button>
+          </div>
+          <button class="btn btn-primary" data-demo-action="New deal form opened — demo interaction only."><i class="bi bi-plus-lg"></i> Add deal</button>
+        </div>
+      </div>
+
+      <div class="row g-3 q-section">
+        <div class="col-sm-6 col-xl-3">
+          <div class="kpi-tile">
+            <div class="kpi-tile__body">
+              <p class="kpi-tile__label mb-0">Weighted forecast</p>
+              <p class="kpi-tile__value">$1,948,000</p>
+            </div>
+            <span class="trend trend-up"><i class="bi bi-arrow-up-short"></i> 12%</span>
+          </div>
+        </div>
+        <div class="col-sm-6 col-xl-3">
+          <div class="kpi-tile">
+            <div class="kpi-tile__body">
+              <p class="kpi-tile__label mb-0">Deals in play</p>
+              <p class="kpi-tile__value">184</p>
+            </div>
+            <span class="trend trend-flat"><i class="bi bi-dash-lg"></i> steady</span>
+          </div>
+        </div>
+        <div class="col-sm-6 col-xl-3">
+          <div class="kpi-tile">
+            <div class="kpi-tile__body">
+              <p class="kpi-tile__label mb-0">Avg. deal size</p>
+              <p class="kpi-tile__value">$17,850</p>
+            </div>
+            <span class="trend trend-up"><i class="bi bi-arrow-up-short"></i> 4%</span>
+          </div>
+        </div>
+        <div class="col-sm-6 col-xl-3">
+          <div class="kpi-tile">
+            <div class="kpi-tile__body">
+              <p class="kpi-tile__label mb-0">Stalled deals</p>
+              <p class="kpi-tile__value">7</p>
+            </div>
+            <span class="trend trend-down"><i class="bi bi-arrow-down-short"></i> 3 fewer</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="kanban" data-kanban>
+        <div class="kanban__col">
+          <div class="kanban__col-head">
+            <span class="kanban__col-title"><i class="bi bi-circle text-muted-2"></i> Discovery</span>
+            <span class="kanban__count">3</span>
+          </div>
+          <div class="kanban__col-body d-flex flex-column">
+            <article class="kanban__card">
+              <p class="kanban__card-title">Summit Digital — platform trial</p>
+              <div class="d-flex gap-2 flex-wrap">
+                <span class="badge badge-soft-primary badge-pill">$48,000</span>
+                <span class="badge badge-soft-neutral badge-pill">Inbound</span>
+              </div>
+              <div class="kanban__card-meta">
+                <span class="avatar avatar-xs bg-avatar-1" data-bs-toggle="tooltip" title="Ava Reynolds">AR</span>
+                <span class="fs-8 text-muted-2"><i class="bi bi-calendar3"></i> Oct 24</span>
+              </div>
+            </article>
+            <article class="kanban__card">
+              <p class="kanban__card-title">Beacon Health — security review</p>
+              <div class="d-flex gap-2 flex-wrap">
+                <span class="badge badge-soft-primary badge-pill">$22,400</span>
+              </div>
+              <div class="kanban__card-meta">
+                <span class="avatar avatar-xs bg-avatar-3" data-bs-toggle="tooltip" title="Marcus Chen">MC</span>
+                <span class="fs-8 text-muted-2"><i class="bi bi-calendar3"></i> Nov 02</span>
+              </div>
+            </article>
+            <article class="kanban__card">
+              <p class="kanban__card-title">Kite Analytics — data migration scoping</p>
+              <div class="d-flex gap-2 flex-wrap">
+                <span class="badge badge-soft-primary badge-pill">$12,900</span>
+              </div>
+              <div class="kanban__card-meta">
+                <span class="avatar avatar-xs bg-avatar-6" data-bs-toggle="tooltip" title="Lea Novak">LN</span>
+                <span class="fs-8 text-muted-2"><i class="bi bi-calendar3"></i> Nov 06</span>
+              </div>
+            </article>
+          </div>
+        </div>
+
+        <div class="kanban__col">
+          <div class="kanban__col-head">
+            <span class="kanban__col-title"><i class="bi bi-circle text-info"></i> Demo booked</span>
+            <span class="kanban__count">2</span>
+          </div>
+          <div class="kanban__col-body d-flex flex-column">
+            <article class="kanban__card">
+              <p class="kanban__card-title">Orbit Systems — AI assistant rollout</p>
+              <div class="d-flex gap-2 flex-wrap">
+                <span class="badge badge-soft-primary badge-pill">$18,900</span>
+                <span class="badge badge-soft-warning badge-pill">Priority</span>
+              </div>
+              <div class="kanban__card-meta">
+                <span class="avatar avatar-xs bg-avatar-6" data-bs-toggle="tooltip" title="Lea Novak">LN</span>
+                <span class="fs-8 text-muted-2"><i class="bi bi-calendar3"></i> Oct 12</span>
+              </div>
+            </article>
+            <article class="kanban__card">
+              <p class="kanban__card-title">Silverline Group — enterprise quote</p>
+              <div class="d-flex gap-2 flex-wrap">
+                <span class="badge badge-soft-primary badge-pill">$64,000</span>
+              </div>
+              <div class="kanban__card-meta">
+                <span class="avatar avatar-xs bg-avatar-4" data-bs-toggle="tooltip" title="Daniel Okafor">DO</span>
+                <span class="fs-8 text-muted-2"><i class="bi bi-calendar3"></i> Oct 18</span>
+              </div>
+            </article>
+          </div>
+        </div>
+
+        <div class="kanban__col">
+          <div class="kanban__col-head">
+            <span class="kanban__col-title"><i class="bi bi-circle text-warning"></i> Proposal</span>
+            <span class="kanban__count">2</span>
+          </div>
+          <div class="kanban__col-body d-flex flex-column">
+            <article class="kanban__card">
+              <p class="kanban__card-title">Vertex Labs — growth plan upgrade</p>
+              <div class="d-flex gap-2 flex-wrap">
+                <span class="badge badge-soft-primary badge-pill">$26,500</span>
+              </div>
+              <div class="kanban__card-meta">
+                <span class="avatar avatar-xs bg-avatar-3" data-bs-toggle="tooltip" title="Marcus Chen">MC</span>
+                <span class="fs-8 text-muted-2"><i class="bi bi-calendar3"></i> Oct 09</span>
+              </div>
+            </article>
+            <article class="kanban__card">
+              <p class="kanban__card-title">Lumen Works — starter to growth</p>
+              <div class="d-flex gap-2 flex-wrap">
+                <span class="badge badge-soft-primary badge-pill">$8,500</span>
+              </div>
+              <div class="kanban__card-meta">
+                <span class="avatar avatar-xs bg-avatar-1" data-bs-toggle="tooltip" title="Ava Reynolds">AR</span>
+                <span class="fs-8 text-muted-2"><i class="bi bi-calendar3"></i> Oct 21</span>
+              </div>
+            </article>
+          </div>
+        </div>
+
+        <div class="kanban__col">
+          <div class="kanban__col-head">
+            <span class="kanban__col-title"><i class="bi bi-circle text-success"></i> Closing</span>
+            <span class="kanban__count">2</span>
+          </div>
+          <div class="kanban__col-body d-flex flex-column">
+            <article class="kanban__card">
+              <p class="kanban__card-title">Horizon Labs — annual contract</p>
+              <div class="d-flex gap-2 flex-wrap">
+                <span class="badge badge-soft-success badge-pill">$96,000</span>
+                <span class="badge badge-soft-success badge-pill">Closing</span>
+              </div>
+              <div class="kanban__card-meta">
+                <span class="avatar avatar-xs bg-avatar-4" data-bs-toggle="tooltip" title="Daniel Okafor">DO</span>
+                <span class="fs-8 text-muted-2"><i class="bi bi-calendar3"></i> Oct 06</span>
+              </div>
+            </article>
+            <article class="kanban__card">
+              <p class="kanban__card-title">Northstar Labs — seat expansion</p>
+              <div class="d-flex gap-2 flex-wrap">
+                <span class="badge badge-soft-success badge-pill">$48,000</span>
+              </div>
+              <div class="kanban__card-meta">
+                <span class="avatar avatar-xs bg-avatar-1" data-bs-toggle="tooltip" title="Ava Reynolds">AR</span>
+                <span class="fs-8 text-muted-2"><i class="bi bi-calendar3"></i> Oct 15</span>
+              </div>
+            </article>
+          </div>
+        </div>
+      </div>

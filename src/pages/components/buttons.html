@@ -1,0 +1,232 @@
+      <div class="q-page-head">
+        <div>
+          {{BREADCRUMB}}
+          <h1 class="q-page-head__title mt-2">Buttons</h1>
+          <p class="q-page-head__subtitle">
+            Bootstrap's button system plus Qevora's soft, ghost and gradient variations. Every button in the template
+            comes from this page — nothing is styled per screen.
+          </p>
+        </div>
+        <div class="d-flex flex-wrap gap-2">
+          <a class="btn btn-white" href="../documentation/index.html"><i class="bi bi-book"></i> Docs</a>
+        </div>
+      </div>
+
+      <div class="demo-block" data-demo>
+        <div class="demo-block__head">
+          <div>
+            <h2 class="demo-block__title">Solid buttons</h2>
+            <p class="demo-block__desc">The default action style. Use one primary button per view to keep the main action obvious.</p>
+          </div>
+        </div>
+        <div class="demo-block__tabs">
+          <button class="demo-tab is-active" data-demo-tab="preview" aria-selected="true">Preview</button>
+          <button class="demo-tab" data-demo-tab="html" aria-selected="false">HTML</button>
+        </div>
+        <div class="demo-block__pane is-active" data-demo-pane="preview">
+          <div class="demo-preview">
+            <div class="d-flex flex-wrap gap-2 align-items-center">
+              <button class="btn btn-primary">Primary</button>
+              <button class="btn btn-secondary">Secondary</button>
+              <button class="btn btn-success">Success</button>
+              <button class="btn btn-warning">Warning</button>
+              <button class="btn btn-danger">Danger</button>
+              <button class="btn btn-info">Info</button>
+              <button class="btn btn-dark">Dark</button>
+              <button class="btn btn-white">White</button>
+            </div>
+            <div class="d-flex flex-wrap gap-2 align-items-center mt-3">
+              <button class="btn btn-primary" disabled>Disabled</button>
+              <button class="btn btn-gradient"><i class="bi bi-stars"></i> Gradient</button>
+            </div>
+          </div>
+        </div>
+        <div class="demo-block__pane" data-demo-pane="html">
+          <div class="demo-code-wrap">
+            <button class="copy-btn" data-copy-target="#btnSolidCode"><i class="bi bi-clipboard"></i> Copy HTML</button>
+            <pre class="demo-code"><code id="btnSolidCode">&lt;button class="btn btn-primary"&gt;Primary&lt;/button&gt;
+&lt;button class="btn btn-secondary"&gt;Secondary&lt;/button&gt;
+&lt;button class="btn btn-success"&gt;Success&lt;/button&gt;
+&lt;button class="btn btn-warning"&gt;Warning&lt;/button&gt;
+&lt;button class="btn btn-danger"&gt;Danger&lt;/button&gt;
+&lt;button class="btn btn-info"&gt;Info&lt;/button&gt;
+&lt;button class="btn btn-dark"&gt;Dark&lt;/button&gt;
+&lt;button class="btn btn-white"&gt;White&lt;/button&gt;
+&lt;button class="btn btn-primary" disabled&gt;Disabled&lt;/button&gt;
+
+&lt;!-- Qevora gradient button --&gt;
+&lt;button class="btn btn-gradient"&gt;&lt;i class="bi bi-stars"&gt;&lt;/i&gt; Gradient&lt;/button&gt;</code></pre>
+          </div>
+        </div>
+      </div>
+
+      <div class="demo-block" data-demo>
+        <div class="demo-block__head">
+          <div>
+            <h2 class="demo-block__title">Soft and outline variants</h2>
+            <p class="demo-block__desc">Soft buttons are used for secondary actions inside cards and table toolbars — they stay quiet next to a solid primary button.</p>
+          </div>
+        </div>
+        <div class="demo-block__tabs">
+          <button class="demo-tab is-active" data-demo-tab="preview" aria-selected="true">Preview</button>
+          <button class="demo-tab" data-demo-tab="html" aria-selected="false">HTML</button>
+        </div>
+        <div class="demo-block__pane is-active" data-demo-pane="preview">
+          <div class="demo-preview">
+            <div class="d-flex flex-wrap gap-2">
+              <button class="btn btn-soft-primary">Soft primary</button>
+              <button class="btn btn-soft-success">Soft success</button>
+              <button class="btn btn-soft-warning">Soft warning</button>
+              <button class="btn btn-soft-danger">Soft danger</button>
+              <button class="btn btn-soft-info">Soft info</button>
+              <button class="btn btn-soft-secondary">Soft neutral</button>
+              <button class="btn btn-ghost">Ghost</button>
+            </div>
+            <div class="d-flex flex-wrap gap-2 mt-3">
+              <button class="btn btn-outline-primary">Outline primary</button>
+              <button class="btn btn-outline-secondary">Outline secondary</button>
+              <button class="btn btn-outline-danger">Outline danger</button>
+            </div>
+          </div>
+        </div>
+        <div class="demo-block__pane" data-demo-pane="html">
+          <div class="demo-code-wrap">
+            <button class="copy-btn" data-copy-target="#btnSoftCode"><i class="bi bi-clipboard"></i> Copy HTML</button>
+            <pre class="demo-code"><code id="btnSoftCode">&lt;button class="btn btn-soft-primary"&gt;Soft primary&lt;/button&gt;
+&lt;button class="btn btn-soft-success"&gt;Soft success&lt;/button&gt;
+&lt;button class="btn btn-soft-warning"&gt;Soft warning&lt;/button&gt;
+&lt;button class="btn btn-soft-danger"&gt;Soft danger&lt;/button&gt;
+&lt;button class="btn btn-soft-info"&gt;Soft info&lt;/button&gt;
+&lt;button class="btn btn-soft-secondary"&gt;Soft neutral&lt;/button&gt;
+&lt;button class="btn btn-ghost"&gt;Ghost&lt;/button&gt;
+
+&lt;button class="btn btn-outline-primary"&gt;Outline primary&lt;/button&gt;</code></pre>
+          </div>
+        </div>
+      </div>
+
+      <div class="demo-block" data-demo>
+        <div class="demo-block__head">
+          <div>
+            <h2 class="demo-block__title">Sizes and icons</h2>
+            <p class="demo-block__desc">Icon-only buttons always need an <code>aria-label</code> so screen readers can announce them.</p>
+          </div>
+        </div>
+        <div class="demo-block__tabs">
+          <button class="demo-tab is-active" data-demo-tab="preview" aria-selected="true">Preview</button>
+          <button class="demo-tab" data-demo-tab="html" aria-selected="false">HTML</button>
+        </div>
+        <div class="demo-block__pane is-active" data-demo-pane="preview">
+          <div class="demo-preview">
+            <div class="d-flex flex-wrap align-items-center gap-2 mb-3">
+              <button class="btn btn-primary btn-sm">Small</button>
+              <button class="btn btn-primary">Default</button>
+              <button class="btn btn-primary btn-lg">Large</button>
+            </div>
+            <div class="d-flex flex-wrap align-items-center gap-2 mb-3">
+              <button class="btn btn-primary"><i class="bi bi-plus-lg"></i> New project</button>
+              <button class="btn btn-soft-primary"><i class="bi bi-download"></i> Export</button>
+              <button class="btn btn-white"><i class="bi bi-funnel"></i> Filter</button>
+              <button class="btn btn-primary">Continue <i class="bi bi-arrow-right"></i></button>
+            </div>
+            <div class="d-flex flex-wrap align-items-center gap-2">
+              <button class="btn btn-icon btn-primary" aria-label="Add item"><i class="bi bi-plus-lg"></i></button>
+              <button class="btn btn-icon btn-soft-primary" aria-label="Edit item"><i class="bi bi-pencil"></i></button>
+              <button class="btn btn-icon btn-ghost" aria-label="More options"><i class="bi bi-three-dots"></i></button>
+              <button class="btn btn-icon btn-sm btn-ghost" aria-label="Small icon button"><i class="bi bi-gear"></i></button>
+            </div>
+          </div>
+        </div>
+        <div class="demo-block__pane" data-demo-pane="html">
+          <div class="demo-code-wrap">
+            <button class="copy-btn" data-copy-target="#btnSizeCode"><i class="bi bi-clipboard"></i> Copy HTML</button>
+            <pre class="demo-code"><code id="btnSizeCode">&lt;button class="btn btn-primary btn-sm"&gt;Small&lt;/button&gt;
+&lt;button class="btn btn-primary"&gt;Default&lt;/button&gt;
+&lt;button class="btn btn-primary btn-lg"&gt;Large&lt;/button&gt;
+
+&lt;button class="btn btn-primary"&gt;&lt;i class="bi bi-plus-lg"&gt;&lt;/i&gt; New project&lt;/button&gt;
+&lt;button class="btn btn-primary"&gt;Continue &lt;i class="bi bi-arrow-right"&gt;&lt;/i&gt;&lt;/button&gt;
+
+&lt;button class="btn btn-icon btn-primary" aria-label="Add item"&gt;
+  &lt;i class="bi bi-plus-lg"&gt;&lt;/i&gt;
+&lt;/button&gt;</code></pre>
+          </div>
+        </div>
+      </div>
+
+      <div class="demo-block" data-demo>
+        <div class="demo-block__head">
+          <div>
+            <h2 class="demo-block__title">Buttons with state</h2>
+            <p class="demo-block__desc">Loading, toggled and grouped buttons. Toggle buttons use <code>aria-pressed</code>.</p>
+          </div>
+        </div>
+        <div class="demo-block__tabs">
+          <button class="demo-tab is-active" data-demo-tab="preview" aria-selected="true">Preview</button>
+          <button class="demo-tab" data-demo-tab="html" aria-selected="false">HTML</button>
+        </div>
+        <div class="demo-block__pane is-active" data-demo-pane="preview">
+          <div class="demo-preview">
+            <div class="d-flex flex-wrap align-items-center gap-3 mb-3">
+              <button class="btn btn-primary" disabled>
+                <span class="spinner-border spinner-border-sm" aria-hidden="true"></span>
+                <span role="status">Saving…</span>
+              </button>
+              <button class="btn btn-primary" data-demo-action="Action completed — demo only." data-demo-variant="success">
+                <i class="bi bi-check2"></i> Save changes
+              </button>
+            </div>
+            <div class="d-flex flex-wrap align-items-center gap-3">
+              <div class="btn-group" role="group" aria-label="View mode">
+                <button class="btn btn-white active">Day</button>
+                <button class="btn btn-white">Week</button>
+                <button class="btn btn-white">Month</button>
+              </div>
+              <div class="btn-group" role="group" aria-label="Alignment">
+                <button class="btn btn-icon btn-white" aria-label="Align left"><i class="bi bi-text-left"></i></button>
+                <button class="btn btn-icon btn-white active" aria-label="Align centre"><i class="bi bi-text-center"></i></button>
+                <button class="btn btn-icon btn-white" aria-label="Align right"><i class="bi bi-text-right"></i></button>
+              </div>
+              <button class="btn btn-soft-primary" aria-pressed="true" data-demo-action="Toggle state changed — demo only.">
+                <i class="bi bi-bookmark-check"></i> Following
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="demo-block__pane" data-demo-pane="html">
+          <div class="demo-code-wrap">
+            <button class="copy-btn" data-copy-target="#btnStateCode"><i class="bi bi-clipboard"></i> Copy HTML</button>
+            <pre class="demo-code"><code id="btnStateCode">&lt;!-- Loading state --&gt;
+&lt;button class="btn btn-primary" disabled&gt;
+  &lt;span class="spinner-border spinner-border-sm" aria-hidden="true"&gt;&lt;/span&gt;
+  &lt;span role="status"&gt;Saving…&lt;/span&gt;
+&lt;/button&gt;
+
+&lt;!-- Button group --&gt;
+&lt;div class="btn-group" role="group" aria-label="View mode"&gt;
+  &lt;button class="btn btn-white active"&gt;Day&lt;/button&gt;
+  &lt;button class="btn btn-white"&gt;Week&lt;/button&gt;
+  &lt;button class="btn btn-white"&gt;Month&lt;/button&gt;
+&lt;/div&gt;
+
+&lt;!-- Toggle button --&gt;
+&lt;button class="btn btn-soft-primary" aria-pressed="true"&gt;
+  &lt;i class="bi bi-bookmark-check"&gt;&lt;/i&gt; Following
+&lt;/button&gt;</code></pre>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <h2 class="card-title mb-0">Usage notes</h2>
+        </div>
+        <div class="card-body">
+          <ul class="fs-7 text-muted-2 mb-0 d-flex flex-column gap-2">
+            <li>Use <code>.btn-primary</code> once per view for the main action; everything else should be soft, ghost or white.</li>
+            <li>Prefer <code>.btn-icon</code> with an <code>aria-label</code> instead of text-only icon links in tables.</li>
+            <li><code>.btn-soft-*</code> uses the matching soft background token, so it adapts to dark mode automatically.</li>
+            <li>Buttons inherit the 8px radius from <code>--q-radius-sm</code>; change the token to restyle every button at once.</li>
+          </ul>
+        </div>
+      </div>

@@ -1,0 +1,163 @@
+      <div class="q-page-head">
+        <div>
+          {{BREADCRUMB}}
+          <h1 class="q-page-head__title mt-2">Roles &amp; permissions</h1>
+          <p class="q-page-head__subtitle">Control what each role can see and change in the workspace.</p>
+        </div>
+        <div class="d-flex flex-wrap gap-2">
+          <button class="btn btn-white" data-demo-action="Role comparison exported — demo only."><i class="bi bi-download"></i> Export matrix</button>
+          <button class="btn btn-primary" data-demo-action="New role form opened — demo interaction only."><i class="bi bi-plus-lg"></i> Create role</button>
+        </div>
+      </div>
+
+      <div class="row g-3 q-section">
+        <div class="col-md-6 col-xl-3">
+          <div class="card h-100">
+            <div class="card-body">
+              <div class="d-flex justify-content-between align-items-start mb-3">
+                <span class="card-stat__icon bg-primary-soft text-primary-2"><i class="bi bi-shield-lock"></i></span>
+                <span class="badge badge-soft-primary badge-pill">4 members</span>
+              </div>
+              <h2 class="h6 fw-600 mb-1">Admin</h2>
+              <p class="fs-8 text-muted-2 mb-3">Full access including billing, security and workspace deletion.</p>
+              <div class="d-flex gap-2">
+                <button class="btn btn-sm btn-soft-primary flex-grow-1" data-demo-action="Role editor opened — demo only.">Edit</button>
+                <button class="btn btn-sm btn-ghost text-danger" aria-label="Delete admin role" data-demo-action="Built-in roles cannot be deleted in this demo." data-demo-variant="warning"><i class="bi bi-trash3"></i></button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-xl-3">
+          <div class="card h-100">
+            <div class="card-body">
+              <div class="d-flex justify-content-between align-items-start mb-3">
+                <span class="card-stat__icon bg-info-soft text-info"><i class="bi bi-people"></i></span>
+                <span class="badge badge-soft-info badge-pill">12 members</span>
+              </div>
+              <h2 class="h6 fw-600 mb-1">Manager</h2>
+              <p class="fs-8 text-muted-2 mb-3">Manage projects, customers and reports for assigned teams.</p>
+              <div class="d-flex gap-2">
+                <button class="btn btn-sm btn-soft-primary flex-grow-1" data-demo-action="Role editor opened — demo only.">Edit</button>
+                <button class="btn btn-sm btn-ghost text-danger" aria-label="Delete manager role" data-demo-action="Built-in roles cannot be deleted in this demo." data-demo-variant="warning"><i class="bi bi-trash3"></i></button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-xl-3">
+          <div class="card h-100">
+            <div class="card-body">
+              <div class="d-flex justify-content-between align-items-start mb-3">
+                <span class="card-stat__icon bg-success-soft text-success"><i class="bi bi-bar-chart"></i></span>
+                <span class="badge badge-soft-success badge-pill">18 members</span>
+              </div>
+              <h2 class="h6 fw-600 mb-1">Analyst</h2>
+              <p class="fs-8 text-muted-2 mb-3">Read-only access to analytics, reports and AI history.</p>
+              <div class="d-flex gap-2">
+                <button class="btn btn-sm btn-soft-primary flex-grow-1" data-demo-action="Role editor opened — demo only.">Edit</button>
+                <button class="btn btn-sm btn-ghost text-danger" aria-label="Delete analyst role" data-demo-action="Built-in roles cannot be deleted in this demo." data-demo-variant="warning"><i class="bi bi-trash3"></i></button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-xl-3">
+          <div class="card h-100">
+            <div class="card-body">
+              <div class="d-flex justify-content-between align-items-start mb-3">
+                <span class="card-stat__icon bg-warning-soft text-warning"><i class="bi bi-headset"></i></span>
+                <span class="badge badge-soft-warning badge-pill">14 members</span>
+              </div>
+              <h2 class="h6 fw-600 mb-1">Support</h2>
+              <p class="fs-8 text-muted-2 mb-3">Handle tickets, view customer details and issue refunds.</p>
+              <div class="d-flex gap-2">
+                <button class="btn btn-sm btn-soft-primary flex-grow-1" data-demo-action="Role editor opened — demo only.">Edit</button>
+                <button class="btn btn-sm btn-ghost text-danger" aria-label="Delete support role" data-demo-action="Built-in roles cannot be deleted in this demo." data-demo-variant="warning"><i class="bi bi-trash3"></i></button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <div>
+            <h2 class="card-title">Permission matrix</h2>
+            <p class="card-subtitle">Which capabilities each role can use</p>
+          </div>
+          <span class="badge badge-soft-neutral badge-pill">Demo values</span>
+        </div>
+        <div class="table-responsive">
+          <table class="table table-hover align-middle perm-table">
+            <thead>
+              <tr>
+                <th scope="col">Capability</th>
+                <th scope="col">Admin</th>
+                <th scope="col">Manager</th>
+                <th scope="col">Analyst</th>
+                <th scope="col">Support</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>View dashboard and analytics</td>
+                <td><i class="bi bi-check-circle-fill text-success" aria-label="Allowed"></i></td>
+                <td><i class="bi bi-check-circle-fill text-success" aria-label="Allowed"></i></td>
+                <td><i class="bi bi-check-circle-fill text-success" aria-label="Allowed"></i></td>
+                <td><i class="bi bi-check-circle-fill text-success" aria-label="Allowed"></i></td>
+              </tr>
+              <tr>
+                <td>Manage projects and tasks</td>
+                <td><i class="bi bi-check-circle-fill text-success" aria-label="Allowed"></i></td>
+                <td><i class="bi bi-check-circle-fill text-success" aria-label="Allowed"></i></td>
+                <td><i class="bi bi-dash-circle text-faint" aria-label="Not allowed"></i></td>
+                <td><i class="bi bi-dash-circle text-faint" aria-label="Not allowed"></i></td>
+              </tr>
+              <tr>
+                <td>Create and send invoices</td>
+                <td><i class="bi bi-check-circle-fill text-success" aria-label="Allowed"></i></td>
+                <td><i class="bi bi-check-circle-fill text-success" aria-label="Allowed"></i></td>
+                <td><i class="bi bi-dash-circle text-faint" aria-label="Not allowed"></i></td>
+                <td><i class="bi bi-dash-circle text-faint" aria-label="Not allowed"></i></td>
+              </tr>
+              <tr>
+                <td>Issue refunds</td>
+                <td><i class="bi bi-check-circle-fill text-success" aria-label="Allowed"></i></td>
+                <td><i class="bi bi-dash-circle text-faint" aria-label="Not allowed"></i></td>
+                <td><i class="bi bi-dash-circle text-faint" aria-label="Not allowed"></i></td>
+                <td><i class="bi bi-check-circle-fill text-success" aria-label="Allowed"></i></td>
+              </tr>
+              <tr>
+                <td>Manage AI usage limits</td>
+                <td><i class="bi bi-check-circle-fill text-success" aria-label="Allowed"></i></td>
+                <td><i class="bi bi-check-circle-fill text-success" aria-label="Allowed"></i></td>
+                <td><i class="bi bi-dash-circle text-faint" aria-label="Not allowed"></i></td>
+                <td><i class="bi bi-dash-circle text-faint" aria-label="Not allowed"></i></td>
+              </tr>
+              <tr>
+                <td>Invite and remove members</td>
+                <td><i class="bi bi-check-circle-fill text-success" aria-label="Allowed"></i></td>
+                <td><i class="bi bi-check-circle-fill text-success" aria-label="Allowed"></i></td>
+                <td><i class="bi bi-dash-circle text-faint" aria-label="Not allowed"></i></td>
+                <td><i class="bi bi-dash-circle text-faint" aria-label="Not allowed"></i></td>
+              </tr>
+              <tr>
+                <td>Access audit logs</td>
+                <td><i class="bi bi-check-circle-fill text-success" aria-label="Allowed"></i></td>
+                <td><i class="bi bi-dash-circle text-faint" aria-label="Not allowed"></i></td>
+                <td><i class="bi bi-dash-circle text-faint" aria-label="Not allowed"></i></td>
+                <td><i class="bi bi-dash-circle text-faint" aria-label="Not allowed"></i></td>
+              </tr>
+              <tr>
+                <td>Manage billing and plans</td>
+                <td><i class="bi bi-check-circle-fill text-success" aria-label="Allowed"></i></td>
+                <td><i class="bi bi-dash-circle text-faint" aria-label="Not allowed"></i></td>
+                <td><i class="bi bi-dash-circle text-faint" aria-label="Not allowed"></i></td>
+                <td><i class="bi bi-dash-circle text-faint" aria-label="Not allowed"></i></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="table-footer">
+          <span class="fs-8 text-muted-2"><i class="bi bi-info-circle"></i> Permission states are demo values rendered with Bootstrap Icons — never communicated by colour alone.</span>
+          <button class="btn btn-sm btn-soft-primary" data-demo-action="Permission changes saved — demo interaction only.">Save changes</button>
+        </div>
+      </div>

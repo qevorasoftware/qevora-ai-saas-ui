@@ -1,0 +1,144 @@
+      <div class="q-page-head">
+        <div>
+          {{BREADCRUMB}}
+          <h1 class="q-page-head__title mt-2">Team chat</h1>
+          <p class="q-page-head__subtitle">Conversations with your workspace. Messages are demo content.</p>
+        </div>
+        <div class="d-flex flex-wrap gap-2">
+          <button class="btn btn-white d-lg-none" type="button" data-demo-action="Conversation list opened — demo only."><i class="bi bi-list"></i> Conversations</button>
+          <button class="btn btn-primary" data-demo-action="New conversation started — demo interaction only."><i class="bi bi-pencil-square"></i> New message</button>
+        </div>
+      </div>
+
+      <div class="chat-layout">
+        <!-- Conversation list -->
+        <aside class="chat-layout__aside" aria-label="Conversations">
+          <div class="p-3 border-bottom border-q">
+            <div class="search-field">
+              <i class="bi bi-search search-field__icon" aria-hidden="true"></i>
+              <label class="visually-hidden" for="conversation-search">Search conversations</label>
+              <input type="search" class="form-control form-control-sm" id="conversation-search"
+                     placeholder="Search conversations…" data-conversation-search>
+            </div>
+          </div>
+
+          <div class="q-scroll flex-grow-1">
+            <div class="nav flex-column nav-pills p-2" role="tablist" aria-label="Conversations">
+              <a class="nav-link active d-flex align-items-center gap-2" href="#" data-conversation>
+                <span class="avatar avatar-sm bg-avatar-1">AR</span>
+                <span class="flex-grow-1 min-w-0 text-start">
+                  <span class="d-block fs-7 fw-600 text-truncate">Ava Reynolds</span>
+                  <span class="d-block fs-8 text-truncate opacity-75">Let's ship the dark mode build</span>
+                </span>
+                <span class="badge badge-soft-primary badge-pill">2</span>
+              </a>
+              <a class="nav-link d-flex align-items-center gap-2" href="#" data-conversation>
+                <span class="avatar avatar-sm bg-avatar-3">MC</span>
+                <span class="flex-grow-1 min-w-0 text-start">
+                  <span class="d-block fs-7 fw-600 text-truncate">Marcus Chen</span>
+                  <span class="d-block fs-8 text-truncate opacity-75">Sprint scope is locked</span>
+                </span>
+              </a>
+              <a class="nav-link d-flex align-items-center gap-2" href="#" data-conversation>
+                <span class="avatar avatar-sm bg-avatar-6">LN</span>
+                <span class="flex-grow-1 min-w-0 text-start">
+                  <span class="d-block fs-7 fw-600 text-truncate">Lea Novak</span>
+                  <span class="d-block fs-8 text-truncate opacity-75">Charts now follow the theme</span>
+                </span>
+              </a>
+              <a class="nav-link d-flex align-items-center gap-2" href="#" data-conversation>
+                <span class="avatar avatar-sm bg-avatar-4">DO</span>
+                <span class="flex-grow-1 min-w-0 text-start">
+                  <span class="d-block fs-7 fw-600 text-truncate">Daniel Okafor</span>
+                  <span class="d-block fs-8 text-truncate opacity-75">Copy buttons are done</span>
+                </span>
+              </a>
+              <a class="nav-link d-flex align-items-center gap-2" href="#" data-conversation>
+                <span class="avatar avatar-sm bg-avatar-5">YT</span>
+                <span class="flex-grow-1 min-w-0 text-start">
+                  <span class="d-block fs-7 fw-600 text-truncate">Yuki Tanaka</span>
+                  <span class="d-block fs-8 text-truncate opacity-75">RTL screenshots attached</span>
+                </span>
+              </a>
+              <a class="nav-link d-flex align-items-center gap-2" href="#" data-conversation>
+                <span class="avatar avatar-sm bg-avatar-2">PS</span>
+                <span class="flex-grow-1 min-w-0 text-start">
+                  <span class="d-block fs-7 fw-600 text-truncate">Priya Sharma</span>
+                  <span class="d-block fs-8 text-truncate opacity-75">Invoice batch is ready</span>
+                </span>
+              </a>
+            </div>
+          </div>
+        </aside>
+
+        <!-- Thread -->
+        <section class="chat-layout__main" aria-label="Conversation with Ava Reynolds">
+          <header class="d-flex align-items-center gap-3 p-3 border-bottom border-q">
+            <span class="avatar avatar-md bg-avatar-1">AR</span>
+            <div class="min-w-0 flex-grow-1">
+              <p class="mb-0 fs-7 fw-600 text-heading">Ava Reynolds</p>
+              <p class="mb-0 fs-8 text-success"><i class="bi bi-circle-fill" style="font-size: 6px;"></i> Online</p>
+            </div>
+            <button class="btn btn-icon btn-sm btn-ghost" aria-label="Voice call" data-bs-toggle="tooltip" title="Voice call" data-demo-action="Call started — demo only."><i class="bi bi-telephone"></i></button>
+            <button class="btn btn-icon btn-sm btn-ghost" aria-label="Video call" data-bs-toggle="tooltip" title="Video call" data-demo-action="Video call started — demo only."><i class="bi bi-camera-video"></i></button>
+            <button class="btn btn-icon btn-sm btn-ghost" aria-label="Conversation options" data-bs-toggle="tooltip" title="More"><i class="bi bi-three-dots-vertical"></i></button>
+          </header>
+
+          <div class="chat-thread q-scroll" data-chat-thread>
+            <article class="msg">
+              <span class="avatar avatar-sm bg-avatar-1">AR</span>
+              <div>
+                <div class="msg__bubble">Morning! Did the dark mode build land on staging?</div>
+                <p class="msg__meta">Ava Reynolds · 09:12</p>
+              </div>
+            </article>
+
+            <article class="msg msg--out">
+              <span class="avatar avatar-sm bg-avatar-6">LN</span>
+              <div>
+                <div class="msg__bubble">Yes — pushed last night. Tokens are shared between light and dark, so nothing is hard-coded twice.</div>
+                <p class="msg__meta">You · 09:14</p>
+              </div>
+            </article>
+
+            <article class="msg">
+              <span class="avatar avatar-sm bg-avatar-1">AR</span>
+              <div>
+                <div class="msg__bubble">Perfect. Can you also check the sidebar in compact mode? On tablet it felt cramped.</div>
+                <p class="msg__meta">Ava Reynolds · 09:16</p>
+              </div>
+            </article>
+
+            <article class="msg msg--out">
+              <span class="avatar avatar-sm bg-avatar-6">LN</span>
+              <div>
+                <div class="msg__bubble">Already fixed — submenus now open as popovers instead of pushing the layout. Screenshot attached in the task.</div>
+                <p class="msg__meta">You · 09:18</p>
+              </div>
+            </article>
+
+            <article class="msg">
+              <span class="avatar avatar-sm bg-avatar-1">AR</span>
+              <div>
+                <div class="msg__bubble">Great. Let's ship the dark mode build today. I will prepare the release notes.</div>
+                <p class="msg__meta">Ava Reynolds · 09:20</p>
+                <div class="msg__actions">
+                  <button class="btn btn-sm btn-ghost" data-demo-action="Reply quoted — demo only."><i class="bi bi-reply"></i> Reply</button>
+                  <button class="btn btn-sm btn-ghost" data-copy-text><i class="bi bi-clipboard"></i> Copy</button>
+                </div>
+              </div>
+            </article>
+          </div>
+
+          <form class="composer" data-chat-composer>
+            <div class="d-flex align-items-end gap-2">
+              <button class="btn btn-icon btn-ghost" type="button" aria-label="Attach file" data-demo-action="File picker opened — demo only."><i class="bi bi-paperclip"></i></button>
+              <label class="visually-hidden" for="chat-input">Write a message</label>
+              <textarea class="form-control" id="chat-input" rows="1" placeholder="Write a message…" style="resize: none;"></textarea>
+              <button class="btn btn-icon btn-ghost" type="button" aria-label="Insert emoji" data-demo-action="Emoji picker opened — demo only."><i class="bi bi-emoji-smile"></i></button>
+              <button class="btn btn-primary btn-icon" type="submit" aria-label="Send message"><i class="bi bi-send"></i></button>
+            </div>
+            <p class="fs-9 text-muted-2 mt-2 mb-0">Press <kbd>Enter</kbd> to send · <kbd>Shift</kbd> + <kbd>Enter</kbd> for a new line. Demo messages only — no data leaves the browser.</p>
+          </form>
+        </section>
+      </div>

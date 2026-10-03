@@ -1,0 +1,487 @@
+/* ==========================================================================
+   Qevora AI SaaS — Bootstrap 5 Admin & UI Kit
+   components.js — Component library behaviour
+   --------------------------------------------------------------------------
+   This is the engine behind the component showcase pages. It powers:
+   1.  Component demo tabs (Preview / HTML / CSS / JavaScript)
+   2.  Copy-to-clipboard buttons
+   3.  Dependency-free syntax highlighting for code samples
+   4.  Data-table selection, sorting and pagination helpers
+   5.  Kanban drag & drop
+   6.  File dropzone demo
+   7.  Auto-generated code from live markup (optional)
+   ========================================================================== */
+
+(function () {
+  "use strict";
+
+  /* ====================================================================== */
+  /* 1. COMPONENT DEMO TABS                                                 */
+  /* ====================================================================== */
+  /* Markup:
+       <div class="demo-block" data-demo>
+         <div class="demo-block__tabs">
+           <button class="demo-tab is-active" data-demo-tab="preview">Preview</button>
+           <button class="demo-tab" data-demo-tab="html">HTML</button>
+         </div>
+         <div class="demo-block__pane is-active" data-demo-pane="preview">...</div>
+         <div class="demo-block__pane" data-demo-pane="html">...</div>
+       </div>
+  */
+
+  function initDemoTabs() {
+    document.addEventListener("click", function (event) {
+      var tab = event.target.closest("[data-demo-tab]");
+      if (!tab) return;
+
+      var block = tab.closest("[data-demo]");
+      if (!block) return;
+
+      var name = tab.getAttribute("data-demo-tab");
+      var tabs = block.querySelectorAll("[data-demo-tab]");
+      var panes = block.querySelectorAll("[data-demo-pane]");
+
+      for (var i = 0; i < tabs.length; i++) {
+        tabs[i].classList.toggle("is-active", tabs[i] === tab);
+        tabs[i].setAttribute("aria-selected", tabs[i] === tab ? "true" : "false");
+      }
+
+      for (var j = 0; j < panes.length; j++) {
+        panes[j].classList.toggle("is-active", panes[j].getAttribute("data-demo-pane") === name);
+      }
+    });
+  }
+
+  /* ====================================================================== */
+  /* 2. COPY TO CLIPBOARD                                                   */
+  /* ====================================================================== */
+  /* Markup: <button class="copy-btn" data-copy-target="#someCodeId">        */
+
+  function initCopyButtons() {
+    document.addEventListener("click", function (event) {
+      var btn = event.target.closest("[data-copy-target], .copy-code");
+      if (!btn) return;
+      event.preventDefault();
+
+      var selector = btn.getAttribute("data-copy-target");
+      var source = selector ? document.querySelector(selector) : null;
+
+      // No explicit target: copy the nearest code block in the same demo block.
+      if (!source) {
+        var block = btn.closest("[data-demo], .demo-block, .demo-code-wrap");
+        if (block) source = block.querySelector(".demo-code code") || block.querySelector(".demo-code");
+      }
+
+      if (!source) return;
+
+      var text = source.innerText.replace(/\u00a0/g, " ");
+
+      if (window.Qevora && window.Qevora.copyText) {
+        window.Qevora.copyText(text).then(function () {
+          flashCopied(btn);
+        }).catch(function () {
+          fallbackMessage();
+        });
+      } else {
+        fallbackMessage();
+      }
+    });
+  }
+
+  function fallbackMessage() {
+    if (window.Qevora) window.Qevora.toast("Copy is not available in this browser.", "warning");
+  }
+
+  function flashCopied(btn) {
+    var original = btn.innerHTML;
+    btn.classList.add("is-copied");
+    btn.innerHTML = '<i class="bi bi-check2"></i> Copied';
+
+    window.setTimeout(function () {
+      btn.classList.remove("is-copied");
+      btn.innerHTML = original;
+    }, 1600);
+  }
+
+  /* ====================================================================== */
+  /* 3. SYNTAX HIGHLIGHTING                                                 */
+  /* ====================================================================== */
+  /* Very small tokeniser — enough to make HTML/CSS/JS samples readable
+     without shipping a highlighting library.                                */
+
+  function escapeHtml(text) {
+    return text
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;");
+  }
+
+  function highlightMarkup(code) {
+    var escaped = escapeHtml(code);
+
+    // Comments
+    escaped = escaped.replace(/&lt;!--[\s\S]*?--&gt;/g, function (m) {
+      return '<span class="tok-com">' + m + "</span>";
+    });
+
+    // Tags with attributes
+    escaped = escaped.replace(/(&lt;\/?)([a-zA-Z0-9-]+)([\s\S]*?)(\/?&gt;)/g, function (match, open, tag, attrs, close) {
+      var highlightedAttrs = attrs
+        .replace(/([a-zA-Z0-9-:@.]+)(=)("[^"]*"|'[^']*')/g,
+          '<span class="tok-attr">$1</span>$2<span class="tok-str">$3</span>')
+        .replace(/([a-zA-Z0-9-:@.]+)(?=[\s&gt;])/g, '<span class="tok-attr">$1</span>');
+
+      // Avoid nesting a token inside an already-highlighted token.
+      highlightedAttrs = highlightedAttrs.replace(/<span class="tok-attr"><span class="tok-attr">([^<]*)<\/span><\/span>/g, '<span class="tok-attr">$1</span>');
+
+      return '<span class="tok-tag">' + open + tag + "</span>" + highlightedAttrs + '<span class="tok-tag">' + close + "</span>";
+    });
+
+    return escaped;
+  }
+
+  function highlightCode() {
+    var blocks = document.querySelectorAll(".demo-code code, code[data-highlight]");
+
+    for (var i = 0; i < blocks.length; i++) {
+      var el = blocks[i];
+      if (el.getAttribute("data-highlighted") === "true") continue;
+
+      var raw = el.textContent;
+
+      // Skip nested-span damage: only highlight markup-shaped snippets.
+      if (raw.indexOf("<") !== -1) {
+        el.innerHTML = highlightMarkup(raw);
+      }
+
+      el.setAttribute("data-highlighted", "true");
+    }
+  }
+
+  /* ====================================================================== */
+  /* 4. DATA TABLE HELPERS                                                  */
+  /* ====================================================================== */
+
+  function initSelectAll() {
+    var masters = document.querySelectorAll("[data-select-all]");
+    for (var i = 0; i < masters.length; i++) {
+      (function (master) {
+        var table = document.querySelector(master.getAttribute("data-select-all"));
+        if (!table) return;
+
+        master.addEventListener("change", function () {
+          var boxes = table.querySelectorAll('tbody input[type="checkbox"][data-row-select]');
+          for (var b = 0; b < boxes.length; b++) {
+            boxes[b].checked = master.checked;
+          }
+        });
+      })(masters[i]);
+    }
+  }
+
+  function initSortableTables() {
+    var headers = document.querySelectorAll("th[data-sort]");
+    for (var i = 0; i < headers.length; i++) {
+      (function (th) {
+        th.classList.add("table-sort");
+        th.addEventListener("click", function () {
+          var table = th.closest("table");
+          var tbody = table.tBodies[0];
+          var index = Array.prototype.indexOf.call(th.parentElement.children, th);
+          var type = th.getAttribute("data-sort") || "text";
+          var descending = th.getAttribute("data-sort-dir") === "desc";
+
+          var rows = Array.prototype.slice.call(tbody.rows);
+
+          rows.sort(function (a, b) {
+            var aText = a.cells[index] ? a.cells[index].textContent.trim() : "";
+            var bText = b.cells[index] ? b.cells[index].textContent.trim() : "";
+
+            if (type === "number") {
+              var aNum = parseFloat(aText.replace(/[^0-9.-]/g, "")) || 0;
+              var bNum = parseFloat(bText.replace(/[^0-9.-]/g, "")) || 0;
+              return descending ? bNum - aNum : aNum - bNum;
+            }
+
+            return descending ? bText.localeCompare(aText) : aText.localeCompare(bText);
+          });
+
+          for (var r = 0; r < rows.length; r++) {
+            tbody.appendChild(rows[r]);
+          }
+
+          th.setAttribute("data-sort-dir", descending ? "asc" : "desc");
+
+          var icons = th.parentElement.querySelectorAll("i");
+          for (var k = 0; k < icons.length; k++) icons[k].className = "bi bi-arrow-down-up";
+
+          var icon = th.querySelector("i");
+          if (icon) icon.className = descending ? "bi bi-sort-down" : "bi bi-sort-up";
+        });
+      })(headers[i]);
+    }
+  }
+
+  function initPagination() {
+    var lists = document.querySelectorAll("[data-paginate]");
+    for (var i = 0; i < lists.length; i++) {
+      (function (wrapper) {
+        var table = document.querySelector(wrapper.getAttribute("data-paginate"));
+        if (!table) return;
+        var perPage = parseInt(wrapper.getAttribute("data-per-page") || "5", 10);
+        var pages = wrapper.querySelectorAll("[data-page]");
+        var info = wrapper.querySelector("[data-page-info]");
+
+        function show(page) {
+          var tbody = table.tBodies[0];
+          var rows = Array.prototype.slice.call(tbody.rows).filter(function (row) {
+            return row.getAttribute("data-filtered") !== "true";
+          });
+
+          var total = rows.length;
+          var totalPages = Math.max(1, Math.ceil(total / perPage));
+          page = Math.min(Math.max(1, page), totalPages);
+
+          for (var r = 0; r < rows.length; r++) {
+            rows[r].style.display = (r >= (page - 1) * perPage && r < page * perPage) ? "" : "none";
+          }
+
+          for (var p = 0; p < pages.length; p++) {
+            var pageNum = parseInt(pages[p].getAttribute("data-page"), 10);
+            pages[p].classList.toggle("active", pageNum === page);
+            pages[p].parentElement.classList.toggle("active", pageNum === page);
+          }
+
+          if (info) {
+            var from = total === 0 ? 0 : (page - 1) * perPage + 1;
+            var to = Math.min(page * perPage, total);
+            info.textContent = "Showing " + from + "–" + to + " of " + total;
+          }
+
+          wrapper.setAttribute("data-current-page", String(page));
+        }
+
+        wrapper.addEventListener("click", function (event) {
+          var target = event.target.closest("[data-page]");
+          if (!target) return;
+          event.preventDefault();
+          var page = target.getAttribute("data-page");
+          if (page === "prev") page = parseInt(wrapper.getAttribute("data-current-page") || "1", 10) - 1;
+          else if (page === "next") page = parseInt(wrapper.getAttribute("data-current-page") || "1", 10) + 1;
+          else page = parseInt(page, 10);
+          show(page);
+        });
+
+        show(wrapper.getAttribute("data-initial-page") ? parseInt(wrapper.getAttribute("data-initial-page"), 10) : 1);
+      })(lists[i]);
+    }
+  }
+
+  /* ====================================================================== */
+  /* 5. KANBAN DRAG & DROP                                                  */
+  /* ====================================================================== */
+
+  function initKanban() {
+    var boards = document.querySelectorAll("[data-kanban]");
+    if (!boards.length || !window.dragEventSupported) {
+      // Fall through: HTML5 drag and drop is supported by all target browsers,
+      // this guard only skips very old engines.
+    }
+
+    for (var b = 0; b < boards.length; b++) {
+      (function (board) {
+        var cards = board.querySelectorAll(".kanban__card");
+        var columns = board.querySelectorAll(".kanban__col-body");
+
+        function updateCounts() {
+          var cols = board.querySelectorAll(".kanban__col");
+          for (var c = 0; c < cols.length; c++) {
+            var body = cols[c].querySelector(".kanban__col-body");
+            var count = cols[c].querySelector(".kanban__count");
+            if (body && count) count.textContent = body.querySelectorAll(".kanban__card").length;
+          }
+        }
+
+        for (var i = 0; i < cards.length; i++) {
+          cards[i].setAttribute("draggable", "true");
+
+          cards[i].addEventListener("dragstart", function (event) {
+            event.dataTransfer.effectAllowed = "move";
+            event.dataTransfer.setData("text/plain", "kanban-card");
+            this.classList.add("is-dragging");
+            board.setAttribute("data-dragging", "true");
+          });
+
+          cards[i].addEventListener("dragend", function () {
+            this.classList.remove("is-dragging");
+            board.removeAttribute("data-dragging");
+            var targets = board.querySelectorAll(".is-drop-target");
+            for (var t = 0; t < targets.length; t++) targets[t].classList.remove("is-drop-target");
+            updateCounts();
+          });
+        }
+
+        for (var j = 0; j < columns.length; j++) {
+          columns[j].addEventListener("dragover", function (event) {
+            event.preventDefault();
+            event.dataTransfer.dropEffect = "move";
+            this.classList.add("is-drop-target");
+          });
+
+          columns[j].addEventListener("dragleave", function () {
+            this.classList.remove("is-drop-target");
+          });
+
+          columns[j].addEventListener("drop", function (event) {
+            event.preventDefault();
+            this.classList.remove("is-drop-target");
+
+            var dragging = board.querySelector(".kanban__card.is-dragging");
+            if (!dragging) return;
+
+            var placeholder = this.querySelector(".kanban__empty");
+            if (placeholder) placeholder.remove();
+
+            this.appendChild(dragging);
+
+            // Re-create empty placeholders where a column ran out of cards.
+            var cols = board.querySelectorAll(".kanban__col");
+            for (var c = 0; c < cols.length; c++) {
+              var body = cols[c].querySelector(".kanban__col-body");
+              if (body && !body.querySelector(".kanban__card")) {
+                var empty = document.createElement("div");
+                empty.className = "kanban__empty text-center text-muted-2 fs-8 py-3";
+                empty.textContent = "Drop a card here";
+                body.appendChild(empty);
+              }
+            }
+
+            updateCounts();
+
+            if (window.Qevora) {
+              window.Qevora.toast("Task moved — demo interaction only.", "success", "Board updated");
+            }
+          });
+        }
+
+        updateCounts();
+      })(boards[b]);
+    }
+  }
+
+  /* ====================================================================== */
+  /* 6. FILE DROPZONE DEMO                                                  */
+  /* ====================================================================== */
+
+  function initUploadZones() {
+    var zones = document.querySelectorAll("[data-upload-zone]");
+
+    for (var i = 0; i < zones.length; i++) {
+      (function (zone) {
+        var input = zone.querySelector('input[type="file"]');
+        var list = zone.parentElement.querySelector("[data-upload-list]");
+
+        function render(files) {
+          if (!list) return;
+          list.innerHTML = "";
+
+          for (var f = 0; f < files.length; f++) {
+            var row = document.createElement("div");
+            row.className = "file-row";
+            row.innerHTML =
+              '<span class="file-row__icon"><i class="bi bi-file-earmark-text"></i></span>' +
+              '<span class="flex-grow-1 min-w-0">' +
+              '  <span class="d-block fs-7 fw-500 text-heading text-truncate">' + files[f].name + "</span>" +
+              '  <span class="d-block fs-8 text-muted-2">' + Math.max(1, Math.round(files[f].size / 1024)) + " KB</span>" +
+              "</span>" +
+              '<button type="button" class="btn btn-icon btn-sm btn-ghost" aria-label="Remove file"><i class="bi bi-x-lg"></i></button>';
+
+            row.querySelector("button").addEventListener("click", function () {
+              row.remove();
+            });
+
+            list.appendChild(row);
+          }
+        }
+
+        zone.addEventListener("click", function (event) {
+          if (event.target === input) return;
+          if (input) input.click();
+        });
+
+        if (input) {
+          input.addEventListener("change", function () {
+            render(input.files);
+          });
+        }
+
+        ["dragenter", "dragover"].forEach(function (name) {
+          zone.addEventListener(name, function (event) {
+            event.preventDefault();
+            zone.classList.add("is-dragover");
+          });
+        });
+
+        ["dragleave", "drop"].forEach(function (name) {
+          zone.addEventListener(name, function (event) {
+            event.preventDefault();
+            zone.classList.remove("is-dragover");
+          });
+        });
+
+        zone.addEventListener("drop", function (event) {
+          if (event.dataTransfer && event.dataTransfer.files) render(event.dataTransfer.files);
+        });
+      })(zones[i]);
+    }
+  }
+
+  /* ====================================================================== */
+  /* 7. LIVE-MARKUP TO CODE (used on a few showcase pages)                  */
+  /* ====================================================================== */
+
+  function initAutoCode() {
+    var nodes = document.querySelectorAll("[data-auto-code]");
+    for (var i = 0; i < nodes.length; i++) {
+      var source = document.querySelector(nodes[i].getAttribute("data-auto-code"));
+      if (!source) continue;
+
+      var clone = source.cloneNode(true);
+      // Strip runtime-only classes and attributes from the printed sample.
+      clone.querySelectorAll(".demo-tab").forEach(function (el) { el.remove(); });
+
+      var html = clone.innerHTML
+        .replace(/\sdata-highlighted="true"/g, "")
+        .replace(/\n\s*\n/g, "\n")
+        .trim();
+
+      nodes[i].textContent = html;
+      nodes[i].setAttribute("data-highlighted", "true");
+      nodes[i].innerHTML = highlightMarkup(html);
+    }
+  }
+
+  /* ====================================================================== */
+  /* INIT                                                                   */
+  /* ====================================================================== */
+
+  function init() {
+    initDemoTabs();
+    initCopyButtons();
+    highlightCode();
+    initSelectAll();
+    initSortableTables();
+    initPagination();
+    initKanban();
+    initUploadZones();
+    initAutoCode();
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", init);
+  } else {
+    init();
+  }
+
+  window.QevoraComponents = { init: init, highlight: highlightCode };
+})();

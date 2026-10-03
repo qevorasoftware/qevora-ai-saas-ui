@@ -1,0 +1,187 @@
+      <div class="q-page-head">
+        <div>
+          {{BREADCRUMB}}
+          <h1 class="q-page-head__title mt-2">Projects</h1>
+          <p class="q-page-head__subtitle">Delivery status, budget and ownership across every active project.</p>
+        </div>
+        <div class="d-flex flex-wrap gap-2">
+          <div class="nav nav-pills" role="tablist">
+            <button class="nav-link active" data-bs-toggle="pill" data-bs-target="#projects-all" type="button" role="tab" aria-selected="true">All</button>
+            <button class="nav-link" data-bs-toggle="pill" data-bs-target="#projects-active" type="button" role="tab" aria-selected="false">My projects</button>
+          </div>
+          <button class="btn btn-primary" data-demo-action="New project form opened — demo interaction only."><i class="bi bi-plus-lg"></i> New project</button>
+        </div>
+      </div>
+
+      <div class="row g-3 q-section">
+        <div class="col-sm-6 col-xl-3">
+          <div class="kpi-tile">
+            <span class="card-stat__icon bg-primary-soft text-primary-2"><i class="bi bi-kanban"></i></span>
+            <div class="kpi-tile__body">
+              <p class="kpi-tile__label mb-0">Active projects</p>
+              <p class="kpi-tile__value" data-counter="24">24</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-6 col-xl-3">
+          <div class="kpi-tile">
+            <span class="card-stat__icon bg-success-soft text-success"><i class="bi bi-check2-circle"></i></span>
+            <div class="kpi-tile__body">
+              <p class="kpi-tile__label mb-0">Completed this quarter</p>
+              <p class="kpi-tile__value" data-counter="11">11</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-6 col-xl-3">
+          <div class="kpi-tile">
+            <span class="card-stat__icon bg-warning-soft text-warning"><i class="bi bi-exclamation-triangle"></i></span>
+            <div class="kpi-tile__body">
+              <p class="kpi-tile__label mb-0">At risk</p>
+              <p class="kpi-tile__value">3</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-6 col-xl-3">
+          <div class="kpi-tile">
+            <span class="card-stat__icon bg-info-soft text-info"><i class="bi bi-clock-history"></i></span>
+            <div class="kpi-tile__body">
+              <p class="kpi-tile__label mb-0">Avg. completion</p>
+              <p class="kpi-tile__value">64%</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row g-3 q-section">
+        <div class="col-md-6 col-xl-4">
+          <div class="card card-hover h-100">
+            <div class="card-body">
+              <div class="d-flex align-items-start justify-content-between mb-3">
+                <span class="card-stat__icon bg-primary-soft text-primary-2"><i class="bi bi-diagram-3"></i></span>
+                <span class="badge badge-soft-primary badge-pill">In progress</span>
+              </div>
+              <h2 class="h6 fw-600 mb-1"><a href="project-details.html" class="text-heading">Atlas platform migration</a></h2>
+              <p class="fs-8 text-muted-2 mb-3">Modernise the reporting stack and move workloads to the new cluster.</p>
+              <div class="d-flex justify-content-between fs-8 text-muted-2 mb-2"><span>Progress</span><span>76%</span></div>
+              <div class="progress progress-sm mb-3"><div class="progress-bar" style="width: 76%"></div></div>
+              <div class="d-flex align-items-center justify-content-between">
+                <div class="avatar-group">
+                  <span class="avatar avatar-xs bg-avatar-1" data-bs-toggle="tooltip" title="Ava Reynolds">AR</span>
+                  <span class="avatar avatar-xs bg-avatar-3" data-bs-toggle="tooltip" title="Marcus Chen">MC</span>
+                  <span class="avatar avatar-xs bg-avatar-6" data-bs-toggle="tooltip" title="Lea Novak">LN</span>
+                </div>
+                <span class="fs-8 text-muted-2"><i class="bi bi-calendar3"></i> Nov 18</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6 col-xl-4">
+          <div class="card card-hover h-100">
+            <div class="card-body">
+              <div class="d-flex align-items-start justify-content-between mb-3">
+                <span class="card-stat__icon bg-info-soft text-info"><i class="bi bi-stars"></i></span>
+                <span class="badge badge-soft-info badge-pill">In progress</span>
+              </div>
+              <h2 class="h6 fw-600 mb-1"><a href="project-details.html" class="text-heading">Nova AI assistant</a></h2>
+              <p class="fs-8 text-muted-2 mb-3">Ship the in-product assistant with workspace-aware answers.</p>
+              <div class="d-flex justify-content-between fs-8 text-muted-2 mb-2"><span>Progress</span><span>54%</span></div>
+              <div class="progress progress-sm mb-3"><div class="progress-bar bg-info" style="width: 54%"></div></div>
+              <div class="d-flex align-items-center justify-content-between">
+                <div class="avatar-group">
+                  <span class="avatar avatar-xs bg-avatar-4" data-bs-toggle="tooltip" title="Daniel Okafor">DO</span>
+                  <span class="avatar avatar-xs bg-avatar-6" data-bs-toggle="tooltip" title="Lea Novak">LN</span>
+                </div>
+                <span class="fs-8 text-muted-2"><i class="bi bi-calendar3"></i> Dec 05</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6 col-xl-4">
+          <div class="card card-hover h-100">
+            <div class="card-body">
+              <div class="d-flex align-items-start justify-content-between mb-3">
+                <span class="card-stat__icon bg-success-soft text-success"><i class="bi bi-receipt"></i></span>
+                <span class="badge badge-soft-success badge-pill">Nearly done</span>
+              </div>
+              <h2 class="h6 fw-600 mb-1"><a href="project-details.html" class="text-heading">Billing revamp</a></h2>
+              <p class="fs-8 text-muted-2 mb-3">Usage-based invoicing with proration and dunning flows.</p>
+              <div class="d-flex justify-content-between fs-8 text-muted-2 mb-2"><span>Progress</span><span>92%</span></div>
+              <div class="progress progress-sm mb-3"><div class="progress-bar bg-success" style="width: 92%"></div></div>
+              <div class="d-flex align-items-center justify-content-between">
+                <div class="avatar-group">
+                  <span class="avatar avatar-xs bg-avatar-1" data-bs-toggle="tooltip" title="Ava Reynolds">AR</span>
+                  <span class="avatar avatar-xs bg-avatar-2" data-bs-toggle="tooltip" title="Priya Sharma">PS</span>
+                </div>
+                <span class="fs-8 text-muted-2"><i class="bi bi-calendar3"></i> Oct 30</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6 col-xl-4">
+          <div class="card card-hover h-100">
+            <div class="card-body">
+              <div class="d-flex align-items-start justify-content-between mb-3">
+                <span class="card-stat__icon bg-warning-soft text-warning"><i class="bi bi-phone"></i></span>
+                <span class="badge badge-soft-warning badge-pill">At risk</span>
+              </div>
+              <h2 class="h6 fw-600 mb-1"><a href="project-details.html" class="text-heading">Mobile app v3</a></h2>
+              <p class="fs-8 text-muted-2 mb-3">Offline-first mobile companion with push notifications.</p>
+              <div class="d-flex justify-content-between fs-8 text-muted-2 mb-2"><span>Progress</span><span>31%</span></div>
+              <div class="progress progress-sm mb-3"><div class="progress-bar bg-warning" style="width: 31%"></div></div>
+              <div class="d-flex align-items-center justify-content-between">
+                <div class="avatar-group">
+                  <span class="avatar avatar-xs bg-avatar-3" data-bs-toggle="tooltip" title="Marcus Chen">MC</span>
+                  <span class="avatar avatar-xs bg-avatar-5" data-bs-toggle="tooltip" title="Yuki Tanaka">YT</span>
+                </div>
+                <span class="fs-8 text-muted-2"><i class="bi bi-calendar3"></i> Jan 22</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6 col-xl-4">
+          <div class="card card-hover h-100">
+            <div class="card-body">
+              <div class="d-flex align-items-start justify-content-between mb-3">
+                <span class="card-stat__icon bg-danger-soft text-danger"><i class="bi bi-shield-check"></i></span>
+                <span class="badge badge-soft-neutral badge-pill">Planned</span>
+              </div>
+              <h2 class="h6 fw-600 mb-1"><a href="project-details.html" class="text-heading">SOC 2 readiness</a></h2>
+              <p class="fs-8 text-muted-2 mb-3">Controls, evidence collection and vendor review programme.</p>
+              <div class="d-flex justify-content-between fs-8 text-muted-2 mb-2"><span>Progress</span><span>12%</span></div>
+              <div class="progress progress-sm mb-3"><div class="progress-bar bg-danger" style="width: 12%"></div></div>
+              <div class="d-flex align-items-center justify-content-between">
+                <div class="avatar-group">
+                  <span class="avatar avatar-xs bg-avatar-4" data-bs-toggle="tooltip" title="Daniel Okafor">DO</span>
+                </div>
+                <span class="fs-8 text-muted-2"><i class="bi bi-calendar3"></i> Feb 14</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6 col-xl-4">
+          <div class="card card-hover h-100">
+            <div class="card-body">
+              <div class="d-flex align-items-start justify-content-between mb-3">
+                <span class="card-stat__icon bg-accent-soft text-accent"><i class="bi bi-bar-chart-line"></i></span>
+                <span class="badge badge-soft-success badge-pill">Complete</span>
+              </div>
+              <h2 class="h6 fw-600 mb-1"><a href="project-details.html" class="text-heading">Analytics pipelines</a></h2>
+              <p class="fs-8 text-muted-2 mb-3">Event ingestion, warehouse models and executive dashboards.</p>
+              <div class="d-flex justify-content-between fs-8 text-muted-2 mb-2"><span>Progress</span><span>100%</span></div>
+              <div class="progress progress-sm mb-3"><div class="progress-bar bg-success" style="width: 100%"></div></div>
+              <div class="d-flex align-items-center justify-content-between">
+                <div class="avatar-group">
+                  <span class="avatar avatar-xs bg-avatar-6" data-bs-toggle="tooltip" title="Lea Novak">LN</span>
+                  <span class="avatar avatar-xs bg-avatar-1" data-bs-toggle="tooltip" title="Ava Reynolds">AR</span>
+                </div>
+                <span class="fs-8 text-muted-2"><i class="bi bi-calendar3"></i> Sep 28</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>

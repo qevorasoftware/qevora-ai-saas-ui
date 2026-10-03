@@ -1,0 +1,170 @@
+      <div class="q-page-head">
+        <div>
+          {{BREADCRUMB}}
+          <h1 class="q-page-head__title mt-2">CRM dashboard</h1>
+          <p class="q-page-head__subtitle">Pipeline health, deal velocity and customer activity for the sales team.</p>
+        </div>
+        <div class="d-flex flex-wrap gap-2">
+          <button class="btn btn-white" data-demo-action="Lead import dialog would open here."><i class="bi bi-upload"></i> Import leads</button>
+          <button class="btn btn-primary" data-demo-action="New lead form opened — demo interaction only."><i class="bi bi-plus-lg"></i> New lead</button>
+        </div>
+      </div>
+
+      <div class="row g-3 q-section">
+        <div class="col-sm-6 col-xl-3">
+          <div class="card card-stat h-100">
+            <div class="card-body">
+              <p class="card-stat__label">Pipeline value</p>
+              <p class="card-stat__value" data-counter="3284000" data-prefix="$">$3,284,000</p>
+              <span class="trend trend-up"><i class="bi bi-arrow-up-short"></i> 18.6%</span>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-6 col-xl-3">
+          <div class="card card-stat h-100">
+            <div class="card-body">
+              <p class="card-stat__label">Open deals</p>
+              <p class="card-stat__value" data-counter="184">184</p>
+              <span class="trend trend-up"><i class="bi bi-arrow-up-short"></i> 6 new this week</span>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-6 col-xl-3">
+          <div class="card card-stat h-100">
+            <div class="card-body">
+              <p class="card-stat__label">Win rate</p>
+              <p class="card-stat__value">42.8%</p>
+              <span class="trend trend-up"><i class="bi bi-arrow-up-short"></i> 3.4%</span>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-6 col-xl-3">
+          <div class="card card-stat h-100">
+            <div class="card-body">
+              <p class="card-stat__label">Avg. deal cycle</p>
+              <p class="card-stat__value">26d</p>
+              <span class="trend trend-down"><i class="bi bi-arrow-down-short"></i> 4 days faster</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row g-3 q-section">
+        <div class="col-xl-8">
+          <div class="card h-100">
+            <div class="card-header">
+              <div>
+                <h2 class="card-title">Sales performance</h2>
+                <p class="card-subtitle">Booked revenue by quarter and channel</p>
+              </div>
+            </div>
+            <div class="card-body">
+              <div class="chart-holder chart-holder--lg"><canvas data-chart="sales"></canvas></div>
+            </div>
+          </div>
+        </div>
+        <div class="col-xl-4">
+          <div class="card h-100">
+            <div class="card-header">
+              <div>
+                <h2 class="card-title">Lead sources</h2>
+                <p class="card-subtitle">Where new leads originate</p>
+              </div>
+            </div>
+            <div class="card-body">
+              <div class="chart-holder chart-holder--lg"><canvas data-chart="modelUsage" data-labels="Inbound,Outbound,Partner,Referral" data-values="38,27,21,14"></canvas></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row g-3 q-section">
+        <div class="col-xl-7">
+          <div class="card h-100">
+            <div class="card-header">
+              <div>
+                <h2 class="card-title">Deals closing soon</h2>
+                <p class="card-subtitle">Expected to close within 14 days</p>
+              </div>
+              <a href="pipeline.html" class="btn btn-sm btn-soft-secondary">Open pipeline</a>
+            </div>
+            <div class="table-responsive">
+              <table class="table table-hover align-middle">
+                <thead>
+                  <tr>
+                    <th scope="col">Company</th>
+                    <th scope="col">Stage</th>
+                    <th scope="col" class="text-end">Value</th>
+                    <th scope="col">Owner</th>
+                    <th scope="col">Close date</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="fw-500 text-heading">Northstar Labs</td>
+                    <td><span class="badge badge-soft-primary badge-pill">Negotiation</span></td>
+                    <td class="text-end fw-600 text-heading">$48,000</td>
+                    <td><span class="avatar avatar-xs bg-avatar-1">AR</span></td>
+                    <td class="text-muted-2">Oct 6</td>
+                  </tr>
+                  <tr>
+                    <td class="fw-500 text-heading">Vertex Labs</td>
+                    <td><span class="badge badge-soft-info badge-pill">Proposal</span></td>
+                    <td class="text-end fw-600 text-heading">$26,500</td>
+                    <td><span class="avatar avatar-xs bg-avatar-3">MC</span></td>
+                    <td class="text-muted-2">Oct 9</td>
+                  </tr>
+                  <tr>
+                    <td class="fw-500 text-heading">Orbit Systems</td>
+                    <td><span class="badge badge-soft-warning badge-pill">Demo booked</span></td>
+                    <td class="text-end fw-600 text-heading">$18,900</td>
+                    <td><span class="avatar avatar-xs bg-avatar-6">LN</span></td>
+                    <td class="text-muted-2">Oct 12</td>
+                  </tr>
+                  <tr>
+                    <td class="fw-500 text-heading">Horizon Labs</td>
+                    <td><span class="badge badge-soft-success badge-pill">Contract sent</span></td>
+                    <td class="text-end fw-600 text-heading">$96,000</td>
+                    <td><span class="avatar avatar-xs bg-avatar-4">DO</span></td>
+                    <td class="text-muted-2">Oct 15</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+        <div class="col-xl-5">
+          <div class="card h-100">
+            <div class="card-header">
+              <div>
+                <h2 class="card-title">Customer activity</h2>
+                <p class="card-subtitle">Latest touchpoints</p>
+              </div>
+            </div>
+            <div class="card-body">
+              <ul class="timeline">
+                <li class="timeline__item">
+                  <span class="timeline__dot timeline__dot--success"></span>
+                  <p class="timeline__title">Contract signed — Horizon Labs</p>
+                  <p class="timeline__meta">$96,000 · 1h ago</p>
+                </li>
+                <li class="timeline__item">
+                  <span class="timeline__dot"></span>
+                  <p class="timeline__title">Discovery call completed</p>
+                  <p class="timeline__meta">Vertex Labs · 4h ago</p>
+                </li>
+                <li class="timeline__item">
+                  <span class="timeline__dot timeline__dot--warning"></span>
+                  <p class="timeline__title">Proposal viewed 3 times</p>
+                  <p class="timeline__meta">Northstar Labs · 6h ago</p>
+                </li>
+                <li class="timeline__item">
+                  <span class="timeline__dot timeline__dot--muted"></span>
+                  <p class="timeline__title">Lead created from website form</p>
+                  <p class="timeline__meta">summit@acme.io · yesterday</p>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>

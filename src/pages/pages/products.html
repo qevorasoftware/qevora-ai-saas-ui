@@ -1,0 +1,233 @@
+      <div class="q-page-head">
+        <div>
+          {{BREADCRUMB}}
+          <h1 class="q-page-head__title mt-2">Products</h1>
+          <p class="q-page-head__subtitle">Catalog of plans, add-ons and hardware offered to customers.</p>
+        </div>
+        <div class="d-flex flex-wrap gap-2">
+          <button class="btn btn-white" data-demo-action="Category manager opened — demo only."><i class="bi bi-tags"></i> Categories</button>
+          <button class="btn btn-primary" data-demo-action="New product form opened — demo interaction only."><i class="bi bi-plus-lg"></i> Add product</button>
+        </div>
+      </div>
+
+      <div class="row g-3 q-section">
+        <div class="col-sm-6 col-xl-3">
+          <div class="kpi-tile">
+            <div class="kpi-tile__body">
+              <p class="kpi-tile__label mb-0">Active products</p>
+              <p class="kpi-tile__value" data-counter="128">128</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-6 col-xl-3">
+          <div class="kpi-tile">
+            <div class="kpi-tile__body">
+              <p class="kpi-tile__label mb-0">Low stock</p>
+              <p class="kpi-tile__value text-warning">7</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-6 col-xl-3">
+          <div class="kpi-tile">
+            <div class="kpi-tile__body">
+              <p class="kpi-tile__label mb-0">Out of stock</p>
+              <p class="kpi-tile__value text-danger">2</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-6 col-xl-3">
+          <div class="kpi-tile">
+            <div class="kpi-tile__body">
+              <p class="kpi-tile__label mb-0">Catalog value</p>
+              <p class="kpi-tile__value">$412K</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card q-section">
+        <div class="table-toolbar">
+          <div class="search-field" style="max-width: 280px;">
+            <i class="bi bi-search search-field__icon" aria-hidden="true"></i>
+            <label class="visually-hidden" for="product-search">Search products</label>
+            <input type="search" class="form-control" id="product-search" placeholder="Search products…" data-table-filter="#products-table">
+          </div>
+          <select class="form-select form-select-sm" style="width: auto;" aria-label="Filter by category">
+            <option>All categories</option>
+            <option>Software</option>
+            <option>Add-on</option>
+            <option>Hardware</option>
+            <option>Service</option>
+          </select>
+          <select class="form-select form-select-sm" style="width: auto;" aria-label="Filter by stock">
+            <option>Any stock level</option>
+            <option>In stock</option>
+            <option>Low stock</option>
+            <option>Out of stock</option>
+          </select>
+          <span class="ms-auto fs-8 text-muted-2">6 of 128 products</span>
+        </div>
+
+        <div class="table-responsive">
+          <table class="table table-hover align-middle" id="products-table">
+            <thead>
+              <tr>
+                <th scope="col">Product</th>
+                <th scope="col">SKU</th>
+                <th scope="col">Category</th>
+                <th scope="col" class="text-end" data-sort="number">Price <i class="bi bi-arrow-down-up"></i></th>
+                <th scope="col" class="text-end">Stock</th>
+                <th scope="col">Status</th>
+                <th scope="col" class="text-end">Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  <div class="d-flex align-items-center gap-3">
+                    <img src="../assets/images/placeholder/product-1.svg" alt="" width="40" height="40" class="rounded-q">
+                    <span>
+                      <a class="d-block fs-7 fw-500 text-heading" href="product-details.html">Qevora Scale Plan</a>
+                      <span class="d-block fs-8 text-muted-2">Annual subscription</span>
+                    </span>
+                  </div>
+                </td>
+                <td class="text-muted-2">QV-SCALE-01</td>
+                <td>Software</td>
+                <td class="text-end fw-600 text-heading">$4,800.00</td>
+                <td class="text-end">Unlimited</td>
+                <td><span class="badge badge-soft-success badge-pill">Active</span></td>
+                <td class="text-end">
+                  <div class="table-actions justify-content-end">
+                    <a class="btn btn-icon btn-sm btn-ghost" href="product-details.html" aria-label="View Qevora Scale Plan"><i class="bi bi-eye"></i></a>
+                    <button class="btn btn-icon btn-sm btn-ghost" aria-label="Edit Qevora Scale Plan" data-demo-action="Edit form opened — demo only."><i class="bi bi-pencil"></i></button>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <div class="d-flex align-items-center gap-3">
+                    <img src="../assets/images/placeholder/product-2.svg" alt="" width="40" height="40" class="rounded-q">
+                    <span>
+                      <a class="d-block fs-7 fw-500 text-heading" href="product-details.html">Qevora Growth Plan</a>
+                      <span class="d-block fs-8 text-muted-2">Annual subscription</span>
+                    </span>
+                  </div>
+                </td>
+                <td class="text-muted-2">QV-GROW-01</td>
+                <td>Software</td>
+                <td class="text-end fw-600 text-heading">$1,250.00</td>
+                <td class="text-end">Unlimited</td>
+                <td><span class="badge badge-soft-success badge-pill">Active</span></td>
+                <td class="text-end">
+                  <div class="table-actions justify-content-end">
+                    <a class="btn btn-icon btn-sm btn-ghost" href="product-details.html" aria-label="View Qevora Growth Plan"><i class="bi bi-eye"></i></a>
+                    <button class="btn btn-icon btn-sm btn-ghost" aria-label="Edit Qevora Growth Plan" data-demo-action="Edit form opened — demo only."><i class="bi bi-pencil"></i></button>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <div class="d-flex align-items-center gap-3">
+                    <img src="../assets/images/placeholder/product-3.svg" alt="" width="40" height="40" class="rounded-q">
+                    <span>
+                      <a class="d-block fs-7 fw-500 text-heading" href="product-details.html">AI Token Pack — 1M</a>
+                      <span class="d-block fs-8 text-muted-2">One-time add-on</span>
+                    </span>
+                  </div>
+                </td>
+                <td class="text-muted-2">QV-TOK-1M</td>
+                <td>Add-on</td>
+                <td class="text-end fw-600 text-heading">$290.00</td>
+                <td class="text-end">Unlimited</td>
+                <td><span class="badge badge-soft-success badge-pill">Active</span></td>
+                <td class="text-end">
+                  <div class="table-actions justify-content-end">
+                    <a class="btn btn-icon btn-sm btn-ghost" href="product-details.html" aria-label="View AI Token Pack"><i class="bi bi-eye"></i></a>
+                    <button class="btn btn-icon btn-sm btn-ghost" aria-label="Edit AI Token Pack" data-demo-action="Edit form opened — demo only."><i class="bi bi-pencil"></i></button>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <div class="d-flex align-items-center gap-3">
+                    <img src="../assets/images/placeholder/product-4.svg" alt="" width="40" height="40" class="rounded-q">
+                    <span>
+                      <a class="d-block fs-7 fw-500 text-heading" href="product-details.html">Edge Gateway Device</a>
+                      <span class="d-block fs-8 text-muted-2">Hardware appliance</span>
+                    </span>
+                  </div>
+                </td>
+                <td class="text-muted-2">QV-EDGE-02</td>
+                <td>Hardware</td>
+                <td class="text-end fw-600 text-heading">$1,890.00</td>
+                <td class="text-end">6</td>
+                <td><span class="badge badge-soft-warning badge-pill">Low stock</span></td>
+                <td class="text-end">
+                  <div class="table-actions justify-content-end">
+                    <a class="btn btn-icon btn-sm btn-ghost" href="product-details.html" aria-label="View Edge Gateway Device"><i class="bi bi-eye"></i></a>
+                    <button class="btn btn-icon btn-sm btn-ghost" aria-label="Edit Edge Gateway Device" data-demo-action="Edit form opened — demo only."><i class="bi bi-pencil"></i></button>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <div class="d-flex align-items-center gap-3">
+                    <img src="../assets/images/placeholder/product-1.svg" alt="" width="40" height="40" class="rounded-q">
+                    <span>
+                      <a class="d-block fs-7 fw-500 text-heading" href="product-details.html">Onboarding Service</a>
+                      <span class="d-block fs-8 text-muted-2">Professional services</span>
+                    </span>
+                  </div>
+                </td>
+                <td class="text-muted-2">QV-SVC-ONB</td>
+                <td>Service</td>
+                <td class="text-end fw-600 text-heading">$2,400.00</td>
+                <td class="text-end">—</td>
+                <td><span class="badge badge-soft-success badge-pill">Active</span></td>
+                <td class="text-end">
+                  <div class="table-actions justify-content-end">
+                    <a class="btn btn-icon btn-sm btn-ghost" href="product-details.html" aria-label="View Onboarding Service"><i class="bi bi-eye"></i></a>
+                    <button class="btn btn-icon btn-sm btn-ghost" aria-label="Edit Onboarding Service" data-demo-action="Edit form opened — demo only."><i class="bi bi-pencil"></i></button>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <div class="d-flex align-items-center gap-3">
+                    <img src="../assets/images/placeholder/product-2.svg" alt="" width="40" height="40" class="rounded-q">
+                    <span>
+                      <a class="d-block fs-7 fw-500 text-heading" href="product-details.html">Studio Workstation</a>
+                      <span class="d-block fs-8 text-muted-2">Hardware appliance</span>
+                    </span>
+                  </div>
+                </td>
+                <td class="text-muted-2">QV-STUDIO-01</td>
+                <td>Hardware</td>
+                <td class="text-end fw-600 text-heading">$4,290.00</td>
+                <td class="text-end text-danger">0</td>
+                <td><span class="badge badge-soft-danger badge-pill">Out of stock</span></td>
+                <td class="text-end">
+                  <div class="table-actions justify-content-end">
+                    <a class="btn btn-icon btn-sm btn-ghost" href="product-details.html" aria-label="View Studio Workstation"><i class="bi bi-eye"></i></a>
+                    <button class="btn btn-icon btn-sm btn-ghost" aria-label="Edit Studio Workstation" data-demo-action="Edit form opened — demo only."><i class="bi bi-pencil"></i></button>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="table-footer">
+          <span class="fs-8 text-muted-2">Showing 6 of 128 products</span>
+          <nav aria-label="Product pagination">
+            <ul class="pagination pagination-sm mb-0">
+              <li class="page-item disabled"><a class="page-link" href="#" aria-label="Previous"><i class="bi bi-chevron-left"></i></a></li>
+              <li class="page-item active"><a class="page-link" href="#">1</a></li>
+              <li class="page-item"><a class="page-link" href="#">2</a></li>
+              <li class="page-item"><a class="page-link" href="#">3</a></li>
+              <li class="page-item"><a class="page-link" href="#" aria-label="Next"><i class="bi bi-chevron-right"></i></a></li>
+            </ul>
+          </nav>
+        </div>
+      </div>

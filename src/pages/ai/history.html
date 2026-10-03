@@ -1,0 +1,196 @@
+      <div class="q-page-head">
+        <div>
+          {{BREADCRUMB}}
+          <h1 class="q-page-head__title mt-2">AI history</h1>
+          <p class="q-page-head__subtitle">Every prompt across the workspace with model, tokens, latency and cost.</p>
+        </div>
+        <div class="d-flex flex-wrap gap-2">
+          <button class="btn btn-white" data-demo-action="History cleared — demo only." data-demo-variant="warning"><i class="bi bi-trash3"></i> Clear history</button>
+          <button class="btn btn-primary" data-demo-action="History exported — demo interaction only."><i class="bi bi-download"></i> Export CSV</button>
+        </div>
+      </div>
+
+      <div class="row g-3 q-section">
+        <div class="col-sm-6 col-xl-3">
+          <div class="kpi-tile">
+            <div class="kpi-tile__body">
+              <p class="kpi-tile__label mb-0">Prompts this month</p>
+              <p class="kpi-tile__value" data-counter="48260">48,260</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-6 col-xl-3">
+          <div class="kpi-tile">
+            <div class="kpi-tile__body">
+              <p class="kpi-tile__label mb-0">Avg. latency</p>
+              <p class="kpi-tile__value">1.4s</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-6 col-xl-3">
+          <div class="kpi-tile">
+            <div class="kpi-tile__body">
+              <p class="kpi-tile__label mb-0">Total tokens</p>
+              <p class="kpi-tile__value">680K</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-6 col-xl-3">
+          <div class="kpi-tile">
+            <div class="kpi-tile__body">
+              <p class="kpi-tile__label mb-0">Total cost</p>
+              <p class="kpi-tile__value">$1,842</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card q-section">
+        <div class="card-header">
+          <div>
+            <h2 class="card-title">Activity</h2>
+            <p class="card-subtitle">Token usage per month</p>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="chart-holder chart-holder--sm">
+            <canvas data-chart="aiUsage" data-labels="Apr,May,Jun,Jul,Aug,Sep,Oct" data-series="Requests|28400,31200,29800,36400,42100,45600,48260"></canvas>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="table-toolbar">
+          <div class="search-field" style="max-width: 300px;">
+            <i class="bi bi-search search-field__icon" aria-hidden="true"></i>
+            <label class="visually-hidden" for="history-search">Search prompts</label>
+            <input type="search" class="form-control" id="history-search" placeholder="Search prompts…" data-table-filter="#history-table">
+          </div>
+          <select class="form-select form-select-sm" style="width: auto;" aria-label="Filter by model">
+            <option>All models</option>
+            <option>Nova-4 Turbo</option>
+            <option>Nova-4</option>
+            <option>Vertex Flash</option>
+            <option>Orbit Vision</option>
+          </select>
+          <select class="form-select form-select-sm" style="width: auto;" aria-label="Filter by type">
+            <option>All types</option>
+            <option>Text</option>
+            <option>Image</option>
+            <option>Analysis</option>
+          </select>
+        </div>
+
+        <div class="table-responsive">
+          <table class="table table-hover align-middle" id="history-table">
+            <thead>
+              <tr>
+                <th scope="col" style="width: 40px;"><input class="form-check-input" type="checkbox" data-select-all="#history-table" aria-label="Select all prompts"></th>
+                <th scope="col">Prompt</th>
+                <th scope="col">Model</th>
+                <th scope="col">Type</th>
+                <th scope="col" class="text-end" data-sort="number">Tokens <i class="bi bi-arrow-down-up"></i></th>
+                <th scope="col" class="text-end">Latency</th>
+                <th scope="col" class="text-end">Cost</th>
+                <th scope="col">User</th>
+                <th scope="col" class="text-end">Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><input class="form-check-input" type="checkbox" data-row-select aria-label="Select prompt"></td>
+                <td><span class="d-block fs-7 fw-500 text-heading text-truncate" style="max-width: 280px;">Draft a product update announcement for v2.4</span><span class="d-block fs-8 text-muted-2">32 seconds ago</span></td>
+                <td><span class="badge badge-soft-primary badge-pill">Nova-4 Turbo</span></td>
+                <td>Text</td>
+                <td class="text-end">1,240</td>
+                <td class="text-end text-muted-2">1.2s</td>
+                <td class="text-end fw-600 text-heading">$0.0044</td>
+                <td><span class="avatar avatar-xs bg-avatar-1" data-bs-toggle="tooltip" title="Ava Reynolds">AR</span></td>
+                <td class="text-end">
+                  <div class="table-actions justify-content-end">
+                    <button class="btn btn-icon btn-sm btn-ghost" aria-label="Reuse prompt" data-demo-action="Prompt loaded — demo only."><i class="bi bi-arrow-repeat"></i></button>
+                    <button class="btn btn-icon btn-sm btn-ghost" aria-label="Copy prompt" data-copy-target="#history-table"><i class="bi bi-clipboard"></i></button>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td><input class="form-check-input" type="checkbox" data-row-select aria-label="Select prompt"></td>
+                <td><span class="d-block fs-7 fw-500 text-heading text-truncate" style="max-width: 280px;">Summarise Q3 revenue drivers for the board deck</span><span class="d-block fs-8 text-muted-2">18 minutes ago</span></td>
+                <td><span class="badge badge-soft-info badge-pill">Vertex Flash</span></td>
+                <td>Analysis</td>
+                <td class="text-end">2,180</td>
+                <td class="text-end text-muted-2">0.6s</td>
+                <td class="text-end fw-600 text-heading">$0.0031</td>
+                <td><span class="avatar avatar-xs bg-avatar-6" data-bs-toggle="tooltip" title="Lea Novak">LN</span></td>
+                <td class="text-end">
+                  <div class="table-actions justify-content-end">
+                    <button class="btn btn-icon btn-sm btn-ghost" aria-label="Reuse prompt" data-demo-action="Prompt loaded — demo only."><i class="bi bi-arrow-repeat"></i></button>
+                    <button class="btn btn-icon btn-sm btn-ghost" aria-label="Copy prompt" data-demo-action="Prompt copied — demo only."><i class="bi bi-clipboard"></i></button>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td><input class="form-check-input" type="checkbox" data-row-select aria-label="Select prompt"></td>
+                <td><span class="d-block fs-7 fw-500 text-heading text-truncate" style="max-width: 280px;">Explain this churn cohort chart to a non-technical reader</span><span class="d-block fs-8 text-muted-2">1 hour ago</span></td>
+                <td><span class="badge badge-soft-primary badge-pill">Nova-4</span></td>
+                <td>Analysis</td>
+                <td class="text-end">860</td>
+                <td class="text-end text-muted-2">1.8s</td>
+                <td class="text-end fw-600 text-heading">$0.0019</td>
+                <td><span class="avatar avatar-xs bg-avatar-3" data-bs-toggle="tooltip" title="Marcus Chen">MC</span></td>
+                <td class="text-end">
+                  <div class="table-actions justify-content-end">
+                    <button class="btn btn-icon btn-sm btn-ghost" aria-label="Reuse prompt" data-demo-action="Prompt loaded — demo only."><i class="bi bi-arrow-repeat"></i></button>
+                    <button class="btn btn-icon btn-sm btn-ghost" aria-label="Copy prompt" data-demo-action="Prompt copied — demo only."><i class="bi bi-clipboard"></i></button>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td><input class="form-check-input" type="checkbox" data-row-select aria-label="Select prompt"></td>
+                <td><span class="d-block fs-7 fw-500 text-heading text-truncate" style="max-width: 280px;">Minimal abstract gradient background for the dashboard hero</span><span class="d-block fs-8 text-muted-2">3 hours ago</span></td>
+                <td><span class="badge badge-soft-warning badge-pill">Orbit Vision</span></td>
+                <td>Image</td>
+                <td class="text-end">—</td>
+                <td class="text-end text-muted-2">8.4s</td>
+                <td class="text-end fw-600 text-heading">$0.0400</td>
+                <td><span class="avatar avatar-xs bg-avatar-1" data-bs-toggle="tooltip" title="Ava Reynolds">AR</span></td>
+                <td class="text-end">
+                  <div class="table-actions justify-content-end">
+                    <button class="btn btn-icon btn-sm btn-ghost" aria-label="Regenerate image" data-demo-action="Image regenerated — demo only."><i class="bi bi-arrow-repeat"></i></button>
+                    <button class="btn btn-icon btn-sm btn-ghost" aria-label="Download image" data-demo-action="Download started — demo only."><i class="bi bi-download"></i></button>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td><input class="form-check-input" type="checkbox" data-row-select aria-label="Select prompt"></td>
+                <td><span class="d-block fs-7 fw-500 text-heading text-truncate" style="max-width: 280px;">Generate five email subject lines for the renewal campaign</span><span class="d-block fs-8 text-muted-2">5 hours ago</span></td>
+                <td><span class="badge badge-soft-primary badge-pill">Nova-4 Turbo</span></td>
+                <td>Text</td>
+                <td class="text-end">540</td>
+                <td class="text-end text-muted-2">1.1s</td>
+                <td class="text-end fw-600 text-heading">$0.0019</td>
+                <td><span class="avatar avatar-xs bg-avatar-4" data-bs-toggle="tooltip" title="Daniel Okafor">DO</span></td>
+                <td class="text-end">
+                  <div class="table-actions justify-content-end">
+                    <button class="btn btn-icon btn-sm btn-ghost" aria-label="Reuse prompt" data-demo-action="Prompt loaded — demo only."><i class="bi bi-arrow-repeat"></i></button>
+                    <button class="btn btn-icon btn-sm btn-ghost" aria-label="Copy prompt" data-demo-action="Prompt copied — demo only."><i class="bi bi-clipboard"></i></button>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="table-footer">
+          <span class="fs-8 text-muted-2">Showing 5 of 48,260 prompts</span>
+          <nav aria-label="History pagination">
+            <ul class="pagination pagination-sm mb-0">
+              <li class="page-item disabled"><a class="page-link" href="#" aria-label="Previous"><i class="bi bi-chevron-left"></i></a></li>
+              <li class="page-item active"><a class="page-link" href="#">1</a></li>
+              <li class="page-item"><a class="page-link" href="#">2</a></li>
+              <li class="page-item"><a class="page-link" href="#">3</a></li>
+              <li class="page-item"><a class="page-link" href="#" aria-label="Next"><i class="bi bi-chevron-right"></i></a></li>
+            </ul>
+          </nav>
+        </div>
+      </div>

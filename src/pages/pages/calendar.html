@@ -1,0 +1,225 @@
+      <div class="q-page-head">
+        <div>
+          {{BREADCRUMB}}
+          <h1 class="q-page-head__title mt-2">Calendar</h1>
+          <p class="q-page-head__subtitle">Meetings, deadlines and release dates for October 2026.</p>
+        </div>
+        <div class="d-flex flex-wrap gap-2">
+          <div class="btn-group" role="group" aria-label="Calendar view">
+            <button class="btn btn-white active" data-demo-action="Month view selected — demo only.">Month</button>
+            <button class="btn btn-white" data-demo-action="Week view selected — demo only.">Week</button>
+            <button class="btn btn-white" data-demo-action="Day view selected — demo only.">Day</button>
+          </div>
+          <button class="btn btn-primary" data-demo-action="New event form opened — demo interaction only."><i class="bi bi-plus-lg"></i> New event</button>
+        </div>
+      </div>
+
+      <div class="row g-3">
+        <div class="col-xl-9">
+          <div class="card">
+            <div class="card-header">
+              <div class="d-flex align-items-center gap-3">
+                <h2 class="card-title mb-0">October 2026</h2>
+                <div class="btn-group btn-group-sm" role="group" aria-label="Month navigation">
+                  <button class="btn btn-white" aria-label="Previous month" data-demo-action="Previous month — demo only."><i class="bi bi-chevron-left"></i></button>
+                  <button class="btn btn-white" data-demo-action="Today — demo only.">Today</button>
+                  <button class="btn btn-white" aria-label="Next month" data-demo-action="Next month — demo only."><i class="bi bi-chevron-right"></i></button>
+                </div>
+              </div>
+              <div class="legend">
+                <span class="legend__item"><span class="legend__dot" style="background: var(--q-primary)"></span> Meetings</span>
+                <span class="legend__item"><span class="legend__dot" style="background: var(--q-warning)"></span> Deadlines</span>
+                <span class="legend__item"><span class="legend__dot" style="background: var(--q-success)"></span> Releases</span>
+              </div>
+            </div>
+
+            <div class="table-responsive">
+              <table class="table align-middle mb-0" style="table-layout: fixed; min-width: 760px;">
+                <thead>
+                  <tr>
+                    <th scope="col" class="text-center">Mon</th>
+                    <th scope="col" class="text-center">Tue</th>
+                    <th scope="col" class="text-center">Wed</th>
+                    <th scope="col" class="text-center">Thu</th>
+                    <th scope="col" class="text-center">Fri</th>
+                    <th scope="col" class="text-center">Sat</th>
+                    <th scope="col" class="text-center">Sun</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="text-muted-2" style="height: 108px; vertical-align: top;">28</td>
+                    <td class="text-muted-2" style="height: 108px; vertical-align: top;">29</td>
+                    <td class="text-muted-2" style="height: 108px; vertical-align: top;">30</td>
+                    <td style="height: 108px; vertical-align: top;">
+                      <span class="fs-8 fw-600 text-heading">1</span>
+                      <div class="mt-2 d-flex flex-column gap-1">
+                        <span class="badge badge-soft-primary text-truncate">Sprint planning</span>
+                      </div>
+                    </td>
+                    <td style="height: 108px; vertical-align: top;">
+                      <span class="fs-8 fw-600 text-heading">2</span>
+                      <div class="mt-2 d-flex flex-column gap-1">
+                        <span class="badge badge-soft-success text-truncate">v2.4 release</span>
+                      </div>
+                    </td>
+                    <td style="height: 108px; vertical-align: top;"><span class="fs-8 fw-600 text-heading">3</span></td>
+                    <td style="height: 108px; vertical-align: top;"><span class="fs-8 fw-600 text-heading">4</span></td>
+                  </tr>
+                  <tr>
+                    <td style="height: 108px; vertical-align: top;">
+                      <span class="fs-8 fw-600 text-heading">5</span>
+                      <div class="mt-2 d-flex flex-column gap-1">
+                        <span class="badge badge-soft-primary text-truncate">Design review</span>
+                        <span class="badge badge-soft-warning text-truncate">Invoice due</span>
+                      </div>
+                    </td>
+                    <td style="height: 108px; vertical-align: top;">
+                      <span class="fs-8 fw-600 text-heading">6</span>
+                      <div class="mt-2 d-flex flex-column gap-1">
+                        <span class="badge badge-soft-primary text-truncate">Horizon Labs call</span>
+                      </div>
+                    </td>
+                    <td style="height: 108px; vertical-align: top;"><span class="fs-8 fw-600 text-heading">7</span></td>
+                    <td style="height: 108px; vertical-align: top;">
+                      <span class="fs-8 fw-600 text-heading">8</span>
+                      <div class="mt-2 d-flex flex-column gap-1">
+                        <span class="badge badge-soft-primary text-truncate">1:1 — Marcus</span>
+                      </div>
+                    </td>
+                    <td style="height: 108px; vertical-align: top;">
+                      <span class="fs-8 fw-600 text-heading">9</span>
+                      <div class="mt-2 d-flex flex-column gap-1">
+                        <span class="badge badge-soft-warning text-truncate">Vertex proposal</span>
+                      </div>
+                    </td>
+                    <td style="height: 108px; vertical-align: top;"><span class="fs-8 fw-600 text-heading">10</span></td>
+                    <td style="height: 108px; vertical-align: top;"><span class="fs-8 fw-600 text-heading">11</span></td>
+                  </tr>
+                  <tr>
+                    <td style="height: 108px; vertical-align: top;">
+                      <span class="fs-8 fw-600 text-heading">12</span>
+                      <div class="mt-2 d-flex flex-column gap-1">
+                        <span class="badge badge-soft-primary text-truncate">Query migration due</span>
+                      </div>
+                    </td>
+                    <td style="height: 108px; vertical-align: top;"><span class="fs-8 fw-600 text-heading">13</span></td>
+                    <td style="height: 108px; vertical-align: top;">
+                      <span class="fs-8 fw-600 text-heading">14</span>
+                      <div class="mt-2 d-flex flex-column gap-1">
+                        <span class="badge badge-soft-success text-truncate">Dunning templates</span>
+                      </div>
+                    </td>
+                    <td style="height: 108px; vertical-align: top;"><span class="fs-8 fw-600 text-heading">15</span></td>
+                    <td style="height: 108px; vertical-align: top;">
+                      <span class="fs-8 fw-600 text-heading">16</span>
+                      <div class="mt-2 d-flex flex-column gap-1">
+                        <span class="badge badge-soft-primary text-truncate">Board meeting</span>
+                      </div>
+                    </td>
+                    <td style="height: 108px; vertical-align: top;"><span class="fs-8 fw-600 text-heading">17</span></td>
+                    <td style="height: 108px; vertical-align: top;"><span class="fs-8 fw-600 text-heading">18</span></td>
+                  </tr>
+                  <tr>
+                    <td style="height: 108px; vertical-align: top;">
+                      <span class="fs-8 fw-600 text-heading">19</span>
+                      <div class="mt-2 d-flex flex-column gap-1">
+                        <span class="badge badge-soft-primary text-truncate">Atlas cutover</span>
+                      </div>
+                    </td>
+                    <td style="height: 108px; vertical-align: top;"><span class="fs-8 fw-600 text-heading">20</span></td>
+                    <td style="height: 108px; vertical-align: top;"><span class="fs-8 fw-600 text-heading">21</span></td>
+                    <td style="height: 108px; vertical-align: top;">
+                      <span class="fs-8 fw-600 text-heading">22</span>
+                      <div class="mt-2 d-flex flex-column gap-1">
+                        <span class="badge badge-soft-warning text-truncate">Mobile sprint end</span>
+                      </div>
+                    </td>
+                    <td style="height: 108px; vertical-align: top;"><span class="fs-8 fw-600 text-heading">23</span></td>
+                    <td style="height: 108px; vertical-align: top;"><span class="fs-8 fw-600 text-heading">24</span></td>
+                    <td style="height: 108px; vertical-align: top;"><span class="fs-8 fw-600 text-heading">25</span></td>
+                  </tr>
+                  <tr>
+                    <td style="height: 108px; vertical-align: top;"><span class="fs-8 fw-600 text-heading">26</span></td>
+                    <td style="height: 108px; vertical-align: top;"><span class="fs-8 fw-600 text-heading">27</span></td>
+                    <td style="height: 108px; vertical-align: top;">
+                      <span class="fs-8 fw-600 text-heading">28</span>
+                      <div class="mt-2 d-flex flex-column gap-1">
+                        <span class="badge badge-soft-success text-truncate">Billing revamp RC</span>
+                      </div>
+                    </td>
+                    <td style="height: 108px; vertical-align: top;"><span class="fs-8 fw-600 text-heading">29</span></td>
+                    <td style="height: 108px; vertical-align: top;">
+                      <span class="fs-8 fw-600 text-heading">30</span>
+                      <div class="mt-2 d-flex flex-column gap-1">
+                        <span class="badge badge-soft-primary text-truncate">Retro &amp; demo</span>
+                      </div>
+                    </td>
+                    <td style="height: 108px; vertical-align: top;"><span class="fs-8 fw-600 text-heading">31</span></td>
+                    <td class="text-muted-2" style="height: 108px; vertical-align: top;">1</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-xl-3 d-flex flex-column gap-3">
+          <div class="card">
+            <div class="card-header">
+              <div>
+                <h2 class="card-title">Today's agenda</h2>
+                <p class="card-subtitle">Friday, October 2</p>
+              </div>
+            </div>
+            <div class="card-body">
+              <ul class="timeline">
+                <li class="timeline__item">
+                  <span class="timeline__dot"></span>
+                  <p class="timeline__title">Design review — components</p>
+                  <p class="timeline__meta">09:00 – 10:00 · Zoom</p>
+                </li>
+                <li class="timeline__item">
+                  <span class="timeline__dot timeline__dot--success"></span>
+                  <p class="timeline__title">v2.4 production release</p>
+                  <p class="timeline__meta">11:30 · Platform team</p>
+                </li>
+                <li class="timeline__item">
+                  <span class="timeline__dot timeline__dot--warning"></span>
+                  <p class="timeline__title">Northstar contract review</p>
+                  <p class="timeline__meta">14:00 – 15:00 · Legal</p>
+                </li>
+                <li class="timeline__item">
+                  <span class="timeline__dot timeline__dot--muted"></span>
+                  <p class="timeline__title">Weekly metrics handoff</p>
+                  <p class="timeline__meta">17:00 · Async</p>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-header">
+              <h2 class="card-title mb-0">Calendars</h2>
+            </div>
+            <div class="card-body d-flex flex-column gap-2">
+              <div class="form-check form-switch">
+                <input class="form-check-input" type="checkbox" id="cal-meetings" checked>
+                <label class="form-check-label" for="cal-meetings">Team meetings</label>
+              </div>
+              <div class="form-check form-switch">
+                <input class="form-check-input" type="checkbox" id="cal-deadlines" checked>
+                <label class="form-check-label" for="cal-deadlines">Deadlines</label>
+              </div>
+              <div class="form-check form-switch">
+                <input class="form-check-input" type="checkbox" id="cal-releases" checked>
+                <label class="form-check-label" for="cal-releases">Release calendar</label>
+              </div>
+              <div class="form-check form-switch">
+                <input class="form-check-input" type="checkbox" id="cal-holidays">
+                <label class="form-check-label" for="cal-holidays">Company holidays</label>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>

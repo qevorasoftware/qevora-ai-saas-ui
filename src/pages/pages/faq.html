@@ -1,0 +1,220 @@
+      <div class="q-page-head">
+        <div>
+          {{BREADCRUMB}}
+          <h1 class="q-page-head__title mt-2">Frequently asked questions</h1>
+          <p class="q-page-head__subtitle">Answers grouped by topic. Still stuck? The help centre is one click away.</p>
+        </div>
+        <div class="d-flex flex-wrap gap-2">
+          <a class="btn btn-white" href="help.html"><i class="bi bi-life-preserver"></i> Help centre</a>
+          <button class="btn btn-primary" data-demo-action="Support form opened — demo interaction only."><i class="bi bi-chat-dots"></i> Contact support</button>
+        </div>
+      </div>
+
+      <div class="row g-3">
+        <div class="col-lg-3">
+          <div class="card sticky-lg">
+            <div class="card-body">
+              <div class="nav flex-column nav-pills" role="tablist" aria-label="FAQ topics">
+                <a class="nav-link active" href="#faq-general" data-bs-toggle="tab" role="tab" aria-selected="true"><i class="bi bi-info-circle me-2"></i> General</a>
+                <a class="nav-link" href="#faq-billing" data-bs-toggle="tab" role="tab" aria-selected="false"><i class="bi bi-credit-card me-2"></i> Billing</a>
+                <a class="nav-link" href="#faq-ai" data-bs-toggle="tab" role="tab" aria-selected="false"><i class="bi bi-stars me-2"></i> AI usage</a>
+                <a class="nav-link" href="#faq-workspace" data-bs-toggle="tab" role="tab" aria-selected="false"><i class="bi bi-people me-2"></i> Workspace</a>
+                <a class="nav-link" href="#faq-security" data-bs-toggle="tab" role="tab" aria-selected="false"><i class="bi bi-shield-lock me-2"></i> Security</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-9">
+          <div class="tab-content">
+            <div class="tab-pane fade show active" id="faq-general" role="tabpanel">
+              <div class="card">
+                <div class="card-body">
+                  <div class="accordion" id="faqGeneral">
+                    <div class="accordion-item">
+                      <h2 class="accordion-header">
+                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#g1" aria-expanded="true" aria-controls="g1">
+                          Is this template connected to a real backend?
+                        </button>
+                      </h2>
+                      <div id="g1" class="accordion-collapse collapse show" data-bs-parent="#faqGeneral">
+                        <div class="accordion-body">
+                          No. Qevora AI SaaS is a front-end Bootstrap 5 template. Forms validate visually, charts use demo data
+                          and AI screens simulate conversations. Connect your own API where you need live data.
+                        </div>
+                      </div>
+                    </div>
+                    <div class="accordion-item">
+                      <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#g2" aria-expanded="false" aria-controls="g2">
+                          Which browsers are supported?
+                        </button>
+                      </h2>
+                      <div id="g2" class="accordion-collapse collapse" data-bs-parent="#faqGeneral">
+                        <div class="accordion-body">
+                          Current versions of Chrome, Firefox, Safari and Edge. The layout is tested from 375px up to 1920px,
+                          in both light and dark mode.
+                        </div>
+                      </div>
+                    </div>
+                    <div class="accordion-item">
+                      <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#g3" aria-expanded="false" aria-controls="g3">
+                          Do I need a build step to use the template?
+                        </button>
+                      </h2>
+                      <div id="g3" class="accordion-collapse collapse" data-bs-parent="#faqGeneral">
+                        <div class="accordion-body">
+                          No. Every page is plain HTML that runs from any static server or the Live Server extension in VS Code.
+                          No npm install is required.
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="tab-pane fade" id="faq-billing" role="tabpanel">
+              <div class="card">
+                <div class="card-body">
+                  <div class="accordion" id="faqBilling">
+                    <div class="accordion-item">
+                      <h2 class="accordion-header">
+                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#b1" aria-expanded="true" aria-controls="b1">
+                          Where do I change currency symbols?
+                        </button>
+                      </h2>
+                      <div id="b1" class="accordion-collapse collapse show" data-bs-parent="#faqBilling">
+                        <div class="accordion-body">
+                          Amounts are plain demo text inside each page. Search for the currency symbol in your editor and replace it,
+                          or format prices from your own API when you connect one.
+                        </div>
+                      </div>
+                    </div>
+                    <div class="accordion-item">
+                      <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#b2" aria-expanded="false" aria-controls="b2">
+                          How do I add a new invoice row?
+                        </button>
+                      </h2>
+                      <div id="b2" class="accordion-collapse collapse" data-bs-parent="#faqBilling">
+                        <div class="accordion-body">
+                          Duplicate an existing <code>&lt;tr&gt;</code> inside the invoice table and update the values. The table
+                          styles come from Bootstrap, so nothing else needs changing.
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="tab-pane fade" id="faq-ai" role="tabpanel">
+              <div class="card">
+                <div class="card-body">
+                  <div class="accordion" id="faqAi">
+                    <div class="accordion-item">
+                      <h2 class="accordion-header">
+                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#a1" aria-expanded="true" aria-controls="a1">
+                          Are any AI API keys included?
+                        </button>
+                      </h2>
+                      <div id="a1" class="accordion-collapse collapse show" data-bs-parent="#faqAi">
+                        <div class="accordion-body">
+                          No keys are included, and none should be committed to the template. AI screens use canned demo replies
+                          written in <code>assets/js/pages/chat.js</code>.
+                        </div>
+                      </div>
+                    </div>
+                    <div class="accordion-item">
+                      <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#a2" aria-expanded="false" aria-controls="a2">
+                          Can I connect a real model provider?
+                        </button>
+                      </h2>
+                      <div id="a2" class="accordion-collapse collapse" data-bs-parent="#faqAi">
+                        <div class="accordion-body">
+                          Yes. The composer already emits a message object; replace the demo reply function with a fetch call to
+                          your own backend proxy so the key never lives in the browser.
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="tab-pane fade" id="faq-workspace" role="tabpanel">
+              <div class="card">
+                <div class="card-body">
+                  <div class="accordion" id="faqWorkspace">
+                    <div class="accordion-item">
+                      <h2 class="accordion-header">
+                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#w1" aria-expanded="true" aria-controls="w1">
+                          How do I change the sidebar links?
+                        </button>
+                      </h2>
+                      <div id="w1" class="accordion-collapse collapse show" data-bs-parent="#faqWorkspace">
+                        <div class="accordion-body">
+                          Edit the navigation markup that each page shares. Active states are applied automatically by
+                          <code>assets/js/app.js</code> based on the current file name.
+                        </div>
+                      </div>
+                    </div>
+                    <div class="accordion-item">
+                      <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#w2" aria-expanded="false" aria-controls="w2">
+                          Can I add my own logo?
+                        </button>
+                      </h2>
+                      <div id="w2" class="accordion-collapse collapse collapsed" data-bs-parent="#faqWorkspace">
+                        <div class="accordion-body">
+                          Replace the files in <code>assets/images/logo/</code> and keep the same file names, or point the
+                          <code>&lt;img&gt;</code> tags at your own artwork.
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="tab-pane fade" id="faq-security" role="tabpanel">
+              <div class="card">
+                <div class="card-body">
+                  <div class="accordion" id="faqSecurity">
+                    <div class="accordion-item">
+                      <h2 class="accordion-header">
+                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#s1" aria-expanded="true" aria-controls="s1">
+                          Does the template store any personal data?
+                        </button>
+                      </h2>
+                      <div id="s1" class="accordion-collapse collapse show" data-bs-parent="#faqSecurity">
+                        <div class="accordion-body">
+                          Only your theme and layout preferences are written to <code>localStorage</code>
+                          (<code>qevora-theme</code>, <code>qevora-direction</code>, <code>qevora-sidebar-compact</code>).
+                          Nothing is transmitted anywhere.
+                        </div>
+                      </div>
+                    </div>
+                    <div class="accordion-item">
+                      <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#s2" aria-expanded="false" aria-controls="s2">
+                          Are third-party scripts loaded from a CDN?
+                        </button>
+                      </h2>
+                      <div id="s2" class="accordion-collapse collapse" data-bs-parent="#faqSecurity">
+                        <div class="accordion-body">
+                          No. Bootstrap, Bootstrap Icons, Chart.js and the Inter font are all bundled locally inside
+                          <code>assets/</code>, so the template works fully offline.
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>

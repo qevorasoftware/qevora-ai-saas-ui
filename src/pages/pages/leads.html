@@ -1,0 +1,191 @@
+      <div class="q-page-head">
+        <div>
+          {{BREADCRUMB}}
+          <h1 class="q-page-head__title mt-2">Leads</h1>
+          <p class="q-page-head__subtitle">Inbound and outbound leads with score, source and owner.</p>
+        </div>
+        <div class="d-flex flex-wrap gap-2">
+          <button class="btn btn-white" data-demo-action="Column settings would open here."><i class="bi bi-sliders"></i> Columns</button>
+          <button class="btn btn-primary" data-demo-action="New lead form opened — demo interaction only."><i class="bi bi-plus-lg"></i> Add lead</button>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="table-toolbar">
+          <div class="search-field" style="max-width: 280px;">
+            <i class="bi bi-search search-field__icon" aria-hidden="true"></i>
+            <label class="visually-hidden" for="lead-search">Search leads</label>
+            <input type="search" class="form-control" id="lead-search" placeholder="Search leads…" data-table-filter="#leads-table">
+          </div>
+          <select class="form-select form-select-sm" style="width: auto;" aria-label="Filter by status">
+            <option>All statuses</option>
+            <option>New</option>
+            <option>Qualified</option>
+            <option>Contacted</option>
+            <option>Lost</option>
+          </select>
+          <select class="form-select form-select-sm" style="width: auto;" aria-label="Filter by source">
+            <option>All sources</option>
+            <option>Inbound</option>
+            <option>Outbound</option>
+            <option>Partner</option>
+            <option>Referral</option>
+          </select>
+          <span class="ms-auto fs-8 text-muted-2">1–8 of 148</span>
+        </div>
+
+        <div class="table-responsive">
+          <table class="table table-hover align-middle" id="leads-table">
+            <thead>
+              <tr>
+                <th scope="col" style="width: 40px;">
+                  <input class="form-check-input" type="checkbox" data-select-all="#leads-table" aria-label="Select all leads">
+                </th>
+                <th scope="col" data-sort="text">Lead <i class="bi bi-arrow-down-up"></i></th>
+                <th scope="col">Company</th>
+                <th scope="col">Source</th>
+                <th scope="col" data-sort="text">Status</th>
+                <th scope="col" data-sort="number" class="text-end">Value <i class="bi bi-arrow-down-up"></i></th>
+                <th scope="col">Owner</th>
+                <th scope="col" class="text-end">Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><input class="form-check-input" type="checkbox" data-row-select aria-label="Select Summit Digital"></td>
+                <td>
+                  <div class="d-flex align-items-center gap-2">
+                    <span class="avatar avatar-sm bg-avatar-1">SD</span>
+                    <span>
+                      <span class="d-block fs-7 fw-500 text-heading">Summit Digital</span>
+                      <span class="d-block fs-8 text-muted-2">hello@summitdigital.io</span>
+                    </span>
+                  </div>
+                </td>
+                <td>Summit Digital</td>
+                <td>Inbound</td>
+                <td><span class="badge badge-soft-success badge-pill">Qualified</span></td>
+                <td class="text-end fw-600 text-heading">$48,000</td>
+                <td><span class="avatar avatar-xs bg-avatar-1" data-bs-toggle="tooltip" title="Ava Reynolds">AR</span></td>
+                <td class="text-end">
+                  <div class="table-actions justify-content-end">
+                    <button class="btn btn-icon btn-sm btn-ghost" aria-label="View lead"><i class="bi bi-eye"></i></button>
+                    <button class="btn btn-icon btn-sm btn-ghost" aria-label="Edit lead"><i class="bi bi-pencil"></i></button>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td><input class="form-check-input" type="checkbox" data-row-select aria-label="Select Beacon Health"></td>
+                <td>
+                  <div class="d-flex align-items-center gap-2">
+                    <span class="avatar avatar-sm bg-avatar-3">BH</span>
+                    <span>
+                      <span class="d-block fs-7 fw-500 text-heading">Beacon Health</span>
+                      <span class="d-block fs-8 text-muted-2">team@beaconhealth.com</span>
+                    </span>
+                  </div>
+                </td>
+                <td>Beacon Health</td>
+                <td>Outbound</td>
+                <td><span class="badge badge-soft-primary badge-pill">Contacted</span></td>
+                <td class="text-end fw-600 text-heading">$22,400</td>
+                <td><span class="avatar avatar-xs bg-avatar-3" data-bs-toggle="tooltip" title="Marcus Chen">MC</span></td>
+                <td class="text-end">
+                  <div class="table-actions justify-content-end">
+                    <button class="btn btn-icon btn-sm btn-ghost" aria-label="View lead"><i class="bi bi-eye"></i></button>
+                    <button class="btn btn-icon btn-sm btn-ghost" aria-label="Edit lead"><i class="bi bi-pencil"></i></button>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td><input class="form-check-input" type="checkbox" data-row-select aria-label="Select Kite Analytics"></td>
+                <td>
+                  <div class="d-flex align-items-center gap-2">
+                    <span class="avatar avatar-sm bg-avatar-6">KA</span>
+                    <span>
+                      <span class="d-block fs-7 fw-500 text-heading">Kite Analytics</span>
+                      <span class="d-block fs-8 text-muted-2">ops@kiteanalytics.io</span>
+                    </span>
+                  </div>
+                </td>
+                <td>Kite Analytics</td>
+                <td>Partner</td>
+                <td><span class="badge badge-soft-warning badge-pill">New</span></td>
+                <td class="text-end fw-600 text-heading">$12,900</td>
+                <td><span class="avatar avatar-xs bg-avatar-6" data-bs-toggle="tooltip" title="Lea Novak">LN</span></td>
+                <td class="text-end">
+                  <div class="table-actions justify-content-end">
+                    <button class="btn btn-icon btn-sm btn-ghost" aria-label="View lead"><i class="bi bi-eye"></i></button>
+                    <button class="btn btn-icon btn-sm btn-ghost" aria-label="Edit lead"><i class="bi bi-pencil"></i></button>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td><input class="form-check-input" type="checkbox" data-row-select aria-label="Select Silverline Group"></td>
+                <td>
+                  <div class="d-flex align-items-center gap-2">
+                    <span class="avatar avatar-sm bg-avatar-4">SG</span>
+                    <span>
+                      <span class="d-block fs-7 fw-500 text-heading">Silverline Group</span>
+                      <span class="d-block fs-8 text-muted-2">contact@silverline.co</span>
+                    </span>
+                  </div>
+                </td>
+                <td>Silverline Group</td>
+                <td>Referral</td>
+                <td><span class="badge badge-soft-success badge-pill">Qualified</span></td>
+                <td class="text-end fw-600 text-heading">$64,000</td>
+                <td><span class="avatar avatar-xs bg-avatar-4" data-bs-toggle="tooltip" title="Daniel Okafor">DO</span></td>
+                <td class="text-end">
+                  <div class="table-actions justify-content-end">
+                    <button class="btn btn-icon btn-sm btn-ghost" aria-label="View lead"><i class="bi bi-eye"></i></button>
+                    <button class="btn btn-icon btn-sm btn-ghost" aria-label="Edit lead"><i class="bi bi-pencil"></i></button>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td><input class="form-check-input" type="checkbox" data-row-select aria-label="Select Lumen Works"></td>
+                <td>
+                  <div class="d-flex align-items-center gap-2">
+                    <span class="avatar avatar-sm bg-avatar-5">LW</span>
+                    <span>
+                      <span class="d-block fs-7 fw-500 text-heading">Lumen Works</span>
+                      <span class="d-block fs-8 text-muted-2">hi@lumenworks.dev</span>
+                    </span>
+                  </div>
+                </td>
+                <td>Lumen Works</td>
+                <td>Inbound</td>
+                <td><span class="badge badge-soft-danger badge-pill">Lost</span></td>
+                <td class="text-end fw-600 text-heading">$8,500</td>
+                <td><span class="avatar avatar-xs bg-avatar-1" data-bs-toggle="tooltip" title="Ava Reynolds">AR</span></td>
+                <td class="text-end">
+                  <div class="table-actions justify-content-end">
+                    <button class="btn btn-icon btn-sm btn-ghost" aria-label="View lead"><i class="bi bi-eye"></i></button>
+                    <button class="btn btn-icon btn-sm btn-ghost" aria-label="Edit lead"><i class="bi bi-pencil"></i></button>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="state-block d-none" data-table-empty>
+            <div class="state-block__icon"><i class="bi bi-search"></i></div>
+            <p class="state-block__title">No leads match your search</p>
+            <p class="state-block__text">Try a different keyword or clear the filters to see all 148 leads.</p>
+            <button class="btn btn-soft-primary" data-demo-action="Filters cleared — demo interaction only.">Clear filters</button>
+          </div>
+        </div>
+
+        <div class="table-footer">
+          <span class="fs-8 text-muted-2">Showing 5 of 148 leads</span>
+          <nav aria-label="Lead pagination">
+            <ul class="pagination pagination-sm mb-0">
+              <li class="page-item disabled"><a class="page-link" href="#" aria-label="Previous"><i class="bi bi-chevron-left"></i></a></li>
+              <li class="page-item active"><a class="page-link" href="#">1</a></li>
+              <li class="page-item"><a class="page-link" href="#">2</a></li>
+              <li class="page-item"><a class="page-link" href="#">3</a></li>
+              <li class="page-item"><a class="page-link" href="#" aria-label="Next"><i class="bi bi-chevron-right"></i></a></li>
+            </ul>
+          </nav>
+        </div>
+      </div>

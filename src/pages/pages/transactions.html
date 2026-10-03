@@ -1,0 +1,146 @@
+      <div class="q-page-head">
+        <div>
+          {{BREADCRUMB}}
+          <h1 class="q-page-head__title mt-2">Transactions</h1>
+          <p class="q-page-head__subtitle">Ledger of charges, refunds and fees with a running balance.</p>
+        </div>
+        <div class="d-flex flex-wrap gap-2">
+          <button class="btn btn-white" data-demo-action="Ledger export queued — demo only."><i class="bi bi-download"></i> Export ledger</button>
+          <button class="btn btn-primary" data-demo-action="Reconciliation started — demo interaction only."><i class="bi bi-arrow-repeat"></i> Reconcile</button>
+        </div>
+      </div>
+
+      <div class="row g-3 q-section">
+        <div class="col-xl-8">
+          <div class="card h-100">
+            <div class="card-header">
+              <div>
+                <h2 class="card-title">Cash movement</h2>
+                <p class="card-subtitle">Charges against refunds and fees</p>
+              </div>
+            </div>
+            <div class="card-body">
+              <div class="chart-holder chart-holder--md">
+                <canvas data-chart="tokens" data-labels="Week 1,Week 2,Week 3,Week 4" data-series="Charges|420,510,468,596;Refunds &amp; fees|38,44,31,52"></canvas>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-xl-4">
+          <div class="card h-100">
+            <div class="card-body d-flex flex-column gap-3">
+              <div>
+                <p class="fs-8 text-muted-2 mb-1">Opening balance</p>
+                <p class="h5 fw-600 text-heading mb-0">$48,120.00</p>
+              </div>
+              <div class="divider-y"></div>
+              <div>
+                <p class="fs-8 text-muted-2 mb-1">Charges</p>
+                <p class="h5 fw-600 text-success mb-0">+$186,400.00</p>
+              </div>
+              <div class="divider-y"></div>
+              <div>
+                <p class="fs-8 text-muted-2 mb-1">Refunds and fees</p>
+                <p class="h5 fw-600 text-danger mb-0">−$3,180.00</p>
+              </div>
+              <div class="divider-y"></div>
+              <div>
+                <p class="fs-8 text-muted-2 mb-1">Closing balance</p>
+                <p class="h4 fw-700 text-heading mb-0">$231,340.00</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="table-toolbar">
+          <div class="search-field" style="max-width: 280px;">
+            <i class="bi bi-search search-field__icon" aria-hidden="true"></i>
+            <label class="visually-hidden" for="txn-search">Search transactions</label>
+            <input type="search" class="form-control" id="txn-search" placeholder="Search transactions…" data-table-filter="#txn-table">
+          </div>
+          <div class="d-flex gap-2 ms-auto align-items-center">
+            <label class="visually-hidden" for="txn-date-from">From date</label>
+            <input type="date" class="form-control form-control-sm" id="txn-date-from" value="2026-10-01">
+            <span class="text-muted-2 fs-8">to</span>
+            <label class="visually-hidden" for="txn-date-to">To date</label>
+            <input type="date" class="form-control form-control-sm" id="txn-date-to" value="2026-10-03">
+          </div>
+        </div>
+
+        <div class="table-responsive">
+          <table class="table table-hover align-middle" id="txn-table">
+            <thead>
+              <tr>
+                <th scope="col">Transaction</th>
+                <th scope="col">Customer</th>
+                <th scope="col">Type</th>
+                <th scope="col" class="text-end">Amount</th>
+                <th scope="col" class="text-end">Fee</th>
+                <th scope="col" class="text-end">Balance</th>
+                <th scope="col">Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><span class="fw-500 text-heading">#TXN-90412</span><span class="d-block fs-8 text-muted-2">Oct 2, 2026 · 09:24</span></td>
+                <td>Northstar Labs</td>
+                <td><span class="badge badge-soft-success badge-pill">Charge</span></td>
+                <td class="text-end fw-600 text-heading">$12,400.00</td>
+                <td class="text-end text-muted-2">$359.60</td>
+                <td class="text-end">$231,340.00</td>
+                <td><span class="badge badge-soft-neutral badge-pill">Settled</span></td>
+              </tr>
+              <tr>
+                <td><span class="fw-500 text-heading">#TXN-90411</span><span class="d-block fs-8 text-muted-2">Oct 2, 2026 · 08:11</span></td>
+                <td>Vertex Labs</td>
+                <td><span class="badge badge-soft-warning badge-pill">Charge</span></td>
+                <td class="text-end fw-600 text-heading">$1,250.00</td>
+                <td class="text-end text-muted-2">$36.25</td>
+                <td class="text-end">$218,940.00</td>
+                <td><span class="badge badge-soft-warning badge-pill">Pending</span></td>
+              </tr>
+              <tr>
+                <td><span class="fw-500 text-heading">#TXN-90409</span><span class="d-block fs-8 text-muted-2">Oct 1, 2026 · 15:02</span></td>
+                <td>Orbit Systems</td>
+                <td><span class="badge badge-soft-info badge-pill">Refund</span></td>
+                <td class="text-end fw-600 text-danger">−$1,200.00</td>
+                <td class="text-end text-muted-2">$0.00</td>
+                <td class="text-end">$217,690.00</td>
+                <td><span class="badge badge-soft-neutral badge-pill">Settled</span></td>
+              </tr>
+              <tr>
+                <td><span class="fw-500 text-heading">#TXN-90407</span><span class="d-block fs-8 text-muted-2">Oct 1, 2026 · 10:48</span></td>
+                <td>Horizon Labs</td>
+                <td><span class="badge badge-soft-success badge-pill">Charge</span></td>
+                <td class="text-end fw-600 text-heading">$9,640.00</td>
+                <td class="text-end text-muted-2">$279.56</td>
+                <td class="text-end">$218,890.00</td>
+                <td><span class="badge badge-soft-neutral badge-pill">Settled</span></td>
+              </tr>
+              <tr>
+                <td><span class="fw-500 text-heading">#TXN-90404</span><span class="d-block fs-8 text-muted-2">Sep 30, 2026 · 16:20</span></td>
+                <td>Acme Inc.</td>
+                <td><span class="badge badge-soft-danger badge-pill">Fee</span></td>
+                <td class="text-end fw-600 text-danger">−$29.00</td>
+                <td class="text-end text-muted-2">—</td>
+                <td class="text-end">$209,250.00</td>
+                <td><span class="badge badge-soft-neutral badge-pill">Settled</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="table-footer">
+          <span class="fs-8 text-muted-2">Showing 5 of 2,146 transactions</span>
+          <nav aria-label="Transaction pagination">
+            <ul class="pagination pagination-sm mb-0">
+              <li class="page-item disabled"><a class="page-link" href="#" aria-label="Previous"><i class="bi bi-chevron-left"></i></a></li>
+              <li class="page-item active"><a class="page-link" href="#">1</a></li>
+              <li class="page-item"><a class="page-link" href="#">2</a></li>
+              <li class="page-item"><a class="page-link" href="#" aria-label="Next"><i class="bi bi-chevron-right"></i></a></li>
+            </ul>
+          </nav>
+        </div>
+      </div>

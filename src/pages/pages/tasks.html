@@ -1,0 +1,165 @@
+      <div class="q-page-head">
+        <div>
+          {{BREADCRUMB}}
+          <h1 class="q-page-head__title mt-2">Tasks</h1>
+          <p class="q-page-head__subtitle">Everything assigned across projects, with priority and due dates.</p>
+        </div>
+        <div class="d-flex flex-wrap gap-2">
+          <a class="btn btn-white" href="kanban.html"><i class="bi bi-kanban"></i> Board view</a>
+          <button class="btn btn-primary" data-demo-action="Task created — demo interaction only."><i class="bi bi-plus-lg"></i> New task</button>
+        </div>
+      </div>
+
+      <div class="row g-3 q-section">
+        <div class="col-sm-6 col-xl-3">
+          <div class="kpi-tile">
+            <div class="kpi-tile__body">
+              <p class="kpi-tile__label mb-0">Open tasks</p>
+              <p class="kpi-tile__value" data-counter="48">48</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-6 col-xl-3">
+          <div class="kpi-tile">
+            <div class="kpi-tile__body">
+              <p class="kpi-tile__label mb-0">Due this week</p>
+              <p class="kpi-tile__value">12</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-6 col-xl-3">
+          <div class="kpi-tile">
+            <div class="kpi-tile__body">
+              <p class="kpi-tile__label mb-0">Overdue</p>
+              <p class="kpi-tile__value text-danger">3</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-6 col-xl-3">
+          <div class="kpi-tile">
+            <div class="kpi-tile__body">
+              <p class="kpi-tile__label mb-0">Completed this sprint</p>
+              <p class="kpi-tile__value">31</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="table-toolbar">
+          <div class="search-field" style="max-width: 280px;">
+            <i class="bi bi-search search-field__icon" aria-hidden="true"></i>
+            <label class="visually-hidden" for="task-search">Search tasks</label>
+            <input type="search" class="form-control" id="task-search" placeholder="Search tasks…" data-table-filter="#tasks-table">
+          </div>
+          <div class="nav nav-pills" role="tablist">
+            <button class="nav-link active" type="button">All</button>
+            <button class="nav-link" type="button">Mine</button>
+            <button class="nav-link" type="button">Overdue</button>
+          </div>
+          <span class="ms-auto fs-8 text-muted-2">6 of 48 tasks</span>
+        </div>
+
+        <div class="table-responsive">
+          <table class="table table-hover align-middle" id="tasks-table">
+            <thead>
+              <tr>
+                <th scope="col" style="width: 40px;"><input class="form-check-input" type="checkbox" data-select-all="#tasks-table" aria-label="Select all tasks"></th>
+                <th scope="col">Task</th>
+                <th scope="col">Project</th>
+                <th scope="col">Assignee</th>
+                <th scope="col" data-sort="text">Priority</th>
+                <th scope="col" data-sort="text">Status</th>
+                <th scope="col">Due</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><input class="form-check-input" type="checkbox" data-row-select aria-label="Select task"></td>
+                <td>
+                  <span class="d-block fs-7 fw-500 text-heading">Migrate reporting queries</span>
+                  <span class="d-block fs-8 text-muted-2">Rewrite 42 queries for the shared warehouse</span>
+                </td>
+                <td><a href="project-details.html">Atlas migration</a></td>
+                <td><span class="avatar avatar-xs bg-avatar-3" data-bs-toggle="tooltip" title="Marcus Chen">MC</span></td>
+                <td><span class="badge badge-soft-danger badge-pill">High</span></td>
+                <td><span class="badge badge-soft-primary badge-pill">In progress</span></td>
+                <td class="text-muted-2">Oct 12</td>
+              </tr>
+              <tr>
+                <td><input class="form-check-input" type="checkbox" data-row-select aria-label="Select task"></td>
+                <td>
+                  <span class="d-block fs-7 fw-500 text-heading">Assistant prompt library</span>
+                  <span class="d-block fs-8 text-muted-2">Curate 30 reusable workspace prompts</span>
+                </td>
+                <td><a href="project-details.html">Nova assistant</a></td>
+                <td><span class="avatar avatar-xs bg-avatar-6" data-bs-toggle="tooltip" title="Lea Novak">LN</span></td>
+                <td><span class="badge badge-soft-warning badge-pill">Medium</span></td>
+                <td><span class="badge badge-soft-neutral badge-pill">To do</span></td>
+                <td class="text-muted-2">Oct 16</td>
+              </tr>
+              <tr>
+                <td><input class="form-check-input" type="checkbox" data-row-select aria-label="Select task"></td>
+                <td>
+                  <span class="d-block fs-7 fw-500 text-heading">Dunning email templates</span>
+                  <span class="d-block fs-8 text-muted-2">Three-step recovery sequence</span>
+                </td>
+                <td><a href="project-details.html">Billing revamp</a></td>
+                <td><span class="avatar avatar-xs bg-avatar-1" data-bs-toggle="tooltip" title="Ava Reynolds">AR</span></td>
+                <td><span class="badge badge-soft-danger badge-pill">High</span></td>
+                <td><span class="badge badge-soft-warning badge-pill">In review</span></td>
+                <td class="text-muted-2">Oct 14</td>
+              </tr>
+              <tr>
+                <td><input class="form-check-input" type="checkbox" data-row-select aria-label="Select task"></td>
+                <td>
+                  <span class="d-block fs-7 fw-500 text-heading">Offline sync conflict handling</span>
+                  <span class="d-block fs-8 text-muted-2">Last-write-wins with manual merge screen</span>
+                </td>
+                <td><a href="project-details.html">Mobile app v3</a></td>
+                <td><span class="avatar avatar-xs bg-avatar-4" data-bs-toggle="tooltip" title="Daniel Okafor">DO</span></td>
+                <td><span class="badge badge-soft-warning badge-pill">Medium</span></td>
+                <td><span class="badge badge-soft-primary badge-pill">In progress</span></td>
+                <td class="text-muted-2">Oct 22</td>
+              </tr>
+              <tr>
+                <td><input class="form-check-input" type="checkbox" data-row-select aria-label="Select task"></td>
+                <td>
+                  <span class="d-block fs-7 fw-500 text-heading">Vendor risk questionnaire</span>
+                  <span class="d-block fs-8 text-muted-2">Collect evidence from 14 vendors</span>
+                </td>
+                <td><a href="project-details.html">SOC 2</a></td>
+                <td><span class="avatar avatar-xs bg-avatar-5" data-bs-toggle="tooltip" title="Yuki Tanaka">YT</span></td>
+                <td><span class="badge badge-soft-neutral badge-pill">Low</span></td>
+                <td><span class="badge badge-soft-neutral badge-pill">To do</span></td>
+                <td class="text-danger">Oct 04</td>
+              </tr>
+              <tr>
+                <td><input class="form-check-input" type="checkbox" data-row-select aria-label="Select task"></td>
+                <td>
+                  <span class="d-block fs-7 fw-500 text-heading">Update runbooks and alerts</span>
+                  <span class="d-block fs-8 text-muted-2">On-call documentation refresh</span>
+                </td>
+                <td><a href="project-details.html">Atlas migration</a></td>
+                <td><span class="avatar avatar-xs bg-avatar-1" data-bs-toggle="tooltip" title="Ava Reynolds">AR</span></td>
+                <td><span class="badge badge-soft-neutral badge-pill">Low</span></td>
+                <td><span class="badge badge-soft-success badge-pill">Done</span></td>
+                <td class="text-muted-2">Sep 30</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="table-footer">
+          <span class="fs-8 text-muted-2">Showing 6 of 48 tasks</span>
+          <nav aria-label="Task pagination">
+            <ul class="pagination pagination-sm mb-0">
+              <li class="page-item disabled"><a class="page-link" href="#" aria-label="Previous"><i class="bi bi-chevron-left"></i></a></li>
+              <li class="page-item active"><a class="page-link" href="#">1</a></li>
+              <li class="page-item"><a class="page-link" href="#">2</a></li>
+              <li class="page-item"><a class="page-link" href="#">3</a></li>
+              <li class="page-item"><a class="page-link" href="#" aria-label="Next"><i class="bi bi-chevron-right"></i></a></li>
+            </ul>
+          </nav>
+        </div>
+      </div>

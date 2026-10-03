@@ -1,0 +1,122 @@
+      <div class="q-page-head">
+        <div>
+          {{BREADCRUMB}}
+          <h1 class="q-page-head__title mt-2">Timeline &amp; activity</h1>
+          <p class="q-page-head__subtitle">Two related patterns: a vertical timeline for milestones and a compact activity feed for recent events.</p>
+        </div>
+      </div>
+
+      <div class="demo-block" data-demo>
+        <div class="demo-block__head">
+          <div>
+            <h2 class="demo-block__title">Vertical timeline</h2>
+            <p class="demo-block__desc">Used on customer, project and invoice detail pages. Dot colours map to the event type and the icon or text carries the meaning.</p>
+          </div>
+        </div>
+        <div class="demo-block__tabs">
+          <button class="demo-tab is-active" data-demo-tab="preview" aria-selected="true">Preview</button>
+          <button class="demo-tab" data-demo-tab="html" aria-selected="false">HTML</button>
+        </div>
+        <div class="demo-block__pane is-active" data-demo-pane="preview">
+          <div class="demo-preview">
+            <ul class="timeline mb-0">
+              <li class="timeline__item">
+                <span class="timeline__dot timeline__dot--success"></span>
+                <p class="timeline__title">Invoice INV-2026-0184 paid</p>
+                <p class="timeline__meta">Northstar Labs · $12,400 · 2 hours ago</p>
+                <p class="timeline__text">Payment settled from the saved corporate card ending in 4242.</p>
+              </li>
+              <li class="timeline__item">
+                <span class="timeline__dot"></span>
+                <p class="timeline__title">Seats increased from 120 to 142</p>
+                <p class="timeline__meta">Ava Reynolds · 3 days ago</p>
+              </li>
+              <li class="timeline__item">
+                <span class="timeline__dot timeline__dot--warning"></span>
+                <p class="timeline__title">AI quota at 82%</p>
+                <p class="timeline__meta">Automated alert · 5 days ago</p>
+              </li>
+              <li class="timeline__item">
+                <span class="timeline__dot timeline__dot--muted"></span>
+                <p class="timeline__title">Support ticket #4821 resolved</p>
+                <p class="timeline__meta">Closed in 4h 12m · Sep 21, 2026</p>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="demo-block__pane" data-demo-pane="html">
+          <div class="demo-code-wrap">
+            <button class="copy-btn" data-copy-target="#timelineCode"><i class="bi bi-clipboard"></i> Copy HTML</button>
+            <pre class="demo-code"><code id="timelineCode">&lt;ul class="timeline"&gt;
+  &lt;li class="timeline__item"&gt;
+    &lt;span class="timeline__dot timeline__dot--success"&gt;&lt;/span&gt;
+    &lt;p class="timeline__title"&gt;Invoice INV-2026-0184 paid&lt;/p&gt;
+    &lt;p class="timeline__meta"&gt;Northstar Labs · $12,400 · 2 hours ago&lt;/p&gt;
+    &lt;p class="timeline__text"&gt;Payment settled from the saved corporate card.&lt;/p&gt;
+  &lt;/li&gt;
+
+  &lt;li class="timeline__item"&gt;
+    &lt;span class="timeline__dot"&gt;&lt;/span&gt;
+    &lt;p class="timeline__title"&gt;Seats increased from 120 to 142&lt;/p&gt;
+    &lt;p class="timeline__meta"&gt;Ava Reynolds · 3 days ago&lt;/p&gt;
+  &lt;/li&gt;
+
+  &lt;!-- Dot variants: default, --success, --warning, --danger, --muted --&gt;
+&lt;/ul&gt;</code></pre>
+          </div>
+        </div>
+      </div>
+
+      <div class="demo-block" data-demo>
+        <div class="demo-block__head">
+          <div>
+            <h2 class="demo-block__title">Activity feed</h2>
+            <p class="demo-block__desc">Denser than a timeline: one row per event with an avatar, a sentence and a timestamp. Used in dashboard sidebars and AI history summaries.</p>
+          </div>
+        </div>
+        <div class="demo-block__tabs">
+          <button class="demo-tab is-active" data-demo-tab="preview" aria-selected="true">Preview</button>
+          <button class="demo-tab" data-demo-tab="html" aria-selected="false">HTML</button>
+        </div>
+        <div class="demo-block__pane is-active" data-demo-pane="preview">
+          <div class="demo-preview">
+            <ul class="activity mb-0">
+              <li class="activity__item">
+                <span class="avatar avatar-sm bg-avatar-1"><i class="bi bi-stars"></i></span>
+                <div class="activity__body">
+                  <p class="activity__text">Content generation — <strong>Nova-4 Turbo</strong></p>
+                  <p class="activity__time">1,240 tokens · 32s ago</p>
+                </div>
+              </li>
+              <li class="activity__item">
+                <span class="avatar avatar-sm bg-avatar-3">MC</span>
+                <div class="activity__body">
+                  <p class="activity__text"><strong>Marcus Chen</strong> completed <strong>Load-test the new cluster</strong></p>
+                  <p class="activity__time">18 minutes ago</p>
+                </div>
+              </li>
+              <li class="activity__item">
+                <span class="avatar avatar-sm bg-avatar-6"><i class="bi bi-receipt"></i></span>
+                <div class="activity__body">
+                  <p class="activity__text">Invoice <strong>INV-2026-0184</strong> paid by Northstar Labs</p>
+                  <p class="activity__time">2 hours ago</p>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="demo-block__pane" data-demo-pane="html">
+          <div class="demo-code-wrap">
+            <button class="copy-btn" data-copy-target="#activityCode"><i class="bi bi-clipboard"></i> Copy HTML</button>
+            <pre class="demo-code"><code id="activityCode">&lt;ul class="activity"&gt;
+  &lt;li class="activity__item"&gt;
+    &lt;span class="avatar avatar-sm bg-avatar-1"&gt;&lt;i class="bi bi-stars"&gt;&lt;/i&gt;&lt;/span&gt;
+    &lt;div class="activity__body"&gt;
+      &lt;p class="activity__text"&gt;Content generation — &lt;strong&gt;Nova-4 Turbo&lt;/strong&gt;&lt;/p&gt;
+      &lt;p class="activity__time"&gt;1,240 tokens · 32s ago&lt;/p&gt;
+    &lt;/div&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;</code></pre>
+          </div>
+        </div>
+      </div>

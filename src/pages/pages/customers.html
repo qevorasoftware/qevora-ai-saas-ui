@@ -1,0 +1,194 @@
+      <div class="q-page-head">
+        <div>
+          {{BREADCRUMB}}
+          <h1 class="q-page-head__title mt-2">Customers</h1>
+          <p class="q-page-head__subtitle">Every account in the workspace with plan, health and lifetime value.</p>
+        </div>
+        <div class="d-flex flex-wrap gap-2">
+          <button class="btn btn-white" data-demo-action="CSV export queued — demo interaction only."><i class="bi bi-download"></i> Export</button>
+          <button class="btn btn-primary" data-demo-action="New customer form opened — demo interaction only."><i class="bi bi-person-plus"></i> Add customer</button>
+        </div>
+      </div>
+
+      <div class="row g-3 q-section">
+        <div class="col-sm-6 col-xl-3">
+          <div class="kpi-tile">
+            <span class="card-stat__icon bg-primary-soft text-primary-2"><i class="bi bi-buildings"></i></span>
+            <div class="kpi-tile__body">
+              <p class="kpi-tile__label mb-0">Total customers</p>
+              <p class="kpi-tile__value" data-counter="1846">1,846</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-6 col-xl-3">
+          <div class="kpi-tile">
+            <span class="card-stat__icon bg-success-soft text-success"><i class="bi bi-currency-dollar"></i></span>
+            <div class="kpi-tile__body">
+              <p class="kpi-tile__label mb-0">Avg. lifetime value</p>
+              <p class="kpi-tile__value" data-counter="8420" data-prefix="$">$8,420</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-6 col-xl-3">
+          <div class="kpi-tile">
+            <span class="card-stat__icon bg-warning-soft text-warning"><i class="bi bi-arrow-repeat"></i></span>
+            <div class="kpi-tile__body">
+              <p class="kpi-tile__label mb-0">Churn rate</p>
+              <p class="kpi-tile__value">1.8%</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-6 col-xl-3">
+          <div class="kpi-tile">
+            <span class="card-stat__icon bg-info-soft text-info"><i class="bi bi-emoji-smile"></i></span>
+            <div class="kpi-tile__body">
+              <p class="kpi-tile__label mb-0">Health score</p>
+              <p class="kpi-tile__value">92<span class="fs-5 text-muted-2">/100</span></p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card q-section">
+        <div class="card-header">
+          <div>
+            <h2 class="card-title">Customer directory</h2>
+            <p class="card-subtitle">Sorted by lifetime value</p>
+          </div>
+          <div class="d-flex gap-2">
+            <button class="btn btn-icon btn-sm btn-white" aria-label="Grid view"><i class="bi bi-grid"></i></button>
+            <button class="btn btn-icon btn-sm btn-primary" aria-label="Table view"><i class="bi bi-list-ul"></i></button>
+          </div>
+        </div>
+
+        <div class="table-toolbar">
+          <div class="search-field" style="max-width: 280px;">
+            <i class="bi bi-search search-field__icon" aria-hidden="true"></i>
+            <label class="visually-hidden" for="customer-search">Search customers</label>
+            <input type="search" class="form-control" id="customer-search" placeholder="Search customers…" data-table-filter="#customers-table">
+          </div>
+          <select class="form-select form-select-sm" style="width: auto;" aria-label="Filter by plan">
+            <option>All plans</option>
+            <option>Scale</option>
+            <option>Growth</option>
+            <option>Starter</option>
+          </select>
+        </div>
+
+        <div class="table-responsive">
+          <table class="table table-hover align-middle" id="customers-table">
+            <thead>
+              <tr>
+                <th scope="col">Customer</th>
+                <th scope="col">Plan</th>
+                <th scope="col">Seats</th>
+                <th scope="col" class="text-end" data-sort="number">Lifetime value <i class="bi bi-arrow-down-up"></i></th>
+                <th scope="col">Health</th>
+                <th scope="col">Renewal</th>
+                <th scope="col" class="text-end">Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  <div class="d-flex align-items-center gap-2">
+                    <span class="avatar avatar-sm bg-avatar-1">NL</span>
+                    <span>
+                      <a class="d-block fs-7 fw-500 text-heading" href="customer-details.html">Northstar Labs</a>
+                      <span class="d-block fs-8 text-muted-2">northstarlabs.com</span>
+                    </span>
+                  </div>
+                </td>
+                <td><span class="badge badge-soft-primary badge-pill">Scale</span></td>
+                <td>142</td>
+                <td class="text-end fw-600 text-heading">$248,400</td>
+                <td><div class="progress progress-sm" style="width: 88px;"><div class="progress-bar bg-success" style="width: 92%"></div></div></td>
+                <td class="text-muted-2">Mar 12, 2027</td>
+                <td class="text-end"><a class="btn btn-icon btn-sm btn-ghost" href="customer-details.html" aria-label="Open Northstar Labs"><i class="bi bi-arrow-right"></i></a></td>
+              </tr>
+              <tr>
+                <td>
+                  <div class="d-flex align-items-center gap-2">
+                    <span class="avatar avatar-sm bg-avatar-2">VL</span>
+                    <span>
+                      <a class="d-block fs-7 fw-500 text-heading" href="customer-details.html">Vertex Labs</a>
+                      <span class="d-block fs-8 text-muted-2">vertexlabs.io</span>
+                    </span>
+                  </div>
+                </td>
+                <td><span class="badge badge-soft-info badge-pill">Growth</span></td>
+                <td>64</td>
+                <td class="text-end fw-600 text-heading">$148,200</td>
+                <td><div class="progress progress-sm" style="width: 88px;"><div class="progress-bar bg-success" style="width: 78%"></div></div></td>
+                <td class="text-muted-2">Jan 08, 2027</td>
+                <td class="text-end"><a class="btn btn-icon btn-sm btn-ghost" href="customer-details.html" aria-label="Open Vertex Labs"><i class="bi bi-arrow-right"></i></a></td>
+              </tr>
+              <tr>
+                <td>
+                  <div class="d-flex align-items-center gap-2">
+                    <span class="avatar avatar-sm bg-avatar-3">AI</span>
+                    <span>
+                      <a class="d-block fs-7 fw-500 text-heading" href="customer-details.html">Acme Inc.</a>
+                      <span class="d-block fs-8 text-muted-2">acme.com</span>
+                    </span>
+                  </div>
+                </td>
+                <td><span class="badge badge-soft-neutral badge-pill">Starter</span></td>
+                <td>18</td>
+                <td class="text-end fw-600 text-heading">$32,900</td>
+                <td><div class="progress progress-sm" style="width: 88px;"><div class="progress-bar bg-warning" style="width: 54%"></div></div></td>
+                <td class="text-muted-2">Nov 30, 2026</td>
+                <td class="text-end"><a class="btn btn-icon btn-sm btn-ghost" href="customer-details.html" aria-label="Open Acme Inc."><i class="bi bi-arrow-right"></i></a></td>
+              </tr>
+              <tr>
+                <td>
+                  <div class="d-flex align-items-center gap-2">
+                    <span class="avatar avatar-sm bg-avatar-4">OS</span>
+                    <span>
+                      <a class="d-block fs-7 fw-500 text-heading" href="customer-details.html">Orbit Systems</a>
+                      <span class="d-block fs-8 text-muted-2">orbitsystems.dev</span>
+                    </span>
+                  </div>
+                </td>
+                <td><span class="badge badge-soft-primary badge-pill">Scale</span></td>
+                <td>210</td>
+                <td class="text-end fw-600 text-heading">$364,800</td>
+                <td><div class="progress progress-sm" style="width: 88px;"><div class="progress-bar bg-success" style="width: 96%"></div></div></td>
+                <td class="text-muted-2">Jun 04, 2027</td>
+                <td class="text-end"><a class="btn btn-icon btn-sm btn-ghost" href="customer-details.html" aria-label="Open Orbit Systems"><i class="bi bi-arrow-right"></i></a></td>
+              </tr>
+              <tr>
+                <td>
+                  <div class="d-flex align-items-center gap-2">
+                    <span class="avatar avatar-sm bg-avatar-5">HL</span>
+                    <span>
+                      <a class="d-block fs-7 fw-500 text-heading" href="customer-details.html">Horizon Labs</a>
+                      <span class="d-block fs-8 text-muted-2">horizonlabs.ai</span>
+                    </span>
+                  </div>
+                </td>
+                <td><span class="badge badge-soft-info badge-pill">Growth</span></td>
+                <td>48</td>
+                <td class="text-end fw-600 text-heading">$96,000</td>
+                <td><div class="progress progress-sm" style="width: 88px;"><div class="progress-bar bg-danger" style="width: 34%"></div></div></td>
+                <td class="text-muted-2">Dec 19, 2026</td>
+                <td class="text-end"><a class="btn btn-icon btn-sm btn-ghost" href="customer-details.html" aria-label="Open Horizon Labs"><i class="bi bi-arrow-right"></i></a></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="table-footer">
+          <span class="fs-8 text-muted-2">Showing 5 of 1,846 customers</span>
+          <nav aria-label="Customer pagination">
+            <ul class="pagination pagination-sm mb-0">
+              <li class="page-item disabled"><a class="page-link" href="#" aria-label="Previous"><i class="bi bi-chevron-left"></i></a></li>
+              <li class="page-item active"><a class="page-link" href="#">1</a></li>
+              <li class="page-item"><a class="page-link" href="#">2</a></li>
+              <li class="page-item"><a class="page-link" href="#">…</a></li>
+              <li class="page-item"><a class="page-link" href="#">74</a></li>
+              <li class="page-item"><a class="page-link" href="#" aria-label="Next"><i class="bi bi-chevron-right"></i></a></li>
+            </ul>
+          </nav>
+        </div>
+      </div>

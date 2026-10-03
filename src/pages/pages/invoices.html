@@ -1,0 +1,167 @@
+      <div class="q-page-head">
+        <div>
+          {{BREADCRUMB}}
+          <h1 class="q-page-head__title mt-2">Invoices</h1>
+          <p class="q-page-head__subtitle">Issued invoices with payment state, totals and reminders.</p>
+        </div>
+        <div class="d-flex flex-wrap gap-2">
+          <button class="btn btn-white" data-demo-action="Reminder emails queued — demo only."><i class="bi bi-envelope"></i> Send reminders</button>
+          <button class="btn btn-primary" data-demo-action="New invoice form opened — demo interaction only."><i class="bi bi-plus-lg"></i> New invoice</button>
+        </div>
+      </div>
+
+      <div class="row g-3 q-section">
+        <div class="col-sm-6 col-xl-3">
+          <div class="kpi-tile">
+            <div class="kpi-tile__body">
+              <p class="kpi-tile__label mb-0">Paid this month</p>
+              <p class="kpi-tile__value" data-counter="186400" data-prefix="$">$186,400</p>
+            </div>
+            <span class="trend trend-up"><i class="bi bi-arrow-up-short"></i> 9%</span>
+          </div>
+        </div>
+        <div class="col-sm-6 col-xl-3">
+          <div class="kpi-tile">
+            <div class="kpi-tile__body">
+              <p class="kpi-tile__label mb-0">Outstanding</p>
+              <p class="kpi-tile__value">$42,180</p>
+            </div>
+            <span class="trend trend-flat"><i class="bi bi-dash-lg"></i> steady</span>
+          </div>
+        </div>
+        <div class="col-sm-6 col-xl-3">
+          <div class="kpi-tile">
+            <div class="kpi-tile__body">
+              <p class="kpi-tile__label mb-0">Overdue</p>
+              <p class="kpi-tile__value text-danger">$8,600</p>
+            </div>
+            <span class="trend trend-down"><i class="bi bi-arrow-down-short"></i> 2 invoices</span>
+          </div>
+        </div>
+        <div class="col-sm-6 col-xl-3">
+          <div class="kpi-tile">
+            <div class="kpi-tile__body">
+              <p class="kpi-tile__label mb-0">Avg. days to pay</p>
+              <p class="kpi-tile__value">14</p>
+            </div>
+            <span class="trend trend-up"><i class="bi bi-arrow-up-short"></i> 2 days faster</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="table-toolbar">
+          <div class="search-field" style="max-width: 280px;">
+            <i class="bi bi-search search-field__icon" aria-hidden="true"></i>
+            <label class="visually-hidden" for="invoice-search">Search invoices</label>
+            <input type="search" class="form-control" id="invoice-search" placeholder="Search invoices…" data-table-filter="#invoices-table">
+          </div>
+          <div class="nav nav-pills" role="tablist">
+            <button class="nav-link active" type="button">All</button>
+            <button class="nav-link" type="button">Paid</button>
+            <button class="nav-link" type="button">Pending</button>
+            <button class="nav-link" type="button">Overdue</button>
+          </div>
+        </div>
+
+        <div class="table-responsive">
+          <table class="table table-hover align-middle" id="invoices-table">
+            <thead>
+              <tr>
+                <th scope="col">Invoice</th>
+                <th scope="col">Customer</th>
+                <th scope="col">Issued</th>
+                <th scope="col">Due</th>
+                <th scope="col" data-sort="number" class="text-end">Amount <i class="bi bi-arrow-down-up"></i></th>
+                <th scope="col">Status</th>
+                <th scope="col" class="text-end">Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><a class="fw-500 text-heading" href="invoice-details.html">INV-2026-0184</a></td>
+                <td>Northstar Labs</td>
+                <td class="text-muted-2">Sep 28, 2026</td>
+                <td class="text-muted-2">Oct 28, 2026</td>
+                <td class="text-end fw-600 text-heading">$12,400.00</td>
+                <td><span class="badge badge-soft-success badge-pill">Paid</span></td>
+                <td class="text-end">
+                  <div class="table-actions justify-content-end">
+                    <a class="btn btn-icon btn-sm btn-ghost" href="invoice-details.html" aria-label="View invoice INV-2026-0184"><i class="bi bi-eye"></i></a>
+                    <button class="btn btn-icon btn-sm btn-ghost" aria-label="Download invoice INV-2026-0184" data-demo-action="Invoice PDF download started — demo only."><i class="bi bi-download"></i></button>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td><a class="fw-500 text-heading" href="invoice-details.html">INV-2026-0186</a></td>
+                <td>Vertex Labs</td>
+                <td class="text-muted-2">Oct 1, 2026</td>
+                <td class="text-muted-2">Oct 31, 2026</td>
+                <td class="text-end fw-600 text-heading">$1,250.00</td>
+                <td><span class="badge badge-soft-warning badge-pill">Pending</span></td>
+                <td class="text-end">
+                  <div class="table-actions justify-content-end">
+                    <a class="btn btn-icon btn-sm btn-ghost" href="invoice-details.html" aria-label="View invoice INV-2026-0186"><i class="bi bi-eye"></i></a>
+                    <button class="btn btn-icon btn-sm btn-ghost" aria-label="Download invoice INV-2026-0186" data-demo-action="Invoice PDF download started — demo only."><i class="bi bi-download"></i></button>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td><a class="fw-500 text-heading" href="invoice-details.html">INV-2026-0191</a></td>
+                <td>Orbit Systems</td>
+                <td class="text-muted-2">Sep 12, 2026</td>
+                <td class="text-danger">Oct 12, 2026</td>
+                <td class="text-end fw-600 text-heading">$8,600.00</td>
+                <td><span class="badge badge-soft-danger badge-pill">Overdue</span></td>
+                <td class="text-end">
+                  <div class="table-actions justify-content-end">
+                    <a class="btn btn-icon btn-sm btn-ghost" href="invoice-details.html" aria-label="View invoice INV-2026-0191"><i class="bi bi-eye"></i></a>
+                    <button class="btn btn-icon btn-sm btn-ghost" aria-label="Download invoice INV-2026-0191" data-demo-action="Invoice PDF download started — demo only."><i class="bi bi-download"></i></button>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td><a class="fw-500 text-heading" href="invoice-details.html">INV-2026-0179</a></td>
+                <td>Horizon Labs</td>
+                <td class="text-muted-2">Sep 28, 2026</td>
+                <td class="text-muted-2">Oct 28, 2026</td>
+                <td class="text-end fw-600 text-heading">$9,640.00</td>
+                <td><span class="badge badge-soft-success badge-pill">Paid</span></td>
+                <td class="text-end">
+                  <div class="table-actions justify-content-end">
+                    <a class="btn btn-icon btn-sm btn-ghost" href="invoice-details.html" aria-label="View invoice INV-2026-0179"><i class="bi bi-eye"></i></a>
+                    <button class="btn btn-icon btn-sm btn-ghost" aria-label="Download invoice INV-2026-0179" data-demo-action="Invoice PDF download started — demo only."><i class="bi bi-download"></i></button>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td><a class="fw-500 text-heading" href="invoice-details.html">INV-2026-0172</a></td>
+                <td>Acme Inc.</td>
+                <td class="text-muted-2">Sep 20, 2026</td>
+                <td class="text-muted-2">Oct 20, 2026</td>
+                <td class="text-end fw-600 text-heading">$1,250.00</td>
+                <td><span class="badge badge-soft-neutral badge-pill">Draft</span></td>
+                <td class="text-end">
+                  <div class="table-actions justify-content-end">
+                    <a class="btn btn-icon btn-sm btn-ghost" href="invoice-details.html" aria-label="View invoice INV-2026-0172"><i class="bi bi-eye"></i></a>
+                    <button class="btn btn-icon btn-sm btn-ghost" aria-label="Download invoice INV-2026-0172" data-demo-action="Invoice PDF download started — demo only."><i class="bi bi-download"></i></button>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="table-footer">
+          <span class="fs-8 text-muted-2">Showing 5 of 216 invoices</span>
+          <nav aria-label="Invoice pagination">
+            <ul class="pagination pagination-sm mb-0">
+              <li class="page-item disabled"><a class="page-link" href="#" aria-label="Previous"><i class="bi bi-chevron-left"></i></a></li>
+              <li class="page-item active"><a class="page-link" href="#">1</a></li>
+              <li class="page-item"><a class="page-link" href="#">2</a></li>
+              <li class="page-item"><a class="page-link" href="#">3</a></li>
+              <li class="page-item"><a class="page-link" href="#" aria-label="Next"><i class="bi bi-chevron-right"></i></a></li>
+            </ul>
+          </nav>
+        </div>
+      </div>

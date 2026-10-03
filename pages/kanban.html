@@ -1,0 +1,861 @@
+<!doctype html>
+<html lang="en" data-bs-theme="light" dir="ltr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#4f46e5">
+  <title>Kanban Board | Qevora AI SaaS Admin & UI Kit</title>
+  <meta name="description" content="Drag-and-drop Kanban board for task planning across backlog, in progress, review and done.">
+  <meta name="author" content="Qevora Software">
+  <meta name="robots" content="index, follow">
+
+  <!-- Open Graph / social preview -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Kanban Board | Qevora AI SaaS Admin & UI Kit">
+  <meta property="og:description" content="Drag-and-drop Kanban board for task planning across backlog, in progress, review and done.">
+  <meta property="og:site_name" content="Qevora AI SaaS">
+
+  <link rel="icon" type="image/svg+xml" href="../assets/images/favicon.svg">
+  <link rel="apple-touch-icon" href="../assets/images/favicon.svg">
+
+  <!-- Apply the stored colour mode before first paint to avoid a theme flash -->
+  <script>
+    (function () {
+      try {
+        var stored = localStorage.getItem("qevora-theme");
+        var prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+        var theme = (stored === "dark" || stored === "light") ? stored : (prefersDark ? "dark" : "light");
+        document.documentElement.setAttribute("data-bs-theme", theme);
+      } catch (e) { /* storage blocked — fall back to the default theme */ }
+    })();
+  </script>
+
+  <!-- Vendor styles (bundled locally, see documentation/index.html → Credits) -->
+  <link rel="stylesheet" href="../assets/css/fonts.css">
+  <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
+  <link rel="stylesheet" href="../assets/icons/bootstrap-icons/bootstrap-icons.min.css">
+
+  <!-- Qevora theme -->
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="stylesheet" href="../assets/css/components.css">
+  <link rel="stylesheet" href="../assets/css/dark.css">
+  <link rel="stylesheet" href="../assets/css/rtl.css">
+</head>
+
+<body class="q-app">
+  <a class="visually-hidden-focusable" href="#q-content">Skip to main content</a>
+
+    <!-- ================= Sidebar ================= -->
+    <aside class="q-sidebar" id="qevora-sidebar" aria-label="Main navigation">
+      <div class="q-sidebar__brand">
+        <a href="../index.html" class="d-flex align-items-center gap-2 min-w-0 text-decoration-none">
+          <span class="q-brand__mark" aria-hidden="true">Q</span>
+          <span class="q-brand__text">
+            <span class="q-brand__name">Qevora</span>
+            <span class="q-brand__sub">AI SaaS Suite</span>
+          </span>
+        </a>
+        <button class="btn btn-icon btn-sm btn-ghost ms-auto d-none d-lg-inline-grid" type="button"
+                data-sidebar-compact aria-pressed="false" aria-label="Collapse sidebar" title="Collapse sidebar">
+          <i class="bi bi-chevron-double-left"></i>
+        </button>
+        <button class="btn btn-icon btn-sm btn-ghost ms-auto d-lg-none" type="button"
+                data-sidebar-toggle aria-expanded="false" aria-controls="qevora-sidebar" aria-label="Close navigation">
+          <i class="bi bi-x-lg"></i>
+        </button>
+      </div>
+
+      <nav class="q-sidebar__body q-scroll">
+        <p class="q-sidebar__group-label">Dashboard</p>
+        <ul class="q-nav">
+        <li class="q-nav-item">
+          <a class="q-nav__link" href="../index.html">
+            <i class="q-nav__icon bi bi-grid-1x2" aria-hidden="true"></i>
+            <span class="q-nav__text">Overview</span>
+            
+          </a>
+        </li>
+        <li class="q-nav-item">
+          <a class="q-nav__link" href="../pages/analytics.html">
+            <i class="q-nav__icon bi bi-graph-up-arrow" aria-hidden="true"></i>
+            <span class="q-nav__text">Analytics</span>
+            
+          </a>
+        </li>
+        </ul>
+
+        <p class="q-sidebar__group-label">Applications</p>
+        <ul class="q-nav">
+        <li class="q-nav-item">
+          <button class="q-nav__link w-100 border-0 bg-transparent text-start" type="button"
+                  data-bs-toggle="collapse" data-bs-target="#nav-1-0-crm" aria-expanded="false" aria-controls="nav-1-0-crm">
+            <i class="q-nav__icon bi bi-people" aria-hidden="true"></i>
+            <span class="q-nav__text">CRM</span>
+            <i class="q-nav__caret bi bi-chevron-right" aria-hidden="true"></i>
+          </button>
+          <ul class="q-nav__sub collapse" id="nav-1-0-crm">
+            <li><a class="q-nav__link" href="../pages/crm.html"><span class="q-nav__text">CRM Dashboard</span></a></li>
+            <li><a class="q-nav__link" href="../pages/leads.html"><span class="q-nav__text">Leads</span></a></li>
+            <li><a class="q-nav__link" href="../pages/customers.html"><span class="q-nav__text">Customers</span></a></li>
+            <li><a class="q-nav__link" href="../pages/customer-details.html"><span class="q-nav__text">Customer Details</span></a></li>
+            <li><a class="q-nav__link" href="../pages/pipeline.html"><span class="q-nav__text">Pipeline</span></a></li>
+          </ul>
+        </li>
+        <li class="q-nav-item">
+          <button class="q-nav__link w-100 border-0 bg-transparent text-start" type="button"
+                  data-bs-toggle="collapse" data-bs-target="#nav-1-1-projects" aria-expanded="false" aria-controls="nav-1-1-projects">
+            <i class="q-nav__icon bi bi-kanban" aria-hidden="true"></i>
+            <span class="q-nav__text">Projects</span>
+            <i class="q-nav__caret bi bi-chevron-right" aria-hidden="true"></i>
+          </button>
+          <ul class="q-nav__sub collapse" id="nav-1-1-projects">
+            <li><a class="q-nav__link" href="../pages/projects.html"><span class="q-nav__text">All Projects</span></a></li>
+            <li><a class="q-nav__link" href="../pages/project-details.html"><span class="q-nav__text">Project Details</span></a></li>
+            <li><a class="q-nav__link" href="../pages/kanban.html"><span class="q-nav__text">Kanban Board</span></a></li>
+            <li><a class="q-nav__link" href="../pages/tasks.html"><span class="q-nav__text">Task List</span></a></li>
+          </ul>
+        </li>
+        <li class="q-nav-item">
+          <a class="q-nav__link" href="../pages/calendar.html">
+            <i class="q-nav__icon bi bi-calendar3" aria-hidden="true"></i>
+            <span class="q-nav__text">Calendar</span>
+            
+          </a>
+        </li>
+        <li class="q-nav-item">
+          <a class="q-nav__link" href="../pages/chat.html">
+            <i class="q-nav__icon bi bi-chat-dots" aria-hidden="true"></i>
+            <span class="q-nav__text">Chat</span>
+            <span class="badge badge-soft-primary q-nav__badge">4</span>
+          </a>
+        </li>
+        <li class="q-nav-item">
+          <a class="q-nav__link" href="../pages/notifications.html">
+            <i class="q-nav__icon bi bi-bell" aria-hidden="true"></i>
+            <span class="q-nav__text">Notifications</span>
+            
+          </a>
+        </li>
+        </ul>
+
+        <p class="q-sidebar__group-label">Business</p>
+        <ul class="q-nav">
+        <li class="q-nav-item">
+          <button class="q-nav__link w-100 border-0 bg-transparent text-start" type="button"
+                  data-bs-toggle="collapse" data-bs-target="#nav-2-0-catalog" aria-expanded="false" aria-controls="nav-2-0-catalog">
+            <i class="q-nav__icon bi bi-box-seam" aria-hidden="true"></i>
+            <span class="q-nav__text">Catalog</span>
+            <i class="q-nav__caret bi bi-chevron-right" aria-hidden="true"></i>
+          </button>
+          <ul class="q-nav__sub collapse" id="nav-2-0-catalog">
+            <li><a class="q-nav__link" href="../pages/products.html"><span class="q-nav__text">Products</span></a></li>
+            <li><a class="q-nav__link" href="../pages/product-details.html"><span class="q-nav__text">Product Details</span></a></li>
+          </ul>
+        </li>
+        <li class="q-nav-item">
+          <button class="q-nav__link w-100 border-0 bg-transparent text-start" type="button"
+                  data-bs-toggle="collapse" data-bs-target="#nav-2-1-sales" aria-expanded="false" aria-controls="nav-2-1-sales">
+            <i class="q-nav__icon bi bi-cart3" aria-hidden="true"></i>
+            <span class="q-nav__text">Sales</span>
+            <i class="q-nav__caret bi bi-chevron-right" aria-hidden="true"></i>
+          </button>
+          <ul class="q-nav__sub collapse" id="nav-2-1-sales">
+            <li><a class="q-nav__link" href="../pages/orders.html"><span class="q-nav__text">Orders</span></a></li>
+            <li><a class="q-nav__link" href="../pages/order-details.html"><span class="q-nav__text">Order Details</span></a></li>
+          </ul>
+        </li>
+        <li class="q-nav-item">
+          <button class="q-nav__link w-100 border-0 bg-transparent text-start" type="button"
+                  data-bs-toggle="collapse" data-bs-target="#nav-2-2-finance" aria-expanded="false" aria-controls="nav-2-2-finance">
+            <i class="q-nav__icon bi bi-cash-stack" aria-hidden="true"></i>
+            <span class="q-nav__text">Finance</span>
+            <i class="q-nav__caret bi bi-chevron-right" aria-hidden="true"></i>
+          </button>
+          <ul class="q-nav__sub collapse" id="nav-2-2-finance">
+            <li><a class="q-nav__link" href="../pages/invoices.html"><span class="q-nav__text">Invoices</span></a></li>
+            <li><a class="q-nav__link" href="../pages/invoice-details.html"><span class="q-nav__text">Invoice Details</span></a></li>
+            <li><a class="q-nav__link" href="../pages/payments.html"><span class="q-nav__text">Payments</span></a></li>
+            <li><a class="q-nav__link" href="../pages/transactions.html"><span class="q-nav__text">Transactions</span></a></li>
+          </ul>
+        </li>
+        <li class="q-nav-item">
+          <a class="q-nav__link" href="../pages/subscriptions.html">
+            <i class="q-nav__icon bi bi-arrow-repeat" aria-hidden="true"></i>
+            <span class="q-nav__text">Subscriptions</span>
+            
+          </a>
+        </li>
+        </ul>
+
+        <p class="q-sidebar__group-label">AI Workspace</p>
+        <ul class="q-nav">
+        <li class="q-nav-item">
+          <a class="q-nav__link" href="../ai/dashboard.html">
+            <i class="q-nav__icon bi bi-stars" aria-hidden="true"></i>
+            <span class="q-nav__text">AI Overview</span>
+            
+          </a>
+        </li>
+        <li class="q-nav-item">
+          <a class="q-nav__link" href="../ai/chat.html">
+            <i class="q-nav__icon bi bi-chat-square-text" aria-hidden="true"></i>
+            <span class="q-nav__text">AI Chat</span>
+            <span class="badge badge-soft-success q-nav__badge">New</span>
+          </a>
+        </li>
+        <li class="q-nav-item">
+          <a class="q-nav__link" href="../ai/content-generator.html">
+            <i class="q-nav__icon bi bi-pencil-square" aria-hidden="true"></i>
+            <span class="q-nav__text">Content Generator</span>
+            
+          </a>
+        </li>
+        <li class="q-nav-item">
+          <a class="q-nav__link" href="../ai/image-generator.html">
+            <i class="q-nav__icon bi bi-image" aria-hidden="true"></i>
+            <span class="q-nav__text">Image Generator</span>
+            
+          </a>
+        </li>
+        <li class="q-nav-item">
+          <a class="q-nav__link" href="../ai/usage.html">
+            <i class="q-nav__icon bi bi-speedometer2" aria-hidden="true"></i>
+            <span class="q-nav__text">AI Usage</span>
+            
+          </a>
+        </li>
+        <li class="q-nav-item">
+          <a class="q-nav__link" href="../ai/history.html">
+            <i class="q-nav__icon bi bi-clock-history" aria-hidden="true"></i>
+            <span class="q-nav__text">AI History</span>
+            
+          </a>
+        </li>
+        </ul>
+
+        <p class="q-sidebar__group-label">Management</p>
+        <ul class="q-nav">
+        <li class="q-nav-item">
+          <a class="q-nav__link" href="../pages/team.html">
+            <i class="q-nav__icon bi bi-person-badge" aria-hidden="true"></i>
+            <span class="q-nav__text">Team</span>
+            
+          </a>
+        </li>
+        <li class="q-nav-item">
+          <a class="q-nav__link" href="../pages/roles.html">
+            <i class="q-nav__icon bi bi-shield-lock" aria-hidden="true"></i>
+            <span class="q-nav__text">Roles & Permissions</span>
+            
+          </a>
+        </li>
+        <li class="q-nav-item">
+          <a class="q-nav__link" href="../pages/activity.html">
+            <i class="q-nav__icon bi bi-list-check" aria-hidden="true"></i>
+            <span class="q-nav__text">Activity Logs</span>
+            
+          </a>
+        </li>
+        <li class="q-nav-item">
+          <a class="q-nav__link" href="../pages/reports.html">
+            <i class="q-nav__icon bi bi-file-earmark-bar-graph" aria-hidden="true"></i>
+            <span class="q-nav__text">Reports</span>
+            
+          </a>
+        </li>
+        </ul>
+
+        <p class="q-sidebar__group-label">Workspace</p>
+        <ul class="q-nav">
+        <li class="q-nav-item">
+          <a class="q-nav__link" href="../pages/profile.html">
+            <i class="q-nav__icon bi bi-person-circle" aria-hidden="true"></i>
+            <span class="q-nav__text">Profile</span>
+            
+          </a>
+        </li>
+        <li class="q-nav-item">
+          <a class="q-nav__link" href="../pages/settings.html">
+            <i class="q-nav__icon bi bi-gear" aria-hidden="true"></i>
+            <span class="q-nav__text">Settings</span>
+            
+          </a>
+        </li>
+        <li class="q-nav-item">
+          <a class="q-nav__link" href="../pages/pricing.html">
+            <i class="q-nav__icon bi bi-tags" aria-hidden="true"></i>
+            <span class="q-nav__text">Pricing</span>
+            
+          </a>
+        </li>
+        <li class="q-nav-item">
+          <a class="q-nav__link" href="../pages/faq.html">
+            <i class="q-nav__icon bi bi-question-circle" aria-hidden="true"></i>
+            <span class="q-nav__text">FAQ</span>
+            
+          </a>
+        </li>
+        <li class="q-nav-item">
+          <a class="q-nav__link" href="../pages/help.html">
+            <i class="q-nav__icon bi bi-life-preserver" aria-hidden="true"></i>
+            <span class="q-nav__text">Help Center</span>
+            
+          </a>
+        </li>
+        </ul>
+
+        <p class="q-sidebar__group-label">UI Kit</p>
+        <ul class="q-nav">
+        <li class="q-nav-item">
+          <a class="q-nav__link" href="../components/index.html">
+            <i class="q-nav__icon bi bi-collection" aria-hidden="true"></i>
+            <span class="q-nav__text">Components Index</span>
+            
+          </a>
+        </li>
+        <li class="q-nav-item">
+          <button class="q-nav__link w-100 border-0 bg-transparent text-start" type="button"
+                  data-bs-toggle="collapse" data-bs-target="#nav-6-1-foundation" aria-expanded="false" aria-controls="nav-6-1-foundation">
+            <i class="q-nav__icon bi bi-palette" aria-hidden="true"></i>
+            <span class="q-nav__text">Foundation</span>
+            <i class="q-nav__caret bi bi-chevron-right" aria-hidden="true"></i>
+          </button>
+          <ul class="q-nav__sub collapse" id="nav-6-1-foundation">
+            <li><a class="q-nav__link" href="../components/colors.html"><span class="q-nav__text">Colors</span></a></li>
+            <li><a class="q-nav__link" href="../components/typography.html"><span class="q-nav__text">Typography</span></a></li>
+            <li><a class="q-nav__link" href="../components/spacing.html"><span class="q-nav__text">Spacing</span></a></li>
+            <li><a class="q-nav__link" href="../components/grid.html"><span class="q-nav__text">Grid</span></a></li>
+            <li><a class="q-nav__link" href="../components/icons.html"><span class="q-nav__text">Icons</span></a></li>
+          </ul>
+        </li>
+        <li class="q-nav-item">
+          <button class="q-nav__link w-100 border-0 bg-transparent text-start" type="button"
+                  data-bs-toggle="collapse" data-bs-target="#nav-6-2-basic" aria-expanded="false" aria-controls="nav-6-2-basic">
+            <i class="q-nav__icon bi bi-ui-checks" aria-hidden="true"></i>
+            <span class="q-nav__text">Basic</span>
+            <i class="q-nav__caret bi bi-chevron-right" aria-hidden="true"></i>
+          </button>
+          <ul class="q-nav__sub collapse" id="nav-6-2-basic">
+            <li><a class="q-nav__link" href="../components/buttons.html"><span class="q-nav__text">Buttons</span></a></li>
+            <li><a class="q-nav__link" href="../components/badges.html"><span class="q-nav__text">Badges</span></a></li>
+            <li><a class="q-nav__link" href="../components/avatars.html"><span class="q-nav__text">Avatars</span></a></li>
+            <li><a class="q-nav__link" href="../components/alerts.html"><span class="q-nav__text">Alerts</span></a></li>
+            <li><a class="q-nav__link" href="../components/breadcrumbs.html"><span class="q-nav__text">Breadcrumbs</span></a></li>
+          </ul>
+        </li>
+        <li class="q-nav-item">
+          <button class="q-nav__link w-100 border-0 bg-transparent text-start" type="button"
+                  data-bs-toggle="collapse" data-bs-target="#nav-6-3-containers" aria-expanded="false" aria-controls="nav-6-3-containers">
+            <i class="q-nav__icon bi bi-square" aria-hidden="true"></i>
+            <span class="q-nav__text">Containers</span>
+            <i class="q-nav__caret bi bi-chevron-right" aria-hidden="true"></i>
+          </button>
+          <ul class="q-nav__sub collapse" id="nav-6-3-containers">
+            <li><a class="q-nav__link" href="../components/cards.html"><span class="q-nav__text">Cards</span></a></li>
+            <li><a class="q-nav__link" href="../components/pricing.html"><span class="q-nav__text">Pricing</span></a></li>
+            <li><a class="q-nav__link" href="../components/timeline.html"><span class="q-nav__text">Timeline</span></a></li>
+            <li><a class="q-nav__link" href="../components/empty-states.html"><span class="q-nav__text">Empty States</span></a></li>
+          </ul>
+        </li>
+        <li class="q-nav-item">
+          <button class="q-nav__link w-100 border-0 bg-transparent text-start" type="button"
+                  data-bs-toggle="collapse" data-bs-target="#nav-6-4-interaction" aria-expanded="false" aria-controls="nav-6-4-interaction">
+            <i class="q-nav__icon bi bi-mouse2" aria-hidden="true"></i>
+            <span class="q-nav__text">Interaction</span>
+            <i class="q-nav__caret bi bi-chevron-right" aria-hidden="true"></i>
+          </button>
+          <ul class="q-nav__sub collapse" id="nav-6-4-interaction">
+            <li><a class="q-nav__link" href="../components/dropdowns.html"><span class="q-nav__text">Dropdowns</span></a></li>
+            <li><a class="q-nav__link" href="../components/modals.html"><span class="q-nav__text">Modals</span></a></li>
+            <li><a class="q-nav__link" href="../components/tabs.html"><span class="q-nav__text">Tabs</span></a></li>
+            <li><a class="q-nav__link" href="../components/accordions.html"><span class="q-nav__text">Accordions</span></a></li>
+            <li><a class="q-nav__link" href="../components/tooltips.html"><span class="q-nav__text">Tooltips</span></a></li>
+            <li><a class="q-nav__link" href="../components/toasts.html"><span class="q-nav__text">Toasts</span></a></li>
+          </ul>
+        </li>
+        <li class="q-nav-item">
+          <button class="q-nav__link w-100 border-0 bg-transparent text-start" type="button"
+                  data-bs-toggle="collapse" data-bs-target="#nav-6-5-forms" aria-expanded="false" aria-controls="nav-6-5-forms">
+            <i class="q-nav__icon bi bi-input-cursor-text" aria-hidden="true"></i>
+            <span class="q-nav__text">Forms</span>
+            <i class="q-nav__caret bi bi-chevron-right" aria-hidden="true"></i>
+          </button>
+          <ul class="q-nav__sub collapse" id="nav-6-5-forms">
+            <li><a class="q-nav__link" href="../components/forms.html"><span class="q-nav__text">Form Controls</span></a></li>
+            <li><a class="q-nav__link" href="../components/input-groups.html"><span class="q-nav__text">Input Groups</span></a></li>
+            <li><a class="q-nav__link" href="../components/select.html"><span class="q-nav__text">Select</span></a></li>
+            <li><a class="q-nav__link" href="../components/file-upload.html"><span class="q-nav__text">File Upload</span></a></li>
+            <li><a class="q-nav__link" href="../components/date-time.html"><span class="q-nav__text">Date & Time</span></a></li>
+          </ul>
+        </li>
+        <li class="q-nav-item">
+          <button class="q-nav__link w-100 border-0 bg-transparent text-start" type="button"
+                  data-bs-toggle="collapse" data-bs-target="#nav-6-6-data" aria-expanded="false" aria-controls="nav-6-6-data">
+            <i class="q-nav__icon bi bi-table" aria-hidden="true"></i>
+            <span class="q-nav__text">Data</span>
+            <i class="q-nav__caret bi bi-chevron-right" aria-hidden="true"></i>
+          </button>
+          <ul class="q-nav__sub collapse" id="nav-6-6-data">
+            <li><a class="q-nav__link" href="../components/tables.html"><span class="q-nav__text">Tables</span></a></li>
+            <li><a class="q-nav__link" href="../components/pagination.html"><span class="q-nav__text">Pagination</span></a></li>
+            <li><a class="q-nav__link" href="../components/charts.html"><span class="q-nav__text">Charts</span></a></li>
+          </ul>
+        </li>
+        <li class="q-nav-item">
+          <button class="q-nav__link w-100 border-0 bg-transparent text-start" type="button"
+                  data-bs-toggle="collapse" data-bs-target="#nav-6-7-feedback" aria-expanded="false" aria-controls="nav-6-7-feedback">
+            <i class="q-nav__icon bi bi-activity" aria-hidden="true"></i>
+            <span class="q-nav__text">Feedback</span>
+            <i class="q-nav__caret bi bi-chevron-right" aria-hidden="true"></i>
+          </button>
+          <ul class="q-nav__sub collapse" id="nav-6-7-feedback">
+            <li><a class="q-nav__link" href="../components/progress.html"><span class="q-nav__text">Progress</span></a></li>
+            <li><a class="q-nav__link" href="../components/spinners.html"><span class="q-nav__text">Spinners</span></a></li>
+          </ul>
+        </li>
+        </ul>
+
+        <p class="q-sidebar__group-label">Authentication</p>
+        <ul class="q-nav">
+        <li class="q-nav-item">
+          <a class="q-nav__link" href="../auth/login.html">
+            <i class="q-nav__icon bi bi-box-arrow-in-right" aria-hidden="true"></i>
+            <span class="q-nav__text">Login</span>
+            
+          </a>
+        </li>
+        <li class="q-nav-item">
+          <a class="q-nav__link" href="../auth/register.html">
+            <i class="q-nav__icon bi bi-person-plus" aria-hidden="true"></i>
+            <span class="q-nav__text">Register</span>
+            
+          </a>
+        </li>
+        <li class="q-nav-item">
+          <a class="q-nav__link" href="../auth/forgot-password.html">
+            <i class="q-nav__icon bi bi-key" aria-hidden="true"></i>
+            <span class="q-nav__text">Forgot Password</span>
+            
+          </a>
+        </li>
+        <li class="q-nav-item">
+          <a class="q-nav__link" href="../auth/reset-password.html">
+            <i class="q-nav__icon bi bi-shield-lock" aria-hidden="true"></i>
+            <span class="q-nav__text">Reset Password</span>
+            
+          </a>
+        </li>
+        <li class="q-nav-item">
+          <a class="q-nav__link" href="../auth/verify-email.html">
+            <i class="q-nav__icon bi bi-envelope-check" aria-hidden="true"></i>
+            <span class="q-nav__text">Verify Email</span>
+            
+          </a>
+        </li>
+        <li class="q-nav-item">
+          <a class="q-nav__link" href="../auth/two-factor.html">
+            <i class="q-nav__icon bi bi-phone" aria-hidden="true"></i>
+            <span class="q-nav__text">Two Factor</span>
+            
+          </a>
+        </li>
+        </ul>
+
+        <p class="q-sidebar__group-label">Utility</p>
+        <ul class="q-nav">
+        <li class="q-nav-item">
+          <a class="q-nav__link" href="../utility/404.html">
+            <i class="q-nav__icon bi bi-signpost-split" aria-hidden="true"></i>
+            <span class="q-nav__text">404 Not Found</span>
+            
+          </a>
+        </li>
+        <li class="q-nav-item">
+          <a class="q-nav__link" href="../utility/500.html">
+            <i class="q-nav__icon bi bi-exclamation-octagon" aria-hidden="true"></i>
+            <span class="q-nav__text">500 Server Error</span>
+            
+          </a>
+        </li>
+        <li class="q-nav-item">
+          <a class="q-nav__link" href="../utility/maintenance.html">
+            <i class="q-nav__icon bi bi-tools" aria-hidden="true"></i>
+            <span class="q-nav__text">Maintenance</span>
+            
+          </a>
+        </li>
+        <li class="q-nav-item">
+          <a class="q-nav__link" href="../utility/coming-soon.html">
+            <i class="q-nav__icon bi bi-hourglass-split" aria-hidden="true"></i>
+            <span class="q-nav__text">Coming Soon</span>
+            
+          </a>
+        </li>
+        </ul>
+
+        <p class="q-sidebar__group-label">Documentation</p>
+        <ul class="q-nav">
+        <li class="q-nav-item">
+          <a class="q-nav__link" href="../documentation/index.html">
+            <i class="q-nav__icon bi bi-book" aria-hidden="true"></i>
+            <span class="q-nav__text">Documentation</span>
+            
+          </a>
+        </li>
+        <li class="q-nav-item">
+          <a class="q-nav__link" href="../documentation/design-system.html">
+            <i class="q-nav__icon bi bi-layers" aria-hidden="true"></i>
+            <span class="q-nav__text">Design System</span>
+            
+          </a>
+        </li>
+        </ul>
+      </nav>
+
+      <div class="q-sidebar__footer">
+        <div class="d-flex align-items-center gap-2">
+          <span class="avatar avatar-sm bg-avatar-2" aria-hidden="true">AR</span>
+          <span class="flex-grow-1 min-w-0 q-sidebar__footer-detail">
+            <span class="d-block fs-8 fw-600 text-heading text-truncate">Ava Reynolds</span>
+            <span class="d-block fs-9 text-muted-2 text-truncate">Workspace admin</span>
+          </span>
+          <a href="../pages/settings.html" class="btn btn-icon btn-sm btn-ghost q-sidebar__footer-detail"
+             aria-label="Account settings" title="Account settings">
+            <i class="bi bi-sliders"></i>
+          </a>
+        </div>
+      </div>
+    </aside>
+    <div class="q-sidebar-backdrop" aria-hidden="true"></div>
+
+
+  <div class="q-main">
+      <!-- ================= Header ================= -->
+      <header class="q-header">
+        <button class="q-header__toggle" type="button" data-sidebar-toggle
+                aria-expanded="false" aria-controls="qevora-sidebar" aria-label="Toggle navigation">
+          <i class="bi bi-list"></i>
+        </button>
+
+        <div class="q-header__search d-none d-md-block">
+          <i class="bi bi-search q-header__search-icon" aria-hidden="true"></i>
+          <label class="visually-hidden" for="q-header-search">Search the workspace</label>
+          <input type="search" class="form-control" id="q-header-search" placeholder="Search…" autocomplete="off">
+          <span class="q-header__kbd" aria-hidden="true">⌘K</span>
+        </div>
+
+        <div class="q-header__actions">
+          <!-- RTL toggle -->
+          <button class="q-icon-btn d-none d-sm-inline-grid" type="button" data-dir-toggle
+                  aria-pressed="false" title="Switch to RTL layout" aria-label="Toggle text direction">
+            <span class="fs-8 fw-600" data-dir-label>RTL</span>
+          </button>
+
+          <!-- Colour mode -->
+          <button class="q-icon-btn" type="button" data-theme-toggle aria-pressed="false"
+                  title="Switch to dark mode" aria-label="Toggle colour mode">
+            <i class="bi bi-moon-stars" data-theme-icon aria-hidden="true"></i>
+          </button>
+
+          <!-- Apps -->
+          <div class="dropdown d-none d-sm-block">
+            <button class="q-icon-btn" type="button" data-bs-toggle="dropdown" aria-expanded="false"
+                    aria-label="Quick apps" title="Quick apps">
+              <i class="bi bi-grid-3x3-gap" aria-hidden="true"></i>
+            </button>
+            <div class="dropdown-menu dropdown-menu-end p-3" style="width: 280px;">
+              <p class="fs-8 fw-600 text-uppercase text-faint mb-2">Quick access</p>
+              <div class="row g-2">
+                <div class="col-4">
+                  <a class="component-tile text-center p-2" href="../index.html">
+                    <i class="bi bi-grid-1x2 fs-5 text-primary-2 d-block mb-1"></i>
+                    <span class="fs-9">Home</span>
+                  </a>
+                </div>
+                <div class="col-4">
+                  <a class="component-tile text-center p-2" href="../ai/dashboard.html">
+                    <i class="bi bi-stars fs-5 text-primary-2 d-block mb-1"></i>
+                    <span class="fs-9">AI</span>
+                  </a>
+                </div>
+                <div class="col-4">
+                  <a class="component-tile text-center p-2" href="../pages/crm.html">
+                    <i class="bi bi-people fs-5 text-primary-2 d-block mb-1"></i>
+                    <span class="fs-9">CRM</span>
+                  </a>
+                </div>
+                <div class="col-4">
+                  <a class="component-tile text-center p-2" href="../pages/invoices.html">
+                    <i class="bi bi-receipt fs-5 text-primary-2 d-block mb-1"></i>
+                    <span class="fs-9">Finance</span>
+                  </a>
+                </div>
+                <div class="col-4">
+                  <a class="component-tile text-center p-2" href="../components/index.html">
+                    <i class="bi bi-collection fs-5 text-primary-2 d-block mb-1"></i>
+                    <span class="fs-9">UI Kit</span>
+                  </a>
+                </div>
+                <div class="col-4">
+                  <a class="component-tile text-center p-2" href="../documentation/index.html">
+                    <i class="bi bi-book fs-5 text-primary-2 d-block mb-1"></i>
+                    <span class="fs-9">Docs</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Notifications -->
+          <div class="dropdown">
+            <button class="q-icon-btn" type="button" data-bs-toggle="dropdown" aria-expanded="false"
+                    aria-label="Notifications" title="Notifications">
+              <i class="bi bi-bell" aria-hidden="true"></i>
+              <span class="q-icon-btn__dot" aria-hidden="true"></span>
+            </button>
+            <div class="dropdown-menu dropdown-menu-end dropdown-notify">
+              <div class="dropdown-notify__head">
+                <span class="fw-600 text-heading">Notifications</span>
+                <span class="badge badge-soft-primary badge-pill">3 new</span>
+              </div>
+              <div class="dropdown-notify__list q-scroll">
+                <a class="dropdown-notify__item" href="../ai/history.html">
+                  <span class="avatar avatar-sm bg-avatar-1"><i class="bi bi-stars"></i></span>
+                  <span class="min-w-0">
+                    <span class="d-block dropdown-notify__title">Content generation finished</span>
+                    <span class="d-block dropdown-notify__meta">32 seconds ago</span>
+                  </span>
+                </a>
+                <a class="dropdown-notify__item" href="../pages/invoices.html">
+                  <span class="avatar avatar-sm bg-avatar-3"><i class="bi bi-receipt"></i></span>
+                  <span class="min-w-0">
+                    <span class="d-block dropdown-notify__title">Invoice INV-2026-0184 was paid</span>
+                    <span class="d-block dropdown-notify__meta">2 hours ago</span>
+                  </span>
+                </a>
+                <a class="dropdown-notify__item" href="../pages/team.html">
+                  <span class="avatar avatar-sm bg-avatar-6"><i class="bi bi-person-plus"></i></span>
+                  <span class="min-w-0">
+                    <span class="d-block dropdown-notify__title">Ava Reynolds invited a teammate</span>
+                    <span class="d-block dropdown-notify__meta">Yesterday</span>
+                  </span>
+                </a>
+              </div>
+              <div class="dropdown-notify__foot">
+                <a href="../pages/notifications.html" class="fw-500">View all notifications</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- User -->
+          <div class="dropdown">
+            <button class="q-header__user" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <span class="avatar avatar-sm bg-avatar-1" aria-hidden="true">AR</span>
+              <span class="q-header__user-meta">
+                <span class="d-block q-header__user-name">Ava Reynolds</span>
+                <span class="d-block q-header__user-role">Workspace admin</span>
+              </span>
+              <i class="bi bi-chevron-down fs-8 text-muted-2 d-none d-md-block" aria-hidden="true"></i>
+            </button>
+            <ul class="dropdown-menu dropdown-menu-end">
+              <li class="dropdown-header">Signed in as ava@qevora.io</li>
+              <li><a class="dropdown-item" href="../pages/profile.html"><i class="bi bi-person"></i> My profile</a></li>
+              <li><a class="dropdown-item" href="../pages/settings.html"><i class="bi bi-gear"></i> Account settings</a></li>
+              <li><a class="dropdown-item" href="../ai/usage.html"><i class="bi bi-speedometer2"></i> AI usage</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" href="../documentation/index.html"><i class="bi bi-book"></i> Documentation</a></li>
+              <li><a class="dropdown-item" href="../pages/help.html"><i class="bi bi-life-preserver"></i> Help center</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item text-danger" href="../auth/login.html"><i class="bi bi-box-arrow-right"></i> Sign out</a></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+
+
+    <!-- ================= Content ================= -->
+    <main class="q-content" id="q-content">
+      <div class="q-page-head">
+        <div>
+                  <nav aria-label="Breadcrumb">
+          <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="../index.html">Applications</a></li>
+          <li class="breadcrumb-item"><a href="#">Projects</a></li>
+          <li class="breadcrumb-item active" aria-current="page">Kanban Board</li>
+          </ol>
+        </nav>
+          <h1 class="q-page-head__title mt-2">Kanban board</h1>
+          <p class="q-page-head__subtitle">Backlog, in progress, review and done. Drag cards between columns — demo interaction.</p>
+        </div>
+        <div class="d-flex flex-wrap gap-2">
+          <button class="btn btn-white" data-demo-action="Board filters opened — demo only."><i class="bi bi-funnel"></i> Filter</button>
+          <button class="btn btn-primary" data-demo-action="Task created — demo interaction only."><i class="bi bi-plus-lg"></i> New task</button>
+        </div>
+      </div>
+
+      <div class="kanban q-section" data-kanban>
+        <div class="kanban__col">
+          <div class="kanban__col-head">
+            <span class="kanban__col-title"><i class="bi bi-circle text-muted-2"></i> Backlog</span>
+            <span class="kanban__count">0</span>
+          </div>
+          <div class="kanban__col-body d-flex flex-column">
+            <article class="kanban__card">
+              <div class="d-flex justify-content-between align-items-start gap-2 mb-2">
+                <span class="badge badge-soft-neutral badge-pill">Design</span>
+                <button class="btn btn-icon btn-sm btn-ghost" aria-label="Task options"><i class="bi bi-three-dots"></i></button>
+              </div>
+              <p class="kanban__card-title">Dark mode audit for marketing pages</p>
+              <p class="fs-8 text-muted-2 mb-0">Check contrast, imagery and chart colours in dark mode.</p>
+              <div class="kanban__card-meta">
+                <span class="avatar avatar-xs bg-avatar-5" data-bs-toggle="tooltip" title="Yuki Tanaka">YT</span>
+                <span class="fs-8 text-muted-2"><i class="bi bi-calendar3"></i> Oct 28</span>
+              </div>
+            </article>
+            <article class="kanban__card">
+              <div class="d-flex justify-content-between align-items-start gap-2 mb-2">
+                <span class="badge badge-soft-neutral badge-pill">Docs</span>
+                <button class="btn btn-icon btn-sm btn-ghost" aria-label="Task options"><i class="bi bi-three-dots"></i></button>
+              </div>
+              <p class="kanban__card-title">Document the RTL checklist</p>
+              <p class="fs-8 text-muted-2 mb-0">Add screenshots for sidebar, tables and modals.</p>
+              <div class="kanban__card-meta">
+                <span class="avatar avatar-xs bg-avatar-6" data-bs-toggle="tooltip" title="Lea Novak">LN</span>
+                <span class="fs-8 text-muted-2"><i class="bi bi-calendar3"></i> Nov 04</span>
+              </div>
+            </article>
+          </div>
+        </div>
+
+        <div class="kanban__col">
+          <div class="kanban__col-head">
+            <span class="kanban__col-title"><i class="bi bi-circle text-primary"></i> In progress</span>
+            <span class="kanban__count">0</span>
+          </div>
+          <div class="kanban__col-body d-flex flex-column">
+            <article class="kanban__card">
+              <div class="d-flex justify-content-between align-items-start gap-2 mb-2">
+                <span class="badge badge-soft-primary badge-pill">Feature</span>
+                <span class="badge badge-soft-danger badge-pill">High</span>
+              </div>
+              <p class="kanban__card-title">Component copy-to-clipboard</p>
+              <div class="progress progress-sm my-2"><div class="progress-bar" style="width: 70%"></div></div>
+              <div class="kanban__card-meta">
+                <span class="avatar avatar-xs bg-avatar-4" data-bs-toggle="tooltip" title="Daniel Okafor">DO</span>
+                <span class="fs-8 text-muted-2"><i class="bi bi-chat-dots"></i> 4</span>
+              </div>
+            </article>
+            <article class="kanban__card">
+              <div class="d-flex justify-content-between align-items-start gap-2 mb-2">
+                <span class="badge badge-soft-primary badge-pill">Feature</span>
+                <span class="badge badge-soft-warning badge-pill">Medium</span>
+              </div>
+              <p class="kanban__card-title">Saved analytics report builder</p>
+              <div class="progress progress-sm my-2"><div class="progress-bar bg-info" style="width: 45%"></div></div>
+              <div class="kanban__card-meta">
+                <span class="avatar avatar-xs bg-avatar-3" data-bs-toggle="tooltip" title="Marcus Chen">MC</span>
+                <span class="fs-8 text-muted-2"><i class="bi bi-paperclip"></i> 2</span>
+              </div>
+            </article>
+          </div>
+        </div>
+
+        <div class="kanban__col">
+          <div class="kanban__col-head">
+            <span class="kanban__col-title"><i class="bi bi-circle text-warning"></i> Review</span>
+            <span class="kanban__count">0</span>
+          </div>
+          <div class="kanban__col-body d-flex flex-column">
+            <article class="kanban__card">
+              <div class="d-flex justify-content-between align-items-start gap-2 mb-2">
+                <span class="badge badge-soft-warning badge-pill">QA</span>
+                <span class="badge badge-soft-neutral badge-pill">Low</span>
+              </div>
+              <p class="kanban__card-title">Cross-browser check for table toolbars</p>
+              <div class="kanban__card-meta">
+                <span class="avatar avatar-xs bg-avatar-1" data-bs-toggle="tooltip" title="Ava Reynolds">AR</span>
+                <span class="fs-8 text-muted-2"><i class="bi bi-check2-square"></i> 2/3</span>
+              </div>
+            </article>
+            <article class="kanban__card">
+              <div class="d-flex justify-content-between align-items-start gap-2 mb-2">
+                <span class="badge badge-soft-warning badge-pill">QA</span>
+                <span class="badge badge-soft-warning badge-pill">Medium</span>
+              </div>
+              <p class="kanban__card-title">Mobile drawer focus trapping</p>
+              <div class="kanban__card-meta">
+                <span class="avatar avatar-xs bg-avatar-6" data-bs-toggle="tooltip" title="Lea Novak">LN</span>
+                <span class="fs-8 text-muted-2"><i class="bi bi-chat-dots"></i> 1</span>
+              </div>
+            </article>
+          </div>
+        </div>
+
+        <div class="kanban__col">
+          <div class="kanban__col-head">
+            <span class="kanban__col-title"><i class="bi bi-circle text-success"></i> Done</span>
+            <span class="kanban__count">0</span>
+          </div>
+          <div class="kanban__col-body d-flex flex-column">
+            <article class="kanban__card">
+              <div class="d-flex justify-content-between align-items-start gap-2 mb-2">
+                <span class="badge badge-soft-success badge-pill">Shipped</span>
+              </div>
+              <p class="kanban__card-title">Dark mode token refactor</p>
+              <div class="kanban__card-meta">
+                <span class="avatar avatar-xs bg-avatar-1" data-bs-toggle="tooltip" title="Ava Reynolds">AR</span>
+                <span class="fs-8 text-muted-2"><i class="bi bi-check2"></i> Oct 2</span>
+              </div>
+            </article>
+            <article class="kanban__card">
+              <div class="d-flex justify-content-between align-items-start gap-2 mb-2">
+                <span class="badge badge-soft-success badge-pill">Shipped</span>
+              </div>
+              <p class="kanban__card-title">Chart theme re-render on toggle</p>
+              <div class="kanban__card-meta">
+                <span class="avatar avatar-xs bg-avatar-4" data-bs-toggle="tooltip" title="Daniel Okafor">DO</span>
+                <span class="fs-8 text-muted-2"><i class="bi bi-check2"></i> Sep 29</span>
+              </div>
+            </article>
+            <article class="kanban__card">
+              <div class="d-flex justify-content-between align-items-start gap-2 mb-2">
+                <span class="badge badge-soft-success badge-pill">Shipped</span>
+              </div>
+              <p class="kanban__card-title">Sidebar compact mode</p>
+              <div class="kanban__card-meta">
+                <span class="avatar avatar-xs bg-avatar-3" data-bs-toggle="tooltip" title="Marcus Chen">MC</span>
+                <span class="fs-8 text-muted-2"><i class="bi bi-check2"></i> Sep 24</span>
+              </div>
+            </article>
+          </div>
+        </div>
+      </div>
+    </main>
+
+      <!-- ================= Footer ================= -->
+      <footer class="q-footer">
+        <div class="q-footer__inner">
+          <span>© <span data-current-year>2026</span> Qevora Software — Qevora AI SaaS Bootstrap 5 Admin &amp; UI Kit.</span>
+          <nav class="d-flex flex-wrap gap-3" aria-label="Footer">
+            <a href="../documentation/index.html">Documentation</a>
+            <a href="../documentation/design-system.html">Design System</a>
+            <a href="../pages/help.html">Support</a>
+            <a href="../pages/pricing.html">Pricing</a>
+          </nav>
+        </div>
+      </footer>
+
+  </div>
+
+    <!-- ================= Scripts ================= -->
+    <!-- Vendor: Bootstrap 5 bundle (includes Popper) -->
+    <script src="../assets/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Qevora core -->
+    <script src="../assets/js/theme.js"></script>
+    <script src="../assets/js/sidebar.js"></script>
+    <script src="../assets/js/app.js"></script>
+    <script src="../assets/js/components.js"></script>
+
+</body>
+</html>

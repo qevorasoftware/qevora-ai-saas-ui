@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" role="img" aria-label="Qevora AI SaaS — Bootstrap 5 Admin and UI Kit">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#1e1b4b"/>
+      <stop offset="55%" stop-color="#4f46e5"/>
+      <stop offset="100%" stop-color="#06b6d4"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <circle cx="1040" cy="110" r="190" fill="#ffffff" fill-opacity="0.08"/>
+  <circle cx="140" cy="560" r="150" fill="#ffffff" fill-opacity="0.06"/>
+  <text x="90" y="270" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="76" font-weight="700" fill="#ffffff">Qevora AI SaaS</text>
+  <text x="90" y="345" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="36" fill="#e0e7ff">Bootstrap 5 Admin Dashboard &amp; UI Kit</text>
+  <text x="90" y="420" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="24" fill="#c7d2fe">60+ pages · Component library · Dark mode · RTL ready</text>
+</svg>

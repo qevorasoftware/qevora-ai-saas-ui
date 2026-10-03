@@ -1,0 +1,120 @@
+      <div class="q-page-head">
+        <div>
+          {{BREADCRUMB}}
+          <h1 class="q-page-head__title mt-2">Typography</h1>
+          <p class="q-page-head__subtitle">
+            Inter is used for every interface element and is served locally from
+            <code>assets/fonts/inter/</code> in weights 400, 500, 600 and 700.
+          </p>
+        </div>
+        <div class="d-flex flex-wrap gap-2">
+          <a class="btn btn-white" href="../documentation/index.html#typography"><i class="bi bi-book"></i> Change the font</a>
+        </div>
+      </div>
+
+      <div class="demo-block" data-demo>
+        <div class="demo-block__head">
+          <div>
+            <h2 class="demo-block__title">Heading scale</h2>
+            <p class="demo-block__desc">Headings use weight 600 and slightly tightened letter spacing so dense dashboards stay readable.</p>
+          </div>
+        </div>
+        <div class="demo-block__tabs">
+          <button class="demo-tab is-active" data-demo-tab="preview" aria-selected="true">Preview</button>
+          <button class="demo-tab" data-demo-tab="html" aria-selected="false">HTML</button>
+        </div>
+        <div class="demo-block__pane is-active" data-demo-pane="preview">
+          <div class="demo-preview">
+            <h1 class="mb-3">Heading one <span class="fs-8 text-muted-2 fw-400">1.75rem / 600</span></h1>
+            <h2 class="mb-3">Heading two <span class="fs-8 text-muted-2 fw-400">1.5rem / 600</span></h2>
+            <h3 class="mb-3">Heading three <span class="fs-8 text-muted-2 fw-400">1.25rem / 600</span></h3>
+            <h4 class="mb-3">Heading four <span class="fs-8 text-muted-2 fw-400">1.0625rem / 600</span></h4>
+            <h5 class="mb-3">Heading five <span class="fs-8 text-muted-2 fw-400">0.9375rem / 600</span></h5>
+            <h6 class="mb-0">Heading six <span class="fs-8 text-muted-2 fw-400">0.875rem / 600</span></h6>
+          </div>
+        </div>
+        <div class="demo-block__pane" data-demo-pane="html">
+          <div class="demo-code-wrap">
+            <button class="copy-btn" data-copy-target="#headings"><i class="bi bi-clipboard"></i> Copy HTML</button>
+            <pre class="demo-code"><code id="headings">&lt;h1&gt;Heading one&lt;/h1&gt;
+&lt;h2&gt;Heading two&lt;/h2&gt;
+&lt;h3&gt;Heading three&lt;/h3&gt;
+&lt;h4&gt;Heading four&lt;/h4&gt;
+&lt;h5&gt;Heading five&lt;/h5&gt;
+&lt;h6&gt;Heading six&lt;/h6&gt;
+
+&lt;!-- Utility classes for visual size without changing semantics --&gt;
+&lt;p class="h4 fw-600 text-heading"&gt;Looks like a heading, is still a paragraph&lt;/p&gt;</code></pre>
+          </div>
+        </div>
+      </div>
+
+      <div class="demo-block" data-demo>
+        <div class="demo-block__head">
+          <div>
+            <h2 class="demo-block__title">Body text and helpers</h2>
+            <p class="demo-block__desc">Base body size is 0.9375rem (15px) with a 1.6 line height. Use the small helpers for metadata and table captions.</p>
+          </div>
+        </div>
+        <div class="demo-block__tabs">
+          <button class="demo-tab is-active" data-demo-tab="preview" aria-selected="true">Preview</button>
+          <button class="demo-tab" data-demo-tab="html" aria-selected="false">HTML</button>
+        </div>
+        <div class="demo-block__pane is-active" data-demo-pane="preview">
+          <div class="demo-preview d-flex flex-column gap-3">
+            <p class="fs-5 mb-0">Lead paragraph — 1.25rem, used for section introductions on marketing-style pages.</p>
+            <p class="mb-0">Body copy at 0.9375rem. This is the default size for paragraphs, table cells and form labels across the dashboard, CRM, finance and AI pages.</p>
+            <p class="fs-7 mb-0">Small text (fs-7, 0.8125rem) for card subtitles and helper copy.</p>
+            <p class="fs-8 text-muted-2 mb-0">Meta text (fs-8, 0.75rem) for timestamps and table metadata.</p>
+            <p class="fs-9 text-faint mb-0">Captions (fs-9, 0.6875rem) for the smallest annotations.</p>
+            <p class="mb-0">Links use the primary token — <a href="#">this is a link</a> — and inherit hover states from Bootstrap.</p>
+            <p class="mb-0">Inline code looks like <code>--q-primary</code> and keyboard keys look like <kbd>⌘</kbd> <kbd>K</kbd>.</p>
+            <blockquote class="mb-0 border-start border-3 border-q ps-3">
+              <p class="fs-7 text-muted-2 mb-0">Block quotes are used for documentation notes and customer testimonials.</p>
+            </blockquote>
+          </div>
+        </div>
+        <div class="demo-block__pane" data-demo-pane="html">
+          <div class="demo-code-wrap">
+            <button class="copy-btn" data-copy-target="#bodyText"><i class="bi bi-clipboard"></i> Copy HTML</button>
+            <pre class="demo-code"><code id="bodyText">&lt;p class="fs-5"&gt;Lead paragraph&lt;/p&gt;
+&lt;p&gt;Body copy at the default size.&lt;/p&gt;
+&lt;p class="fs-7"&gt;Small text for card subtitles.&lt;/p&gt;
+&lt;p class="fs-8 text-muted-2"&gt;Meta text for timestamps.&lt;/p&gt;
+&lt;p class="fs-9 text-faint"&gt;Tiny captions.&lt;/p&gt;
+
+&lt;p&gt;Inline &lt;code&gt;--q-primary&lt;/code&gt; and keys &lt;kbd&gt;⌘&lt;/kbd&gt;.&lt;/p&gt;
+
+&lt;blockquote class="border-start border-3 border-q ps-3"&gt;
+  &lt;p class="fs-7 text-muted-2 mb-0"&gt;Quoted note.&lt;/p&gt;
+&lt;/blockquote&gt;</code></pre>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <div>
+            <h2 class="card-title">Weight scale</h2>
+            <p class="card-subtitle">Four weights are bundled — nothing else is downloaded</p>
+          </div>
+        </div>
+        <div class="card-body d-flex flex-column gap-3">
+          <div class="d-flex flex-wrap align-items-center justify-content-between gap-2">
+            <span class="fw-400 fs-5">Inter Regular — 400</span>
+            <span class="fs-8 text-muted-2">Body copy, table cells, form values</span>
+          </div>
+          <div class="d-flex flex-wrap align-items-center justify-content-between gap-2">
+            <span class="fw-500 fs-5">Inter Medium — 500</span>
+            <span class="fs-8 text-muted-2">Buttons, navigation labels, table headers</span>
+          </div>
+          <div class="d-flex flex-wrap align-items-center justify-content-between gap-2">
+            <span class="fw-600 fs-5">Inter SemiBold — 600</span>
+            <span class="fs-8 text-muted-2">Headings, badges, emphasis</span>
+          </div>
+          <div class="d-flex flex-wrap align-items-center justify-content-between gap-2">
+            <span class="fw-700 fs-5">Inter Bold — 700</span>
+            <span class="fs-8 text-muted-2">KPI values, page titles, large numbers</span>
+          </div>
+        </div>
+      </div>

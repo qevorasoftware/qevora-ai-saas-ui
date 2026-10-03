@@ -1,0 +1,188 @@
+      <div class="q-page-head">
+        <div>
+          {{BREADCRUMB}}
+          <h1 class="q-page-head__title mt-2">Colors</h1>
+          <p class="q-page-head__subtitle">
+            Every colour is a CSS variable, so light and dark mode are driven by the same names.
+            Override them once in <code>assets/css/style.css</code> and the whole template follows.
+          </p>
+        </div>
+        <div class="d-flex flex-wrap gap-2">
+          <button class="btn btn-white" data-demo-action="Original palette re-applied — demo only."><i class="bi bi-arrow-counterclockwise"></i> Preview default</button>
+          <a class="btn btn-primary" href="../documentation/design-system.html"><i class="bi bi-layers"></i> Design system</a>
+        </div>
+      </div>
+
+      <div class="demo-block" data-demo>
+        <div class="demo-block__head">
+          <div>
+            <h2 class="demo-block__title">Brand and status colours</h2>
+            <p class="demo-block__desc">The seven core tokens used across the template. Each one also has a soft tint for backgrounds and badges.</p>
+          </div>
+        </div>
+        <div class="demo-block__tabs">
+          <button class="demo-tab is-active" data-demo-tab="preview" aria-selected="true">Preview</button>
+          <button class="demo-tab" data-demo-tab="html" aria-selected="false">HTML</button>
+        </div>
+        <div class="demo-block__pane is-active" data-demo-pane="preview">
+          <div class="demo-preview">
+            <div class="row g-3">
+              <div class="col-6 col-md-3">
+                <div class="swatch" style="background: var(--q-primary)">
+                  <span class="swatch__name">Primary</span>
+                  <span class="swatch__hex">--q-primary</span>
+                </div>
+              </div>
+              <div class="col-6 col-md-3">
+                <div class="swatch" style="background: var(--q-accent)">
+                  <span class="swatch__name">Accent</span>
+                  <span class="swatch__hex">--q-accent</span>
+                </div>
+              </div>
+              <div class="col-6 col-md-3">
+                <div class="swatch" style="background: var(--q-success)">
+                  <span class="swatch__name">Success</span>
+                  <span class="swatch__hex">--q-success</span>
+                </div>
+              </div>
+              <div class="col-6 col-md-3">
+                <div class="swatch" style="background: var(--q-warning); color: #1b1a12;">
+                  <span class="swatch__name">Warning</span>
+                  <span class="swatch__hex">--q-warning</span>
+                </div>
+              </div>
+              <div class="col-6 col-md-3">
+                <div class="swatch" style="background: var(--q-danger)">
+                  <span class="swatch__name">Danger</span>
+                  <span class="swatch__hex">--q-danger</span>
+                </div>
+              </div>
+              <div class="col-6 col-md-3">
+                <div class="swatch" style="background: var(--q-info)">
+                  <span class="swatch__name">Info</span>
+                  <span class="swatch__hex">--q-info</span>
+                </div>
+              </div>
+              <div class="col-6 col-md-3">
+                <div class="swatch" style="background: var(--q-heading-color); color: var(--q-surface);">
+                  <span class="swatch__name">Heading</span>
+                  <span class="swatch__hex">--q-heading-color</span>
+                </div>
+              </div>
+              <div class="col-6 col-md-3">
+                <div class="swatch" style="background: var(--q-muted-color)">
+                  <span class="swatch__name">Muted text</span>
+                  <span class="swatch__hex">--q-muted-color</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="demo-block__pane" data-demo-pane="html">
+          <div class="demo-code-wrap">
+            <button class="copy-btn" data-copy-target="#colorTokens"><i class="bi bi-clipboard"></i> Copy HTML</button>
+            <pre class="demo-code"><code id="colorTokens">&lt;!-- Background utilities --&gt;
+&lt;div class="bg-primary-soft text-primary-2 p-3 rounded-q"&gt;Soft primary surface&lt;/div&gt;
+&lt;div class="bg-success-soft text-success p-3 rounded-q"&gt;Soft success surface&lt;/div&gt;
+&lt;div class="bg-warning-soft text-warning p-3 rounded-q"&gt;Soft warning surface&lt;/div&gt;
+&lt;div class="bg-danger-soft text-danger p-3 rounded-q"&gt;Soft danger surface&lt;/div&gt;
+&lt;div class="bg-info-soft text-info p-3 rounded-q"&gt;Soft info surface&lt;/div&gt;
+
+&lt;!-- Text helpers --&gt;
+&lt;p class="text-heading fw-600"&gt;Heading text&lt;/p&gt;
+&lt;p class="text-muted-2"&gt;Secondary text&lt;/p&gt;
+&lt;p class="text-faint"&gt;Tertiary text&lt;/p&gt;
+
+&lt;!-- Swatch (as shown in the preview) --&gt;
+&lt;div class="swatch" style="background: var(--q-primary)"&gt;
+  &lt;span class="swatch__name"&gt;Primary&lt;/span&gt;
+  &lt;span class="swatch__hex"&gt;--q-primary&lt;/span&gt;
+&lt;/div&gt;</code></pre>
+          </div>
+        </div>
+      </div>
+
+      <div class="card q-section">
+        <div class="card-header">
+          <div>
+            <h2 class="card-title">Token reference</h2>
+            <p class="card-subtitle">Change these values to re-brand the whole template</p>
+          </div>
+        </div>
+        <div class="table-responsive">
+          <table class="table align-middle">
+            <thead>
+              <tr>
+                <th scope="col">Token</th>
+                <th scope="col">Light</th>
+                <th scope="col">Dark</th>
+                <th scope="col">Used for</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td><code>--q-primary</code></td><td>#4f46e5</td><td>#7c74ff</td><td>Primary actions, links, active navigation</td></tr>
+              <tr><td><code>--q-accent</code></td><td>#06b6d4</td><td>#22d3ee</td><td>Secondary charts, highlights, gradients</td></tr>
+              <tr><td><code>--q-success</code></td><td>#10b981</td><td>#34d399</td><td>Paid, active, completed states</td></tr>
+              <tr><td><code>--q-warning</code></td><td>#f59e0b</td><td>#fbbf24</td><td>Pending, low stock, quota warnings</td></tr>
+              <tr><td><code>--q-danger</code></td><td>#ef4444</td><td>#f87171</td><td>Failed, overdue, destructive actions</td></tr>
+              <tr><td><code>--q-info</code></td><td>#0ea5e9</td><td>#38bdf8</td><td>Informational badges and alerts</td></tr>
+              <tr><td><code>--q-body-bg</code></td><td>#f6f7fb</td><td>#0b0f1c</td><td>Application background</td></tr>
+              <tr><td><code>--q-surface</code></td><td>#ffffff</td><td>#141a2e</td><td>Cards, dropdowns, modals, header</td></tr>
+              <tr><td><code>--q-border-color</code></td><td>#e7e9f2</td><td>#232b47</td><td>All borders and dividers</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="card-body border-top border-q">
+          <div class="alert alert-primary mb-0" role="alert">
+            <i class="bi bi-lightbulb alert-icon"></i>
+            <div>
+              <strong class="d-block">Re-brand in one place</strong>
+              <span class="fs-8">Edit <code>:root</code> in <code>assets/css/style.css</code>. The dark theme reads from <code>[data-bs-theme="dark"]</code> in the same file.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="demo-block" data-demo>
+        <div class="demo-block__head">
+          <div>
+            <h2 class="demo-block__title">Gradients</h2>
+            <p class="demo-block__desc">Two brand gradients ship with the template. Both are used sparingly — for the logo mark, the welcome banner and avatar fills.</p>
+          </div>
+        </div>
+        <div class="demo-block__tabs">
+          <button class="demo-tab is-active" data-demo-tab="preview" aria-selected="true">Preview</button>
+          <button class="demo-tab" data-demo-tab="html" aria-selected="false">HTML</button>
+        </div>
+        <div class="demo-block__pane is-active" data-demo-pane="preview">
+          <div class="demo-preview">
+            <div class="row g-3">
+              <div class="col-md-6">
+                <div class="p-4 rounded-q text-white" style="background: linear-gradient(120deg, var(--q-primary) 0%, var(--q-accent) 140%);">
+                  <p class="fw-600 mb-1">Primary → accent</p>
+                  <p class="fs-8 mb-0 opacity-75">Buttons, logo mark, hero glow</p>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="p-4 rounded-q" style="background: linear-gradient(120deg, var(--q-primary-soft), var(--q-accent-soft));">
+                  <p class="fw-600 text-heading mb-1">Soft primary → soft accent</p>
+                  <p class="fs-8 text-muted-2 mb-0">Section backgrounds and empty states</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="demo-block__pane" data-demo-pane="html">
+          <div class="demo-code-wrap">
+            <button class="copy-btn" data-copy-target="#gradients"><i class="bi bi-clipboard"></i> Copy HTML</button>
+            <pre class="demo-code"><code id="gradients">&lt;div class="btn btn-gradient"&gt;Gradient button&lt;/div&gt;
+
+&lt;div class="q-brand__mark"&gt;Q&lt;/div&gt;
+
+&lt;div class="p-4 rounded-q text-white"
+     style="background: linear-gradient(120deg, var(--q-primary) 0%, var(--q-accent) 140%);"&gt;
+  Brand gradient panel
+&lt;/div&gt;</code></pre>
+          </div>
+        </div>
+      </div>

@@ -1,0 +1,114 @@
+      <div class="q-page-head">
+        <div>
+          {{BREADCRUMB}}
+          <h1 class="q-page-head__title mt-2">Activity logs</h1>
+          <p class="q-page-head__subtitle">Audit trail of every action taken in the workspace.</p>
+        </div>
+        <div class="d-flex flex-wrap gap-2">
+          <button class="btn btn-white" data-demo-action="Log export queued — demo only."><i class="bi bi-download"></i> Export log</button>
+          <button class="btn btn-primary" data-demo-action="Retention settings opened — demo only."><i class="bi bi-gear"></i> Retention</button>
+        </div>
+      </div>
+
+      <div class="card q-section">
+        <div class="table-toolbar">
+          <div class="search-field" style="max-width: 300px;">
+            <i class="bi bi-search search-field__icon" aria-hidden="true"></i>
+            <label class="visually-hidden" for="activity-search">Search activity</label>
+            <input type="search" class="form-control" id="activity-search" placeholder="Search by actor or action…" data-table-filter="#activity-table">
+          </div>
+          <select class="form-select form-select-sm" style="width: auto;" aria-label="Filter by action type">
+            <option>All actions</option>
+            <option>Create</option>
+            <option>Update</option>
+            <option>Delete</option>
+            <option>Login</option>
+          </select>
+          <div class="d-flex gap-2 ms-auto align-items-center">
+            <label class="visually-hidden" for="activity-date-from">From</label>
+            <input type="date" class="form-control form-control-sm" id="activity-date-from" value="2026-09-26">
+            <span class="fs-8 text-muted-2">to</span>
+            <label class="visually-hidden" for="activity-date-to">To</label>
+            <input type="date" class="form-control form-control-sm" id="activity-date-to" value="2026-10-03">
+          </div>
+        </div>
+
+        <div class="table-responsive">
+          <table class="table table-hover align-middle" id="activity-table">
+            <thead>
+              <tr>
+                <th scope="col">Actor</th>
+                <th scope="col">Action</th>
+                <th scope="col">Target</th>
+                <th scope="col">IP address</th>
+                <th scope="col">Device</th>
+                <th scope="col" data-sort="text">Timestamp</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><div class="d-flex align-items-center gap-2"><span class="avatar avatar-xs bg-avatar-1">AR</span><span class="fs-7">Ava Reynolds</span></div></td>
+                <td><span class="badge badge-soft-primary badge-pill">Update</span> changed subscription seats</td>
+                <td>Northstar Labs</td>
+                <td class="text-muted-2">203.0.113.24</td>
+                <td class="text-muted-2">Chrome · macOS</td>
+                <td class="text-muted-2">Oct 3, 09:42</td>
+              </tr>
+              <tr>
+                <td><div class="d-flex align-items-center gap-2"><span class="avatar avatar-xs bg-avatar-6">LN</span><span class="fs-7">Lea Novak</span></div></td>
+                <td><span class="badge badge-soft-success badge-pill">Create</span> generated an AI report</td>
+                <td>Q3 revenue summary</td>
+                <td class="text-muted-2">198.51.100.7</td>
+                <td class="text-muted-2">Firefox · Windows</td>
+                <td class="text-muted-2">Oct 3, 08:16</td>
+              </tr>
+              <tr>
+                <td><div class="d-flex align-items-center gap-2"><span class="avatar avatar-xs bg-avatar-3">MC</span><span class="fs-7">Marcus Chen</span></div></td>
+                <td><span class="badge badge-soft-info badge-pill">Login</span> signed in with SSO</td>
+                <td>Workspace</td>
+                <td class="text-muted-2">203.0.113.88</td>
+                <td class="text-muted-2">Safari · iOS</td>
+                <td class="text-muted-2">Oct 2, 21:05</td>
+              </tr>
+              <tr>
+                <td><div class="d-flex align-items-center gap-2"><span class="avatar avatar-xs bg-avatar-4">DO</span><span class="fs-7">Daniel Okafor</span></div></td>
+                <td><span class="badge badge-soft-danger badge-pill">Delete</span> removed an API key</td>
+                <td>key_prod_legacy</td>
+                <td class="text-muted-2">192.0.2.14</td>
+                <td class="text-muted-2">Chrome · Linux</td>
+                <td class="text-muted-2">Oct 2, 16:31</td>
+              </tr>
+              <tr>
+                <td><div class="d-flex align-items-center gap-2"><span class="avatar avatar-xs bg-avatar-5">YT</span><span class="fs-7">Yuki Tanaka</span></div></td>
+                <td><span class="badge badge-soft-primary badge-pill">Update</span> refunded a payment</td>
+                <td>PAY-90401</td>
+                <td class="text-muted-2">198.51.100.42</td>
+                <td class="text-muted-2">Edge · Windows</td>
+                <td class="text-muted-2">Oct 1, 11:20</td>
+              </tr>
+              <tr>
+                <td><div class="d-flex align-items-center gap-2"><span class="avatar avatar-xs bg-avatar-2">PS</span><span class="fs-7">Priya Sharma</span></div></td>
+                <td><span class="badge badge-soft-success badge-pill">Create</span> issued an invoice</td>
+                <td>INV-2026-0184</td>
+                <td class="text-muted-2">203.0.113.190</td>
+                <td class="text-muted-2">Chrome · Windows</td>
+                <td class="text-muted-2">Sep 28, 10:02</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="table-footer">
+          <span class="fs-8 text-muted-2">Showing 6 of 12,480 events</span>
+          <nav aria-label="Activity pagination">
+            <ul class="pagination pagination-sm mb-0">
+              <li class="page-item disabled"><a class="page-link" href="#" aria-label="Previous"><i class="bi bi-chevron-left"></i></a></li>
+              <li class="page-item active"><a class="page-link" href="#">1</a></li>
+              <li class="page-item"><a class="page-link" href="#">2</a></li>
+              <li class="page-item"><a class="page-link" href="#">…</a></li>
+              <li class="page-item"><a class="page-link" href="#">208</a></li>
+              <li class="page-item"><a class="page-link" href="#" aria-label="Next"><i class="bi bi-chevron-right"></i></a></li>
+            </ul>
+          </nav>
+        </div>
+      </div>
