@@ -61,7 +61,7 @@
               <div class="divider-y"></div>
 
               <div class="d-grid gap-2">
-                <button type="button" class="btn btn-soft-primary" data-demo-action="New invoice drafted — demo interaction only."><i class="bi bi-receipt"></i> Create invoice</button>
+                <button type="button" class="btn btn-soft-primary" data-demo-new="#q-demo-record" data-demo-table="#customer-invoices-table" data-demo-label="Invoice"><i class="bi bi-receipt"></i> Create invoice</button>
                 <button type="button" class="btn btn-ghost text-danger" data-demo-action="Customer archived — demo interaction only." data-demo-variant="danger"><i class="bi bi-archive"></i> Archive customer</button>
               </div>
             </div>
@@ -119,7 +119,8 @@
               <a href="invoices.html" class="btn btn-sm btn-soft-secondary">All invoices</a>
             </div>
             <div class="table-responsive">
-              <table class="table table-hover align-middle">
+              <table class="table table-hover align-middle" id="customer-invoices-table" data-demo-record="invoice"
+                     data-demo-fields="id:Invoice,issued:Issued,amount:Amount,status:Status">
                 <thead>
                   <tr>
                     <th scope="col">Invoice</th>
@@ -130,10 +131,10 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr><td class="fw-500 text-heading">INV-2026-0184</td><td class="text-muted-2">Sep 28, 2026</td><td class="text-end fw-600 text-heading">$12,400.00</td><td><span class="badge badge-soft-success badge-pill">Paid</span></td><td class="text-end"><a class="btn btn-icon btn-sm btn-ghost" href="invoice-details.html" aria-label="View invoice"><i class="bi bi-arrow-right"></i></a></td></tr>
-                  <tr><td class="fw-500 text-heading">INV-2026-0147</td><td class="text-muted-2">Aug 28, 2026</td><td class="text-end fw-600 text-heading">$12,400.00</td><td><span class="badge badge-soft-success badge-pill">Paid</span></td><td class="text-end"><a class="btn btn-icon btn-sm btn-ghost" href="invoice-details.html" aria-label="View invoice"><i class="bi bi-arrow-right"></i></a></td></tr>
-                  <tr><td class="fw-500 text-heading">INV-2026-0112</td><td class="text-muted-2">Jul 28, 2026</td><td class="text-end fw-600 text-heading">$11,200.00</td><td><span class="badge badge-soft-success badge-pill">Paid</span></td><td class="text-end"><a class="btn btn-icon btn-sm btn-ghost" href="invoice-details.html" aria-label="View invoice"><i class="bi bi-arrow-right"></i></a></td></tr>
-                  <tr><td class="fw-500 text-heading">INV-2026-0078</td><td class="text-muted-2">Jun 28, 2026</td><td class="text-end fw-600 text-heading">$10,800.00</td><td><span class="badge badge-soft-danger badge-pill">Overdue</span></td><td class="text-end"><a class="btn btn-icon btn-sm btn-ghost" href="invoice-details.html" aria-label="View invoice"><i class="bi bi-arrow-right"></i></a></td></tr>
+                  <tr data-invoice-id="INV-2026-0184" data-invoice-issued="Sep 28, 2026" data-invoice-amount="12400.00" data-invoice-status="Paid"><td class="fw-500 text-heading">INV-2026-0184</td><td class="text-muted-2">Sep 28, 2026</td><td class="text-end fw-600 text-heading">$12,400.00</td><td><span class="badge badge-soft-success badge-pill">Paid</span></td><td class="text-end"><a class="btn btn-icon btn-sm btn-ghost" href="invoice-details.html" aria-label="View invoice"><i class="bi bi-arrow-right"></i></a></td></tr>
+                  <tr data-invoice-id="INV-2026-0147" data-invoice-issued="Aug 28, 2026" data-invoice-amount="12400.00" data-invoice-status="Paid"><td class="fw-500 text-heading">INV-2026-0147</td><td class="text-muted-2">Aug 28, 2026</td><td class="text-end fw-600 text-heading">$12,400.00</td><td><span class="badge badge-soft-success badge-pill">Paid</span></td><td class="text-end"><a class="btn btn-icon btn-sm btn-ghost" href="invoice-details.html" aria-label="View invoice"><i class="bi bi-arrow-right"></i></a></td></tr>
+                  <tr data-invoice-id="INV-2026-0112" data-invoice-issued="Jul 28, 2026" data-invoice-amount="11200.00" data-invoice-status="Paid"><td class="fw-500 text-heading">INV-2026-0112</td><td class="text-muted-2">Jul 28, 2026</td><td class="text-end fw-600 text-heading">$11,200.00</td><td><span class="badge badge-soft-success badge-pill">Paid</span></td><td class="text-end"><a class="btn btn-icon btn-sm btn-ghost" href="invoice-details.html" aria-label="View invoice"><i class="bi bi-arrow-right"></i></a></td></tr>
+                  <tr data-invoice-id="INV-2026-0078" data-invoice-issued="Jun 28, 2026" data-invoice-amount="10800.00" data-invoice-status="Overdue"><td class="fw-500 text-heading">INV-2026-0078</td><td class="text-muted-2">Jun 28, 2026</td><td class="text-end fw-600 text-heading">$10,800.00</td><td><span class="badge badge-soft-danger badge-pill">Overdue</span></td><td class="text-end"><a class="btn btn-icon btn-sm btn-ghost" href="invoice-details.html" aria-label="View invoice"><i class="bi bi-arrow-right"></i></a></td></tr>
                 </tbody>
               </table>
             </div>

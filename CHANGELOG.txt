@@ -227,6 +227,44 @@ FIXES DURING DEVELOPMENT
       export, download and print control on 16 pages and assert that a file with
       the right name and content arrives.
 
+  Records, imports and the AI workspace
+    · pages/crm.html is a working dashboard, not a picture of one: "New lead"
+      opens the shared dialog and writes a real row (name, company, source,
+      status, value, owner) into a new "Recent leads" table, "Import leads"
+      opens the importer, and the row's edit and delete buttons, the status
+      select, the live search and the pager all read the same five rows. The
+      status field becomes a select built from the statuses already in the
+      table, so the row that comes out matches the rows that are there.
+    · The importer is shared by every table: paste comma, semicolon or
+      tab-separated rows (quoted fields included), or choose a .csv file whose
+      header names the columns; the rows land in the table, the "x of y"
+      counter follows, and the toast says how many arrived.
+    · The same round of work gave eleven more controls their real job:
+      "New report" and "Add schedule" on reports, "Add task" on
+      pages/project-details.html, "Create invoice" on customer-details,
+      "Create role" (a new column in the permission matrix, with undo) on
+      pages/roles.html, "New project" on projects, "New task" / "Add deal" on
+      the kanban and pipeline boards, "New event" on the calendar, and "Upload
+      photo" / "Remove photo" on settings — the last one writes a real preview
+      of the file you picked.
+    · ai/history.html stopped being decorative: "Clear history" empties the
+      table with an undo, "Copy prompt" copies that row's prompt, and "Reuse
+      prompt" carries the prompt to ai/chat.html (or the image generator) in the
+      query string, where the composer or the prompt box picks it up and says
+      where it came from.
+    · ai/chat.html and pages/chat.html: the suggestion chips send a real
+      message and get a canned reply, the rating buttons toggle with a
+      confirmation, "Attach file" opens a real file picker and turns each chosen
+      name into a removable chip, "Share" copies the transcript, "Clear" empties
+      the thread with an undo, and the two composers post what you typed.
+    · Three new engine hooks keep it honest: data-demo-clear-rows (empty a body,
+      restore it from the toast), data-demo-reuse + data-demo-prefill (hand a
+      value to the next page), and data-demo-attach (a file picker whose chosen
+      names become chips).
+    · pages/crm.html and every list page now agree with themselves: the footer
+      counter shows the page window ("1–5 of 5 leads") whenever the table has a
+      pager, so the same number appears in the footer, the pager and the export.
+
   Links, buttons and runtime behaviour
     · The light/dark toggle did nothing when localStorage is unavailable —
       private-mode windows, sandboxed frames and, most importantly, opening the

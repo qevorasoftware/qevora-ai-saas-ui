@@ -6,7 +6,7 @@
         </div>
         <div class="d-flex flex-wrap gap-2">
           <button type="button" class="btn btn-white" data-demo-action="Project shared — demo interaction only."><i class="bi bi-share"></i> Share</button>
-          <button type="button" class="btn btn-primary" data-demo-action="Task created — demo interaction only."><i class="bi bi-plus-lg"></i> Add task</button>
+          <button type="button" class="btn btn-primary" data-demo-new="#q-demo-record" data-demo-table="#project-tasks-table" data-demo-label="Task"><i class="bi bi-plus-lg"></i> Add task</button>
         </div>
       </div>
 
@@ -63,7 +63,8 @@
               <a href="tasks.html" class="btn btn-sm btn-soft-secondary">Open task list</a>
             </div>
             <div class="table-responsive">
-              <table class="table table-hover align-middle">
+              <table class="table table-hover align-middle" id="project-tasks-table" data-demo-record="task"
+                     data-demo-fields="title:Task,assignee:Assignee,priority:Priority,due:Due,status:Status">
                 <thead>
                   <tr>
                     <th scope="col" style="width: 40px;"><input class="form-check-input" type="checkbox" data-select-all="#project-tasks" aria-label="Select all tasks"></th>
@@ -75,7 +76,7 @@
                   </tr>
                 </thead>
                 <tbody id="project-tasks">
-                  <tr>
+                  <tr data-task-assignee="Migrate reporting queries" data-task-priority="MC" data-task-due="High" data-task-status="Oct 12">
                     <td><input class="form-check-input" type="checkbox" data-row-select aria-label="Select task"></td>
                     <td class="fw-500 text-heading">Migrate reporting queries</td>
                     <td><span class="avatar avatar-xs bg-avatar-3" data-bs-toggle="tooltip" title="Marcus Chen">MC</span></td>
@@ -83,7 +84,7 @@
                     <td class="text-muted-2">Oct 12</td>
                     <td><span class="badge badge-soft-primary badge-pill">In progress</span></td>
                   </tr>
-                  <tr>
+                  <tr data-task-assignee="Cut over nightly ETL jobs" data-task-priority="LN" data-task-due="Medium" data-task-status="Oct 18">
                     <td><input class="form-check-input" type="checkbox" data-row-select aria-label="Select task"></td>
                     <td class="fw-500 text-heading">Cut over nightly ETL jobs</td>
                     <td><span class="avatar avatar-xs bg-avatar-6" data-bs-toggle="tooltip" title="Lea Novak">LN</span></td>
@@ -91,7 +92,7 @@
                     <td class="text-muted-2">Oct 18</td>
                     <td><span class="badge badge-soft-neutral badge-pill">To do</span></td>
                   </tr>
-                  <tr>
+                  <tr data-task-assignee="Update runbooks and alerts" data-task-priority="AR" data-task-due="Low" data-task-status="Oct 24">
                     <td><input class="form-check-input" type="checkbox" data-row-select aria-label="Select task"></td>
                     <td class="fw-500 text-heading">Update runbooks and alerts</td>
                     <td><span class="avatar avatar-xs bg-avatar-1" data-bs-toggle="tooltip" title="Ava Reynolds">AR</span></td>
@@ -99,7 +100,7 @@
                     <td class="text-muted-2">Oct 24</td>
                     <td><span class="badge badge-soft-success badge-pill">Done</span></td>
                   </tr>
-                  <tr>
+                  <tr data-task-assignee="Load-test the new cluster" data-task-priority="DO" data-task-due="High" data-task-status="Oct 27">
                     <td><input class="form-check-input" type="checkbox" data-row-select aria-label="Select task"></td>
                     <td class="fw-500 text-heading">Load-test the new cluster</td>
                     <td><span class="avatar avatar-xs bg-avatar-4" data-bs-toggle="tooltip" title="Daniel Okafor">DO</span></td>

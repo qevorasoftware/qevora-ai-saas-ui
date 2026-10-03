@@ -5,8 +5,10 @@
           <p class="q-page-head__subtitle">Pipeline health, deal velocity and customer activity for the sales team.</p>
         </div>
         <div class="d-flex flex-wrap gap-2">
-          <button type="button" class="btn btn-white" data-demo-action="Lead import dialog would open here."><i class="bi bi-upload"></i> Import leads</button>
-          <button type="button" class="btn btn-primary" data-demo-action="New lead form opened — demo interaction only."><i class="bi bi-plus-lg"></i> New lead</button>
+          <button type="button" class="btn btn-white" data-demo-import="#crm-leads-table" data-demo-import-label="Recent leads"
+                  data-demo-import-sample="Acme Inc.,Acme Inc.,Website,New,18000,LC"><i class="bi bi-upload"></i> Import leads</button>
+          <button type="button" class="btn btn-primary" data-demo-new="#q-demo-record" data-demo-table="#crm-leads-table"
+                  data-demo-label="Lead"><i class="bi bi-plus-lg"></i> New lead</button>
         </div>
       </div>
 
@@ -164,6 +166,185 @@
                   <p class="timeline__meta">summit@acme.io · yesterday</p>
                 </li>
               </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row g-3 q-section">
+        <div class="col-12">
+          <div class="card">
+            <div class="card-header">
+              <div>
+                <h2 class="card-title">Recent leads</h2>
+                <p class="card-subtitle">Everything the form and the importer add lands here</p>
+              </div>
+              <a class="btn btn-sm btn-white" href="leads.html">Open the lead list <i class="bi bi-arrow-right"></i></a>
+            </div>
+            <div class="table-toolbar">
+              <div class="search-field" style="max-width: 280px;">
+                <i class="bi bi-search search-field__icon" aria-hidden="true"></i>
+                <label class="visually-hidden" for="crm-lead-search">Search leads</label>
+                <input type="search" class="form-control" id="crm-lead-search" placeholder="Search leads…" data-table-filter="#crm-leads-table">
+              </div>
+              <select class="form-select form-select-sm" style="width: auto;" aria-label="Filter by status"
+                      data-demo-filter="status" data-demo-filter-table="#crm-leads-table">
+                <option value="">All statuses</option>
+                <option value="New">New</option>
+                <option value="Qualified">Qualified</option>
+                <option value="Contacted">Contacted</option>
+                <option value="Won">Won</option>
+                <option value="Lost">Lost</option>
+              </select>
+              <span class="ms-auto fs-8 text-muted-2" data-demo-count="#crm-leads-table" data-demo-count-noun="leads">1–5 of 5</span>
+            </div>
+
+            <div class="table-responsive">
+              <table class="table table-hover align-middle" id="crm-leads-table" data-demo-record="lead"
+                     data-demo-fields="name:Lead,company:Company,source:Source,status:Status,value:Value,owner:Owner">
+                <thead>
+                  <tr>
+                    <th scope="col" style="width: 40px;">
+                      <input class="form-check-input" type="checkbox" data-select-all="#crm-leads-table" aria-label="Select all leads">
+                    </th>
+                    <th scope="col" data-sort="text">Lead <i class="bi bi-arrow-down-up"></i></th>
+                    <th scope="col">Company</th>
+                    <th scope="col">Source</th>
+                    <th scope="col" data-sort="text">Status</th>
+                    <th scope="col" data-sort="number" class="text-end">Value <i class="bi bi-arrow-down-up"></i></th>
+                    <th scope="col">Owner</th>
+                    <th scope="col" class="text-end">Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr data-lead-name="Northstar Labs" data-lead-company="Northstar Labs" data-lead-source="Partnership" data-lead-status="Contacted" data-lead-value="48000" data-lead-owner="AR">
+                    <td><input class="form-check-input" type="checkbox" data-row-select aria-label="Select Northstar Labs"></td>
+                    <td>
+                      <div class="d-flex align-items-center gap-2">
+                        <span class="avatar avatar-sm bg-avatar-1" data-slot-avatar="name">NL</span>
+                        <span>
+                          <span class="d-block fs-7 fw-500 text-heading" data-slot="name">Northstar Labs</span>
+                          <span class="d-block fs-8 text-muted-2" data-slot="email">hello@northstarlabs.io</span>
+                        </span>
+                      </div>
+                    </td>
+                    <td data-slot="company">Northstar Labs</td>
+                    <td data-slot="source">Partnership</td>
+                    <td><span class="badge badge-soft-primary badge-pill" data-slot-badge="status">Contacted</span></td>
+                    <td class="text-end fw-600 text-heading" data-slot="value" data-slot-money>48000</td>
+                    <td><span class="avatar avatar-xs bg-avatar-1" data-bs-toggle="tooltip" data-slot-avatar="owner" title="Ava Reynolds">AR</span></td>
+                    <td class="text-end">
+                      <div class="table-actions justify-content-end">
+                        <button type="button" class="btn btn-icon btn-sm btn-ghost" aria-label="Edit lead" data-demo-new="#q-demo-record" data-demo-table="#crm-leads-table" data-demo-label="Lead"><i class="bi bi-pencil"></i></button>
+                        <button type="button" class="btn btn-icon btn-sm btn-ghost" aria-label="Delete lead" data-demo-delete data-demo-delete-label="Lead"><i class="bi bi-trash"></i></button>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr data-lead-name="Vertex Labs" data-lead-company="Vertex Labs" data-lead-source="Inbound" data-lead-status="Qualified" data-lead-value="32500" data-lead-owner="MB">
+                    <td><input class="form-check-input" type="checkbox" data-row-select aria-label="Select Vertex Labs"></td>
+                    <td>
+                      <div class="d-flex align-items-center gap-2">
+                        <span class="avatar avatar-sm bg-avatar-3" data-slot-avatar="name">VL</span>
+                        <span>
+                          <span class="d-block fs-7 fw-500 text-heading" data-slot="name">Vertex Labs</span>
+                          <span class="d-block fs-8 text-muted-2" data-slot="email">sales@vertexlabs.ai</span>
+                        </span>
+                      </div>
+                    </td>
+                    <td data-slot="company">Vertex Labs</td>
+                    <td data-slot="source">Inbound</td>
+                    <td><span class="badge badge-soft-success badge-pill" data-slot-badge="status">Qualified</span></td>
+                    <td class="text-end fw-600 text-heading" data-slot="value" data-slot-money>32500</td>
+                    <td><span class="avatar avatar-xs bg-avatar-3" data-bs-toggle="tooltip" data-slot-avatar="owner" title="Marcus Bell">MB</span></td>
+                    <td class="text-end">
+                      <div class="table-actions justify-content-end">
+                        <button type="button" class="btn btn-icon btn-sm btn-ghost" aria-label="Edit lead" data-demo-new="#q-demo-record" data-demo-table="#crm-leads-table" data-demo-label="Lead"><i class="bi bi-pencil"></i></button>
+                        <button type="button" class="btn btn-icon btn-sm btn-ghost" aria-label="Delete lead" data-demo-delete data-demo-delete-label="Lead"><i class="bi bi-trash"></i></button>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr data-lead-name="Horizon Labs" data-lead-company="Horizon Labs" data-lead-source="Referral" data-lead-status="Won" data-lead-value="96000" data-lead-owner="EP">
+                    <td><input class="form-check-input" type="checkbox" data-row-select aria-label="Select Horizon Labs"></td>
+                    <td>
+                      <div class="d-flex align-items-center gap-2">
+                        <span class="avatar avatar-sm bg-avatar-5" data-slot-avatar="name">HL</span>
+                        <span>
+                          <span class="d-block fs-7 fw-500 text-heading" data-slot="name">Horizon Labs</span>
+                          <span class="d-block fs-8 text-muted-2" data-slot="email">team@horizonlabs.dev</span>
+                        </span>
+                      </div>
+                    </td>
+                    <td data-slot="company">Horizon Labs</td>
+                    <td data-slot="source">Referral</td>
+                    <td><span class="badge badge-soft-success badge-pill" data-slot-badge="status">Won</span></td>
+                    <td class="text-end fw-600 text-heading" data-slot="value" data-slot-money>96000</td>
+                    <td><span class="avatar avatar-xs bg-avatar-5" data-bs-toggle="tooltip" data-slot-avatar="owner" title="Elena Petrova">EP</span></td>
+                    <td class="text-end">
+                      <div class="table-actions justify-content-end">
+                        <button type="button" class="btn btn-icon btn-sm btn-ghost" aria-label="Edit lead" data-demo-new="#q-demo-record" data-demo-table="#crm-leads-table" data-demo-label="Lead"><i class="bi bi-pencil"></i></button>
+                        <button type="button" class="btn btn-icon btn-sm btn-ghost" aria-label="Delete lead" data-demo-delete data-demo-delete-label="Lead"><i class="bi bi-trash"></i></button>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr data-lead-name="Acme Inc." data-lead-company="Acme Inc." data-lead-source="Website" data-lead-status="New" data-lead-value="18000" data-lead-owner="LC">
+                    <td><input class="form-check-input" type="checkbox" data-row-select aria-label="Select Acme Inc."></td>
+                    <td>
+                      <div class="d-flex align-items-center gap-2">
+                        <span class="avatar avatar-sm bg-avatar-6" data-slot-avatar="name">AI</span>
+                        <span>
+                          <span class="d-block fs-7 fw-500 text-heading" data-slot="name">Acme Inc.</span>
+                          <span class="d-block fs-8 text-muted-2" data-slot="email">summit@acme.io</span>
+                        </span>
+                      </div>
+                    </td>
+                    <td data-slot="company">Acme Inc.</td>
+                    <td data-slot="source">Website</td>
+                    <td><span class="badge badge-soft-warning badge-pill" data-slot-badge="status">New</span></td>
+                    <td class="text-end fw-600 text-heading" data-slot="value" data-slot-money>18000</td>
+                    <td><span class="avatar avatar-xs bg-avatar-6" data-bs-toggle="tooltip" data-slot-avatar="owner" title="Liam Chen">LC</span></td>
+                    <td class="text-end">
+                      <div class="table-actions justify-content-end">
+                        <button type="button" class="btn btn-icon btn-sm btn-ghost" aria-label="Edit lead" data-demo-new="#q-demo-record" data-demo-table="#crm-leads-table" data-demo-label="Lead"><i class="bi bi-pencil"></i></button>
+                        <button type="button" class="btn btn-icon btn-sm btn-ghost" aria-label="Delete lead" data-demo-delete data-demo-delete-label="Lead"><i class="bi bi-trash"></i></button>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr data-lead-name="Orbit Systems" data-lead-company="Orbit Systems" data-lead-source="Outbound" data-lead-status="Lost" data-lead-value="24500" data-lead-owner="SM">
+                    <td><input class="form-check-input" type="checkbox" data-row-select aria-label="Select Orbit Systems"></td>
+                    <td>
+                      <div class="d-flex align-items-center gap-2">
+                        <span class="avatar avatar-sm bg-avatar-4" data-slot-avatar="name">OS</span>
+                        <span>
+                          <span class="d-block fs-7 fw-500 text-heading" data-slot="name">Orbit Systems</span>
+                          <span class="d-block fs-8 text-muted-2" data-slot="email">ops@orbitsystems.com</span>
+                        </span>
+                      </div>
+                    </td>
+                    <td data-slot="company">Orbit Systems</td>
+                    <td data-slot="source">Outbound</td>
+                    <td><span class="badge badge-soft-danger badge-pill" data-slot-badge="status">Lost</span></td>
+                    <td class="text-end fw-600 text-heading" data-slot="value" data-slot-money>24500</td>
+                    <td><span class="avatar avatar-xs bg-avatar-4" data-bs-toggle="tooltip" data-slot-avatar="owner" title="Sofia Marino">SM</span></td>
+                    <td class="text-end">
+                      <div class="table-actions justify-content-end">
+                        <button type="button" class="btn btn-icon btn-sm btn-ghost" aria-label="Edit lead" data-demo-new="#q-demo-record" data-demo-table="#crm-leads-table" data-demo-label="Lead"><i class="bi bi-pencil"></i></button>
+                        <button type="button" class="btn btn-icon btn-sm btn-ghost" aria-label="Delete lead" data-demo-delete data-demo-delete-label="Lead"><i class="bi bi-trash"></i></button>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div class="table-footer" data-paginate="#crm-leads-table" data-per-page="5">
+              <span class="fs-8 text-muted-2" data-page-info>Showing 1–5 of 5</span>
+              <nav aria-label="Recent leads pagination">
+                <ul class="pagination pagination-sm mb-0">
+                  <li class="page-item"><a class="page-link" href="#" data-page="prev" aria-label="Previous page"><i class="bi bi-chevron-left"></i></a></li>
+                  <li class="page-item active"><a class="page-link" href="#" data-page="1">1</a></li>
+                  <li class="page-item"><a class="page-link" href="#" data-page="next" aria-label="Next page"><i class="bi bi-chevron-right"></i></a></li>
+                </ul>
+              </nav>
             </div>
           </div>
         </div>

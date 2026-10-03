@@ -6,7 +6,7 @@
         </div>
         <div class="d-flex flex-wrap gap-2">
           <button class="btn btn-white d-lg-none" type="button" data-demo-action="Conversation list opened — demo only."><i class="bi bi-list"></i> Conversations</button>
-          <button type="button" class="btn btn-primary" data-demo-action="New conversation started — demo interaction only."><i class="bi bi-pencil-square"></i> New message</button>
+          <button type="button" class="btn btn-primary" data-demo-new-chat="[data-chat-thread]"><i class="bi bi-pencil-square"></i> New message</button>
         </div>
       </div>
 
@@ -132,9 +132,9 @@
 
           <form data-demo-form data-demo-chat-thread="[data-chat-thread]" class="composer" data-chat-composer>
             <div class="d-flex align-items-end gap-2">
-              <button class="btn btn-icon btn-ghost" type="button" aria-label="Attach file" data-demo-action="File picker opened — demo only."><i class="bi bi-paperclip"></i></button>
+              <button class="btn btn-icon btn-ghost" type="button" aria-label="Attach file" data-demo-attach="[data-demo-attach-list]"><i class="bi bi-paperclip"></i></button>
               <label class="visually-hidden" for="chat-input">Write a message</label>
-              <textarea class="form-control" id="chat-input" rows="1" placeholder="Write a message…" style="resize: none;"></textarea>
+              <textarea class="form-control" id="chat-input" rows="1" placeholder="Write a message…" style="resize: none;" data-demo-prefill="prompt"></textarea>
               <button class="btn btn-icon btn-ghost" type="button" aria-label="Insert emoji" data-demo-action="Emoji picker opened — demo only."><i class="bi bi-emoji-smile"></i></button>
               <button class="btn btn-primary btn-icon" type="submit" aria-label="Send message"><i class="bi bi-send"></i></button>
             </div>

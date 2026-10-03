@@ -10,7 +10,7 @@
             <button type="button" class="btn btn-white" data-demo-action="Week view selected — demo only.">Week</button>
             <button type="button" class="btn btn-white" data-demo-action="Day view selected — demo only.">Day</button>
           </div>
-          <button type="button" class="btn btn-primary" data-demo-action="New event form opened — demo interaction only."><i class="bi bi-plus-lg"></i> New event</button>
+          <button type="button" class="btn btn-primary" data-demo-add-card="#calendar-grid" data-demo-card-title="New event"><i class="bi bi-plus-lg"></i> New event</button>
         </div>
       </div>
 
@@ -34,7 +34,7 @@
             </div>
 
             <div class="table-responsive">
-              <table class="table align-middle mb-0" style="table-layout: fixed; min-width: 760px;">
+              <table class="table align-middle mb-0" id="calendar-grid" style="table-layout: fixed; min-width: 760px;">
                 <thead>
                   <tr>
                     <th scope="col" class="text-center">Mon</th>

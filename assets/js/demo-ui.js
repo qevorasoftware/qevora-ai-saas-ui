@@ -50,6 +50,17 @@
  *  View:    <button data-demo-view="grid|table" data-demo-view-table="#t"
  *              data-demo-view-target="#card">        cards built from the rows
  *  New:     <button data-demo-new="#q-demo-record" data-demo-table="#leads-table">
+ *  Import:  <button data-demo-import="#leads-table">  opens #q-demo-import,
+ *              which turns pasted CSV (or a chosen .csv file) into rows
+ *  Add card:<button data-demo-add-card="#kanban-col" data-demo-card-title="New task">
+ *  Add col: <button data-demo-add-column="#matrix" data-demo-column-title="New role">
+ *  Upload:  <button data-demo-upload="#avatar">  photo from the file picker
+ *  Chat:    <button data-demo-new-chat="#thread">     fresh conversation + undo
+ *  Reuse:   <button data-demo-reuse="chat.html">      the row's prompt travels
+ *              to the next page; <input data-demo-prefill="prompt"> picks it up
+ *  Clear:   <button data-demo-clear-rows="#table">    empty the body + undo
+ *  Attach:  <button data-demo-attach="[data-demo-attach-list]">  file picker;
+ *              each chosen name becomes a chip in that list
  *
  *  Print:   <button data-demo-print>                   browser print dialog
  *  Copy:    <button data-demo-copy="#api-key">         clipboard + toast
@@ -180,6 +191,29 @@
     "data-demo-download-kind",
     "data-demo-download-label",
     "data-demo-download-content",
+    "data-demo-import",
+    "data-demo-import-label",
+    "data-demo-import-sample",
+    "data-demo-import-run",
+    "data-demo-import-title",
+    "data-demo-import-columns",
+    "data-demo-import-text",
+    "data-demo-import-file",
+    "data-demo-reuse",
+    "data-demo-prefill",
+    "data-demo-clear-rows",
+    "data-demo-attach",
+    "data-demo-attach-list",
+    "data-demo-add-card",
+    "data-demo-add-sample",
+    "data-demo-card-title",
+    "data-demo-add-column",
+    "data-demo-column-title",
+    "data-demo-upload",
+    "data-demo-remove-photo",
+    "data-demo-photo",
+    "data-demo-new-chat",
+    "data-demo-new-chat-empty",
     "data-demo-column",
     "data-demo-columns",
     "data-demo-count",
@@ -805,9 +839,12 @@
       var wrapper = paginateWrapper(table);
       var perPage = wrapper ? parseInt(wrapper.getAttribute("data-per-page") || "10", 10) : total;
       var page = wrapper ? parseInt(wrapper.getAttribute("data-current-page") || "1", 10) : 1;
-      var from = total ? (page - 1) * Math.min(perPage, total) + 1 : 0;
-      var to = Math.min(page * Math.min(perPage, total), total);
-      element.textContent = (total > perPage ? from + "–" + to + " of " : "") + total + " " + noun;
+      var perPageRows = Math.max(1, Math.min(perPage, Math.max(total, 1)));
+      var from = total ? (page - 1) * perPageRows + 1 : 0;
+      var to = Math.min(page * perPageRows, total);
+      /* A paginated table always shows where the reader is ("1–5 of 5"), even
+         when there is a single page of rows. */
+      element.textContent = (wrapper || total > perPage ? from + "–" + to + " of " : "") + total + " " + noun;
     });
   }
 
@@ -1569,6 +1606,124 @@
     window.location.href = target;
   }
 
+  /* A history row hands its prompt to another demo page: the text rides in the
+     query string and the target page picks it up with data-demo-prefill. */
+  function reuseFrom(control) {
+    var url = control.getAttribute("data-demo-reuse");
+    if (!url) return;
+    var row = control.closest("tr");
+    var source = row ? q("[data-demo-copy-block-text]", row) : null;
+    var text = source ? source.textContent.replace(/\s+/g, " ").trim() : "";
+    if (!text) {
+      window.location.href = url;
+      return;
+    }
+    window.location.href = url + (url.indexOf("?") === -1 ? "?" : "&") + "prompt=" + encodeURIComponent(text);
+  }
+
+  /* <button data-demo-clear-rows="#history-table">Clear history</button> */
+  function clearRows(control) {
+    var table = q(control.getAttribute("data-demo-clear-rows"));
+    if (!table || !table.tBodies[0]) return;
+
+    var tbody = table.tBodies[0];
+    var removed = [];
+    while (tbody.rows.length) {
+      removed.unshift(tbody.rows[0].cloneNode(true));
+      tbody.deleteRow(0);
+    }
+    refreshTable(table);
+
+    toast(removed.length + (removed.length === 1 ? " row cleared." : " rows cleared."), "warning", "Cleared", {
+      label: "Undo",
+      onClick: function () {
+        removed.forEach(function (row) { tbody.appendChild(row); });
+        refreshTable(table);
+      }
+    });
+  }
+
+  /* One place to repaint a table after its rows changed: the pager, the
+     "Showing x of y" counters and the filter state all follow the new body. */
+  function refreshTable(table) {
+    applyFilters(table);
+    var wrapper = paginateWrapper(table);
+    if (wrapper) {
+      var event;
+      try {
+        event = new CustomEvent("qevora:repaginate", { bubbles: true });
+      } catch (error) {
+        event = doc.createEvent("Event");
+        event.initEvent("qevora:repaginate", true, true);
+      }
+      wrapper.dispatchEvent(event);
+      table.dispatchEvent(event);
+    }
+    updateCounts(table);
+    renderStats(table);
+  }
+
+  /* A page that was opened with ?prompt=… fills the composer it is pointed at,
+     so "Reuse prompt" in the history really arrives in the chat box. */
+  function prefillFromQuery() {
+    var params = window.URLSearchParams ? new URLSearchParams(window.location.search) : null;
+    if (!params) return;
+    qa("[data-demo-prefill]").forEach(function (field) {
+      var value = params.get(field.getAttribute("data-demo-prefill")) || "";
+      if (!value) return;
+      field.value = value;
+      if (field.focus) field.focus();
+      toast("Loaded from the page you came from — edit it or send it.", "info", "Prompt loaded");
+    });
+  }
+
+  /* <button data-demo-attach="[data-demo-attach-list]">  — a real file picker.
+     The chosen names land in the list (a chip each, removable with ✕) and the
+     toast says how many arrived. */
+  function attachFiles(control) {
+    var input = q("#q-demo-attach-input");
+    if (!input) {
+      input = doc.createElement("input");
+      input.type = "file";
+      input.multiple = true;
+      input.id = "q-demo-attach-input";
+      input.className = "d-none";
+      doc.body.appendChild(input);
+      input.addEventListener("change", function () {
+        var owner = input.__qAttachTarget || control;
+        var files = Array.prototype.slice.call(input.files || []);
+        if (!files.length) return;
+
+        var list = q(owner.getAttribute("data-demo-attach") || "[data-demo-attach-list]");
+        if (list) {
+          files.forEach(function (file) {
+            var chip = doc.createElement("span");
+            chip.className = "chip";
+            var icon = doc.createElement("i");
+            icon.className = "bi bi-paperclip";
+            icon.setAttribute("aria-hidden", "true");
+            chip.appendChild(icon);
+            chip.appendChild(doc.createTextNode(" " + file.name + " "));
+            var close = doc.createElement("button");
+            close.type = "button";
+            close.className = "btn-close";
+            close.setAttribute("data-demo-remove", "");
+            close.setAttribute("data-demo-remove-label", file.name);
+            close.setAttribute("aria-label", "Remove " + file.name);
+            chip.appendChild(close);
+            list.appendChild(chip);
+          });
+        }
+
+        toast(files.length + (files.length === 1 ? " file attached" : " files attached") + " — " +
+          files.map(function (file) { return file.name; }).join(", "), "success", "Attached");
+        input.value = "";
+      });
+    }
+    input.__qAttachTarget = control;
+    input.click();
+  }
+
   function printPage(control) {
     var pdf = control && control.getAttribute("data-demo-print") === "pdf";
     toast(
@@ -2018,6 +2173,300 @@
   }
 
   /* ---------------------------------------------------------------------- */
+  /* 9d. Import, add-card, add-column, upload, new chat                      */
+  /* ---------------------------------------------------------------------- */
+
+  /* A CSV line: quoted cells keep their commas, , ; and tab all separate. */
+  function splitRows(text) {
+    var rows = [];
+    var row = [];
+    var value = "";
+    var quoted = false;
+
+    String(text || "").split("").forEach(function (character) {
+      if (quoted) {
+        if (character === '"') quoted = false;
+        else value += character;
+        return;
+      }
+      if (character === '"') { quoted = true; return; }
+      if (character === "," || character === ";" || character === "\t") { row.push(value.trim()); value = ""; return; }
+      if (character === "\n") { row.push(value.trim()); rows.push(row); row = []; value = ""; return; }
+      if (character === "\r") return;
+      value += character;
+    });
+
+    row.push(value.trim());
+    rows.push(row);
+
+    return rows.filter(function (cells) {
+      return cells.some(function (cell) { return cell !== ""; });
+    });
+  }
+
+  function importTarget(control) {
+    var table = q(control.getAttribute("data-demo-import"));
+    if (!table) return null;
+    return table.tagName === "TABLE" ? table : q("table", table);
+  }
+
+  function openImport(control) {
+    var table = importTarget(control);
+    var modalEl = q("#q-demo-import");
+    if (!table || !modalEl) {
+      toast("Point data-demo-import at a table and ship #q-demo-import to use the importer.", "warning", "Import");
+      return;
+    }
+
+    modalEl.__qTable = table;
+    var fields = cellFields(table);
+    var help = q("[data-demo-import-columns]", modalEl);
+    if (help) help.textContent = fields.map(function (field) { return field.label; }).join(", ");
+    var heading = q("[data-demo-import-title]", modalEl);
+    if (heading) {
+      heading.textContent = "Import into " + (control.getAttribute("data-demo-import-label") ||
+        labelFor(control, table));
+    }
+    var area = q("[data-demo-import-text]", modalEl);
+    if (area) {
+      area.value = control.getAttribute("data-demo-import-sample") ||
+        fields.map(function (field) { return field.label; }).join(",") + "\n";
+    }
+    var file = q("[data-demo-import-file]", modalEl);
+    if (file) file.value = "";
+    showModal(modalEl);
+  }
+
+  function runImport(control) {
+    var modalEl = control.closest(".modal") || q("#q-demo-import");
+    var table = modalEl && modalEl.__qTable;
+    if (!table) {
+      toast("Open the importer with an Import button on the page first.", "warning", "Import");
+      return;
+    }
+
+    var area = q("[data-demo-import-text]", modalEl);
+    var rows = splitRows(area ? area.value : "");
+    if (!rows.length) {
+      toast("Paste a few rows first — one record per line.", "warning", "Nothing to import");
+      return;
+    }
+
+    var fields = cellFields(table);
+    var labels = fields.map(function (field) { return field.label.toLowerCase(); });
+    var imported = 0;
+    var skipped = 0;
+
+    rows.forEach(function (cells, index) {
+      /* A pasted header row is not a record. */
+      var looksLikeHeader = index === 0 && cells.every(function (cell, position) {
+        return labels[position] === String(cell).toLowerCase();
+      });
+      if (looksLikeHeader) return;
+
+      var record = {};
+      cells.forEach(function (cell, position) {
+        if (fields[position]) record[fields[position].key] = cell;
+      });
+      if (!Object.keys(record).length) { skipped++; return; }
+      if (insertRecordRow(table, record)) imported++;
+      else skipped++;
+    });
+
+    if (!imported) {
+      toast("Nothing could be imported — check the columns above.", "warning", "Import");
+      return;
+    }
+
+    hideModal(modalEl);
+    if (area) area.value = "";
+    resetFilters(table);
+    goToFirstPage(table);
+    refresh(table);
+    flash(table);
+    toast(imported + (imported === 1 ? " row" : " rows") + " imported" + (skipped ? ", " + skipped + " skipped" : "") +
+      ". Filters were cleared so you can see them.", "success", "Import ready");
+  }
+
+  function readImportFile(input) {
+    var file = input.files && input.files[0];
+    if (!file) return;
+    var reader = new FileReader();
+    reader.onload = function () {
+      var area = q("[data-demo-import-text]", input.closest(".modal"));
+      if (area) area.value = String(reader.result || "");
+      toast(file.name + " is loaded — press Import to add the rows.", "info", "File ready");
+    };
+    try {
+      reader.readAsText(file);
+    } catch (error) {
+      toast("The browser could not read that file.", "warning", "Import");
+    }
+  }
+
+  /* One hook for a kanban column, a pipeline stage, a grid of cards or a
+     calendar cell: the new card copies the shape of the first one. */
+  function addCard(control) {
+    var container = q(control.getAttribute("data-demo-add-card"));
+    if (!container) {
+      toast("Point data-demo-add-card at the column, the grid or the cell.", "warning", "Demo");
+      return;
+    }
+
+    var sample = q("[data-demo-add-sample]", container) ||
+      q(".kanban__card, article, .card, li, .badge", container);
+    if (!sample) {
+      toast("Add one item by hand first — the new one copies its shape.", "warning", "Demo");
+      return;
+    }
+
+    var title = control.getAttribute("data-demo-card-title") || labelFor(control) || "New item";
+    var card = sample.cloneNode(true);
+    var count = qa(".kanban__card, article, .card, li, .badge", container).length + 1;
+    var titleNode = q(".kanban__card-title, .card-title, h2, h3, h4, strong", card);
+    if (titleNode) titleNode.textContent = title + " " + count;
+    else if (/^(SPAN|A|BADGE)$/.test(card.tagName)) card.textContent = title + " " + count + " " + count;
+
+    qa("[data-demo-action]", card).forEach(function (button) {
+      button.setAttribute("data-demo-action", title + " " + count + " — demo action.");
+    });
+
+    sample.parentNode.insertBefore(card, sample.nextSibling);
+    flash(card);
+
+    var column = card.closest ? card.closest(".kanban__col") : null;
+    var counter = column ? q(".kanban__count", column) : null;
+    if (counter) counter.textContent = String(qa(".kanban__card", column).length);
+
+    toast(title + " " + count + " was added — drag it, or use Undo to remove it.", "success", "Card added", {
+      label: "Undo",
+      onClick: function () {
+        card.remove();
+        if (counter && column) counter.textContent = String(qa(".kanban__card", column).length);
+      }
+    });
+  }
+
+  function addColumn(control) {
+    var table = q(control.getAttribute("data-demo-add-column"));
+    var headRow = table ? q("thead tr", table) : null;
+    var headers = headRow ? qa("th", headRow) : [];
+    if (!headers.length) {
+      toast("Point data-demo-add-column at a table with a header row.", "warning", "Demo");
+      return;
+    }
+
+    /* Never clone the trailing Actions column. */
+    var index = /^actions?$/i.test(clean(headers[headers.length - 1])) ? headers.length - 2 : headers.length - 1;
+    if (index < 1) return;
+
+    var source = headers[index];
+    var name = control.getAttribute("data-demo-column-title") || clean(source) + " copy";
+    var header = source.cloneNode(true);
+    header.textContent = name;
+    headRow.insertBefore(header, source.nextSibling);
+
+    qa("tbody tr", table).forEach(function (row) {
+      var cells = qa("td", row);
+      var cell = cells[index];
+      if (!cell) return;
+      cell.parentNode.insertBefore(cell.cloneNode(true), cell.nextSibling);
+    });
+
+    toast("The “" + name + "” column was added with the same permissions.", "success", "Column added", {
+      label: "Undo",
+      onClick: function () {
+        header.remove();
+        qa("tbody tr", table).forEach(function (row) {
+          var cells = qa("td", row);
+          if (cells[index + 1]) cells[index + 1].remove();
+        });
+      }
+    });
+  }
+
+  function uploadPhoto(control) {
+    var target = q(control.getAttribute("data-demo-upload"));
+    if (!target) {
+      toast("Point data-demo-upload at the avatar or the image.", "warning", "Demo");
+      return;
+    }
+
+    var input = q("#q-demo-upload-input");
+    if (!input) {
+      input = doc.createElement("input");
+      input.type = "file";
+      input.id = "q-demo-upload-input";
+      input.accept = "image/*";
+      input.className = "d-none";
+      doc.body.appendChild(input);
+      input.addEventListener("change", function () {
+        var file = input.files && input.files[0];
+        var host = input.__qTarget;
+        if (!file || !host || typeof FileReader === "undefined") return;
+        var reader = new FileReader();
+        reader.onload = function () {
+          host.style.backgroundImage = "url(" + reader.result + ")";
+          host.style.backgroundSize = "cover";
+          host.style.backgroundPosition = "center";
+          host.style.color = "transparent";
+          host.setAttribute("data-demo-photo", "true");
+          input.value = "";
+          toast(file.name + " is your workspace photo now (this demo keeps it in the page).", "success", "Photo updated");
+        };
+        reader.readAsDataURL(file);
+      });
+    }
+
+    input.__qTarget = target;
+    input.click();
+  }
+
+  function clearPhoto(control) {
+    var target = q(control.getAttribute("data-demo-remove-photo"));
+    if (!target) return;
+    target.style.backgroundImage = "";
+    target.style.color = "";
+    target.removeAttribute("data-demo-photo");
+    toast("The photo was removed — the initials are back.", "info", "Photo removed");
+  }
+
+  function newChat(control) {
+    var thread = q(control.getAttribute("data-demo-new-chat")) || q("[data-chat-thread]");
+    if (!thread) return;
+
+    var removed = [];
+    /* Both chat screens are covered: the inbox uses .msg, the AI chat uses
+       .chat-bubble. An earlier empty-state note goes too. */
+    qa(".msg, .chat-bubble", thread).forEach(function (message) {
+      removed.push({ node: message, next: message.nextSibling });
+      message.remove();
+    });
+    qa("[data-demo-new-chat-empty]", thread).forEach(function (note) {
+      note.remove();
+    });
+
+    var empty = doc.createElement("p");
+    empty.className = "fs-7 text-muted-2 mb-0";
+    empty.setAttribute("data-demo-new-chat-empty", "true");
+    empty.textContent = thread.getAttribute("data-demo-new-chat-empty") || "A new conversation — ask anything below.";
+    thread.appendChild(empty);
+
+    var input = q("[data-demo-chat-input], [data-chat-input]");
+    if (input && input.focus) input.focus();
+
+    toast("A new conversation started.", "info", "New chat", {
+      label: "Undo",
+      onClick: function () {
+        empty.remove();
+        removed.forEach(function (item) {
+          thread.insertBefore(item.node, item.next);
+        });
+      }
+    });
+  }
+
+  /* ---------------------------------------------------------------------- */
   /* 10. Fallback — a button with no handler of its own says so              */
   /* ---------------------------------------------------------------------- */
 
@@ -2074,11 +2523,14 @@
     doc.addEventListener("click", function (event) {
       var control = event.target.closest(
         "[data-demo-open], [data-demo-delete], [data-demo-confirm], [data-demo-load]," +
+        " [data-demo-reuse], [data-demo-clear-rows], [data-demo-attach]," +
         " [data-demo-print], [data-demo-copy], [data-demo-save], [data-demo-discard]," +
         " [data-demo-pick], [data-demo-range], [data-demo-remove], [data-demo-select]," +
         " [data-demo-regenerate], [data-demo-reset-form]," +
         " [data-demo-toggle], [data-demo-gen], [data-demo-chat], [data-demo-new]," +
         " [data-demo-export], [data-demo-export-row], [data-demo-download], [data-demo-go], [data-demo-view]," +
+        " [data-demo-import], [data-demo-import-run], [data-demo-add-card], [data-demo-add-column]," +
+        " [data-demo-upload], [data-demo-remove-photo], [data-demo-new-chat]," +
         " [data-copy-text], [data-demo-chip], [data-demo-reset], [data-demo-clear], button, a");
       if (!control) return;
 
@@ -2109,6 +2561,24 @@
       if (control.hasAttribute("data-demo-go")) {
         event.preventDefault();
         goTo(control);
+        return;
+      }
+
+      if (control.hasAttribute("data-demo-reuse")) {
+        event.preventDefault();
+        reuseFrom(control);
+        return;
+      }
+
+      if (control.hasAttribute("data-demo-clear-rows")) {
+        event.preventDefault();
+        clearRows(control);
+        return;
+      }
+
+      if (control.hasAttribute("data-demo-attach")) {
+        event.preventDefault();
+        attachFiles(control);
         return;
       }
 
@@ -2224,6 +2694,48 @@
         return;
       }
 
+      if (control.hasAttribute("data-demo-import")) {
+        event.preventDefault();
+        openImport(control);
+        return;
+      }
+
+      if (control.hasAttribute("data-demo-import-run")) {
+        event.preventDefault();
+        runImport(control);
+        return;
+      }
+
+      if (control.hasAttribute("data-demo-add-card")) {
+        event.preventDefault();
+        addCard(control);
+        return;
+      }
+
+      if (control.hasAttribute("data-demo-add-column")) {
+        event.preventDefault();
+        addColumn(control);
+        return;
+      }
+
+      if (control.hasAttribute("data-demo-upload")) {
+        event.preventDefault();
+        uploadPhoto(control);
+        return;
+      }
+
+      if (control.hasAttribute("data-demo-remove-photo")) {
+        event.preventDefault();
+        clearPhoto(control);
+        return;
+      }
+
+      if (control.hasAttribute("data-demo-new-chat")) {
+        event.preventDefault();
+        newChat(control);
+        return;
+      }
+
       if (control.hasAttribute("data-demo-new")) {
         event.preventDefault();
         openRecordDialog(control);
@@ -2286,6 +2798,12 @@
         return;
       }
 
+      var importFile = event.target.closest("[data-demo-import-file]");
+      if (importFile) {
+        readImportFile(importFile);
+        return;
+      }
+
       var column = event.target.closest("[data-demo-column]");
       if (column) {
         var menu = column.closest("[data-demo-columns]");
@@ -2312,13 +2830,18 @@
       if (table) updateCounts(table);
     });
 
-    doc.addEventListener("input", function (event) {
+    /* A search box answers to typing (input) — and to a paste or a clear that
+       only fires change, which some browsers do. */
+    function searchTyped(event) {
       var input = event.target.closest("[data-table-filter]");
       if (!input) return;
       applyFilters(q(input.getAttribute("data-table-filter")));
-    });
+    }
+    doc.addEventListener("input", searchTyped);
+    doc.addEventListener("change", searchTyped);
 
     /* Undo / redo of rows, filters and counters is triggered by the table. */
+    prefillFromQuery();
     renderStats(null);
 
     qa("[data-demo-record]").forEach(function (table) {

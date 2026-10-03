@@ -15,7 +15,7 @@
               <li><a class="dropdown-item" href="#" data-demo-pick="menu" data-demo-pick-active-class="active" data-demo-pick-done="Vertex Flash — fastest selected.">Vertex Flash — fastest</a></li>
             </ul>
           </div>
-          <button type="button" class="btn btn-primary" data-demo-action="A new conversation is ready — the composer below answers."><i class="bi bi-plus-lg"></i> New chat</button>
+          <button type="button" class="btn btn-primary" data-demo-new-chat="[data-chat-thread]"><i class="bi bi-plus-lg"></i> New chat</button>
         </div>
       </div>
 
@@ -99,9 +99,9 @@
               <p class="mb-0 fs-7 fw-600 text-heading">Product update announcement</p>
               <p class="mb-0 fs-8 text-muted-2">Nova-4 Turbo · 8 messages</p>
             </div>
-            <button type="button" class="btn btn-icon btn-sm btn-ghost" aria-label="Share conversation" title="Share" data-demo-action="Share link copied — demo only."><i class="bi bi-share"></i></button>
+            <button type="button" class="btn btn-icon btn-sm btn-ghost" aria-label="Share conversation" title="Share" data-demo-copy="[data-chat-thread]" data-demo-copy-label="Conversation"><i class="bi bi-share"></i></button>
             <button type="button" class="btn btn-icon btn-sm btn-ghost" aria-label="Export conversation" title="Export" data-demo-export="closest" data-demo-export-scope="[data-chat-thread]" data-demo-export-name="qevora-conversation-2026-10-03.csv"><i class="bi bi-download"></i></button>
-            <button type="button" class="btn btn-icon btn-sm btn-ghost" aria-label="Clear conversation" title="Clear" data-demo-action="Conversation cleared — demo only."><i class="bi bi-trash3"></i></button>
+            <button type="button" class="btn btn-icon btn-sm btn-ghost" aria-label="Clear conversation" title="Clear" data-demo-new-chat="[data-chat-thread]"><i class="bi bi-trash3"></i></button>
           </header>
 
           <div class="chat-thread q-scroll" data-chat-thread>
@@ -131,8 +131,8 @@
                 <div class="msg__actions">
                   <button class="btn btn-sm btn-ghost" type="button" data-copy-text><i class="bi bi-clipboard" aria-hidden="true"></i> Copy</button>
                   <button class="btn btn-sm btn-ghost" type="button" data-demo-regenerate="[data-chat-thread]"><i class="bi bi-arrow-repeat" aria-hidden="true"></i> Regenerate</button>
-                  <button class="btn btn-sm btn-ghost" type="button" aria-label="Mark this response as helpful" title="Helpful" data-demo-action="Response rated — demo only."><i class="bi bi-hand-thumbs-up" aria-hidden="true"></i></button>
-                  <button class="btn btn-sm btn-ghost" type="button" aria-label="Mark this response as not helpful" title="Not helpful" data-demo-action="Feedback recorded — demo only."><i class="bi bi-hand-thumbs-down" aria-hidden="true"></i></button>
+                  <button class="btn btn-sm btn-ghost" type="button" aria-label="Mark this response as helpful" title="Helpful" data-demo-toggle data-demo-toggle-done="Thanks — your feedback was recorded."><i class="bi bi-hand-thumbs-up" aria-hidden="true"></i></button>
+                  <button class="btn btn-sm btn-ghost" type="button" aria-label="Mark this response as not helpful" title="Not helpful" data-demo-toggle data-demo-toggle-done="Thanks — your feedback was recorded."><i class="bi bi-hand-thumbs-down" aria-hidden="true"></i></button>
                 </div>
               </div>
             </article>
@@ -166,17 +166,18 @@
 
           <form class="composer" data-chat-composer data-demo-form data-demo-chat-thread="[data-chat-thread]">
             <div class="d-flex flex-wrap gap-2 mb-2">
-              <button class="chip" type="button" data-demo-action="Prompt template inserted — demo only.">Summarise this page</button>
-              <button class="chip" type="button" data-demo-action="Prompt template inserted — demo only.">Rewrite for clarity</button>
-              <button class="chip" type="button" data-demo-action="Prompt template inserted — demo only.">Draft an email</button>
-              <button class="chip" type="button" data-demo-action="Prompt template inserted — demo only.">Analyse a dataset</button>
+              <button class="chip" type="button" data-demo-chat="[data-chat-thread]" data-demo-chat-input="#ai-chat-input">Summarise this page</button>
+              <button class="chip" type="button" data-demo-chat="[data-chat-thread]" data-demo-chat-input="#ai-chat-input">Rewrite for clarity</button>
+              <button class="chip" type="button" data-demo-chat="[data-chat-thread]" data-demo-chat-input="#ai-chat-input">Draft an email</button>
+              <button class="chip" type="button" data-demo-chat="[data-chat-thread]" data-demo-chat-input="#ai-chat-input">Analyse a dataset</button>
             </div>
             <div class="d-flex align-items-end gap-2">
-              <button class="btn btn-icon btn-ghost" type="button" aria-label="Attach file" data-demo-action="File picker opened — demo only."><i class="bi bi-paperclip"></i></button>
+              <button class="btn btn-icon btn-ghost" type="button" aria-label="Attach file" data-demo-attach="[data-demo-attach-list]"><i class="bi bi-paperclip"></i></button>
               <label class="visually-hidden" for="ai-chat-input">Ask the assistant</label>
-              <textarea class="form-control" id="ai-chat-input" rows="1" placeholder="Ask anything…" style="resize: none;" data-demo-chat-input></textarea>
+              <textarea class="form-control" id="ai-chat-input" rows="1" placeholder="Ask anything…" style="resize: none;" data-demo-chat-input data-demo-prefill="prompt"></textarea>
               <button class="btn btn-primary" type="submit"><i class="bi bi-send"></i> Send</button>
             </div>
+            <div class="d-flex flex-wrap gap-2 mt-2" data-demo-attach-list></div>
             <p class="fs-9 text-muted-2 mt-2 mb-0">
               Demo assistant — replies are written in <code>assets/js/pages/chat.js</code>. No API key, no external request.
             </p>
