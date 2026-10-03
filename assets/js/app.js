@@ -96,7 +96,7 @@
   };
 
   /* Floating toast, used by the demo actions across the template. */
-  function toast(message, variant, title) {
+  function toast(message, variant, title, action) {
     variant = variant || "primary";
 
     var host = document.querySelector(".q-toast-host");
@@ -116,11 +116,23 @@
       '  <div class="toast-body d-flex align-items-center gap-2">' +
       '    <i class="bi ' + (ICONS[variant] || ICONS.primary) + ' text-' + variant + '"></i>' +
       '    <span>' + (title ? "<strong>" + title + "</strong> " : "") + message + "</span>" +
+      (action && action.label
+        ? '    <button type="button" class="btn btn-sm btn-soft-' + variant + ' ms-2 flex-shrink-0" data-toast-action>' + action.label + "</button>"
+        : "") +
       "  </div>" +
       '  <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>' +
       "</div>";
 
     host.appendChild(el);
+
+    /* Optional action on the toast ("Undo" after a delete, for example). */
+    var actionButton = el.querySelector("[data-toast-action]");
+    if (actionButton && action && typeof action.onClick === "function") {
+      actionButton.addEventListener("click", function () {
+        action.onClick();
+        hideToast(el);
+      });
+    }
 
     if (window.bootstrap && window.bootstrap.Toast) {
       var instance = new window.bootstrap.Toast(el, { delay: 3200 });
@@ -132,6 +144,15 @@
       window.setTimeout(function () {
         el.remove();
       }, 3200);
+    }
+  }
+
+  /* Closes a toast whichever way it was created. */
+  function hideToast(el) {
+    if (window.bootstrap && window.bootstrap.Toast && window.bootstrap.Toast.getInstance(el)) {
+      window.bootstrap.Toast.getInstance(el).hide();
+    } else {
+      el.remove();
     }
   }
 
@@ -214,36 +235,9 @@
     }
   }
 
-  /* Simple client-side table search: input[data-table-filter="#tableId"] */
-  function initTableFilters() {
-    var inputs = document.querySelectorAll("[data-table-filter]");
-    for (var i = 0; i < inputs.length; i++) {
-      (function (input) {
-        var selector = input.getAttribute("data-table-filter");
-        var table = document.querySelector(selector);
-        if (!table) return;
-        var tbody = table.tBodies[0];
-        if (!tbody) return;
-
-        input.addEventListener("input", function () {
-          var term = input.value.trim().toLowerCase();
-          var rows = tbody.rows;
-          var visible = 0;
-
-          for (var r = 0; r < rows.length; r++) {
-            var text = rows[r].textContent.toLowerCase();
-            var match = text.indexOf(term) !== -1;
-            rows[r].style.display = match ? "" : "none";
-            if (match) visible++;
-          }
-
-          var empty = table.parentElement.querySelector("[data-table-empty]");
-          if (empty) empty.classList.toggle("d-none", visible !== 0);
-        });
-      })(inputs[i]);
-    }
-  }
-
+  /* Live table search and the select filters live in assets/js/demo-ui.js, so
+     that one code path decides which rows are visible and the pagination and
+     the "showing x of y" counters stay in step with it. */
   /* Demo-only actions: buttons marked data-demo-action show a toast instead of
      needing a backend. */
   function initDemoActions() {
@@ -289,7 +283,6 @@
     initBootstrapBits();
     initCounters();
     initAutoYear();
-    initTableFilters();
     initDemoActions();
     initPlaceholderLinks();
     initDropdownHygiene();

@@ -89,7 +89,7 @@
 ├── assets/
 │   ├── css/    style.css  components.css  dark.css  rtl.css  fonts.css
 │   │           bootstrap.min.css  bootstrap.rtl.min.css
-│   ├── js/     theme.js  sidebar.js  app.js  components.js
+│   ├── js/     theme.js  sidebar.js  app.js  components.js  demo-ui.js
 │   │           bootstrap.bundle.min.js  chart.umd.js
 │   │           pages/  charts.js  chat.js  auth.js
 │   ├── fonts/  inter/files/*.woff2
@@ -256,6 +256,19 @@
                     <td><code>components.js</code></td>
                     <td class="fs-7 text-muted-2">Preview / HTML / CSS / JS demo tabs, copy buttons, syntax highlighting, table sort, pagination, kanban, upload zones</td>
                     <td class="fs-7"><code>QevoraComponents.init()</code>, <code>[data-demo-tab]</code>, <code>[data-copy-target]</code>, <code>th[data-sort]</code>, <code>[data-paginate]</code>, <code>[data-upload-zone]</code></td>
+                  </tr>
+                  <tr>
+                    <td><code>demo-ui.js</code></td>
+                    <td class="fs-7 text-muted-2">
+                      The demo interactions: dialogs that add and edit records, delete with undo, live filters that keep the
+                      pagination and the counters in step, loading buttons, and a safe fallback for any control without a
+                      handler. Every one of them is a few lines you can point at your own API.
+                    </td>
+                    <td class="fs-7">
+                      <code>[data-demo-open]</code>, <code>[data-demo-form]</code>, <code>[data-demo-field]</code>,
+                      <code>[data-demo-delete]</code>, <code>[data-demo-filter]</code>, <code>[data-demo-count]</code>,
+                      <code>[data-demo-column]</code>, <code>[data-demo-load]</code>, <code>QevoraDemo.refresh()</code>
+                    </td>
                   </tr>
                   <tr>
                     <td><code>pages/charts.js</code></td>

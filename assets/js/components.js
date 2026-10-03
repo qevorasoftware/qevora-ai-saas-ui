@@ -327,7 +327,14 @@
 
         function show(page) {
           var tbody = table.tBodies[0];
-          var rows = Array.prototype.slice.call(tbody.rows).filter(function (row) {
+          var allRows = Array.prototype.slice.call(tbody.rows);
+
+          /* Rows hidden by a search or a filter stay hidden on every page. */
+          for (var a = 0; a < allRows.length; a++) {
+            if (allRows[a].getAttribute("data-filtered") === "true") allRows[a].style.display = "none";
+          }
+
+          var rows = allRows.filter(function (row) {
             return row.getAttribute("data-filtered") !== "true";
           });
 
@@ -363,6 +370,11 @@
           else if (page === "next") page = parseInt(wrapper.getAttribute("data-current-page") || "1", 10) + 1;
           else page = parseInt(page, 10);
           show(page);
+        });
+
+        /* demo-ui.js asks for a repaint after it filters or adds a row. */
+        wrapper.addEventListener("qevora:repaginate", function () {
+          show(parseInt(wrapper.getAttribute("data-current-page") || "1", 10));
         });
 
         show(wrapper.getAttribute("data-initial-page") ? parseInt(wrapper.getAttribute("data-initial-page"), 10) : 1);

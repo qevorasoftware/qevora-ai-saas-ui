@@ -47,7 +47,7 @@ utility/              4 utility pages (404, 500, maintenance, coming soon)
 documentation/        Getting-started guide + design system reference
 
 assets/css/           style.css (tokens, base, layout), components.css, dark.css, rtl.css, fonts.css
-assets/js/            theme.js, sidebar.js, app.js, components.js, pages/{charts,chat,auth}.js
+assets/js/            theme.js, sidebar.js, app.js, components.js, demo-ui.js, pages/{charts,chat,auth}.js
 assets/fonts/         Inter woff2 (400/500/600/700)
 assets/icons/         Bootstrap Icons CSS + fonts
 assets/images/        Logos, favicon, social cover, SVG placeholders

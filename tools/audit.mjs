@@ -103,6 +103,7 @@ const JS_FILES = [
   "assets/js/sidebar.js",
   "assets/js/app.js",
   "assets/js/components.js",
+  "assets/js/demo-ui.js",
   "assets/js/pages/charts.js",
   "assets/js/pages/chat.js",
   "assets/js/pages/auth.js"
@@ -334,6 +335,9 @@ const stats = { files: files.length, checks: 0 };
 for (const file of files) {
   const raw = readFileSync(join(ROOT, file), "utf8");
   const html = stripCodeBlocks(raw);
+  /* Comments are not markup: a <button> written inside an HTML comment must not
+     unbalance the tag walker or the interactive checks. */
+  const structure = html.replace(/<!--[\s\S]*?-->/g, "");
   const add = (kind, detail) => report(kind, file, detail);
 
   /* 1. head --------------------------------------------------------------- */
@@ -398,13 +402,16 @@ for (const file of files) {
       .filter((m) => /<input|<select|<textarea/.test(m[0]))
       .flatMap((m) => [...m[0].matchAll(/id="([^"]+)"/g)].map((x) => x[1]))
   );
+  /* A control with no id is still labelled when a <label> wraps it. */
+  const labelRanges = [...html.matchAll(/<label\b[\s\S]*?<\/label>/g)].map((m) => [m.index, m.index + m[0].length]);
   for (const m of html.matchAll(/<(input|select|textarea)\b[^>]*>/g)) {
     const tag = m[0];
     if (/type="(hidden|file|submit|button)"/.test(tag)) continue;
     const id = (tag.match(/id="([^"]+)"/) || [])[1];
     const hasAria = /aria-label="[^"]+"/.test(tag) || /aria-labelledby="[^"]+"/.test(tag);
     const hasPlaceholderOnly = /placeholder="[^"]*"/.test(tag);
-    const insideWrapperLabel = labelledWrapperIds.has(id);
+    const insideWrapperLabel =
+      labelledWrapperIds.has(id) || labelRanges.some(([from, to]) => m.index > from && m.index < to);
     if (!hasAria && !(id && labelledIds.has(id)) && !insideWrapperLabel) {
       if (hasPlaceholderOnly && /type="(checkbox|radio)"/.test(tag)) continue;
       add("form", `${m[1]} without label or aria-label${id ? ` (#${id})` : ""}`);
@@ -426,11 +433,15 @@ for (const file of files) {
   /* 9. data hooks --------------------------------------------------------- */
   stats.checks++;
   const unknownData = new Set();
+  /* Records are open ended: a table with data-demo-record="lead" may carry any
+     data-lead-<field> on its rows, and demo-ui.js reads them generically. */
+  const recordPrefixes = [...html.matchAll(/data-demo-record="([^"]+)"/g)].map((m) => `data-${m[1]}-`);
   for (const m of html.matchAll(/\s(data-[a-z0-9-]+)(?==)/g)) {
     const attr = m[1];
     if (attr.startsWith("data-bs-")) continue;            // Bootstrap data API
     if (attr.startsWith("data-demo")) continue;            // generic demo block markers
     if (validDataAttrs.has(attr)) continue;
+    if (recordPrefixes.some((prefix) => attr.startsWith(prefix))) continue;
     unknownData.add(attr);
   }
   for (const attr of unknownData) add("data-hook", `${attr} is not handled by any shipped script`);
@@ -461,7 +472,7 @@ for (const file of files) {
   stats.checks++;
   let anchorDepth = 0;
   let buttonDepth = 0;
-  for (const token of html.matchAll(/<\/?a\b[^>]*>|<\/?button\b[^>]*>/g)) {
+  for (const token of structure.matchAll(/<\/?a\b[^>]*>|<\/?button\b[^>]*>/g)) {
     const tag = token[0];
     const isClose = tag.startsWith("</");
     if (/^<a\b/.test(tag)) {
@@ -482,11 +493,11 @@ for (const file of files) {
 
   /* 14. tag balance ------------------------------------------------------- */
   stats.checks++;
-  checkTagBalance(html, add);
+  checkTagBalance(structure, add);
 
   /* 15. paragraph nesting ------------------------------------------------- */
   stats.checks++;
-  checkParagraphNesting(html, add);
+  checkParagraphNesting(structure, add);
 
   /* 16. component demo blocks --------------------------------------------- */
   /* Runs on the raw markup: the panes themselves contain the code samples. */
@@ -503,7 +514,7 @@ for (const file of files) {
 
   /* 19. buttons and links are operable ------------------------------------ */
   stats.checks++;
-  checkInteractive(html, add);
+  checkInteractive(structure, add);
 }
 
 /* -------------------------------------------------------------------------- */

@@ -902,6 +902,32 @@
 
   </div>
 
+
+  <!-- ================= Shared demo dialogs ================= -->
+  <!-- Used by any <button data-demo-delete> in the template: it confirms first
+       and offers an undo afterwards. -->
+  <div class="modal fade" id="q-demo-confirm" tabindex="-1" aria-labelledby="q-demo-confirm-title" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-sm">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2 class="modal-title fs-6" id="q-demo-confirm-title" data-demo-title="Delete {name}?">Delete this record?</h2>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close dialog"></button>
+        </div>
+        <div class="modal-body">
+          <p class="fs-7 text-muted-2 mb-0">
+            <strong class="text-heading" data-slot="name"></strong>
+            will be removed from the table. This is a front-end demo — press <strong>Undo</strong> on the confirmation to
+            put it back.
+          </p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-white" data-bs-dismiss="modal">Cancel</button>
+          <button type="button" class="btn btn-danger" data-demo-confirm>Delete</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
     <!-- ================= Scripts ================= -->
     <!-- Vendor: Bootstrap 5 bundle (includes Popper) -->
     <script src="../assets/js/bootstrap.bundle.min.js"></script>
@@ -911,6 +937,7 @@
     <script src="../assets/js/sidebar.js"></script>
     <script src="../assets/js/app.js"></script>
     <script src="../assets/js/components.js"></script>
+    <script src="../assets/js/demo-ui.js"></script>
     <script src="../assets/js/chart.umd.js"></script>
     <script src="../assets/js/pages/charts.js"></script>
 

@@ -248,6 +248,51 @@ const interactions = [
     }
   },
   {
+    page: "pages/leads.html",
+    label: "a new lead can be added through the dialog",
+    async run(window) {
+      const doc = window.document;
+      const body = doc.querySelector("#leads-table tbody");
+      if (!body) return "no leads table on the page";
+      const before = body.rows.length;
+      const openButton = [...doc.querySelectorAll("button")].find((button) => /Add lead/.test(button.textContent));
+      if (!openButton) return "no Add lead button";
+      click(window, openButton);
+      await wait(250);
+      const name = doc.querySelector("#lead-name");
+      const email = doc.querySelector("#lead-email");
+      if (!name || !email) return "the dialog has no name or email field";
+      name.value = "Smoke Test Co";
+      email.value = "hello@smoketest.io";
+      click(window, doc.querySelector("#lead-modal [data-demo-submit]"));
+      await wait(300);
+      if (body.rows.length !== before + 1) return `the row was not added (${before} → ${body.rows.length})`;
+      if (!doc.querySelector(".q-toast-host .toast")) return "no confirmation toast";
+      if (!doc.querySelector("[data-table-empty]")) return null; // fine, just checking the page is intact
+      return null;
+    }
+  },
+  {
+    page: "pages/leads.html",
+    label: "filters, pagination and counters stay in step",
+    async run(window) {
+      const doc = window.document;
+      const table = doc.querySelector("#leads-table");
+      const select = doc.querySelector('[data-demo-filter="status"]');
+      if (!table || !select) return "no status filter on the page";
+      select.value = "Qualified";
+      select.dispatchEvent(new window.Event("change", { bubbles: true }));
+      await wait(250);
+      const rows = [...table.tBodies[0].rows];
+      const qualified = rows.filter((row) => row.getAttribute("data-lead-status") === "Qualified").length;
+      const visible = rows.filter((row) => row.style.display !== "none").length;
+      if (visible !== qualified) return `${visible} rows visible, expected ${qualified}`;
+      const counter = doc.querySelector("[data-demo-count]");
+      if (!counter || !/match the filters/.test(counter.textContent)) return "the counter did not follow the filter";
+      return null;
+    }
+  },
+  {
     page: "components/modals.html",
     label: "a modal opens",
     async run(window) {

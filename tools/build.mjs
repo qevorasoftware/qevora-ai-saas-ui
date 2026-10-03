@@ -150,6 +150,7 @@ async function build() {
   const header = await readMaybe(join(ROOT, "src/partials/header.html"));
   const footer = await readMaybe(join(ROOT, "src/partials/footer.html"));
   const scripts = await readMaybe(join(ROOT, "src/partials/scripts.html"));
+  const modals = await readMaybe(join(ROOT, "src/partials/modals.html"));
 
   const missing = [];
   const buildPages = [];
@@ -211,7 +212,8 @@ async function build() {
       "{{BREADCRUMB}}": renderBreadcrumb(page.breadcrumb || [page.meta.title], depth),
       "{{CONTENT}}": content.trimEnd(),
       "{{HEAD_EXTRA}}": headExtra,
-      "{{PAGE_SCRIPTS}}": scriptsExtra
+      "{{PAGE_SCRIPTS}}": scriptsExtra,
+      "{{MODALS}}": modals
     };
 
     function fill(template) {
@@ -234,6 +236,7 @@ async function build() {
 ${fill(content.trimEnd())}
   </main>
 
+${fill(modals)}
 ${fill(scripts)}</body>
 </html>
 `;
@@ -255,6 +258,7 @@ ${fill(content.trimEnd())}
 ${fill(footer)}
   </div>
 
+${fill(modals)}
 ${fill(scripts)}</body>
 </html>
 `;

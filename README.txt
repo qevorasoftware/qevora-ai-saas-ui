@@ -82,8 +82,9 @@ or internet connection is required to use the template.
 
   assets/js/      theme.js         light/dark switching
                   sidebar.js       drawer, compact rail, RTL
-                  app.js           toasts, counters, table search, tooltips
+                  app.js           toasts, counters, tooltips, demo actions
                   components.js    demos, copy buttons, sort, pagination
+                  demo-ui.js       dialogs, add/edit/delete rows, filters, counters
                   pages/charts.js  Chart.js registry and progress rings
                   pages/chat.js    chat composer and canned replies
                   pages/auth.js    one-time-code inputs, countdown
