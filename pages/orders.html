@@ -739,16 +739,16 @@
             <label class="visually-hidden" for="order-search">Search orders</label>
             <input type="search" class="form-control" id="order-search" placeholder="Search orders…" data-table-filter="#orders-table">
           </div>
-          <div class="nav nav-pills" role="tablist">
-            <button class="nav-link active" type="button">All</button>
-            <button class="nav-link" type="button">Paid</button>
-            <button class="nav-link" type="button">Pending</button>
-            <button class="nav-link" type="button">Refunded</button>
+          <div class="nav nav-pills" data-demo-chips="status" data-demo-filter-table="#orders-table" aria-label="Filter by status">
+            <button class="nav-link active" type="button" data-demo-chip="" aria-pressed="true">All</button>
+            <button class="nav-link" type="button" data-demo-chip="Paid" aria-pressed="false">Paid</button>
+            <button class="nav-link" type="button" data-demo-chip="Pending" aria-pressed="false">Pending</button>
+            <button class="nav-link" type="button" data-demo-chip="Failed" aria-pressed="false">Failed</button>
           </div>
         </div>
 
         <div class="table-responsive">
-          <table class="table table-hover align-middle" id="orders-table">
+          <table class="table table-hover align-middle" id="orders-table" data-demo-record="order">
             <thead>
               <tr>
                 <th scope="col" style="width: 40px;"><input class="form-check-input" type="checkbox" data-select-all="#orders-table" aria-label="Select all orders"></th>
@@ -762,7 +762,7 @@
               </tr>
             </thead>
             <tbody>
-              <tr>
+              <tr data-order-status="Paid">
                 <td><input class="form-check-input" type="checkbox" data-row-select aria-label="Select order"></td>
                 <td><a class="fw-500 text-heading" href="order-details.html">#QV-20418</a><span class="d-block fs-8 text-muted-2">Oct 2, 2026</span></td>
                 <td>Northstar Labs</td>
@@ -772,7 +772,7 @@
                 <td><span class="badge badge-soft-info badge-pill">Shipped</span></td>
                 <td class="text-end"><a class="btn btn-icon btn-sm btn-ghost" href="order-details.html" aria-label="View order QV-20418"><i class="bi bi-arrow-right"></i></a></td>
               </tr>
-              <tr>
+              <tr data-order-status="Pending">
                 <td><input class="form-check-input" type="checkbox" data-row-select aria-label="Select order"></td>
                 <td><a class="fw-500 text-heading" href="order-details.html">#QV-20417</a><span class="d-block fs-8 text-muted-2">Oct 2, 2026</span></td>
                 <td>Vertex Labs</td>
@@ -782,7 +782,7 @@
                 <td><span class="badge badge-soft-neutral badge-pill">Processing</span></td>
                 <td class="text-end"><a class="btn btn-icon btn-sm btn-ghost" href="order-details.html" aria-label="View order QV-20417"><i class="bi bi-arrow-right"></i></a></td>
               </tr>
-              <tr>
+              <tr data-order-status="Paid">
                 <td><input class="form-check-input" type="checkbox" data-row-select aria-label="Select order"></td>
                 <td><a class="fw-500 text-heading" href="order-details.html">#QV-20416</a><span class="d-block fs-8 text-muted-2">Oct 1, 2026</span></td>
                 <td>Acme Inc.</td>
@@ -792,7 +792,7 @@
                 <td><span class="badge badge-soft-success badge-pill">Delivered</span></td>
                 <td class="text-end"><a class="btn btn-icon btn-sm btn-ghost" href="order-details.html" aria-label="View order QV-20416"><i class="bi bi-arrow-right"></i></a></td>
               </tr>
-              <tr>
+              <tr data-order-status="Failed">
                 <td><input class="form-check-input" type="checkbox" data-row-select aria-label="Select order"></td>
                 <td><a class="fw-500 text-heading" href="order-details.html">#QV-20415</a><span class="d-block fs-8 text-muted-2">Oct 1, 2026</span></td>
                 <td>Orbit Systems</td>
@@ -802,7 +802,7 @@
                 <td><span class="badge badge-soft-neutral badge-pill">On hold</span></td>
                 <td class="text-end"><a class="btn btn-icon btn-sm btn-ghost" href="order-details.html" aria-label="View order QV-20415"><i class="bi bi-arrow-right"></i></a></td>
               </tr>
-              <tr>
+              <tr data-order-status="Paid">
                 <td><input class="form-check-input" type="checkbox" data-row-select aria-label="Select order"></td>
                 <td><a class="fw-500 text-heading" href="order-details.html">#QV-20414</a><span class="d-block fs-8 text-muted-2">Sep 30, 2026</span></td>
                 <td>Horizon Labs</td>

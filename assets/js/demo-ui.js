@@ -86,6 +86,9 @@
     "data-slot-money",
     "data-slot-badge",
     "data-slot-avatar",
+    "data-demo-chips",
+    "data-demo-chip",
+    "data-demo-chip-field",
     "data-demo-column",
     "data-demo-columns",
     "data-demo-count",
@@ -490,6 +493,28 @@
     });
   }
 
+  /* Chip groups (nav pills used as filters) read as one more filter each. */
+  function chipGroupsFor(table) {
+    return qa("[data-demo-chips]").filter(function (group) {
+      return q(group.getAttribute("data-demo-filter-table")) === table;
+    });
+  }
+
+  function activeChip(group) {
+    return q("[data-demo-chip].active", group) || q("[data-demo-chip]", group);
+  }
+
+  function selectChip(chip) {
+    var group = chip.closest("[data-demo-chips]");
+    if (!group) return;
+    qa("[data-demo-chip]", group).forEach(function (other) {
+      var isActive = other === chip;
+      other.classList.toggle("active", isActive);
+      other.setAttribute("aria-pressed", isActive ? "true" : "false");
+    });
+    applyFilters(q(group.getAttribute("data-demo-filter-table")));
+  }
+
   function searchesFor(table) {
     return qa("[data-table-filter]").filter(function (input) {
       return q(input.getAttribute("data-table-filter")) === table;
@@ -501,6 +526,7 @@
 
     var selects = filtersFor(table);
     var searches = searchesFor(table);
+    var chips = chipGroupsFor(table);
     var term = searches.map(function (input) {
       return input.value.trim().toLowerCase();
     }).join(" ").trim();
@@ -519,11 +545,29 @@
         if (String(record[field] || "").toLowerCase() !== value.toLowerCase()) match = false;
       });
 
+      chips.forEach(function (group) {
+        var chip = activeChip(group);
+        var value = chip ? (chip.getAttribute("data-demo-chip") || "").trim() : "";
+        if (!value) return;
+        var field = (chip.getAttribute("data-demo-chip-field") || group.getAttribute("data-demo-chips") || "").trim();
+        if (!field) return;
+        if (String(record[field] || "").toLowerCase() !== value.toLowerCase()) match = false;
+      });
+
       if (match && term && row.textContent.toLowerCase().indexOf(term) === -1) match = false;
 
       row.setAttribute("data-filtered", match ? "false" : "true");
       if (match) visible++;
     });
+
+    /* Without a pagination wrapper nothing else repaints the rows, so the
+       filter does it. With one, the pagination owns the display property so the
+       page and the filter state cannot fight over it. */
+    if (!paginateWrapper(table)) {
+      rows.forEach(function (row) {
+        row.style.display = row.getAttribute("data-filtered") === "true" ? "none" : "";
+      });
+    }
 
     var empty = q("[data-table-empty]", table.closest(".card") || doc);
     if (empty) empty.classList.toggle("d-none", visible !== 0);
@@ -629,13 +673,11 @@
 
   function runFallback(control) {
     var label = (control.getAttribute("aria-label") || control.textContent || "").replace(/\s+/g, " ").trim();
-    toast(
-      label
-        ? "“" + label + "” has no action wired up yet — connect it to your own handler."
-        : "This control is decorative in the demo — connect it to your own handler.",
-      "secondary",
-      "Demo control"
-    );
+    var showcase = control.closest(".demo-block, .demo-preview");
+    var message = showcase
+      ? (label ? "“" + label + "” is a component demo — the click is yours to wire up." : "This is a component demo — the click is yours to wire up.")
+      : (label ? "“" + label + "” has no action wired up yet — connect it to your own handler." : "This control is decorative — connect it to your own handler.");
+    toast(message, "secondary", showcase ? "Style demo" : "Demo control");
   }
 
   /* ---------------------------------------------------------------------- */
@@ -678,6 +720,12 @@
       if (control.hasAttribute("data-demo-confirm")) {
         event.preventDefault();
         confirmDelete(control);
+        return;
+      }
+
+      if (control.hasAttribute("data-demo-chip")) {
+        event.preventDefault();
+        selectChip(control);
         return;
       }
 
@@ -738,6 +786,7 @@
     init: init,
     open: openFrom,
     filter: applyFilters,
+    chips: chipGroupsFor,
     counts: updateCounts,
     addRow: createRow,
     record: readRecord,

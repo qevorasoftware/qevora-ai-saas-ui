@@ -56,16 +56,16 @@
             <label class="visually-hidden" for="invoice-search">Search invoices</label>
             <input type="search" class="form-control" id="invoice-search" placeholder="Search invoices…" data-table-filter="#invoices-table">
           </div>
-          <div class="nav nav-pills" role="tablist">
-            <button class="nav-link active" type="button">All</button>
-            <button class="nav-link" type="button">Paid</button>
-            <button class="nav-link" type="button">Pending</button>
-            <button class="nav-link" type="button">Overdue</button>
+          <div class="nav nav-pills" data-demo-chips="status" data-demo-filter-table="#invoices-table" aria-label="Filter by status">
+            <button class="nav-link active" type="button" data-demo-chip="" aria-pressed="true">All</button>
+            <button class="nav-link" type="button" data-demo-chip="Paid" aria-pressed="false">Paid</button>
+            <button class="nav-link" type="button" data-demo-chip="Pending" aria-pressed="false">Pending</button>
+            <button class="nav-link" type="button" data-demo-chip="Overdue" aria-pressed="false">Overdue</button>
           </div>
         </div>
 
         <div class="table-responsive">
-          <table class="table table-hover align-middle" id="invoices-table">
+          <table class="table table-hover align-middle" id="invoices-table" data-demo-record="invoice">
             <thead>
               <tr>
                 <th scope="col">Invoice</th>
@@ -78,7 +78,7 @@
               </tr>
             </thead>
             <tbody>
-              <tr>
+              <tr data-invoice-status="Paid">
                 <td><a class="fw-500 text-heading" href="invoice-details.html">INV-2026-0184</a></td>
                 <td>Northstar Labs</td>
                 <td class="text-muted-2">Sep 28, 2026</td>
@@ -92,7 +92,7 @@
                   </div>
                 </td>
               </tr>
-              <tr>
+              <tr data-invoice-status="Pending">
                 <td><a class="fw-500 text-heading" href="invoice-details.html">INV-2026-0186</a></td>
                 <td>Vertex Labs</td>
                 <td class="text-muted-2">Oct 1, 2026</td>
@@ -106,7 +106,7 @@
                   </div>
                 </td>
               </tr>
-              <tr>
+              <tr data-invoice-status="Overdue">
                 <td><a class="fw-500 text-heading" href="invoice-details.html">INV-2026-0191</a></td>
                 <td>Orbit Systems</td>
                 <td class="text-muted-2">Sep 12, 2026</td>
@@ -120,7 +120,7 @@
                   </div>
                 </td>
               </tr>
-              <tr>
+              <tr data-invoice-status="Paid">
                 <td><a class="fw-500 text-heading" href="invoice-details.html">INV-2026-0179</a></td>
                 <td>Horizon Labs</td>
                 <td class="text-muted-2">Sep 28, 2026</td>
@@ -134,7 +134,7 @@
                   </div>
                 </td>
               </tr>
-              <tr>
+              <tr data-invoice-status="Draft">
                 <td><a class="fw-500 text-heading" href="invoice-details.html">INV-2026-0172</a></td>
                 <td>Acme Inc.</td>
                 <td class="text-muted-2">Sep 20, 2026</td>

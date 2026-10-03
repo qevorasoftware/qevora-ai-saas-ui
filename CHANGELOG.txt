@@ -146,7 +146,13 @@ FIXES DURING DEVELOPMENT
       data-demo-column and data-demo-load. Record values live on the row itself
       (data-lead-name, data-lead-status …), so connecting a real API means
       replacing the handlers, not the markup.
-    · Any control that still has no handler answers with a toast that names it
+    · List pages filter for real: the status pills on invoices and orders are
+      chip groups driven by the same engine as the selects (data-demo-chips on
+      the group, data-demo-chip on each button, data-demo-chip-field when a chip
+      filters on a different column), and the rows carry their record values
+      (data-invoice-status …) for the filters to read.
+    · Any control that still has no handler answers with a toast that names it —
+      and a control inside a component demo says that it is a style demo —
       instead of appearing to do nothing.
     · The runtime smoke test clicks through the new flows on every run, and the
       audit learned two things: a wrapping <label> labels a control that has no
