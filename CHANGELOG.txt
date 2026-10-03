@@ -118,7 +118,7 @@ HOSTING
 
 QUALITY TOOLING
 
-  · tools/audit.mjs — static QA gate that runs 17 checks over all 82 generated
+  · tools/audit.mjs — static QA gate: 17 checks over all 82 generated
     pages: document head, duplicate ids, anchor targets, aria/label references,
     image alt text, accessible names on buttons and icon links, form labels,
     class existence against the shipped stylesheets, data-hook coverage,
@@ -130,6 +130,19 @@ QUALITY TOOLING
       node tools/audit.mjs --strict   non-zero exit when anything is found
 
 FIXES DURING DEVELOPMENT
+
+  Theme
+    · Tooltips were unreadable in dark mode: the bubble colour was hardcoded to
+      a dark navy while Bootstrap derives the tooltip text colour from
+      --bs-body-bg, which is #0b0f1c in this palette — dark text on a dark
+      bubble, measured at 1.05:1. Both colours are now tokens
+      (--q-tooltip-bg / --q-tooltip-color), so dark mode shows Bootstrap's
+      familiar inverted bubble (light surface, dark label) and the light theme
+      is unchanged.
+    · The audit gained a theme pass that resolves the token cascade of both
+      themes and measures real WCAG contrast for tooltips, cards/popovers,
+      dropdown menus, modal dialogs and toasts — the failure above would have
+      been caught by it (it reports 1.05:1 for the old bubble).
 
   Shell — collapsed sidebar
     · Clicking a section icon in the collapsed rail used to open a fly-out

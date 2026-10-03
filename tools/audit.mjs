@@ -431,6 +431,152 @@ for (const file of files) {
 }
 
 /* -------------------------------------------------------------------------- */
+/* Theme contrast (global — runs once, not per page)                           */
+/* -------------------------------------------------------------------------- */
+
+/* Bootstrap derives several colours from --bs-body-bg (tooltip text, toast
+   background), so a palette token that only looks right in one theme is easy to
+   ship by accident. This check resolves the token cascade of both themes and
+   measures real WCAG contrast for the pairs that carry text. */
+
+function tokenBlock(css, selector) {
+  const start = css.indexOf(selector);
+  if (start === -1) return {};
+  const open = css.indexOf("{", start);
+  const close = css.indexOf("}", open);
+  if (open === -1 || close === -1) return {};
+
+  // Comments sit between declarations, so they have to go before splitting:
+  // otherwise the comment text becomes part of the following token name.
+  const body = css.slice(open + 1, close).replace(/\/\*[\s\S]*?\*\//g, "");
+
+  const tokens = {};
+  for (const line of body.split(";")) {
+    const at = line.indexOf(":");
+    if (at === -1) continue;
+    const name = line.slice(0, at).trim();
+    if (!name.startsWith("--")) continue;
+    tokens[name] = line.slice(at + 1).trim();
+  }
+  return tokens;
+}
+
+function resolveToken(value, tokens, depth = 0) {
+  if (!value || depth > 8) return null;
+  const call = /^var\(\s*(--[\w-]+)\s*(?:,([\s\S]*))?\)$/.exec(value.trim());
+  if (!call) return value.trim();
+  const next = tokens[call[1]] !== undefined ? tokens[call[1]] : call[2];
+  return next === undefined ? null : resolveToken(next, tokens, depth + 1);
+}
+
+function parseColor(value) {
+  if (!value) return null;
+  const text = value.trim();
+  const hex = /^#([0-9a-f]{3}|[0-9a-f]{6})$/i.exec(text);
+  if (hex) {
+    const digits = hex[1].length === 3 ? hex[1].replace(/./g, (c) => c + c) : hex[1];
+    return [0, 2, 4].map((i) => parseInt(digits.slice(i, i + 2), 16)).concat(1);
+  }
+  const fn = /^rgba?\(([^)]+)\)$/i.exec(text);
+  if (fn) {
+    const parts = fn[1].split(/[,\s/]+/).filter(Boolean).map(Number);
+    if (parts.length < 3 || parts.slice(0, 3).some(Number.isNaN)) return null;
+    return [parts[0], parts[1], parts[2], parts.length > 3 && !Number.isNaN(parts[3]) ? parts[3] : 1];
+  }
+  return null;
+}
+
+function luminance(color) {
+  const channel = (v) => {
+    const c = v / 255;
+    return c <= 0.03928 ? c / 12.92 : Math.pow((c + 0.055) / 1.055, 2.4);
+  };
+  return 0.2126 * channel(color[0]) + 0.7152 * channel(color[1]) + 0.0722 * channel(color[2]);
+}
+
+function contrast(a, b) {
+  const [hi, lo] = [luminance(a), luminance(b)].sort((x, y) => y - x);
+  return (hi + 0.05) / (lo + 0.05);
+}
+
+function themeCheck() {
+  const bootstrap = readFileSync(join(ROOT, "assets/css/bootstrap.min.css"), "utf8");
+  const style = readFileSync(join(ROOT, "assets/css/style.css"), "utf8");
+  const components = readFileSync(join(ROOT, "assets/css/components.css"), "utf8");
+
+  const surfaces = [
+    { label: "dropdown menus", token: "--bs-dropdown-bg", overrides: tokenBlock(components, ".dropdown-menu") },
+    { label: "modal dialogs", token: "--bs-modal-bg", overrides: tokenBlock(components, ".modal-content") },
+    { label: "toasts", token: "--bs-toast-bg", overrides: tokenBlock(components, ".toast ") }
+  ];
+
+  // Same order the browser applies: Bootstrap defaults, the Qevora palette, the
+  // dark overrides of both.
+  const light = { ...tokenBlock(bootstrap, ":root"), ...tokenBlock(style, ":root") };
+  const dark = {
+    ...light,
+    ...tokenBlock(bootstrap, "[data-bs-theme=dark]"),
+    ...tokenBlock(style, '[data-bs-theme="dark"]')
+  };
+
+  const pairs = [
+    { label: "tooltip label on tooltip bubble", bg: "--q-tooltip-bg", fg: "--q-tooltip-color" },
+    { label: "body text on cards and popovers", bg: "--q-surface", fg: "--q-body-color" },
+    { label: "headings on cards and popovers", bg: "--q-surface", fg: "--q-heading-color" }
+  ];
+
+  let checks = 0;
+
+  for (const [theme, tokens] of [["light", light], ["dark", dark]]) {
+    for (const pair of pairs) {
+      checks++;
+      const bg = parseColor(resolveToken(`var(${pair.bg})`, tokens));
+      const fg = parseColor(resolveToken(`var(${pair.fg})`, tokens));
+      if (!bg || !fg) {
+        report("theme", "assets/css/style.css", `${theme} theme — could not resolve ${pair.bg} / ${pair.fg}`);
+        continue;
+      }
+      const ratio = contrast(fg, bg);
+      if (ratio < 4.5) {
+        report(
+          "theme",
+          "assets/css/style.css",
+          `${theme} theme — ${pair.label}: ${ratio.toFixed(2)}:1 contrast (needs 4.5:1)`
+        );
+      }
+    }
+
+    // Floating surfaces: read the background each component actually ships,
+    // straight from the override in components.css.
+    const text = parseColor(resolveToken("var(--q-body-color)", tokens));
+    checks++;
+
+    for (const surface of surfaces) {
+      const declared = surface.overrides[surface.token];
+      if (!declared) continue;
+
+      const bg = parseColor(resolveToken(declared, tokens));
+      if (!bg || !text) {
+        report("theme", "assets/css/components.css", `${theme} theme — could not resolve the ${surface.label} background`);
+        continue;
+      }
+      const ratio = contrast(text, bg);
+      if (ratio < 4.5) {
+        report(
+          "theme",
+          "assets/css/components.css",
+          `${theme} theme — body text on ${surface.label}: ${ratio.toFixed(2)}:1 contrast (needs 4.5:1)`
+        );
+      }
+    }
+  }
+
+  return checks;
+}
+
+const themeChecks = themeCheck();
+
+/* -------------------------------------------------------------------------- */
 /* Report                                                                      */
 /* -------------------------------------------------------------------------- */
 
@@ -447,6 +593,7 @@ console.log("──────────────────────�
 console.log(`Scope              : ${partLabel}`);
 console.log(`Pages audited      : ${files.length}`);
 console.log(`Checks per page    : ${stats.checks / Math.max(files.length, 1)}`);
+console.log(`Theme checks       : ${themeChecks} (light + dark contrast, run once)`);
 console.log(`Findings           : ${findings.length}`);
 
 if (findings.length) {

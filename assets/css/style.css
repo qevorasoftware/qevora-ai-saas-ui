@@ -61,6 +61,11 @@
   --q-code-bg: #0f1424;
   --q-code-color: #e2e8f0;
 
+  /* Tooltips invert against the page, so both colours are tokens */
+  --q-tooltip-bg: #101426;
+  --q-tooltip-color: #ffffff;
+  --q-tooltip-shadow: 0 8px 24px rgba(16, 20, 38, 0.18);
+
   /* Text */
   --q-heading-color: #101426;
   --q-body-color: #3b4257;
@@ -177,6 +182,12 @@
   --q-header-bg: rgba(15, 21, 39, 0.85);
   --q-code-bg: #090d18;
   --q-code-color: #dbe3f4;
+
+  /* Inverted against the dark page: a light bubble keeps the label readable,
+     where a dark bubble on a dark surface disappeared. */
+  --q-tooltip-bg: #e9edf8;
+  --q-tooltip-color: #0b0f1c;
+  --q-tooltip-shadow: 0 10px 28px rgba(0, 0, 0, 0.45);
 
   --q-heading-color: #f2f4fa;
   --q-body-color: #c2c9dc;

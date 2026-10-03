@@ -2030,10 +2030,18 @@
 
 /* Tooltip / popover */
 .tooltip {
-  --bs-tooltip-bg: #101426;
+  /* Both tooltip colours come from tokens: Bootstrap derives the text colour
+     from --bs-body-bg, which in dark mode is almost the same value as a dark
+     bubble — the label became unreadable. */
+  --bs-tooltip-bg: var(--q-tooltip-bg);
+  --bs-tooltip-color: var(--q-tooltip-color);
   --bs-tooltip-border-radius: var(--q-radius-xs);
   --bs-tooltip-font-size: 0.75rem;
   --bs-tooltip-opacity: 1;
+}
+
+.tooltip-inner {
+  box-shadow: var(--q-tooltip-shadow);
 }
 
 .popover {

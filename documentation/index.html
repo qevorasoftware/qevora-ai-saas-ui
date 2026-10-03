@@ -785,7 +785,7 @@
 └── tools/
     ├── build.mjs              Optional build script (Node 18+, no dependencies)
     ├── demo-samples.mjs       Generates the CSS and JS panes of every component demo
-    ├── audit.mjs              Static QA: 16 checks on every generated page
+    ├── audit.mjs              Static QA: 17 checks on every generated page
     └── package.sh             Builds the release ZIPs into release/</code></pre>
               </div>
             </div>
@@ -979,7 +979,7 @@
                 <button class="copy-btn" data-copy-target="#docBuild" type="button"><i class="bi bi-clipboard"></i> Copy</button>
                 <pre class="demo-code"><code id="docBuild">node tools/build.mjs             # write every page in src/pages.mjs
 node tools/build.mjs --check     # validate only: report missing bodies and dead links
-node tools/audit.mjs             # 17 static QA checks on every generated page
+node tools/audit.mjs             # 17 static QA checks per page, plus light/dark theme contrast
 node tools/audit.mjs --part ai   # audit one section at a time</code></pre>
               </div>
 
@@ -1025,7 +1025,7 @@ node tools/audit.mjs --part ai   # audit one section at a time</code></pre>
                 <li>Add an entry to <code>src/pages.mjs</code> with its <code>out</code> path, metadata and breadcrumb.</li>
                 <li>Add the menu link to <code>src/nav.mjs</code>.</li>
                 <li>Run <code>node tools/build.mjs</code> — the new page appears with the correct title, breadcrumb and navigation in every other page.</li>
-                <li>Run <code>node tools/audit.mjs</code> — it checks headings, labels, ids, anchors, class names, data hooks, chart wiring, link targets and the four-pane demo contract before you ship.</li>
+                <li>Run <code>node tools/audit.mjs</code> — it checks headings, labels, ids, anchors, class names, data hooks, chart wiring, link targets and the four-pane demo contract before you ship, and it measures the light/dark contrast of the palette tokens (tooltips, cards, toasts) once for the whole theme.</li>
               </ol>
 
               <div class="alert alert-warning d-flex align-items-start gap-2 mt-4 mb-0" role="alert">

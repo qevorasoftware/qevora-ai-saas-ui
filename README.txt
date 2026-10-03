@@ -97,7 +97,7 @@ or internet connection is required to use the template.
                   optional build script assembles (see section 6)
   tools/          build.mjs         optional build script (Node 18+, no dependencies)
                   demo-samples.mjs  generates the CSS/JS panes of every demo
-                  audit.mjs         QA: 17 static checks on every generated page
+                  audit.mjs         QA: 17 static checks per page + light/dark theme contrast
                   package.sh        builds the release ZIPs
 
 --------------------------------------------------------------------------------
