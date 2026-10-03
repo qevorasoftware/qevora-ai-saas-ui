@@ -97,7 +97,9 @@ or internet connection is required to use the template.
                   optional build script assembles (see section 6)
   tools/          build.mjs         optional build script (Node 18+, no dependencies)
                   demo-samples.mjs  generates the CSS/JS panes of every demo
-                  audit.mjs         QA: 17 static checks per page + light/dark theme contrast
+                  audit.mjs         QA: 19 static checks per page + light/dark theme contrast
+                  smoke.mjs         optional: runs every page, clicks the key controls and
+                                    reports console errors (needs jsdom: npm install --no-save jsdom)
                   package.sh        builds the release ZIPs
 
 --------------------------------------------------------------------------------
@@ -171,7 +173,8 @@ or internet connection is required to use the template.
 
       node tools/build.mjs            rebuild every page
       node tools/build.mjs --check    validate only, report problems
-      node tools/audit.mjs            run the 17-point quality audit
+      node tools/audit.mjs            run the 19-point quality audit
+      node tools/smoke.mjs            run every page and report runtime errors (needs jsdom)
 
   Source fragments live in src/pages/ (one file per page, same paths as the
   output), the shell lives in src/partials/, the page inventory in

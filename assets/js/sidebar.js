@@ -29,7 +29,12 @@
 
   var body = document.body;
 
+  /* Same storage caveat as theme.js: private mode, sandboxed frames and file://
+     previews block localStorage, so the last choice is also held in memory. */
+  var memory = {};
+
   function store(key, value) {
+    memory[key] = value;
     try {
       window.localStorage.setItem(key, value);
     } catch (e) { /* ignore */ }
@@ -37,9 +42,10 @@
 
   function read(key) {
     try {
-      return window.localStorage.getItem(key);
+      var stored = window.localStorage.getItem(key);
+      return stored === null ? (memory[key] !== undefined ? memory[key] : null) : stored;
     } catch (e) {
-      return null;
+      return memory[key] !== undefined ? memory[key] : null;
     }
   }
 

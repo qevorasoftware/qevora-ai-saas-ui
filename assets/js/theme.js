@@ -22,19 +22,28 @@
   var MEDIA = window.matchMedia ? window.matchMedia("(prefers-color-scheme: dark)") : null;
   var listeners = [];
 
+  /* localStorage throws in private mode, inside sandboxed frames and when the
+     template is opened straight from disk (file://). The choice is mirrored in
+     memory so the toggle still works in those previews — it just does not
+     survive a reload. */
+  var memoryPreference = null;
+
   function readStored() {
+    var stored = null;
     try {
-      return window.localStorage.getItem(STORAGE_KEY);
+      stored = window.localStorage.getItem(STORAGE_KEY);
     } catch (e) {
-      return null;
+      stored = null;
     }
+    return stored === null ? memoryPreference : stored;
   }
 
   function writeStored(value) {
+    memoryPreference = value;
     try {
       window.localStorage.setItem(STORAGE_KEY, value);
     } catch (e) {
-      /* storage unavailable (private mode / file://) — fail silently */
+      /* keep the in-memory value */
     }
   }
 

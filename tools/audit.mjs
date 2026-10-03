@@ -38,7 +38,7 @@ const STRICT = args.includes("--strict");
 const partFlag = args.indexOf("--part");
 const PART = partFlag !== -1 ? args[partFlag + 1] : null;
 
-const SKIP_DIRS = new Set([".git", "node_modules", "release", "src", "tools"]);
+const SKIP_DIRS = new Set([".git", ".tmp", "node_modules", "release", "src", "tools"]);
 
 const PARTS = {
   shell: ["index.html"],
@@ -252,6 +252,74 @@ function checkLinkTargets(html, file, add) {
   }
 }
 
+/** Fragment ids of a page, cached — cross-page anchor hops need the target. */
+const idCache = new Map();
+function idsOf(relative) {
+  if (!idCache.has(relative)) {
+    let ids = new Set();
+    try {
+      const source = stripCodeBlocks(readFileSync(join(ROOT, relative), "utf8"));
+      ids = new Set([...source.matchAll(/\sid="([^"]+)"/g)].map((m) => m[1]));
+    } catch (e) {
+      ids = null; // file missing — check 17 already reports that
+    }
+    idCache.set(relative, ids);
+  }
+  return idCache.get(relative);
+}
+
+/** Anchors, tab targets and aria-controls must point at something real. */
+function checkAnchors(html, file, add) {
+  const own = new Set([...html.matchAll(/\sid="([^"]+)"/g)].map((m) => m[1]));
+  const dir = dirname(join(ROOT, file));
+
+  const requireId = (id, label) => {
+    if (!id || id === "!" || id === "") return; // "#" and "#!" are placeholders
+    if (!own.has(id)) add("anchor", `${label} -> #${id} has no matching id on this page`);
+  };
+
+  for (const m of html.matchAll(/href="([^"]*)"/g)) {
+    const url = m[1];
+    if (/^(https?:|mailto:|tel:|data:|javascript:)/.test(url)) continue;
+    const [target, fragment] = url.split("#");
+    if (!fragment) continue;
+
+    if (!target) {
+      requireId(fragment, "link");
+      continue;
+    }
+    // Cross-page hop: the destination file must carry that id.
+    const destination = relative(ROOT, resolve(dir, target.split("?")[0]));
+    const ids = idsOf(destination);
+    if (ids && !ids.has(fragment)) {
+      add("anchor", `${url} — ${destination} has no id "${fragment}"`);
+    }
+  }
+
+  for (const m of html.matchAll(/data-bs-target="([^"]+)"/g)) {
+    for (const selector of m[1].split(",")) {
+      if (selector.trim().startsWith("#")) requireId(selector.trim().slice(1), "data-bs-target");
+    }
+  }
+
+  for (const m of html.matchAll(/aria-controls="([^"]+)"/g)) {
+    for (const id of m[1].split(/\s+/)) requireId(id, "aria-controls");
+  }
+}
+
+/** Buttons and links have to be operable: an explicit type, a real href. */
+function checkInteractive(html, add) {
+  for (const m of html.matchAll(/<button\b[^>]*>/g)) {
+    const tag = m[0];
+    if (!/\btype="/.test(tag)) {
+      add("markup", `button without an explicit type: ${tag.slice(0, 90)}…`);
+    }
+  }
+  for (const m of html.matchAll(/<a\b(?![^>]*\bhref=)[^>]*>/g)) {
+    add("markup", `anchor without an href: ${m[0].slice(0, 90)}…`);
+  }
+}
+
 /* -------------------------------------------------------------------------- */
 /* Audit                                                                       */
 /* -------------------------------------------------------------------------- */
@@ -428,6 +496,14 @@ for (const file of files) {
   /* 17. link and asset targets -------------------------------------------- */
   stats.checks++;
   checkLinkTargets(html, file, add);
+
+  /* 18. anchors, tab targets and aria-controls ---------------------------- */
+  stats.checks++;
+  checkAnchors(html, file, add);
+
+  /* 19. buttons and links are operable ------------------------------------ */
+  stats.checks++;
+  checkInteractive(html, add);
 }
 
 /* -------------------------------------------------------------------------- */

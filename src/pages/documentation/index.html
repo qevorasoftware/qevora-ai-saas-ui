@@ -103,7 +103,8 @@
 └── tools/
     ├── build.mjs              Optional build script (Node 18+, no dependencies)
     ├── demo-samples.mjs       Generates the CSS and JS panes of every component demo
-    ├── audit.mjs              Static QA: 17 checks on every generated page
+    ├── audit.mjs              Static QA: 19 checks on every generated page
+    ├── smoke.mjs              Optional: runs every page + clicks key controls (jsdom)
     └── package.sh             Builds the release ZIPs into release/</code></pre>
               </div>
             </div>
@@ -297,8 +298,10 @@
                 <button class="copy-btn" data-copy-target="#docBuild" type="button"><i class="bi bi-clipboard"></i> Copy</button>
                 <pre class="demo-code"><code id="docBuild">node tools/build.mjs             # write every page in src/pages.mjs
 node tools/build.mjs --check     # validate only: report missing bodies and dead links
-node tools/audit.mjs             # 17 static QA checks per page, plus light/dark theme contrast
-node tools/audit.mjs --part ai   # audit one section at a time</code></pre>
+node tools/audit.mjs             # 19 static QA checks per page, plus light/dark theme contrast
+node tools/audit.mjs --part ai   # audit one section at a time
+npm i --no-save jsdom            # one-off, for the optional runtime check
+node tools/smoke.mjs             # run every page and click key controls: console errors, missing assets</code></pre>
               </div>
 
               <p class="fw-600 text-heading fs-7 mb-2">How a page is assembled</p>

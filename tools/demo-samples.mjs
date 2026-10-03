@@ -501,8 +501,8 @@ export function enhanceDemoBlocks(html, pageSlug, cssIndex) {
       const tabs = innerOf(block, "demo-block__tabs");
       if (tabs) {
         const buttons =
-          '          <button class="demo-tab" data-demo-tab="css" aria-selected="false">CSS</button>\n' +
-          '          <button class="demo-tab" data-demo-tab="js" aria-selected="false">JS</button>\n        ';
+          '          <button class="demo-tab" type="button" data-demo-tab="css" aria-selected="false">CSS</button>\n' +
+          '          <button class="demo-tab" type="button" data-demo-tab="js" aria-selected="false">JS</button>\n        ';
         const tabsInner = block.slice(tabs.openEnd, tabs.closeStart);
         block = block.slice(0, tabs.openEnd) + tabsInner.replace(/\s*$/, "\n") + buttons + block.slice(tabs.closeStart);
       }

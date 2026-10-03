@@ -60,9 +60,12 @@ tools/build.mjs       Optional zero-dependency builder (Node 18+)
 tools/demo-samples.mjs Generates the CSS and JS panes of every component demo
                        from the shipped stylesheets and scripts
 404.html              GitHub Pages fallback, mirrored from utility/404.html
-tools/audit.mjs       Static QA gate (17 checks per page + theme contrast): head meta, ids, anchors, aria, images,
+tools/audit.mjs       Static QA gate (19 checks per page + theme contrast): head meta, ids, anchors, aria, images,
                       labels, class existence, data hooks, charts, headings,
                       nesting, placeholders, tag balance
+tools/smoke.mjs       Optional runtime gate (needs `npm i --no-save jsdom`): loads
+                      every page with its scripts, clicks the key controls and
+                      reports console errors or dead interactions
 tools/package.sh      Builds the buyer-facing release ZIPs into release/
 ```
 
@@ -90,8 +93,9 @@ The 81 pages share one shell. To change the sidebar or header once instead of 81
 ```bash
 node tools/build.mjs            # regenerate every page from src/
 node tools/build.mjs --check    # validate: missing bodies, dead navigation links
-node tools/audit.mjs            # 17 static QA checks per page + light/dark contrast
+node tools/audit.mjs            # 19 static QA checks per page + light/dark contrast
 node tools/audit.mjs --strict   # same, but exit non-zero when anything is found
+node tools/smoke.mjs --strict   # run every page in a scripted DOM, report runtime errors
 ```
 
 `src/pages.mjs` is the single source of truth for the page inventory — titles, meta descriptions,

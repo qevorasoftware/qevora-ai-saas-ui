@@ -118,7 +118,7 @@ HOSTING
 
 QUALITY TOOLING
 
-  · tools/audit.mjs — static QA gate: 17 checks over all 82 generated
+  · tools/audit.mjs — static QA gate: 19 checks over all 82 generated
     pages: document head, duplicate ids, anchor targets, aria/label references,
     image alt text, accessible names on buttons and icon links, form labels,
     class existence against the shipped stylesheets, data-hook coverage,
@@ -130,6 +130,40 @@ QUALITY TOOLING
       node tools/audit.mjs --strict   non-zero exit when anything is found
 
 FIXES DURING DEVELOPMENT
+
+  Links, buttons and runtime behaviour
+    · The light/dark toggle did nothing when localStorage is unavailable —
+      private-mode windows, sandboxed frames and, most importantly, opening the
+      template straight from disk (file://), which is exactly what a buyer does
+      with the ZIP. The choice is now also held in memory, so the button always
+      applies the theme for the session; the sidebar rail and the RTL switch
+      share the same fallback.
+    · Sortable table headers reordered the rows but never announced the sort
+      state; the active column now carries aria-sort and the others are cleared.
+    · The copy buttons read innerText, which needs layout — they fall back to
+      textContent in embedded webviews where innerText is missing.
+    · pages/projects.html — the "All / My projects" pills pointed at
+      #projects-all and #projects-active, but no such panes existed, so clicking
+      them did nothing. The grid is a real tab set now: every project, or the
+      three Ava Reynolds is part of, with role/aria-controls wired up.
+    · components/typography.html — "Change the font" linked to a #typography
+      anchor the documentation page does not have; it points at the customise
+      section that documents the font swap.
+    · Every button in the template now carries an explicit type="button" (or
+      type="submit" inside a form) instead of relying on the HTML default, which
+      also stops a demo button from submitting a form it is dropped into.
+    · Addresses printed as links are real mailto: links and the status link on
+      the 500/maintenance pages is a real external link; the remaining
+      placeholder menus keep href="#" and app.js already suppresses their jump.
+    · Two audit checks cover this class of bug from now on: 18 validates every
+      in-page anchor, cross-page anchor, data-bs-target and aria-controls, and
+      19 requires an explicit button type and a real href on links.
+    · All 82 pages were run in a scripted DOM smoke test (tools/smoke.mjs) —
+      no console errors, no missing assets, no exceptions — and the same script
+      clicks through the demo tabs, copy buttons, table sorting, pagination, a
+      modal, the theme toggle, the collapsed-rail button and the chat composer.
+      It ships in tools/; it is the only script that needs jsdom
+      (npm install --no-save jsdom).
 
   Theme
     · Tooltips were unreadable in dark mode: the bubble colour was hardcoded to

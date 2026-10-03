@@ -74,7 +74,9 @@
 
       if (!source) return;
 
-      var text = source.innerText.replace(/\u00a0/g, " ");
+      // innerText needs layout; fall back to textContent for embedded webviews.
+      var raw = source.innerText !== undefined ? source.innerText : source.textContent || "";
+      var text = raw.replace(/\u00a0/g, " ");
 
       if (window.Qevora && window.Qevora.copyText) {
         window.Qevora.copyText(text).then(function () {
@@ -295,6 +297,13 @@
           }
 
           th.setAttribute("data-sort-dir", descending ? "asc" : "desc");
+
+          // Announce the sort state: only one column can be sorted at a time.
+          var headerRow = th.parentElement ? th.parentElement.children : [];
+          for (var h = 0; h < headerRow.length; h++) {
+            if (headerRow[h].removeAttribute) headerRow[h].removeAttribute("aria-sort");
+          }
+          th.setAttribute("aria-sort", descending ? "descending" : "ascending");
 
           var icons = th.parentElement.querySelectorAll("i");
           for (var k = 0; k < icons.length; k++) icons[k].className = "bi bi-arrow-down-up";
