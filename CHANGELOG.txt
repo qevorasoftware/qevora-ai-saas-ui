@@ -3,8 +3,36 @@
 ================================================================================
 
 --------------------------------------------------------------------------------
-1.0.0  ·  October 2026  ·  Initial release
+1.0.0  ·  October 2026  ·  Initial ThemeForest release
 --------------------------------------------------------------------------------
+
+RELEASE HIGHLIGHTS
+
+  · 81 ready-to-use HTML pages, all static and framework-free
+  · Bootstrap 5.3.3 based — no jQuery, no build step, no CDN
+  · Light and dark mode with a saved preference
+  · Full RTL support (Bootstrap's RTL build ships in the package)
+  · Responsive layouts from desktop down to 375 px
+  · AI/SaaS dashboard set: overview, AI workspace, chat, content and image
+    generators, usage and prompt history
+  · CRM, project, billing and team modules (leads, customers, pipeline,
+    projects, kanban, tasks, invoices, payments, subscriptions, reports, roles)
+  · 31-page UI component library with Preview / HTML / CSS / JS panes and copy
+    buttons, plus a design-system reference
+  · 6 authentication pages and 4 utility pages (404, 500, maintenance, soon)
+  · 15+ theme-aware Chart.js charts, all libraries vendored locally
+  · Working demo interactions: create/edit dialogs, live filters and search,
+    pagination, CSV import and export, file pickers, undo, toasts
+  · Written documentation, README and licence inside the package
+
+  Packaging for this release
+    release/qevora-ai-saas-ui-1.0.0.zip              buyer package (this item)
+    release/qevora-ai-saas-ui-1.0.0-developer.zip    optional source package
+    marketplace/                                     cover, 14 previews,
+                                                     metadata and this checklist
+
+  81 pages: 1 dashboard · 6 AI workspace · 31 applications · 31 UI kit ·
+  6 authentication · 4 utility · 2 documentation
 
 NEW PAGES (81 total)
 

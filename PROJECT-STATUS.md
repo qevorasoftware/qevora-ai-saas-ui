@@ -94,3 +94,37 @@ generated pagers, the AI history table, the content generator and the plan cards
 
 *Generated from the repository at commit `HEAD`; re-run `node tools/build.mjs --check` and
 `node tools/audit.mjs` to reproduce every claim in section 5.*
+
+--------------------------------------------------------------------------------
+7. ThemeForest finalization (version 1.0.0)
+--------------------------------------------------------------------------------
+
+| # | Checklist item | Status | Evidence |
+|---|---|---|---|
+| 1 | LICENSE.txt finalized | **Done** | Envato Regular/Extended terms, licence URLs, no seller note or placeholder |
+| 2 | Buyer/public ZIP | **Done** | `release/qevora-ai-saas-ui-1.0.0.zip` — single top-level folder, buyer files only |
+| 3 | Documentation cleaned for buyers | **Done** | developer package marked as optional throughout; buyer-path instructions verified |
+| 4 | Version consistency | **Done** | one `const VERSION = "1.0.0"` in `tools/build.mjs` drives titles, `?v=`, ZIP names; `tools/release.mjs` fails on drift |
+| 5 | ThemeForest cover (3:2) | **Done** | `marketplace/cover-2340x1560.png` + `cover-1170x780.png` (+ JPG) |
+| 6 | Preview images | **Done** | 14 previews in `marketplace/previews/`, PNG + JPG, light/dark/responsive |
+| 7 | External links reviewed | **Done** | demo domains and mailto links removed; only credit/licence hosts remain |
+| 8 | Brand/product naming | **Done** | "Qevora AI SaaS UI" everywhere; old suffix banned by a release check |
+| 9 | Demo data reviewed | **Done** | fictional names, 555-01xx phone range, all addresses on `example.com` |
+| 10 | License audit | **Done** | Bootstrap/Icons/Chart.js MIT, Inter OFL 1.1, all images original SVGs |
+| 11 | HTML/CSS/JS quality | **Done** | audit `--strict` 0 findings; 461 runtime checks across 10 suites |
+| 12 | Responsive/light/dark/RTL | **Done** | smoke + theme pass + previews 01/02/13/14 |
+| 13 | 404/empty/utility states | **Done** | 404, 500, maintenance, coming soon, empty states, loading and validation states |
+| 14 | README.txt final pass | **Done** | rewritten for buyers, no development-only instructions |
+| 15 | CHANGELOG.txt | **Done** | release entry for 1.0.0 plus the full build history |
+| 16 | Development artifacts removed | **Done** | enforced by `tools/release.mjs` against the extracted ZIP |
+| 17 | File/folder names | **Done** | lowercase kebab-case, no spaces, no backup copies |
+| 18 | Marketplace metadata | **Done** | `marketplace/METADATA.txt`, `item-metadata.json`, `README.txt`, `RELEASE-NOTES-1.0.0.txt` |
+| 19 | Live preview final check | **Yours** | open https://qevorasoftware.github.io/qevora-ai-saas-ui/ after the push |
+| 20 | Final ZIP validation | **Done** | `node tools/release.mjs --runtime` → 21/21 checks, extraction into an empty folder |
+
+  Reproduce the release at any time:
+
+      node tools/build.mjs
+      bash tools/package.sh          # builds both ZIPs, then verifies the buyer one
+      node tools/release.mjs --runtime --strict
+

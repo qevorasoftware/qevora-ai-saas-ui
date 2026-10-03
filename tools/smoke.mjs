@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /* ==========================================================================
-   Qevora AI SaaS — Bootstrap 5 Admin & UI Kit
+   Qevora AI SaaS UI — Bootstrap 5 Admin & UI Kit
    tools/smoke.mjs — optional runtime smoke test for the generated pages
    --------------------------------------------------------------------------
    audit.mjs reads the markup; this script actually runs the pages. Each shipped
@@ -382,7 +382,7 @@ for (const check of interactions) {
 console.log("");
 console.log("");
 console.log("");
-console.log("Qevora AI SaaS — runtime smoke test");
+console.log("Qevora AI SaaS UI — runtime smoke test");
 console.log("──────────────────────────────────────────────");
 console.log(`Pages run          : ${pages.length}`);
 console.log(`Pages with issues  : ${failures.length}`);

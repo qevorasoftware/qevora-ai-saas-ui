@@ -1,5 +1,5 @@
 /* ==========================================================================
-   Qevora AI SaaS — build configuration
+   Qevora AI SaaS UI — build configuration
    src/pages.mjs — Page inventory
    --------------------------------------------------------------------------
    Every output page is listed here exactly once. This file is also the page
@@ -31,8 +31,8 @@ export const pages = [
     scripts: CHART_SCRIPTS,
     breadcrumb: ["Dashboard", "Overview"],
     meta: {
-      title: "Dashboard Overview | Qevora AI SaaS Admin & UI Kit",
-      desc: "Qevora AI SaaS dashboard overview — revenue, active users, AI usage, projects and team activity in one Bootstrap 5 admin view."
+      title: "Dashboard Overview | Qevora AI SaaS UI",
+      desc: "Qevora AI SaaS UI dashboard overview — revenue, active users, AI usage, projects and team activity in one Bootstrap 5 admin view."
     }
   },
   {
@@ -40,7 +40,7 @@ export const pages = [
     scripts: CHART_SCRIPTS,
     breadcrumb: ["Dashboard", "Analytics"],
     meta: {
-      title: "Analytics | Qevora AI SaaS Admin & UI Kit",
+      title: "Analytics | Qevora AI SaaS UI",
       desc: "Traffic, conversion, revenue and channel analytics with reusable Chart.js components."
     }
   },
@@ -51,7 +51,7 @@ export const pages = [
     scripts: CHART_SCRIPTS,
     breadcrumb: ["Applications", "CRM", "Dashboard"],
     meta: {
-      title: "CRM Dashboard | Qevora AI SaaS Admin & UI Kit",
+      title: "CRM Dashboard | Qevora AI SaaS UI",
       desc: "CRM dashboard with pipeline value, lead sources, deals closing soon and recent customer activity."
     }
   },
@@ -59,7 +59,7 @@ export const pages = [
     out: "pages/leads.html",
     breadcrumb: ["Applications", "CRM", "Leads"],
     meta: {
-      title: "Leads | Qevora AI SaaS Admin & UI Kit",
+      title: "Leads | Qevora AI SaaS UI",
       desc: "Lead list with status, owner, source, score and value — includes filtering and a data table."
     }
   },
@@ -68,7 +68,7 @@ export const pages = [
     scripts: CHART_SCRIPTS,
     breadcrumb: ["Applications", "CRM", "Customers"],
     meta: {
-      title: "Customers | Qevora AI SaaS Admin & UI Kit",
+      title: "Customers | Qevora AI SaaS UI",
       desc: "Customer directory with company, plan, lifetime value, status and detail-page navigation."
     }
   },
@@ -77,7 +77,7 @@ export const pages = [
     scripts: CHART_SCRIPTS,
     breadcrumb: ["Applications", "CRM", "Customers", "Northstar Labs"],
     meta: {
-      title: "Customer Details | Qevora AI SaaS Admin & UI Kit",
+      title: "Customer Details | Qevora AI SaaS UI",
       desc: "Customer profile with contact details, subscription, invoices, activity timeline and notes."
     }
   },
@@ -86,7 +86,7 @@ export const pages = [
     scripts: CHART_SCRIPTS,
     breadcrumb: ["Applications", "CRM", "Pipeline"],
     meta: {
-      title: "Sales Pipeline | Qevora AI SaaS Admin & UI Kit",
+      title: "Sales Pipeline | Qevora AI SaaS UI",
       desc: "Deal pipeline board with stage totals, weighted forecast and draggable deal cards."
     }
   },
@@ -95,7 +95,7 @@ export const pages = [
     scripts: CHART_SCRIPTS,
     breadcrumb: ["Applications", "Projects", "All Projects"],
     meta: {
-      title: "Projects | Qevora AI SaaS Admin & UI Kit",
+      title: "Projects | Qevora AI SaaS UI",
       desc: "Project portfolio with progress, team members, budget, deadline and status filters."
     }
   },
@@ -104,7 +104,7 @@ export const pages = [
     scripts: CHART_SCRIPTS,
     breadcrumb: ["Applications", "Projects", "Project Details"],
     meta: {
-      title: "Project Details | Qevora AI SaaS Admin & UI Kit",
+      title: "Project Details | Qevora AI SaaS UI",
       desc: "Project overview with progress, tasks, files, team and activity timeline."
     }
   },
@@ -112,7 +112,7 @@ export const pages = [
     out: "pages/kanban.html",
     breadcrumb: ["Applications", "Projects", "Kanban Board"],
     meta: {
-      title: "Kanban Board | Qevora AI SaaS Admin & UI Kit",
+      title: "Kanban Board | Qevora AI SaaS UI",
       desc: "Drag-and-drop Kanban board for task planning across backlog, in progress, review and done."
     }
   },
@@ -120,7 +120,7 @@ export const pages = [
     out: "pages/tasks.html",
     breadcrumb: ["Applications", "Projects", "Task List"],
     meta: {
-      title: "Tasks | Qevora AI SaaS Admin & UI Kit",
+      title: "Tasks | Qevora AI SaaS UI",
       desc: "Task list with priority, assignee, due date, labels and completion state."
     }
   },
@@ -128,7 +128,7 @@ export const pages = [
     out: "pages/calendar.html",
     breadcrumb: ["Applications", "Calendar"],
     meta: {
-      title: "Calendar | Qevora AI SaaS Admin & UI Kit",
+      title: "Calendar | Qevora AI SaaS UI",
       desc: "Month calendar view with scheduled meetings, deadlines and agenda sidebar."
     }
   },
@@ -137,7 +137,7 @@ export const pages = [
     scripts: CHAT_SCRIPTS,
     breadcrumb: ["Applications", "Chat"],
     meta: {
-      title: "Team Chat | Qevora AI SaaS Admin & UI Kit",
+      title: "Team Chat | Qevora AI SaaS UI",
       desc: "Team chat workspace with conversation list, message thread and composer."
     }
   },
@@ -145,7 +145,7 @@ export const pages = [
     out: "pages/notifications.html",
     breadcrumb: ["Applications", "Notifications"],
     meta: {
-      title: "Notifications | Qevora AI SaaS Admin & UI Kit",
+      title: "Notifications | Qevora AI SaaS UI",
       desc: "Notification center with filters, read states and grouped activity."
     }
   },
@@ -156,7 +156,7 @@ export const pages = [
     scripts: CHART_SCRIPTS,
     breadcrumb: ["Business", "Catalog", "Products"],
     meta: {
-      title: "Products | Qevora AI SaaS Admin & UI Kit",
+      title: "Products | Qevora AI SaaS UI",
       desc: "Product catalog with grid and table views, stock, price and category management."
     }
   },
@@ -165,7 +165,7 @@ export const pages = [
     scripts: CHART_SCRIPTS,
     breadcrumb: ["Business", "Catalog", "Product Details"],
     meta: {
-      title: "Product Details | Qevora AI SaaS Admin & UI Kit",
+      title: "Product Details | Qevora AI SaaS UI",
       desc: "Product detail view with pricing, inventory, variants and related items."
     }
   },
@@ -173,7 +173,7 @@ export const pages = [
     out: "pages/orders.html",
     breadcrumb: ["Business", "Sales", "Orders"],
     meta: {
-      title: "Orders | Qevora AI SaaS Admin & UI Kit",
+      title: "Orders | Qevora AI SaaS UI",
       desc: "Order management table with payment status, fulfilment state and totals."
     }
   },
@@ -181,7 +181,7 @@ export const pages = [
     out: "pages/order-details.html",
     breadcrumb: ["Business", "Sales", "Orders", "#QV-20418"],
     meta: {
-      title: "Order Details | Qevora AI SaaS Admin & UI Kit",
+      title: "Order Details | Qevora AI SaaS UI",
       desc: "Order detail view with line items, customer, shipping and payment summary."
     }
   },
@@ -189,7 +189,7 @@ export const pages = [
     out: "pages/invoices.html",
     breadcrumb: ["Business", "Finance", "Invoices"],
     meta: {
-      title: "Invoices | Qevora AI SaaS Admin & UI Kit",
+      title: "Invoices | Qevora AI SaaS UI",
       desc: "Invoice list with paid, pending and overdue states plus downloadable invoice detail view."
     }
   },
@@ -197,7 +197,7 @@ export const pages = [
     out: "pages/invoice-details.html",
     breadcrumb: ["Business", "Finance", "Invoices", "INV-2026-0184"],
     meta: {
-      title: "Invoice Details | Qevora AI SaaS Admin & UI Kit",
+      title: "Invoice Details | Qevora AI SaaS UI",
       desc: "Printable invoice layout with line items, tax summary, totals and payment history."
     }
   },
@@ -205,7 +205,7 @@ export const pages = [
     out: "pages/payments.html",
     breadcrumb: ["Business", "Finance", "Payments"],
     meta: {
-      title: "Payments | Qevora AI SaaS Admin & UI Kit",
+      title: "Payments | Qevora AI SaaS UI",
       desc: "Payment records with method, gateway, status and settlement information."
     }
   },
@@ -214,7 +214,7 @@ export const pages = [
     scripts: CHART_SCRIPTS,
     breadcrumb: ["Business", "Finance", "Transactions"],
     meta: {
-      title: "Transactions | Qevora AI SaaS Admin & UI Kit",
+      title: "Transactions | Qevora AI SaaS UI",
       desc: "Transaction ledger with credits, refunds, fees and running balance."
     }
   },
@@ -223,7 +223,7 @@ export const pages = [
     scripts: CHART_SCRIPTS,
     breadcrumb: ["Business", "Subscriptions"],
     meta: {
-      title: "Subscriptions | Qevora AI SaaS Admin & UI Kit",
+      title: "Subscriptions | Qevora AI SaaS UI",
       desc: "Subscription management with plans, billing cycles, seats, renewals and churn metrics."
     }
   },
@@ -234,7 +234,7 @@ export const pages = [
     scripts: CHART_SCRIPTS,
     breadcrumb: ["AI Workspace", "AI Overview"],
     meta: {
-      title: "AI Overview | Qevora AI SaaS Admin & UI Kit",
+      title: "AI Overview | Qevora AI SaaS UI",
       desc: "AI workspace overview with requests, tokens, model usage, plan limits and recent generations."
     }
   },
@@ -243,7 +243,7 @@ export const pages = [
     scripts: CHAT_SCRIPTS,
     breadcrumb: ["AI Workspace", "AI Chat"],
     meta: {
-      title: "AI Chat | Qevora AI SaaS Admin & UI Kit",
+      title: "AI Chat | Qevora AI SaaS UI",
       desc: "AI chat interface with conversation sidebar, prompt composer, regenerate and copy actions."
     }
   },
@@ -252,7 +252,7 @@ export const pages = [
     scripts: CHART_SCRIPTS,
     breadcrumb: ["AI Workspace", "Content Generator"],
     meta: {
-      title: "AI Content Generator | Qevora AI SaaS Admin & UI Kit",
+      title: "AI Content Generator | Qevora AI SaaS UI",
       desc: "AI writing workspace with templates, tone controls, prompt settings and generated output."
     }
   },
@@ -261,7 +261,7 @@ export const pages = [
     scripts: CHART_SCRIPTS,
     breadcrumb: ["AI Workspace", "Image Generator"],
     meta: {
-      title: "AI Image Generator | Qevora AI SaaS Admin & UI Kit",
+      title: "AI Image Generator | Qevora AI SaaS UI",
       desc: "AI image generation UI with prompt, style presets, aspect ratio and generated gallery."
     }
   },
@@ -270,7 +270,7 @@ export const pages = [
     scripts: CHART_SCRIPTS,
     breadcrumb: ["AI Workspace", "AI Usage"],
     meta: {
-      title: "AI Usage | Qevora AI SaaS Admin & UI Kit",
+      title: "AI Usage | Qevora AI SaaS UI",
       desc: "AI usage and quota reporting with token consumption, cost breakdown and per-model usage."
     }
   },
@@ -279,7 +279,7 @@ export const pages = [
     scripts: CHART_SCRIPTS,
     breadcrumb: ["AI Workspace", "AI History"],
     meta: {
-      title: "AI History | Qevora AI SaaS Admin & UI Kit",
+      title: "AI History | Qevora AI SaaS UI",
       desc: "Prompt history with model, tokens, latency, cost and reuse actions."
     }
   },
@@ -289,7 +289,7 @@ export const pages = [
     out: "pages/team.html",
     breadcrumb: ["Management", "Team"],
     meta: {
-      title: "Team | Qevora AI SaaS Admin & UI Kit",
+      title: "Team | Qevora AI SaaS UI",
       desc: "Team directory with roles, departments, workload and member detail cards."
     }
   },
@@ -297,7 +297,7 @@ export const pages = [
     out: "pages/roles.html",
     breadcrumb: ["Management", "Roles & Permissions"],
     meta: {
-      title: "Roles & Permissions | Qevora AI SaaS Admin & UI Kit",
+      title: "Roles & Permissions | Qevora AI SaaS UI",
       desc: "Role management with a permission matrix for admin, manager, analyst and support roles."
     }
   },
@@ -305,7 +305,7 @@ export const pages = [
     out: "pages/activity.html",
     breadcrumb: ["Management", "Activity Logs"],
     meta: {
-      title: "Activity Logs | Qevora AI SaaS Admin & UI Kit",
+      title: "Activity Logs | Qevora AI SaaS UI",
       desc: "Audit log with actor, action, target, IP and timestamp filters."
     }
   },
@@ -314,7 +314,7 @@ export const pages = [
     scripts: CHART_SCRIPTS,
     breadcrumb: ["Management", "Reports"],
     meta: {
-      title: "Reports | Qevora AI SaaS Admin & UI Kit",
+      title: "Reports | Qevora AI SaaS UI",
       desc: "Report library with saved reports, scheduled exports and download history."
     }
   },
@@ -325,7 +325,7 @@ export const pages = [
     scripts: CHART_SCRIPTS,
     breadcrumb: ["Workspace", "Profile"],
     meta: {
-      title: "Profile | Qevora AI SaaS Admin & UI Kit",
+      title: "Profile | Qevora AI SaaS UI",
       desc: "User profile with header card, activity, projects and contact information."
     }
   },
@@ -334,7 +334,7 @@ export const pages = [
     scripts: CHART_SCRIPTS,
     breadcrumb: ["Workspace", "Settings"],
     meta: {
-      title: "Settings | Qevora AI SaaS Admin & UI Kit",
+      title: "Settings | Qevora AI SaaS UI",
       desc: "Account settings with profile, workspace, notifications, security and appearance sections."
     }
   },
@@ -342,7 +342,7 @@ export const pages = [
     out: "pages/pricing.html",
     breadcrumb: ["Workspace", "Pricing"],
     meta: {
-      title: "Pricing | Qevora AI SaaS Admin & UI Kit",
+      title: "Pricing | Qevora AI SaaS UI",
       desc: "Pricing plans with monthly and annual toggle, feature comparison and FAQ."
     }
   },
@@ -350,7 +350,7 @@ export const pages = [
     out: "pages/faq.html",
     breadcrumb: ["Workspace", "FAQ"],
     meta: {
-      title: "FAQ | Qevora AI SaaS Admin & UI Kit",
+      title: "FAQ | Qevora AI SaaS UI",
       desc: "Frequently asked questions grouped by billing, workspace, AI usage and security."
     }
   },
@@ -358,7 +358,7 @@ export const pages = [
     out: "pages/help.html",
     breadcrumb: ["Workspace", "Help Center"],
     meta: {
-      title: "Help Center | Qevora AI SaaS Admin & UI Kit",
+      title: "Help Center | Qevora AI SaaS UI",
       desc: "Help center with search, topic categories, popular articles and support contact options."
     }
   },
@@ -368,7 +368,7 @@ export const pages = [
     out: "components/index.html",
     breadcrumb: ["UI Kit", "Components"],
     meta: {
-      title: "Component Library | Qevora AI SaaS Admin & UI Kit",
+      title: "Component Library | Qevora AI SaaS UI",
       desc: "Browse every Qevora Bootstrap 5 component with live previews, copy-ready HTML and usage notes."
     }
   },
@@ -622,7 +622,7 @@ export const pages = [
     layout: "blank",
     breadcrumb: ["Authentication", "Login"],
     meta: {
-      title: "Login | Qevora AI SaaS",
+      title: "Login | Qevora AI SaaS UI",
       desc: "Sign-in page with email and password fields, remember me, social sign-in and demo validation."
     }
   },
@@ -631,7 +631,7 @@ export const pages = [
     layout: "blank",
     breadcrumb: ["Authentication", "Register"],
     meta: {
-      title: "Create Account | Qevora AI SaaS",
+      title: "Create Account | Qevora AI SaaS UI",
       desc: "Registration page with name, work email, password strength meter and terms checkbox."
     }
   },
@@ -640,7 +640,7 @@ export const pages = [
     layout: "blank",
     breadcrumb: ["Authentication", "Forgot Password"],
     meta: {
-      title: "Forgot Password | Qevora AI SaaS",
+      title: "Forgot Password | Qevora AI SaaS UI",
       desc: "Password recovery page that requests a reset link by email."
     }
   },
@@ -649,7 +649,7 @@ export const pages = [
     layout: "blank",
     breadcrumb: ["Authentication", "Reset Password"],
     meta: {
-      title: "Reset Password | Qevora AI SaaS",
+      title: "Reset Password | Qevora AI SaaS UI",
       desc: "Set a new password with strength meter and confirmation field."
     }
   },
@@ -659,7 +659,7 @@ export const pages = [
     scripts: AUTH_SCRIPTS,
     breadcrumb: ["Authentication", "Verify Email"],
     meta: {
-      title: "Verify Email | Qevora AI SaaS",
+      title: "Verify Email | Qevora AI SaaS UI",
       desc: "Email verification page with six-digit code input and resend action."
     }
   },
@@ -669,7 +669,7 @@ export const pages = [
     scripts: AUTH_SCRIPTS,
     breadcrumb: ["Authentication", "Two Factor"],
     meta: {
-      title: "Two Factor Authentication | Qevora AI SaaS",
+      title: "Two Factor Authentication | Qevora AI SaaS UI",
       desc: "Two-factor authentication page with authenticator code input and recovery option."
     }
   },
@@ -680,7 +680,7 @@ export const pages = [
     layout: "blank",
     breadcrumb: ["Utility", "404"],
     meta: {
-      title: "404 Not Found | Qevora AI SaaS",
+      title: "404 Not Found | Qevora AI SaaS UI",
       desc: "Not found page with search suggestion and navigation back to the dashboard."
     }
   },
@@ -689,7 +689,7 @@ export const pages = [
     layout: "blank",
     breadcrumb: ["Utility", "500"],
     meta: {
-      title: "500 Server Error | Qevora AI SaaS",
+      title: "500 Server Error | Qevora AI SaaS UI",
       desc: "Server error page with status line, retry action and support link."
     }
   },
@@ -698,7 +698,7 @@ export const pages = [
     layout: "blank",
     breadcrumb: ["Utility", "Maintenance"],
     meta: {
-      title: "Maintenance | Qevora AI SaaS",
+      title: "Maintenance | Qevora AI SaaS UI",
       desc: "Scheduled maintenance page with status details and notification signup."
     }
   },
@@ -708,7 +708,7 @@ export const pages = [
     scripts: AUTH_SCRIPTS,
     breadcrumb: ["Utility", "Coming Soon"],
     meta: {
-      title: "Coming Soon | Qevora AI SaaS",
+      title: "Coming Soon | Qevora AI SaaS UI",
       desc: "Coming soon page with launch countdown and email capture."
     }
   },
@@ -718,15 +718,15 @@ export const pages = [
     out: "documentation/index.html",
     breadcrumb: ["Documentation", "Getting Started"],
     meta: {
-      title: "Documentation | Qevora AI SaaS",
-      desc: "Installation, folder structure, customisation and component usage guide for the Qevora AI SaaS template."
+      title: "Documentation | Qevora AI SaaS UI",
+      desc: "Installation, folder structure, customisation and component usage guide for the Qevora AI SaaS UI template."
     }
   },
   {
     out: "documentation/design-system.html",
     breadcrumb: ["Documentation", "Design System"],
     meta: {
-      title: "Design System | Qevora AI SaaS",
+      title: "Design System | Qevora AI SaaS UI",
       desc: "Colour, typography, spacing, radius, shadow and breakpoint specification for the Qevora design system."
     }
   }

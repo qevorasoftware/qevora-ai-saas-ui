@@ -1,5 +1,5 @@
 /* ==========================================================================
-   Qevora AI SaaS — static site builder
+   Qevora AI SaaS UI — static site builder
    tools/build.mjs
    --------------------------------------------------------------------------
    The buyer-facing product is plain static HTML — there is no build step
@@ -147,7 +147,11 @@ ${items}
 /* Cache busting: every page links the CSS and JS with ?v=<ASSET_VERSION>, so a
    browser can never apply an old stylesheet to new markup. Bump it whenever you
    change anything in assets/css or assets/js. */
-const ASSET_VERSION = "1.3.0";
+/* One release version for the whole project: the cache-busting ?v= query,
+   the ZIP names and the README/CHANGELOG all read it from this line
+   (tools/package.sh parses it too). */
+const VERSION = "1.0.0";
+const ASSET_VERSION = VERSION;
 
 async function build() {
   const head = await readMaybe(join(ROOT, "src/partials/head.html"));
@@ -328,7 +332,7 @@ ${fill(scripts)}</body>
   /* ---------------------------------------------------------------- report */
 
   console.log("");
-  console.log("Qevora AI SaaS — build report");
+  console.log("Qevora AI SaaS UI — build report");
   console.log("──────────────────────────────────────────────");
   console.log(`Pages in inventory : ${pages.length}`);
   console.log(`Navigation links   : ${navTargets.length}`);

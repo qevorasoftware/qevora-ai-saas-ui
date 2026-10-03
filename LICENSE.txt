@@ -1,44 +1,48 @@
 ================================================================================
-  QEVORA AI SAAS — LICENCE INFORMATION
-  Bootstrap 5 Admin Dashboard & UI Kit  ·  Version 1.0.0
+  QEVORA AI SAAS UI
+  Bootstrap 5 Admin Dashboard & HTML Template  ·  Version 1.0.0
 ================================================================================
 
-NOTE FOR THE SELLER
-  Replace the "Template licence" section below with the exact terms of the
-  marketplace you sell on (for example the Standard / Extended licence text
-  used by ThemeForest, or your own end-user licence agreement). The bundled
-  third-party attributions in section 2 must stay in the package.
-
 --------------------------------------------------------------------------------
-1. TEMPLATE LICENCE
+1. LICENCE
 --------------------------------------------------------------------------------
 
   Copyright (c) 2026 Qevora Software. All rights reserved.
 
-  This package is a commercial template. The licence you purchased governs how
-  you may use it:
+  Qevora AI SaaS UI is distributed through Envato Market (ThemeForest). Your
+  purchase is governed by the Envato licence you selected at checkout:
 
-    Single application licence
-      Use the template in one end product for yourself or for one client.
-      Modify the code and the design as much as you like.
+    Regular Licence
+      Use the template in a single end product, free or commercial, for
+      yourself or for one client. The source files are yours to modify.
 
-    Multiple application licence
-      Use the template in an unlimited number of end products, each for a
-      different client.
+    Extended Licence
+      Use the template in an end product that is sold to more than one client
+      (for example a hosted SaaS product or a client-facing builder service).
+      The source files are yours to modify.
+
+  The complete licence terms are published by Envato:
+
+    https://themeforest.net/licenses/terms/regular
+    https://themeforest.net/licenses/terms/extended
+    https://themeforest.net/licenses            (licence comparison page)
+
+  In short, under both licences you MAY:
+
+    · use the template in one end product (Regular) or in an end product made
+      for multiple clients (Extended);
+    · modify the HTML, CSS, JavaScript and the design as much as you like;
+    · use the template in commercial and non-commercial end products;
+    · keep the copyright notice in the source files, or remove it from your
+      finished product.
 
   You may NOT:
+
     · resell, redistribute, sublicense or share the template files as-is or
       with minor changes;
     · include the template in a product whose main value is the template
       itself (a template marketplace, UI kit or theme collection);
     · claim authorship of the original template.
-
-  You MAY:
-    · modify every file to build client projects, SaaS products, dashboards
-      and internal tools;
-    · use the template in commercial and non-commercial end products;
-    · keep the copyright notice in the source files, or remove it from the
-      built product if your licence permits it.
 
   THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
   IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
@@ -88,18 +92,31 @@ NOTE FOR THE SELLER
 3. ASSETS CREATED FOR THIS TEMPLATE
 --------------------------------------------------------------------------------
 
-  All logos, illustrations, placeholder graphics and icon compositions in
-  assets/images/ were created for Qevora AI SaaS and are covered by the
-  template licence above. No third-party photography, icon sets or fonts other
-  than those listed in section 2 are included, so the package can be used
-  commercially without additional attribution.
+  Every logo, illustration, icon composition, placeholder graphic and
+  stylesheet in assets/images/ and assets/css/ was created for Qevora AI SaaS
+  UI and is covered by the template licence in section 1. No third-party
+  photography, icon sets or fonts other than those listed in section 2 are
+  included, so the package can be used commercially without extra attribution.
 
 --------------------------------------------------------------------------------
 4. DEMO CONTENT
 --------------------------------------------------------------------------------
 
-  Company names, people, invoices, amounts and metrics used in the demo pages
-  (Nova AI, Vertex Labs, Acme Inc., Orbit Systems, Northstar Labs, Horizon
-  Labs, and all related data) are fictional and exist only to demonstrate the
-  layouts. Replace them with your own content before publishing.
+  Company names, people, e-mail addresses, invoices, amounts and metrics used
+  in the demo pages (Nova AI, Vertex Labs, Acme Inc., Orbit Systems, Northstar
+  Labs, Horizon Labs and all related data) are fictional and exist only to
+  demonstrate the layouts. Contact details use the reserved example.com domain.
+  Replace them with your own content before publishing.
+
+--------------------------------------------------------------------------------
+5. DOCUMENTATION & SUPPORT
+--------------------------------------------------------------------------------
+
+  Documentation   documentation/index.html          getting started
+                  documentation/design-system.html  design tokens and rules
+
+  Support for this item is provided through the ThemeForest item page (the
+  "Support" tab of the item you purchased). Please read README.txt and the
+  documentation pages first — they answer the common setup and customisation
+  questions.
 ================================================================================

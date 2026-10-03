@@ -1,5 +1,5 @@
 /* ==========================================================================
-   Qevora AI SaaS — tools/audit.mjs
+   Qevora AI SaaS UI — tools/audit.mjs
    --------------------------------------------------------------------------
    Static quality gate for the generated HTML. Run it before every release:
 
@@ -675,7 +675,7 @@ for (const f of findings) {
 
 const partLabel = PART ? `part "${PART}"` : "all parts";
 console.log("");
-console.log("Qevora AI SaaS — audit report");
+console.log("Qevora AI SaaS UI — audit report");
 console.log("──────────────────────────────────────────────");
 console.log(`Scope              : ${partLabel}`);
 console.log(`Pages audited      : ${files.length}`);

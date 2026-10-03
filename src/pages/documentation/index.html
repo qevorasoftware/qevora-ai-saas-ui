@@ -3,7 +3,7 @@
           {{BREADCRUMB}}
           <h1 class="q-page-head__title mt-2">Documentation</h1>
           <p class="q-page-head__subtitle">
-            Everything you need to open, edit and ship Qevora AI SaaS. No prior build-tool knowledge is required — the
+            Everything you need to open, edit and ship Qevora AI SaaS UI. No prior build-tool knowledge is required — the
             template works as plain HTML, and the optional build script simply saves you copy-paste work.
           </p>
         </div>
@@ -68,6 +68,17 @@
                 </div>
               </div>
 
+              <div class="alert alert-secondary d-flex align-items-start gap-2 mb-4" role="note">
+                <i class="bi bi-box-seam alert-icon"></i>
+                <div class="fs-8">
+                  <strong class="d-block fs-7">This download needs no build step</strong>
+                  Everything you were given is finished HTML: open it, edit it, upload it. The
+                  <code>src/</code> fragments and the <code>tools/</code> scripts belong to the separate
+                  <em>developer source package</em>; section 5 is the only part of this guide that uses them, and
+                  it says so at the top.
+                </div>
+              </div>
+
               <p class="fw-600 text-heading fs-7 mb-2">Folder structure</p>
               <div class="demo-code-wrap">
                 <button class="copy-btn" data-copy-target="#docTree" type="button"><i class="bi bi-clipboard"></i> Copy</button>
@@ -95,17 +106,15 @@
 │   ├── fonts/  inter/files/*.woff2
 │   ├── icons/  bootstrap-icons/
 │   └── images/ logo/  placeholder/  favicon.svg  og-cover.svg
-├── src/                       Source fragments used by the optional builder
+└── README.txt  CHANGELOG.txt  LICENSE.txt
+
+Optional developer source package (shipped separately from the item page)
+├── src/                       Source fragments the builder assembles
 │   ├── pages/    one body file per page (same paths as the output)
 │   ├── partials/ head.html  sidebar.html  header.html  footer.html  scripts.html
 │   ├── nav.mjs   sidebar navigation
 │   └── pages.mjs page inventory, titles, breadcrumbs and scripts
-└── tools/
-    ├── build.mjs              Optional build script (Node 18+, no dependencies)
-    ├── demo-samples.mjs       Generates the CSS and JS panes of every component demo
-    ├── audit.mjs              Static QA: 19 checks on every generated page
-    ├── smoke.mjs              Optional: runs every page + clicks key controls (jsdom)
-    └── package.sh             Builds the release ZIPs into release/</code></pre>
+└── tools/                     build.mjs  demo-samples.mjs  audit.mjs  smoke.mjs  package.sh</code></pre>
               </div>
             </div>
           </div>
@@ -218,7 +227,7 @@
                 <li><strong class="text-heading">Radius:</strong> <code>--q-radius-xs</code> to <code>--q-radius-xl</code> drive every rounded corner, including cards and inputs.</li>
                 <li><strong class="text-heading">Fonts:</strong> Inter is self-hosted in <code>assets/fonts/inter/</code>. Swap the <code>@font-face</code> block in <code>assets/css/fonts.css</code> and the <code>--q-font-sans</code> token to change it.</li>
                 <li><strong class="text-heading">Logo:</strong> replace <code>assets/images/logo/logo.svg</code> and <code>logo-white.svg</code> (used on the auth pages), and <code>favicon.svg</code> for the browser tab.</li>
-                <li><strong class="text-heading">Sidebar menu:</strong> with the builder, edit <code>src/nav.mjs</code> and rebuild. Without it, edit the <code>&lt;aside class="q-sidebar"&gt;</code> block in each page.</li>
+                <li><strong class="text-heading">Sidebar menu:</strong> edit the <code>&lt;aside class="q-sidebar"&gt;</code> block at the top of each page — the markup is identical in every file, so one find-and-replace updates all of them. If you also have the developer source package, edit <code>src/nav.mjs</code> once and run the builder instead (section 5).</li>
                 <li><strong class="text-heading">Dark mode:</strong> toggle with any <code>[data-theme-toggle]</code> button — the choice is stored under the <code>qevora-theme</code> key in localStorage.</li>
                 <li><strong class="text-heading">RTL:</strong> click the translate icon in the header (or add <code>dir="rtl"</code> to the <code>&lt;html&gt;</code> tag) — the sidebar script swaps in <code>bootstrap.rtl.min.css</code> automatically.</li>
               </ul>
@@ -309,12 +318,22 @@
           </div>
 
           <div class="card mb-4" id="builder">
-            <div class="card-header"><h2 class="card-title mb-0">5. The optional build script</h2></div>
+            <div class="card-header"><h2 class="card-title mb-0">5. Optional developer source package</h2></div>
             <div class="card-body">
+              <div class="alert alert-warning d-flex align-items-start gap-2 mb-4" role="alert">
+                <i class="bi bi-cone-striped alert-icon"></i>
+                <div class="fs-8">
+                  <strong class="d-block fs-7">Developer package only</strong>
+                  The commands on this page read <code>src/</code> and <code>tools/</code>, which are not part of the
+                  standard buyer download. If your package has no <code>src/</code> folder, skip this section — every
+                  other section works on the finished HTML files alone.
+                </div>
+              </div>
+
               <p class="fs-7 text-muted-2">
-                Editing 81 files every time the header changes is tedious, so the template ships a tiny builder. It
-                stitches the shell partials and each page body into the final HTML files. It has no dependencies and
-                needs Node 18 or newer.
+                Editing 81 files every time the header changes is tedious, so the developer package adds a tiny
+                builder. It stitches the shell partials and each page body into the final HTML files. It has no
+                dependencies and needs Node 18 or newer.
               </p>
 
               <div class="demo-code-wrap mb-4">
@@ -406,17 +425,39 @@ node tools/smoke.mjs             # run every page and click key controls: consol
                   <tr><th scope="col">Resource</th><th scope="col">Version</th><th scope="col">Licence</th></tr>
                 </thead>
                 <tbody class="fs-7">
-                  <tr><td>Bootstrap</td><td>5.3.3</td><td class="text-muted-2">MIT</td></tr>
-                  <tr><td>Bootstrap Icons</td><td>1.11.3</td><td class="text-muted-2">MIT</td></tr>
-                  <tr><td>Chart.js</td><td>4.4.3</td><td class="text-muted-2">MIT</td></tr>
-                  <tr><td>Inter (font)</td><td>5.0.18</td><td class="text-muted-2">SIL Open Font License 1.1 — see <code>assets/fonts/inter/LICENSE.txt</code></td></tr>
+                  <tr>
+                    <td><a href="https://getbootstrap.com" target="_blank" rel="noopener">Bootstrap</a></td>
+                    <td>5.3.3</td>
+                    <td class="text-muted-2">MIT — <a href="https://github.com/twbs/bootstrap/blob/main/LICENSE" target="_blank" rel="noopener">licence text</a></td>
+                  </tr>
+                  <tr>
+                    <td><a href="https://icons.getbootstrap.com" target="_blank" rel="noopener">Bootstrap Icons</a></td>
+                    <td>1.11.3</td>
+                    <td class="text-muted-2">MIT — <a href="https://github.com/twbs/icons/blob/main/LICENSE.md" target="_blank" rel="noopener">licence text</a></td>
+                  </tr>
+                  <tr>
+                    <td><a href="https://www.chartjs.org" target="_blank" rel="noopener">Chart.js</a></td>
+                    <td>4.4.3</td>
+                    <td class="text-muted-2">MIT — <a href="https://github.com/chartjs/Chart.js/blob/master/LICENSE.md" target="_blank" rel="noopener">licence text</a></td>
+                  </tr>
+                  <tr>
+                    <td><a href="https://fonts.google.com/specimen/Inter" target="_blank" rel="noopener">Inter</a> (font)</td>
+                    <td>5.0.18</td>
+                    <td class="text-muted-2">SIL Open Font License 1.1 — shipped with the font as <code>assets/fonts/inter/LICENSE.txt</code></td>
+                  </tr>
                 </tbody>
               </table>
             </div>
             <div class="card-body">
-              <p class="fs-8 text-muted-2 mb-0">
+              <p class="fs-8 text-muted-2 mb-2">
                 All images in this template are CSS or SVG placeholders created for the kit — no third-party photography
-                is bundled, so you can ship the template commercially without extra attribution.
+                is bundled, so you can ship the template commercially without extra attribution. Every library is
+                vendored inside <code>assets/</code> at the pinned version above; the package never calls a CDN.
+              </p>
+              <p class="fs-8 text-muted-2 mb-0">
+                The full licence of this template, including these third-party attributions, is in
+                <code>LICENSE.txt</code> next to <code>README.txt</code>. Support is handled through the item page on
+                the marketplace where you purchased the template.
               </p>
             </div>
           </div>

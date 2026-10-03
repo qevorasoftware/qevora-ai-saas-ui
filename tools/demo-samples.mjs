@@ -1,5 +1,5 @@
 /* ==========================================================================
-   Qevora AI SaaS — tools/demo-samples.mjs
+   Qevora AI SaaS UI — tools/demo-samples.mjs
    --------------------------------------------------------------------------
    Component pages show four panes per demo block: Preview, HTML, CSS and JS.
 

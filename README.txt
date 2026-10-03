@@ -1,59 +1,72 @@
 ================================================================================
-  QEVORA AI SAAS
-  Bootstrap 5 Admin Dashboard & UI Kit
+  QEVORA AI SAAS UI
+  Bootstrap 5 Admin Dashboard & HTML Template
   Version 1.0.0  ·  Released October 2026
 ================================================================================
 
-Thank you for purchasing Qevora AI SaaS. This file explains what is inside the
-package, how to open it, and how to make it yours. No build tooling, framework
-or internet connection is required to use the template.
+Thank you for purchasing Qevora AI SaaS UI. This file explains what is inside
+the package, how to open it, and how to make it yours.
+
+The template is plain HTML, CSS and JavaScript built on Bootstrap 5.3. It needs
+no framework, no compiler, no npm install and no internet connection: unzip the
+folder, double-click index.html and the dashboard runs.
 
 --------------------------------------------------------------------------------
 1. WHAT YOU RECEIVED
 --------------------------------------------------------------------------------
 
   · 81 ready HTML pages
-      Dashboard              1 page
-      AI workspace           6 pages  (overview, chat, content generator,
-                                       image generator, usage, history)
-      Applications          31 pages  (CRM, leads, customers, projects,
-                                       tasks, kanban, calendar, chat, products,
-                                       orders, invoices, payments,
-                                       subscriptions, transactions, team,
-                                       roles, reports, profile, settings,
-                                       pricing, FAQ, help and detail views)
-      UI kit                31 pages  (colours, typography, spacing, grid,
-                                       icons, buttons, badges, avatars, alerts,
-                                       breadcrumbs, cards, pricing, timeline,
-                                       empty states, dropdowns, modals, tabs,
-                                       accordions, tooltips, toasts, forms,
-                                       input groups, select, file upload,
-                                       date & time, tables, pagination, charts,
-                                       progress, spinners, documentation)
-      Authentication         6 pages  (login, register, forgot password,
-                                       reset password, verify email, 2FA)
-      Utility                4 pages  (404, 500, maintenance, coming soon)
-      Documentation          2 pages  (this guide, design system reference)
 
-  · Light and dark themes with a saved preference
-  · Full RTL support (sidebar script swaps in Bootstrap's RTL build)
+      Dashboard               1 page   (overview: KPIs, revenue chart, AI usage,
+                                        projects, invoices, activity)
+      AI workspace            6 pages  (AI overview, chat, content generator,
+                                        image generator, usage, history)
+      Applications           31 pages  (CRM dashboard, leads, customers,
+                                        customer details, pipeline, projects,
+                                        project details, kanban, tasks,
+                                        calendar, team chat, notifications,
+                                        products, product details, orders,
+                                        order details, invoices, invoice
+                                        details, payments, transactions,
+                                        subscriptions, team, roles, activity,
+                                        reports, profile, settings, pricing,
+                                        FAQ, help)
+      UI kit                 31 pages  (overview, colours, typography, spacing,
+                                        grid, icons, buttons, badges, avatars,
+                                        alerts, breadcrumbs, cards, pricing
+                                        blocks, timeline, empty states,
+                                        dropdowns, modals, tabs, accordions,
+                                        tooltips & popovers, toasts, forms,
+                                        input groups, select & search, file
+                                        upload, date & time, tables,
+                                        pagination, charts, progress,
+                                        spinners, documentation)
+      Authentication          6 pages  (login, register, forgot password,
+                                        reset password, verify e-mail, 2FA)
+      Utility                 4 pages  (404, 500, maintenance, coming soon)
+      Documentation           2 pages  (getting started, design system)
+
+  · Light and dark themes with a saved preference (follows the OS by default)
+  · Full RTL support: one switch flips the layout and loads Bootstrap's RTL build
   · Responsive layout: desktop, tablet and mobile off-canvas navigation
-  · 15+ Chart.js charts, all theme-aware
-  · Component pages with Preview / HTML / CSS / JS tabs and copy buttons
-  · Every library vendored locally - the template never calls a CDN
+  · 15+ Chart.js charts, all theme-aware and rebuilt on theme change
+  · Component pages with Preview / HTML / CSS / JS panes and copy buttons
+  · Working demo interactions: dialogs that add and edit records, filters,
+    search, pagination, exports, file pickers, toasts and confirmations
+  · Every library vendored locally — the template never calls a CDN
 
 --------------------------------------------------------------------------------
 2. QUICK START
 --------------------------------------------------------------------------------
 
   1. Unzip the package anywhere on your computer.
-  2. Double-click "index.html". The dashboard opens in your browser.
-  3. Open any other page from the sidebar.
+  2. Double-click "index.html" — the dashboard opens in your browser.
+  3. Use the sidebar to open any other page.
 
   You do NOT need a server, a compiler or an internet connection.
 
-  Optional: to test the template on a phone, run a tiny local server inside
-  the folder and open the printed address:
+  Optional: to test the template on a phone or tablet, run a tiny local server
+  inside the folder and open the printed address:
 
       python3 -m http.server 5500        (macOS / Linux)
       python  -m http.server 5500        (Windows)
@@ -65,13 +78,13 @@ or internet connection is required to use the template.
 --------------------------------------------------------------------------------
 
   index.html                  Dashboard overview
-  404.html                    Hosting fallback (mirrors utility/404.html)
+  404.html                    Host fallback (mirrors utility/404.html)
   pages/                      Application pages (31)
   ai/                         AI workspace pages (6)
   components/                 UI kit pages (31)
   auth/                       Authentication pages (6)
   utility/                    Utility pages (4)
-  documentation/              This guide and the design system reference
+  documentation/              Getting started guide and design system reference
 
   assets/css/     style.css        design tokens, base, layout shell
                   components.css   every component layer
@@ -84,7 +97,8 @@ or internet connection is required to use the template.
                   sidebar.js       drawer, compact rail, RTL
                   app.js           toasts, counters, tooltips, demo actions
                   components.js    demos, copy buttons, sort, pagination
-                  demo-ui.js       dialogs, add/edit/delete rows, filters, counters
+                  demo-ui.js       dialogs, add/edit/delete rows, filters,
+                                   exports, imports and the counters
                   pages/charts.js  Chart.js registry and progress rings
                   pages/chat.js    chat composer and canned replies
                   pages/auth.js    one-time-code inputs, countdown
@@ -92,16 +106,9 @@ or internet connection is required to use the template.
 
   assets/fonts/   Inter woff2 files (400 / 500 / 600 / 700) + licence
   assets/icons/   Bootstrap Icons CSS and font files
-  assets/images/  logos, favicon, social cover, placeholder graphics
+  assets/images/  logo, favicon, social cover, placeholder graphics
 
-  src/            Body fragments, partials and the page inventory that the
-                  optional build script assembles (see section 6)
-  tools/          build.mjs         optional build script (Node 18+, no dependencies)
-                  demo-samples.mjs  generates the CSS/JS panes of every demo
-                  audit.mjs         QA: 19 static checks per page + light/dark theme contrast
-                  smoke.mjs         optional: runs every page, clicks the key controls and
-                                    reports console errors (needs jsdom: npm install --no-save jsdom)
-                  package.sh        builds the release ZIPs
+  README.txt, CHANGELOG.txt, LICENSE.txt
 
 --------------------------------------------------------------------------------
 4. CHANGING THE LOOK
@@ -111,84 +118,61 @@ or internet connection is required to use the template.
   assets/css/style.css. Change it once and the whole template follows.
 
       :root {
-        --q-primary: #4f46e5;        brand colour
+        --q-primary: #4f46e5;          brand colour
         --q-primary-rgb: 79, 70, 229;  same colour as rgb(), keep in sync
         --q-accent: #06b6d4;
-        --q-radius: 12px;            card and input corners
+        --q-radius: 12px;              card and input corners
         --q-sidebar-width: 268px;
         --q-header-height: 66px;
         --q-content-max: 1560px;
       }
 
-  Dark mode overrides live in the same file under [data-bs-theme="dark"].
-  Component-specific dark polish lives in assets/css/dark.css.
+  Dark mode overrides live in the same file under [data-bs-theme="dark"];
+  component-specific dark polish lives in assets/css/dark.css.
 
-  Logo:        replace assets/images/logo/logo.svg, logo-white.svg (used on
-               the authentication pages) and assets/images/favicon.svg.
-  Fonts:       replace the woff2 files in assets/fonts/inter/files/ and update
-               assets/css/fonts.css plus the --q-font-sans token.
-  Menu:        edit the <aside class="q-sidebar"> markup in each page, or use
-               src/nav.mjs and rebuild (section 6).
-
---------------------------------------------------------------------------------
-5. JAVASCRIPT API
---------------------------------------------------------------------------------
-
-  All scripts attach themselves to the window object, so you can call them
-  from your own code:
-
-      Qevora.toast("Invoice saved", "success", "INV-2026-0186");
-      Qevora.copyText("copied text");
-      QevoraTheme.set("dark");       QevoraTheme.toggle();
-      QevoraSidebar.toggle();        QevoraSidebar.toggleDirection();
-      QevoraComponents.init();       QevoraCharts.rebuild();
-
-  Data attributes used by the template:
-
-      [data-theme-toggle]     light/dark switch button
-      [data-dir-toggle]       RTL/LTR switch button
-      [data-sidebar-toggle]   mobile drawer
-      [data-sidebar-compact]  desktop compact rail
-      [data-counter]          animated number (data-prefix, data-suffix,
-                              data-decimals)
-      [data-table-filter]     client-side table search
-      [data-select-all]       master checkbox for row selection
-      [data-paginate]         table pagination footer
-      th[data-sort]           click-to-sort column
-      [data-upload-zone]      drag & drop file list
-      [data-demo-tab]         Preview / HTML / CSS / JS tabs on component pages
-      [data-copy-target]      copy button
-      [data-demo-action]      demo-only button, shows a toast
-      canvas[data-chart]      Chart.js chart (see components/charts.html)
-      [data-ring]             SVG progress ring
-      [data-countdown]        live countdown (utility/coming-soon.html)
-      [data-otp]              one-time-code input group
+  Logo:   replace assets/images/logo/logo.svg (light background),
+          assets/images/logo/logo-white.svg (authentication pages) and
+          assets/images/favicon.svg.
+  Fonts:  replace the woff2 files in assets/fonts/inter/files/ and update
+          assets/css/fonts.css plus the --q-font-sans token.
+  Menu:   edit the <aside class="q-sidebar"> block at the top of each page.
+          Every page keeps the same menu markup, so a careful find-and-replace
+          across the HTML files updates the navigation everywhere.
+  Colours: the shipped palette (indigo primary, cyan accent, slate neutrals) is
+          used for the chart series as well; the chart colours are read from the
+          CSS tokens at run time, so recolouring the tokens recolours the
+          charts too.
 
 --------------------------------------------------------------------------------
-6. THE OPTIONAL BUILD SCRIPT
+5. DEMO INTERACTIONS (JAVASCRIPT API)
 --------------------------------------------------------------------------------
 
-  The 81 HTML pages share a sidebar, header and footer. If you want to change
-  those once instead of 81 times, the package includes a small builder that
-  stitches the fragments together. It needs Node 18 or newer.
+  The template is static, so the demo interactions run on data attributes and
+  keep the numbers on screen consistent with the rows in the table:
 
-      node tools/build.mjs            rebuild every page
-      node tools/build.mjs --check    validate only, report problems
-      node tools/audit.mjs            run the 19-point quality audit
-      node tools/smoke.mjs            run every page and report runtime errors (needs jsdom)
+    <button data-demo-new="#q-demo-record" data-demo-table="#leads-table"
+            data-demo-label="Lead">          open the create/edit dialog
+    <button data-demo-import="#leads-table"> import pasted CSV or a .csv file
+    <button data-demo-export="#leads-table"> export the visible rows as CSV
+    <button data-demo-delete>                ask first, then remove + undo
+    <select data-demo-filter="status" data-demo-filter-table="#leads-table">
+    <input data-table-filter="#leads-table"> live search
+    <span data-demo-count="#leads-table" data-demo-count-noun="leads">
+    <button data-demo-upload="#avatar">      photo from the file picker
+    <button data-demo-load="1400" data-demo-load-done="Report refreshed">
 
-  Source fragments live in src/pages/ (one file per page, same paths as the
-  output), the shell lives in src/partials/, the page inventory in
-  src/pages.mjs and the sidebar menu in src/nav.mjs.
+  documentation/index.html → section 4 documents every attribute, and the
+  scripts attach themselves to the window object so you can call them from your
+  own code:
 
-  IMPORTANT: the builder overwrites the generated HTML files. Either work in
-  src/ and rebuild, or edit the generated HTML and ignore src/ entirely.
-  Mixing both will lose work.
+    QevoraTheme, QevoraSidebar, QevoraComponents, QevoraCharts, QevoraDemo
 
-  If you never touch src/ or tools/, you can safely delete both folders.
+  Connecting a real backend means keeping the markup and replacing the demo
+  handlers with your own fetch calls; the row values already live on the rows
+  themselves (data-lead-name, data-lead-status, …).
 
 --------------------------------------------------------------------------------
-7. DARK MODE & RTL
+6. DARK MODE & RTL
 --------------------------------------------------------------------------------
 
   Dark mode:  click the moon/sun icon in the header. The choice is saved in
@@ -197,8 +181,26 @@ or internet connection is required to use the template.
               To force dark mode, add data-bs-theme="dark" to the <html> tag.
 
   RTL:        click the translate icon in the header, or add dir="rtl" to the
-              <html> tag, and load bootstrap.rtl.min.css instead of
+              <html> tag and load bootstrap.rtl.min.css instead of
               bootstrap.min.css. assets/css/rtl.css handles the corrections.
+
+--------------------------------------------------------------------------------
+7. COMPONENTS OVERVIEW
+--------------------------------------------------------------------------------
+
+  Layout          sidebar (full and compact rail), header, footer, page header,
+                  content max-width, off-canvas mobile navigation
+  Data display    KPI tiles with animated counters, tables (sortable,
+                  filterable, paginated), timeline, kanban board, progress
+                  rings, badges, avatars, empty states
+  Forms           inputs, input groups, selects, search fields, checkboxes,
+                  radios, switches, file upload, date and time pickers, form
+                  validation states
+  Feedback        alerts, toasts, modals, confirmations, tooltips, popovers,
+                  spinners, skeleton loaders
+  Navigation      dropdowns, tabs, accordions, breadcrumbs, pagination, steps
+  Charts          line, area, bar, stacked bar, doughnut, radar, mixed — all
+                  registered in one place and theme-aware
 
 --------------------------------------------------------------------------------
 8. BROWSER SUPPORT & ACCESSIBILITY
@@ -207,8 +209,8 @@ or internet connection is required to use the template.
   Chrome, Edge, Firefox and Safari (last two major versions), plus iOS Safari
   and Chrome on Android.
 
-  The template includes skip links, landmarks, labelled form controls and
-  aria attributes throughout. Icon-only buttons always carry an aria-label.
+  The template includes skip links, landmarks, labelled form controls and aria
+  attributes throughout. Icon-only buttons always carry an aria-label.
   Animated counters respect prefers-reduced-motion. Colour contrast targets
   WCAG AA in both themes.
 
@@ -223,18 +225,45 @@ or internet connection is required to use the template.
                                     Licence text: assets/fonts/inter/LICENSE.txt
 
   All images shipped with the template are SVG or CSS placeholders created for
-  the kit. No third-party photography is bundled, so the package can be used
-  commercially without extra attribution.
+  the kit, and every library is vendored inside assets/ — no CDN, no tracking,
+  nothing to install. The package can therefore be used commercially without
+  extra attribution; LICENSE.txt repeats these credits for your records.
 
 --------------------------------------------------------------------------------
-10. SUPPORT
+10. DOCUMENTATION & SUPPORT
 --------------------------------------------------------------------------------
 
-  Documentation pages:  documentation/index.html      (getting started)
-                        documentation/design-system.html (tokens and rules)
+  Documentation pages:  documentation/index.html          getting started
+                        documentation/design-system.html  tokens and rules
   Component library:    components/index.html
 
-  If something is unclear, please open the documentation pages first - they
-  cover the folder structure, the JavaScript API and every customisation step
-  in more detail than this file.
+  Support for this item is provided through the ThemeForest item page (the
+  "Support" tab of the item you purchased). Please read the documentation pages
+  first — they cover the folder layout, the design tokens, the JavaScript API
+  and the common customisation questions.
+
+  Live preview of the template:
+  https://qevorasoftware.github.io/qevora-ai-saas-ui/
+
+--------------------------------------------------------------------------------
+11. VERSION & CHANGELOG
+--------------------------------------------------------------------------------
+
+  This package is version 1.0.0. Every change is listed in CHANGELOG.txt next to
+  this file, including the pages that ship, the interactions that were made
+  real and the fixes that followed each review pass.
+
+--------------------------------------------------------------------------------
+12. OPTIONAL DEVELOPER SOURCE PACKAGE
+--------------------------------------------------------------------------------
+
+  The download you are reading is the buyer package: the finished HTML pages
+  and the assets they need. Nothing in it requires a build step.
+
+  A separate developer package (available from the item page on request) adds
+  the source fragments, the static site builder and the QA scripts used while
+  the template was made: src/ (page bodies, partials, page inventory),
+  tools/ (build.mjs, audit.mjs, smoke.mjs, package.sh) and internal project
+  notes. Those folders are not needed to use, edit or deploy the template, and
+  the documentation marks every instruction that belongs to them.
 ================================================================================

@@ -1,0 +1,168 @@
+{
+  "product": "Qevora AI SaaS UI",
+  "vendor": "Qevora Software",
+  "version": "1.0.0",
+  "released": "2026-10-03",
+  "title": "Qevora AI SaaS UI — Bootstrap 5 Admin Dashboard & HTML Template",
+  "short_description": "Modern AI & SaaS admin dashboard template — 81 responsive Bootstrap 5 pages, AI workspace, CRM, billing, UI kit, light & dark, RTL, 15+ charts.",
+  "category": {
+    "marketplace": "ThemeForest",
+    "category": "Admin Templates",
+    "subcategory": "Bootstrap"
+  },
+  "attributes": {
+    "layout": [
+      "Responsive",
+      "Fluid",
+      "Fixed"
+    ],
+    "theme": [
+      "Light",
+      "Dark"
+    ],
+    "rtl_support": true,
+    "columns": 12,
+    "documentation": "Well documented",
+    "layout_type": "Static HTML (no build step)",
+    "framework": "Bootstrap 5.3.3",
+    "preprocessor": "None (CSS custom properties)",
+    "compatible_browsers": [
+      "Chrome",
+      "Edge",
+      "Firefox",
+      "Safari",
+      "iOS Safari",
+      "Chrome for Android"
+    ],
+    "compatible_with": [
+      "Bootstrap 5.x"
+    ],
+    "icons": "Bootstrap Icons 1.11.3 (MIT, bundled)",
+    "images": "SVG placeholders created for the template",
+    "fonts": "Inter (SIL OFL 1.1, self-hosted)",
+    "files_included": [
+      "HTML",
+      "CSS",
+      "JS",
+      "SVG",
+      "WOFF2",
+      "TXT"
+    ]
+  },
+  "pages": {
+    "total": 81,
+    "dashboard": 1,
+    "ai_workspace": 6,
+    "applications": 31,
+    "ui_kit": 31,
+    "authentication": 6,
+    "utility": 4,
+    "documentation": 2
+  },
+  "features": [
+    "81 ready HTML pages",
+    "Bootstrap 5.3 based, no jQuery",
+    "AI workspace: chat, content generator, image generator, usage, history",
+    "CRM, leads, customers, pipeline, projects, kanban, tasks, calendar",
+    "Billing: invoices, payments, transactions, subscriptions, reports",
+    "31-page component library with Preview / HTML / CSS / JS panes and copy buttons",
+    "Light and dark mode with a saved preference",
+    "Full RTL layout support (Bootstrap RTL build included)",
+    "Responsive down to 375 px with off-canvas navigation",
+    "15+ theme-aware Chart.js charts, no CDN calls",
+    "Written documentation and a design-system reference inside the package",
+    "Working demo interactions: create/edit dialogs, filters, pagination, CSV import/export, undo"
+  ],
+  "tags": [
+    "admin",
+    "admin dashboard",
+    "admin template",
+    "bootstrap",
+    "bootstrap 5",
+    "bootstrap 5 admin",
+    "html template",
+    "dashboard",
+    "saas",
+    "ai dashboard",
+    "ai saas",
+    "analytics",
+    "crm",
+    "crm dashboard",
+    "kanban",
+    "project management",
+    "invoice",
+    "billing",
+    "charts",
+    "chartjs",
+    "responsive",
+    "dark mode",
+    "dark theme",
+    "rtl",
+    "rtl support",
+    "ui kit",
+    "component library",
+    "clean",
+    "modern",
+    "minimal",
+    "documentation",
+    "static html",
+    "no jquery"
+  ],
+  "urls": {
+    "live_preview": "https://qevorasoftware.github.io/qevora-ai-saas-ui/",
+    "documentation": "documentation/index.html (inside the buyer package)",
+    "support": "ThemeForest item support tab"
+  },
+  "images": {
+    "main_cover": "marketplace/cover-2340x1560.png",
+    "main_cover_jpg": "marketplace/cover-2340x1560.jpg",
+    "minimum_cover": "marketplace/cover-1170x780.png",
+    "opengraph": "assets/images/og-cover.svg (social sharing only)",
+    "previews": [
+      "marketplace/previews/01-dashboard-light.png",
+      "marketplace/previews/02-dashboard-dark.png",
+      "marketplace/previews/03-crm-leads.png",
+      "marketplace/previews/04-crm-customers.png",
+      "marketplace/previews/05-sales-pipeline.png",
+      "marketplace/previews/06-projects-kanban.png",
+      "marketplace/previews/07-ai-content-generator.png",
+      "marketplace/previews/08-billing-invoices.png",
+      "marketplace/previews/09-notifications.png",
+      "marketplace/previews/10-component-library.png",
+      "marketplace/previews/11-ai-chat.png",
+      "marketplace/previews/12-documentation.png",
+      "marketplace/previews/13-responsive-mobile.png",
+      "marketplace/previews/14-analytics-dark.png"
+    ]
+  },
+  "bundled": [
+    {
+      "name": "Bootstrap",
+      "version": "5.3.3",
+      "licence": "MIT",
+      "url": "https://getbootstrap.com"
+    },
+    {
+      "name": "Bootstrap Icons",
+      "version": "1.11.3",
+      "licence": "MIT",
+      "url": "https://icons.getbootstrap.com"
+    },
+    {
+      "name": "Chart.js",
+      "version": "4.4.3",
+      "licence": "MIT",
+      "url": "https://www.chartjs.org"
+    },
+    {
+      "name": "Inter",
+      "version": "5.0.18",
+      "licence": "SIL OFL 1.1",
+      "url": "https://fonts.google.com/specimen/Inter"
+    }
+  ],
+  "files": {
+    "buyer_zip": "release/qevora-ai-saas-ui-1.0.0.zip",
+    "developer_zip": "release/qevora-ai-saas-ui-1.0.0-developer.zip"
+  }
+}
