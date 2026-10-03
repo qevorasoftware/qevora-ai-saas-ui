@@ -22,6 +22,8 @@
     11.  Heading outline    - exactly one <h1>, no skipped levels
     12.  Nesting            - no <a> inside <a>, no interactive nesting
     13.  Placeholders       - no lorem ipsum / TODO / FIXME in shipped pages
+    14.  Tag balance        - every container opens and closes exactly once
+    15.  Paragraph nesting  - no block elements inside <p>
    ========================================================================== */
 
 import { readdirSync, readFileSync, existsSync, statSync } from "node:fs";
@@ -132,6 +134,55 @@ function stripCodeBlocks(html) {
   return html
     .replace(/<pre class="demo-code"[\s\S]*?<\/pre>/g, "")
     .replace(/<code[^>]*data-auto-code[\s\S]*?<\/code>/g, "");
+}
+
+const BLOCK_IN_P = /^(div|p|ul|ol|table|section|article|aside|header|footer|nav|form|pre|h[1-6]|hr|blockquote|figure)\b/;
+
+/** Attribute values may legally contain angle brackets, so drop them before parsing tags. */
+function stripAttributeValues(html) {
+  return html.replace(/="[^"]*"/g, '=""').replace(/='[^']*'/g, "=''");
+}
+
+/** Very small tag-balance walker — catches unclosed containers the browser would silently repair. */
+function checkTagBalance(source, add) {
+  const html = stripAttributeValues(source);
+  const stack = [];
+  const tokens = html.matchAll(/<\/?([a-zA-Z][a-zA-Z0-9-]*)\b[^>]*?(\/?)>/g);
+
+  for (const token of tokens) {
+    const name = token[1].toLowerCase();
+    const selfClosing = token[2] === "/" || VOID.has(name);
+    const isClosing = token[0].startsWith("</");
+
+    if (isClosing) {
+      const index = stack.lastIndexOf(name);
+      if (index === -1) {
+        add("tag-balance", `</${name}> without a matching opening tag`);
+      } else {
+        if (index !== stack.length - 1) {
+          const unclosed = stack.slice(index + 1);
+          add("tag-balance", `<${unclosed.join("><")}> not closed before </${name}>`);
+        }
+        stack.length = index;
+      }
+    } else if (!selfClosing) {
+      stack.push(name);
+    }
+  }
+
+  if (stack.length) add("tag-balance", `unclosed tags at end of document: <${stack.join("><")}>`);
+}
+
+/** Paragraphs may not contain block level elements — the browser would split them. */
+function checkParagraphNesting(source, add) {
+  const html = stripAttributeValues(source);
+  for (const m of html.matchAll(/<p\b[^>]*>([\s\S]*?)<\/p>/g)) {
+    const inner = m[1];
+    const firstBlock = inner.match(/<([a-zA-Z][a-zA-Z0-9-]*)\b/);
+    if (firstBlock && BLOCK_IN_P.test(firstBlock[1].toLowerCase() + " ")) {
+      add("nesting", `<${firstBlock[1]}> inside <p> — the browser will split the paragraph`);
+    }
+  }
 }
 
 const TEXT_ONLY = /^(bi|visually-hidden|sr-only)$/;
@@ -305,6 +356,14 @@ for (const file of files) {
   /* 13. placeholders ------------------------------------------------------ */
   stats.checks++;
   if (/lorem ipsum|TODO:|FIXME/i.test(html)) add("placeholder", "lorem ipsum or TODO marker found");
+
+  /* 14. tag balance ------------------------------------------------------- */
+  stats.checks++;
+  checkTagBalance(html, add);
+
+  /* 15. paragraph nesting ------------------------------------------------- */
+  stats.checks++;
+  checkParagraphNesting(html, add);
 }
 
 /* -------------------------------------------------------------------------- */
