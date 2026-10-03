@@ -57,6 +57,10 @@ src/partials/         head, sidebar, header, footer, scripts
 src/nav.mjs           Sidebar menu definition
 src/pages.mjs         Page inventory: titles, descriptions, breadcrumbs, scripts
 tools/build.mjs       Optional zero-dependency builder (Node 18+)
+tools/audit.mjs       Static QA gate: head meta, ids, anchors, aria, images,
+                      labels, class existence, data hooks, charts, headings,
+                      nesting, placeholders, tag balance
+tools/package.sh      Builds the buyer-facing release ZIPs into release/
 ```
 
 ## Customising
@@ -83,6 +87,8 @@ The 81 pages share one shell. To change the sidebar or header once instead of 81
 ```bash
 node tools/build.mjs            # regenerate every page from src/
 node tools/build.mjs --check    # validate: missing bodies, dead navigation links
+node tools/audit.mjs            # 15 static QA checks on all 81 generated pages
+node tools/audit.mjs --strict   # same, but exit non-zero when anything is found
 ```
 
 `src/pages.mjs` is the single source of truth for the page inventory — titles, meta descriptions,

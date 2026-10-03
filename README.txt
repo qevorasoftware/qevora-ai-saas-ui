@@ -94,7 +94,9 @@ or internet connection is required to use the template.
 
   src/            Body fragments, partials and the page inventory that the
                   optional build script assembles (see section 6)
-  tools/build.mjs The optional build script (Node 18+, no dependencies)
+  tools/          build.mjs   optional build script (Node 18+, no dependencies)
+                  audit.mjs   QA: 15 static checks on every generated page
+                  package.sh  builds the release ZIPs
 
 --------------------------------------------------------------------------------
 4. CHANGING THE LOOK
@@ -167,6 +169,7 @@ or internet connection is required to use the template.
 
       node tools/build.mjs            rebuild every page
       node tools/build.mjs --check    validate only, report problems
+      node tools/audit.mjs            run the 15-point quality audit
 
   Source fragments live in src/pages/ (one file per page, same paths as the
   output), the shell lives in src/partials/, the page inventory in

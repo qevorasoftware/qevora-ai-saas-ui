@@ -95,15 +95,51 @@ FEATURES
   · Accessibility pass: landmarks, skip links, labelled controls, aria
     states, reduced-motion support, WCAG AA colour targets.
 
+QUALITY TOOLING
+
+  · tools/audit.mjs — static QA gate that runs 15 checks over all 81 generated
+    pages: document head, duplicate ids, anchor targets, aria/label references,
+    image alt text, accessible names on buttons and icon links, form labels,
+    class existence against the shipped stylesheets, data-hook coverage,
+    chart registry and script wiring, heading outline, tag balance, paragraph
+    nesting, interactive nesting and placeholder markers.
+      node tools/audit.mjs            report
+      node tools/audit.mjs --part ai  audit one section
+      node tools/audit.mjs --strict   non-zero exit when anything is found
+
 FIXES DURING DEVELOPMENT
 
-  · Corrected the Bootstrap Icons font path in the shared <head> partial.
-  · Fixed asset depth on the AI image generator page.
-  · Aligned the AI overview "tokens used" counter with its formatted value.
-  · Replaced an invalid sticky utility on the FAQ page.
-  · Corrected table row links and a stale copy-button target in the UI kit.
-  · Registered the chat script only on the two chat pages and the chart
-    script only on pages that render charts.
+  Core and design system
+    · Four classes used by the pages were never defined in CSS: .min-w-0 (used
+      on 71 pages for header and sidebar truncation), .fw-400, .fw-700 and
+      .bg-accent. All four are now shipped as utilities.
+    · .kanban__col-body — the drag & drop target handled by components.js —
+      had no styling; it now has a minimum height so empty columns stay usable.
+
+  Pages
+    · Product details and transactions rendered a chart canvas but did not load
+      Chart.js, so the widgets would have stayed blank; both now load
+      CHART_SCRIPTS.
+    · The AI chat rating button had no accessible name; it gained an aria-label
+      and a matching thumbs-down action, and decorative icons are now
+      aria-hidden.
+    · The content generator's reference-material <label for> pointed at an id
+      that did not exist; the hidden file input now carries that id.
+    · The dropdown menu group label was an <h6>, which skipped heading levels;
+      it is a standard list item now.
+    · The typography preview rendered a second <h1> beside the page title; the
+      sample uses the .h1 utility and the printed sample matches the preview.
+    · The rich tooltip example carried raw tags inside a title attribute; it is
+      escaped and uses data-bs-title.
+
+  Earlier fixes
+    · Corrected the Bootstrap Icons font path in the shared <head> partial.
+    · Fixed asset depth on the AI image generator page.
+    · Aligned the AI overview "tokens used" counter with its formatted value.
+    · Replaced an invalid sticky utility on the FAQ page.
+    · Corrected table row links and a stale copy-button target in the UI kit.
+    · Registered the chat script only on the two chat pages and the chart
+      script only on pages that render charts.
 
 --------------------------------------------------------------------------------
 Planned for a future release
