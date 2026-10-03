@@ -39,8 +39,12 @@
  *  Counter: <span data-demo-count="#leads-table" data-demo-count-noun="leads">
  *  Loading: <button data-demo-load="1400" data-demo-load-done="Report refreshed">
  *  Export:  <button data-demo-export="#leads-table">   CSV of the visible rows
- *           (works on a table, a card that holds one, or a list of
- *            [data-export-row] items)
+ *              data-demo-export="closest" data-demo-export-scope=".card"  the
+ *              area the button sits in; data-demo-export-name sets the file
+ *              name. Works on a table, a card that holds one, a page area (KPI
+ *              tiles + tables + chat transcript) or a list of [data-export-row]
+ *              items — and a component demo exports its own markup.
+ *  Download:<button data-demo-download="report.txt" data-demo-download-kind="svg">
  *  Stats:   <p data-demo-stat="rows|sum:value|avg:value|count:status=Paid"
  *              data-demo-stat-table="#leads-table" data-prefix="$" data-suffix="%">
  *  View:    <button data-demo-view="grid|table" data-demo-view-table="#t"
@@ -170,6 +174,12 @@
     "data-demo-echo",
     "data-demo-gen-opt",
     "data-demo-gen-opt-label",
+    "data-demo-export-name",
+    "data-demo-export-scope",
+    "data-demo-download",
+    "data-demo-download-kind",
+    "data-demo-download-label",
+    "data-demo-download-content",
     "data-demo-column",
     "data-demo-columns",
     "data-demo-count",
@@ -879,40 +889,218 @@
 
   /* The CSV an "Export" button produces is built from the rows on screen, so
      the file always matches the table. */
-  function exportTable(container) {
-    if (!container) return;
+  function clean(node) {
+    return node ? node.textContent.replace(/\s+/g, " ").trim() : "";
+  }
 
-    /* The button may point at the table, at the card around it, or — on a page
-       without a table — at a list of [data-export-row] items. */
-    if (container.tagName !== "TABLE") {
+  /* A file of any kind, written through a data URI so it works from disk
+     (file://) as well as over HTTP. */
+  function saveFile(content, name, mime) {
+    var link = doc.createElement("a");
+    link.setAttribute("href", "data:" + (mime || "text/plain") + ";charset=utf-8," + encodeURIComponent(content));
+    link.setAttribute("download", name);
+    link.style.display = "none";
+    doc.body.appendChild(link);
+    link.click();
+    link.remove();
+  }
+
+  function tableLines(table) {
+    var head = qa("thead th", table).map(function (th) {
+      return th.querySelector("input") ? "" : clean(th);
+    });
+    var lines = [head];
+    qa("tbody tr", table).forEach(function (row) {
+      if (row.getAttribute("data-filtered") === "true") return;
+      lines.push(qa("td", row).map(function (cell, index) {
+        if (head[index] === "" || cell.querySelector("input")) return "";
+        return clean(cell);
+      }));
+    });
+    return lines.length > 1 ? lines : null;
+  }
+
+  /* Everything a page can export without a server: its KPI tiles, its tables
+     and — on the chat pages — the conversation itself. */
+  /* Both tile families ship with the template: .kpi-tile (dashboard-style
+     cards) and .card-stat (the stat strip), plus anything a page marks with
+     data-demo-stat. */
+  var TILE_SELECTOR = ".kpi-tile, .card-stat, [data-demo-stat]";
+  var TILE_LABEL = ".kpi-tile__label, .card-stat__label, .card-subtitle, [data-demo-stat-label]";
+  var TILE_VALUE = ".kpi-tile__value, .card-stat__value, [data-counter], .h3, .fs-4, strong";
+  var TILE_DELTA = ".kpi-tile__delta, .card-stat__delta, .trend, .badge";
+
+  /* A counter animates from zero, so read its target value instead of whatever
+     happens to be on screen when the button is pressed. */
+  function tileValue(tile) {
+    var node = q(TILE_VALUE, tile);
+    if (!node) return "";
+    if (node.getAttribute && node.hasAttribute("data-counter")) {
+      var number = Number(node.getAttribute("data-counter") || 0);
+      var decimals = parseInt(node.getAttribute("data-decimals") || "0", 10);
+      var text = number.toLocaleString("en-US", {
+        minimumFractionDigits: decimals,
+        maximumFractionDigits: decimals
+      });
+      return (node.getAttribute("data-prefix") || "") + text + (node.getAttribute("data-suffix") || "");
+    }
+    return clean(node);
+  }
+
+  function areaLines(container) {
+    var lines = [];
+    var tiles = qa(TILE_SELECTOR, container);
+
+    if (tiles.length) {
+      lines.push(["Metric", "Value", "Change"]);
+      tiles.forEach(function (tile) {
+        lines.push([
+          clean(q(TILE_LABEL, tile)) || clean(tile),
+          tileValue(tile),
+          clean(q(TILE_DELTA, tile))
+        ]);
+      });
+    }
+
+    qa("[data-chat-thread]", container).forEach(function (thread) {
+      if (lines.length) lines.push([]);
+      lines.push(["Role", "Message"]);
+      qa(".msg", thread).forEach(function (message) {
+        var meta = clean(q(".msg__meta", message));
+        var mine = /\bis-me\b|msg--me/.test(message.className);
+        lines.push([meta || (mine ? "You" : "Qevora AI"), clean(q(".msg__bubble", message) || message)]);
+      });
+    });
+
+    qa("table", container).forEach(function (table) {
+      var rows = tableLines(table);
+      if (!rows) return;
+      if (lines.length) lines.push([]);
+      lines.push.apply(lines, rows);
+    });
+
+    /* Nothing to report? Then this is not a report — the caller falls back to
+       exporting a component demo instead. */
+    var pageTitle = q("h1");
+    if (lines.length && pageTitle) lines.unshift([clean(pageTitle)], []);
+
+    return lines;
+  }
+
+  /* Nothing numeric on the page? A component demo exports its own markup, so
+     even the UI Kit's "Export" buttons hand over a real file. */
+  function demoLines(container) {
+    var block = container.closest("[data-demo]") || container;
+    var lines = [["Qevora AI SaaS — exported demo"], [clean(q(".demo-block__title", block))], []];
+    var preview = q('[data-demo-pane="preview"]', block);
+    var css = q('[data-demo-pane="css"]', block);
+    if (preview) lines.push(["Markup", preview.innerHTML.replace(/\n{2,}/g, "\n").trim()]);
+    if (css) lines.push(["Styles", clean(css)]);
+    return lines;
+  }
+
+  function exportTarget(control) {
+    var selector = control.getAttribute("data-demo-export");
+    if (selector === "closest") {
+      return control.closest(control.getAttribute("data-demo-export-scope") || ".card, [data-demo]") || doc.body;
+    }
+    return q(selector) || doc.body;
+  }
+
+  function exportName(control, container) {
+    var name = control.getAttribute("data-demo-export-name");
+    if (name) return name;
+    return ((container.id || "qevora-page") + "-" + new Date().toISOString().slice(0, 10) + ".csv");
+  }
+
+  function exportTable(container, control) {
+    if (!container) container = doc.body;
+
+    /* The button may point at the table, at the card around it, at a whole
+       page area, or — on a page without either — at a list of [data-export-row]
+       items. */
+    if (container.tagName !== "TABLE" && !qa(TILE_SELECTOR + ", [data-chat-thread]", container).length) {
       var inner = q(hasClass(container, "table") ? "table" : "table, [data-export-row]", container);
       if (inner) container = inner;
     }
 
     if (container.tagName !== "TABLE") {
-      exportItems(container);
+      var area = areaLines(container);
+      if (area.length) {
+        var areaName = exportName(control, container);
+        download(area, areaName);
+        toast("The report was written to " + areaName, "success", "Export ready");
+        return;
+      }
+
+      if (qa("[data-export-row]", container).length) {
+        exportItems(container);
+        return;
+      }
+
+      /* A plain list — an audit trail, a timeline, a set of tasks — exports as
+         two columns when it has a title and a meta line, one otherwise. */
+      var listItems = qa(".timeline__item, li", container).filter(function (item) {
+        return clean(item);
+      });
+      if (listItems.length) {
+        var listName = exportName(control, container);
+        var listLines = [["Item", "Detail"]];
+        listItems.forEach(function (item) {
+          var title = q(".timeline__title, .fw-600, strong", item);
+          var meta = q(".timeline__meta, .fs-8, .text-muted-2", item);
+          listLines.push(title ? [clean(title), clean(meta)] : ["", clean(item)]);
+        });
+        download(listLines, listName);
+        toast(listItems.length + (listItems.length === 1 ? " row" : " rows") + " exported to " + listName, "success", "Export ready");
+        return;
+      }
+
+      var demo = demoLines(container);
+      var demoName = exportName(control, container).replace(/\.csv$/, ".txt");
+      saveFile(demo.map(function (line) { return line.join(","); }).join("\n"), demoName, "text/plain");
+      toast("The demo markup was written to " + demoName, "success", "Export ready");
       return;
     }
 
     var table = container;
-    var head = qa("thead th", table).map(function (th) {
-      return th.querySelector("input") ? "" : th.textContent.replace(/\s+/g, " ").trim();
-    });
-    var lines = [head];
-    var exported = 0;
+    var lines = tableLines(table) || [["(empty)"]];
+    var exported = Math.max(0, lines.length - 1);
+    var name = exportName(control, table);
 
-    qa("tbody tr", table).forEach(function (row) {
-      if (row.getAttribute("data-filtered") === "true") return;
-      lines.push(qa("td", row).map(function (cell, index) {
-        if (head[index] === "" || cell.querySelector("input")) return "";
-        return cell.textContent.replace(/\s+/g, " ").trim();
-      }));
-      exported++;
-    });
-
-    var name = (container.id || "qevora-export") + "-" + new Date().toISOString().slice(0, 10) + ".csv";
     download(lines, name);
     toast(exported + (exported === 1 ? " row" : " rows") + " exported to " + name, "success", "Export ready");
+  }
+
+  /* <button data-demo-download="report.txt" data-demo-download-kind="svg"> */
+  function downloadFile(control) {
+    var name = control.getAttribute("data-demo-download") || "qevora-download.txt";
+    var kind = control.getAttribute("data-demo-download-kind") || "text";
+    var content = control.getAttribute("data-demo-download-content");
+    var label = control.getAttribute("data-demo-download-label") || clean(control) || name;
+
+    if (!content && kind === "svg") {
+      content =
+        '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" role="img" aria-label="' + label + '">' +
+        '<defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1">' +
+        '<stop offset="0%" stop-color="#4f46e5"/><stop offset="100%" stop-color="#06b6d4"/></linearGradient></defs>' +
+        '<rect width="400" height="300" fill="url(#g)"/>' +
+        '<circle cx="200" cy="120" r="46" fill="rgba(255,255,255,.35)"/>' +
+        '<path d="M60 250 L150 170 L215 225 L270 180 L340 250 Z" fill="rgba(255,255,255,.45)"/>' +
+        '<text x="200" y="285" text-anchor="middle" font-family="Inter, sans-serif" font-size="14" fill="#fff">' + label + "</text></svg>";
+    }
+
+    if (!content) {
+      content = "Qevora AI SaaS — demo placeholder\n" +
+        "File: " + name + "\n" +
+        "Generated: " + new Date().toISOString().slice(0, 19).replace("T", " ") + "\n\n" +
+        "The template is front-end only, so this file stands in for the document a real " +
+        "integration would return. Replace data-demo-download with your own link to ship the " +
+        "actual file.\n";
+    }
+
+    saveFile(content, name, kind === "svg" ? "image/svg+xml" : "text/plain");
+    toast(name + " was downloaded.", "success", "Download ready");
   }
 
   /* KPI tiles can be derived from the table, so the numbers on a page can never
@@ -1382,7 +1570,12 @@
   }
 
   function printPage(control) {
-    toast("Opening the browser print dialog…", "info", "Print");
+    var pdf = control && control.getAttribute("data-demo-print") === "pdf";
+    toast(
+      pdf ? "Choose “Save as PDF” in the print dialog to download it." : "Opening the browser print dialog…",
+      "info",
+      pdf ? "Download PDF" : "Print"
+    );
     window.setTimeout(function () {
       try {
         window.print();
@@ -1885,7 +2078,7 @@
         " [data-demo-pick], [data-demo-range], [data-demo-remove], [data-demo-select]," +
         " [data-demo-regenerate], [data-demo-reset-form]," +
         " [data-demo-toggle], [data-demo-gen], [data-demo-chat], [data-demo-new]," +
-        " [data-demo-export], [data-demo-export-row], [data-demo-go], [data-demo-view]," +
+        " [data-demo-export], [data-demo-export-row], [data-demo-download], [data-demo-go], [data-demo-view]," +
         " [data-copy-text], [data-demo-chip], [data-demo-reset], [data-demo-clear], button, a");
       if (!control) return;
 
@@ -2021,7 +2214,13 @@
 
       if (control.hasAttribute("data-demo-export")) {
         event.preventDefault();
-        exportTable(q(control.getAttribute("data-demo-export")));
+        exportTable(exportTarget(control), control);
+        return;
+      }
+
+      if (control.hasAttribute("data-demo-download")) {
+        event.preventDefault();
+        downloadFile(control);
         return;
       }
 

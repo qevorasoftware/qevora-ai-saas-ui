@@ -31,15 +31,15 @@
   </script>
 
   <!-- Vendor styles (bundled locally, see documentation/index.html → Credits) -->
-  <link rel="stylesheet" href="../assets/css/fonts.css?v=1.1.0">
-  <link rel="stylesheet" href="../assets/css/bootstrap.min.css?v=1.1.0">
-  <link rel="stylesheet" href="../assets/icons/bootstrap-icons/bootstrap-icons.min.css?v=1.1.0">
+  <link rel="stylesheet" href="../assets/css/fonts.css?v=1.2.0">
+  <link rel="stylesheet" href="../assets/css/bootstrap.min.css?v=1.2.0">
+  <link rel="stylesheet" href="../assets/icons/bootstrap-icons/bootstrap-icons.min.css?v=1.2.0">
 
   <!-- Qevora theme -->
-  <link rel="stylesheet" href="../assets/css/style.css?v=1.1.0">
-  <link rel="stylesheet" href="../assets/css/components.css?v=1.1.0">
-  <link rel="stylesheet" href="../assets/css/dark.css?v=1.1.0">
-  <link rel="stylesheet" href="../assets/css/rtl.css?v=1.1.0">
+  <link rel="stylesheet" href="../assets/css/style.css?v=1.2.0">
+  <link rel="stylesheet" href="../assets/css/components.css?v=1.2.0">
+  <link rel="stylesheet" href="../assets/css/dark.css?v=1.2.0">
+  <link rel="stylesheet" href="../assets/css/rtl.css?v=1.2.0">
 </head>
 
 <body class="q-app">
@@ -943,13 +943,17 @@
                     <td><code>demo-ui.js</code></td>
                     <td class="fs-7 text-muted-2">
                       The demo interactions: dialogs that add and edit records, delete with undo, live filters that keep the
-                      pagination and the counters in step, loading buttons, and a safe fallback for any control without a
-                      handler. Every one of them is a few lines you can point at your own API.
+                      pagination and the counters in step, loading buttons, exports that write a real CSV — of a table, of a
+                      page area (KPI tiles plus tables, or a whole chat transcript) or of one row — file downloads, and a safe
+                      fallback for any control without a handler. Every one of them is a few lines you can point at your own API.
                     </td>
                     <td class="fs-7">
                       <code>[data-demo-open]</code>, <code>[data-demo-form]</code>, <code>[data-demo-field]</code>,
                       <code>[data-demo-delete]</code>, <code>[data-demo-filter]</code>, <code>[data-demo-count]</code>,
-                      <code>[data-demo-column]</code>, <code>[data-demo-load]</code>, <code>QevoraDemo.refresh()</code>
+                      <code>[data-demo-column]</code>, <code>[data-demo-load]</code>, <code>[data-demo-export]</code>
+                      (+ <code>-export-name</code>, or <code>"closest"</code> with <code>-export-scope</code>),
+                      <code>[data-demo-download]</code>, <code>[data-demo-print="pdf"]</code>,
+                      <code>QevoraDemo.refresh()</code>
                     </td>
                   </tr>
                   <tr>
@@ -1183,14 +1187,14 @@ node tools/smoke.mjs             # run every page and click key controls: consol
 
     <!-- ================= Scripts ================= -->
     <!-- Vendor: Bootstrap 5 bundle (includes Popper) -->
-    <script src="../assets/js/bootstrap.bundle.min.js?v=1.1.0"></script>
+    <script src="../assets/js/bootstrap.bundle.min.js?v=1.2.0"></script>
 
     <!-- Qevora core -->
-    <script src="../assets/js/theme.js?v=1.1.0"></script>
-    <script src="../assets/js/sidebar.js?v=1.1.0"></script>
-    <script src="../assets/js/app.js?v=1.1.0"></script>
-    <script src="../assets/js/components.js?v=1.1.0"></script>
-    <script src="../assets/js/demo-ui.js?v=1.1.0"></script>
+    <script src="../assets/js/theme.js?v=1.2.0"></script>
+    <script src="../assets/js/sidebar.js?v=1.2.0"></script>
+    <script src="../assets/js/app.js?v=1.2.0"></script>
+    <script src="../assets/js/components.js?v=1.2.0"></script>
+    <script src="../assets/js/demo-ui.js?v=1.2.0"></script>
 
 </body>
 </html>

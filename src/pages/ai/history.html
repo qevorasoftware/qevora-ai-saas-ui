@@ -6,7 +6,7 @@
         </div>
         <div class="d-flex flex-wrap gap-2">
           <button type="button" class="btn btn-white" data-demo-action="History cleared — demo only." data-demo-variant="warning"><i class="bi bi-trash3"></i> Clear history</button>
-          <button type="button" class="btn btn-primary" data-demo-action="History exported — demo interaction only."><i class="bi bi-download"></i> Export CSV</button>
+          <button type="button" class="btn btn-primary" data-demo-export="#history-table" data-demo-export-name="qevora-prompts-2026-10-03.csv"><i class="bi bi-download"></i> Export CSV</button>
         </div>
       </div>
 
@@ -159,7 +159,7 @@
                 <td class="text-end">
                   <div class="table-actions justify-content-end">
                     <button type="button" class="btn btn-icon btn-sm btn-ghost" aria-label="Regenerate image" data-demo-action="Image regenerated — demo only."><i class="bi bi-arrow-repeat"></i></button>
-                    <button type="button" class="btn btn-icon btn-sm btn-ghost" aria-label="Download image" data-demo-action="Download started — demo only."><i class="bi bi-download"></i></button>
+                    <button type="button" class="btn btn-icon btn-sm btn-ghost" aria-label="Download prompt" data-demo-download="qevora-prompt.csv" data-demo-download-content="Prompt export"><i class="bi bi-download"></i></button>
                   </div>
                 </td>
               </tr>

@@ -31,15 +31,15 @@
   </script>
 
   <!-- Vendor styles (bundled locally, see documentation/index.html → Credits) -->
-  <link rel="stylesheet" href="../assets/css/fonts.css?v=1.1.0">
-  <link rel="stylesheet" href="../assets/css/bootstrap.min.css?v=1.1.0">
-  <link rel="stylesheet" href="../assets/icons/bootstrap-icons/bootstrap-icons.min.css?v=1.1.0">
+  <link rel="stylesheet" href="../assets/css/fonts.css?v=1.2.0">
+  <link rel="stylesheet" href="../assets/css/bootstrap.min.css?v=1.2.0">
+  <link rel="stylesheet" href="../assets/icons/bootstrap-icons/bootstrap-icons.min.css?v=1.2.0">
 
   <!-- Qevora theme -->
-  <link rel="stylesheet" href="../assets/css/style.css?v=1.1.0">
-  <link rel="stylesheet" href="../assets/css/components.css?v=1.1.0">
-  <link rel="stylesheet" href="../assets/css/dark.css?v=1.1.0">
-  <link rel="stylesheet" href="../assets/css/rtl.css?v=1.1.0">
+  <link rel="stylesheet" href="../assets/css/style.css?v=1.2.0">
+  <link rel="stylesheet" href="../assets/css/components.css?v=1.2.0">
+  <link rel="stylesheet" href="../assets/css/dark.css?v=1.2.0">
+  <link rel="stylesheet" href="../assets/css/rtl.css?v=1.2.0">
 </head>
 
 <body class="q-app">
@@ -925,7 +925,7 @@ Qevora.toast("Invoice INV-2026-0186 marked as paid", "success", "Payments");
                   </div>
                   <div class="modal-footer">
                     <button class="btn btn-white" type="button" data-bs-dismiss="modal">Close</button>
-                    <button class="btn btn-soft-primary" type="button" data-demo-action>Export log</button>
+                    <button class="btn btn-soft-primary" type="button" data-demo-export="closest" data-demo-export-scope=".modal" data-demo-export-name="qevora-audit-log-2026-10-03.csv">Export log</button>
                   </div>
                 </div>
               </div>
@@ -1012,12 +1012,7 @@ Qevora.toast("Invoice INV-2026-0186 marked as paid", "success", "Payments");
         <div class="demo-block__pane" data-demo-pane="js">
           <div class="demo-code-wrap">
             <button class="copy-btn" data-copy-target="#js-components-modals-2" type="button"><i class="bi bi-clipboard"></i> Copy JS</button>
-            <pre class="demo-code"><code id="js-components-modals-2" data-lang="js">// Demo-only buttons show a toast instead of calling a backend.
-// &lt;button data-demo-action="Invoice saved" data-demo-variant="success"&gt;
-
-Qevora.toast("Invoice INV-2026-0186 marked as paid", "success", "Payments");
-
-// No custom JavaScript: Bootstrap's data API opens this dialog.</code></pre>
+            <pre class="demo-code"><code id="js-components-modals-2" data-lang="js">// No custom JavaScript: Bootstrap's data API opens this dialog.</code></pre>
           </div>
         </div>
 
@@ -1238,14 +1233,14 @@ Qevora.toast("Invoice INV-2026-0186 marked as paid", "success", "Payments");
 
     <!-- ================= Scripts ================= -->
     <!-- Vendor: Bootstrap 5 bundle (includes Popper) -->
-    <script src="../assets/js/bootstrap.bundle.min.js?v=1.1.0"></script>
+    <script src="../assets/js/bootstrap.bundle.min.js?v=1.2.0"></script>
 
     <!-- Qevora core -->
-    <script src="../assets/js/theme.js?v=1.1.0"></script>
-    <script src="../assets/js/sidebar.js?v=1.1.0"></script>
-    <script src="../assets/js/app.js?v=1.1.0"></script>
-    <script src="../assets/js/components.js?v=1.1.0"></script>
-    <script src="../assets/js/demo-ui.js?v=1.1.0"></script>
+    <script src="../assets/js/theme.js?v=1.2.0"></script>
+    <script src="../assets/js/sidebar.js?v=1.2.0"></script>
+    <script src="../assets/js/app.js?v=1.2.0"></script>
+    <script src="../assets/js/components.js?v=1.2.0"></script>
+    <script src="../assets/js/demo-ui.js?v=1.2.0"></script>
 
 </body>
 </html>

@@ -52,7 +52,7 @@ original guide text (re-paste it and this line is closed in one pass).
 | 4.3 | Responsive — desktop / tablet / mobile off-canvas | **Done** | Sidebar drawer ≤ 991.98px, compact rail ≤ 1200px, `.table-responsive` on every table |
 | 4.4 | Charts | **Done** | 15+ Chart.js configs, `canvas[data-chart]`, `CHART_SCRIPTS` registered per page (audit verifies wiring) |
 | 4.5 | Accessibility | **Done** | `node tools/audit.mjs` → 82 files × 19 checks → 0 findings |
-| 4.6 | Every button, dropdown and pager works | **Done** | a button census over all 82 pages finds no control without behaviour (only `type="submit"` / `type="reset"` remain, and both have live forms behind them); 38 dropdown items are choices, actions or links; every `[data-paginate]` table renders its pager from the rows. Verified by `.tmp/hooks-test.mjs` (61 checks) + `.tmp/lists-test.mjs` (134 checks) + leads/customers/chips/rail/interactions suites (126 checks) → all green |
+| 4.6 | Every button, dropdown and pager works | **Done** | a button census over all 82 pages finds no control without behaviour (only `type="submit"` / `type="reset"` remain, and both have live forms behind them); 38 dropdown items are choices, actions or links; every `[data-paginate]` table renders its pager from the rows. Verified by `.tmp/hooks-test.mjs` (61 checks) + `.tmp/lists-test.mjs` (134 checks) + `.tmp/export-test.mjs` (50 checks: every export/download/print control writes a real file) + leads/customers/chips/rail/interactions suites (126 checks) → all green. Every export control is real: tables export their visible rows, page areas export their KPI tiles and tables, chat pages export the transcript, and download buttons write a file |
 
 ## 5. Engineering quality gates
 

@@ -209,6 +209,24 @@ FIXES DURING DEVELOPMENT
       the sales address. components/pricing.html button check reports zero
       controls left without behaviour.
 
+    · Every export and download button hands over a real file. A control with
+      data-demo-export can point at a table (a CSV of the visible rows), at a
+      page area (the KPI tiles and every table inside it, or a chat transcript)
+      or at "closest" — the card or component demo it sits in — and
+      data-demo-export-name sets the file name; a component demo with nothing
+      numeric exports its own markup. That covers the dashboard "Export report",
+      the analytics report, the AI usage export, ai/history (ten prompt rows),
+      the conversation export on ai/chat, the permission matrix on roles, the
+      audit log inside the modals page and the UI Kit's own Export buttons.
+    · data-demo-download writes a real file — a text placeholder or a generated
+      SVG for image downloads — so the attachment icons on file-upload, the
+      project files, the report rows and the four image-generator variations all
+      save something. "Download PDF" buttons open the print dialog and say to
+      pick "Save as PDF", because that is how a browser writes a PDF.
+    · The runtime test suite gained export coverage: 50 checks click every
+      export, download and print control on 16 pages and assert that a file with
+      the right name and content arrives.
+
   Links, buttons and runtime behaviour
     · The light/dark toggle did nothing when localStorage is unavailable —
       private-mode windows, sandboxed frames and, most importantly, opening the
