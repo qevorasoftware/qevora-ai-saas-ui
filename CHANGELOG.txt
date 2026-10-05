@@ -393,7 +393,11 @@ FIXES DURING DEVELOPMENT
       The card grid also stopped borrowing the table's Bootstrap .row: it is a
       plain CSS grid now (auto-fill, minmax(min(20rem, 100%), 1fr)) with the
       same 1.25rem inset as the toolbar above it, so the cards keep one width,
-      one gap and never touch the card's edge, and a search that matches nothing
+      one gap and stay clear of the card's border on all four sides — the rule
+      also resets margin to zero, because the Bootstrap .row class the earlier
+      build put on the same element carries negative gutters that cancel exactly
+      that padding, and it drops the inset to 1rem on phone widths. A search that
+      matches nothing
       answers with a short "No customers match the current filters." card
       instead of an empty hole.
       The empty "Health:" text the old builder printed for a progress cell is

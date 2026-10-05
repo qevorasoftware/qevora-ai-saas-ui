@@ -1024,7 +1024,19 @@
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(min(20rem, 100%), 1fr));
   gap: 1rem;
+  /* The cards keep a clear 1.25rem margin from the card's border on all four
+     sides. The margin reset matters: an older build of this script put the
+     Bootstrap .row class on the same element, whose negative gutters cancel
+     exactly this padding — with the reset the inset survives either way. */
+  margin: 0;
   padding: 1.25rem;
+}
+
+@media (max-width: 575.98px) {
+  [data-demo-grid] {
+    gap: 0.75rem;
+    padding: 1rem;
+  }
 }
 
 /* A single message that spans the whole grid (no rows match the filters). */

@@ -220,9 +220,13 @@ for (const [selector, css] of [[".form-select", components], [".form-select-sm",
   const body = ruleBody(components, "[data-demo-grid]");
   const display = declaration(body, "display");
   const padding = declaration(body, "padding");
+  const margin = declaration(body, "margin");
   const columns = declaration(body, "grid-template-columns");
-  check(display === "grid" && !!padding && /auto-fill/.test(columns), "the table card view is inset and even",
-    `display=${display || "missing"} padding=${padding || "missing"} columns=${columns || "missing"}`);
+  /* A .row class on the same element would pull the cards back out by its
+     negative gutters, so the margin reset is part of the guarantee. */
+  const inset = toRem(padding) >= 1 && !!declaration(body, "margin") && /^0(rem|px)?$/.test(String(margin).trim());
+  check(display === "grid" && inset && /auto-fill/.test(columns), "the table card view is inset on all four sides",
+    `display=${display || "missing"} padding=${padding || "missing"} margin=${margin || "missing"} columns=${columns || "missing"}`);
 }
 
 /* The removed badge dot is the only place the demo prints an empty pill. */
