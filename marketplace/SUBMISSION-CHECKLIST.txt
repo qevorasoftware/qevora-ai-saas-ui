@@ -166,8 +166,15 @@
 --------------------------------------------------------------------------------
   · node tools/audit.mjs --strict      19 checks × 82 pages   → 0 findings
   · node tools/smoke.mjs --strict      82 pages, 8 interaction flows → 0 issues
-  · .tmp suites: export 50 · hooks 61 · lists 134 · interactions 29 · leads 38 ·
-    customers 34 · chips 12 · rail 13 · crm 67 · round13 23  → 461 checks, green
+  · node tools/check-add-card.mjs      "+ New …" controls and the "just added"
+    highlight — 33 checks, green (needs jsdom)
+  · node tools/check-dropdowns.mjs     every dropdown and pick group in the
+    template: one selected item only, the button shows the current choice, icons
+    kept, aria-current / aria-pressed correct, locked items refused, plus a sweep
+    of all eight pages that carry pick controls — 81 checks, green (needs jsdom)
+  · an earlier development-only sweep of the list/export/CRM flows (461 checks)
+    ran green before the final round; those scratch runners are not part of the
+    release, the four tools above are.
   · tools/release.mjs --runtime loads pages out of the extracted buyer ZIP over
     file:// and reports console errors or missing assets.
 
@@ -255,8 +262,18 @@
     · fails if a required file (README/CHANGELOG/LICENSE/assets/…) is missing
     · --runtime additionally loads 8 sampled pages out of the extraction over
       file:// and reports console errors or unloadable assets
-  Current result: 21/21 checks pass — "The release is clean and the buyer ZIP
-  can be uploaded."
+  Current result: 20/20 checks pass (21/21 with --runtime) — "The release is
+  clean and the buyer ZIP can be uploaded."
+
+  Manual empty-folder run (the checklist's "extract and test in a clean folder"):
+  the buyer ZIP was unpacked into an empty directory, moved under a nested
+  sub-folder (…/sub/qevora-ai-saas-ui/) and served over HTTP, i.e. the way a
+  buyer on shared hosting or in a sub-directory sees it. All 82 HTML files
+  returned 200 and every local src/href on every page resolved inside the
+  extracted tree — no root-relative path, no missing asset, no reference outside
+  the package. The only "missing" hit was the escaped sample path
+  path/to/photo.jpg inside a <pre><code> snippet on components/avatars.html,
+  which the browser never requests.
 
 ================================================================================
  FINAL RELEASE CHECKLIST
