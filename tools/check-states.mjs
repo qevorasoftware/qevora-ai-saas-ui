@@ -200,6 +200,26 @@ for (const [selector, css] of [[".form-select", components], [".form-select-sm",
     `display=${display || "missing"} align-items=${align || "missing"}`);
 }
 
+/* Every soft badge the JavaScript can produce needs a painted background: a
+   toolbar or card that asks for a missing variant would show a colourless pill. */
+{
+  const missing = [];
+  for (const variant of ["primary", "success", "warning", "danger", "info", "neutral", "secondary"]) {
+    const body = ruleBody(components, `.badge-soft-${variant}`);
+    if (!declaration(body, "background")) missing.push(variant);
+  }
+  const used = read("assets/js/demo-ui.js").match(/badge-soft-\w+/g) || [];
+  const asked = [...new Set(used)].filter((name) => !declaration(ruleBody(components, `.${name}`), "background"));
+  check(missing.length === 0 && asked.length === 0, "every soft badge variant is painted",
+    missing.length ? `no background for: ${missing.join(", ")}` : `no rule for: ${asked.join(", ")}`);
+}
+
+/* The removed badge dot is the only place the demo prints an empty pill. */
+{
+  const dot = declaration(ruleBody(components, ".badge-dot"), "display");
+  check(dot === "inline-flex", "badge dots line up with their label", `display=${dot || "missing"}`);
+}
+
 console.log(results.join("\n"));
 const failed = results.filter((r) => r.startsWith("FAIL")).length;
 console.log(`\n${results.length - failed}/${results.length} checks passed`);

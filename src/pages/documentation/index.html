@@ -293,6 +293,14 @@ Optional developer source package (shipped separately from the item page)
                       <code>-label</code>, <code>-done</code>),
                       <code>[data-demo-delete]</code> with <code>-label</code>, <code>-verb</code>,
                       <code>-name</code> and <code>-target</code> to word the confirmation and to name what is removed,
+                      <code>[data-demo-edit]</code> with <code>-fields</code>, <code>-options</code> and
+                      <code>-label</code> to edit the page itself — every <code>[data-slot]</code> inside the named
+                      scope is read into the dialog and written back on save (a <code>[data-demo-initials]</code>
+                      avatar follows the new name),
+                      <code>[data-demo-log]</code> with <code>-text</code>, <code>-variant</code> and
+                      <code>-done</code> to add a dated timeline entry,
+                      <code>[data-demo-message-to]</code> to fill the recipient and
+                      <code>[data-demo-message-log]</code> to note a sent message in the activity feed,
                       <code>QevoraDemo.refresh()</code>
                     </td>
                   </tr>

@@ -573,7 +573,8 @@
 .badge-soft-warning { background: var(--q-warning-soft); color: var(--q-warning-hover); }
 .badge-soft-danger { background: var(--q-danger-soft); color: var(--q-danger-hover); }
 .badge-soft-info { background: var(--q-info-soft); color: var(--q-info-hover); }
-.badge-soft-neutral { background: var(--q-surface-hover); color: var(--q-muted-color); }
+.badge-soft-neutral,
+.badge-soft-secondary { background: var(--q-surface-hover); color: var(--q-muted-color); }
 
 [data-bs-theme="dark"] .badge-soft-success { color: var(--q-success); }
 [data-bs-theme="dark"] .badge-soft-warning { color: var(--q-warning); }

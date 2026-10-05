@@ -1,49 +1,54 @@
       <div class="q-page-head">
         <div>
           {{BREADCRUMB}}
-          <h1 class="q-page-head__title mt-2">Northstar Labs</h1>
-          <p class="q-page-head__subtitle">Scale plan · 142 seats · customer since February 2023</p>
+          <h1 class="q-page-head__title mt-2" data-slot="name">Northstar Labs</h1>
+          <p class="q-page-head__subtitle"><span data-slot="plan">Scale</span> plan · <span data-slot="seats">142</span> seats · customer since February 2023</p>
         </div>
         <div class="d-flex flex-wrap gap-2">
-          <button type="button" class="btn btn-white" data-demo-action="Email composer opened — demo interaction only."><i class="bi bi-envelope"></i> Email</button>
-          <button type="button" class="btn btn-white" data-demo-action="Call logged — demo interaction only."><i class="bi bi-telephone"></i> Log call</button>
-          <button type="button" class="btn btn-primary" data-demo-action="Deal updated — demo interaction only."><i class="bi bi-pencil-square"></i> Edit customer</button>
+          <button type="button" class="btn btn-white" data-demo-message="Northstar Labs" data-demo-message-to="billing@example.com"
+                  data-demo-message-log="Email sent to {to}"><i class="bi bi-envelope"></i> Email</button>
+          <button type="button" class="btn btn-white" data-demo-log="Call logged: renewal, seats and onboarding"
+                  data-demo-log-text="Spoke with the account team about the renewal date and the seat count." data-demo-log-variant="success"
+                  data-demo-log-done="Call logged — demo only."><i class="bi bi-telephone"></i> Log call</button>
+          <button type="button" class="btn btn-primary" data-demo-edit="#customer-profile, .q-page-head" data-demo-label="Customer"
+                  data-demo-fields="name:Customer,plan:Plan,seats:Seats,domain:Domain,email:Billing email,phone:Phone,address:Address"
+                  data-demo-options="plan:Scale|Growth|Starter"><i class="bi bi-pencil-square"></i> Edit customer</button>
         </div>
       </div>
 
       <div class="row g-3 q-section">
         <div class="col-xl-4">
-          <div class="card">
+          <div class="card" id="customer-profile">
             <div class="card-profile__cover"></div>
             <div class="card-body pt-0">
               <div class="d-flex align-items-end justify-content-between">
-                <span class="avatar avatar-xl bg-avatar-1 card-profile__avatar">NL</span>
+                <span class="avatar avatar-xl bg-avatar-1 card-profile__avatar" data-demo-initials="name">NL</span>
                 <span class="badge badge-soft-success badge-pill mb-2">Active</span>
               </div>
-              <h2 class="h5 fw-600 mt-3 mb-1">Northstar Labs</h2>
+              <h2 class="h5 fw-600 mt-3 mb-1" data-slot="name">Northstar Labs</h2>
               <p class="fs-7 text-muted-2 mb-3">Enterprise AI platform · San Francisco, CA</p>
 
               <div class="d-flex flex-wrap gap-2 mb-3">
-                <span class="chip"><i class="bi bi-building"></i> 142 seats</span>
-                <span class="chip"><i class="bi bi-star"></i> Scale plan</span>
+                <span class="chip"><i class="bi bi-building"></i> <span data-slot="seats">142</span> seats</span>
+                <span class="chip"><i class="bi bi-star"></i> <span data-slot="plan">Scale</span> plan</span>
               </div>
 
               <ul class="list-unstyled d-flex flex-column gap-3 mb-4">
                 <li class="d-flex gap-2 fs-7">
                   <i class="bi bi-globe2 text-muted-2"></i>
-                  <span>northstarlabs.com</span>
+                  <span data-slot="domain">northstarlabs.com</span>
                 </li>
                 <li class="d-flex gap-2 fs-7">
                   <i class="bi bi-envelope text-muted-2"></i>
-                  <a href="#" class="text-truncate">billing@example.com</a>
+                  <a href="#" class="text-truncate" data-slot="email">billing@example.com</a>
                 </li>
                 <li class="d-flex gap-2 fs-7">
                   <i class="bi bi-telephone text-muted-2"></i>
-                  <span>+1 (415) 555-0134</span>
+                  <span data-slot="phone">+1 (415) 555-0134</span>
                 </li>
                 <li class="d-flex gap-2 fs-7">
                   <i class="bi bi-geo-alt text-muted-2"></i>
-                  <span>548 Market Street, San Francisco, CA 94104</span>
+                  <span data-slot="address">548 Market Street, San Francisco, CA 94104</span>
                 </li>
               </ul>
 

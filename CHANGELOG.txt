@@ -373,6 +373,30 @@ FIXES DURING DEVELOPMENT
       sets padding-block plus padding-inline (2.1rem for the field, 2rem for the
       small one) and pins the caret to the same 0.85rem offset in both
       directions — rtl.css mirrors the numbers, so RTL keeps the same gap.
+    · pages/customer-details.html — the three header buttons each do real work
+      now. "Email" opens the shared message dialog with the account's billing
+      address in the To field (data-demo-message-to) and records the note in the
+      activity feed (data-demo-message-log); "Log call" writes a dated entry at
+      the top of the timeline (data-demo-log, -text, -variant, -done) instead of
+      only toasting; and "Edit customer" opens the record dialog prefilled from
+      the page itself (data-demo-edit="#customer-profile, .q-page-head"), saving
+      the new name, plan, seats, domain, email, phone and address back into the
+      profile card and the page title, and refreshing the avatar initials.
+      Blank cells in a page are skipped, so a dialog can never wipe a value the
+      page does not show.
+    · The customer directory's grid view was rebuilt as a proper card set. Each
+      card now reads its subtitle from the row (the domain line), prints the
+      facts as labelled pairs instead of a run of loose text, keeps the health
+      column as a real progress bar, and copies the plan badge straight out of
+      the table cell so the card and the table can never disagree on colour.
+      The empty "Health:" text the old builder printed for a progress cell is
+      gone, and the old builder asked for a badge-soft-secondary class that the
+      stylesheet never painted — soft badges now cover every variant the
+      JavaScript can ask for (secondary aliases neutral) and a state check guards
+      it. The cards also carry the row's own action buttons now: open, edit and
+      delete work from a card exactly as they do from the row, and the grid
+      follows the search box, the plan filter, every save, every new customer and
+      every delete without a second click.
     · A badge sitting next to a chip in a flex row had its label stuck to the top
       of the taller pill (the row stretches both to one height): .badge is now an
       inline-flex box that centres its content, and the icon inside a badge gets

@@ -50,6 +50,11 @@
  *  View:    <button data-demo-view="grid|table" data-demo-view-table="#t"
  *              data-demo-view-target="#card">        cards built from the rows
  *  New:     <button data-demo-new="#q-demo-record" data-demo-table="#leads-table">
+ *  Edit:    <button data-demo-edit="#customer-profile" data-demo-fields="name:Customer,seats:Seats"
+ *              data-demo-options="plan:Scale|Growth|Starter" data-demo-label="Customer">
+ *              the dialog reads every [data-slot] in the scope and writes back
+ *  Log:     <button data-demo-log="Called about the renewal" data-demo-log-text="…">
+ *              prepends a timeline entry on the page
  *  Import:  <button data-demo-import="#leads-table">  opens #q-demo-import,
  *              which turns pasted CSV (or a chosen .csv file) into rows
  *  Add card:<button data-demo-add-card="#kanban-col" data-demo-card-title="New task">
@@ -152,6 +157,16 @@
     "data-demo-delete-verb",
     "data-demo-delete-target",
     "data-demo-delete-name",
+    "data-demo-edit",
+    "data-demo-message-to",
+    "data-demo-message-log",
+    "data-demo-options",
+    "data-demo-log-target",
+    "data-demo-log-meta",
+    "data-demo-log-text",
+    "data-demo-log-variant",
+    "data-demo-log-done",
+    "data-demo-initials",
     "data-demo-message-to",
     "data-demo-message-body",
     "data-demo-message-title",
@@ -307,7 +322,7 @@
   function variantFor(value, field) {
     var option = q('option[data-badge][value="' + String(value).replace(/"/g, '\\"') + '"]');
     if (option) return option.getAttribute("data-badge");
-    return STATUS_VARIANTS[String(value || "").trim().toLowerCase()] || "secondary";
+    return STATUS_VARIANTS[String(value || "").trim().toLowerCase()] || "neutral";
   }
 
   /* ---------------------------------------------------------------------- */
@@ -316,6 +331,23 @@
 
   function scopeOfRow(row) {
     return row && row.closest ? row.closest("[data-demo-record]") : null;
+  }
+
+  /* Grid cards are built from table rows, so a control inside a card carries
+     the position of its row (data-demo-row-ref) and the table it belongs to
+     (data-demo-row-table). Everything that used to ask for the closest <tr>
+     asks this helper instead, and a card keeps every power of its row. */
+  function rowOf(control) {
+    if (!control) return null;
+    var row = control.closest ? control.closest("tr") : null;
+    if (row) return row;
+    if (!control.getAttribute) return null;
+    var selector = control.getAttribute("data-demo-row-table");
+    var ref = control.getAttribute("data-demo-row-ref");
+    if (!selector || ref === null) return null;
+    var table = q(selector);
+    if (!table) return null;
+    return qa("tbody tr", table)[parseInt(ref, 10)] || null;
   }
 
   function recordName(scope) {
@@ -518,11 +550,15 @@
         : (name ? "Message " + name : "New message");
     }
 
+    var address = trigger.getAttribute("data-demo-message-to") || "";
     var to = q("[data-demo-message-to]", modalEl);
-    if (to) to.value = name;
+    if (to) to.value = address || name;
 
     var body = q("[data-demo-message-body]", modalEl);
     if (body) body.value = "";
+
+    /* The trigger also decides what the page's activity feed records. */
+    modalEl.__qMessageLog = trigger.getAttribute("data-demo-message-log") || "";
 
     showModal(modalEl);
     window.setTimeout(function () {
@@ -539,6 +575,7 @@
     var body = q("[data-demo-message-body]", modalEl);
     var recipient = to ? to.value.trim() : "";
     var text = body ? body.value.trim() : "";
+    var log = button.getAttribute("data-demo-message-log") || modalEl.__qMessageLog || "";
 
     if (!text) {
       toast("Write a message before sending.", "warning", "Nothing to send");
@@ -549,6 +586,59 @@
     hideModal(modalEl);
     if (body) body.value = "";
     toast("Message sent to " + (recipient || "this contact") + " — demo only.", "success", "Sent");
+    /* A page that keeps an activity feed can note the message in it. */
+    if (log) {
+      addTimelineEntry(doc, {
+        title: log.replace(/\{to\}/g, recipient || "the contact"),
+        meta: "Ava Reynolds · just now"
+      });
+    }
+  }
+
+  /* ---------------------------------------------------------------------- */
+  /* 3d. Activity feed — "Log call" writes a real timeline entry        */
+  /* ---------------------------------------------------------------------- */
+
+  /* <button data-demo-log="Called about the renewal"> prepends an entry to the
+     page's activity timeline (or to the list named by data-demo-log-target), so
+     the button leaves a trace instead of only a toast. */
+  function addTimelineEntry(scope, entry) {
+    var host = q(entry.target || ".timeline", scope);
+    if (!host) return false;
+
+    var item = doc.createElement("li");
+    item.className = "timeline__item";
+    item.innerHTML =
+      '<span class="timeline__dot' + (entry.variant ? " timeline__dot--" + entry.variant : "") + '"></span>' +
+      '<p class="timeline__title"></p>' +
+      (entry.meta ? '<p class="timeline__meta"></p>' : "") +
+      (entry.text ? '<p class="timeline__text"></p>' : "");
+
+    var title = q(".timeline__title", item);
+    if (title) title.textContent = entry.title;
+    var meta = q(".timeline__meta", item);
+    if (meta) meta.textContent = entry.meta;
+    var text = q(".timeline__text", item);
+    if (text) text.textContent = entry.text;
+
+    host.insertBefore(item, host.firstElementChild);
+    flash(item);
+    return item;
+  }
+
+  function logActivity(control) {
+    var title = control.getAttribute("data-demo-log");
+    var entry = addTimelineEntry(doc, {
+      title: title,
+      meta: control.getAttribute("data-demo-log-meta") || ("Ava Reynolds · just now"),
+      text: control.getAttribute("data-demo-log-text") || "",
+      variant: control.getAttribute("data-demo-log-variant") || "",
+      target: control.getAttribute("data-demo-log-target") || ""
+    });
+
+    var done = control.getAttribute("data-demo-log-done");
+    if (entry) toast(done || ("Added to the activity feed — demo only."), "success", "Logged");
+    else toast(done || (title + " — demo only."), "success", "Logged");
   }
 
   /* ---------------------------------------------------------------------- */
@@ -580,7 +670,7 @@
     var modalEl = q(trigger.getAttribute("data-demo-open"));
     if (!modalEl) return null;
 
-    var row = trigger.closest("tr");
+    var row = rowOf(trigger);
     var scope = scopeOfRow(row);
 
     /* A dialog opened from an edit button inside the view dialog keeps the row. */
@@ -716,6 +806,7 @@
 
   function refresh(table) {
     if (!table) return;
+    rebuildGrids(table);
     emit(table, "qevora:repaginate");
     emit(paginateWrapper(table), "qevora:repaginate");
     updateCounts(table);
@@ -729,7 +820,7 @@
     /* A delete button normally deletes what it sits in; a button in a page
        header (chat options, for example) names the element it removes. */
     var target = trigger.getAttribute("data-demo-delete-target");
-    var row = (target && q(target)) || trigger.closest("[data-demo-deletable], tr, li[data-demo-item], .card");
+    var row = (target && q(target)) || rowOf(trigger) || trigger.closest("[data-demo-deletable], tr, li[data-demo-item], .card");
     var modalEl = q("#q-demo-confirm");
     if (!row || !modalEl) return;
 
@@ -1372,7 +1463,7 @@
 
   /* A download button inside a row exports just that row. */
   function exportRow(trigger) {
-    var row = trigger.closest("tr");
+    var row = rowOf(trigger);
     var table = row && row.closest("table");
     if (!row || !table) return;
 
@@ -1434,13 +1525,35 @@
     });
   }
 
-  function buildRecordForm(form, table, record) {
+  /* A field list can also come from an attribute, so a details page (which has
+     no table to read) can use the same dialog: data-demo-fields="name:Customer,
+     plan:Plan". Options for the selects come from data-demo-options="plan:A|B". */
+  function fieldsFromAttribute(value) {
+    return String(value || "").split(",").map(function (part) {
+      var bits = part.split(":");
+      var key = (bits[0] || "").trim();
+      var label = bits.slice(1).join(":").trim();
+      return key ? { key: key, label: label || key } : null;
+    }).filter(Boolean);
+  }
+
+  function optionsFromAttribute(value, key) {
+    var found = [];
+    String(value || "").split(",").forEach(function (part) {
+      var bits = part.split(":");
+      if ((bits[0] || "").trim() !== key) return;
+      found = (bits.slice(1).join(":") || "").split("|").map(function (item) { return item.trim(); }).filter(Boolean);
+    });
+    return found;
+  }
+
+  function buildFieldForm(form, fields, record, optionsOf) {
     var host = q("[data-demo-record-fields]", form);
     if (!host) return;
     host.innerHTML = "";
 
-    cellFields(table).forEach(function (field, index) {
-      var options = optionsFor(table, field.key);
+    fields.forEach(function (field, index) {
+      var options = optionsOf ? optionsOf(field.key) : [];
       var numbers = /^(value|amount|total|price|quantity|seats|score|count|number)$/.test(field.key);
       /* Only the columns that are really a short list of choices become a
          <select>. A name, an email or a company has to stay typeable. */
@@ -1467,6 +1580,13 @@
         });
       }
       if (record && record[field.key] !== undefined) control.value = record[field.key];
+    });
+  }
+
+  /* The table path keeps the wrapper it always had. */
+  function buildRecordForm(form, table, record) {
+    buildFieldForm(form, cellFields(table), record, function (key) {
+      return optionsFor(table, key);
     });
   }
 
@@ -1505,14 +1625,106 @@
     return row;
   }
 
+  /* A details page has the record printed on it instead of a table row, so the
+     edit button points at the markup: data-demo-edit="#customer-profile" opens
+     the same dialog, reads the current values from the [data-slot] elements in
+     that scope and writes the saved values back into them. */
+  function scopeRecord(scopeSelector) {
+    var scopes = qa(scopeSelector);
+    var record = {};
+    scopes.forEach(function (scope) {
+      qa("[data-slot]", scope).forEach(function (slot) {
+        var key = slot.getAttribute("data-slot");
+        if (record[key] !== undefined) return;
+        record[key] = slot.tagName === "INPUT" || slot.tagName === "TEXTAREA"
+          ? slot.value
+          : slot.textContent.replace(/\s+/g, " ").trim();
+      });
+    });
+    return { scopes: scopes, record: record };
+  }
+
+  function openEditDialog(trigger, scopeSelector) {
+    var modalEl = q(trigger.getAttribute("data-demo-new") || "#q-demo-record");
+    var found = scopeRecord(scopeSelector);
+    if (!modalEl || !found.scopes.length) return;
+
+    var fields = fieldsFromAttribute(trigger.getAttribute("data-demo-fields"));
+    if (!fields.length) return;
+
+    var form = q("form[data-demo-form]", modalEl);
+    var label = trigger.getAttribute("data-demo-label") || "Record";
+    var options = trigger.getAttribute("data-demo-options");
+
+    modalEl.__qTable = null;
+    modalEl.__qRow = null;
+    modalEl.__qScopes = found.scopes;
+    modalEl.__qLabel = label;
+
+    buildFieldForm(form, fields, found.record, function (key) {
+      return optionsFromAttribute(options, key);
+    });
+    if (form) {
+      form.classList.remove("was-validated");
+      form.setAttribute("data-demo-label", label);
+    }
+
+    qa("[data-demo-title]", modalEl).forEach(function (element) {
+      element.textContent = "Edit " + label.toLowerCase();
+    });
+    qa("[data-demo-submit]", modalEl).forEach(function (element) {
+      element.textContent = "Save changes";
+    });
+
+    showModal(modalEl);
+    var first = q("[data-demo-field]", form);
+    if (first) window.setTimeout(function () { first.focus(); }, 180);
+  }
+
+  function saveScopeRecord(form, modalEl, record) {
+    var label = modalEl.__qLabel || "Record";
+    var avatarChanged = false;
+
+    modalEl.__qScopes.forEach(function (scope) {
+      qa("[data-slot]", scope).forEach(function (slot) {
+        var key = slot.getAttribute("data-slot");
+        if (record[key] === undefined) return;
+        if (/^(value|amount|total|price|lifetime)$/.test(key)) slot.textContent = money(record[key]);
+        else {
+          if (slot.tagName === "INPUT" || slot.tagName === "TEXTAREA") slot.value = record[key];
+          else slot.textContent = record[key];
+        }
+      });
+      /* Initials follow the name, so the avatar cannot go stale. */
+      qa("[data-demo-initials]", scope).forEach(function (element) {
+        var key = element.getAttribute("data-demo-initials");
+        if (record[key] === undefined) return;
+        element.textContent = initialsOf(record[key]);
+        avatarChanged = true;
+      });
+      flash(q(".card", scope) || scope);
+    });
+
+    hideModal(modalEl);
+    form.reset();
+    toast(label + " updated." + (avatarChanged ? " The avatar initials follow the new name." : ""), "success", "Saved");
+    modalEl.__qScopes = null;
+  }
+
   function openRecordDialog(trigger) {
+    var scopeSelector = trigger.getAttribute("data-demo-edit");
+    if (scopeSelector) {
+      openEditDialog(trigger, scopeSelector);
+      return;
+    }
+
     var modalEl = q(trigger.getAttribute("data-demo-new"));
     if (!modalEl) return;
 
     var table = q(trigger.getAttribute("data-demo-table")) || q("[data-demo-record]");
     if (!table) return;
 
-    var row = trigger.closest("tr");
+    var row = rowOf(trigger);
     var record = row ? readRecord(row) : null;
     var form = q("form[data-demo-form]", modalEl);
     var label = labelFor(trigger, table);
@@ -1543,6 +1755,18 @@
 
   function submitRecordDialog(form) {
     var modalEl = form.closest(".modal");
+    if (modalEl && modalEl.__qScopes) {
+      if (!form.checkValidity()) {
+        form.classList.add("was-validated");
+        var bad = q(":invalid", form);
+        if (bad) bad.focus();
+        return false;
+      }
+      form.classList.remove("was-validated");
+      saveScopeRecord(form, modalEl, collectForm(form));
+      return true;
+    }
+
     var table = modalEl ? modalEl.__qTable : null;
     if (!table) return false;
 
@@ -1603,40 +1827,126 @@
      rows, so both views always show the same records. */
   function buildGrid(table, host) {
     var fields = fieldsOf(table);
+    var rows = qa("tbody tr", table);
+    var tableSelector = table.id ? "#" + table.id : "";
     var html = "";
 
-    qa("tbody tr", table).forEach(function (row) {
+    rows.forEach(function (row, index) {
       if (row.getAttribute("data-filtered") === "true") return;
+
       var record = readRecord(row);
       var title = record[fields[0] ? fields[0].key : "name"] || "Record";
-      var subtitle = "";
+      var cells = row.children;
+
+      /* The first cell holds the avatar, the name and the line under it, so the
+         card reads its subtitle from the markup instead of guessing. */
+      var firstCell = cells[0];
+      var subtitleNode = firstCell ? q("a[href] + span, .fs-8", firstCell) : null;
+      var subtitle = subtitleNode ? subtitleNode.textContent.replace(/\s+/g, " ").trim() : "";
+
+      var link = firstCell ? q("a[href]", firstCell) : null;
+      var href = link ? link.getAttribute("href") : "";
+
       var badge = "";
       var facts = "";
 
-      fields.slice(1).forEach(function (field) {
+      fields.forEach(function (field, fieldIndex) {
+        if (fieldIndex === 0) return;
+
+        var cell = cells[fieldIndex];
+        var bar = cell ? q(".progress", cell) : null;
         var value = record[field.key];
-        if (value === undefined) return;
-        if (!subtitle && /@|\./.test(value)) subtitle = value;
-        else if (/^(status|plan|health|stage|tier)$/.test(field.key)) {
-          badge = '<span class="badge badge-pill badge-soft-' + variantFor(value, field.key) + '">' + value + "</span>";
-        } else {
-          facts += '<span class="fs-8 text-muted-2">' + field.label + ": " +
-            (/^(value|amount|total|price)$/.test(field.key) ? money(value) : value) + "</span>";
+
+        if (bar) {
+          /* A progress cell keeps its bar (health, usage) instead of printing
+             an empty "Label:" line. */
+          facts += '<div class="col-6"><dt class="fs-8 fw-400 text-muted-2 mb-1">' + field.label +
+            '</dt><dd class="mb-0">' + bar.outerHTML + "</dd></div>";
+          return;
         }
+        if (value === undefined || value === "") return;
+        if (/^(status|plan|health|stage|tier)$/.test(field.key)) {
+          /* Same markup as the table cell, so the colour follows the row. */
+          var tableBadge = cell ? q(".badge", cell) : null;
+          if (!badge) {
+            badge = tableBadge
+              ? tableBadge.outerHTML
+              : '<span class="badge badge-pill badge-soft-' + variantFor(value, field.key) + '">' + value + "</span>";
+          }
+          return;
+        }
+        if (!subtitle && /@|\./.test(value)) {
+          subtitle = value;
+          return;
+        }
+        facts += '<div class="col-6"><dt class="fs-8 fw-400 text-muted-2 mb-1">' + field.label +
+          '</dt><dd class="mb-0 fs-7 fw-500 text-heading">' +
+          (/^(value|amount|total|price)$/.test(field.key) ? money(value) : value) + "</dd></div>";
       });
 
+      /* The row's own actions come along, pointing back at the row they belong
+         to, so edit, open and delete work the same in both views. */
+      var actionCell = cells[cells.length - 1];
+      var actionHtml = "";
+      if (actionCell && actionCell.querySelector(".table-actions, a, button")) {
+        actionHtml = actionCell.innerHTML;
+      }
+
       html +=
-        '<div class="col-sm-6 col-xl-4"><div class="card h-100"><div class="card-body">' +
-        '<div class="d-flex align-items-center gap-3 mb-3">' +
-        '<span class="avatar avatar-sm ' + avatarClassOf(title) + '">' + initialsOf(title) + "</span>" +
-        '<div class="min-w-0"><p class="mb-0 fw-600 text-heading text-truncate">' + title + "</p>" +
-        '<p class="mb-0 fs-8 text-muted-2 text-truncate">' + (subtitle || record.email || "") + "</p></div>" +
+        '<div class="col-sm-6 col-xl-4"><div class="card h-100"><div class="card-body d-flex flex-column gap-3">' +
+        '<div class="d-flex align-items-center gap-3">' +
+        '<span class="avatar ' + avatarClassOf(title) + '">' + initialsOf(title) + "</span>" +
+        '<div class="min-w-0 flex-grow-1">' +
+        (href
+          ? '<a class="d-block fw-600 text-heading text-truncate" href="' + href + '">' + title + "</a>"
+          : '<p class="mb-0 fw-600 text-heading text-truncate">' + title + "</p>") +
+        '<p class="mb-0 fs-8 text-muted-2 text-truncate">' + (subtitle || "&nbsp;") + "</p>" +
+        "</div>" +
         (badge ? '<div class="ms-auto">' + badge + "</div>" : "") +
-        '</div><div class="d-flex flex-wrap gap-3">' + facts + "</div>" +
+        "</div>" +
+        '<div class="divider-y"></div>' +
+        '<dl class="row g-3 mb-0">' + facts + "</dl>" +
+        (actionHtml
+          ? '<div class="d-flex justify-content-end mt-auto pt-1">' + actionHtml + "</div>"
+          : "") +
         "</div></div></div>";
     });
 
     host.innerHTML = html;
+
+    /* Every control keeps a pointer to its row. */
+    if (tableSelector) {
+      Array.prototype.forEach.call(host.children, function (card, cardIndex) {
+        var ref = String(visibleRowIndex(rows, cardIndex));
+        qa("a, button", card).forEach(function (control) {
+          control.setAttribute("data-demo-row-table", tableSelector);
+          control.setAttribute("data-demo-row-ref", ref);
+        });
+      });
+    }
+  }
+
+  /* The card list skips filtered-out rows, so the nth card owns the nth row
+     that is currently visible. */
+  function visibleRowIndex(rows, cardIndex) {
+    var seen = -1;
+    for (var i = 0; i < rows.length; i++) {
+      if (rows[i].getAttribute("data-filtered") === "true") continue;
+      seen += 1;
+      if (seen === cardIndex) return i;
+    }
+    return cardIndex;
+  }
+
+  /* A grid that is on screen follows the table: filters, edits, new rows and
+     deleted rows all land there without a second click. */
+  function rebuildGrids(table) {
+    if (!table || !table.id) return;
+    qa('[data-demo-view="grid"][data-demo-view-table="#' + table.id + '"]').forEach(function (button) {
+      var target = q(button.getAttribute("data-demo-view-target"));
+      var grid = target ? q("[data-demo-grid]", target) : null;
+      if (grid && !grid.classList.contains("d-none")) buildGrid(table, grid);
+    });
   }
 
   function setView(button) {
@@ -1713,7 +2023,7 @@
   function reuseFrom(control) {
     var url = control.getAttribute("data-demo-reuse");
     if (!url) return;
-    var row = control.closest("tr");
+    var row = rowOf(control);
     var source = row ? q("[data-demo-copy-block-text]", row) : null;
     var text = source ? source.textContent.replace(/\s+/g, " ").trim() : "";
     if (!text) {
@@ -1902,7 +2212,7 @@
 
     /* Inside a table row the useful text is the first data cell, not the whole
        card the row happens to live in. */
-    var row = control.closest("tr");
+    var row = rowOf(control);
     var cell = row ? q("td:nth-child(2), td", row) : null;
 
     var host = control.closest(".msg, [data-demo-copy-block], .card, article, li");
@@ -2743,7 +3053,10 @@
       if (!form) return;
       event.preventDefault();
       var modalEl = form.closest(".modal");
-      if (modalEl && modalEl.__qTable) submitRecordDialog(form);
+      /* The record dialog is used for three jobs: adding a table row, editing a
+         table row and editing a page section. The dialog knows which one it is
+         (__qTable / __qRow / __qScopes), so it gets the first say. */
+      if (modalEl && (modalEl.__qTable || modalEl.__qRow || modalEl.__qScopes)) submitRecordDialog(form);
       else submitForm(form);
     });
 
@@ -2754,11 +3067,11 @@
         " [data-demo-print], [data-demo-copy], [data-demo-save], [data-demo-discard]," +
         " [data-demo-pick], [data-demo-range], [data-demo-remove], [data-demo-select]," +
         " [data-demo-regenerate], [data-demo-reset-form]," +
-        " [data-demo-toggle], [data-demo-gen], [data-demo-chat], [data-demo-new]," +
+        " [data-demo-toggle], [data-demo-gen], [data-demo-chat], [data-demo-new], [data-demo-edit]," +
         " [data-demo-export], [data-demo-export-row], [data-demo-download], [data-demo-go], [data-demo-view]," +
         " [data-demo-import], [data-demo-import-run], [data-demo-add-card], [data-demo-add-column]," +
         " [data-demo-upload], [data-demo-remove-photo], [data-demo-new-chat]," +
-        " [data-demo-message], [data-demo-message-send]," +
+        " [data-demo-message], [data-demo-message-send], [data-demo-log]," +
         " [data-copy-text], [data-demo-chip], [data-demo-reset], [data-demo-clear], button, a");
       if (!control) return;
 
@@ -2966,7 +3279,7 @@
         return;
       }
 
-      if (control.hasAttribute("data-demo-new")) {
+      if (control.hasAttribute("data-demo-edit") || control.hasAttribute("data-demo-new")) {
         event.preventDefault();
         openRecordDialog(control);
         return;
@@ -3000,6 +3313,12 @@
         if (control.hasAttribute("data-bs-toggle")) return; // Bootstrap owns this one
         event.preventDefault();
         if (!control.disabled) runLoadingButton(control);
+        return;
+      }
+
+      if (control.hasAttribute("data-demo-log")) {
+        event.preventDefault();
+        logActivity(control);
         return;
       }
 

@@ -186,6 +186,147 @@ const row = (w, name) => [...w.document.querySelectorAll("tr")].find((tr) => tex
   check("chat: no console errors", errors.length === 0, errors[0] || "");
 }
 
+/* ------------------------------------------- customer details: the three actions */
+{
+  const { w, errors } = await open("pages/customer-details.html");
+  const d = w.document;
+  const head = d.querySelector("h1.q-page-head__title");
+  const card = d.querySelector("#customer-profile");
+
+  /* 1. Email opens the shared message dialog with the account's billing address */
+  const email = [...d.querySelectorAll(".q-page-head button")].find((b) => /Email/.test(text(b)));
+  check("customer-details: the Email button exists", !!email, "");
+  click(w, email);
+  await wait(240);
+  const dialog = d.querySelector("#q-demo-message");
+  check("customer-details: Email opens the message dialog", shown(dialog), dialog.className);
+  check("customer-details: the To field holds the billing address", d.querySelector("#q-demo-message-to").value === "billing@example.com",
+    d.querySelector("#q-demo-message-to").value);
+  check("customer-details: the heading names the account", /Northstar Labs/.test(text(d.querySelector("#q-demo-message-title"))), text(d.querySelector("#q-demo-message-title")));
+  d.querySelector("#q-demo-message-body").value = "Your renewal is coming up.";
+  click(w, d.querySelector("[data-demo-message-send]"));
+  await wait(240);
+  check("customer-details: sending confirms", toasts(w).some((t) => /Message sent to billing@example\.com/.test(t)), toasts(w).join(" | ").slice(0, 80));
+  check("customer-details: the email lands in the activity feed",
+    /Email sent to billing@example\.com/.test(text(d.querySelector(".timeline .timeline__item"))), text(d.querySelector(".timeline .timeline__item")).slice(0, 60));
+
+  /* 2. Log call writes a real entry into the timeline */
+  const timelineBefore = d.querySelectorAll(".timeline .timeline__item").length;
+  const call = [...d.querySelectorAll(".q-page-head button")].find((b) => /Log call/.test(text(b)));
+  check("customer-details: the Log call button exists", !!call, "");
+  click(w, call);
+  await wait(240);
+  const first = d.querySelector(".timeline .timeline__item");
+  check("customer-details: Log call adds a timeline entry", d.querySelectorAll(".timeline .timeline__item").length === timelineBefore + 1,
+    `${timelineBefore} → ${d.querySelectorAll(".timeline .timeline__item").length}`);
+  check("customer-details: the entry is the call", /Call logged: renewal/.test(text(first)), text(first).slice(0, 60));
+  check("customer-details: the entry carries who and when", /Ava Reynolds/.test(text(first)), text(first).slice(0, 60));
+  check("customer-details: the call confirms with a toast", toasts(w).some((t) => /Call logged/.test(t)), toasts(w).join(" | ").slice(0, 70));
+
+  /* 3. Edit customer edits the page itself */
+  const edit = [...d.querySelectorAll(".q-page-head button")].find((b) => /Edit customer/.test(text(b)));
+  check("customer-details: the Edit customer button exists", !!edit, "");
+  click(w, edit);
+  await wait(260);
+  const record = d.querySelector("#q-demo-record");
+  const form = record.querySelector("form[data-demo-form]");
+  check("customer-details: the edit dialog opens", shown(record) && record.querySelectorAll("[data-demo-field]").length >= 6,
+    `${record.querySelectorAll("[data-demo-field]").length} fields`);
+  check("customer-details: the dialog is titled for editing", /Edit customer/.test(text(record.querySelector("[data-demo-title]"))), text(record.querySelector("[data-demo-title]")));
+  const nameField = record.querySelector('[data-demo-field="name"]');
+  check("customer-details: the name is prefilled", !!nameField && nameField.value === "Northstar Labs", nameField ? nameField.value : "missing");
+  check("customer-details: the seat count is prefilled", record.querySelector('[data-demo-field="seats"]').value === "142", record.querySelector('[data-demo-field="seats"]').value);
+  check("customer-details: the plan select is prefilled", record.querySelector('[data-demo-field="plan"]').value === "Scale", record.querySelector('[data-demo-field="plan"]').value);
+
+  nameField.value = "Northstar AI";
+  record.querySelector('[data-demo-field="seats"]').value = "156";
+  click(w, record.querySelector("[data-demo-submit]"));
+  await wait(280);
+  check("customer-details: saving closes the dialog", !shown(record), record.className);
+  check("customer-details: the page title follows the save", text(head) === "Northstar AI", text(head));
+  check("customer-details: the profile card follows the save", text(card.querySelector("h2")) === "Northstar AI", text(card.querySelector("h2")));
+  check("customer-details: the avatar initials follow the name", text(card.querySelector(".avatar")) === "NA", text(card.querySelector(".avatar")));
+  check("customer-details: the seat count updates in both places",
+    text(card.querySelector('[data-slot="seats"]')) === "156" && text(d.querySelector('.q-page-head [data-slot="seats"]')) === "156",
+    `${text(card.querySelector('[data-slot="seats"]'))} / ${text(d.querySelector('.q-page-head [data-slot="seats"]'))}`);
+  check("customer-details: the save confirms", toasts(w).some((t) => /Customer updated\./.test(t)), toasts(w).join(" | ").slice(0, 70));
+  check("customer-details: no console errors", errors.length === 0, errors[0] || "");
+}
+
+/* --------------------------------------- customer directory: the grid cards build */
+{
+  const { w, errors } = await open("pages/customers.html");
+  const d = w.document;
+  const click2 = (el) => click(w, el);
+  const cards = () => [...(d.querySelector("[data-demo-grid]") || { children: [] }).children];
+
+  click2(d.querySelector('[data-demo-view="grid"]'));
+  await wait(240);
+  const grid = d.querySelector("[data-demo-grid]");
+  check("directory: the grid view builds cards", !!grid && grid.children.length === 5, `${grid ? grid.children.length : 0} cards`);
+  check("directory: each card shows the same five customers as the table",
+    cards().map((c) => text(c.querySelector("a, p"))).join("|") ===
+      [...d.querySelectorAll("#customers-table tbody tr [data-slot=name]")].map(text).join("|"),
+    cards().map((c) => text(c.querySelector("a, p"))).join(", "));
+
+  const card = cards()[0];
+  check("directory: the card names the account and its domain",
+    text(card.querySelector("a")) === "Northstar Labs" && /northstarlabs\.com/.test(text(card)),
+    text(card).slice(0, 60));
+  const badge = card.querySelector(".badge");
+  check("directory: the plan badge keeps the table colour",
+    !!badge && badge.className === d.querySelector("#customers-table .badge").className && text(badge) === "Scale",
+    badge ? badge.className : "no badge");
+  check("directory: the plan badge is never an empty pill", !!badge && text(badge).length > 0, text(badge));
+  const facts = [...card.querySelectorAll("dt")].map(text);
+  check("directory: the facts are labelled, not run together",
+    facts.join(",") === "Seats,Lifetime value,Health,Renewal", facts.join(","));
+  check("directory: the health cell becomes a real bar", card.querySelectorAll(".progress").length === 1,
+    `${card.querySelectorAll(".progress").length} bars`);
+  check("directory: no fact is printed with an empty value",
+    [...card.querySelectorAll("dd")].every((dd) => text(dd).length > 0 || dd.querySelector(".progress")),
+    [...card.querySelectorAll("dd")].map((dd) => text(dd) || "(empty)").join(" | "));
+
+  /* The cards keep the row's own buttons: edit, open and delete still work. */
+  const edit = [...card.querySelectorAll("button")].find((b) => /Edit/.test(b.getAttribute("aria-label") || ""));
+  check("directory: the card keeps the row actions", !!edit, [...card.querySelectorAll("button")].length + " buttons");
+  click2(edit);
+  await wait(260);
+  const record = d.querySelector("#q-demo-record");
+  check("directory: edit from a card opens the dialog prefilled",
+    shown(record) && record.querySelector('[data-demo-field="name"]').value === "Northstar Labs",
+    record.querySelector('[data-demo-field="name"]') ? record.querySelector('[data-demo-field="name"]').value : "no field");
+  record.querySelector('[data-demo-field="name"]').value = "Northstar Group";
+  click2(record.querySelector("[data-demo-submit]"));
+  await wait(300);
+  check("directory: the save lands in the table row", text(row(w, "Northstar Group")) !== "", text(row(w, "Northstar Group")).slice(0, 40));
+  check("directory: the save lands in the card too", text(cards()[0].querySelector("a")) === "Northstar Group",
+    text(cards()[0].querySelector("a")));
+
+  /* The grid follows the search box instead of going stale. */
+  const search = d.querySelector("#customer-search");
+  search.value = "orbit";
+  search.dispatchEvent(new w.Event("input", { bubbles: true }));
+  await wait(260);
+  check("directory: searching narrows the cards", cards().length === 1 && /Orbit/.test(text(cards()[0])),
+    `${cards().length} cards`);
+  search.value = "";
+  search.dispatchEvent(new w.Event("input", { bubbles: true }));
+  await wait(260);
+
+  /* Delete from a card removes the row it belongs to and rebuilds the grid. */
+  const bin = [...cards()[0].querySelectorAll("button")].find((b) => /Delete/.test(b.getAttribute("aria-label") || ""));
+  click2(bin);
+  await wait(240);
+  click2(d.querySelector("#q-demo-confirm [data-demo-confirm]"));
+  await wait(320);
+  check("directory: deleting from a card removes the table row",
+    d.querySelectorAll("#customers-table tbody tr").length === 4 && row(w, "Northstar Group") === undefined,
+    `${d.querySelectorAll("#customers-table tbody tr").length} rows`);
+  check("directory: the grid drops the card in the same breath", cards().length === 4, `${cards().length} cards`);
+  check("directory: no console errors", errors.length === 0, errors[0] || "");
+}
+
 /* ------------------------------------------------ tooltip-only buttons answer */
 {
   const { w, errors } = await open("components/tooltips.html");
