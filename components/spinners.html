@@ -1005,6 +1005,10 @@
   transition: box-shadow var(--q-transition), transform var(--q-transition);
 }
 
+[data-demo-grid] &gt; .card[data-demo-grid-empty] {
+  grid-column: 1 / -1;
+}
+
 .card-header {
   border-bottom: 1px solid var(--q-border-color);
   display: flex;
@@ -1098,6 +1102,10 @@
   transition: box-shadow var(--q-transition), transform var(--q-transition);
 }
 
+[data-demo-grid] &gt; .card[data-demo-grid-empty] {
+  grid-column: 1 / -1;
+}
+
 .card-header {
   border-bottom: 1px solid var(--q-border-color);
   display: flex;
@@ -1142,10 +1150,6 @@
 }
 
 .table &gt; tbody td {
-  padding: 0.85rem 1rem;
-  border-color: var(--q-border-color);
-}
-
 /* … sample trimmed for length */</code></pre>
           </div>
         </div>

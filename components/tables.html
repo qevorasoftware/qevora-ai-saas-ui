@@ -906,6 +906,10 @@
   transition: box-shadow var(--q-transition), transform var(--q-transition);
 }
 
+[data-demo-grid] &gt; .card[data-demo-grid-empty] {
+  grid-column: 1 / -1;
+}
+
 .card-header {
   border-bottom: 1px solid var(--q-border-color);
   display: flex;
@@ -950,10 +954,6 @@
   inset-inline-start: 0.8rem;
   top: 50%;
   transform: translateY(-50%);
-  color: var(--q-faint-color);
-  pointer-events: none;
-}
-
 /* … sample trimmed for length */</code></pre>
           </div>
         </div>
@@ -1072,6 +1072,10 @@ Qevora.toast("Invoice INV-2026-0186 marked as paid", "success", "Payments");</co
   transition: box-shadow var(--q-transition), transform var(--q-transition);
 }
 
+[data-demo-grid] &gt; .card[data-demo-grid-empty] {
+  grid-column: 1 / -1;
+}
+
 .card-header {
   border-bottom: 1px solid var(--q-border-color);
   display: flex;
@@ -1116,10 +1120,6 @@ Qevora.toast("Invoice INV-2026-0186 marked as paid", "success", "Payments");</co
 }
 
 .table &gt; tbody td {
-  padding: 0.85rem 1rem;
-  border-color: var(--q-border-color);
-}
-
 /* … sample trimmed for length */</code></pre>
           </div>
         </div>

@@ -880,6 +880,10 @@
   transition: box-shadow var(--q-transition), transform var(--q-transition);
 }
 
+[data-demo-grid] &gt; .card[data-demo-grid-empty] {
+  grid-column: 1 / -1;
+}
+
 .card-header {
   border-bottom: 1px solid var(--q-border-color);
   display: flex;
@@ -924,10 +928,6 @@
   font-size: 0.75rem;
   color: var(--q-muted-color);
 }
-
-.legend__item {
-  display: inline-flex;
-  align-items: center;
 /* … sample trimmed for length */</code></pre>
           </div>
         </div>

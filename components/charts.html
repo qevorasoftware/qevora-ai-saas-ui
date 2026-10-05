@@ -760,6 +760,10 @@
   transition: box-shadow var(--q-transition), transform var(--q-transition);
 }
 
+[data-demo-grid] &gt; .card[data-demo-grid-empty] {
+  grid-column: 1 / -1;
+}
+
 .card-header {
   border-bottom: 1px solid var(--q-border-color);
   display: flex;
@@ -804,10 +808,6 @@
   color: var(--q-success);
 }
 
-.chart-holder {
-  position: relative;
-  width: 100%;
-}
 /* … sample trimmed for length */</code></pre>
           </div>
         </div>
@@ -889,6 +889,10 @@ document.addEventListener("qevora:themechange", function () {
   --bs-card-spacer-x: 1.25rem;
   box-shadow: var(--q-shadow-xs);
   transition: box-shadow var(--q-transition), transform var(--q-transition);
+}
+
+[data-demo-grid] &gt; .card[data-demo-grid-empty] {
+  grid-column: 1 / -1;
 }
 
 .card-header {
@@ -1003,6 +1007,10 @@ document.addEventListener("qevora:themechange", function () {
   transition: box-shadow var(--q-transition), transform var(--q-transition);
 }
 
+[data-demo-grid] &gt; .card[data-demo-grid-empty] {
+  grid-column: 1 / -1;
+}
+
 .card-header {
   border-bottom: 1px solid var(--q-border-color);
   display: flex;
@@ -1047,7 +1055,7 @@ document.addEventListener("qevora:themechange", function () {
   height: 9px;
   border-radius: 3px;
   background: var(--q-primary);
-}</code></pre>
+/* … sample trimmed for length */</code></pre>
           </div>
         </div>
 
@@ -1221,6 +1229,10 @@ document.addEventListener("qevora:themechange", function () {
   --bs-card-spacer-x: 1.25rem;
   box-shadow: var(--q-shadow-xs);
   transition: box-shadow var(--q-transition), transform var(--q-transition);
+}
+
+[data-demo-grid] &gt; .card[data-demo-grid-empty] {
+  grid-column: 1 / -1;
 }
 
 .card-header {

@@ -908,6 +908,10 @@
   transition: box-shadow var(--q-transition), transform var(--q-transition);
 }
 
+[data-demo-grid] &gt; .card[data-demo-grid-empty] {
+  grid-column: 1 / -1;
+}
+
 .card-header {
   border-bottom: 1px solid var(--q-border-color);
   display: flex;
@@ -952,10 +956,6 @@
   letter-spacing: 0.05em;
   color: var(--q-muted-color);
   background: var(--q-surface-alt);
-  border-bottom: 1px solid var(--q-border-color);
-  padding: 0.75rem 1rem;
-  white-space: nowrap;
-}
 /* … sample trimmed for length */</code></pre>
           </div>
         </div>

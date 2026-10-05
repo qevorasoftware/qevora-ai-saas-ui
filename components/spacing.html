@@ -871,6 +871,10 @@
   transition: box-shadow var(--q-transition), transform var(--q-transition);
 }
 
+[data-demo-grid] &gt; .card[data-demo-grid-empty] {
+  grid-column: 1 / -1;
+}
+
 .fs-7 {
   font-size: 0.8125rem !important;
 }</code></pre>

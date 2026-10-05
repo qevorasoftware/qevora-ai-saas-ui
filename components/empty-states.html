@@ -1034,6 +1034,10 @@ Qevora.toast("Invoice INV-2026-0186 marked as paid", "success", "Payments");</co
   transition: box-shadow var(--q-transition), transform var(--q-transition);
 }
 
+[data-demo-grid] &gt; .card[data-demo-grid-empty] {
+  grid-column: 1 / -1;
+}
+
 .skeleton {
   background: linear-gradient(90deg, var(--q-surface-hover) 25%, var(--q-border-color) 37%, var(--q-surface-hover) 63%);
   background-size: 400% 100%;

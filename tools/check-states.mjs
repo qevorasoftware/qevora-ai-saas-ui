@@ -214,6 +214,17 @@ for (const [selector, css] of [[".form-select", components], [".form-select-sm",
     missing.length ? `no background for: ${missing.join(", ")}` : `no rule for: ${asked.join(", ")}`);
 }
 
+/* The card view of a table is built inside the card that holds the table, so it
+   has to carry its own inset and a grid that keeps the cards the same width. */
+{
+  const body = ruleBody(components, "[data-demo-grid]");
+  const display = declaration(body, "display");
+  const padding = declaration(body, "padding");
+  const columns = declaration(body, "grid-template-columns");
+  check(display === "grid" && !!padding && /auto-fill/.test(columns), "the table card view is inset and even",
+    `display=${display || "missing"} padding=${padding || "missing"} columns=${columns || "missing"}`);
+}
+
 /* The removed badge dot is the only place the demo prints an empty pill. */
 {
   const dot = declaration(ruleBody(components, ".badge-dot"), "display");

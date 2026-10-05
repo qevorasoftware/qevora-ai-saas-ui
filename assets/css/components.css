@@ -1017,6 +1017,21 @@
   border-bottom: 1px solid var(--q-border-color);
 }
 
+/* The card view of a data table. It is built by demo-ui.js inside the card that
+   holds the table, so it carries the same 1.25rem inset as the toolbar above it
+   and a grid that keeps card widths equal in every row. */
+[data-demo-grid] {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(20rem, 100%), 1fr));
+  gap: 1rem;
+  padding: 1.25rem;
+}
+
+/* A single message that spans the whole grid (no rows match the filters). */
+[data-demo-grid] > .card[data-demo-grid-empty] {
+  grid-column: 1 / -1;
+}
+
 .table-footer {
   display: flex;
   flex-wrap: wrap;

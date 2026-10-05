@@ -786,6 +786,10 @@
   transition: box-shadow var(--q-transition), transform var(--q-transition);
 }
 
+[data-demo-grid] &gt; .card[data-demo-grid-empty] {
+  grid-column: 1 / -1;
+}
+
 .card-header {
   border-bottom: 1px solid var(--q-border-color);
   display: flex;
@@ -830,10 +834,6 @@
 .btn-icon {
   width: 40px;
   height: 40px;
-  padding: 0;
-}
-
-.btn-icon.btn-sm {
 /* … sample trimmed for length */</code></pre>
           </div>
         </div>
@@ -956,6 +956,10 @@ Qevora.toast("Invoice INV-2026-0186 marked as paid", "success", "Payments");
   transition: box-shadow var(--q-transition), transform var(--q-transition);
 }
 
+[data-demo-grid] &gt; .card[data-demo-grid-empty] {
+  grid-column: 1 / -1;
+}
+
 .card-stat {
   position: relative;
   overflow: hidden;
@@ -1000,10 +1004,6 @@ Qevora.toast("Invoice INV-2026-0186 marked as paid", "success", "Payments");
   align-items: center;
   gap: 0.25rem;
   font-size: 0.75rem;
-  font-weight: 600;
-  padding: 0.15rem 0.45rem;
-  border-radius: var(--q-radius-xs);
-}
 /* … sample trimmed for length */</code></pre>
           </div>
         </div>
@@ -1112,6 +1112,10 @@ document.addEventListener("qevora:themechange", function () {
   transition: box-shadow var(--q-transition), transform var(--q-transition);
 }
 
+[data-demo-grid] &gt; .card[data-demo-grid-empty] {
+  grid-column: 1 / -1;
+}
+
 .card-feature {
   text-align: start;
   height: 100%;
@@ -1156,10 +1160,6 @@ document.addEventListener("qevora:themechange", function () {
   justify-content: center;
   gap: 0.5rem;
   transition: all var(--q-transition);
-}
-
-.btn i {
-  font-size: 1.05em;
 /* … sample trimmed for length */</code></pre>
           </div>
         </div>

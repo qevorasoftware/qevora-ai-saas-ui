@@ -324,6 +324,18 @@ const row = (w, name) => [...w.document.querySelectorAll("tr")].find((tr) => tex
     d.querySelectorAll("#customers-table tbody tr").length === 4 && row(w, "Northstar Group") === undefined,
     `${d.querySelectorAll("#customers-table tbody tr").length} rows`);
   check("directory: the grid drops the card in the same breath", cards().length === 4, `${cards().length} cards`);
+  /* Nothing matches: the grid answers with a card, not with an empty hole. */
+  search.value = "nothing-like-this";
+  search.dispatchEvent(new w.Event("input", { bubbles: true }));
+  await wait(260);
+  const empty = d.querySelector("[data-demo-grid-empty]");
+  check("directory: an empty grid explains itself",
+    !!empty && /No customers match the current filters\./.test(text(empty)), empty ? text(empty) : "no empty card");
+  search.value = "";
+  search.dispatchEvent(new w.Event("input", { bubbles: true }));
+  await wait(260);
+  check("directory: clearing the search brings the cards back", cards().length === 4, `${cards().length} cards`);
+
   check("directory: no console errors", errors.length === 0, errors[0] || "");
 }
 

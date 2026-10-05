@@ -390,6 +390,13 @@ FIXES DURING DEVELOPMENT
       column as a real progress bar, and copies the plan badge straight out of
       the table cell so the card and the table can never disagree on colour.
       The empty "Health:" text the old builder printed for a progress cell is
+      The card grid also stopped borrowing the table's Bootstrap .row: it is a
+      plain CSS grid now (auto-fill, minmax(min(20rem, 100%), 1fr)) with the
+      same 1.25rem inset as the toolbar above it, so the cards keep one width,
+      one gap and never touch the card's edge, and a search that matches nothing
+      answers with a short "No customers match the current filters." card
+      instead of an empty hole.
+      The empty "Health:" text the old builder printed for a progress cell is
       gone, and the old builder asked for a badge-soft-secondary class that the
       stylesheet never painted — soft badges now cover every variant the
       JavaScript can ask for (secondary aliases neutral) and a state check guards

@@ -167,6 +167,8 @@
     "data-demo-log-variant",
     "data-demo-log-done",
     "data-demo-initials",
+    "data-demo-row-ref",
+    "data-demo-row-table",
     "data-demo-message-to",
     "data-demo-message-body",
     "data-demo-message-title",
@@ -1893,7 +1895,7 @@
       }
 
       html +=
-        '<div class="col-sm-6 col-xl-4"><div class="card h-100"><div class="card-body d-flex flex-column gap-3">' +
+        '<div class="card h-100"><div class="card-body d-flex flex-column gap-3">' +
         '<div class="d-flex align-items-center gap-3">' +
         '<span class="avatar ' + avatarClassOf(title) + '">' + initialsOf(title) + "</span>" +
         '<div class="min-w-0 flex-grow-1">' +
@@ -1909,8 +1911,16 @@
         (actionHtml
           ? '<div class="d-flex justify-content-end mt-auto pt-1">' + actionHtml + "</div>"
           : "") +
-        "</div></div></div>";
+        "</div></div>";
     });
+
+    /* No match: the grid keeps the card shape so the page does not look broken. */
+    if (!html) {
+      html =
+        '<div class="card" data-demo-grid-empty><div class="card-body py-5 text-center">' +
+        '<p class="mb-0 text-muted-2">No ' + (table.getAttribute("data-demo-record") || "records") +
+        (table.getAttribute("data-demo-record") ? "s" : "") + " match the current filters.</p></div></div>";
+    }
 
     host.innerHTML = html;
 
@@ -1967,7 +1977,6 @@
     var gridHost = q("[data-demo-grid]", host);
     if (!gridHost) {
       gridHost = doc.createElement("div");
-      gridHost.className = "row g-3";
       gridHost.setAttribute("data-demo-grid", "");
       host.appendChild(gridHost);
     }
