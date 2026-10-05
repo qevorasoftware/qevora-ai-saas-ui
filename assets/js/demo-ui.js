@@ -2306,6 +2306,36 @@
 
   /* One hook for a kanban column, a pipeline stage, a grid of cards or a
      calendar cell: the new card copies the shape of the first one. */
+  var CARD_PATTERN = ".kanban__card, article, .card, li, .badge";
+
+  /* The thing that repeats. Usually the found node itself (a kanban card, a list
+     item, a calendar chip), but inside a Bootstrap grid the card sits in its own
+     column: cloning only the card would drop a second card into the same column
+     and the row would stretch (every card is h-100). When the ancestor that is a
+     direct child of the container is a grid column, the column is the unit. */
+  function repeatUnit(container, node) {
+    var unit = node;
+    while (unit.parentNode && unit.parentNode !== container) unit = unit.parentNode;
+    if (unit !== node && !/(^|\s)col(-[a-z0-9]+)*(\s|$)/.test(unit.className || "")) return node;
+    return unit;
+  }
+
+  /* How many of these the container already holds — measured on the sample's own
+     shape (tag + first class), so a card that happens to contain a badge is not
+     counted twice. */
+  function unitCount(container, node) {
+    var key = (node.className || "").split(/\s+/)[0] || "";
+    var selector = node.tagName.toLowerCase() + (key ? "." + key : "");
+    var list;
+    try {
+      list = qa(selector, container);
+    } catch (error) {
+      list = [];
+    }
+    if (!list.length) list = qa(CARD_PATTERN, container);
+    return list.length;
+  }
+
   function addCard(control) {
     var container = q(control.getAttribute("data-demo-add-card"));
     if (!container) {
@@ -2313,25 +2343,32 @@
       return;
     }
 
-    var sample = q("[data-demo-add-sample]", container) ||
-      q(".kanban__card, article, .card, li, .badge", container);
-    if (!sample) {
+    var node = q("[data-demo-add-sample]", container) || q(CARD_PATTERN, container);
+    if (!node) {
       toast("Add one item by hand first — the new one copies its shape.", "warning", "Demo");
       return;
     }
 
+    var unit = repeatUnit(container, node);
     var title = control.getAttribute("data-demo-card-title") || labelFor(control) || "New item";
-    var card = sample.cloneNode(true);
-    var count = qa(".kanban__card, article, .card, li, .badge", container).length + 1;
+    var card = unit.cloneNode(true);
+    var count = unitCount(container, node) + 1;
+
+    /* A title that is a link stays a link — only its text changes. */
     var titleNode = q(".kanban__card-title, .card-title, h2, h3, h4, strong", card);
-    if (titleNode) titleNode.textContent = title + " " + count;
-    else if (/^(SPAN|A|BADGE)$/.test(card.tagName)) card.textContent = title + " " + count + " " + count;
+    var titleLink = titleNode ? q("a", titleNode) : null;
+    if (titleLink) titleLink.textContent = title + " " + count;
+    else if (titleNode) titleNode.textContent = title + " " + count;
+    else if (/^(SPAN|A)$/.test(card.tagName)) card.textContent = title + " " + count + " " + count;
 
     qa("[data-demo-action]", card).forEach(function (button) {
       button.setAttribute("data-demo-action", title + " " + count + " — demo action.");
     });
 
-    sample.parentNode.insertBefore(card, sample.nextSibling);
+    /* A new column joins the end of the grid; a plain card keeps its place
+       beside the sample (kanban columns, calendar cells, schedule lists). */
+    if (unit === node) node.parentNode.insertBefore(card, node.nextSibling);
+    else container.appendChild(card);
     flash(card);
 
     var column = card.closest ? card.closest(".kanban__col") : null;

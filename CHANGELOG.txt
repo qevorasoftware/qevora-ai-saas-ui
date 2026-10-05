@@ -292,6 +292,13 @@ FIXES DURING DEVELOPMENT
     · pages/crm.html and every list page now agree with themselves: the footer
       counter shows the page window ("1–5 of 5 leads") whenever the table has a
       pager, so the same number appears in the footer, the pager and the export.
+    · "+ New project" keeps the grid it lands in: inside a Bootstrap grid the new
+      project is added as its own column at the end of the grid (it used to drop
+      a second card inside the first column, which stretched every card in the
+      row), the card keeps its link and its classes, and the numbering counts the
+      cards instead of counting cards plus the badges inside them ("New project
+      7", not "New project 13"). Kanban cards, calendar chips and schedule list
+      items are placed exactly as before.
 
   Links, buttons and runtime behaviour
     · The light/dark toggle did nothing when localStorage is unavailable —
