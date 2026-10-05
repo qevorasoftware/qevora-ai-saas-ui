@@ -557,6 +557,13 @@
   --bs-badge-border-radius: var(--q-radius-xs);
   letter-spacing: 0.02em;
   line-height: 1.2;
+  /* A badge sits in flex rows next to .chip pills, and a flex row stretches its
+     children to one height — inline-block left the label stuck to the top of
+     that taller pill. Centring the content keeps the label in the middle and
+     gives any icon inside the badge a gap instead of touching the text. */
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
 }
 
 .badge-pill { border-radius: var(--q-radius-pill); }
@@ -601,7 +608,7 @@
   color: var(--q-body-color);
 }
 
-.chip i { font-size: 0.85rem; }
+.chip i { font-size: 0.85rem; line-height: 1; }
 
 /* ==========================================================================
    7. ALERTS
@@ -790,7 +797,14 @@
   border-radius: var(--q-radius-sm);
   color: var(--q-body-color);
   font-size: 0.875rem;
-  padding: 0.5rem 0.85rem;
+  /* The caret is a background image, not a child: Bootstrap reserves room for
+     it with padding-inline-end and our shorthand used to throw that away, which
+     printed the arrow on top of the label ("All statuse▾s"). Logical padding
+     keeps the room in both directions — in RTL the arrow moves to the far left
+     and rtl.css mirrors the numbers. */
+  padding-block: 0.5rem;
+  padding-inline: 0.85rem 2.1rem;
+  background-position: right 0.85rem center;
   transition: border-color var(--q-transition), box-shadow var(--q-transition);
 }
 
@@ -812,10 +826,15 @@
   color: var(--q-muted-color);
 }
 
-.form-control-sm,
-.form-select-sm {
+.form-control-sm {
   font-size: 0.8125rem;
   padding: 0.35rem 0.7rem;
+}
+
+.form-select-sm {
+  font-size: 0.8125rem;
+  padding-block: 0.35rem;
+  padding-inline: 0.7rem 2rem;
 }
 
 .form-control-lg {

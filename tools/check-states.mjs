@@ -145,6 +145,61 @@ const components = read("assets/css/components.css");
 check(components.includes(".nav-pills .nav-link:not(.active):hover"), "the idle hover excludes the active pill", "");
 check(!components.includes(".nav-pills .nav-link:hover {"), "no hover rule repaints the active pill", "");
 
+/* --- controls that draw part of themselves ------------------------------ */
+
+/* Last rule for a selector wins, the same way the browser reads the file.
+   Comments are stripped first: they sit between declarations and inside the
+   selector text, and they are not part of what the browser applies. */
+const stripComments = (css) => css.replace(/\/\*[\s\S]*?\*\//g, "");
+function ruleBody(css, selector) {
+  let body = null;
+  for (const rule of stripComments(css).matchAll(/([^{}]+)\{([^}]*)\}/g)) {
+    if (rule[1].split(",").map((s) => s.trim()).includes(selector)) body = rule[2];
+  }
+  return body;
+}
+const declaration = (body, prop) => {
+  if (!body) return null;
+  for (const decl of body.split(";")) {
+    const at = decl.indexOf(":");
+    if (at === -1) continue;
+    if (decl.slice(0, at).trim() === prop) return decl.slice(at + 1).trim();
+  }
+  return null;
+};
+const toRem = (value) => (String(value).endsWith("rem") ? parseFloat(value) : parseFloat(value) / 16);
+
+/* A <select> draws its caret as a background image 1rem wide, offset 0.75rem
+   from the inline end, so the label needs at least 1.75rem of padding there —
+   a padding shorthand that forgets it prints the arrow on top of the text. */
+for (const [selector, css] of [[".form-select", components], [".form-select-sm", components]]) {
+  const body = ruleBody(css, selector);
+  const inline = declaration(body, "padding-inline");
+  const shorthand = declaration(body, "padding");
+  const end = inline ? inline.split(/\s+/)[1] : null;
+  const ok = !!end && toRem(end) >= 1.75 && !shorthand;
+  check(ok, `${selector} keeps room for the caret`,
+    shorthand ? `padding shorthand (${shorthand}) resets the caret room` : `padding-inline-end = ${end || "missing"} (needs 1.75rem)`);
+}
+
+/* RTL mirrors the same room on the other side. */
+{
+  const rtl = read("assets/css/rtl.css");
+  const start = declaration(ruleBody(rtl, '[dir="rtl"] .form-select'), "padding-inline-start");
+  check(!!start && toRem(start) >= 1.75, "the RTL select keeps the same room",
+    `padding-inline-start = ${start || "missing"} (needs 1.75rem)`);
+}
+
+/* A badge next to a chip in a flex row is stretched to the row height, so its
+   label has to be centred instead of sitting at the top of the pill. */
+{
+  const body = ruleBody(components, ".badge");
+  const display = declaration(body, "display");
+  const align = declaration(body, "align-items");
+  check(display === "inline-flex" && align === "center", "badge content is centred in a stretched row",
+    `display=${display || "missing"} align-items=${align || "missing"}`);
+}
+
 console.log(results.join("\n"));
 const failed = results.filter((r) => r.startsWith("FAIL")).length;
 console.log(`\n${results.length - failed}/${results.length} checks passed`);

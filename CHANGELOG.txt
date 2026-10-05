@@ -154,7 +154,9 @@ QUALITY TOOLING
     control actually shows in each state (active pill, active pill hover) for
     both palettes by reading the shipped stylesheets in load order and applying
     the cascade itself — the one thing jsdom cannot do for :hover. Fails if a
-    label drops under 4.5:1 or if a hover rule repaints the active pill.
+    label drops under 4.5:1, if a hover rule repaints the active pill, if a
+    .form-select loses the padding its caret needs, or if a badge stops being
+    centred in a stretched row. 10 checks.
 
   · tools/check-controls.mjs — "every click answers" check. Clicks the
     dashboard row actions (message dialog, options menu, copy email, remove
@@ -365,6 +367,17 @@ FIXES DURING DEVELOPMENT
       stay readable: white on #4f46e5 = 6.3:1 in light and on #6a61f0 = 4.6:1
       in dark, where the raised dark-mode brand colour alone only reached
       3.6:1. Applies to tabs, pills and the filter chips that share the class.
+    · The filter selects printed their caret on top of the label ("All statuse▾s").
+      Bootstrap reserves room for that caret with padding on the inline end, and
+      the .form-select padding shorthand in components.css reset it; the rule now
+      sets padding-block plus padding-inline (2.1rem for the field, 2rem for the
+      small one) and pins the caret to the same 0.85rem offset in both
+      directions — rtl.css mirrors the numbers, so RTL keeps the same gap.
+    · A badge sitting next to a chip in a flex row had its label stuck to the top
+      of the taller pill (the row stretches both to one height): .badge is now an
+      inline-flex box that centres its content, and the icon inside a badge gets
+      a gap instead of touching the text. The chip icon also lost the extra
+      leading that pushed it off the text line.
 
   Links, buttons and runtime behaviour
     · The light/dark toggle did nothing when localStorage is unavailable —

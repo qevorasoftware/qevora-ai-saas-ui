@@ -57,9 +57,11 @@
 
 /* --- Forms -------------------------------------------------------------- */
 
+/* Mirrors the LTR numbers in components.css: the caret keeps ~0.4rem of air
+   between itself and the label in both directions. */
 [dir="rtl"] .form-select {
   background-position: left 0.85rem center;
-  padding-inline-start: 2.25rem;
+  padding-inline-start: 2.1rem;
   padding-inline-end: 0.85rem;
 }
 

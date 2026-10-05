@@ -788,7 +788,9 @@
   border-radius: var(--q-radius-sm);
   color: var(--q-body-color);
   font-size: 0.875rem;
-  padding: 0.5rem 0.85rem;
+  padding-block: 0.5rem;
+  padding-inline: 0.85rem 2.1rem;
+  background-position: right 0.85rem center;
   transition: border-color var(--q-transition), box-shadow var(--q-transition);
 }
 
@@ -817,9 +819,10 @@
   border-color: var(--q-border-color);
 }
 
-.form-control-sm, .form-select-sm {
+.form-select-sm {
   font-size: 0.8125rem;
-  padding: 0.35rem 0.7rem;
+  padding-block: 0.35rem;
+  padding-inline: 0.7rem 2rem;
 }
 
 .form-text {
@@ -923,7 +926,9 @@
   border-radius: var(--q-radius-sm);
   color: var(--q-body-color);
   font-size: 0.875rem;
-  padding: 0.5rem 0.85rem;
+  padding-block: 0.5rem;
+  padding-inline: 0.85rem 2.1rem;
+  background-position: right 0.85rem center;
   transition: border-color var(--q-transition), box-shadow var(--q-transition);
 }
 
@@ -942,8 +947,6 @@
   background-color: var(--q-surface-hover);
   color: var(--q-muted-color);
 }
-
-.form-control.is-invalid, .form-select.is-invalid {
 /* … sample trimmed for length */</code></pre>
           </div>
         </div>
@@ -1019,6 +1022,7 @@
 
 .chip i {
   font-size: 0.85rem;
+  line-height: 1;
 }
 
 .input-group-text {
@@ -1046,7 +1050,9 @@
   border-radius: var(--q-radius-sm);
   color: var(--q-body-color);
   font-size: 0.875rem;
-  padding: 0.5rem 0.85rem;
+  padding-block: 0.5rem;
+  padding-inline: 0.85rem 2.1rem;
+  background-position: right 0.85rem center;
   transition: border-color var(--q-transition), box-shadow var(--q-transition);
 }
 
@@ -1056,9 +1062,6 @@
 
 .form-control:focus, .form-select:focus {
   background-color: var(--q-surface);
-  border-color: var(--q-primary);
-  box-shadow: 0 0 0 3px rgba(var(--q-primary-rgb), 0.16);
-  color: var(--q-body-color);
 /* … sample trimmed for length */</code></pre>
           </div>
         </div>
