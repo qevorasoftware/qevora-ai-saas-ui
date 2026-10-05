@@ -182,13 +182,19 @@
     customer directory grid cards (same customers as the table, same badge colour,
     labelled facts, a real health bar, edit and delete from a card, cards follow the
     search, the empty result and every save) — 87 checks, green (needs jsdom)
+  · node tools/check-kanban.mjs        the card boards on pages/pipeline.html and
+    pages/pages/kanban.html: every card draggable and handled, a drop landing in
+    front of the card it was dropped on, the dashed landing cue, counters and the
+    empty-column note, the screen-reader announcement, Undo from the toast, the
+    handle's stage menu, the Board / Forecast switch and "Add deal" (first stage
+    only, at the top) — 68 checks, green (needs jsdom)
   · node tools/check-dropdowns.mjs     every dropdown and pick group in the
     template: one selected item only, the button shows the current choice, icons
     kept, aria-current / aria-pressed correct, locked items refused, plus a sweep
     of all eight pages that carry pick controls — 81 checks, green (needs jsdom)
   · an earlier development-only sweep of the list/export/CRM flows (461 checks)
     ran green before the final round; those scratch runners are not part of the
-    release, the four tools above are.
+    release, the tools above are.
   · tools/release.mjs --runtime loads pages out of the extracted buyer ZIP over
     file:// and reports console errors or missing assets.
 

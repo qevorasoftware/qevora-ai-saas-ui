@@ -431,93 +431,313 @@
   }
 
   /* ====================================================================== */
-  /* 5. KANBAN DRAG & DROP                                                  */
+  /* 5. KANBAN / PIPELINE DRAG & DROP                                       */
   /* ====================================================================== */
 
+  /* A card board built from .kanban__col / .kanban__col-body / .kanban__card:
+   * pages/pages/kanban.html and pages/pages/pipeline.html.
+   *
+   * What a user can do with a card:
+   *   · drag it with the mouse and drop it on any card — the dashed outline
+   *     shows exactly where it will land, not only at the end of a column;
+   *   · pick a stage from the grip button (the ⠿ handle on the card), which is
+   *     also the way to move a card with the keyboard or on a touch screen,
+   *     where an HTML5 drag never starts;
+   *   · every move updates the column counters, the empty-column note, and
+   *     offers Undo in the toast, and every move is announced to a screen
+   *     reader through a polite live region.
+   */
   function initKanban() {
     var boards = document.querySelectorAll("[data-kanban]");
-    if (!boards.length || !window.dragEventSupported) {
-      // Fall through: HTML5 drag and drop is supported by all target browsers,
-      // this guard only skips very old engines.
-    }
 
     for (var b = 0; b < boards.length; b++) {
       (function (board) {
-        var cards = board.querySelectorAll(".kanban__card");
-        var columns = board.querySelectorAll(".kanban__col-body");
+        var live = null;
+        var dragging = null;
+
+        function columns() {
+          return board.querySelectorAll(".kanban__col");
+        }
+
+        function bodies() {
+          return board.querySelectorAll(".kanban__col-body");
+        }
+
+        function cardsIn(node) {
+          return node ? node.querySelectorAll(".kanban__card") : [];
+        }
+
+        function stageOf(body) {
+          var col = body && body.closest ? body.closest(".kanban__col") : null;
+          var title = col ? col.querySelector(".kanban__col-title") : null;
+          return title ? title.textContent.replace(/\s+/g, " ").trim() : "another stage";
+        }
+
+        function cardTitle(card) {
+          var title = card ? card.querySelector(".kanban__card-title, .card-title, strong") : null;
+          return title ? title.textContent.replace(/\s+/g, " ").trim() : "Card";
+        }
+
+        function label() {
+          return board.getAttribute("data-kanban-label") || "Card";
+        }
+
+        /* A card board is a keyboard-only board without this: nothing on screen
+           can say that a card moved. */
+        function announce(message) {
+          if (!live) {
+            live = document.createElement("p");
+            live.className = "kanban__live visually-hidden";
+            live.setAttribute("role", "status");
+            live.setAttribute("aria-live", "polite");
+            board.appendChild(live);
+          }
+          live.textContent = message;
+        }
+
+        function flash(card) {
+          if (!card || !card.style) return;
+          var old = card.style.boxShadow;
+          card.style.transition = "box-shadow .45s ease";
+          card.style.boxShadow = "0 0 0 3px rgba(79,70,229,.45), 0 0 0 9px rgba(79,70,229,.14)";
+          window.setTimeout(function () {
+            card.style.boxShadow = old || "";
+            card.style.transition = "";
+          }, 1400);
+        }
 
         function updateCounts() {
-          var cols = board.querySelectorAll(".kanban__col");
+          var cols = columns();
           for (var c = 0; c < cols.length; c++) {
             var body = cols[c].querySelector(".kanban__col-body");
             var count = cols[c].querySelector(".kanban__count");
-            if (body && count) count.textContent = body.querySelectorAll(".kanban__card").length;
+            if (body && count) count.textContent = String(cardsIn(body).length);
           }
         }
 
-        for (var i = 0; i < cards.length; i++) {
-          cards[i].setAttribute("draggable", "true");
-
-          cards[i].addEventListener("dragstart", function (event) {
-            event.dataTransfer.effectAllowed = "move";
-            event.dataTransfer.setData("text/plain", "kanban-card");
-            this.classList.add("is-dragging");
-            board.setAttribute("data-dragging", "true");
-          });
-
-          cards[i].addEventListener("dragend", function () {
-            this.classList.remove("is-dragging");
-            board.removeAttribute("data-dragging");
-            var targets = board.querySelectorAll(".is-drop-target");
-            for (var t = 0; t < targets.length; t++) targets[t].classList.remove("is-drop-target");
-            updateCounts();
-          });
+        /* An empty column keeps a note so it still reads as a drop target. */
+        function syncPlaceholders() {
+          var list = bodies();
+          for (var i = 0; i < list.length; i++) {
+            var note = list[i].querySelector(".kanban__empty");
+            if (cardsIn(list[i]).length) {
+              if (note) note.remove();
+            } else if (!note) {
+              note = document.createElement("div");
+              note.className = "kanban__empty text-center text-muted-2 fs-8 py-4";
+              note.textContent = "Drop a card here";
+              list[i].appendChild(note);
+            }
+          }
         }
 
-        for (var j = 0; j < columns.length; j++) {
-          columns[j].addEventListener("dragover", function (event) {
-            event.preventDefault();
-            event.dataTransfer.dropEffect = "move";
-            this.classList.add("is-drop-target");
-          });
+        function clearTargets() {
+          var marked = board.querySelectorAll(".is-drop-target");
+          for (var m = 0; m < marked.length; m++) marked[m].classList.remove("is-drop-target");
+        }
 
-          columns[j].addEventListener("dragleave", function () {
-            this.classList.remove("is-drop-target");
-          });
+        /* Puts the card where the user aimed: before `reference` when the drop
+           landed on another card, otherwise at the end of the column. */
+        function place(card, body, reference) {
+          if (!card || !body) return;
+          if (reference && reference.parentNode === body) body.insertBefore(card, reference);
+          else body.appendChild(card);
+        }
 
-          columns[j].addEventListener("drop", function (event) {
-            event.preventDefault();
-            this.classList.remove("is-drop-target");
+        function moveTo(card, body, reference) {
+          if (!card || !body) return false;
 
-            var dragging = board.querySelector(".kanban__card.is-dragging");
-            if (!dragging) return;
+          var fromBody = card.parentNode;
+          var fromNext = card.nextElementSibling;
+          var fromStage = stageOf(fromBody);
+          var toStage = stageOf(body);
+          var title = cardTitle(card);
 
-            var placeholder = this.querySelector(".kanban__empty");
-            if (placeholder) placeholder.remove();
+          if (fromBody === body && (reference ? reference === card : card === body.lastElementChild)) {
+            /* Dropped back where it started. */
+            announce(title + " stays in " + toStage + ".");
+            return false;
+          }
 
-            this.appendChild(dragging);
+          place(card, body, reference);
+          updateCounts();
+          syncPlaceholders();
+          flash(card);
+          announce(title + " moved from " + fromStage + " to " + toStage + ".");
 
-            // Re-create empty placeholders where a column ran out of cards.
-            var cols = board.querySelectorAll(".kanban__col");
-            for (var c = 0; c < cols.length; c++) {
-              var body = cols[c].querySelector(".kanban__col-body");
-              if (body && !body.querySelector(".kanban__card")) {
-                var empty = document.createElement("div");
-                empty.className = "kanban__empty text-center text-muted-2 fs-8 py-3";
-                empty.textContent = "Drop a card here";
-                body.appendChild(empty);
+          if (window.Qevora && window.Qevora.toast) {
+            window.Qevora.toast(
+              '"' + title + '" moved from ' + fromStage + " to " + toStage + ".",
+              "success",
+              label() + " moved",
+              {
+                label: "Undo",
+                onClick: function () {
+                  place(card, fromBody, fromNext);
+                  updateCounts();
+                  syncPlaceholders();
+                  announce(title + " moved back to " + fromStage + ".");
+                }
               }
-            }
-
-            updateCounts();
-
-            if (window.Qevora) {
-              window.Qevora.toast("Task moved — demo interaction only.", "success", "Board updated");
-            }
-          });
+            );
+          }
+          return true;
         }
 
+        /* The column a pointer is over: the body itself, or the column that
+           holds it when the pointer sits on a header or the column padding. */
+        function bodyFrom(node) {
+          if (!node || !node.closest) return null;
+          var body = node.closest(".kanban__col-body");
+          if (body) return body;
+          var col = node.closest(".kanban__col");
+          return col ? col.querySelector(".kanban__col-body") : null;
+        }
+
+        /* ---------------------------------------------------------------- */
+        /* The grip button: a drag handle that doubles as "move to stage".   */
+        /* ---------------------------------------------------------------- */
+        function menuFor(wrap, card, toggle) {
+          var menu = wrap.querySelector(".dropdown-menu");
+          if (!menu) return;
+
+          var current = card.closest(".kanban__col-body");
+          var cols = columns();
+          menu.innerHTML = "";
+
+          for (var i = 0; i < cols.length; i++) {
+            (function (col) {
+              var body = col.querySelector(".kanban__col-body");
+              if (!body) return;
+
+              var item = document.createElement("li");
+              var button = document.createElement("button");
+              button.type = "button";
+              button.className = "dropdown-item" + (body === current ? " active" : "");
+              button.textContent = stageOf(body);
+              if (body === current) button.setAttribute("aria-current", "true");
+
+              button.addEventListener("click", function () {
+                if (window.bootstrap && window.bootstrap.Dropdown) {
+                  var instance = window.bootstrap.Dropdown.getInstance(toggle);
+                  if (instance) instance.hide();
+                }
+                if (body === current) return;
+                moveTo(card, body, null);
+              });
+
+              item.appendChild(button);
+              menu.appendChild(item);
+            })(cols[i]);
+          }
+        }
+
+        function addGrip(card) {
+          if (card.querySelector(".kanban__grip-wrap")) return;
+
+          var host = card.querySelector(".kanban__card-meta") || card;
+          var wrap = document.createElement("div");
+          wrap.className = "dropdown kanban__grip-wrap";
+          wrap.innerHTML =
+            '<button type="button" class="kanban__grip" data-bs-toggle="dropdown" aria-expanded="false">' +
+            '<i class="bi bi-grip-vertical" aria-hidden="true"></i></button>' +
+            '<ul class="dropdown-menu dropdown-menu-end"></ul>';
+
+          var toggle = wrap.querySelector("button");
+          toggle.setAttribute("aria-label", "Move \u201C" + cardTitle(card) + "\u201D to another stage");
+          toggle.addEventListener("show.bs.dropdown", function () {
+            menuFor(wrap, card, toggle);
+          });
+
+          host.appendChild(wrap);
+        }
+
+        function markCards() {
+          var cards = cardsIn(board);
+          for (var i = 0; i < cards.length; i++) {
+            cards[i].setAttribute("draggable", "true");
+            addGrip(cards[i]);
+          }
+        }
+
+        /* ---------------------------------------------------------------- */
+        /* Dragging                                                          */
+        /* ---------------------------------------------------------------- */
+        board.addEventListener("dragstart", function (event) {
+          var card = event.target.closest ? event.target.closest(".kanban__card") : null;
+          if (!card || !board.contains(card)) return;
+
+          dragging = card;
+          if (event.dataTransfer) {
+            event.dataTransfer.effectAllowed = "move";
+            try {
+              event.dataTransfer.setData("text/plain", "kanban-card");
+            } catch (e) {
+              /* Older engines refuse a custom payload; the drag still works. */
+            }
+          }
+          card.classList.add("is-dragging");
+          board.setAttribute("data-dragging", "true");
+          announce("Picked up " + cardTitle(card) + " from " + stageOf(card.parentNode) + ".");
+        });
+
+        board.addEventListener("dragend", function () {
+          if (dragging) dragging.classList.remove("is-dragging");
+          dragging = null;
+          board.removeAttribute("data-dragging");
+          clearTargets();
+          syncPlaceholders();
+          updateCounts();
+        });
+
+        board.addEventListener("dragover", function (event) {
+          if (!dragging) return;
+          var body = bodyFrom(event.target);
+          if (!body) return;
+
+          event.preventDefault();
+          if (event.dataTransfer) event.dataTransfer.dropEffect = "move";
+
+          var over = event.target.closest ? event.target.closest(".kanban__card") : null;
+          clearTargets();
+          /* Aimed at a card: the dashed outline shows the gap it would take.
+             Aimed at the empty part of a column: the whole body lights up. */
+          if (over && over !== dragging) over.classList.add("is-drop-target");
+          else body.classList.add("is-drop-target");
+        });
+
+        board.addEventListener("dragleave", function (event) {
+          if (!dragging) return;
+          if (event.target === board) clearTargets();
+        });
+
+        board.addEventListener("drop", function (event) {
+          if (!dragging) return;
+          var body = bodyFrom(event.target);
+          if (!body) return;
+
+          event.preventDefault();
+          var over = event.target.closest ? event.target.closest(".kanban__card") : null;
+          var reference = over && over !== dragging && over.parentNode === body ? over : null;
+          var moved = dragging;
+          dragging = null;
+          moved.classList.remove("is-dragging");
+          board.removeAttribute("data-dragging");
+          clearTargets();
+          moveTo(moved, body, reference);
+        });
+
+        /* demo-ui.js says this after it adds a card, so the new card gets the
+           same handle and the counters stay true. */
+        board.addEventListener("qevora:kanban-refresh", function () {
+          markCards();
+          updateCounts();
+          syncPlaceholders();
+        });
+
+        markCards();
         updateCounts();
+        syncPlaceholders();
       })(boards[b]);
     }
   }

@@ -300,7 +300,11 @@ Optional developer source package (shipped separately from the item page)
                       <code>[data-demo-log]</code> with <code>-text</code>, <code>-variant</code> and
                       <code>-done</code> to add a dated timeline entry,
                       <code>[data-demo-message-to]</code> to fill the recipient and
-                      <code>[data-demo-message-log]</code> to note a sent message in the activity feed,
+                      <code>[data-demo-message-log]</code> to note a sent message in the activity feed.
+                      The card boards are pure markup: a <code>[data-kanban]</code> wrapper with
+                      <code>.kanban__col</code> columns holding <code>.kanban__card</code> articles gives you
+                      dragging, the landing outline, the counters, the empty-column note, the ⠿ handle and
+                      its move-to-stage menu — add <code>data-kanban-label</code> to name what a card is,
                       <code>QevoraDemo.refresh()</code>
                     </td>
                   </tr>

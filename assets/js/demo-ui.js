@@ -2870,21 +2870,33 @@
       button.setAttribute("data-demo-action", title + " " + count + " — demo action.");
     });
 
-    /* A new column joins the end of the grid; a plain card keeps its place
-       beside the sample (kanban columns, calendar cells, schedule lists). */
-    if (unit === node) node.parentNode.insertBefore(card, node.nextSibling);
+    /* A kanban column takes the new card at the top, where the eye lands; a new
+       column joins the end of the grid; anything else keeps its place beside the
+       sample (calendar cells, schedule lists). */
+    /* A cloned card has no parent yet, so the column comes from the container. */
+    var column = container.closest ? container.closest(".kanban__col") : null;
+    if (column && unit === node) container.insertBefore(card, container.firstElementChild);
+    else if (unit === node) node.parentNode.insertBefore(card, node.nextSibling);
     else container.appendChild(card);
     flash(counterpart(card, node));
 
-    var column = card.closest ? card.closest(".kanban__col") : null;
+    /* The board owns the counters, the empty-column notes and the drag handle of
+       the new card, so it gets told once and repaints itself. */
+    var board = card.closest ? card.closest("[data-kanban]") : null;
+    if (board) emit(board, "qevora:kanban-refresh");
+
     var counter = column ? q(".kanban__count", column) : null;
     if (counter) counter.textContent = String(qa(".kanban__card", column).length);
 
-    toast(title + " " + count + " was added — drag it, or use Undo to remove it.", "success", "Card added", {
+    var stage = column ? q(".kanban__col-title", column) : null;
+    var where = stage ? " to " + stage.textContent.replace(/\s+/g, " ").trim() : "";
+
+    toast(title + " " + count + " was added" + where + " — drag it to another stage, or use Undo to remove it.", "success", "Card added", {
       label: "Undo",
       onClick: function () {
         card.remove();
-        if (counter && column) counter.textContent = String(qa(".kanban__card", column).length);
+        if (board) emit(board, "qevora:kanban-refresh");
+        else if (counter && column) counter.textContent = String(qa(".kanban__card", column).length);
       }
     });
   }

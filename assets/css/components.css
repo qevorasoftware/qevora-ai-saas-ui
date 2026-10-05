@@ -1245,6 +1245,59 @@
 /* Drop target for drag & drop boards; the markup adds d-flex flex-column */
 .kanban__col-body {
   min-height: 36px;
+  border-radius: var(--q-radius);
+  transition: background-color var(--q-transition), box-shadow var(--q-transition);
+}
+
+/* The whole column lights up when the pointer aims at its empty space. */
+.kanban__col-body.is-drop-target {
+  background: var(--q-primary-soft);
+  box-shadow: inset 0 0 0 1px rgba(var(--q-primary-rgb), 0.35);
+}
+
+/* A note that keeps an empty column reading as a drop target. */
+.kanban__empty {
+  border: 1px dashed var(--q-border-color);
+  border-radius: var(--q-radius);
+  background: var(--q-surface);
+}
+
+/* The drag handle on a card. It is a real button, so the card can also be moved
+   from the keyboard or a touch screen through its menu. */
+.kanban__grip-wrap {
+  margin-inline-start: auto;
+}
+
+.kanban__grip {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.5rem;
+  height: 1.5rem;
+  padding: 0;
+  border: 0;
+  border-radius: var(--q-radius-sm);
+  background: transparent;
+  color: var(--q-muted-color);
+  font-size: 0.75rem;
+  line-height: 1;
+  cursor: grab;
+  transition: color var(--q-transition), background-color var(--q-transition);
+}
+
+.kanban__grip:hover,
+.kanban__grip:focus-visible {
+  background: var(--q-surface-hover);
+  color: var(--q-heading-color);
+}
+
+.kanban__grip:active {
+  cursor: grabbing;
+}
+
+.kanban__card.is-dragging {
+  opacity: 0.5;
+  cursor: grabbing;
 }
 
 .kanban__col-head {
@@ -1292,13 +1345,16 @@
 }
 
 .kanban__card.is-dragging {
-  opacity: 0.55;
+  opacity: 0.5;
   cursor: grabbing;
 }
 
+/* Where the card will land: the dashed outline covers the gap the dragged card
+   would take, so a drop between two cards is obvious before the mouse is up. */
 .kanban__card.is-drop-target {
   border-color: var(--q-primary);
   border-style: dashed;
+  box-shadow: 0 0 0 3px var(--q-primary-soft);
 }
 
 .kanban__card-title {

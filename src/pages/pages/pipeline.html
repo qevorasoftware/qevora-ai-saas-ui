@@ -2,12 +2,14 @@
         <div>
           {{BREADCRUMB}}
           <h1 class="q-page-head__title mt-2">Sales pipeline</h1>
-          <p class="q-page-head__subtitle">Drag deal cards between stages to update the forecast — demo interaction.</p>
+          <p class="q-page-head__subtitle">Drag a deal card between stages — or use the handle on a card — and the stage counters follow.</p>
         </div>
         <div class="d-flex flex-wrap gap-2">
-          <div class="btn-group" role="group" aria-label="Pipeline view">
-            <button type="button" class="btn btn-white active" data-demo-action="Board view selected — demo only.">Board</button>
-            <button type="button" class="btn btn-white" data-demo-action="Forecast view selected — demo only.">Forecast</button>
+          <div class="btn-group" role="group" aria-label="Pipeline view" data-demo-pick-group>
+            <button type="button" class="btn btn-white active" data-demo-pick="pipeline-view"
+                    aria-pressed="true" data-demo-pick-done="Board view selected — the stage columns you see below are the board.">Board</button>
+            <button type="button" class="btn btn-white" data-demo-pick="pipeline-view"
+                    aria-pressed="false" data-demo-pick-done="Forecast view selected — a shipped template shows one view at a time; wire the second view to your own data.">Forecast</button>
           </div>
           <button type="button" class="btn btn-primary" data-demo-add-card=".kanban__col-body" data-demo-card-title="New deal"><i class="bi bi-plus-lg"></i> Add deal</button>
         </div>
@@ -52,7 +54,7 @@
         </div>
       </div>
 
-      <div class="kanban" data-kanban>
+      <div class="kanban q-section" data-kanban data-kanban-label="Deal">
         <div class="kanban__col">
           <div class="kanban__col-head">
             <span class="kanban__col-title"><i class="bi bi-circle text-muted-2"></i> Discovery</span>

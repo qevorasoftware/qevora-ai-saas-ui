@@ -384,6 +384,27 @@ FIXES DURING DEVELOPMENT
       profile card and the page title, and refreshing the avatar initials.
       Blank cells in a page are skipped, so a dialog can never wipe a value the
       page does not show.
+    · The card boards (pages/pipeline.html and pages/pages/kanban.html) became a
+      real drag & drop board. A card can be dropped in front of any card — the
+      engine inserts it in front of the one under the pointer instead of always
+      appending at the end of the column — and a dashed outline (on the card
+      it would take the place of, or on the column when the drop lands on open
+      space) shows where it will land before the mouse is up. Every move updates
+      the stage counters and the "Drop a card here" note of an emptied column,
+      can be taken back from the toast's Undo, and is announced in a polite live
+      region for screen readers. Each card carries a grip button (⠿) in its meta
+      row: it is the natural handle to drag by, and it opens a "move to stage"
+      menu with the current stage marked — which is also the only way to move
+      a card with the keyboard or on a touch screen, where an HTML5 drag never
+      starts. The boards are labelled (data-kanban-label="Deal" / "Task") so the
+      toast and the announcements use the page's own word.
+    · pages/pages/pipeline.html — the Board / Forecast switch is a real segmented
+      control now (one active button, aria-pressed in step, each choice explains
+      what it shows) instead of two buttons that only toasted, and "Add deal"
+      writes the new card into the first stage at the top of the column, tells
+      the board to repaint its counters and handles, and names the stage it went
+      to in the confirmation ("New deal 4 was added to Discovery"). Undo removes
+      it again and the counters follow.
     · The customer directory's grid view was rebuilt as a proper card set. Each
       card now reads its subtitle from the row (the domain line), prints the
       facts as labelled pairs instead of a run of loose text, keeps the health
