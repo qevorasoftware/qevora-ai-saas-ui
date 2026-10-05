@@ -150,6 +150,11 @@ QUALITY TOOLING
     the "just added" highlight (projects grid columns, numbering, kanban
     counters, calendar and report placement). Needs jsdom.
 
+  · tools/check-dropdowns.mjs — regression check for every dropdown and pick
+    group in the template (one selected item only, the button shows the current
+    choice, icons kept, aria-current / aria-pressed, locked items refused) plus a
+    sweep of all eight pages that carry pick controls. Needs jsdom.
+
   · tools/audit.mjs — static QA gate: 19 checks over all 82 generated
     pages: document head, duplicate ids, anchor targets, aria/label references,
     image alt text, accessible names on buttons and icon links, form labels,
@@ -308,6 +313,16 @@ FIXES DURING DEVELOPMENT
       cards instead of counting cards plus the badges inside them ("New project
       7", not "New project 13"). Kanban cards, calendar chips and schedule list
       items are placed exactly as before.
+    · Choosing from a dropdown menu (or any group of buttons that works like one)
+      now leaves exactly one item selected: the engine looks up from the clicked
+      item to the box that owns the whole list, instead of trusting the item's
+      own <li>, which is where every choice used to keep its highlight and the
+      menu ended up looking fully selected. The button that opened the menu takes
+      the chosen label ("Last 6 months", "Vertex Flash — fastest", "Active"), the
+      icon and any visually-hidden text on that button stay where they are, an
+      <a> menu item is marked with aria-current instead of aria-pressed, and a
+      disabled item is refused instead of becoming the choice. Works for menus in
+      .dropdown, menus inside .input-group, split buttons and plain button groups.
 
   Links, buttons and runtime behaviour
     · The light/dark toggle did nothing when localStorage is unavailable —

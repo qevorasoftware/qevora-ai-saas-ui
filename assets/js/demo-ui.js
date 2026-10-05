@@ -73,6 +73,8 @@
  *  AI demo: <button data-demo-gen="#output" data-demo-gen-type="text|image|html">
  *  Pick:    <button data-demo-pick="range" data-demo-pick-active-class="btn-soft-primary"
  *              data-demo-pick-idle-class="btn-white">Day / Week / Month
+ *              inside a dropdown menu the toggle takes the picked label, and
+ *              data-demo-pick-label names that label when it differs
  *  Range:   <button data-demo-range="today|7d|30d|mtd|qtd|q1…q4|ytd|clear"
  *              data-demo-range-from="#from" data-demo-range-to="#to"
  *              data-demo-today="2026-10-03">
@@ -139,6 +141,7 @@
     "data-demo-filter-mode",
     "data-demo-copy-label",
     "data-demo-pick-group",
+    "data-demo-pick-label",
     "data-demo-pick-active-class",
     "data-demo-pick-idle-class",
     "data-demo-pick-done",
@@ -2060,19 +2063,94 @@
 
   /* A group of buttons where one is chosen: Day/Week/Month, Today/7 days,
      a plan card, a view mode. data-demo-pick names the group. */
+  /* The box that really holds the group. A pick target is often a dropdown
+     menu item, where the parent <li> contains nothing but itself — scoping to
+     the parent would leave the previously picked item highlighted and the menu
+     would slowly light up from top to bottom. So: the declared group box if
+     there is one, otherwise the nearest ancestor that holds more than one
+     member of the same group. */
+  function pickScope(control, group) {
+    var declared = control.closest("[data-demo-pick-group]");
+    if (declared) return declared;
+    var node = control.parentNode;
+    while (node && node.nodeType === 1) {
+      if (qa("[data-demo-pick='" + group + "']", node).length > 1) return node;
+      node = node.parentNode;
+    }
+    return control.parentElement;
+  }
+
+  /* A dropdown button shows the current choice, so picking from the menu renames
+     the toggle. The icon (and anything else the button holds) stays put — only
+     the text changes, or the [data-demo-pick-label] slot when the page marks
+     one. */
+  function labelForPick(control) {
+    var explicit = control.getAttribute("data-demo-pick-label");
+    return (explicit || control.textContent || "").replace(/\s+/g, " ").trim();
+  }
+
+  /* The button that opens a menu. It is normally the element just before the
+     menu (or inside that sibling) — a dropdown wrapped in .dropdown, a menu-end
+     button inside an .input-group, or a split button. */
+  function toggleForMenu(menu) {
+    var node = menu.previousElementSibling;
+    while (node) {
+      if (node.getAttribute && node.getAttribute("data-bs-toggle") === "dropdown") return node;
+      var inside = q("[data-bs-toggle='dropdown']", node);
+      if (inside) return inside;
+      node = node.previousElementSibling;
+    }
+    var dropdown = menu.closest(".dropdown");
+    return dropdown ? q("[data-bs-toggle='dropdown']", dropdown) : null;
+  }
+
+  function setToggleLabel(control, label) {
+    if (!label) return;
+    var menu = control.closest(".dropdown-menu");
+    if (!menu) return;
+    var toggle = toggleForMenu(menu);
+    if (!toggle || toggle === control) return;
+
+    var slot = q("[data-demo-pick-label]", toggle);
+    if (slot) {
+      slot.textContent = label;
+      return;
+    }
+
+    /* A plain text toggle just takes the new label. A toggle that holds an icon
+       keeps it: drop the text nodes, then write the label after the icon. */
+    if (!q("i, svg, img, span", toggle)) {
+      toggle.textContent = label;
+      return;
+    }
+    Array.prototype.slice.call(toggle.childNodes).forEach(function (child) {
+      if (child.nodeType === 3) toggle.removeChild(child);
+    });
+    toggle.appendChild(doc.createTextNode(" " + label));
+  }
+
   function pickButton(control) {
     var group = control.getAttribute("data-demo-pick");
-    var scope = control.closest("[data-demo-pick-group]") || control.parentElement;
+    var scope = pickScope(control, group);
     var activeClass = control.getAttribute("data-demo-pick-active-class") || "";
     var idleClass = control.getAttribute("data-demo-pick-idle-class") || "";
 
-    qa("[data-demo-pick='" + group + "']", scope).forEach(function (button) {
-      var picked = button === control;
-      button.classList.toggle("active", picked);
-      button.setAttribute("aria-pressed", picked ? "true" : "false");
-      if (activeClass) button.classList.toggle(activeClass, picked);
-      if (idleClass) button.classList.toggle(idleClass, !picked);
+    qa("[data-demo-pick='" + group + "']", scope).forEach(function (item) {
+      var picked = item === control;
+      item.classList.toggle("active", picked);
+      /* aria-pressed is for buttons; a menu link announces the current choice
+         with aria-current. */
+      if (item.tagName === "A") {
+        if (picked) item.setAttribute("aria-current", "true");
+        else item.removeAttribute("aria-current");
+      } else {
+        item.setAttribute("aria-pressed", picked ? "true" : "false");
+      }
+      if (activeClass) item.classList.toggle(activeClass, picked);
+      if (idleClass) item.classList.toggle(idleClass, !picked);
     });
+
+    setToggleLabel(control, labelForPick(control));
 
     var done = control.getAttribute("data-demo-pick-done");
     if (done) toast(done, "secondary");
@@ -2654,6 +2732,8 @@
 
       if (control.hasAttribute("data-demo-pick")) {
         event.preventDefault();
+        /* A disabled item is shown on purpose, but it is not a choice. */
+        if (control.classList.contains("disabled") || control.getAttribute("aria-disabled") === "true") return;
         pickButton(control);
         return;
       }
