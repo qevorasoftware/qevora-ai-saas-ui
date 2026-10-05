@@ -609,7 +609,12 @@ function themeCheck() {
   const pairs = [
     { label: "tooltip label on tooltip bubble", bg: "--q-tooltip-bg", fg: "--q-tooltip-color" },
     { label: "body text on cards and popovers", bg: "--q-surface", fg: "--q-body-color" },
-    { label: "headings on cards and popovers", bg: "--q-surface", fg: "--q-heading-color" }
+    { label: "headings on cards and popovers", bg: "--q-surface", fg: "--q-heading-color" },
+    /* Interaction states carry text too: the active pill and its hover shade
+       were the pair the buyer saw break ("hover karo to text gayab thai jaay"). */
+    { label: "nav-pill label on its hover tint", bg: "--q-surface-hover", fg: "--q-heading-color" },
+    { label: "active nav-pill label", bg: "--q-fill-bg", fgLiteral: "#ffffff" },
+    { label: "hovered active nav-pill label", bg: "--q-fill-hover-bg", fgLiteral: "#ffffff" }
   ];
 
   let checks = 0;
@@ -618,9 +623,9 @@ function themeCheck() {
     for (const pair of pairs) {
       checks++;
       const bg = parseColor(resolveToken(`var(${pair.bg})`, tokens));
-      const fg = parseColor(resolveToken(`var(${pair.fg})`, tokens));
+      const fg = pair.fgLiteral ? parseColor(pair.fgLiteral) : parseColor(resolveToken(`var(${pair.fg})`, tokens));
       if (!bg || !fg) {
-        report("theme", "assets/css/style.css", `${theme} theme — could not resolve ${pair.bg} / ${pair.fg}`);
+        report("theme", "assets/css/style.css", `${theme} theme — could not resolve ${pair.bg} / ${pair.fg || pair.fgLiteral}`);
         continue;
       }
       const ratio = contrast(fg, bg);
@@ -656,6 +661,28 @@ function themeCheck() {
         );
       }
     }
+  }
+
+  /* Cascade guard for the same bug: a hover rule that sits after the .active
+     rule repaints an active pill's background while its label stays white. The
+     idle hover has to exclude .active and the active pill has to restate its
+     own colours in every state. */
+  checks++;
+  const stateRules = {
+    "idle pill hover": ".nav-pills .nav-link:not(.active):hover",
+    "active pill": ".nav-pills .nav-link.active {",
+    "active pill hover": ".nav-pills .nav-link.active:hover"
+  };
+  const missingState = Object.entries(stateRules).filter(([, needle]) => !components.includes(needle));
+  const plainHover = components.includes(".nav-pills .nav-link:hover {");
+  if (missingState.length || plainHover) {
+    report(
+      "theme",
+      "assets/css/components.css",
+      "the nav-pill state rules are wrong" +
+        (plainHover ? " (a plain .nav-pills .nav-link:hover repaints the active pill)" : "") +
+        (missingState.length ? ` (missing: ${missingState.map(([label]) => label).join(", ")})` : "")
+    );
   }
 
   return checks;

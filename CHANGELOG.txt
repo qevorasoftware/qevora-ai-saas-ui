@@ -150,6 +150,12 @@ QUALITY TOOLING
     the "just added" highlight (projects grid columns, numbering, kanban
     counters, calendar and report placement). Needs jsdom.
 
+  · tools/check-states.mjs — interaction-state check. Resolves what a filled
+    control actually shows in each state (active pill, active pill hover) for
+    both palettes by reading the shipped stylesheets in load order and applying
+    the cascade itself — the one thing jsdom cannot do for :hover. Fails if a
+    label drops under 4.5:1 or if a hover rule repaints the active pill.
+
   · tools/check-controls.mjs — "every click answers" check. Clicks the
     dashboard row actions (message dialog, options menu, copy email, remove
     with undo), the chat conversation menu and list, a tooltip-only button and
@@ -350,6 +356,15 @@ FIXES DURING DEVELOPMENT
       delete dialog learned three optional words: data-demo-delete-verb (the
       toast verb), data-demo-delete-name (the record the dialog names) and
       data-demo-delete-target (remove a named element instead of the row).
+    · Hovering the selected tab no longer makes its label disappear. The idle
+      pill's hover tint also applied to the active pill — and because that rule
+      came after the .active rule with the same weight, the light hover surface
+      landed under the white label. The hover tint now excludes .active, the
+      active pill restates its own colours in every state, and the fill shades
+      come from two tokens (--q-fill-bg / --q-fill-hover-bg) so both palettes
+      stay readable: white on #4f46e5 = 6.3:1 in light and on #6a61f0 = 4.6:1
+      in dark, where the raised dark-mode brand colour alone only reached
+      3.6:1. Applies to tabs, pills and the filter chips that share the class.
 
   Links, buttons and runtime behaviour
     · The light/dark toggle did nothing when localStorage is unavailable —

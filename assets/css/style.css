@@ -27,6 +27,12 @@
   --q-primary-soft: #eef0ff;
   --q-primary-soft-rgb: 238, 240, 255;
 
+  /* Filled states that carry white text (active pills, tabs, chips). The dark
+     palette raises the brand colour for legibility, which drops white text to
+     3.6:1, so the dark block below picks a deeper fill instead. */
+  --q-fill-bg: var(--q-primary);
+  --q-fill-hover-bg: var(--q-primary-hover);
+
   --q-accent: #06b6d4;
   --q-accent-rgb: 6, 182, 212;
   --q-accent-soft: #e0f7fb;
@@ -149,6 +155,11 @@
   --q-primary-active: #6a61f0;
   --q-primary-soft: rgba(124, 116, 255, 0.16);
   --q-primary-soft-rgb: 124, 116, 255;
+
+  /* White on #7c74ff is 3.6:1 — too low for a label, so a filled control uses
+     the deeper shade (4.6:1) and a deeper one again on hover (5.0:1). */
+  --q-fill-bg: #6a61f0;
+  --q-fill-hover-bg: #6559ea;
 
   --q-accent: #22d3ee;
   --q-accent-rgb: 34, 211, 238;

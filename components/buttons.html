@@ -1207,14 +1207,14 @@ Qevora.toast("Invoice INV-2026-0186 marked as paid", "success", "Payments");</co
   color: inherit;
 }
 
-.nav-pills .nav-link.active {
-  color: #fff;
+.nav-pills .nav-link:not(.active):hover, .nav-pills .nav-link:not(.active):focus-visible {
+  color: var(--q-heading-color);
+  background: var(--q-surface-hover);
 }
 
-.btn-icon {
-  width: 40px;
-  height: 40px;
-  padding: 0;
+.nav-pills .nav-link.active {
+  color: var(--bs-nav-pills-link-active-color);
+  background-color: var(--bs-nav-pills-link-active-bg);
 }
 /* … sample trimmed for length */</code></pre>
           </div>

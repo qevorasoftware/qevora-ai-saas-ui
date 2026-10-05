@@ -764,8 +764,19 @@
   color: inherit;
 }
 
+.nav-pills .nav-link:not(.active):hover, .nav-pills .nav-link:not(.active):focus-visible {
+  color: var(--q-heading-color);
+  background: var(--q-surface-hover);
+}
+
 .nav-pills .nav-link.active {
-  color: #fff;
+  color: var(--bs-nav-pills-link-active-color);
+  background-color: var(--bs-nav-pills-link-active-bg);
+}
+
+.nav-pills .nav-link.active:hover, .nav-pills .nav-link.active:focus-visible {
+  color: var(--bs-nav-pills-link-active-color);
+  background-color: var(--q-fill-hover-bg);
 }
 
 .divider-y {
@@ -881,8 +892,19 @@
   color: inherit;
 }
 
+.nav-pills .nav-link:not(.active):hover, .nav-pills .nav-link:not(.active):focus-visible {
+  color: var(--q-heading-color);
+  background: var(--q-surface-hover);
+}
+
 .nav-pills .nav-link.active {
-  color: #fff;
+  color: var(--bs-nav-pills-link-active-color);
+  background-color: var(--bs-nav-pills-link-active-bg);
+}
+
+.nav-pills .nav-link.active:hover, .nav-pills .nav-link.active:focus-visible {
+  color: var(--bs-nav-pills-link-active-color);
+  background-color: var(--q-fill-hover-bg);
 }
 
 .q-page-head__title {
@@ -899,17 +921,6 @@
   max-width: 68ch;
 }
 
-.btn {
-  --bs-btn-font-size: 0.875rem;
-  --bs-btn-font-weight: 500;
-  --bs-btn-padding-y: 0.5rem;
-  --bs-btn-padding-x: 1rem;
-  --bs-btn-border-radius: var(--q-radius-sm);
-  --bs-btn-focus-box-shadow: 0 0 0 3px rgba(var(--q-primary-rgb), 0.25);
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
 /* … sample trimmed for length */</code></pre>
           </div>
         </div>

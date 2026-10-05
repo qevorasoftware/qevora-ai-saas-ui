@@ -168,7 +168,10 @@
   · node tools/smoke.mjs --strict      82 pages, 8 interaction flows → 0 issues
   · node tools/check-add-card.mjs      "+ New …" controls and the "just added"
     highlight — 33 checks, green (needs jsdom)
-  · node tools/check-controls.mjs      "every click answers": the dashboard row
+  · node tools/check-states.mjs        interaction states in both palettes:
+    white on the active pill and on its hover shade resolve through the shipped
+    cascade to 6.3:1 / 7.9:1 (light) and 4.6:1 / 5.0:1 (dark) — 6 checks, green
+    · node tools/check-controls.mjs      "every click answers": the dashboard row
     actions (message dialog, options menu, copy email, remove member with undo),
     the chat conversation menu and list, a tooltip-only button and the auth legal
     links — 45 checks, green (needs jsdom)

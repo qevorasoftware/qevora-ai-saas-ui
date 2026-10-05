@@ -1918,7 +1918,7 @@
 /* Nav pills / tabs */
 .nav-pills {
   --bs-nav-pills-border-radius: var(--q-radius-sm);
-  --bs-nav-pills-link-active-bg: var(--q-primary);
+  --bs-nav-pills-link-active-bg: var(--q-fill-bg);
   --bs-nav-pills-link-active-color: #fff;
   gap: 0.25rem;
 }
@@ -1930,13 +1930,25 @@
   padding: 0.45rem 0.9rem;
 }
 
-.nav-pills .nav-link:hover {
+/* The hover tint belongs to the idle pills only. It used to apply to the
+   active pill as well, and because it came after the .active rule the light
+   hover surface landed under the white label — hovering "All" made the text
+   disappear. The active pill now keeps its own colours in every state. */
+.nav-pills .nav-link:not(.active):hover,
+.nav-pills .nav-link:not(.active):focus-visible {
   color: var(--q-heading-color);
   background: var(--q-surface-hover);
 }
 
 .nav-pills .nav-link.active {
-  color: #fff;
+  color: var(--bs-nav-pills-link-active-color);
+  background-color: var(--bs-nav-pills-link-active-bg);
+}
+
+.nav-pills .nav-link.active:hover,
+.nav-pills .nav-link.active:focus-visible {
+  color: var(--bs-nav-pills-link-active-color);
+  background-color: var(--q-fill-hover-bg);
 }
 
 .nav-tabs {
