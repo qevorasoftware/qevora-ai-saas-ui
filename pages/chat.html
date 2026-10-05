@@ -706,44 +706,50 @@
 
           <div class="q-scroll flex-grow-1">
             <div class="nav flex-column nav-pills p-2" role="tablist" aria-label="Conversations">
-              <a class="nav-link active d-flex align-items-center gap-2" href="#" data-conversation>
-                <span class="avatar avatar-sm bg-avatar-1">AR</span>
+              <a class="nav-link active d-flex align-items-center gap-2" href="#" data-conversation data-demo-deletable
+                 data-demo-pick="conversation" data-demo-pick-active-class="active"
+                 data-demo-pick-done="Conversation with Ava Reynolds opened — demo only."><span class="avatar avatar-sm bg-avatar-1">AR</span>
                 <span class="flex-grow-1 min-w-0 text-start">
                   <span class="d-block fs-7 fw-600 text-truncate">Ava Reynolds</span>
                   <span class="d-block fs-8 text-truncate opacity-75">Let's ship the dark mode build</span>
                 </span>
                 <span class="badge badge-soft-primary badge-pill">2</span>
               </a>
-              <a class="nav-link d-flex align-items-center gap-2" href="#" data-conversation>
-                <span class="avatar avatar-sm bg-avatar-3">MC</span>
+              <a class="nav-link d-flex align-items-center gap-2" href="#" data-conversation data-demo-deletable
+                 data-demo-pick="conversation" data-demo-pick-active-class="active"
+                 data-demo-pick-done="Conversation with Marcus Chen opened — demo only."><span class="avatar avatar-sm bg-avatar-3">MC</span>
                 <span class="flex-grow-1 min-w-0 text-start">
                   <span class="d-block fs-7 fw-600 text-truncate">Marcus Chen</span>
                   <span class="d-block fs-8 text-truncate opacity-75">Sprint scope is locked</span>
                 </span>
               </a>
-              <a class="nav-link d-flex align-items-center gap-2" href="#" data-conversation>
-                <span class="avatar avatar-sm bg-avatar-6">LN</span>
+              <a class="nav-link d-flex align-items-center gap-2" href="#" data-conversation data-demo-deletable
+                 data-demo-pick="conversation" data-demo-pick-active-class="active"
+                 data-demo-pick-done="Conversation with Lea Novak opened — demo only."><span class="avatar avatar-sm bg-avatar-6">LN</span>
                 <span class="flex-grow-1 min-w-0 text-start">
                   <span class="d-block fs-7 fw-600 text-truncate">Lea Novak</span>
                   <span class="d-block fs-8 text-truncate opacity-75">Charts now follow the theme</span>
                 </span>
               </a>
-              <a class="nav-link d-flex align-items-center gap-2" href="#" data-conversation>
-                <span class="avatar avatar-sm bg-avatar-4">DO</span>
+              <a class="nav-link d-flex align-items-center gap-2" href="#" data-conversation data-demo-deletable
+                 data-demo-pick="conversation" data-demo-pick-active-class="active"
+                 data-demo-pick-done="Conversation with Daniel Okafor opened — demo only."><span class="avatar avatar-sm bg-avatar-4">DO</span>
                 <span class="flex-grow-1 min-w-0 text-start">
                   <span class="d-block fs-7 fw-600 text-truncate">Daniel Okafor</span>
                   <span class="d-block fs-8 text-truncate opacity-75">Copy buttons are done</span>
                 </span>
               </a>
-              <a class="nav-link d-flex align-items-center gap-2" href="#" data-conversation>
-                <span class="avatar avatar-sm bg-avatar-5">YT</span>
+              <a class="nav-link d-flex align-items-center gap-2" href="#" data-conversation data-demo-deletable
+                 data-demo-pick="conversation" data-demo-pick-active-class="active"
+                 data-demo-pick-done="Conversation with Yuki Tanaka opened — demo only."><span class="avatar avatar-sm bg-avatar-5">YT</span>
                 <span class="flex-grow-1 min-w-0 text-start">
                   <span class="d-block fs-7 fw-600 text-truncate">Yuki Tanaka</span>
                   <span class="d-block fs-8 text-truncate opacity-75">RTL screenshots attached</span>
                 </span>
               </a>
-              <a class="nav-link d-flex align-items-center gap-2" href="#" data-conversation>
-                <span class="avatar avatar-sm bg-avatar-2">PS</span>
+              <a class="nav-link d-flex align-items-center gap-2" href="#" data-conversation data-demo-deletable
+                 data-demo-pick="conversation" data-demo-pick-active-class="active"
+                 data-demo-pick-done="Conversation with Priya Sharma opened — demo only."><span class="avatar avatar-sm bg-avatar-2">PS</span>
                 <span class="flex-grow-1 min-w-0 text-start">
                   <span class="d-block fs-7 fw-600 text-truncate">Priya Sharma</span>
                   <span class="d-block fs-8 text-truncate opacity-75">Invoice batch is ready</span>
@@ -763,7 +769,17 @@
             </div>
             <button type="button" class="btn btn-icon btn-sm btn-ghost" aria-label="Voice call" data-bs-toggle="tooltip" title="Voice call" data-demo-action="Call started — demo only."><i class="bi bi-telephone"></i></button>
             <button type="button" class="btn btn-icon btn-sm btn-ghost" aria-label="Video call" data-bs-toggle="tooltip" title="Video call" data-demo-action="Video call started — demo only."><i class="bi bi-camera-video"></i></button>
-            <button type="button" class="btn btn-icon btn-sm btn-ghost" aria-label="Conversation options" data-bs-toggle="tooltip" title="More"><i class="bi bi-three-dots-vertical"></i></button>
+            <div class="dropdown">
+              <button type="button" class="btn btn-icon btn-sm btn-ghost" data-bs-toggle="dropdown" aria-expanded="false" title="Conversation options" aria-label="Conversation options"><i class="bi bi-three-dots-vertical"></i></button>
+              <ul class="dropdown-menu dropdown-menu-end">
+                <li><button type="button" class="dropdown-item" data-demo-toggle data-demo-toggle-on="Unpin conversation" data-demo-toggle-off="Pin conversation" data-demo-toggle-on-icon="bi bi-pin-angle-fill" data-demo-toggle-off-icon="bi bi-pin-angle" data-demo-toggle-done="Conversation pinned."><i class="bi bi-pin-angle"></i> <span data-demo-toggle-label>Pin conversation</span></button></li>
+                <li><button type="button" class="dropdown-item" data-demo-action="Conversation marked as unread — demo only."><i class="bi bi-envelope"></i> Mark as unread</button></li>
+                <li><button type="button" class="dropdown-item" data-demo-toggle data-demo-toggle-on="Unmute notifications" data-demo-toggle-off="Mute notifications" data-demo-toggle-on-icon="bi bi-bell-slash" data-demo-toggle-off-icon="bi bi-bell" data-demo-toggle-done="Notifications muted for this conversation."><i class="bi bi-bell"></i> <span data-demo-toggle-label>Mute notifications</span></button></li>
+                <li><button type="button" class="dropdown-item" data-demo-copy="[data-chat-thread]" data-demo-copy-label="Conversation"><i class="bi bi-clipboard"></i> Copy conversation</button></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><button type="button" class="dropdown-item text-danger" data-demo-delete data-demo-delete-target="[data-conversation].active" data-demo-delete-label="Conversation"><i class="bi bi-trash3"></i> Delete conversation</button></li>
+              </ul>
+            </div>
           </header>
 
           <div class="chat-thread q-scroll" data-chat-thread>
@@ -885,6 +901,34 @@
             <button type="submit" class="btn btn-primary" data-demo-submit>Add record</button>
           </div>
         </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Opened by any <button data-demo-message="Ava Reynolds">: the message icon
+       buttons in dashboards and lists open this dialog with the recipient
+       filled in. Nothing is sent — it is a front-end demo. -->
+  <div class="modal fade" id="q-demo-message" tabindex="-1" aria-labelledby="q-demo-message-title" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2 class="modal-title fs-6" id="q-demo-message-title" data-demo-message-title="Message {name}">New message</h2>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close dialog"></button>
+        </div>
+        <div class="modal-body">
+          <div class="mb-3">
+            <label class="form-label" for="q-demo-message-to">To</label>
+            <input class="form-control" type="text" id="q-demo-message-to" data-demo-message-to readonly>
+          </div>
+          <label class="form-label" for="q-demo-message-body">Message</label>
+          <textarea class="form-control" id="q-demo-message-body" data-demo-message-body rows="4"
+                    placeholder="Write a short message…"></textarea>
+          <p class="fs-8 text-muted-2 mt-2 mb-0">Front-end demo — the message is not sent anywhere.</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-white" data-bs-dismiss="modal">Cancel</button>
+          <button type="button" class="btn btn-primary" data-demo-message-send><i class="bi bi-send"></i> Send message</button>
+        </div>
       </div>
     </div>
   </div>

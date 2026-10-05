@@ -149,6 +149,31 @@
     "data-demo-range-to",
     "data-demo-today",
     "data-demo-remove-label",
+    "data-demo-delete-verb",
+    "data-demo-delete-target",
+    "data-demo-delete-name",
+    "data-demo-message-to",
+    "data-demo-message-body",
+    "data-demo-message-title",
+    /* Presentation-only tooltip options — a button whose ONLY attribute is a
+       tooltip has no click behaviour, so the fallback still has to answer it. */
+    "data-bs-placement",
+    "data-bs-title",
+    "data-bs-html",
+    "data-bs-delay",
+    "data-bs-animation",
+    "data-bs-custom-class",
+    "data-bs-offset",
+    /* Bootstrap moves title -> data-bs-original-title when it builds a tooltip,
+       and Popper writes data-popper-* while positioning. None of that is a
+       click behaviour: a tooltip-only button has to keep reaching the fallback. */
+    "data-bs-original-title",
+    "data-popper-placement",
+    "data-popper-reference-hidden",
+    "data-popper-escaped",
+    "data-popper-arrow",
+    "data-q-tooltip",
+    "data-demo-variant",
     "data-demo-select-label",
     "data-demo-plan",
     "data-demo-plan-name",
@@ -473,6 +498,60 @@
   }
 
   /* ---------------------------------------------------------------------- */
+  /* ---------------------------------------------------------------------- */
+  /* 3c. Message dialog — the "message" icon buttons                        */
+  /* ---------------------------------------------------------------------- */
+
+  /* One dialog serves every message button: the trigger carries the recipient
+     in data-demo-message, the dialog fills its own heading, "To" field and
+     body. Sending only confirms the demo — nothing leaves the page. */
+  function openMessage(trigger) {
+    var modalEl = q("#q-demo-message");
+    if (!modalEl) return false;
+
+    var name = trigger.getAttribute("data-demo-message") || "";
+    var title = q("[data-demo-message-title]", modalEl);
+    var pattern = title ? title.getAttribute("data-demo-message-title") || "" : "";
+    if (title) {
+      title.textContent = pattern
+        ? pattern.replace(/\{name\}/g, name || "this contact")
+        : (name ? "Message " + name : "New message");
+    }
+
+    var to = q("[data-demo-message-to]", modalEl);
+    if (to) to.value = name;
+
+    var body = q("[data-demo-message-body]", modalEl);
+    if (body) body.value = "";
+
+    showModal(modalEl);
+    window.setTimeout(function () {
+      if (body && body.focus) body.focus();
+    }, 200);
+    return true;
+  }
+
+  function sendMessage(button) {
+    var modalEl = button.closest(".modal");
+    if (!modalEl) return;
+
+    var to = q("[data-demo-message-to]", modalEl);
+    var body = q("[data-demo-message-body]", modalEl);
+    var recipient = to ? to.value.trim() : "";
+    var text = body ? body.value.trim() : "";
+
+    if (!text) {
+      toast("Write a message before sending.", "warning", "Nothing to send");
+      if (body && body.focus) body.focus();
+      return;
+    }
+
+    hideModal(modalEl);
+    if (body) body.value = "";
+    toast("Message sent to " + (recipient || "this contact") + " — demo only.", "success", "Sent");
+  }
+
+  /* ---------------------------------------------------------------------- */
   /* 4. Modals — open, fill, submit                                          */
   /* ---------------------------------------------------------------------- */
 
@@ -647,7 +726,10 @@
   function askDelete(trigger) {
     /* Rows are the common case, but a card, a list item or a chip works the
        same way: the confirm dialog holds the element and Undo puts it back. */
-    var row = trigger.closest("[data-demo-deletable], tr, li[data-demo-item], .card");
+    /* A delete button normally deletes what it sits in; a button in a page
+       header (chat options, for example) names the element it removes. */
+    var target = trigger.getAttribute("data-demo-delete-target");
+    var row = (target && q(target)) || trigger.closest("[data-demo-deletable], tr, li[data-demo-item], .card");
     var modalEl = q("#q-demo-confirm");
     if (!row || !modalEl) return;
 
@@ -655,8 +737,9 @@
     modalEl.__qRow = row;
     modalEl.__qRecord = record;
     modalEl.__qLabel = trigger.getAttribute("data-demo-delete-label") || "Record";
+    modalEl.__qVerb = trigger.getAttribute("data-demo-delete-verb") || "deleted";
 
-    var name = record.name || record.title || record.company || "this record";
+    var name = trigger.getAttribute("data-demo-delete-name") || record.name || record.title || record.company || "this record";
     renderSlots(modalEl, record);
     qa("[data-slot]", modalEl).forEach(function (element) {
       if (element.textContent.trim() === "") element.textContent = name;
@@ -671,6 +754,7 @@
     if (!modalEl || !row) return;
 
     var label = modalEl.__qLabel || "Record";
+    var verb = modalEl.__qVerb || "deleted";
     var record = modalEl.__qRecord || readRecord(row);
     var table = row.closest("table");
     var parent = row.parentNode;
@@ -682,7 +766,7 @@
     hideModal(modalEl);
     modalEl.__qRow = null;
 
-    toast(label + " deleted.", "danger", "Deleted", {
+    toast(label + " " + verb + ".", "danger", "Deleted", {
       label: "Undo",
       onClick: function () {
         parent.insertBefore(row, next);
@@ -2622,6 +2706,10 @@
       var name = attributes[i].name;
       if (name.indexOf("data-") !== 0) continue;
       if (INERT_ATTRIBUTES.indexOf(name) !== -1) continue;
+      /* A tooltip is decoration, not an action: everything else data-bs-toggle
+         can carry (dropdown, modal, collapse, tab, offcanvas) really does
+         something, so only "tooltip" is inert here. */
+      if (name === "data-bs-toggle" && control.getAttribute(name) === "tooltip") continue;
       return true;
     }
     return false;
@@ -2670,6 +2758,7 @@
         " [data-demo-export], [data-demo-export-row], [data-demo-download], [data-demo-go], [data-demo-view]," +
         " [data-demo-import], [data-demo-import-run], [data-demo-add-card], [data-demo-add-column]," +
         " [data-demo-upload], [data-demo-remove-photo], [data-demo-new-chat]," +
+        " [data-demo-message], [data-demo-message-send]," +
         " [data-copy-text], [data-demo-chip], [data-demo-reset], [data-demo-clear], button, a");
       if (!control) return;
 
@@ -2914,7 +3003,23 @@
         return;
       }
 
-      if (control.hasAttribute("data-demo-action") || control.hasAttribute("data-bs-toggle")) return;
+      if (control.hasAttribute("data-demo-message-send")) {
+        event.preventDefault();
+        sendMessage(control);
+        return;
+      }
+
+      if (control.hasAttribute("data-demo-message")) {
+        event.preventDefault();
+        openMessage(control);
+        return;
+      }
+
+      if (control.hasAttribute("data-demo-action")) return;
+      /* Bootstrap owns dropdowns, modals, collapses and tabs. A tooltip does
+         not own the click, so a tooltip-only button still reaches the fallback
+         below and answers the visitor. */
+      if (control.hasAttribute("data-bs-toggle") && control.getAttribute("data-bs-toggle") !== "tooltip") return;
       if (control.hasAttribute("data-page") || control.hasAttribute("data-sort")) return;
       if (control.classList.contains("demo-tab")) return;
       if (control.hasAttribute("data-sidebar-toggle") || control.hasAttribute("data-sidebar-compact")) return;

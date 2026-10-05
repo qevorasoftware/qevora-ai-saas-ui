@@ -155,6 +155,14 @@ folder, double-click index.html and the dashboard runs.
     <button data-demo-import="#leads-table"> import pasted CSV or a .csv file
     <button data-demo-export="#leads-table"> export the visible rows as CSV
     <button data-demo-delete>                ask first, then remove + undo
+    <button data-demo-delete data-demo-delete-label="Member"
+            data-demo-delete-verb="removed"  word the confirmation and the toast
+            data-demo-delete-name="Ava"      name the record for dialogs
+            data-demo-delete-target="#row-1"> remove a named element instead
+    <button data-demo-message="Ava Reynolds"> open the shared message dialog
+    <button data-demo-pick="range">          one current item in a menu or a
+                                              button group (add -active-class,
+                                              -idle-class, -label, -done)
     <select data-demo-filter="status" data-demo-filter-table="#leads-table">
     <input data-table-filter="#leads-table"> live search
     <span data-demo-count="#leads-table" data-demo-count-noun="leads">

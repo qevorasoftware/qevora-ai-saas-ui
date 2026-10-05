@@ -150,6 +150,12 @@ QUALITY TOOLING
     the "just added" highlight (projects grid columns, numbering, kanban
     counters, calendar and report placement). Needs jsdom.
 
+  · tools/check-controls.mjs — "every click answers" check. Clicks the
+    dashboard row actions (message dialog, options menu, copy email, remove
+    with undo), the chat conversation menu and list, a tooltip-only button and
+    the auth legal links, and fails if a click leaves the page silent.
+    Needs jsdom.
+
   · tools/check-dropdowns.mjs — regression check for every dropdown and pick
     group in the template (one selected item only, the button shows the current
     choice, icons kept, aria-current / aria-pressed, locked items refused) plus a
@@ -323,6 +329,27 @@ FIXES DURING DEVELOPMENT
       <a> menu item is marked with aria-current instead of aria-pressed, and a
       disabled item is refused instead of becoming the choice. Works for menus in
       .dropdown, menus inside .input-group, split buttons and plain button groups.
+    · Icon buttons that used to do nothing now work. On the overview page the
+      message icon opens the shared message dialog (#q-demo-message) with the
+      member already in the "To" field, and the "…" button opens a real menu:
+      View profile, Send message, Copy email and Remove member — the removal
+      asks first, says "Member removed.", and the toast puts the row back.
+      The chat page's conversation options menu gained Pin, Mark as unread,
+      Mute, Copy conversation and Delete conversation (which removes the open
+      conversation, with undo), and the conversation list itself now switches
+      the open item instead of ignoring the click.
+    · The reason those buttons stayed silent: a control whose only attribute was
+      data-bs-toggle="tooltip" ran nothing, and because a data-* attribute
+      counted as "has behaviour", the demo fallback stayed quiet as well.
+      Tooltips are now treated as decoration — a tooltip-only button answers
+      with the usual demo note (and Bootstrap's runtime data-bs-original-title
+      and data-popper-* attributes count as decoration too).
+    · New shared dialog, printed in the docs: <button data-demo-message="Name">
+      fills #q-demo-message, and its [data-demo-message-send] button refuses an
+      empty message and then confirms "Message sent to Name — demo only." The
+      delete dialog learned three optional words: data-demo-delete-verb (the
+      toast verb), data-demo-delete-name (the record the dialog names) and
+      data-demo-delete-target (remove a named element instead of the row).
 
   Links, buttons and runtime behaviour
     · The light/dark toggle did nothing when localStorage is unavailable —

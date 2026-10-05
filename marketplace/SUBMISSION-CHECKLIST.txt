@@ -168,6 +168,10 @@
   · node tools/smoke.mjs --strict      82 pages, 8 interaction flows → 0 issues
   · node tools/check-add-card.mjs      "+ New …" controls and the "just added"
     highlight — 33 checks, green (needs jsdom)
+  · node tools/check-controls.mjs      "every click answers": the dashboard row
+    actions (message dialog, options menu, copy email, remove member with undo),
+    the chat conversation menu and list, a tooltip-only button and the auth legal
+    links — 45 checks, green (needs jsdom)
   · node tools/check-dropdowns.mjs     every dropdown and pick group in the
     template: one selected item only, the button shows the current choice, icons
     kept, aria-current / aria-pressed correct, locked items refused, plus a sweep
