@@ -146,6 +146,10 @@ HOSTING
 
 QUALITY TOOLING
 
+  · tools/check-add-card.mjs — regression check for the "+ New …" controls and
+    the "just added" highlight (projects grid columns, numbering, kanban
+    counters, calendar and report placement). Needs jsdom.
+
   · tools/audit.mjs — static QA gate: 19 checks over all 82 generated
     pages: document head, duplicate ids, anchor targets, aria/label references,
     image alt text, accessible names on buttons and icon links, form labels,
@@ -292,6 +296,11 @@ FIXES DURING DEVELOPMENT
     · pages/crm.html and every list page now agree with themselves: the footer
       counter shows the page window ("1–5 of 5 leads") whenever the table has a
       pager, so the same number appears in the footer, the pager and the export.
+    · The "just added" highlight no longer paints a block of colour behind a
+      card: a grid column (or any wrapper) is left alone and the new card gets a
+      soft ring instead, while a new table row keeps the familiar background
+      tint. The ring fades out after a moment, exactly like the tint did, and
+      nothing else about the highlight changed.
     · "+ New project" keeps the grid it lands in: inside a Bootstrap grid the new
       project is added as its own column at the end of the grid (it used to drop
       a second card inside the first column, which stretched every card in the

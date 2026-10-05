@@ -1588,14 +1588,29 @@
   /* ---------------------------------------------------------------------- */
 
   /* A new or changed row flashes so the eye can find it in a long table. */
+  /* A new row, card or chip points at itself for a moment. A table row gets the
+     familiar background tint — the row IS the thing that arrived. Anything else
+     gets a ring instead of a fill: a card sits inside a grid column (or a table
+     cell), and filling that wrapper paints a block of colour behind the very
+     card the highlight is meant to point at. */
   function flash(element) {
     if (!element || !element.style) return;
-    var old = element.style.backgroundColor;
-    element.style.transition = "background-color .45s ease";
-    element.style.backgroundColor = "rgba(79,70,229,.14)";
+    var fill = element.tagName === "TR";
+    var oldBackground = element.style.backgroundColor;
+    var oldShadow = element.style.boxShadow;
+    var oldTransition = element.style.transition;
+
+    element.style.transition = "background-color .45s ease, box-shadow .45s ease";
+    if (fill) {
+      element.style.backgroundColor = "rgba(79,70,229,.14)";
+    } else {
+      element.style.boxShadow = "0 0 0 3px rgba(79,70,229,.45), 0 0 0 9px rgba(79,70,229,.14)";
+    }
     if (element.scrollIntoView) element.scrollIntoView({ block: "nearest" });
     window.setTimeout(function () {
-      element.style.backgroundColor = old || "";
+      element.style.backgroundColor = oldBackground || "";
+      element.style.boxShadow = oldShadow || "";
+      element.style.transition = oldTransition || "";
     }, 1600);
   }
 
@@ -2336,6 +2351,15 @@
     return list.length;
   }
 
+  /* Finds the clone of a node inside the cloned unit, so the highlight can hug
+     the card instead of the grid column around it. */
+  function counterpart(root, original) {
+    if (root === original) return root;
+    var key = (original.className || "").split(/\s+/)[0] || "";
+    var selector = original.tagName.toLowerCase() + (key ? "." + key : "");
+    return q(selector, root) || root;
+  }
+
   function addCard(control) {
     var container = q(control.getAttribute("data-demo-add-card"));
     if (!container) {
@@ -2369,7 +2393,7 @@
        beside the sample (kanban columns, calendar cells, schedule lists). */
     if (unit === node) node.parentNode.insertBefore(card, node.nextSibling);
     else container.appendChild(card);
-    flash(card);
+    flash(counterpart(card, node));
 
     var column = card.closest ? card.closest(".kanban__col") : null;
     var counter = column ? q(".kanban__count", column) : null;
