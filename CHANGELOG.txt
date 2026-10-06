@@ -539,6 +539,20 @@ FIXES DURING DEVELOPMENT
       the 1.05rem of the buttons beside it), and every icon is centred by
       line-height instead of by baseline luck.
 
+    · Every row of the products table in pages/products.html carried TWO Edit
+      pencils: the actions cell had been edited twice, leaving a duplicate
+      button (and on the AI Token Pack row the half-renamed copy still said
+      "Edit AI Token Pack" while the row is "AI Token Pack — 1M"). Each row is
+      now view / edit / delete once, the duplicated row keeps the name it
+      actually has, and the table's static "Showing 1–5 of …" line counts the
+      six rows in it. The audit grew two checks so this cannot come back: an
+      actions cell may not hold the same control twice (the same icon doing the
+      same job), and a control that names its row may not name a different one
+      — "View AI Token Pack" on the "AI Token Pack — 1M" row is caught even
+      though the two labels are not identical. Menu items inside a dropdown are
+      left alone: the dashboard row legitimately offers "Message" both as a
+      shortcut and inside its "…" menu.
+
   Links, buttons and runtime behaviour
     · The light/dark toggle did nothing when localStorage is unavailable —
       private-mode windows, sandboxed frames and, most importantly, opening the

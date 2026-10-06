@@ -419,6 +419,88 @@ for (const file of files) {
     }
   }
 
+  /* 7b. an actions cell must not repeat the same control ------------------ */
+  /* Two Edit pencils in one Actions cell (the bug on the products table) is
+     invisible to a human reviewer until it is on screen, so it is caught here:
+     inside one .table-actions cell no two controls may carry the same icon and
+     the same job. Menu items inside a dropdown are left alone — a menu is a
+     list of choices, and two entries may share an icon on purpose. */
+  stats.checks++;
+  const norm = (text) => text.replace(/\s+/g, " ").trim();
+
+  /* The ranges of every dropdown menu on the page: a control inside a menu is a
+     choice, not a repeated row action (the dashboard row has a "Message"
+     shortcut button *and* the same entry in its "…" menu, on purpose). */
+  const menuRanges = [];
+  for (const kind of ["ul", "div"]) {
+    const re = new RegExp(`<${kind} class="dropdown-menu`, "g");
+    for (const m of html.matchAll(re)) {
+      let depth = 1;
+      let cursor = m.index + m[0].length;
+      const openRe = new RegExp(`<${kind}\\b`, "g");
+      const closeRe = new RegExp(`</${kind}>`, "g");
+      while (depth > 0 && cursor < html.length) {
+        openRe.lastIndex = cursor;
+        closeRe.lastIndex = cursor;
+        const open = openRe.exec(html);
+        const close = closeRe.exec(html);
+        if (!close) break;
+        if (open && open.index < close.index) { depth += 1; cursor = open.index + kind.length + 1; }
+        else { depth -= 1; cursor = close.index + kind.length + 3; }
+      }
+      menuRanges.push([m.index, cursor]);
+    }
+  }
+  const inMenu = (index) => menuRanges.some(([from, to]) => index >= from && index < to);
+
+  const actionsCells = [];
+  for (const m of html.matchAll(/<div class="table-actions[^"]*">/g)) {
+    /* Walk to the </div> that closes this cell. */
+    let depth = 1;
+    let cursor = m.index + m[0].length;
+    while (depth > 0 && cursor < html.length) {
+      const nextOpen = html.indexOf("<div", cursor);
+      const nextClose = html.indexOf("</div>", cursor);
+      if (nextClose === -1) break;
+      if (nextOpen !== -1 && nextOpen < nextClose) { depth += 1; cursor = nextOpen + 4; }
+      else { depth -= 1; cursor = nextClose + 6; }
+    }
+    actionsCells.push({ from: m.index + m[0].length, text: html.slice(m.index + m[0].length, cursor - 6) });
+  }
+  for (const { from: cellStart, text: cell } of actionsCells) {
+    const jobs = new Map();
+    for (const m of cell.matchAll(/<(a|button)\b[\s\S]*?<\/\1>/g)) {
+      if (inMenu(cellStart + m.index)) continue;
+      const control = norm(m[0]);
+      const icon = (control.match(/class="bi bi-([a-z0-9-]+)"/) || [])[1] || "";
+      const action = (control.match(/data-demo-(new|delete|edit|remove|select|toggle|save|message|copy|export|upload|reuse|view|open)\b/) || ["", "plain"])[1];
+      const job = `${icon}:${action}`;
+      const where = norm((control.match(/aria-label="([^"]+)"/) || [])[1] || control.slice(0, 60));
+      if (jobs.has(job)) {
+        add("row", `${where} appears twice in the same actions cell (the other one is ${jobs.get(job)})`);
+      } else {
+        jobs.set(job, where);
+      }
+    }
+  }
+
+  /* 7c. a copied row must not keep the name of the row it was copied from --- */
+  /* "View AI Token Pack" on the "AI Token Pack — 1M" row is a half-renamed
+     copy. A generic label ("Edit lead") is fine; naming another record is not. */
+  stats.checks++;
+  const rowNames = [...html.matchAll(/data-[a-z-]+-name="([^"]+)"/g)].map((m) => m[1]);
+  for (const row of html.matchAll(/<tr\b[\s\S]*?<\/tr>/g)) {
+    const own = (row[0].match(/data-[a-z-]+-name="([^"]+)"/) || [])[1];
+    if (!own) continue;
+    for (const m of row[0].matchAll(/aria-label="([^"]+)"/g)) {
+      const label = m[1];
+      if (!/^(View|Edit|Delete|Remove|Open)\b/.test(label)) continue;
+      if (label.includes(own)) continue;
+      const borrowed = rowNames.find((name) => name !== own && label.includes(name));
+      if (borrowed) add("row", `"${label}" names another row ("${borrowed}") — this one is "${own}"`);
+    }
+  }
+
   /* 8. class names -------------------------------------------------------- */
   stats.checks++;
   const unknown = new Set();
