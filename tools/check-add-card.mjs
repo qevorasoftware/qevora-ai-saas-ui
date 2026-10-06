@@ -101,15 +101,24 @@ for (const [page, label, selector] of [
 }
 
 /* ---------------------------------------------------------------- calendar */
+/* The calendar does not clone a chip: "New event" opens a dialog and the saved
+   event is drawn into the cell of the day it was given. */
 {
   const { w, errors } = await open("pages/calendar.html");
-  const grid = w.document.querySelector("#calendar-grid");
-  const before = grid.querySelectorAll(".badge").length;
-  click(w, w.document.querySelector("[data-demo-add-card]"));
-  await wait(400);
-  check("calendar: an event chip appeared", grid.querySelectorAll(".badge").length === before + 1, `${before} → ${grid.querySelectorAll(".badge").length}`);
-  check("calendar: the chip carries the new label", [...grid.querySelectorAll(".badge")].some((b) => /New event/.test(text(b))), "");
-  check("calendar: the chip sits in a real cell", !!([...grid.querySelectorAll(".badge")].find((b) => /New event/.test(text(b))).closest("td")), "");
+  const grid = () => w.document.querySelector("#calendar-grid");
+  const before = grid().querySelectorAll(".q-cal__event").length;
+  const day = w.document.querySelector(".q-cal__cell.is-today").getAttribute("data-cal-date");
+  click(w, w.document.querySelector("[data-cal-new]"));
+  await wait(420);
+  w.document.querySelector('[data-cal-field="title"]').value = "Regression review";
+  w.document.querySelector('[data-cal-field="date"]').value = day;
+  w.document.querySelector("[data-cal-form]").dispatchEvent(new w.Event("submit", { bubbles: true, cancelable: true }));
+  await wait(160);
+  const added = [...grid().querySelectorAll(".q-cal__event")].find((chip) => text(chip) === "Regression review");
+  check("calendar: the saved event is drawn", grid().querySelectorAll(".q-cal__event").length === before + 1, `${before} → ${grid().querySelectorAll(".q-cal__event").length}`);
+  check("calendar: it carries the title that was typed", !!added, "");
+  check("calendar: the chip sits in a real cell of the chosen day", !!added && added.closest("td").getAttribute("data-cal-date") === day, `${day} → ${added ? added.closest("td").getAttribute("data-cal-date") : "not found"}`);
+  check("calendar: the just-added ring goes on the chip, not the cell", !!added && added.classList.contains("is-new") && !added.closest("td").classList.contains("is-new"), "");
   check("calendar: no console errors", errors.length === 0, errors[0] || "");
 }
 

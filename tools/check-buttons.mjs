@@ -359,11 +359,14 @@ for (const page of pages) {
     check(`${where}`, true);
   }
 
-  /* Progress on one line, so a long scan can be watched. */
+  /* Progress on one line, so a long scan can be watched. The counts matter even
+     when the page is clean: a control a click detached is not a blank control,
+     but it is also not a control this sweep managed to test. */
   const state = dead.length || broken.length || errors.length
     ? `FAIL  ${dead.length} blank, ${broken.length} broken`
     : "clean";
-  console.log(`  [${pages.indexOf(page) + 1}/${pages.length}] ${state}  ${page}`);
+  console.log(`  [${pages.indexOf(page) + 1}/${pages.length}] ${state}  ${page}  ` +
+    `(${clicked} clicked${detached ? `, ${detached} detached` : ""}${skipped ? `, ${skipped} already on` : ""})`);
 }
 
 console.log(results.filter((row) => row.startsWith("FAIL")).join("\n") || "(no failures)");

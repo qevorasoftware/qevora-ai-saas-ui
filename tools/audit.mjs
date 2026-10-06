@@ -106,7 +106,8 @@ const JS_FILES = [
   "assets/js/demo-ui.js",
   "assets/js/pages/charts.js",
   "assets/js/pages/chat.js",
-  "assets/js/pages/auth.js"
+  "assets/js/pages/auth.js",
+  "assets/js/pages/calendar.js"
 ];
 
 const validDataAttrs = new Set(["data-bs-theme"]); // set on <html>, not handled in JS

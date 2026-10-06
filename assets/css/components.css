@@ -2293,3 +2293,340 @@
     top: calc(var(--q-header-height) + 1.5rem);
   }
 }
+
+/* ============================ Calendar =================================== */
+/* The month grid is a real table so every cell keeps its column; the week and
+   day views are card layouts drawn from the same event list. */
+
+.q-cal {
+  table-layout: fixed;
+}
+
+.q-cal__head {
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--q-faint-color);
+  padding-bottom: 0.6rem;
+}
+
+.q-cal__cell {
+  cursor: pointer;
+  padding: 0.6rem 0.55rem 0.5rem;
+  transition: background-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.q-cal__cell:hover {
+  background: var(--q-surface-hover);
+}
+
+.q-cal__cell.is-weekend {
+  background: var(--q-surface-alt);
+}
+
+.q-cal__cell.is-muted {
+  background: var(--q-surface-alt);
+}
+
+.q-cal__cell.is-muted .q-cal__num {
+  color: var(--q-faint-color);
+  font-weight: 500;
+}
+
+.q-cal__cell.is-today {
+  box-shadow: inset 0 0 0 2px rgba(var(--q-primary-rgb), 0.35);
+  border-radius: var(--q-radius-sm);
+}
+
+.q-cal__cell.is-selected {
+  background: var(--q-primary-soft);
+  box-shadow: inset 0 0 0 2px rgba(var(--q-primary-rgb), 0.35);
+  border-radius: var(--q-radius-sm);
+}
+
+.q-cal__num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 24px;
+  height: 24px;
+  border-radius: var(--q-radius-xs);
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--q-heading-color);
+}
+
+.q-cal__cell.is-today .q-cal__num {
+  background: var(--q-fill-bg);
+  color: #fff;
+}
+
+.q-cal__today {
+  margin-inline-start: 0.35rem;
+  font-size: 0.62rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--q-primary);
+}
+
+.q-cal__events {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  margin-top: 0.4rem;
+}
+
+.q-cal__event {
+  border: 0;
+  cursor: pointer;
+  max-width: 100%;
+  text-align: start;
+  transition: box-shadow 0.15s ease;
+}
+
+.q-cal__event:hover {
+  box-shadow: 0 0 0 2px rgba(var(--q-primary-rgb), 0.25);
+}
+
+/* The "just added" ring: on the chip itself, never behind the whole card. */
+.q-cal__event.is-new {
+  box-shadow: 0 0 0 3px rgba(var(--q-primary-rgb), 0.35);
+}
+
+.q-cal__more {
+  align-self: flex-start;
+  padding: 0;
+  border: 0;
+  background: none;
+  font-size: 0.68rem;
+  font-weight: 600;
+  color: var(--q-muted-color);
+  cursor: pointer;
+}
+
+.q-cal__more:hover {
+  color: var(--q-primary);
+  text-decoration: underline;
+}
+
+/* Honest empty state: says why nothing is drawn and offers the way back. */
+.q-cal-note {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.6rem;
+  margin: 1rem;
+  padding: 1.5rem 1rem;
+  border: 1px dashed var(--q-border-strong);
+  border-radius: var(--q-radius);
+  text-align: center;
+}
+
+.q-cal-note__text {
+  font-size: 0.85rem;
+  color: var(--q-muted-color);
+}
+
+/* Week view */
+.q-cal-week {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(120px, 1fr));
+  gap: 0.5rem;
+  min-width: 700px;
+  padding: 0.75rem;
+}
+
+.q-cal-week__col {
+  display: flex;
+  flex-direction: column;
+  padding: 0.55rem;
+  border: 1px solid var(--q-border-color);
+  border-radius: var(--q-radius);
+  background: var(--q-surface-alt);
+}
+
+.q-cal-week__col.is-today {
+  box-shadow: inset 0 0 0 2px rgba(var(--q-primary-rgb), 0.35);
+}
+
+.q-cal-week__col.is-selected {
+  background: var(--q-primary-soft);
+  border-color: rgba(var(--q-primary-rgb), 0.35);
+}
+
+.q-cal-week__head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  width: 100%;
+  padding: 0.15rem 0.2rem;
+  border: 0;
+  border-radius: var(--q-radius-xs);
+  background: none;
+  text-align: start;
+  cursor: pointer;
+}
+
+.q-cal-week__head:hover .q-cal-week__day {
+  color: var(--q-primary);
+}
+
+.q-cal-week__day {
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--q-faint-color);
+}
+
+.q-cal-week__num {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--q-heading-color);
+}
+
+.q-cal-week__body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  margin-top: 0.4rem;
+  min-height: 2.5rem;
+}
+
+.q-cal-week__none {
+  font-size: 0.8rem;
+  color: var(--q-faint-color);
+}
+
+.q-cal-week__add {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.3rem;
+  width: 100%;
+  margin-top: 0.5rem;
+  padding: 0.2rem 0.35rem;
+  border: 1px dashed var(--q-border-strong);
+  border-radius: var(--q-radius-sm);
+  background: none;
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: var(--q-muted-color);
+  cursor: pointer;
+}
+
+.q-cal-week__add:hover {
+  color: var(--q-primary);
+  border-color: rgba(var(--q-primary-rgb), 0.5);
+}
+
+/* Day view */
+.q-cal-day {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 0.9rem;
+}
+
+.q-cal-day__row {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  width: 100%;
+  padding: 0.75rem 0.9rem;
+  border: 1px solid var(--q-border-color);
+  border-radius: var(--q-radius);
+  background: var(--q-surface-alt);
+  text-align: start;
+  cursor: pointer;
+}
+
+.q-cal-day__row:hover {
+  border-color: rgba(var(--q-primary-rgb), 0.4);
+}
+
+.q-cal-day__row .timeline__dot {
+  margin-top: 0.5rem;
+}
+
+.q-cal-day__time {
+  min-width: 6.5rem;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--q-heading-color);
+}
+
+.q-cal-day__body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.q-cal-day__title {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--q-heading-color);
+}
+
+.q-cal-day__meta {
+  font-size: 0.75rem;
+  color: var(--q-faint-color);
+}
+
+/* The legend works as a filter: a pressed dot is on, a struck-through one off */
+button.legend__item {
+  padding: 0;
+  border: 0;
+  background: none;
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+}
+
+button.legend__item:hover {
+  color: var(--q-heading-color);
+}
+
+button.legend__item:focus-visible {
+  outline: 2px solid var(--q-primary);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+.legend__item.is-off {
+  opacity: 0.5;
+  text-decoration: line-through;
+}
+
+.form-check-label.is-off {
+  opacity: 0.55;
+}
+
+/* Agenda rows are buttons: the whole line opens the event */
+.q-cal-agenda__item {
+  display: block;
+  width: 100%;
+  padding: 0;
+  border: 0;
+  background: none;
+  text-align: start;
+  cursor: pointer;
+}
+
+.q-cal-agenda__item .timeline__title,
+.q-cal-agenda__item .timeline__meta {
+  display: block;
+  margin: 0;
+}
+
+.q-cal-agenda__item:hover .timeline__title {
+  color: var(--q-primary);
+}
+
+@media (max-width: 575.98px) {
+  .q-cal-week {
+    min-width: 620px;
+  }
+}

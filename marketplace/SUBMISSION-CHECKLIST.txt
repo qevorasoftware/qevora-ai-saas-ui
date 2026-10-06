@@ -167,7 +167,7 @@
   · node tools/audit.mjs --strict      19 checks × 82 pages   → 0 findings
   · node tools/smoke.mjs --strict      82 pages, 8 interaction flows → 0 issues
   · node tools/check-add-card.mjs      "+ New …" controls and the "just added"
-    highlight — 33 checks, green (needs jsdom)
+    highlight — 34 checks, green (needs jsdom)
   · node tools/check-states.mjs        interaction states in both palettes:
     white on the active pill and on its hover shade resolve through the shipped
     cascade to 6.3:1 / 7.9:1 (light) and 4.6:1 / 5.0:1 (dark), the selects keep
@@ -194,6 +194,12 @@
     inside a closed dialog, menu or drawer are opened first through Bootstrap,
     so a Cancel button is tested where a user would find it. 82 pages, 0 blank
     controls (needs jsdom; a full sweep takes a few minutes)
+  · node tools/check-calendar.mjs      the calendar in pages/calendar.html: month, week and day views,
+    month navigation that always lands on the month in the header, every event drawn into
+    the cell of its own day, the four calendars on and off (the legend dots and the sidebar
+    switches stay in step, and "Showing X of Y events" follows), the agenda describing the
+    selected day, and the event dialog from add to edit to delete with undo — 76 checks,
+    green (needs jsdom)
   · node tools/check-kanban.mjs        the card boards on pages/pipeline.html and
     pages/pages/kanban.html: every card draggable and handled, a drop landing in
     front of the card it was dropped on, the dashed landing cue, counters and the

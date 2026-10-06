@@ -2,15 +2,15 @@
         <div>
           {{BREADCRUMB}}
           <h1 class="q-page-head__title mt-2">Calendar</h1>
-          <p class="q-page-head__subtitle">Meetings, deadlines and release dates for October 2026.</p>
+          <p class="q-page-head__subtitle" data-cal-subtitle>Meetings, deadlines and release dates.</p>
         </div>
         <div class="d-flex flex-wrap gap-2">
           <div class="btn-group" role="group" aria-label="Calendar view">
-            <button type="button" class="btn btn-white active" data-demo-action="Month view selected — demo only.">Month</button>
-            <button type="button" class="btn btn-white" data-demo-action="Week view selected — demo only.">Week</button>
-            <button type="button" class="btn btn-white" data-demo-action="Day view selected — demo only.">Day</button>
+            <button type="button" class="btn btn-white active" data-cal-btn="month" aria-pressed="true">Month</button>
+            <button type="button" class="btn btn-white" data-cal-btn="week" aria-pressed="false">Week</button>
+            <button type="button" class="btn btn-white" data-cal-btn="day" aria-pressed="false">Day</button>
           </div>
-          <button type="button" class="btn btn-primary" data-demo-add-card="#calendar-grid" data-demo-card-title="New event"><i class="bi bi-plus-lg"></i> New event</button>
+          <button type="button" class="btn btn-primary" data-cal-new=""><i class="bi bi-plus-lg"></i> New event</button>
         </div>
       </div>
 
@@ -18,148 +18,35 @@
         <div class="col-xl-9">
           <div class="card">
             <div class="card-header">
-              <div class="d-flex align-items-center gap-3">
-                <h2 class="card-title mb-0">October 2026</h2>
-                <div class="btn-group btn-group-sm" role="group" aria-label="Month navigation">
-                  <button type="button" class="btn btn-white" aria-label="Previous month" data-demo-action="Previous month — demo only."><i class="bi bi-chevron-left"></i></button>
-                  <button type="button" class="btn btn-white" data-demo-action="Today — demo only.">Today</button>
-                  <button type="button" class="btn btn-white" aria-label="Next month" data-demo-action="Next month — demo only."><i class="bi bi-chevron-right"></i></button>
+              <div class="d-flex align-items-center gap-3 flex-wrap">
+                <h2 class="card-title mb-0" data-cal-title>Calendar</h2>
+                <span class="badge badge-soft-neutral" data-cal-count>0 events</span>
+                <div class="btn-group btn-group-sm" role="group" aria-label="Calendar navigation">
+                  <button type="button" class="btn btn-white" aria-label="Previous month" data-cal-prev><i class="bi bi-chevron-left"></i></button>
+                  <button type="button" class="btn btn-white" data-cal-today>Today</button>
+                  <button type="button" class="btn btn-white" aria-label="Next month" data-cal-next><i class="bi bi-chevron-right"></i></button>
                 </div>
               </div>
-              <div class="legend">
-                <span class="legend__item"><span class="legend__dot" style="background: var(--q-primary)"></span> Meetings</span>
-                <span class="legend__item"><span class="legend__dot" style="background: var(--q-warning)"></span> Deadlines</span>
-                <span class="legend__item"><span class="legend__dot" style="background: var(--q-success)"></span> Releases</span>
+              <div class="legend" data-cal-legend>
+                <button type="button" class="legend__item" data-cal-filter="meeting" aria-pressed="true">
+                  <span class="legend__dot" style="background: var(--q-primary)"></span> Team meetings
+                </button>
+                <button type="button" class="legend__item" data-cal-filter="deadline" aria-pressed="true">
+                  <span class="legend__dot" style="background: var(--q-warning)"></span> Deadlines
+                </button>
+                <button type="button" class="legend__item" data-cal-filter="release" aria-pressed="true">
+                  <span class="legend__dot" style="background: var(--q-success)"></span> Releases
+                </button>
+                <button type="button" class="legend__item is-off" data-cal-filter="holiday" aria-pressed="false">
+                  <span class="legend__dot" style="background: var(--q-faint-color)"></span> Holidays
+                </button>
               </div>
             </div>
 
-            <div class="table-responsive">
-              <table class="table align-middle mb-0" id="calendar-grid" style="table-layout: fixed; min-width: 760px;">
-                <thead>
-                  <tr>
-                    <th scope="col" class="text-center">Mon</th>
-                    <th scope="col" class="text-center">Tue</th>
-                    <th scope="col" class="text-center">Wed</th>
-                    <th scope="col" class="text-center">Thu</th>
-                    <th scope="col" class="text-center">Fri</th>
-                    <th scope="col" class="text-center">Sat</th>
-                    <th scope="col" class="text-center">Sun</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td class="text-muted-2" style="height: 108px; vertical-align: top;">28</td>
-                    <td class="text-muted-2" style="height: 108px; vertical-align: top;">29</td>
-                    <td class="text-muted-2" style="height: 108px; vertical-align: top;">30</td>
-                    <td style="height: 108px; vertical-align: top;">
-                      <span class="fs-8 fw-600 text-heading">1</span>
-                      <div class="mt-2 d-flex flex-column gap-1">
-                        <span class="badge badge-soft-primary text-truncate">Sprint planning</span>
-                      </div>
-                    </td>
-                    <td style="height: 108px; vertical-align: top;">
-                      <span class="fs-8 fw-600 text-heading">2</span>
-                      <div class="mt-2 d-flex flex-column gap-1">
-                        <span class="badge badge-soft-success text-truncate">v2.4 release</span>
-                      </div>
-                    </td>
-                    <td style="height: 108px; vertical-align: top;"><span class="fs-8 fw-600 text-heading">3</span></td>
-                    <td style="height: 108px; vertical-align: top;"><span class="fs-8 fw-600 text-heading">4</span></td>
-                  </tr>
-                  <tr>
-                    <td style="height: 108px; vertical-align: top;">
-                      <span class="fs-8 fw-600 text-heading">5</span>
-                      <div class="mt-2 d-flex flex-column gap-1">
-                        <span class="badge badge-soft-primary text-truncate">Design review</span>
-                        <span class="badge badge-soft-warning text-truncate">Invoice due</span>
-                      </div>
-                    </td>
-                    <td style="height: 108px; vertical-align: top;">
-                      <span class="fs-8 fw-600 text-heading">6</span>
-                      <div class="mt-2 d-flex flex-column gap-1">
-                        <span class="badge badge-soft-primary text-truncate">Horizon Labs call</span>
-                      </div>
-                    </td>
-                    <td style="height: 108px; vertical-align: top;"><span class="fs-8 fw-600 text-heading">7</span></td>
-                    <td style="height: 108px; vertical-align: top;">
-                      <span class="fs-8 fw-600 text-heading">8</span>
-                      <div class="mt-2 d-flex flex-column gap-1">
-                        <span class="badge badge-soft-primary text-truncate">1:1 — Marcus</span>
-                      </div>
-                    </td>
-                    <td style="height: 108px; vertical-align: top;">
-                      <span class="fs-8 fw-600 text-heading">9</span>
-                      <div class="mt-2 d-flex flex-column gap-1">
-                        <span class="badge badge-soft-warning text-truncate">Vertex proposal</span>
-                      </div>
-                    </td>
-                    <td style="height: 108px; vertical-align: top;"><span class="fs-8 fw-600 text-heading">10</span></td>
-                    <td style="height: 108px; vertical-align: top;"><span class="fs-8 fw-600 text-heading">11</span></td>
-                  </tr>
-                  <tr>
-                    <td style="height: 108px; vertical-align: top;">
-                      <span class="fs-8 fw-600 text-heading">12</span>
-                      <div class="mt-2 d-flex flex-column gap-1">
-                        <span class="badge badge-soft-primary text-truncate">Query migration due</span>
-                      </div>
-                    </td>
-                    <td style="height: 108px; vertical-align: top;"><span class="fs-8 fw-600 text-heading">13</span></td>
-                    <td style="height: 108px; vertical-align: top;">
-                      <span class="fs-8 fw-600 text-heading">14</span>
-                      <div class="mt-2 d-flex flex-column gap-1">
-                        <span class="badge badge-soft-success text-truncate">Dunning templates</span>
-                      </div>
-                    </td>
-                    <td style="height: 108px; vertical-align: top;"><span class="fs-8 fw-600 text-heading">15</span></td>
-                    <td style="height: 108px; vertical-align: top;">
-                      <span class="fs-8 fw-600 text-heading">16</span>
-                      <div class="mt-2 d-flex flex-column gap-1">
-                        <span class="badge badge-soft-primary text-truncate">Board meeting</span>
-                      </div>
-                    </td>
-                    <td style="height: 108px; vertical-align: top;"><span class="fs-8 fw-600 text-heading">17</span></td>
-                    <td style="height: 108px; vertical-align: top;"><span class="fs-8 fw-600 text-heading">18</span></td>
-                  </tr>
-                  <tr>
-                    <td style="height: 108px; vertical-align: top;">
-                      <span class="fs-8 fw-600 text-heading">19</span>
-                      <div class="mt-2 d-flex flex-column gap-1">
-                        <span class="badge badge-soft-primary text-truncate">Atlas cutover</span>
-                      </div>
-                    </td>
-                    <td style="height: 108px; vertical-align: top;"><span class="fs-8 fw-600 text-heading">20</span></td>
-                    <td style="height: 108px; vertical-align: top;"><span class="fs-8 fw-600 text-heading">21</span></td>
-                    <td style="height: 108px; vertical-align: top;">
-                      <span class="fs-8 fw-600 text-heading">22</span>
-                      <div class="mt-2 d-flex flex-column gap-1">
-                        <span class="badge badge-soft-warning text-truncate">Mobile sprint end</span>
-                      </div>
-                    </td>
-                    <td style="height: 108px; vertical-align: top;"><span class="fs-8 fw-600 text-heading">23</span></td>
-                    <td style="height: 108px; vertical-align: top;"><span class="fs-8 fw-600 text-heading">24</span></td>
-                    <td style="height: 108px; vertical-align: top;"><span class="fs-8 fw-600 text-heading">25</span></td>
-                  </tr>
-                  <tr>
-                    <td style="height: 108px; vertical-align: top;"><span class="fs-8 fw-600 text-heading">26</span></td>
-                    <td style="height: 108px; vertical-align: top;"><span class="fs-8 fw-600 text-heading">27</span></td>
-                    <td style="height: 108px; vertical-align: top;">
-                      <span class="fs-8 fw-600 text-heading">28</span>
-                      <div class="mt-2 d-flex flex-column gap-1">
-                        <span class="badge badge-soft-success text-truncate">Billing revamp RC</span>
-                      </div>
-                    </td>
-                    <td style="height: 108px; vertical-align: top;"><span class="fs-8 fw-600 text-heading">29</span></td>
-                    <td style="height: 108px; vertical-align: top;">
-                      <span class="fs-8 fw-600 text-heading">30</span>
-                      <div class="mt-2 d-flex flex-column gap-1">
-                        <span class="badge badge-soft-primary text-truncate">Retro &amp; demo</span>
-                      </div>
-                    </td>
-                    <td style="height: 108px; vertical-align: top;"><span class="fs-8 fw-600 text-heading">31</span></td>
-                    <td class="text-muted-2" style="height: 108px; vertical-align: top;">1</td>
-                  </tr>
-                </tbody>
-              </table>
+            <div class="table-responsive" data-cal-view-host data-cal-view-name="month">
+              <div class="q-cal-note">
+                <p class="q-cal-note__text mb-0">This demo calendar is drawn by <code>assets/js/pages/calendar.js</code> — enable JavaScript to see the month grid.</p>
+              </div>
             </div>
           </div>
         </div>
@@ -168,31 +55,40 @@
           <div class="card">
             <div class="card-header">
               <div>
-                <h2 class="card-title">Today's agenda</h2>
-                <p class="card-subtitle">Friday, October 2</p>
+                <h2 class="card-title mb-1" data-cal-agenda-title>Today's agenda</h2>
+                <p class="card-subtitle mb-0" data-cal-agenda-date>Today</p>
               </div>
+              <button type="button" class="btn btn-sm btn-white" data-cal-agenda-today hidden>Back to today</button>
             </div>
             <div class="card-body">
-              <ul class="timeline">
-                <li class="timeline__item">
+              <ul class="timeline" data-cal-agenda>
+                <li class="timeline__item" data-cal-agenda-row>
                   <span class="timeline__dot"></span>
-                  <p class="timeline__title">Design review — components</p>
-                  <p class="timeline__meta">09:00 – 10:00 · Zoom</p>
+                  <button type="button" class="q-cal-agenda__item">
+                    <span class="timeline__title">Design review — components</span>
+                    <span class="timeline__meta">09:00 – 10:00 · Zoom</span>
+                  </button>
                 </li>
-                <li class="timeline__item">
-                  <span class="timeline__dot timeline__dot--success"></span>
-                  <p class="timeline__title">v2.4 production release</p>
-                  <p class="timeline__meta">11:30 · Platform team</p>
+                <li class="timeline__item" data-cal-agenda-row>
+                  <span class="timeline__dot"></span>
+                  <button type="button" class="q-cal-agenda__item">
+                    <span class="timeline__title">v2.4 production release</span>
+                    <span class="timeline__meta">11:30 · Platform team</span>
+                  </button>
                 </li>
-                <li class="timeline__item">
-                  <span class="timeline__dot timeline__dot--warning"></span>
-                  <p class="timeline__title">Northstar contract review</p>
-                  <p class="timeline__meta">14:00 – 15:00 · Legal</p>
+                <li class="timeline__item" data-cal-agenda-row>
+                  <span class="timeline__dot"></span>
+                  <button type="button" class="q-cal-agenda__item">
+                    <span class="timeline__title">Northstar contract review</span>
+                    <span class="timeline__meta">14:00 – 15:00 · Legal</span>
+                  </button>
                 </li>
-                <li class="timeline__item">
-                  <span class="timeline__dot timeline__dot--muted"></span>
-                  <p class="timeline__title">Weekly metrics handoff</p>
-                  <p class="timeline__meta">17:00 · Async</p>
+                <li class="timeline__item" data-cal-agenda-row>
+                  <span class="timeline__dot"></span>
+                  <button type="button" class="q-cal-agenda__item">
+                    <span class="timeline__title">Weekly metrics handoff</span>
+                    <span class="timeline__meta">17:00 · Async</span>
+                  </button>
                 </li>
               </ul>
             </div>
@@ -201,24 +97,101 @@
           <div class="card">
             <div class="card-header">
               <h2 class="card-title mb-0">Calendars</h2>
+              <span class="fs-8 text-muted-2" data-cal-visible>Showing 0 of 0 events</span>
             </div>
             <div class="card-body d-flex flex-column gap-2">
               <div class="form-check form-switch">
-                <input class="form-check-input" type="checkbox" id="cal-meetings" checked>
+                <input class="form-check-input" type="checkbox" id="cal-meetings" data-cal-switch="meeting" checked>
                 <label class="form-check-label" for="cal-meetings">Team meetings</label>
               </div>
               <div class="form-check form-switch">
-                <input class="form-check-input" type="checkbox" id="cal-deadlines" checked>
+                <input class="form-check-input" type="checkbox" id="cal-deadlines" data-cal-switch="deadline" checked>
                 <label class="form-check-label" for="cal-deadlines">Deadlines</label>
               </div>
               <div class="form-check form-switch">
-                <input class="form-check-input" type="checkbox" id="cal-releases" checked>
+                <input class="form-check-input" type="checkbox" id="cal-releases" data-cal-switch="release" checked>
                 <label class="form-check-label" for="cal-releases">Release calendar</label>
               </div>
               <div class="form-check form-switch">
-                <input class="form-check-input" type="checkbox" id="cal-holidays">
+                <input class="form-check-input" type="checkbox" id="cal-holidays" data-cal-switch="holiday">
                 <label class="form-check-label" for="cal-holidays">Company holidays</label>
               </div>
+              <p class="fs-8 text-muted-2 mb-0 mt-1">Switch a calendar off to take it out of the grid, or use the dots in the header. Click a day to load it into the agenda; double-click to book something.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ================= Calendar dialogs ================= -->
+      <div class="modal fade" id="cal-event-modal" tabindex="-1" aria-labelledby="cal-event-modal-title" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+            <form data-cal-form novalidate>
+              <div class="modal-header">
+                <h2 class="modal-title fs-6" id="cal-event-modal-title">Add an event</h2>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close dialog"></button>
+              </div>
+              <div class="modal-body">
+                <div class="row g-3">
+                  <div class="col-12">
+                    <label class="form-label" for="cal-event-title">Event title</label>
+                    <input type="text" class="form-control" id="cal-event-title" data-cal-field="title" placeholder="Design review" required>
+                    <div class="invalid-feedback">Give the event a title.</div>
+                  </div>
+                  <div class="col-md-6">
+                    <label class="form-label" for="cal-event-date">Date</label>
+                    <input type="date" class="form-control" id="cal-event-date" data-cal-field="date" required>
+                    <div class="invalid-feedback">Pick a date for the event.</div>
+                  </div>
+                  <div class="col-md-6">
+                    <label class="form-label" for="cal-event-type">Calendar</label>
+                    <select class="form-select" id="cal-event-type" data-cal-field="type">
+                      <option value="meeting">Team meetings</option>
+                      <option value="deadline">Deadlines</option>
+                      <option value="release">Release calendar</option>
+                      <option value="holiday">Company holidays</option>
+                    </select>
+                  </div>
+                  <div class="col-md-6">
+                    <label class="form-label" for="cal-event-time">Starts <span class="text-muted-2 fw-400">(optional)</span></label>
+                    <input type="time" class="form-control" id="cal-event-time" data-cal-field="time">
+                  </div>
+                  <div class="col-md-6">
+                    <label class="form-label" for="cal-event-end">Ends <span class="text-muted-2 fw-400">(optional)</span></label>
+                    <input type="time" class="form-control" id="cal-event-end" data-cal-field="end">
+                    <div class="invalid-feedback">The end time is before the start time.</div>
+                  </div>
+                  <div class="col-12">
+                    <label class="form-label" for="cal-event-place">Where <span class="text-muted-2 fw-400">(optional)</span></label>
+                    <input type="text" class="form-control" id="cal-event-place" data-cal-field="place" placeholder="Zoom">
+                  </div>
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-white" data-bs-dismiss="modal">Cancel</button>
+                <button type="submit" class="btn btn-primary" data-cal-submit>Add event</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal fade" id="cal-event-view" tabindex="-1" aria-labelledby="cal-event-view-title" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h2 class="modal-title fs-6" id="cal-event-view-title" data-cal-view-title>Event</h2>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close dialog"></button>
+            </div>
+            <div class="modal-body">
+              <span class="badge badge-soft-primary" data-cal-view-type>Team meetings</span>
+              <p class="fw-600 text-heading mt-3 mb-1" data-cal-view-when>—</p>
+              <p class="text-muted-2 mb-0" data-cal-view-where>—</p>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-soft-danger" data-cal-delete>Delete event</button>
+              <button type="button" class="btn btn-primary" data-cal-edit>Edit event</button>
+              <button type="button" class="btn btn-white" data-bs-dismiss="modal">Close</button>
             </div>
           </div>
         </div>

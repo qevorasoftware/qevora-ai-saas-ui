@@ -482,6 +482,34 @@ FIXES DURING DEVELOPMENT
       hideModal() only hid dialogs Bootstrap believed it had opened, so one put
       on screen another way stayed up; it always leaves the screen now.
 
+    · The calendar on pages/calendar.html is a working calendar now, not a
+      picture of one. Month, week and day views are all drawn from one list of
+      events; Previous / Next / Today move by a month, a week or a day depending
+      on the view, and today is always marked in the grid. Clicking a day loads
+      it into the sidebar agenda (which is headed "Today's agenda" only when it
+      really is today, and offers a "Back to today" button when it is not);
+      double-clicking a day opens the event dialog on that day.
+      The four calendars filter the grid: the legend dots in the header and the
+      switches in the sidebar are two views of the same state and always agree,
+      the badge beside the title counts the events on screen, the sidebar says
+      "Showing X of Y events", and switching everything off is met with an
+      honest empty grid and a "Show all calendars" button instead of a blank
+      table. A day with more than three events folds the rest into "+N more",
+      which opens that day.
+      "New event" opens a real dialog — title, date, time, end, calendar and
+      place — with the same inline validation, announcements and undo the rest of
+      the template uses: the saved event is drawn into the cell of the day it was
+      given, its calendar is switched back on rather than swallowing it, and the
+      chip is ringed briefly (never the whole card). Clicking any chip opens the
+      event, where it can be edited (the form comes back filled, and the edit is
+      announced and undoable) or deleted (also undoable). The demo events are
+      seeded against the month the page opens on, so the calendar is never empty
+      and "Today" always lands on a real day, whatever the date on the buyer's
+      machine. assets/js/pages/calendar.js is 100% client-side; swapping the
+      SEEDS list at the top of the file for your own data is the whole
+      integration, and window.QevoraCalendar exposes events(), state() and
+      refresh() for anything the markup does not cover.
+
   Links, buttons and runtime behaviour
     · The light/dark toggle did nothing when localStorage is unavailable —
       private-mode windows, sandboxed frames and, most importantly, opening the

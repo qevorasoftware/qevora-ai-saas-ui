@@ -1007,6 +1007,31 @@ Optional developer source package (shipped separately from the item page)
                     <td class="fs-7"><code>[data-chat-composer]</code>, <code>[data-chat-thread]</code>, <code>[data-conversation-search]</code></td>
                   </tr>
                   <tr>
+                    <td><code>pages/calendar.js</code></td>
+                    <td class="fs-7 text-muted-2">
+                      The month, week and day calendar: the grid, month navigation, the four calendars that filter it,
+                      the day-by-day agenda beside it and the event dialog (add, edit, delete — each one announced and
+                      undoable). The demo events are seeded against the month the page opens on, so the calendar looks
+                      alive whatever the date on the viewer's machine is; swap the <code>SEEDS</code> list at the top of
+                      the file for your own data and the grid, the counters, the agenda and the dialog all follow.
+                    </td>
+                    <td class="fs-7">
+                      <code>[data-cal-view-host]</code> with <code>[data-cal-title]</code>, <code>[data-cal-subtitle]</code>,
+                      <code>[data-cal-count]</code> and <code>[data-cal-visible]</code> for the headline and the counters;
+                      <code>[data-cal-btn]</code> (month / week / day), <code>[data-cal-prev]</code>,
+                      <code>[data-cal-today]</code>, <code>[data-cal-next]</code> to move;
+                      <code>[data-cal-filter]</code> dots and <code>[data-cal-switch]</code> checkboxes for the four
+                      calendars; <code>[data-cal-agenda]</code> with <code>[data-cal-agenda-title]</code>,
+                      <code>[data-cal-agenda-date]</code> and <code>[data-cal-agenda-today]</code> for the sidebar;
+                      <code>[data-cal-new]</code> (an optional <code>YYYY-MM-DD</code> value starts the dialog on that
+                      day), <code>[data-cal-event]</code> on any chip or agenda line to open its detail dialog with
+                      <code>[data-cal-edit]</code> and <code>[data-cal-delete]</code>, and the form hooks
+                      <code>[data-cal-form]</code>, <code>[data-cal-field="title|date|time|end|type|place"]</code> and
+                      <code>[data-cal-submit]</code>; <code>QevoraCalendar.events()</code>,
+                      <code>.state()</code> and <code>.refresh()</code> to read the list and repaint
+                    </td>
+                  </tr>
+                  <tr>
                     <td><code>pages/auth.js</code></td>
                     <td class="fs-7 text-muted-2">One-time-code inputs and live countdowns</td>
                     <td class="fs-7"><code>[data-otp]</code>, <code>[data-countdown]</code></td>

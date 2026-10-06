@@ -21,6 +21,9 @@ const CHART_SCRIPTS = ["assets/js/chart.umd.js", "assets/js/pages/charts.js"];
 /* The chat workspace script is only loaded on the two chat pages. */
 const CHAT_SCRIPTS = ["assets/js/pages/chat.js"];
 
+/* The calendar engine is only loaded on the calendar page. */
+const CALENDAR_SCRIPTS = ["assets/js/pages/calendar.js"];
+
 /* OTP inputs and countdowns — authentication and utility pages only. */
 const AUTH_SCRIPTS = ["assets/js/pages/auth.js"];
 
@@ -126,6 +129,7 @@ export const pages = [
   },
   {
     out: "pages/calendar.html",
+    scripts: CALENDAR_SCRIPTS,
     breadcrumb: ["Applications", "Calendar"],
     meta: {
       title: "Calendar | Qevora AI SaaS UI",
