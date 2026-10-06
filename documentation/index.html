@@ -1152,8 +1152,9 @@ node tools/smoke.mjs             # run every page and click key controls: consol
                 <li>Tables, pagination and cards are keyboard reachable; the mobile drawer closes on <code>Esc</code>.</li>
                 <li>Tested in Chrome, Edge, Firefox and Safari (last two major versions) plus iOS Safari and Chrome on Android.</li>
                 <li>Every overlay fits the narrowest phone: the board filter becomes a bottom sheet inside the viewport
-                  with its own scroll and a pinned footer, and the header profile is a 40px circle below 768px (the
-                  name and role are hidden there, so a pill would read as an oval).</li>
+                  with its own scroll and a pinned footer (and the panel itself only exists while it is open), and the
+                  header holds one even row of 40px controls below 768px — the profile is a circle there, because the
+                  name and role are hidden and a pill around a circle reads as an oval.</li>
               </ul>
             </div>
           </div>

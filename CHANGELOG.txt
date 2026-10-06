@@ -522,12 +522,22 @@ FIXES DURING DEVELOPMENT
       target per chip — instead of an anchored menu whose last rows were out of
       reach. Give any panel the same three classes and it behaves the same way;
       the structure is documented with the board hooks.
+      The panel is also closed until it is asked for. Declaring its own display
+      in the base rule overrode Bootstrap's hidden state: the panel was on
+      screen the moment the page loaded, and it jumped into place on the first
+      click, because Popper only positions a menu it is showing. Only the open
+      panel (.dropdown-menu-filter.show) is a column now, so it opens where the
+      Filter button is and closes on a click outside.
       The header profile button is a perfect circle below 768px (40px, no
       padding, centred avatar). It used to be a pill around the avatar: with the
       name and role hidden on a phone that left an oval ring hugging a round
       avatar. Avatars also carry aspect-ratio: 1 / 1 and a min-width per size, so
       a flex row that wants more width than it has can never stretch one into an
-      oval either.
+      oval either. On a phone the header is one even row: the drawer button, the
+      colour mode, the notifications and the profile are the same 40px square
+      with one optical icon size (the drawer glyph used to be 1.15rem against
+      the 1.05rem of the buttons beside it), and every icon is centred by
+      line-height instead of by baseline luck.
 
   Links, buttons and runtime behaviour
     · The light/dark toggle did nothing when localStorage is unavailable —

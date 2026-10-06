@@ -781,6 +781,11 @@
   font-weight: 500;
 }
 
+.dropdown-menu-filter.show {
+  display: flex;
+  flex-direction: column;
+}
+
 .accordion-body {
   font-size: 0.875rem;
   color: var(--q-muted-color);
@@ -1031,6 +1036,11 @@ Qevora.toast("Invoice INV-2026-0186 marked as paid", "success", "Payments");
   --bs-btn-active-bg: rgba(var(--q-primary-rgb), 0.24);
 }
 
+.dropdown-menu-filter.show {
+  display: flex;
+  flex-direction: column;
+}
+
 .card {
   --bs-card-bg: var(--q-surface);
   --bs-card-border-color: var(--q-border-color);
@@ -1058,11 +1068,6 @@ Qevora.toast("Invoice INV-2026-0186 marked as paid", "success", "Payments");
 }
 
 .text-heading {
-  color: var(--q-heading-color) !important;
-}
-
-.fw-500 {
-  font-weight: 500 !important;
 /* … sample trimmed for length */</code></pre>
           </div>
         </div>

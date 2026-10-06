@@ -640,10 +640,18 @@
   width: min(19rem, calc(100vw - 1.5rem));
   min-width: 0;
   padding: 0;
-  display: flex;
-  flex-direction: column;
   max-height: min(80vh, 34rem);
   overflow: hidden;
+}
+
+/* Only the OPEN panel is a column. Bootstrap keeps a dropdown menu at
+   display: none until ".show" lands, and a panel that is always on screen is
+   both wrong on load and jumpy on the first click: Popper only positions a
+   menu it is showing, so before the click the panel sits in the markup flow
+   and snaps into place after it. */
+.dropdown-menu-filter.show {
+  display: flex;
+  flex-direction: column;
 }
 
 .dropdown-menu-filter__body {

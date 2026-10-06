@@ -28,6 +28,7 @@ import { join } from "node:path";
 const ROOT = process.cwd();
 const results = [];
 const check = (name, ok, detail = "") => results.push(`${ok ? "PASS" : "FAIL"}  ${name}${detail ? "  — " + detail : ""}`);
+const wait = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 const text = (node) => (node ? node.textContent.replace(/\s+/g, " ").trim() : "");
 
 /* ------------------------------------------------------------------ CSS --- */
@@ -48,7 +49,10 @@ function readCss(file) {
       const at = stack.filter((entry) => entry.startsWith("@"));
       const selectors = stack.filter((entry) => entry && !entry.startsWith("@"));
       if (body && selectors.length) {
-        rules.push({ media: at.join(" "), selectors, body });
+        /* One rule can name several selectors; each is kept on its own so a
+           declaration can be asked for by any one of them. */
+        const parts = selectors.flatMap((entry) => entry.split(",").map((part) => part.trim())).filter(Boolean);
+        rules.push({ media: at.join(" "), selectors: parts, body });
       }
       stack.pop();
     } else {
@@ -96,10 +100,19 @@ const MEDIA_PHONE = "max-width: 575.98px";
 const MEDIA_BELOW_MD = "max-width: 767.98px";
 
 /* ------------------------------------------------------- the filter panel --- */
-check("filter: the panel is a column, not a stack of free children",
-  hasDeclaration(".dropdown-menu-filter", "display", "flex") &&
-  hasDeclaration(".dropdown-menu-filter", "flex-direction", "column"),
-  `${value(".dropdown-menu-filter", "display")} / ${value(".dropdown-menu-filter", "flex-direction")}`);
+/* The panel must not exist on screen until the Filter button is pressed.
+   Bootstrap keeps a dropdown menu at display: none; a panel that declares its
+   own display in the base rule overrides that, is on screen on load, and then
+   jumps into place on the first click because Popper only positions a menu it
+   is showing. */
+check("filter: the panel is closed until it is opened",
+  declarations(".dropdown-menu-filter", "display").length === 0,
+  declarations(".dropdown-menu-filter", "display").map((entry) => `${entry.value} [${entry.media || "base"}]`).join(" | ") || "no display in the base rule");
+
+check("filter: the opened panel is a column, not a stack of free children",
+  hasDeclaration(".dropdown-menu-filter.show", "display", "flex") &&
+  hasDeclaration(".dropdown-menu-filter.show", "flex-direction", "column"),
+  `${value(".dropdown-menu-filter.show", "display")} / ${value(".dropdown-menu-filter.show", "flex-direction")}`);
 
 check("filter: the panel width is capped against the viewport",
   hasDeclaration(".dropdown-menu-filter", "width", /min\(\s*19rem\s*,\s*calc\(100vw\s*-\s*1\.5rem\)\s*\)/),
@@ -228,6 +241,35 @@ const sizes = ["xs", "sm", "md", "lg", "xl", "xxl"].map((size) => {
 check("avatar: no size can be squashed by a narrow flex row", sizes.every((entry) => entry.ok),
   sizes.map((entry) => `${entry.size} ${entry.width}/${entry.min}`).join(" "));
 
+/* ------------------------------------------------- the mobile header row --- */
+check("header: the drawer button is the same square as the buttons beside it",
+  hasDeclaration(".q-header__toggle", "width", "40px") &&
+  hasDeclaration(".q-header__toggle", "height", "40px") &&
+  inMedia(".q-header__toggle", MEDIA_BELOW_MD, "width", /40px/) &&
+  inMedia(".q-header__toggle", MEDIA_BELOW_MD, "height", /40px/),
+  `${value(".q-header__toggle", "width")} x ${value(".q-header__toggle", "height")}`);
+
+check("header: every control in the mobile row shares one corner radius",
+  value(".q-header__toggle", "border-radius") === "var(--q-radius-sm)" &&
+  value(".q-icon-btn", "border-radius") === "var(--q-radius-sm)",
+  `toggle ${value(".q-header__toggle", "border-radius")} / icon ${value(".q-icon-btn", "border-radius")}`);
+
+check("header: one optical icon size across the mobile row",
+  inMedia(".q-header__toggle i", MEDIA_BELOW_MD, "font-size", "1.0625rem") &&
+  inMedia(".q-icon-btn i", MEDIA_BELOW_MD, "font-size", "1.0625rem"),
+  `toggle ${declarations(".q-header__toggle i", "font-size").map((e) => e.value).join(" | ")} / icon ${declarations(".q-icon-btn i", "font-size").map((e) => e.value).join(" | ")}`);
+
+check("header: the icons are centred by line-height, not by baseline",
+  hasDeclaration(".q-header__toggle i", "line-height", "1") &&
+  hasDeclaration(".q-icon-btn i", "line-height", "1") &&
+  hasDeclaration(".q-header__toggle i", "display", "block"),
+  `${value(".q-header__toggle i", "line-height")} / ${value(".q-icon-btn i", "line-height")}`);
+
+check("header: the actions row is centred, so nothing sits a pixel high",
+  hasDeclaration(".q-header__actions", "display", "flex") &&
+  hasDeclaration(".q-header__actions", "align-items", "center"),
+  `${value(".q-header__actions", "display")} / ${value(".q-header__actions", "align-items")}`);
+
 check("avatar: the header circle is a circle, not a pill",
   inMedia(".q-header__user", MEDIA_BELOW_MD, "border-radius", /50%/) &&
   inMedia(".q-header__user", MEDIA_BELOW_MD, "padding", /^0$/) &&
@@ -276,6 +318,22 @@ if (panel) {
     `${chips.length} chips`);
   check("markup: nothing in the panel is inline-styled", !panel.querySelector("[style]"),
     panel.querySelector("[style]") ? panel.querySelector("[style]").outerHTML.slice(0, 80) : "");
+}
+
+/* The panel on screen only when it is asked for: the class half of the check
+   above, driven through Bootstrap's own toggle. */
+{
+  const doc = read("pages/kanban.html");
+  const closed = doc.querySelector(".dropdown-menu-filter");
+  check("markup: the filter panel loads closed", !!closed && !closed.classList.contains("show"),
+    closed ? closed.className : "panel not found");
+  const panel = doc.querySelector(".dropdown-menu-filter");
+  const toggle = panel && panel.parentElement ? panel.parentElement.querySelector('[data-bs-toggle="dropdown"]') : null;
+  const wrapper = panel.parentElement;
+  check("markup: the Filter button is the panel's toggle",
+    !!toggle && /Filter/.test(text(toggle)) && !!wrapper && wrapper.hasAttribute("data-demo-board-filters") &&
+    wrapper.querySelector(".dropdown-menu-filter") === panel,
+    toggle ? `${text(toggle)} → ${wrapper ? wrapper.getAttribute("data-demo-board-filters") : "no wrapper"}` : "no toggle beside the panel");
 }
 
 /* The same shape is expected anywhere the panel is really used — the class
@@ -334,6 +392,59 @@ check("markup: the header profile is the same on every page that has a header", 
 check("dark mode: the pinned footer follows the palette",
   !/\.dropdown-menu-filter__foot[^{]*\{[^}]*background\s*:\s*#/.test(readFileSync(join(ROOT, "assets/css/components.css"), "utf8")),
   "background uses var(--q-surface)");
+
+/* ------------------------------------------------ the panel, end to end --- */
+/* jsdom with scripts: Bootstrap's own toggle must add .show on the click, and
+   the panel must be gone again when the click is undone. This is the half of
+   the "on screen only while open" rule that a CSS reader cannot prove. */
+{
+  const errors = [];
+  const vc = new VirtualConsole();
+  vc.on("jsdomError", (e) => {
+    const message = String(e.detail || e.message);
+    if (/Not implemented|HTMLCanvasElement|execCommand|reading 'id'/.test(message)) return;
+    errors.push(message.slice(0, 120));
+  });
+  const dom = await JSDOM.fromFile(join(ROOT, "pages/kanban.html"), {
+    runScripts: "dangerously", resources: "usable", pretendToBeVisual: true, virtualConsole: vc, beforeParse: stub
+  });
+  const w = dom.window;
+  await new Promise((r) => { if (w.document.readyState === "complete") r(); else w.addEventListener("load", r, { once: true }); });
+  await wait(500);
+
+  const d = w.document;
+  const panel = d.querySelector(".dropdown-menu-filter");
+  const toggle = panel.parentElement.querySelector('[data-bs-toggle="dropdown"]');
+  const open = () => panel.classList.contains("show");
+
+  check("runtime: the filter panel is closed on load", !!panel && !open(), panel ? panel.className : "no panel");
+
+  toggle.dispatchEvent(new w.MouseEvent("click", { bubbles: true, cancelable: true }));
+  await wait(200);
+  check("runtime: the Filter click opens the panel", open(), panel.className);
+  check("runtime: the open panel is announced to assistive tech",
+    toggle.getAttribute("aria-expanded") === "true", String(toggle.getAttribute("aria-expanded")));
+
+  const chip = panel.querySelector("[data-demo-board-filter]");
+  chip.dispatchEvent(new w.MouseEvent("click", { bubbles: true, cancelable: true }));
+  await wait(120);
+  check("runtime: a chip inside the panel keeps it open (auto-close is outside)",
+    open() && chip.getAttribute("aria-pressed") === "true", `${open()} / ${chip.getAttribute("aria-pressed")}`);
+  check("runtime: the board reacted to the chip", d.querySelectorAll('.kanban__card[data-filtered="true"]').length > 0,
+    `${d.querySelectorAll('.kanban__card[data-filtered="true"]').length} cards hidden`);
+
+  const clear = panel.querySelector("[data-demo-board-clear]");
+  clear.dispatchEvent(new w.MouseEvent("click", { bubbles: true, cancelable: true }));
+  await wait(120);
+  check("runtime: Clear empties the filter and keeps the panel open", open() && chip.getAttribute("aria-pressed") === "false",
+    `${open()} / ${chip.getAttribute("aria-pressed")}`);
+
+  /* A click outside closes it — Bootstrap's data-bs-auto-close="outside". */
+  d.body.dispatchEvent(new w.MouseEvent("click", { bubbles: true, cancelable: true }));
+  await wait(200);
+  check("runtime: a click on the page closes the panel again", !open(), panel.className);
+  check("runtime: no console errors from the panel session", errors.length === 0, errors[0] || "");
+}
 
 /* ------------------------------------------------------------------ report - */
 console.log("\n" + results.join("\n") + "\n");

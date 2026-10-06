@@ -927,6 +927,11 @@
   color: inherit;
 }
 
+.dropdown-menu-filter.show {
+  display: flex;
+  flex-direction: column;
+}
+
 .fs-7 {
   font-size: 0.8125rem !important;
 }
@@ -940,11 +945,6 @@
   --bs-btn-font-weight: 500;
   --bs-btn-padding-y: 0.5rem;
   --bs-btn-padding-x: 1rem;
-  --bs-btn-border-radius: var(--q-radius-sm);
-  --bs-btn-focus-box-shadow: 0 0 0 3px rgba(var(--q-primary-rgb), 0.25);
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
 /* … sample trimmed for length */</code></pre>
           </div>
         </div>
@@ -1065,6 +1065,11 @@
 
 .dropdown-item.active i, .dropdown-item:active i {
   color: inherit;
+}
+
+.dropdown-menu-filter.show {
+  display: flex;
+  flex-direction: column;
 }
 
 .text-heading {

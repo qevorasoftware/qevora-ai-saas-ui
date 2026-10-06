@@ -709,6 +709,16 @@ body.q-sidebar-open .q-sidebar-backdrop {
   transition: background-color var(--q-transition), color var(--q-transition);
 }
 
+/* Icons are centred by line-height rather than by baseline luck: an icon font
+   glyph sits on the text baseline inside its own line box, so a button whose
+   font-size differs from its neighbour's shows the glyph a pixel or two off
+   centre. */
+.q-header__toggle i,
+.q-icon-btn i {
+  display: block;
+  line-height: 1;
+}
+
 .q-header__toggle:hover {
   background: var(--q-surface-hover);
   color: var(--q-heading-color);
@@ -822,10 +832,26 @@ body.q-sidebar-open .q-sidebar-backdrop {
 /* Below 768px the name and role are hidden, so the button holds nothing but
    the avatar — and a pill around a circle reads as an oval. It becomes a
    circle itself, with the avatar centred in it. */
+/* On a phone the header is four 40px controls in one row: the drawer button,
+   the colour mode, the notifications and the profile. They are the same square,
+   the same corner radius and the same optical icon size, and the row is
+   centred, so the icons read as one line instead of a ragged one. */
 @media (max-width: 767.98px) {
+  .q-header {
+    padding-inline: 0.75rem;
+    gap: 0.5rem;
+  }
+
+  .q-header__toggle,
+  .q-header__actions .q-icon-btn,
   .q-header__user {
     width: 40px;
     height: 40px;
+    flex: 0 0 40px;
+    place-items: center;
+  }
+
+  .q-header__user {
     padding: 0;
     justify-content: center;
     border-radius: 50%;
@@ -835,6 +861,20 @@ body.q-sidebar-open .q-sidebar-backdrop {
   .q-header__user:hover,
   .q-header__user[aria-expanded="true"] {
     border-color: var(--q-border-color);
+  }
+
+  /* One icon size for the whole row: the drawer glyph used to be 1.15rem
+     against the 1.05rem of the buttons beside it, which made the left of the
+     header look heavier than the right. */
+  .q-header__toggle,
+  .q-header__toggle i,
+  .q-icon-btn,
+  .q-icon-btn i {
+    font-size: 1.0625rem;
+  }
+
+  .q-header__actions {
+    gap: 0.25rem;
   }
 }
 

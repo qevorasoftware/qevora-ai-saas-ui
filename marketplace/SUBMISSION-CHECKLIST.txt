@@ -195,10 +195,12 @@
     so a Cancel button is tested where a user would find it. 82 pages, 0 blank
     controls (needs jsdom; a full sweep takes a few minutes)
   · node tools/check-responsive.mjs    the parts of the design only a phone shows: the board filter
-    panel (width capped against the viewport, groups scroll, pinned opaque footer, bottom sheet
-    below 576px with every side overriding Popper's inline inset), the header profile circle
-    below 768px, every avatar square with a 50% radius, and the header controls still fitting
-    a 320px screen — 38 checks, green (needs jsdom)
+    panel (closed until it is opened; width capped against the viewport, groups scroll, pinned
+    opaque footer, bottom sheet below 576px with every side overriding Popper's inline inset),
+    the mobile header row (one 40px square per control, one icon size, profile circle below
+    768px), every avatar square with a 50% radius, the header controls still fitting a 320px
+    screen, and the panel driven end to end (closed on load, opened by the Filter click, kept
+    open by a chip, closed by a click outside) — 54 checks, green (needs jsdom)
   · node tools/check-calendar.mjs      the calendar in pages/calendar.html: month, week and day views,
     month navigation that always lands on the month in the header, every event drawn into
     the cell of its own day, the four calendars on and off (the legend dots and the sidebar
