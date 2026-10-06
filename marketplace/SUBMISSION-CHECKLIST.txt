@@ -174,7 +174,8 @@
     the room their caret needs (2.1rem / 2rem, LTR and RTL), a badge stays
     centred in a stretched row and every soft badge variant a script can ask for
     is actually painted, the table's card view keeps its own inset and even
-    columns — 13 checks, green
+    columns, a switched-on filter chip uses the readable fill tokens — 15 checks,
+    green
     · node tools/check-controls.mjs      "every click answers": the dashboard row
     actions (message dialog, options menu, copy email, remove member with undo),
     the chat conversation menu and list, a tooltip-only button and the auth legal
@@ -186,8 +187,10 @@
     pages/pages/kanban.html: every card draggable and handled, a drop landing in
     front of the card it was dropped on, the dashed landing cue, counters and the
     empty-column note, the screen-reader announcement, Undo from the toast, the
-    handle's stage menu, the Board / Forecast switch and "Add deal" (first stage
-    only, at the top) — 68 checks, green (needs jsdom)
+    handle's stage menu, the Board / Forecast switch, "Add deal" (first stage
+    only, at the top) and the filter panel (one choice per group, hidden cards,
+    visible / total counters, the empty-column note, the summary, Clear and the
+    add-while-filtered case) — 94 checks, green (needs jsdom)
   · node tools/check-dropdowns.mjs     every dropdown and pick group in the
     template: one selected item only, the button shows the current choice, icons
     kept, aria-current / aria-pressed correct, locked items refused, plus a sweep

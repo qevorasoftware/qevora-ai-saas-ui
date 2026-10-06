@@ -611,6 +611,36 @@
 
 .chip i { font-size: 0.85rem; line-height: 1; }
 
+/* A chip that is switched on: the fill tokens keep white readable in both
+   palettes (6.3:1 in light, 4.6:1 in dark). */
+.chip[aria-pressed="true"],
+.chip-active {
+  background: var(--q-fill-bg);
+  border-color: transparent;
+  color: #fff;
+}
+
+.chip[aria-pressed="true"]:hover,
+.chip-active:hover {
+  background: var(--q-fill-hover-bg);
+  color: #fff;
+}
+
+/* The filter panel behind the board. */
+.dropdown-menu-filter {
+  min-width: 17rem;
+  padding: 1rem;
+}
+
+.filter-group__title {
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--q-muted-color);
+  margin-bottom: 0.5rem;
+}
+
 /* ==========================================================================
    7. ALERTS
    ========================================================================== */

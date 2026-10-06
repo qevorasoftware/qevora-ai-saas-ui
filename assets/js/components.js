@@ -467,6 +467,17 @@
           return node ? node.querySelectorAll(".kanban__card") : [];
         }
 
+        /* A card hidden by a filter (demo-ui.js marks it data-filtered) is still
+           part of the column, so the counter can honestly show "2 / 5". */
+        function split(node) {
+          var all = cardsIn(node);
+          var visible = 0;
+          for (var i = 0; i < all.length; i++) {
+            if (all[i].getAttribute("data-filtered") !== "true") visible += 1;
+          }
+          return { total: all.length, visible: visible };
+        }
+
         function stageOf(body) {
           var col = body && body.closest ? body.closest(".kanban__col") : null;
           var title = col ? col.querySelector(".kanban__col-title") : null;
@@ -511,24 +522,33 @@
           for (var c = 0; c < cols.length; c++) {
             var body = cols[c].querySelector(".kanban__col-body");
             var count = cols[c].querySelector(".kanban__count");
-            if (body && count) count.textContent = String(cardsIn(body).length);
+            if (!body || !count) continue;
+            var n = split(body);
+            count.textContent = n.visible === n.total ? String(n.total) : n.visible + " / " + n.total;
           }
         }
 
         /* An empty column keeps a note so it still reads as a drop target. */
         function syncPlaceholders() {
+          var filtered = board.getAttribute("data-board-filtered") === "true";
+          var wanted = filtered ? "No matching cards" : "Drop a card here";
           var list = bodies();
+
           for (var i = 0; i < list.length; i++) {
             var note = list[i].querySelector(".kanban__empty");
-            if (cardsIn(list[i]).length) {
+            if (split(list[i]).visible) {
               if (note) note.remove();
             } else if (!note) {
               note = document.createElement("div");
               note.className = "kanban__empty text-center text-muted-2 fs-8 py-4";
-              note.textContent = "Drop a card here";
+              note.textContent = wanted;
               list[i].appendChild(note);
             }
           }
+
+          /* A note that was already there says what the current filter means. */
+          var notes = board.querySelectorAll(".kanban__empty");
+          for (var n = 0; n < notes.length; n++) notes[n].textContent = wanted;
         }
 
         function clearTargets() {
@@ -565,9 +585,15 @@
           flash(card);
           announce(title + " moved from " + fromStage + " to " + toStage + ".");
 
+          /* A card that does not match the active filters is counted, not shown;
+             say so, or the move looks like it lost the card. */
+          var hidden = card.getAttribute("data-filtered") === "true"
+            ? " It is hidden by the current filters, so the column shows a split count."
+            : "";
+
           if (window.Qevora && window.Qevora.toast) {
             window.Qevora.toast(
-              '"' + title + '" moved from ' + fromStage + " to " + toStage + ".",
+              '"' + title + '" moved from ' + fromStage + " to " + toStage + "." + hidden,
               "success",
               label() + " moved",
               {
@@ -727,17 +753,22 @@
           moveTo(moved, body, reference);
         });
 
-        /* demo-ui.js says this after it adds a card, so the new card gets the
-           same handle and the counters stay true. */
-        board.addEventListener("qevora:kanban-refresh", function () {
+        function refresh() {
           markCards();
           updateCounts();
           syncPlaceholders();
+        }
+
+        /* demo-ui.js says this after it adds a card, so the new card gets the
+           same handle and the counters stay true. The board also hands the same
+           work out as board.__qRefresh, which is what its filter engine calls
+           once it has hidden or shown cards. */
+        board.__qRefresh = refresh;
+        board.addEventListener("qevora:kanban-refresh", function () {
+          refresh();
         });
 
-        markCards();
-        updateCounts();
-        syncPlaceholders();
+        refresh();
       })(boards[b]);
     }
   }

@@ -398,6 +398,21 @@ FIXES DURING DEVELOPMENT
       a card with the keyboard or on a touch screen, where an HTML5 drag never
       starts. The boards are labelled (data-kanban-label="Deal" / "Task") so the
       toast and the announcements use the page's own word.
+    · pages/pages/kanban.html — the Filter button opened a toast and nothing else. It
+      is a real filter panel now: one dropdown with three groups (Priority,
+      Label, Assignee) whose chips switch on and off, one choice per group. A
+      card matches when a badge, an avatar or a tooltip inside it carries the
+      value, so "High" finds the priority badge, "Ava Reynolds" the tooltip on
+      her avatar and "Shipped" the label — no per-page wiring. While a filter
+      is on: the cards that do not match are hidden, the trigger wears the number
+      of active filters, the panel's summary says "Showing 3 of 9 tasks", a
+      column counter honestly reads "0 / 2" (visible / total) instead of "2", an
+      emptied column says "No matching cards" instead of pretending it is empty,
+      and the change is announced in a live region for screen readers. Clear
+      switches everything back, the new card a user adds while a filter is on is
+      counted but stays hidden until the filter clears, and a drop that lands on
+      a card the filters hide says so in the toast. Both modules agree on one
+      hook — data-filtered, the same attribute the tables use.
     · pages/pages/pipeline.html — the Board / Forecast switch is a real segmented
       control now (one active button, aria-pressed in step, each choice explains
       what it shows) instead of two buttons that only toasted, and "Add deal"

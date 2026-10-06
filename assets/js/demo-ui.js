@@ -53,6 +53,11 @@
  *  Edit:    <button data-demo-edit="#customer-profile" data-demo-fields="name:Customer,seats:Seats"
  *              data-demo-options="plan:Scale|Growth|Starter" data-demo-label="Customer">
  *              the dialog reads every [data-slot] in the scope and writes back
+ *  Board:   <div data-demo-board-filters="#board"> with
+ *              <button class="chip" data-demo-board-filter="priority"
+ *                      data-demo-board-value="High" aria-pressed="false">High</button>
+ *              in a dropdown menu, <span data-demo-board-count>,
+ *              <span data-demo-board-summary> and <button data-demo-board-clear>
  *  Log:     <button data-demo-log="Called about the renewal" data-demo-log-text="…">
  *              prepends a timeline entry on the page
  *  Import:  <button data-demo-import="#leads-table">  opens #q-demo-import,
@@ -169,6 +174,13 @@
     "data-demo-initials",
     "data-demo-row-ref",
     "data-demo-row-table",
+    "data-demo-board-filters",
+    "data-demo-board-filter",
+    "data-demo-board-value",
+    "data-demo-board-count",
+    "data-demo-board-summary",
+    "data-demo-board-clear",
+    "data-demo-board-live",
     "data-demo-message-to",
     "data-demo-message-body",
     "data-demo-message-title",
@@ -642,6 +654,156 @@
     if (entry) toast(done || ("Added to the activity feed — demo only."), "success", "Logged");
     else toast(done || (title + " — demo only."), "success", "Logged");
   }
+
+  /* ---------------------------------------------------------------------- */
+  /* 3e. Card board filters — the Filter button on a kanban board           */
+  /* ---------------------------------------------------------------------- */
+
+  /* <div class="dropdown" data-demo-board-filters="#board">
+       <button data-bs-toggle="dropdown" data-bs-auto-close="outside">Filter
+         <span class="badge" data-demo-board-count></span></button>
+       <div class="dropdown-menu">
+         <button class="chip" data-demo-board-filter="priority"
+                 data-demo-board-value="High" aria-pressed="false">High</button>
+         <span data-demo-board-summary></span>
+         <button data-demo-board-clear disabled>Clear</button>
+       </div>
+     </div>
+     One chip per group is active at a time. A card matches when one of its
+     badges, avatars or tooltips carries the value: "High" is a priority badge,
+     "AR" an avatar, "Ava Reynolds" the tooltip on that avatar. Hidden cards are
+     marked data-filtered="true", which is the same hook the tables use, so the
+     board's counters can show "2 / 5" and an empty column can say
+     "No matching cards" instead of pretending it is empty. */
+
+  function boardOf(wrapper) {
+    return q(wrapper.getAttribute("data-demo-board-filters"));
+  }
+
+  function boardCards(board) {
+    return qa(".kanban__card", board);
+  }
+
+  function chipValue(chip) {
+    return (chip.getAttribute("data-demo-board-value") || chip.textContent || "").trim();
+  }
+
+  /* A value matches a card when a badge, an avatar or a tooltip inside the card
+     holds exactly that text. Short values (a priority, initials) and long ones
+     (a full name) both land somewhere real. */
+  function cardMatches(card, value) {
+    var wanted = value.toLowerCase();
+    var nodes = qa(".badge, .avatar, [title]", card);
+    for (var i = 0; i < nodes.length; i++) {
+      var text = (nodes[i].getAttribute("title") || nodes[i].textContent || "")
+        .replace(/\s+/g, " ").trim().toLowerCase();
+      if (text === wanted) return true;
+    }
+    return false;
+  }
+
+  function activeChips(wrapper) {
+    return qa("[data-demo-board-filter][aria-pressed='true']", wrapper);
+  }
+
+  function boardLive(wrapper, message) {
+    var live = q("[data-demo-board-live]", wrapper);
+    if (!live) {
+      live = doc.createElement("p");
+      live.className = "visually-hidden";
+      live.setAttribute("data-demo-board-live", "");
+      live.setAttribute("role", "status");
+      live.setAttribute("aria-live", "polite");
+      wrapper.appendChild(live);
+    }
+    live.textContent = message;
+  }
+
+  function applyBoardFilters(wrapper) {
+    var board = boardOf(wrapper);
+    if (!board) return;
+
+    var chips = activeChips(wrapper);
+    var cards = boardCards(board);
+    var visible = 0;
+
+    cards.forEach(function (card) {
+      var match = chips.every(function (chip) {
+        return cardMatches(card, chipValue(chip));
+      });
+      card.setAttribute("data-filtered", match ? "false" : "true");
+      if (match) visible += 1;
+    });
+
+    board.setAttribute("data-board-filtered", chips.length ? "true" : "false");
+
+    /* The board owns the counters and the notes; it reads data-filtered. */
+    if (typeof board.__qRefresh === "function") board.__qRefresh();
+
+    var label = board.getAttribute("data-kanban-label") || "Card";
+    var summary = q("[data-demo-board-summary]", wrapper);
+    if (summary) {
+      summary.textContent = chips.length
+        ? "Showing " + visible + " of " + cards.length + " " + label.toLowerCase() + "s"
+        : "Showing all " + cards.length + " " + label.toLowerCase() + "s";
+    }
+
+    var badge = q("[data-demo-board-count]", wrapper);
+    if (badge) {
+      badge.textContent = String(chips.length);
+      badge.classList.toggle("d-none", !chips.length);
+    }
+
+    var clear = q("[data-demo-board-clear]", wrapper);
+    if (clear) clear.disabled = !chips.length;
+
+    boardLive(wrapper, chips.length
+      ? "Filters: " + chips.map(function (chip) { return chipValue(chip); }).join(", ") +
+        ". Showing " + visible + " of " + cards.length + " " + label.toLowerCase() + "s."
+      : "Filters cleared. Showing all " + cards.length + " " + label.toLowerCase() + "s.");
+  }
+
+  function boardChip(chip) {
+    var wrapper = chip.closest("[data-demo-board-filters]");
+    if (!wrapper) return;
+
+    var group = chip.getAttribute("data-demo-board-filter");
+    var pressed = chip.getAttribute("aria-pressed") === "true";
+
+    /* One choice per group: the chip that was on goes off. */
+    qa("[data-demo-board-filter='" + group + "']", wrapper).forEach(function (other) {
+      var isPicked = other === chip && !pressed;
+      other.setAttribute("aria-pressed", isPicked ? "true" : "false");
+      other.classList.toggle("chip-active", isPicked);
+    });
+
+    applyBoardFilters(wrapper);
+  }
+
+  function clearBoardFilters(control) {
+    var wrapper = control.closest("[data-demo-board-filters]");
+    if (!wrapper) return;
+
+    var chips = qa("[data-demo-board-filter]", wrapper);
+    if (!chips.length) return;
+
+    chips.forEach(function (chip) {
+      chip.setAttribute("aria-pressed", "false");
+      chip.classList.remove("chip-active");
+    });
+    applyBoardFilters(wrapper);
+    toast("Filters cleared.", "secondary", "Board");
+  }
+
+  /* A new card, a drag or a delete changes the board, so the filters have to be
+     applied again — a hidden card must never reappear by itself. */
+  doc.addEventListener("qevora:kanban-refresh", function (event) {
+    var board = event.target;
+    if (!board || !board.getAttribute) return;
+    qa("[data-demo-board-filters]").forEach(function (wrapper) {
+      if (boardOf(wrapper) === board) applyBoardFilters(wrapper);
+    });
+  });
 
   /* ---------------------------------------------------------------------- */
   /* 4. Modals — open, fill, submit                                          */
@@ -2881,12 +3043,12 @@
     flash(counterpart(card, node));
 
     /* The board owns the counters, the empty-column notes and the drag handle of
-       the new card, so it gets told once and repaints itself. */
+       the new card, so it gets told once and repaints itself — and its counters
+       are filter-aware, which a plain count of the cards would not be. */
     var board = card.closest ? card.closest("[data-kanban]") : null;
-    if (board) emit(board, "qevora:kanban-refresh");
-
     var counter = column ? q(".kanban__count", column) : null;
-    if (counter) counter.textContent = String(qa(".kanban__card", column).length);
+    if (board) emit(board, "qevora:kanban-refresh");
+    else if (counter) counter.textContent = String(qa(".kanban__card", column).length);
 
     var stage = column ? q(".kanban__col-title", column) : null;
     var where = stage ? " to " + stage.textContent.replace(/\s+/g, " ").trim() : "";
@@ -3091,6 +3253,7 @@
         " [data-demo-toggle], [data-demo-gen], [data-demo-chat], [data-demo-new], [data-demo-edit]," +
         " [data-demo-export], [data-demo-export-row], [data-demo-download], [data-demo-go], [data-demo-view]," +
         " [data-demo-import], [data-demo-import-run], [data-demo-add-card], [data-demo-add-column]," +
+        " [data-demo-board-filter], [data-demo-board-clear]," +
         " [data-demo-upload], [data-demo-remove-photo], [data-demo-new-chat]," +
         " [data-demo-message], [data-demo-message-send], [data-demo-log]," +
         " [data-copy-text], [data-demo-chip], [data-demo-reset], [data-demo-clear], button, a");
@@ -3334,6 +3497,18 @@
         if (control.hasAttribute("data-bs-toggle")) return; // Bootstrap owns this one
         event.preventDefault();
         if (!control.disabled) runLoadingButton(control);
+        return;
+      }
+
+      if (control.hasAttribute("data-demo-board-filter")) {
+        event.preventDefault();
+        boardChip(control);
+        return;
+      }
+
+      if (control.hasAttribute("data-demo-board-clear")) {
+        event.preventDefault();
+        clearBoardFilters(control);
         return;
       }
 

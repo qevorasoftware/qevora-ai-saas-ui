@@ -304,7 +304,13 @@ Optional developer source package (shipped separately from the item page)
                       The card boards are pure markup: a <code>[data-kanban]</code> wrapper with
                       <code>.kanban__col</code> columns holding <code>.kanban__card</code> articles gives you
                       dragging, the landing outline, the counters, the empty-column note, the ⠿ handle and
-                      its move-to-stage menu — add <code>data-kanban-label</code> to name what a card is,
+                      its move-to-stage menu — add <code>data-kanban-label</code> to name what a card is.
+                      A board filter is markup as well: a dropdown carrying
+                      <code>[data-demo-board-filters]</code>, chips with
+                      <code>[data-demo-board-filter]</code> and <code>[data-demo-board-value]</code>
+                      (matched against the badges, avatars and tooltips inside a card), a
+                      <code>[data-demo-board-count]</code> badge, a <code>[data-demo-board-summary]</code>
+                      line and a <code>[data-demo-board-clear]</code> button,
                       <code>QevoraDemo.refresh()</code>
                     </td>
                   </tr>

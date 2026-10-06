@@ -1025,6 +1025,17 @@
   line-height: 1;
 }
 
+.chip[aria-pressed="true"], .chip-active {
+  background: var(--q-fill-bg);
+  border-color: transparent;
+  color: #fff;
+}
+
+.chip[aria-pressed="true"]:hover, .chip-active:hover {
+  background: var(--q-fill-hover-bg);
+  color: #fff;
+}
+
 .input-group-text {
   background: var(--q-surface-hover);
   border-color: var(--q-border-color);
@@ -1051,17 +1062,6 @@
   color: var(--q-body-color);
   font-size: 0.875rem;
   padding-block: 0.5rem;
-  padding-inline: 0.85rem 2.1rem;
-  background-position: right 0.85rem center;
-  transition: border-color var(--q-transition), box-shadow var(--q-transition);
-}
-
-.form-control::placeholder {
-  color: var(--q-faint-color);
-}
-
-.form-control:focus, .form-select:focus {
-  background-color: var(--q-surface);
 /* … sample trimmed for length */</code></pre>
           </div>
         </div>

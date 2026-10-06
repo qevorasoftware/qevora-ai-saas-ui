@@ -17,6 +17,10 @@
         happened out loud for a screen reader.
      5. The header buttons answer: the Board / Forecast switch really switches,
         and "Add deal" writes into the first stage and only the first stage.
+     6. The Filter button opens a real filter panel (priority, label, assignee)
+        that hides the cards which do not match, keeps the counters honest with
+        a visible / total split, tells an emptied column the truth and can be
+        cleared again.
 
    Needs jsdom:  npm install --no-save jsdom
    ========================================================================== */
@@ -271,8 +275,145 @@ async function board(page, label) {
   check(`${label}: no console errors`, errors.length === 0, errors[0] || "");
 }
 
+/* ------------------------------------------------------------------------- */
+/* The Filter button on the kanban board                                     */
+/* ------------------------------------------------------------------------- */
+async function filters(page, label) {
+  const { w, errors } = await open(page);
+  const d = w.document;
+  const wrapper = d.querySelector("[data-demo-board-filters]");
+  const boardEl = d.querySelector("[data-kanban]");
+  const chip = (value) =>
+    [...wrapper.querySelectorAll("[data-demo-board-filter]")].find((c) => c.getAttribute("data-demo-board-value") === value);
+  const pressed = (value) => chip(value).getAttribute("aria-pressed") === "true";
+  const visible = () => d.querySelectorAll('.kanban__card[data-filtered="false"]').length;
+  const hidden = () => d.querySelectorAll('.kanban__card[data-filtered="true"]').length;
+  const summary = () => text(wrapper.querySelector("[data-demo-board-summary]"));
+  const counts = () => columns(d).map((col) => counterOf(col)).join(" | ");
+  const total = d.querySelectorAll(".kanban__card").length;
+
+  check(`${label}: the header offers a filter panel`, !!wrapper && !!boardEl, wrapper ? "panel" : "none");
+  check(`${label}: the panel groups its choices`,
+    new Set([...wrapper.querySelectorAll("[data-demo-board-filter]")].map((c) => c.getAttribute("data-demo-board-filter"))).size === 3,
+    [...new Set([...wrapper.querySelectorAll("[data-demo-board-filter]")].map((c) => c.getAttribute("data-demo-board-filter")))].join(","));
+  check(`${label}: every chip starts unpressed and the clear button starts off`,
+    [...wrapper.querySelectorAll("[data-demo-board-filter]")].every((c) => c.getAttribute("aria-pressed") === "false") &&
+      wrapper.querySelector("[data-demo-board-clear]").disabled,
+    `${wrapper.querySelectorAll("[data-demo-board-filter]").length} chips`);
+  check(`${label}: the panel teaches how many cards are on the board`,
+    summary() === `Showing all ${total} tasks`, summary());
+
+  click(w, wrapper.querySelector('[data-bs-toggle="dropdown"]'));
+  await wait(220);
+  check(`${label}: the Filter button opens the panel`,
+    wrapper.querySelector(".dropdown-menu").classList.contains("show"), wrapper.querySelector(".dropdown-menu").className);
+
+  /* ---------------------------------------------------------- one group picks */
+  click(w, chip("Feature"));
+  await wait(180);
+  const featureCards = [...d.querySelectorAll(".kanban__card")].filter((card) => !/Feature/.test(text(card))).length;
+  check(`${label}: picking a label hides the cards without it`,
+    visible() + hidden() === total && hidden() === featureCards && hidden() > 0,
+    `${visible()} shown, ${hidden()} hidden`);
+  check(`${label}: the chip shows it is on`, pressed("Feature"), chip("Feature").className);
+  check(`${label}: the summary counts what is left`,
+    summary() === `Showing ${visible()} of ${total} tasks`, summary());
+  check(`${label}: the trigger wears the number of active filters`,
+    text(wrapper.querySelector("[data-demo-board-count]")) === "1" &&
+      !wrapper.querySelector("[data-demo-board-count]").classList.contains("d-none"),
+    text(wrapper.querySelector("[data-demo-board-count]")));
+  check(`${label}: a filtered column shows a visible / total count`,
+    columns(d).some((col) => cardsOf(col).length > visibleIn(col) && counterOf(col) === `${visibleIn(col)} / ${cardsOf(col).length}`) ||
+      columns(d).every((col) => cardsOf(col).length === visibleIn(col) || counterOf(col).includes(" / ")),
+    counts());
+  check(`${label}: an emptied column says why it is empty`,
+    columns(d).filter((col) => visibleIn(col) === 0).every((col) => /No matching cards/.test(text(col))),
+    columns(d).filter((col) => visibleIn(col) === 0).map((col) => text(col.querySelector(".kanban__empty"))).join(" / ") || "none empty");
+  check(`${label}: the change is announced for a screen reader`,
+    /Filters: Feature/.test(text(wrapper.querySelector("[data-demo-board-live]"))),
+    text(wrapper.querySelector("[data-demo-board-live]")).slice(0, 70));
+
+  click(w, chip("High"));
+  await wait(180);
+  check(`${label}: a second group narrows the board further`,
+    pressed("Feature") && pressed("High") && visible() <= total, `${visible()} shown`);
+  check(`${label}: two groups mean two on the trigger`,
+    text(wrapper.querySelector("[data-demo-board-count]")) === "2", text(wrapper.querySelector("[data-demo-board-count]")));
+
+  click(w, chip("Medium"));
+  await wait(180);
+  check(`${label}: a group holds one choice at a time`,
+    !pressed("High") && pressed("Medium") &&
+      [...wrapper.querySelectorAll('[data-demo-board-filter="priority"]')].filter((c) => c.getAttribute("aria-pressed") === "true").length === 1,
+    [...wrapper.querySelectorAll('[data-demo-board-filter="priority"]')].map((c) => text(c) + (c.getAttribute("aria-pressed") === "true" ? "*" : "")).join(" | "));
+
+  /* ------------------------------------------------------------ drag + filter */
+  const visibleCard = d.querySelector('.kanban__card[data-filtered="false"]');
+  const fromCol = visibleCard.closest(".kanban__col");
+  const toCol = columns(d).find((col) => col !== fromCol);
+  const dragged = text(visibleCard.querySelector(".kanban__card-title"));
+  drag(w, "dragstart", visibleCard);
+  drag(w, "drop", toCol.querySelector(".kanban__col-body"));
+  await wait(200);
+  check(`${label}: a card can still be moved while the board is filtered`,
+    titlesOf(toCol).includes(dragged), titlesOf(toCol).join(" > "));
+  check(`${label}: the counters stay honest after a filtered move`,
+    columns(d).every((col) => inFilteredCounters(col, counterOf(col))), counts());
+
+  /* ------------------------------------------------------------------- clear */
+  click(w, chip("Medium"));
+  await wait(180);
+  check(`${label}: a chip can be switched off again`,
+    !pressed("Medium") && text(wrapper.querySelector("[data-demo-board-count]")) === "1",
+    text(wrapper.querySelector("[data-demo-board-count]")));
+
+  const clear = wrapper.querySelector("[data-demo-board-clear]");
+  check(`${label}: the clear button wakes up while filters are on`, !clear.disabled, String(clear.disabled));
+  click(w, clear);
+  await wait(200);
+  check(`${label}: clearing shows every card again`,
+    visible() === total && hidden() === 0 && summary() === `Showing all ${total} tasks`,
+    `${visible()} of ${total}`);
+  check(`${label}: clearing drops the visible / total counts`,
+    columns(d).every((col) => counterOf(col) === String(cardsOf(col).length)), counts());
+  check(`${label}: clearing puts the notes back to the default`,
+    columns(d).filter((col) => cardsOf(col).length === 0).every((col) => /Drop a card here/.test(text(col))),
+    "ok");
+  check(`${label}: clearing turns the trigger and the button back off`,
+    wrapper.querySelector("[data-demo-board-count]").classList.contains("d-none") && clear.disabled,
+    text(wrapper.querySelector("[data-demo-board-count]")));
+
+  /* ------------------------------------------------------- add while filtered */
+  click(w, chip("Shipped"));
+  await wait(180);
+  const before = cardsOf(columns(d)[0]).length;
+  click(w, d.querySelector("[data-demo-add-card]"));
+  await wait(240);
+  const newCard = cardsOf(columns(d)[0])[0];
+  check(`${label}: a new card that does not match the filter is counted, not shown`,
+    cardsOf(columns(d)[0]).length === before + 1 && newCard.getAttribute("data-filtered") === "true" &&
+      counterOf(columns(d)[0]).includes(" / "),
+    `${counterOf(columns(d)[0])} with ${cardsOf(columns(d)[0]).length} cards`);
+  click(w, wrapper.querySelector("[data-demo-board-clear]"));
+  await wait(200);
+  check(`${label}: clearing after an add shows the new card too`, visible() === total + 1, `${visible()} of ${total + 1}`);
+
+  check(`${label}: no console errors`, errors.length === 0, errors[0] || "");
+}
+
+function visibleIn(col) {
+  return [...col.querySelectorAll(".kanban__card")].filter((card) => card.getAttribute("data-filtered") !== "true").length;
+}
+
+function inFilteredCounters(col, counter) {
+  const total = col.querySelectorAll(".kanban__card").length;
+  const shown = visibleIn(col);
+  return counter === (shown === total ? String(total) : `${shown} / ${total}`);
+}
+
 await board("pages/pipeline.html", "pipeline");
 await board("pages/kanban.html", "kanban");
+await filters("pages/kanban.html", "kanban filters");
 
 console.log(results.join("\n"));
 const failed = results.filter((r) => r.startsWith("FAIL")).length;

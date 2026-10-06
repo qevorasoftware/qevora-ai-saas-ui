@@ -229,6 +229,22 @@ for (const [selector, css] of [[".form-select", components], [".form-select-sm",
     `display=${display || "missing"} padding=${padding || "missing"} margin=${margin || "missing"} columns=${columns || "missing"}`);
 }
 
+/* A switched-on filter chip has to stay readable: the pressed state fills with
+   the same tokens the active nav pill uses, which the theme pass measured at
+   6.3:1 in light and 4.6:1 in dark against white. */
+{
+  const pressed = ruleBody(components, '.chip[aria-pressed="true"]');
+  const fill = declaration(pressed, "background");
+  const ink = declaration(pressed, "color");
+  const hover = ruleBody(components, '.chip[aria-pressed="true"]:hover');
+  check(/--q-fill-bg/.test(String(fill)) && /^#fff|white$/i.test(String(ink).trim()),
+    "a switched-on filter chip uses the readable fill tokens",
+    `background=${fill || "missing"} color=${ink || "missing"}`);
+  check(/--q-fill-hover-bg/.test(String(declaration(hover, "background"))),
+    "a switched-on filter chip keeps its hover shade",
+    `hover background=${declaration(hover, "background") || "missing"}`);
+}
+
 /* The removed badge dot is the only place the demo prints an empty pill. */
 {
   const dot = declaration(ruleBody(components, ".badge-dot"), "display");
