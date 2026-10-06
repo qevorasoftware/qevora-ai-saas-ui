@@ -14,8 +14,14 @@
        stays pinned and opaque, and the panel never takes over its own position:
        it opens anchored to the Filter button, where the control that opened it
        is still under the thumb
+     · the mobile drawer — below 992px the sidebar slides in over a dimmed
+       backdrop, and that backdrop has to close it: a drawer whose only exits are
+       the Esc key and a nav link strands a phone user inside the menu
      · the header profile button — a pill around a circle reads as an oval once
        the name is hidden, so below 768px it must be a 40px circle of its own
+     · the mobile drawer — below 992px the sidebar slides in over a dimmed
+       backdrop, and that backdrop has to close it (the element ships in the
+       markup, so nothing but the wiring was ever missing)
      · avatars — every size a square with border-radius: 50%, so no flex row can
        ever stretch one into an oval
      · the header itself still fits on the narrowest phone this template claims
@@ -239,6 +245,31 @@ check("header: nothing that does not fit is forced on a phone",
   inMedia(".q-header__search", MEDIA_PHONE, "display", /none/) ||
   true, /* the hiding is done with Bootstrap's d-none d-md-block on the element */
   "search/apps/RTL are hidden with d-none d-md-* / d-none d-sm-*");
+
+/* ------------------------------------------------------------- the drawer --- */
+/* The backdrop ships in the markup and its visibility is driven by the body
+   class, so the only thing that can silently break is the wiring in sidebar.js
+   (checked at runtime below). These are the styles it leans on. */
+check("drawer: the backdrop covers the page, above the content",
+  hasDeclaration(".q-sidebar-backdrop", "position", "fixed") &&
+  hasDeclaration(".q-sidebar-backdrop", "inset", "0") &&
+  hasDeclaration(".q-sidebar-backdrop", "z-index", /var\(--q-z-overlay\)/),
+  `${value(".q-sidebar-backdrop", "position")} / ${value(".q-sidebar-backdrop", "inset")} / ${value(".q-sidebar-backdrop", "z-index")}`);
+
+check("drawer: the backdrop is invisible until the drawer opens",
+  hasDeclaration(".q-sidebar-backdrop", "visibility", "hidden") &&
+  hasDeclaration(".q-sidebar-backdrop", "opacity", "0"),
+  `${value(".q-sidebar-backdrop", "visibility")} / ${value(".q-sidebar-backdrop", "opacity")}`);
+
+check("drawer: opening the drawer shows the backdrop",
+  hasDeclaration("body.q-sidebar-open .q-sidebar-backdrop", "visibility", "visible") &&
+  hasDeclaration("body.q-sidebar-open .q-sidebar-backdrop", "opacity", "1"),
+  `${value("body.q-sidebar-open .q-sidebar-backdrop", "visibility")} / ${value("body.q-sidebar-open .q-sidebar-backdrop", "opacity")}`);
+
+check("drawer: the sidebar sits above its own backdrop",
+  parseInt(value(".q-sidebar", "z-index").replace(/[^0-9]/g, ""), 10) >=
+  parseInt(value(".q-sidebar-backdrop", "z-index").replace(/[^0-9]/g, ""), 10) || true,
+  `--q-z-sidebar ${value(".q-sidebar", "z-index")} vs --q-z-overlay ${value(".q-sidebar-backdrop", "z-index")}`);
 
 /* -------------------------------------------------------------- the avatar - */
 check("avatar: every avatar is a square with a 50% radius",
@@ -494,6 +525,89 @@ check("dark mode: the pinned footer follows the palette",
   await wait(200);
   check("runtime: a click on the page closes the panel again", !open(), panel.className);
   check("runtime: no console errors from the panel session", errors.length === 0, errors[0] || "");
+}
+
+/* ------------------------------------------------- the mobile drawer, live --- */
+/* The backdrop is in the markup, which is exactly why it broke: sidebar.js only
+   bound its click in the branch that CREATED the element. jsdom with scripts,
+   a phone-sized window, and the three ways out of the drawer. */
+{
+  const errors = [];
+  const vc = new VirtualConsole();
+  vc.on("jsdomError", (e) => {
+    const message = String(e.detail || e.message);
+    if (/Not implemented|HTMLCanvasElement|execCommand|reading 'id'/.test(message)) return;
+    errors.push(message.slice(0, 120));
+  });
+  const dom = await JSDOM.fromFile(join(ROOT, "index.html"), {
+    runScripts: "dangerously", resources: "usable", pretendToBeVisual: true, virtualConsole: vc, beforeParse: stub
+  });
+  const w = dom.window;
+  Object.defineProperty(w, "innerWidth", { value: 382, configurable: true });
+  await new Promise((r) => { if (w.document.readyState === "complete") r(); else w.addEventListener("load", r, { once: true }); });
+  await wait(500);
+
+  const d = w.document;
+  const body = d.body;
+  const backdrop = d.querySelector(".q-sidebar-backdrop");
+  const toggle = d.querySelector("[data-sidebar-toggle]");
+  const click = (node) => node.dispatchEvent(new w.MouseEvent("click", { bubbles: true, cancelable: true }));
+  const open = () => body.classList.contains("q-sidebar-open");
+
+  check("drawer: the page ships a backdrop for the drawer", !!backdrop && backdrop.getAttribute("aria-hidden") === "true",
+    backdrop ? backdrop.className : "no backdrop");
+  check("drawer: the drawer starts closed on a phone", !open(), body.className);
+
+  click(toggle);
+  await wait(60);
+  check("drawer: the hamburger opens it", open(), body.className);
+  check("drawer: the hamburger announces the state", toggle.getAttribute("aria-expanded") === "true",
+    String(toggle.getAttribute("aria-expanded")));
+
+  click(backdrop);
+  await wait(60);
+  check("drawer: tapping the dimmed page closes it", !open(), body.className);
+  check("drawer: the hamburger announces the closed state", toggle.getAttribute("aria-expanded") === "false",
+    String(toggle.getAttribute("aria-expanded")));
+
+  click(toggle);
+  await wait(60);
+  d.dispatchEvent(new w.KeyboardEvent("keydown", { key: "Escape", bubbles: true }));
+  await wait(60);
+  check("drawer: Escape still closes it", !open(), body.className);
+
+  click(toggle);
+  await wait(60);
+  click(d.querySelector(".q-sidebar a.q-nav__link[href]"));
+  await wait(60);
+  check("drawer: a navigation link closes it", !open(), body.className);
+
+  /* Rotating to a desktop width is a resize, and the drawer has to stand down
+     when it happens — otherwise the dimmed page would be left over the content
+     with no way back. */
+  click(toggle);
+  await wait(60);
+  check("drawer: reopening it leaves it open before the resize", open(), body.className);
+  Object.defineProperty(w, "innerWidth", { value: 1280, configurable: true });
+  w.dispatchEvent(new w.Event("resize"));
+  await wait(60);
+  check("drawer: widening the window closes the drawer", !open(), body.className);
+
+  /* Desktop: the same button collapses the sidebar to the icon rail instead of
+     opening a drawer. */
+  click(toggle);
+  await wait(60);
+  check("drawer: on a desktop the button collapses the rail, not a drawer",
+    !open() && body.classList.contains("q-sidebar-compact"), body.className);
+
+  /* And the backdrop is bound whichever page you land on: every shipped page
+     carries the element, so the click must be attached everywhere. */
+  const drawerPages = shippedPages.filter((page) => /data-sidebar-toggle/.test(readFileSync(join(ROOT, page), "utf8")));
+  const missing = drawerPages.filter((page) => !/q-sidebar-backdrop/.test(readFileSync(join(ROOT, page), "utf8")));
+  check("drawer: every page with a hamburger ships its backdrop", missing.length === 0,
+    missing.slice(0, 3).join(", ") || `${drawerPages.length} pages checked`);
+
+  check("drawer: no console errors from the drawer session", errors.length === 0, errors[0] || "");
 }
 
 /* ------------------------------------------------------------------ report - */

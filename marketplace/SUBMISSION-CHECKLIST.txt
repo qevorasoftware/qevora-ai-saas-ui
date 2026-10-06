@@ -199,9 +199,11 @@
     against the viewport, header with its own close button, groups scroll, pinned opaque
     footer), the mobile header row (one 40px square per control, one icon size, profile circle
     below 768px), every avatar square with a 50% radius, the header controls still fitting a
-    320px screen, and the panel driven end to end (closed on load, opened by the Filter click,
-    kept open by a chip, closed by its × or by a click outside, focus handed back) — 62 checks,
-    green (needs jsdom)
+    320px screen, the mobile drawer driven end to end (hamburger opens it, the dimmed backdrop
+    closes it, Escape closes it, a nav link closes it, widening the window closes it, and a
+    desktop click collapses the rail instead), and the filter panel driven end to end (closed on
+    load, opened by the Filter click, kept open by a chip, closed by its × or by a click
+    outside, focus handed back) — 79 checks, green (needs jsdom)
   · node tools/check-calendar.mjs      the calendar in pages/calendar.html: month, week and day views,
     month navigation that always lands on the month in the header, every event drawn into
     the cell of its own day, the four calendars on and off (the legend dots and the sidebar

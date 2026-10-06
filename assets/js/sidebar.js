@@ -53,6 +53,12 @@
   /* Mobile drawer                                                       */
   /* ------------------------------------------------------------------ */
 
+  /* The backdrop ships in the markup of every page (src/partials/sidebar.html),
+     so it always exists by the time this runs. Binding the click only in the
+     branch that CREATES the element meant the listener was never attached on a
+     real page: tapping the dimmed page behind an open drawer did nothing, and
+     the only ways out were the Esc key or a nav link. The handler is bound
+     once, whether the element was found or made. */
   function backdrop() {
     var el = document.querySelector(".q-sidebar-backdrop");
     if (!el) {
@@ -60,6 +66,9 @@
       el.className = "q-sidebar-backdrop";
       el.setAttribute("aria-hidden", "true");
       body.appendChild(el);
+    }
+    if (!el.__qBackdropBound) {
+      el.__qBackdropBound = true;
       el.addEventListener("click", close);
     }
     return el;

@@ -556,6 +556,13 @@ FIXES DURING DEVELOPMENT
       left alone: the dashboard row legitimately offers "Message" both as a
       shortcut and inside its "…" menu.
 
+    · Tapping the dimmed page behind an open drawer on a phone does nothing
+      any more. The backdrop ships in the markup of every page, and sidebar.js
+      only bound its click listener inside the branch that CREATES the element
+      — so the listener was never attached on a real page, and the only ways out
+      of the drawer were the Esc key and a navigation link. The click is bound
+      once now, whether the backdrop was found or made.
+
   Links, buttons and runtime behaviour
     · The light/dark toggle did nothing when localStorage is unavailable —
       private-mode windows, sandboxed frames and, most importantly, opening the
