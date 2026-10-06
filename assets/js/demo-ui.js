@@ -180,6 +180,7 @@
     "data-demo-board-count",
     "data-demo-board-summary",
     "data-demo-board-clear",
+    "data-demo-board-close",
     "data-demo-board-live",
     "data-demo-message-to",
     "data-demo-message-body",
@@ -667,6 +668,7 @@
                  data-demo-board-value="High" aria-pressed="false">High</button>
          <span data-demo-board-summary></span>
          <button data-demo-board-clear disabled>Clear</button>
+         <button data-demo-board-close>×</button>
        </div>
      </div>
      One chip per group is active at a time. A card matches when one of its
@@ -778,6 +780,26 @@
     });
 
     applyBoardFilters(wrapper);
+  }
+
+  /* The × in the panel header. It asks Bootstrap to hide the menu the same way
+     a click outside does, and hands focus back to the Filter button, so the
+     keyboard user is where they started. */
+  function closeBoardPanel(control) {
+    var wrapper = control.closest("[data-demo-board-filters]");
+    var toggle = wrapper ? q('[data-bs-toggle="dropdown"]', wrapper) : null;
+
+    if (toggle && window.bootstrap && window.bootstrap.Dropdown) {
+      window.bootstrap.Dropdown.getOrCreateInstance(toggle).hide();
+    } else {
+      var menu = wrapper ? q(".dropdown-menu", wrapper) : control.closest(".dropdown-menu");
+      if (menu) menu.classList.remove("show");
+      if (toggle) {
+        toggle.setAttribute("aria-expanded", "false");
+        toggle.classList.remove("show");
+      }
+    }
+    if (toggle && toggle.focus) toggle.focus();
   }
 
   function clearBoardFilters(control) {
@@ -3289,7 +3311,7 @@
         " [data-demo-toggle], [data-demo-gen], [data-demo-chat], [data-demo-new], [data-demo-edit]," +
         " [data-demo-export], [data-demo-export-row], [data-demo-download], [data-demo-go], [data-demo-view]," +
         " [data-demo-import], [data-demo-import-run], [data-demo-add-card], [data-demo-add-column]," +
-        " [data-demo-board-filter], [data-demo-board-clear]," +
+        " [data-demo-board-filter], [data-demo-board-clear], [data-demo-board-close]," +
         " [data-demo-upload], [data-demo-remove-photo], [data-demo-new-chat]," +
         " [data-demo-message], [data-demo-message-send], [data-demo-log]," +
         " [data-copy-text], [data-demo-chip], [data-demo-reset], [data-demo-clear], button, a");
@@ -3545,6 +3567,12 @@
       if (control.hasAttribute("data-demo-board-clear")) {
         event.preventDefault();
         clearBoardFilters(control);
+        return;
+      }
+
+      if (control.hasAttribute("data-demo-board-close")) {
+        event.preventDefault();
+        closeBoardPanel(control);
         return;
       }
 

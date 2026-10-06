@@ -632,9 +632,12 @@
 /* --------------------------------------------------------------------------
    The filter panel behind the board.
    A tall list of chips must never run off the bottom of a phone, so the panel
-   is a column: the groups scroll, the footer (summary + Clear) stays pinned.
-   On phones it drops the anchored dropdown for a bottom sheet, which is the
-   only shape that always fits inside the viewport.
+   is a column: the header carries its own close button, the groups scroll, and
+   the footer (summary + Clear) stays pinned. The panel keeps Bootstrap's
+   anchored placement — a panel pinned to the bottom of the screen sits a
+   thumb's journey away from the Filter button that opened it — and stays modest
+   in height so Popper can put it below the button, or above it when there is no
+   room below.
    -------------------------------------------------------------------------- */
 .dropdown-menu-filter {
   width: min(19rem, calc(100vw - 1.5rem));
@@ -652,6 +655,39 @@
 .dropdown-menu-filter.show {
   display: flex;
   flex-direction: column;
+}
+
+/* The header row carries the panel's own close button, so a phone user does not
+   have to find a piece of the page to tap to dismiss it. */
+.dropdown-menu-filter__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 0.6rem 0.6rem 0.6rem 1rem;
+  border-bottom: 1px solid var(--q-border-color);
+}
+
+.dropdown-menu-filter__title {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--q-heading-color);
+}
+
+.dropdown-menu-filter__head .btn-close {
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  margin: 0;
+  border-radius: var(--q-radius-xs);
+  background-size: 0.7em;
+  opacity: 0.55;
+  flex: 0 0 auto;
+}
+
+.dropdown-menu-filter__head .btn-close:hover,
+.dropdown-menu-filter__head .btn-close:focus-visible {
+  opacity: 1;
 }
 
 .dropdown-menu-filter__body {
@@ -705,21 +741,13 @@
 }
 
 @media (max-width: 575.98px) {
-  /* A sheet, not a dropdown: Popper still writes its own position, so the
-     offsets are forced with !important and the transform is cleared. */
+  /* The panel stays where it belongs — anchored to the Filter button, a few
+     pixels under it. It is only made comfortable for a thumb: a wider cap that
+     still respects the viewport, a shorter maximum height (Popper flips it
+     above the button when there is no room below), and 36px per chip. */
   .dropdown-menu-filter {
-    position: fixed !important;
-    top: auto !important;
-    left: 0.625rem !important;
-    right: 0.625rem !important;
-    bottom: 0.625rem !important;
-    width: auto;
-    margin: 0;
-    max-height: min(82vh, 34rem);
-    transform: none !important;
-    border-radius: var(--q-radius-lg);
-    box-shadow: var(--q-shadow-lg);
-    z-index: 1060;
+    width: min(19rem, calc(100vw - 1.5rem));
+    max-height: min(65vh, 32rem);
   }
 
   .dropdown-menu-filter .chip {
@@ -729,11 +757,11 @@
   }
 
   .dropdown-menu-filter__body {
-    padding: 1rem 1rem 0.5rem;
+    padding: 0.875rem 1rem 0.5rem;
   }
 
   .dropdown-menu-filter__foot {
-    padding: 0.75rem 1rem calc(0.75rem + env(safe-area-inset-bottom, 0px));
+    padding: 0.75rem 1rem;
   }
 }
 

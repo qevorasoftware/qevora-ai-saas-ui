@@ -517,11 +517,14 @@ FIXES DURING DEVELOPMENT
       scrolling body (the three groups) and a pinned, opaque footer (the
       "Showing X of Y tasks" line and Clear), its width is capped against the
       viewport (½ the phone²s width at 320px, no horizontal scrollbar at any
-      size) and below 576px it becomes a bottom sheet — fixed inside the
-      viewport, above the header, clear of the phone²s home bar, with a 36px tap
-      target per chip — instead of an anchored menu whose last rows were out of
-      reach. Give any panel the same three classes and it behaves the same way;
-      the structure is documented with the board hooks.
+      size) with 36px per chip on a phone, so the last row is reachable at any
+      height. The panel stays anchored to the Filter button on every screen — a
+      panel pinned to the bottom of a phone sits a thumb's journey away from the
+      control that opened it — and it carries its own close button in the header
+      ([data-demo-board-close]), so it can be dismissed without hunting for a
+      piece of the page to tap. Closing it that way hands focus back to the
+      Filter button. Give any panel the same classes and it behaves the same
+      way; the structure is documented with the board hooks.
       The panel is also closed until it is asked for. Declaring its own display
       in the base rule overrode Bootstrap's hidden state: the panel was on
       screen the moment the page loaded, and it jumped into place on the first

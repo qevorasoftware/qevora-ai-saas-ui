@@ -8,10 +8,12 @@
    the real markup:
 
      · the board filter panel (pages/kanban.html) — it has to keep the desktop
-       dropdown design AND fit a 320px phone, so the width is capped against the
-       viewport, the groups scroll inside the panel, the footer (summary +
-       Clear) stays pinned and opaque, and below 576px the panel becomes a
-       bottom sheet instead of an anchored menu
+       dropdown design AND fit a 320px phone, so the width and the height are
+       both capped against the viewport, the header carries its own close
+       button, the groups scroll inside the panel, the footer (summary + Clear)
+       stays pinned and opaque, and the panel never takes over its own position:
+       it opens anchored to the Filter button, where the control that opened it
+       is still under the thumb
      · the header profile button — a pill around a circle reads as an oval once
        the name is hidden, so below 768px it must be a 40px circle of its own
      · avatars — every size a square with border-radius: 50%, so no flex row can
@@ -154,36 +156,46 @@ check("filter: a pressed chip still takes the filled state",
   hasDeclaration('.dropdown-menu-filter .chip[aria-pressed="true"]', "background", /var\(--q-fill-bg\)/),
   value('.dropdown-menu-filter .chip[aria-pressed="true"]', "background"));
 
-/* ---------------------------------------------------------- mobile sheet --- */
-check(`filter: below ${MEDIA_PHONE} the panel is fixed to the viewport`,
-  inMedia(".dropdown-menu-filter", MEDIA_PHONE, "position", /fixed/) &&
-  inMedia(".dropdown-menu-filter", MEDIA_PHONE, "position", /!important/),
-  declarations(".dropdown-menu-filter", "position").map((entry) => `${entry.value} [${entry.media || "base"}]`).join(" | "));
+/* ------------------------------------------------------- the anchored panel --- */
+/* The panel is a dropdown, not a sheet: on a phone it has to open right under
+   the Filter button (a panel pinned to the bottom of the screen sits a thumb's
+   journey away from the control that opened it). So it must never take over
+   its own position — Bootstrap's Popper owns that.
 
-/* Popper writes "inset: 0px auto auto 0px" inline, and an inline style beats a
-   plain rule — every side the sheet relies on has to be !important. */
-check("filter: the sheet overrides every side Popper writes inline",
-  inMedia(".dropdown-menu-filter", MEDIA_PHONE, "top", /auto\s*!important/) &&
-  inMedia(".dropdown-menu-filter", MEDIA_PHONE, "bottom", /0\.625rem\s*!important/) &&
-  inMedia(".dropdown-menu-filter", MEDIA_PHONE, "left", /0\.625rem\s*!important/) &&
-  inMedia(".dropdown-menu-filter", MEDIA_PHONE, "right", /0\.625rem\s*!important/),
-  ["top", "right", "bottom", "left"].map((side) => `${side}: ${declarations(".dropdown-menu-filter", side).filter((e) => e.media.includes("575.98")).map((e) => e.value).join("")}`).join(", "));
+   Every declaration is read without a media filter on purpose: a "position:
+   fixed" inside a phone media query is exactly the mistake this guards. */
+check("filter: the panel never positions itself",
+  declarations(".dropdown-menu-filter", "position").length === 0,
+  declarations(".dropdown-menu-filter", "position").map((entry) => `${entry.value} [${entry.media || "base"}]`).join(" | ") || "no position declaration");
 
-check("filter: the sheet clears Popper's translate transform",
-  inMedia(".dropdown-menu-filter", MEDIA_PHONE, "transform", /none\s*!important/),
-  declarations(".dropdown-menu-filter", "transform").map((entry) => `${entry.value} [${entry.media || "base"}]`).join(" | "));
+check("filter: the panel never sets an inset of its own",
+  ["top", "right", "bottom", "left", "inset"].every((side) => declarations(".dropdown-menu-filter", side).length === 0),
+  ["top", "right", "bottom", "left", "inset"]
+    .filter((side) => declarations(".dropdown-menu-filter", side).length)
+    .map((side) => `${side}: ${declarations(".dropdown-menu-filter", side).map((entry) => entry.value).join(" | ")}`)
+    .join(", ") || "no inset declarations");
 
-check("filter: the sheet sits above the header and the board",
-  inMedia(".dropdown-menu-filter", MEDIA_PHONE, "z-index", /1060/),
-  declarations(".dropdown-menu-filter", "z-index").map((entry) => entry.value).join(" | "));
+check("filter: the panel leaves Popper's transform alone",
+  declarations(".dropdown-menu-filter", "transform").length === 0,
+  declarations(".dropdown-menu-filter", "transform").map((entry) => entry.value).join(" | ") || "no transform declaration");
 
-check("filter: the sheet keeps clear of the phone's home bar",
-  inMedia(".dropdown-menu-filter__foot", MEDIA_PHONE, "padding", /env\(safe-area-inset-bottom/),
-  declarations(".dropdown-menu-filter__foot", "padding").map((entry) => `${entry.value} [${entry.media || "base"}]`).join(" | "));
+check(`filter: the panel is shorter on a phone (${MEDIA_PHONE}) so it fits either side of the button`,
+  inMedia(".dropdown-menu-filter", MEDIA_PHONE, "max-height", /min\(\s*65vh\s*,\s*32rem\s*\)/),
+  declarations(".dropdown-menu-filter", "max-height").map((entry) => `${entry.value} [${entry.media || "base"}]`).join(" | "));
 
-check("filter: chips grow to a 36px tap target on a phone",
-  inMedia(".dropdown-menu-filter .chip", MEDIA_PHONE, "min-height", "2.25rem"),
-  declarations(".dropdown-menu-filter .chip", "min-height").map((entry) => `${entry.value} [${entry.media || "base"}]`).join(" | "));
+check(`filter: the phone panel still respects the viewport width (${MEDIA_PHONE})`,
+  inMedia(".dropdown-menu-filter", MEDIA_PHONE, "width", /min\(\s*19rem\s*,\s*calc\(100vw\s*-\s*1\.5rem\)\s*\)/),
+  declarations(".dropdown-menu-filter", "width").map((entry) => `${entry.value} [${entry.media || "base"}]`).join(" | "));
+
+check("filter: the panel carries a header of its own",
+  hasDeclaration(".dropdown-menu-filter__head", "display", "flex") &&
+  hasDeclaration(".dropdown-menu-filter__head", "border-bottom", /1px solid var\(--q-border-color\)/),
+  `${value(".dropdown-menu-filter__head", "display")} / ${value(".dropdown-menu-filter__head", "border-bottom")}`);
+
+check("filter: the close button in that header is a real tap target",
+  hasDeclaration(".dropdown-menu-filter__head .btn-close", "width", "32px") &&
+  hasDeclaration(".dropdown-menu-filter__head .btn-close", "height", "32px"),
+  `${value(".dropdown-menu-filter__head .btn-close", "width")} x ${value(".dropdown-menu-filter__head .btn-close", "height")}`);
 
 /* -------------------------------------------------------------- arithmetic - */
 /* The width the browser would compute: min(19rem, 100vw - 1.5rem), and the
@@ -199,12 +211,16 @@ const bad = widths.filter((entry) => !entry.ok);
 check("filter: the panel fits every phone and desktop width tested", bad.length === 0,
   widths.map((entry) => `${entry.vw}→${entry.width}px`).join(" "));
 
+/* The panel opens under the button and flips above it when there is no room
+   below, so its own height is what has to stay modest: at most 65% of the
+   viewport on a phone, 80% on a desktop, and never more than 34rem. */
 const heights = [480, 568, 640, 667, 736, 844, 932].map((vh) => {
-  const height = Math.min(0.82 * vh, 544);
-  return { vh, height, ok: height <= vh - 20 && height >= 260 };
+  const phone = Math.min(0.65 * vh, 512);
+  const desktop = Math.min(0.8 * vh, 544);
+  return { vh, phone, desktop, ok: phone <= vh * 0.65 + 1 && desktop <= vh * 0.8 + 1 && phone >= 260 };
 });
-check("filter: the sheet always leaves the viewport edge visible", heights.every((entry) => entry.ok),
-  heights.map((entry) => `${entry.vh}→${Math.round(entry.height)}px`).join(" "));
+check("filter: the panel always leaves most of the screen for the board", heights.every((entry) => entry.ok),
+  heights.map((entry) => `${entry.vh}→${Math.round(entry.phone)}/${Math.round(entry.desktop)}px`).join(" "));
 
 /* Header on the narrowest phone this template claims to support. */
 const HEADER_AT_320 = {
@@ -300,9 +316,21 @@ const panel = kanban.querySelector(".dropdown-menu-filter");
 check("markup: the kanban filter panel is on the page", !!panel, "");
 
 if (panel) {
+  const head = panel.querySelector(".dropdown-menu-filter__head");
   const body = panel.querySelector(".dropdown-menu-filter__body");
   const foot = panel.querySelector(".dropdown-menu-filter__foot");
   const chips = [...panel.querySelectorAll("[data-demo-board-filter]")];
+  const close = panel.querySelector("[data-demo-board-close]");
+  check("markup: the panel opens with a header, a body and a footer",
+    !!head && !!body && !!foot &&
+    [head, body, foot].every((part, index) => panel.children[index] === part),
+    [...panel.children].map((child) => child.className.split(" ")[0]).join(" → "));
+  check("markup: the header carries a close button with an accessible name",
+    !!close && close.tagName === "BUTTON" && close.getAttribute("type") === "button" &&
+    (close.getAttribute("aria-label") || "").length > 3,
+    close ? `${close.tagName} "${close.getAttribute("aria-label")}"` : "no close button");
+  check("markup: the close button lives in the header, not in the scrolling groups",
+    !!close && !!head && head.contains(close) && !body.contains(close), "");
   check("markup: the panel splits into a scrolling body and a pinned footer", !!body && !!foot, "");
   check("markup: the footer is the last thing in the panel", !!foot && panel.lastElementChild === foot,
     foot ? [...panel.children].map((child) => child.className.split(" ")[0]).join(" → ") : "");
@@ -413,6 +441,8 @@ check("dark mode: the pinned footer follows the palette",
   await wait(500);
 
   const d = w.document;
+  const click = (node) => node.dispatchEvent(new w.MouseEvent("click", { bubbles: true, cancelable: true }));
+  const toasts = (doc) => [...doc.querySelectorAll(".q-toast-host .toast-body")].map(text);
   const panel = d.querySelector(".dropdown-menu-filter");
   const toggle = panel.parentElement.querySelector('[data-bs-toggle="dropdown"]');
   const open = () => panel.classList.contains("show");
@@ -439,7 +469,27 @@ check("dark mode: the pinned footer follows the palette",
   check("runtime: Clear empties the filter and keeps the panel open", open() && chip.getAttribute("aria-pressed") === "false",
     `${open()} / ${chip.getAttribute("aria-pressed")}`);
 
-  /* A click outside closes it — Bootstrap's data-bs-auto-close="outside". */
+  /* Press one chip again, so the × has a filter to preserve. */
+  click(chip);
+
+  /* The × in the panel's own header. */
+  const closeButton = panel.querySelector("[data-demo-board-close]");
+  closeButton.dispatchEvent(new w.MouseEvent("click", { bubbles: true, cancelable: true }));
+  await wait(250);
+  check("runtime: the × in the panel closes it", !open(),
+    panel.className);
+  check("runtime: closing the panel hands focus back to the Filter button",
+    d.activeElement === toggle, d.activeElement ? d.activeElement.tagName + "." + d.activeElement.className.split(" ")[0] : "nothing");
+  check("runtime: closing the panel kept the filter that was set",
+    chip.getAttribute("aria-pressed") === "true" && d.querySelectorAll('.kanban__card[data-filtered="true"]').length > 0,
+    `${chip.getAttribute("aria-pressed")} / ${d.querySelectorAll('.kanban__card[data-filtered="true"]').length} cards`);
+  const fallbacks = toasts(d).filter((message) => /component demo|no action wired up yet/.test(message));
+  check("runtime: the close button never reaches the demo fallback", fallbacks.length === 0,
+    fallbacks.slice(0, 2).join(" || ") || "no fallback toast");
+
+  /* Open again, then a click outside closes it — data-bs-auto-close="outside". */
+  toggle.dispatchEvent(new w.MouseEvent("click", { bubbles: true, cancelable: true }));
+  await wait(200);
   d.body.dispatchEvent(new w.MouseEvent("click", { bubbles: true, cancelable: true }));
   await wait(200);
   check("runtime: a click on the page closes the panel again", !open(), panel.className);
