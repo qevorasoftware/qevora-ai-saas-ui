@@ -467,6 +467,7 @@
   justify-content: center;
   width: 40px;
   height: 40px;
+  aspect-ratio: 1 / 1;
   border-radius: 50%;
   flex: 0 0 auto;
   font-weight: 600;
@@ -484,8 +485,10 @@
   object-fit: cover;
 }
 
-.avatar-xs { width: 24px; height: 24px; font-size: 0.625rem; }
-.avatar-sm { width: 32px; height: 32px; font-size: 0.6875rem; }
+/* Every size is a square: an avatar can never be stretched into an oval by a
+   flex row that wants more width than the row has. */
+.avatar-xs { width: 24px; height: 24px; min-width: 24px; font-size: 0.625rem; }
+.avatar-sm { width: 32px; height: 32px; min-width: 32px; font-size: 0.6875rem; }
 .avatar-md { width: 40px; height: 40px; font-size: 0.8125rem; }
 .avatar-lg { width: 52px; height: 52px; font-size: 1rem; }
 .avatar-xl { width: 72px; height: 72px; font-size: 1.375rem; }
@@ -626,10 +629,38 @@
   color: #fff;
 }
 
-/* The filter panel behind the board. */
+/* --------------------------------------------------------------------------
+   The filter panel behind the board.
+   A tall list of chips must never run off the bottom of a phone, so the panel
+   is a column: the groups scroll, the footer (summary + Clear) stays pinned.
+   On phones it drops the anchored dropdown for a bottom sheet, which is the
+   only shape that always fits inside the viewport.
+   -------------------------------------------------------------------------- */
 .dropdown-menu-filter {
-  min-width: 17rem;
-  padding: 1rem;
+  width: min(19rem, calc(100vw - 1.5rem));
+  min-width: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  max-height: min(80vh, 34rem);
+  overflow: hidden;
+}
+
+.dropdown-menu-filter__body {
+  padding: 1rem 1rem 0.5rem;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+
+.dropdown-menu-filter__foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-top: auto;
+  padding: 0.75rem 1rem;
+  border-top: 1px solid var(--q-border-color);
+  background: var(--q-surface);
 }
 
 .filter-group__title {
@@ -639,6 +670,63 @@
   text-transform: uppercase;
   color: var(--q-muted-color);
   margin-bottom: 0.5rem;
+}
+
+/* The panel sits on a white card, so an idle chip takes the hover surface
+   instead of a hairline border: the options read as things you can press at a
+   glance, in both palettes. A pressed chip keeps the filled state. */
+.dropdown-menu-filter .chip {
+  min-height: 2rem;
+  background: var(--q-surface-hover);
+  border-color: transparent;
+}
+
+.dropdown-menu-filter .chip:hover {
+  border-color: var(--q-border-strong);
+}
+
+.dropdown-menu-filter .chip[aria-pressed="true"] {
+  background: var(--q-fill-bg);
+  border-color: transparent;
+  color: #fff;
+}
+
+.dropdown-menu-filter .chip[aria-pressed="true"]:hover {
+  background: var(--q-fill-hover-bg);
+  color: #fff;
+}
+
+@media (max-width: 575.98px) {
+  /* A sheet, not a dropdown: Popper still writes its own position, so the
+     offsets are forced with !important and the transform is cleared. */
+  .dropdown-menu-filter {
+    position: fixed !important;
+    top: auto !important;
+    left: 0.625rem !important;
+    right: 0.625rem !important;
+    bottom: 0.625rem !important;
+    width: auto;
+    margin: 0;
+    max-height: min(82vh, 34rem);
+    transform: none !important;
+    border-radius: var(--q-radius-lg);
+    box-shadow: var(--q-shadow-lg);
+    z-index: 1060;
+  }
+
+  .dropdown-menu-filter .chip {
+    min-height: 2.25rem;
+    padding: 0.45rem 0.8rem;
+    font-size: 0.8125rem;
+  }
+
+  .dropdown-menu-filter__body {
+    padding: 1rem 1rem 0.5rem;
+  }
+
+  .dropdown-menu-filter__foot {
+    padding: 0.75rem 1rem calc(0.75rem + env(safe-area-inset-bottom, 0px));
+  }
 }
 
 /* ==========================================================================

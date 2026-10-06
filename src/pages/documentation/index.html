@@ -311,7 +311,13 @@ Optional developer source package (shipped separately from the item page)
                       (matched against the badges, avatars and tooltips inside a card), a
                       <code>[data-demo-board-count]</code> badge, a <code>[data-demo-board-summary]</code>
                       line and a <code>[data-demo-board-clear]</code> button,
-                      <code>QevoraDemo.refresh()</code>
+                      <code>QevoraDemo.refresh()</code>.
+                      Give the panel <code>.dropdown-menu-filter</code> with a
+                      <code>.dropdown-menu-filter__body</code> (the groups) and a
+                      <code>.dropdown-menu-filter__foot</code> (the summary and Clear): the body
+                      scrolls, the footer stays pinned and opaque, and on a phone the panel
+                      becomes a bottom sheet inside the viewport instead of a menu that runs off
+                      the screen.
                     </td>
                   </tr>
                   <tr>
@@ -463,6 +469,9 @@ node tools/smoke.mjs             # run every page and click key controls: consol
                 <li>Animated counters respect <code>prefers-reduced-motion</code> and print the final value immediately.</li>
                 <li>Tables, pagination and cards are keyboard reachable; the mobile drawer closes on <code>Esc</code>.</li>
                 <li>Tested in Chrome, Edge, Firefox and Safari (last two major versions) plus iOS Safari and Chrome on Android.</li>
+                <li>Every overlay fits the narrowest phone: the board filter becomes a bottom sheet inside the viewport
+                  with its own scroll and a pinned footer, and the header profile is a 40px circle below 768px (the
+                  name and role are hidden there, so a pill would read as an oval).</li>
               </ul>
             </div>
           </div>

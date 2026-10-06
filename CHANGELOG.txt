@@ -510,6 +510,25 @@ FIXES DURING DEVELOPMENT
       integration, and window.QevoraCalendar exposes events(), state() and
       refresh() for anything the markup does not cover.
 
+    · The board filter panel and the header profile were the last two places
+      where a narrow screen broke the design.
+      The filter panel on pages/kanban.html keeps its desktop dropdown but no
+      longer runs off the bottom of a phone: the panel is a column with a
+      scrolling body (the three groups) and a pinned, opaque footer (the
+      "Showing X of Y tasks" line and Clear), its width is capped against the
+      viewport (½ the phone²s width at 320px, no horizontal scrollbar at any
+      size) and below 576px it becomes a bottom sheet — fixed inside the
+      viewport, above the header, clear of the phone²s home bar, with a 36px tap
+      target per chip — instead of an anchored menu whose last rows were out of
+      reach. Give any panel the same three classes and it behaves the same way;
+      the structure is documented with the board hooks.
+      The header profile button is a perfect circle below 768px (40px, no
+      padding, centred avatar). It used to be a pill around the avatar: with the
+      name and role hidden on a phone that left an oval ring hugging a round
+      avatar. Avatars also carry aspect-ratio: 1 / 1 and a min-width per size, so
+      a flex row that wants more width than it has can never stretch one into an
+      oval either.
+
   Links, buttons and runtime behaviour
     · The light/dark toggle did nothing when localStorage is unavailable —
       private-mode windows, sandboxed frames and, most importantly, opening the

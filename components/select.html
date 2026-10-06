@@ -1036,32 +1036,32 @@
   color: #fff;
 }
 
-.input-group-text {
-  background: var(--q-surface-hover);
-  border-color: var(--q-border-color);
-  color: var(--q-muted-color);
-  font-size: 0.875rem;
-  border-radius: var(--q-radius-sm);
-}
-
-.q-header__search .form-control {
-  padding-inline-start: 2.4rem;
+.dropdown-menu-filter .chip {
+  min-height: 2rem;
   background: var(--q-surface-hover);
   border-color: transparent;
 }
 
-.q-header__search .form-control:focus {
-  background: var(--q-surface);
+.dropdown-menu-filter .chip:hover {
+  border-color: var(--q-border-strong);
 }
 
-.form-control, .form-select {
-  --bs-body-bg: var(--q-surface);
-  background-color: var(--q-surface);
-  border-color: var(--q-border-color);
-  border-radius: var(--q-radius-sm);
-  color: var(--q-body-color);
-  font-size: 0.875rem;
-  padding-block: 0.5rem;
+.dropdown-menu-filter .chip[aria-pressed="true"] {
+  background: var(--q-fill-bg);
+  border-color: transparent;
+  color: #fff;
+}
+
+.dropdown-menu-filter .chip[aria-pressed="true"]:hover {
+  background: var(--q-fill-hover-bg);
+  color: #fff;
+}
+
+@media (max-width: 575.98px) {
+  .dropdown-menu-filter .chip {
+    min-height: 2.25rem;
+    padding: 0.45rem 0.8rem;
+    font-size: 0.8125rem;
 /* … sample trimmed for length */</code></pre>
           </div>
         </div>

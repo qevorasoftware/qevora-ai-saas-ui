@@ -819,6 +819,25 @@ body.q-sidebar-open .q-sidebar-backdrop {
   }
 }
 
+/* Below 768px the name and role are hidden, so the button holds nothing but
+   the avatar — and a pill around a circle reads as an oval. It becomes a
+   circle itself, with the avatar centred in it. */
+@media (max-width: 767.98px) {
+  .q-header__user {
+    width: 40px;
+    height: 40px;
+    padding: 0;
+    justify-content: center;
+    border-radius: 50%;
+    border-color: transparent;
+  }
+
+  .q-header__user:hover,
+  .q-header__user[aria-expanded="true"] {
+    border-color: var(--q-border-color);
+  }
+}
+
 .q-header__user-name {
   font-size: 0.8125rem;
   font-weight: 600;

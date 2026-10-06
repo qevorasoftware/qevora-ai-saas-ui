@@ -68,6 +68,10 @@ tools/smoke.mjs       Optional runtime gate (needs `npm i --no-save jsdom`): loa
                       reports console errors or dead interactions
 tools/check-buttons.mjs  Blank-button sweep: clicks every control on every page
                       and fails on any that changes nothing
+tools/check-calendar.mjs  Calendar behaviour: month/week/day, the four calendars,
+                      the agenda and the event dialog, driven by real clicks
+tools/check-responsive.mjs  Phone-only design: the filter sheet, the header profile
+                      circle, avatar shapes and the maths behind the widths
 tools/package.sh      Builds the buyer-facing release ZIPs into release/
 ```
 
@@ -99,6 +103,8 @@ node tools/audit.mjs            # 19 static QA checks per page + light/dark cont
 node tools/audit.mjs --strict   # same, but exit non-zero when anything is found
 node tools/smoke.mjs --strict   # run every page in a scripted DOM, report runtime errors
 node tools/check-buttons.mjs    # click every button and link on every page, report blanks
+node tools/check-calendar.mjs   # drive the calendar: views, filters, add/edit/delete
+node tools/check-responsive.mjs # check the phone layout: filter sheet, profile circle, avatars
 ```
 
 `src/pages.mjs` is the single source of truth for the page inventory — titles, meta descriptions,

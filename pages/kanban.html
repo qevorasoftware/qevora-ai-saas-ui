@@ -694,32 +694,34 @@
               <span class="badge badge-pill bg-primary text-white ms-1 d-none" data-demo-board-count>0</span>
             </button>
             <div class="dropdown-menu dropdown-menu-end dropdown-menu-filter">
-              <p class="filter-group__title">Priority</p>
-              <div class="d-flex flex-wrap gap-2 mb-3">
-                <button type="button" class="chip" data-demo-board-filter="priority" data-demo-board-value="High" aria-pressed="false">High</button>
-                <button type="button" class="chip" data-demo-board-filter="priority" data-demo-board-value="Medium" aria-pressed="false">Medium</button>
-                <button type="button" class="chip" data-demo-board-filter="priority" data-demo-board-value="Low" aria-pressed="false">Low</button>
+              <div class="dropdown-menu-filter__body">
+                <p class="filter-group__title">Priority</p>
+                <div class="d-flex flex-wrap gap-2 mb-3">
+                  <button type="button" class="chip" data-demo-board-filter="priority" data-demo-board-value="High" aria-pressed="false">High</button>
+                  <button type="button" class="chip" data-demo-board-filter="priority" data-demo-board-value="Medium" aria-pressed="false">Medium</button>
+                  <button type="button" class="chip" data-demo-board-filter="priority" data-demo-board-value="Low" aria-pressed="false">Low</button>
+                </div>
+
+                <p class="filter-group__title">Label</p>
+                <div class="d-flex flex-wrap gap-2 mb-3">
+                  <button type="button" class="chip" data-demo-board-filter="label" data-demo-board-value="Design" aria-pressed="false">Design</button>
+                  <button type="button" class="chip" data-demo-board-filter="label" data-demo-board-value="Docs" aria-pressed="false">Docs</button>
+                  <button type="button" class="chip" data-demo-board-filter="label" data-demo-board-value="Feature" aria-pressed="false">Feature</button>
+                  <button type="button" class="chip" data-demo-board-filter="label" data-demo-board-value="QA" aria-pressed="false">QA</button>
+                  <button type="button" class="chip" data-demo-board-filter="label" data-demo-board-value="Shipped" aria-pressed="false">Shipped</button>
+                </div>
+
+                <p class="filter-group__title">Assignee</p>
+                <div class="d-flex flex-wrap gap-2 mb-0">
+                  <button type="button" class="chip" data-demo-board-filter="assignee" data-demo-board-value="Ava Reynolds" aria-pressed="false">Ava Reynolds</button>
+                  <button type="button" class="chip" data-demo-board-filter="assignee" data-demo-board-value="Marcus Chen" aria-pressed="false">Marcus Chen</button>
+                  <button type="button" class="chip" data-demo-board-filter="assignee" data-demo-board-value="Lea Novak" aria-pressed="false">Lea Novak</button>
+                  <button type="button" class="chip" data-demo-board-filter="assignee" data-demo-board-value="Yuki Tanaka" aria-pressed="false">Yuki Tanaka</button>
+                  <button type="button" class="chip" data-demo-board-filter="assignee" data-demo-board-value="Daniel Okafor" aria-pressed="false">Daniel Okafor</button>
+                </div>
               </div>
 
-              <p class="filter-group__title">Label</p>
-              <div class="d-flex flex-wrap gap-2 mb-3">
-                <button type="button" class="chip" data-demo-board-filter="label" data-demo-board-value="Design" aria-pressed="false">Design</button>
-                <button type="button" class="chip" data-demo-board-filter="label" data-demo-board-value="Docs" aria-pressed="false">Docs</button>
-                <button type="button" class="chip" data-demo-board-filter="label" data-demo-board-value="Feature" aria-pressed="false">Feature</button>
-                <button type="button" class="chip" data-demo-board-filter="label" data-demo-board-value="QA" aria-pressed="false">QA</button>
-                <button type="button" class="chip" data-demo-board-filter="label" data-demo-board-value="Shipped" aria-pressed="false">Shipped</button>
-              </div>
-
-              <p class="filter-group__title">Assignee</p>
-              <div class="d-flex flex-wrap gap-2 mb-3">
-                <button type="button" class="chip" data-demo-board-filter="assignee" data-demo-board-value="Ava Reynolds" aria-pressed="false">Ava Reynolds</button>
-                <button type="button" class="chip" data-demo-board-filter="assignee" data-demo-board-value="Marcus Chen" aria-pressed="false">Marcus Chen</button>
-                <button type="button" class="chip" data-demo-board-filter="assignee" data-demo-board-value="Lea Novak" aria-pressed="false">Lea Novak</button>
-                <button type="button" class="chip" data-demo-board-filter="assignee" data-demo-board-value="Yuki Tanaka" aria-pressed="false">Yuki Tanaka</button>
-                <button type="button" class="chip" data-demo-board-filter="assignee" data-demo-board-value="Daniel Okafor" aria-pressed="false">Daniel Okafor</button>
-              </div>
-
-              <div class="d-flex align-items-center justify-content-between gap-3 border-top pt-3">
+              <div class="dropdown-menu-filter__foot">
                 <span class="fs-8 text-muted-2" data-demo-board-summary>Showing all 9 tasks</span>
                 <button type="button" class="btn btn-sm btn-white flex-shrink-0" data-demo-board-clear disabled>Clear</button>
               </div>
