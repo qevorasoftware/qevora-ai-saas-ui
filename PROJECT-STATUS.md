@@ -111,7 +111,7 @@ generated pagers, the AI history table, the content generator and the plan cards
 | 8 | Brand/product naming | **Done** | "Qevora AI SaaS UI" everywhere; old suffix banned by a release check |
 | 9 | Demo data reviewed | **Done** | fictional names, 555-01xx phone range, all addresses on `example.com` |
 | 10 | License audit | **Done** | Bootstrap/Icons/Chart.js MIT, Inter OFL 1.1, all images original SVGs |
-| 11 | HTML/CSS/JS quality | **Done** | audit `--strict` 0 findings; runtime suites green (`check-states` 15, `check-controls` 87, `check-kanban` 94, `check-dropdowns` 81, `check-add-card` 33, `smoke` 82 pages) |
+| 11 | HTML/CSS/JS quality | **Done** | audit `--strict` 0 findings; runtime suites green (`check-controls` 100, `check-kanban` 94, `check-dropdowns` 81, `check-add-card` 33, `check-states` 15, `check-buttons` 82 pages / 0 blank controls, `smoke` 82 pages) |
 | 12 | Responsive/light/dark/RTL | **Done** | smoke + theme pass + previews 01/02/13/14 |
 | 13 | 404/empty/utility states | **Done** | 404, 500, maintenance, coming soon, empty states, loading and validation states |
 | 14 | README.txt final pass | **Done** | rewritten for buyers, no development-only instructions |

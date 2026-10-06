@@ -66,6 +66,8 @@ tools/audit.mjs       Static QA gate (19 checks per page + theme contrast): head
 tools/smoke.mjs       Optional runtime gate (needs `npm i --no-save jsdom`): loads
                       every page with its scripts, clicks the key controls and
                       reports console errors or dead interactions
+tools/check-buttons.mjs  Blank-button sweep: clicks every control on every page
+                      and fails on any that changes nothing
 tools/package.sh      Builds the buyer-facing release ZIPs into release/
 ```
 
@@ -96,6 +98,7 @@ node tools/build.mjs --check    # validate: missing bodies, dead navigation link
 node tools/audit.mjs            # 19 static QA checks per page + light/dark contrast
 node tools/audit.mjs --strict   # same, but exit non-zero when anything is found
 node tools/smoke.mjs --strict   # run every page in a scripted DOM, report runtime errors
+node tools/check-buttons.mjs    # click every button and link on every page, report blanks
 ```
 
 `src/pages.mjs` is the single source of truth for the page inventory — titles, meta descriptions,

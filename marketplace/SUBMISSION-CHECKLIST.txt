@@ -182,7 +182,18 @@
     links, plus pages/customer-details.html (Email, Log call, Edit customer) and the
     customer directory grid cards (same customers as the table, same badge colour,
     labelled facts, a real health bar, edit and delete from a card, cards follow the
-    search, the empty result and every save) — 87 checks, green (needs jsdom)
+    search, the empty result and every save), the four blank controls the folder
+    sweep found (the history table's Copy, the delete dialog with nothing
+    selected, the AI chat conversation picker and its single copy toast) — 100 checks, green (needs jsdom)
+  · node tools/check-buttons.mjs       the blank-button sweep: every page in the
+    built package is opened, every button and link is classified (real link,
+    in-page link, disabled, submit, Bootstrap toggle, demo behaviour) and every
+    remaining control is really clicked while a MutationObserver watches the
+    page — a control that changes nothing and says nothing is a FAIL. Link
+    targets are checked too (missing files, missing #id on the page). Controls
+    inside a closed dialog, menu or drawer are opened first through Bootstrap,
+    so a Cancel button is tested where a user would find it. 82 pages, 0 blank
+    controls (needs jsdom; a full sweep takes a few minutes)
   · node tools/check-kanban.mjs        the card boards on pages/pipeline.html and
     pages/pages/kanban.html: every card draggable and handled, a drop landing in
     front of the card it was dropped on, the dashed landing cue, counters and the

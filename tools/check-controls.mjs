@@ -339,6 +339,67 @@ const row = (w, name) => [...w.document.querySelectorAll("tr")].find((tr) => tex
   check("directory: no console errors", errors.length === 0, errors[0] || "");
 }
 
+/* ------------------------------------- a scan of the whole folder's buttons */
+{
+  /* The full click sweep lives in tools/check-buttons.mjs (every page, every
+     control). These four are the bugs it found, pinned here so they cannot come
+     back quietly. */
+  const { w, errors } = await open("ai/history.html");
+  const d = w.document;
+  const copy = d.querySelector("#history-table tbody tr [data-copy-text]");
+  check("history: a row offers Copy", !!copy, "");
+  click(w, copy);
+  await wait(300);
+  check("history: Copy takes the prompt, not the empty checkbox cell",
+    toasts(w).some((t) => /Prompt copied to the clipboard\./.test(t)) &&
+      !toasts(w).some((t) => /nothing to copy/i.test(t)),
+    toasts(w).join(" | ").slice(0, 90));
+  check("history: no console errors", errors.length === 0, errors[0] || "");
+}
+
+{
+  /* A delete dialog that was never handed a row must say so instead of standing
+     there blank. */
+  const { w, errors } = await open("pages/activity.html");
+  const d = w.document;
+  const confirm = d.querySelector("#q-demo-confirm");
+  confirm.classList.add("show");
+  confirm.style.display = "block";
+  click(w, confirm.querySelector("[data-demo-confirm]"));
+  await wait(400);
+  check("delete dialog: a dialog with nothing selected explains itself",
+    toasts(w).some((t) => /Nothing is selected to remove/.test(t)), toasts(w).join(" | ").slice(0, 90));
+  check("delete dialog: and it closes again", !shown(confirm), confirm.className);
+  check("delete dialog: no console errors", errors.length === 0, errors[0] || "");
+}
+
+{
+  /* The AI chat sidebar is a chooser: picking a conversation moves the page. */
+  const { w, errors } = await open("ai/chat.html");
+  const d = w.document;
+  const items = [...d.querySelectorAll("[data-conversation]")];
+  const head = d.querySelector("[data-conversation-head]");
+  const before = text(head);
+  check("ai chat: the sidebar lists conversations", items.length >= 4, `${items.length} items`);
+  click(w, items[1]);
+  await wait(260);
+  const title = (items[1].getAttribute("data-conversation-title") || "").trim();
+  check("ai chat: picking one marks it open",
+    items[1].classList.contains("active") && items.filter((i) => i.classList.contains("active")).length === 1,
+    items.map((i) => (i.classList.contains("active") ? "*" : "") + (i.getAttribute("data-conversation-title") || "")).join(" | "));
+  check("ai chat: the thread header follows the pick", text(head) === title && text(head) !== before,
+    `${before} → ${text(head)}`);
+  check("ai chat: the transcript says which conversation is open",
+    !!d.querySelector("[data-conversation-note]") && text(d.querySelector("[data-conversation-note]")).includes(title),
+    text(d.querySelector("[data-conversation-note]")).slice(0, 70));
+  check("ai chat: the pick is confirmed", toasts(w).some((t) => /opened/.test(t)), toasts(w).join(" | ").slice(0, 70));
+  click(w, d.querySelector("[data-copy-text]"));
+  await wait(320);
+  const copyToasts = toasts(w).filter((t) => /copied to the clipboard/i.test(t));
+  check("ai chat: Copy raises one toast, not two", copyToasts.length === 1, `${copyToasts.length} copy toast(s): ${copyToasts.join(" | ").slice(0, 70)}`);
+  check("ai chat: no console errors", errors.length === 0, errors[0] || "");
+}
+
 /* ------------------------------------------------ tooltip-only buttons answer */
 {
   const { w, errors } = await open("components/tooltips.html");

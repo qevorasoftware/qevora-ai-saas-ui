@@ -62,8 +62,8 @@
       '    <p class="msg__meta">Qevora AI · ' + currentTime() + "</p>" +
       '    <div class="msg__actions">' +
       '      <button class="btn btn-sm btn-ghost" type="button" data-copy-text><i class="bi bi-clipboard"></i> Copy</button>' +
-      '      <button class="btn btn-sm btn-ghost" type="button" data-regenerate><i class="bi bi-arrow-repeat"></i> Regenerate</button>' +
-      '      <button class="btn btn-sm btn-ghost" type="button" data-demo-action="Response rated — demo only."><i class="bi bi-hand-thumbs-up"></i></button>' +
+      '      <button class="btn btn-sm btn-ghost" type="button" data-demo-regenerate="[data-chat-thread]"><i class="bi bi-arrow-repeat"></i> Regenerate</button>' +
+      '      <button class="btn btn-sm btn-ghost" type="button" data-demo-toggle data-demo-toggle-done="Thanks ' + DASH + ' your feedback was recorded."><i class="bi bi-hand-thumbs-up"></i></button>' +
       "    </div>" +
       "  </div>" +
       "</article>"
@@ -136,43 +136,56 @@
     }
   }
 
-  function initMessageActions() {
-    document.addEventListener("click", function (event) {
-      var copyBtn = event.target.closest("[data-copy-text]");
-      if (copyBtn) {
-        var bubble = copyBtn.closest(".msg").querySelector(".msg__bubble");
-        if (bubble && window.Qevora) {
-          window.Qevora.copyText(bubble.innerText).then(function () {
-            window.Qevora.toast("Response copied to the clipboard.", "success");
-          });
-        }
-        return;
-      }
+  /* Picking a conversation opens it: the thread header takes its name and the
+     transcript gets a line saying which conversation is on screen. The active
+     state and the confirmation toast come from demo-ui.js (data-demo-pick), so
+     the two pages behave the same way. */
+  function openConversation(item) {
+    var title = (item.getAttribute("data-conversation-title") || "").trim();
+    if (!title) {
+      var name = item.querySelector(".fs-7, .fw-600");
+      title = name ? name.textContent.trim() : "Conversation";
+    }
+    var prompt = (item.getAttribute("data-conversation-meta") || "").trim();
 
-      var regen = event.target.closest("[data-regenerate]");
-      if (regen) {
-        var message = regen.closest(".msg");
-        var target = message.querySelector(".msg__bubble");
-        target.innerHTML = '<span class="typing"><span></span><span></span><span></span></span>';
-        window.setTimeout(function () {
-          target.textContent = REPLIES[replyIndex(Date.now())];
-        }, 900);
-      }
-    });
+    var head = document.querySelector("[data-conversation-head]");
+    if (head) head.textContent = title;
+
+    var sub = document.querySelector("[data-conversation-sub]");
+    if (sub) sub.textContent = (prompt ? prompt + " \u00b7 " : "") + "demo transcript";
+
+    var thread = document.querySelector("[data-chat-thread]");
+    if (!thread) return;
+
+    var note = thread.querySelector("[data-conversation-note]");
+    if (!note) {
+      note = document.createElement("p");
+      note.className = "text-center fs-8 text-muted-2 my-3";
+      note.setAttribute("data-conversation-note", "");
+      thread.insertBefore(note, thread.firstElementChild);
+    }
+    note.textContent = "Conversation “" + title + "” opened — the transcript below is the demo one.";
+    scrollToBottom(thread);
   }
 
   function initConversationList() {
     var search = document.querySelector("[data-conversation-search]");
-    if (!search) return;
 
-    search.addEventListener("input", function () {
-      var term = search.value.trim().toLowerCase();
-      var items = document.querySelectorAll("[data-conversation]");
+    if (search) {
+      search.addEventListener("input", function () {
+        var term = search.value.trim().toLowerCase();
+        var items = document.querySelectorAll("[data-conversation]");
 
-      for (var i = 0; i < items.length; i++) {
-        var match = items[i].textContent.toLowerCase().indexOf(term) !== -1;
-        items[i].classList.toggle("d-none", !match);
-      }
+        for (var i = 0; i < items.length; i++) {
+          var match = items[i].textContent.toLowerCase().indexOf(term) !== -1;
+          items[i].classList.toggle("d-none", !match);
+        }
+      });
+    }
+
+    document.addEventListener("click", function (event) {
+      var item = event.target.closest("[data-conversation]");
+      if (item) openConversation(item);
     });
   }
 
@@ -182,7 +195,6 @@
 
   function init() {
     initComposer();
-    initMessageActions();
     initConversationList();
     initThreadScroll();
   }

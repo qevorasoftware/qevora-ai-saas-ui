@@ -822,12 +822,26 @@
 
   function hideModal(modalEl) {
     if (!modalEl) return;
+
     if (window.bootstrap && window.bootstrap.Modal) {
       window.bootstrap.Modal.getOrCreateInstance(modalEl).hide();
-    } else {
+    }
+
+    /* Bootstrap only hides a dialog it believes is open. One that was put on
+       screen some other way (a deep link, another script) would be left
+       standing, so the classes are cleaned up as well. */
+    window.setTimeout(function () {
+      if (!modalEl.classList.contains("show")) return;
+      if (window.bootstrap && window.bootstrap.Modal) {
+        var instance = window.bootstrap.Modal.getInstance(modalEl);
+        if (instance && instance._isShown) return;
+      }
       modalEl.classList.remove("show");
       modalEl.style.display = "none";
-    }
+      modalEl.setAttribute("aria-hidden", "true");
+      qa(".modal-backdrop", doc.body).forEach(function (backdrop) { backdrop.remove(); });
+      doc.body.classList.remove("modal-open");
+    }, 240);
   }
 
   function openFrom(trigger) {
@@ -1006,7 +1020,15 @@
   function confirmDelete(button) {
     var modalEl = button.closest(".modal");
     var row = modalEl ? modalEl.__qRow : null;
-    if (!modalEl || !row) return;
+
+    /* The dialog is opened by a Delete button that hands it the thing to
+       remove. Opened any other way there is nothing to remove, so the button
+       says why instead of standing there blank. */
+    if (!modalEl || !row) {
+      if (modalEl) hideModal(modalEl);
+      toast("Nothing is selected to remove. Open this dialog from a Delete button.", "warning", "Nothing to delete");
+      return;
+    }
 
     var label = modalEl.__qLabel || "Record";
     var verb = modalEl.__qVerb || "deleted";
@@ -2374,6 +2396,17 @@
   /* <button data-copy-text>Copy</button> — with a value it copies that literal,
      without one it copies the nearest message body, so a chat transcript can
      offer Copy on every bubble without hand-wiring selectors. */
+  /* The first cell of a row that carries text a person would want to copy:
+     controls, checkboxes and empty cells are stepped over. */
+  function textCell(row) {
+    var cells = qa("td", row);
+    for (var i = 0; i < cells.length; i++) {
+      if (cells[i].querySelector("input, select, textarea, button, .table-actions")) continue;
+      if (cells[i].textContent.replace(/\s+/g, " ").trim()) return cells[i];
+    }
+    return null;
+  }
+
   function copyBlock(control) {
     var literal = control.getAttribute("data-copy-text");
     if (literal) {
@@ -2381,10 +2414,13 @@
       return;
     }
 
-    /* Inside a table row the useful text is the first data cell, not the whole
-       card the row happens to live in. */
+    /* Inside a table row the useful text is the row's own text, not the whole
+       card the row happens to live in. A cell that is marked
+       [data-demo-copy-block-text] wins; otherwise the first cell that really
+       holds text is taken — "td:nth-child(2)" picked the empty checkbox cell on
+       every table that starts with a select column, and copied nothing. */
     var row = rowOf(control);
-    var cell = row ? q("td:nth-child(2), td", row) : null;
+    var cell = row ? (q("[data-demo-copy-block-text]", row) || textCell(row)) : null;
 
     var host = control.closest(".msg, [data-demo-copy-block], .card, article, li");
     var node = cell || (host ? q(".msg__bubble, [data-demo-copy-block-text], pre, p", host) : null);

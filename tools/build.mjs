@@ -121,6 +121,35 @@ ${items}
 /* Breadcrumb                                                                 */
 /* -------------------------------------------------------------------------- */
 
+/* Where a breadcrumb section really lives. "CRM" is a sidebar item with a
+   submenu, "Applications" a sidebar group, "Customers" a submenu entry — the
+   first real page behind the label wins. A label with no page behind it returns
+   an empty string and the crumb is printed as text, because a breadcrumb that
+   only jumps to the top of the page is a dead link. */
+function crumbHref(label) {
+  const firstHref = (item) =>
+    item && (item.href || (item.children && item.children.length ? item.children[0].href : ""));
+
+  for (const group of nav) {
+    if (group.label === label) {
+      for (const item of group.items) {
+        const href = firstHref(item);
+        if (href) return href;
+      }
+    }
+    for (const item of group.items) {
+      if (item.text === label) {
+        const href = firstHref(item);
+        if (href) return href;
+      }
+      for (const child of item.children || []) {
+        if (child.text === label) return child.href || "";
+      }
+    }
+  }
+  return "";
+}
+
 function renderBreadcrumb(trail, depth) {
   const items = trail
     .map((label, index) => {
@@ -128,8 +157,11 @@ function renderBreadcrumb(trail, depth) {
       if (isLast) {
         return `          <li class="breadcrumb-item active" aria-current="page">${label}</li>`;
       }
-      const href = index === 0 ? `${depth}index.html` : "#";
-      return `          <li class="breadcrumb-item"><a href="${href}">${label}</a></li>`;
+      const href = crumbHref(label) || (label === "Dashboard" ? "index.html" : "");
+      if (!href) {
+        return `          <li class="breadcrumb-item">${label}</li>`;
+      }
+      return `          <li class="breadcrumb-item"><a href="${depth}${href}">${label}</a></li>`;
     })
     .join("\n");
 

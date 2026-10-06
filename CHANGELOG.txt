@@ -450,6 +450,38 @@ FIXES DURING DEVELOPMENT
       a gap instead of touching the text. The chip icon also lost the extra
       leading that pushed it off the text line.
 
+    · A full sweep of every button and link in the package
+      (tools/check-buttons.mjs: every page, every control clicked, the page
+      watched for a reaction) found four controls that answered nothing, all
+      fixed:
+        · the middle links of every breadcrumb pointed at "#", so clicking
+          "Applications" or "CRM" jumped to the top of the page. Each crumb now
+          points at the first real page of the section it names (the sidebar
+          navigation decides which) and a label with no page behind it is
+          printed as plain text instead of pretending to be a link.
+        · "Copy" on a row of the prompt history table copied nothing and
+          answered "There was nothing to copy here." The cell reader took
+          "td:nth-child(2)", which is the empty checkbox column on every table
+          that starts with a select column; it now prefers a cell marked
+          data-demo-copy-block-text and otherwise takes the first cell that
+          really holds text, stepping over checkboxes, buttons and action
+          columns.
+        · the conversation list on ai/chat.html did nothing — its items carried
+          data-conversation but no behaviour. They are a real chooser now (the
+          same data-demo-pick wiring the team chat uses): the picked row goes
+          active, the thread header takes that conversation's name, the
+          transcript gains a line naming the open conversation and the toast
+          confirms it.
+        · the Delete button of the shared confirm dialog was blank when the
+          dialog had not been handed a row. It now says "Nothing is selected to
+          remove. Open this dialog from a Delete button." and closes itself.
+      Two smaller things came out of the same sweep: a Copy button in a chat
+      message raised two toasts (assets/js/pages/chat.js listened for the same
+      attribute demo-ui.js already owns — the second listener is gone and
+      messages the chat writes itself now use the engine's own hooks), and
+      hideModal() only hid dialogs Bootstrap believed it had opened, so one put
+      on screen another way stayed up; it always leaves the screen now.
+
   Links, buttons and runtime behaviour
     · The light/dark toggle did nothing when localStorage is unavailable —
       private-mode windows, sandboxed frames and, most importantly, opening the
