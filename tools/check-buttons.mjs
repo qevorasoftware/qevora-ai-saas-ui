@@ -140,13 +140,37 @@ function isRealLink(node) {
    own API so its internal state matches the screen — a Cancel button only works
    when Bootstrap knows the dialog is open. jsdom has no transitions, so the
    class is polled in instead of waited for. */
-const settle = async (wanted, tries = 8) => {
+/* Bootstrap shows a dialog through a short chain of timers, and a busy machine
+   can stretch that past a few hundred milliseconds. The waiting is generous,
+   because giving up early puts the panel on screen with an instance that still
+   believes it is hidden — a Cancel click would then do nothing and be reported
+   as a blank button that a real user never sees. */
+const settle = async (wanted, tries = 40) => {
   for (let i = 0; i < tries; i++) {
     if (wanted()) return true;
     await wait(40);
   }
   return wanted();
 };
+
+/* Last resort when Bootstrap will not co-operate in jsdom: put the panel on
+   screen by hand and tell its instance it is shown, so the buttons inside it
+   (Cancel, Close, dismissal) still have something to act on. */
+function force(w, kind, element, classes) {
+  const instance = api(w, kind, element);
+  if (instance) {
+    try {
+      instance._isShown = true;
+      instance._isTransitioning = false;
+    } catch (e) { /* plain object, nothing to resync */ }
+  }
+  element.classList.add(...classes);
+  if (element.classList.contains("modal") || element.classList.contains("offcanvas")) {
+    element.style.display = "block";
+    element.removeAttribute("aria-hidden");
+  }
+  return instance;
+}
 
 function api(w, kind, element) {
   const lib = w.bootstrap && w.bootstrap[kind];
@@ -164,10 +188,7 @@ async function reveal(w, d, node) {
     const instance = api(w, "Modal", modal);
     if (instance) instance.show();
     await settle(() => modal.classList.contains("show"));
-    if (!modal.classList.contains("show")) {
-      modal.classList.add("show");
-      modal.style.display = "block";
-    }
+    if (!modal.classList.contains("show")) force(w, "Modal", modal, ["show"]);
   }
 
   const offcanvas = node.closest(".offcanvas");
@@ -175,7 +196,7 @@ async function reveal(w, d, node) {
     const instance = api(w, "Offcanvas", offcanvas);
     if (instance) instance.show();
     await settle(() => offcanvas.classList.contains("show"));
-    if (!offcanvas.classList.contains("show")) offcanvas.classList.add("show");
+    if (!offcanvas.classList.contains("show")) force(w, "Offcanvas", offcanvas, ["show"]);
   }
 
   const collapse = node.closest(".collapse");
@@ -183,7 +204,7 @@ async function reveal(w, d, node) {
     const instance = api(w, "Collapse", collapse);
     if (instance) instance.show();
     await settle(() => collapse.classList.contains("show"));
-    if (!collapse.classList.contains("show")) collapse.classList.add("show");
+    if (!collapse.classList.contains("show")) force(w, "Collapse", collapse, ["show"]);
   }
 
   const pane = node.closest(".tab-pane");
@@ -196,6 +217,7 @@ async function reveal(w, d, node) {
     if (instance) instance.show();
     await settle(() => menu.classList.contains("show"));
     if (!menu.classList.contains("show")) {
+      force(w, "Dropdown", toggle || menu, ["show"]);
       menu.classList.add("show");
       if (toggle) toggle.setAttribute("aria-expanded", "true");
     }
