@@ -8,7 +8,7 @@
 
 RELEASE HIGHLIGHTS
 
-  · 83 ready-to-use HTML pages, all static and framework-free
+  · 84 ready-to-use HTML pages, all static and framework-free
   · Bootstrap 5.3.3 based — no jQuery, no build step, no CDN
   · Light and dark mode with a saved preference
   · Full RTL support (Bootstrap's RTL build ships in the package)
@@ -19,7 +19,8 @@ RELEASE HIGHLIGHTS
     projects, kanban, tasks, invoices, payments, subscriptions, reports, roles)
   · 31-page UI component library with Preview / HTML / CSS / JS panes and copy
     buttons, plus a design-system reference
-  · 6 authentication pages and 4 utility pages (404, 500, maintenance, soon)
+  · 6 authentication pages and 7 utility pages (404, 500, maintenance, soon,
+    terms, privacy, sitemap)
   · 15+ theme-aware Chart.js charts, all libraries vendored locally
   · Working demo interactions: create/edit dialogs, live filters and search,
     pagination, CSV import and export, file pickers, undo, toasts
@@ -31,10 +32,10 @@ RELEASE HIGHLIGHTS
     marketplace/                                     cover, 14 previews,
                                                      metadata and this checklist
 
-  83 pages: 1 dashboard · 6 AI workspace · 31 applications · 31 UI kit ·
-  6 authentication · 6 utility · 2 documentation
+  84 pages: 1 dashboard · 6 AI workspace · 31 applications · 31 UI kit ·
+  6 authentication · 7 utility · 2 documentation
 
-NEW PAGES (83 total)
+NEW PAGES (84 total)
 
   Dashboard
     index.html — KPI cards, revenue chart, AI usage, project and task
@@ -72,9 +73,10 @@ NEW PAGES (83 total)
     Login, register, forgot password, reset password, verify email,
     two-factor verification — split-screen layout with a marketing aside.
 
-  Utility (6)
+  Utility (7)
     404, 500 (with incident snapshot), maintenance (deployment progress),
-    coming soon (live countdown), terms and conditions, privacy policy.
+    coming soon (live countdown), terms and conditions, privacy policy,
+    sitemap.
 
     utility/terms.html               terms of service: agreement, accounts,
                                      plans and billing, acceptable use, AI
@@ -82,6 +84,9 @@ NEW PAGES (83 total)
                                      services, availability, termination,
                                      liability and governing law, with an "on
                                      this page" outline and a print action.
+    utility/sitemap.html             the whole package on one page: every
+                                     page grouped by module, one line each,
+                                     module counters and jump links.
     utility/privacy.html             privacy policy: what is collected and why,
                                      legal bases, cookies and local storage, how
                                      AI prompts and files are handled, sharing
@@ -154,7 +159,7 @@ HOSTING
 
   · tools/build.mjs mirrors utility/404.html to the repository root as 404.html
     (root-relative paths, robots noindex) because GitHub Pages serves /404.html
-    from the site root. 84 HTML files ship: 83 pages plus that hosting fallback.
+    from the site root. 85 HTML files ship: 84 pages plus that hosting fallback.
 
 QUALITY TOOLING
 
@@ -612,9 +617,26 @@ FIXES DURING DEVELOPMENT
       retention, security and user rights on the privacy page. Each page carries
       an "on this page" outline, a related-documents card, a print action and
       breadcrumbs, works in light, dark and RTL, and is linked from the sidebar
-      and the footer of every page. The page count in the documentation, README,
+      and the footer of every page. On a phone the outline and related-documents
+      cards sit above the article — a reader who opens the page on a small screen
+      gets the map of the document before the document — while the desktop
+      arrangement is unchanged. The page count in the documentation, README,
       CHANGELOG, marketplace metadata and cover art moves from 81 to 83, and the
       release ZIP now ships 83 pages plus the host 404 mirror.
+    · A sitemap page ships as utility/sitemap.html, and it is generated, not
+      hand-written. The body is built from the same page inventory the build
+      reads (src/pages.mjs), grouped into the seven modules the sidebar uses —
+      dashboard, applications, AI workspace, UI kit, authentication, utility and
+      documentation — with the sidebar's own label for each page, its file path
+      and its one-line description, a module counter, jump links and four KPI
+      tiles that are counted in the same pass. A page that is added, renamed or
+      removed therefore appears, moves or disappears here on the next build, and
+      tools/release.mjs re-checks the shipped file from the other side: every
+      page in the inventory must be listed exactly once, nothing may be listed
+      that the ZIP does not contain, and the printed totals must match. The page
+      is reachable from the sidebar's Utility group and from the footer of every
+      page. The page count moves from 83 to 84, and the release ZIP now ships
+      84 pages plus the host 404 mirror.
 
   Links, buttons and runtime behaviour
     · The light/dark toggle did nothing when localStorage is unavailable —

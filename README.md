@@ -1,6 +1,6 @@
 # Qevora AI SaaS — Bootstrap 5 Admin & UI Kit
 
-A complete, static **Bootstrap 5.3 admin dashboard + UI kit** for AI and SaaS products. 83 HTML pages,
+A complete, static **Bootstrap 5.3 admin dashboard + UI kit** for AI and SaaS products. 84 HTML pages,
 light and dark themes, RTL support, an AI workspace (overview, chat, generators, usage, history),
 business modules (CRM, projects, billing, team, reports) and a component library whose examples can be
 copied with one click.
@@ -13,7 +13,7 @@ No framework, no build step and no CDN required — open `index.html` and the da
 
 | | |
 |---|---|
-| **Pages** | 83 — dashboard (1), AI workspace (6), applications (31), UI kit (31), auth (6), utility (6), documentation (2) |
+| **Pages** | 84 — dashboard (1), AI workspace (6), applications (31), UI kit (31), auth (6), utility (7), documentation (2) |
 | **Themes** | Light + dark, saved in `localStorage`, follows the system preference by default |
 | **RTL** | Full right-to-left support via logical CSS + `bootstrap.rtl.min.css` swap at runtime |
 | **Responsive** | Desktop, tablet and mobile off-canvas navigation; tables and grids adapt down to 375 px |
@@ -43,7 +43,8 @@ pages/                31 application pages (CRM, projects, billing, team, report
 ai/                   6 AI workspace pages (chat, content and image generators, usage, history)
 components/           31 UI kit pages, each with Preview / HTML / CSS / JS tabs and copy buttons
 auth/                 6 authentication pages
-utility/              4 utility pages (404, 500, maintenance, coming soon)
+utility/              7 utility pages (404, 500, maintenance, coming soon,
+                      terms, privacy, sitemap)
 documentation/        Getting-started guide + design system reference
 
 assets/css/           style.css (tokens, base, layout), components.css, dark.css, rtl.css, fonts.css
@@ -100,7 +101,7 @@ follow automatically.
 
 ## Optional build script
 
-The 83 pages share one shell. To change the sidebar or header once instead of 83 times:
+The 84 pages share one shell. To change the sidebar or header once instead of 84 times:
 
 ```bash
 node tools/build.mjs            # regenerate every page from src/

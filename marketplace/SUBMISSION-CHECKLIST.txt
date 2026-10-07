@@ -86,7 +86,7 @@
   · marketplace/cover-1170x780.png    (3:2, minimum size)      + .jpg
   · The cover shows the real dashboard UI large and clear, a dark-mode pipeline
     board inset, the product name, one supporting line and four hard facts
-    (83 pages · light & dark · RTL · 15+ charts). No marketing paragraph.
+    (84 pages · light & dark · RTL · 15+ charts). No marketing paragraph.
   · assets/images/og-cover.svg is kept for OpenGraph/social sharing only.
   · Both covers are generated from the template's own tokens and demo data by
     marketplace/build-images.mjs, so they can be re-rendered after any redesign.
@@ -254,7 +254,7 @@
 14. README.TXT FINAL PASS                                      [DONE]
 --------------------------------------------------------------------------------
   Rewritten for the 1.0.0 release. It now carries: product name, version, what
-  is included (83 pages by module), quick start, folder structure, changing the
+  is included (84 pages by module), quick start, folder structure, changing the
   look (tokens, logo, fonts, menu, colours), the JavaScript/demo-interaction
   API, dark mode and RTL, component overview, browser support and
   accessibility, credits and licences, documentation and support, version and
@@ -311,7 +311,7 @@
 --------------------------------------------------------------------------------
   bash tools/package.sh extracts nothing itself, but node tools/release.mjs
   unzips the buyer ZIP into an empty temporary folder and then:
-    · lists every HTML file (83 pages + the host 404 mirror)
+    · lists every HTML file (84 pages + the host 404 mirror)
     · follows every href/src and every CSS url() to confirm the file exists
     · fails on any reference to src/ or tools/
     · fails if a development file, a name with a space or a backup copy is found

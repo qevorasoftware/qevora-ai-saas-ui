@@ -210,7 +210,8 @@ export const nav = [
       { text: "Maintenance", href: "utility/maintenance.html", icon: "bi-tools" },
       { text: "Coming Soon", href: "utility/coming-soon.html", icon: "bi-hourglass-split" },
       { text: "Terms & Conditions", href: "utility/terms.html", icon: "bi-file-earmark-text" },
-      { text: "Privacy Policy", href: "utility/privacy.html", icon: "bi-shield-check" }
+      { text: "Privacy Policy", href: "utility/privacy.html", icon: "bi-shield-check" },
+      { text: "Sitemap", href: "utility/sitemap.html", icon: "bi-diagram-3" }
     ]
   },
   {

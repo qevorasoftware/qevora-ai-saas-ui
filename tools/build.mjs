@@ -102,6 +102,140 @@ ${children}
         </li>`;
 }
 
+/* -------------------------------------------------------------------------- */
+/* Sitemap                                                                    */
+/* -------------------------------------------------------------------------- */
+
+/* The module list the sitemap page is grouped by. It is derived from the page
+   inventory, not written by hand, so a page that is added to src/pages.mjs
+   appears on utility/sitemap.html on the next build and a page that is removed
+   disappears from it. tools/release.mjs asserts the same thing from the other
+   side, against the built file. */
+const SITEMAP_MODULES = [
+  {
+    id: "dashboard",
+    title: "Dashboard",
+    blurb: "The landing page of the template: KPIs, revenue chart, AI usage, projects and team activity.",
+    match: (out) => out === "index.html"
+  },
+  {
+    id: "applications",
+    title: "Applications",
+    blurb: "The product modules a SaaS admin lives in: CRM, customers, projects, tasks, calendar, chat, billing, team, reports and settings.",
+    match: (out) => out.startsWith("pages/")
+  },
+  {
+    id: "ai",
+    title: "AI workspace",
+    blurb: "The assistant side of the template: overview, chat, content and image generators, usage and prompt history.",
+    match: (out) => out.startsWith("ai/")
+  },
+  {
+    id: "components",
+    title: "UI kit",
+    blurb: "Every component page, each demo block with Preview / HTML / CSS / JS panes and a copy button.",
+    match: (out) => out.startsWith("components/")
+  },
+  {
+    id: "authentication",
+    title: "Authentication",
+    blurb: "Sign-in flows on the blank layout: login, register, forgot and reset password, verify email, two-factor.",
+    match: (out) => out.startsWith("auth/")
+  },
+  {
+    id: "utility",
+    title: "Utility",
+    blurb: "Pages that sit outside the product: the 404 and 500 states, maintenance and coming-soon screens, the terms and privacy documents, and this sitemap.",
+    match: (out) => out.startsWith("utility/")
+  },
+  {
+    id: "documentation",
+    title: "Documentation",
+    blurb: "The written guide and the design-system reference that document the shell, the tokens and the build.",
+    match: (out) => out.startsWith("documentation/")
+  }
+];
+
+/* Every page's sidebar label, so the sitemap names a page the way the menu does. */
+function navLabels() {
+  const labels = new Map();
+  const walk = (items) => {
+    for (const item of items) {
+      if (item.href && !labels.has(item.href)) labels.set(item.href, item.text);
+      if (item.children) walk(item.children);
+    }
+  };
+  walk(nav);
+  return labels;
+}
+
+/* Rendered once per folder depth, because every page asks for the same map. */
+const sitemapCache = new Map();
+function sitemapTokens(depth) {
+  if (!sitemapCache.has(depth)) {
+    const rendered = renderSitemap(depth);
+    sitemapCache.set(depth, {
+      "{{SITEMAP}}": rendered.sections,
+      "{{SITEMAP_JUMPS}}": rendered.jumps,
+      "{{SITEMAP_TOTAL}}": String(pages.length),
+      "{{SITEMAP_MODULES}}": String(SITEMAP_MODULES.filter((module) => pages.some((page) => module.match(page.out))).length),
+      "{{SITEMAP_APPS}}": String(pages.filter((page) => page.out.startsWith("pages/")).length),
+      "{{SITEMAP_UIKIT}}": String(pages.filter((page) => page.out.startsWith("components/")).length)
+    });
+  }
+  return sitemapCache.get(depth);
+}
+
+function renderSitemap(depth) {
+  const labels = navLabels();
+  const sectionFor = (out) => {
+    const module = SITEMAP_MODULES.find((entry) => entry.match(out));
+    return module ? module.id : "other";
+  };
+  const counts = {};
+  for (const page of pages) counts[sectionFor(page.out)] = (counts[sectionFor(page.out)] || 0) + 1;
+
+  const jumps = SITEMAP_MODULES
+    .filter((module) => counts[module.id])
+    .map((module) => `          <a class="chip" href="#${module.id}">${module.title}</a>`)
+    .join("\n");
+
+  const sections = SITEMAP_MODULES
+    .filter((module) => counts[module.id])
+    .map((module) => {
+      const items = pages.filter((page) => sectionFor(page.out) === module.id);
+      const list = items
+        .map((page) => {
+          const label = labels.get(page.out) || page.meta.title.split(" | ")[0];
+          return `              <li class="col-md-6 col-xl-4">
+                <a class="d-block h-100 text-decoration-none" href="${depth}${page.out}">
+                  <span class="d-block fw-500 text-heading fs-7">${label}</span>
+                  <span class="d-block fs-8 text-muted-2"><code>${page.out}</code></span>
+                  <span class="d-block fs-8 text-muted-2">${page.meta.desc}</span>
+                </a>
+              </li>`;
+        })
+        .join("\n");
+
+      return `      <div class="card q-section" id="${module.id}">
+        <div class="card-header d-flex flex-wrap align-items-center gap-2">
+          <h2 class="h6 mb-0">${module.title}</h2>
+          <span class="badge badge-soft-neutral">${items.length} page${items.length === 1 ? "" : "s"}</span>
+          <a class="fs-8 ms-auto text-decoration-none" href="#q-sitemap-top">Back to top</a>
+        </div>
+        <div class="card-body">
+          <p class="fs-8 text-muted-2">${module.blurb}</p>
+          <ul class="row g-3 list-unstyled mb-0">
+${list}
+          </ul>
+        </div>
+      </div>`;
+    })
+    .join("\n");
+
+  return { jumps, sections };
+}
+
 function renderSidebarNav(depth) {
   return nav
     .map((group, groupIndex) => {
@@ -194,6 +328,7 @@ async function build() {
   const modals = await readMaybe(join(ROOT, "src/partials/modals.html"));
 
   const missing = [];
+  const unfilled = [];
   const buildPages = [];
   let built = 0;
   let hostMirror = false;
@@ -255,7 +390,10 @@ async function build() {
       "{{HEAD_EXTRA}}": headExtra,
       "{{PAGE_SCRIPTS}}": scriptsExtra,
       "{{ASSET_VERSION}}": ASSET_VERSION,
-      "{{MODALS}}": modals
+      "{{MODALS}}": modals,
+      /* The sitemap page is generated from the inventory above, so it can never
+         disagree with what the build actually ships. */
+      ...sitemapTokens(depth)
     };
 
     function fill(template) {
@@ -306,6 +444,14 @@ ${fill(scripts)}</body>
 `;
     }
 
+    /* A token that nothing replaced would ship as literal {{TEXT}} in the HTML.
+       The build fails instead, so a page can never go out half assembled. */
+    const leftover = document.match(/\{\{[A-Z0-9_]+\}\}/);
+    if (leftover) {
+      unfilled.push(`${out} → ${[...new Set([...document.matchAll(/\{\{[A-Z0-9_]+\}\}/g)].map((m) => m[0]))].join(", ")}`);
+      continue;
+    }
+
     const outPath = join(ROOT, out);
     await mkdir(dirname(outPath), { recursive: true });
     await writeFile(outPath, document, "utf8");
@@ -340,6 +486,10 @@ ${fill(scripts)}</body>
     problems.push(
       `Missing body content for ${missing.length} page(s):\n  - ${missing.join("\n  - ")}`
     );
+  }
+
+  if (unfilled.length) {
+    problems.push(`Page(s) with a token nothing replaced:\n  - ${unfilled.join("\n  - ")}`);
   }
 
   // Every navigation target must exist in the page inventory.

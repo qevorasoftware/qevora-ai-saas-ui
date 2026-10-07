@@ -5,7 +5,7 @@ Title
   Qevora AI SaaS UI — Bootstrap 5 Admin Dashboard & HTML Template
 
 Short description
-  Modern AI & SaaS admin dashboard template — 83 responsive Bootstrap 5 pages, AI workspace, CRM, billing, UI kit, light & dark, RTL, 15+ charts.
+  Modern AI & SaaS admin dashboard template — 84 responsive Bootstrap 5 pages, AI workspace, CRM, billing, UI kit, light & dark, RTL, 15+ charts.
 
 Tags
   admin, admin dashboard, admin template, bootstrap, bootstrap 5, bootstrap 5 admin, html template, dashboard, saas, ai dashboard, ai saas, analytics, crm, crm dashboard, kanban, project management, invoice, billing, charts, chartjs, responsive, dark mode, dark theme, rtl, rtl support, ui kit, component library, clean, modern, minimal, documentation, static html, no jquery

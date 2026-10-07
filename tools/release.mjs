@@ -20,7 +20,8 @@
      6. buyer ZIP tree hygiene        lowercase, no spaces, no backup copies
      7. every referenced asset        exists inside the extracted buyer ZIP
      8. no build tooling in the ZIP   nothing points at src/ or tools/
-     9. page count                    83 pages plus the host 404 mirror
+     9. page count                    84 pages plus the host 404 mirror
+    10. sitemap                      every page listed once, and nothing extra
    ========================================================================== */
 
 import { readFileSync, existsSync, readdirSync, statSync, mkdtempSync, rmSync } from "node:fs";
@@ -219,6 +220,34 @@ if (!existsSync(join(ROOT, BUYER_ZIP))) {
   const buyerPages = files.filter((file) => file.endsWith(".html"));
   check(`buyer ZIP ships ${PAGES.length} pages plus the host mirror`,
     buyerPages.length === PAGES.length + 1, `${buyerPages.length} HTML files`);
+
+  /* 10. sitemap completeness ---------------------------------------------
+     utility/sitemap.html is generated from the page inventory, so this check
+     is a second opinion: it reads the file that actually ships and makes sure
+     a reader who follows it can reach every page in the package, exactly
+     once, and that it does not advertise a file the ZIP does not contain. */
+  const sitemapFile = "utility/sitemap.html";
+  const sitemap = files.includes(sitemapFile) ? withoutCodeSamples(read(join(root, sitemapFile))) : "";
+  /* Only the generated list counts. The page also carries the sidebar and the
+     footer, which link to plenty of pages of their own. */
+  const region = (sitemap.match(/q-sitemap:start[\s\S]*?q-sitemap:end/) || [""])[0];
+  const listed = [...region.matchAll(/href="\.\.\/([^"#?]+\.html)"/g)].map((match) => match[1]);
+  const listedSet = new Set(listed);
+  const notListed = PAGES.filter((page) => !listedSet.has(page));
+  const unreachable = [...listedSet].filter((page) => !PAGES.includes(page));
+  const repeated = [...listedSet].filter((page) => listed.filter((entry) => entry === page).length > 1);
+  check(`sitemap lists all ${PAGES.length} pages exactly once`,
+    sitemap !== "" && notListed.length === 0 && repeated.length === 0 && unreachable.length === 0,
+    [
+      notListed.length ? `missing: ${notListed.slice(0, 4).join(", ")}` : "",
+      repeated.length ? `listed twice: ${repeated.slice(0, 4).join(", ")}` : "",
+      unreachable.length ? `not in the package: ${unreachable.slice(0, 4).join(", ")}` : ""
+    ].filter(Boolean).join(" · ") || "no sitemap page found");
+
+  const totals = [...sitemap.matchAll(/<p class="kpi-tile__value">(\d+)<\/p>/g)].map((match) => Number(match[1]));
+  check("sitemap totals agree with the inventory",
+    totals[0] === PAGES.length && totals[2] === PAGES.filter((page) => page.startsWith("pages/")).length,
+    `sitemap says ${totals[0]} pages and ${totals[2]} application pages; the inventory has ${PAGES.length} and ${PAGES.filter((page) => page.startsWith("pages/")).length}`);
 
   /* 7. every referenced local asset exists ------------------------------- */
   const missingAssets = [];

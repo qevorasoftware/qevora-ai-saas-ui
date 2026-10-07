@@ -15,7 +15,7 @@ folder, double-click index.html and the dashboard runs.
 1. WHAT YOU RECEIVED
 --------------------------------------------------------------------------------
 
-  · 83 ready HTML pages
+  · 84 ready HTML pages
 
       Dashboard               1 page   (overview: KPIs, revenue chart, AI usage,
                                         projects, invoices, activity)
@@ -43,7 +43,8 @@ folder, double-click index.html and the dashboard runs.
                                         spinners, documentation)
       Authentication          6 pages  (login, register, forgot password,
                                         reset password, verify e-mail, 2FA)
-      Utility                 4 pages  (404, 500, maintenance, coming soon)
+      Utility                 7 pages  (404, 500, maintenance, coming soon,
+                                       terms, privacy, sitemap)
       Documentation           2 pages  (getting started, design system)
 
   · Light and dark themes with a saved preference (follows the OS by default)
@@ -83,7 +84,7 @@ folder, double-click index.html and the dashboard runs.
   ai/                         AI workspace pages (6)
   components/                 UI kit pages (31)
   auth/                       Authentication pages (6)
-  utility/                    Utility pages (4)
+  utility/                    Utility pages (7)
   documentation/              Getting started guide and design system reference
 
   assets/css/     style.css        design tokens, base, layout shell

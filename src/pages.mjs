@@ -723,6 +723,14 @@ export const pages = [
     }
   },
   {
+    out: "utility/sitemap.html",
+    breadcrumb: ["Utility", "Sitemap"],
+    meta: {
+      title: "Sitemap | Qevora AI SaaS UI",
+      desc: "Every page in the package on one screen, grouped by module with a one-line description of each."
+    }
+  },
+  {
     out: "utility/coming-soon.html",
     layout: "blank",
     scripts: AUTH_SCRIPTS,

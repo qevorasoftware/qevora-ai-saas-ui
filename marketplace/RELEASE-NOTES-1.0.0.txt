@@ -10,7 +10,7 @@
  INITIAL RELEASE — 1.0.0
 --------------------------------------------------------------------------------
 
-  · 83 ready-to-use HTML pages
+  · 84 ready-to-use HTML pages
       Dashboard (1) · AI workspace (6) · Applications (31) · UI kit (31) ·
       Authentication (6) · Utility (4) · Documentation (2)
 

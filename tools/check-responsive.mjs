@@ -491,7 +491,7 @@ for (const page of shippedPages) {
   const hasFoot = /class="[^"]*dropdown-menu-filter__foot/.test(html) && /data-demo-board-clear/.test(html);
   check(`markup: ${page} uses the panel with its body and footer`, hasBody && hasFoot, `body ${hasBody}, footer ${hasFoot}`);
 }
-check("markup: the shipped pages were all read", shippedPages.length >= 84, `${shippedPages.length} pages`);
+check("markup: the shipped pages were all read", shippedPages.length >= 85, `${shippedPages.length} pages`);
 
 /* Every table on every shipped page sits in a .table-responsive wrapper, and no
    page keeps a retired floor class: the floor follows the content now, so a
