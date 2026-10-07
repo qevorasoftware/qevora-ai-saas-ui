@@ -1,0 +1,560 @@
+      <div class="q-page-head">
+        <div>
+          {{BREADCRUMB}}
+          <h1 class="q-page-head__title mt-2">Documentation</h1>
+          <p class="q-page-head__subtitle">
+            Everything you need to open, edit and ship Qevora AI SaaS UI. No prior build-tool knowledge is required — the
+            template works as plain HTML, and the optional build script simply saves you copy-paste work.
+          </p>
+        </div>
+        <div class="d-flex flex-wrap gap-2">
+          <a class="btn btn-white" href="design-system.html"><i class="bi bi-palette"></i> Design system</a>
+          <a class="btn btn-primary" href="../components/index.html"><i class="bi bi-grid-1x2"></i> Browse components</a>
+        </div>
+      </div>
+
+      <div class="row g-4">
+        <div class="col-xl-9">
+          <div class="card mb-4">
+            <div class="card-body">
+              <div class="row g-4 align-items-center">
+                <div class="col-md-8">
+                  <h2 class="h5 text-heading mb-2">What you received</h2>
+                  <p class="fs-7 text-muted-2 mb-3">
+                    A complete static admin template: <strong class="text-heading">{{PAGE_COUNT}} HTML pages</strong>, a component
+                    library with copy-ready snippets, light and dark themes, RTL support and every library vendored
+                    locally — the template never calls a CDN at runtime.
+                  </p>
+                  <div class="d-flex flex-wrap gap-2">
+                    <span class="badge badge-soft-primary">Bootstrap 5.3.3</span>
+                    <span class="badge badge-soft-primary">Bootstrap Icons 1.11.3</span>
+                    <span class="badge badge-soft-primary">Chart.js 4.4.3</span>
+                    <span class="badge badge-soft-primary">Inter (self-hosted)</span>
+                    <span class="badge badge-soft-success">Light + dark</span>
+                    <span class="badge badge-soft-success">RTL ready</span>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="card bg-body-tertiary border mb-0">
+                    <div class="card-body py-3">
+                      <p class="fs-8 text-muted-2 mb-1 text-uppercase">Version</p>
+                      <p class="fw-600 text-heading mb-2">1.0.0 · October 2026</p>
+                      <p class="fs-8 text-muted-2 mb-0">Verified in Chrome, Edge, Firefox and Safari (last two major versions).</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="card mb-4" id="quick-start">
+            <div class="card-header"><h2 class="card-title mb-0">1. Quick start</h2></div>
+            <div class="card-body">
+              <ol class="fs-7 text-muted-2 d-flex flex-column gap-2 mb-4">
+                <li>Unzip the package anywhere on your computer.</li>
+                <li>Double-click <code>index.html</code> — the dashboard opens in your browser immediately.</li>
+                <li>Use the search box in the component pages, toggle the theme from the header, and explore.</li>
+                <li>To edit, open the HTML file you want in any code editor (VS Code, Notepad++, Sublime Text).</li>
+              </ol>
+
+              <div class="alert alert-info d-flex align-items-start gap-2 mb-4" role="alert">
+                <i class="bi bi-info-circle alert-icon"></i>
+                <div class="fs-8">
+                  <strong class="d-block fs-7">Do you need a local server?</strong>
+                  No. Every path in the template is relative, so opening the files directly from disk works. A local
+                  server is only handy if you want to test on a phone: run
+                  <code>python3 -m http.server 5500</code> inside the folder and open
+                  <code>http://localhost:5500</code>.
+                </div>
+              </div>
+
+              <div class="alert alert-secondary d-flex align-items-start gap-2 mb-4" role="note">
+                <i class="bi bi-box-seam alert-icon"></i>
+                <div class="fs-8">
+                  <strong class="d-block fs-7">This download needs no build step</strong>
+                  Everything you were given is finished HTML: open it, edit it, upload it. The
+                  <code>src/</code> fragments and the <code>tools/</code> scripts belong to the separate
+                  <em>developer source package</em>; section 5 is the only part of this guide that uses them, and
+                  it says so at the top.
+                </div>
+              </div>
+
+              <p class="fw-600 text-heading fs-7 mb-2">Folder structure</p>
+              <div class="demo-code-wrap">
+                <button class="copy-btn" data-copy-target="#docTree" type="button"><i class="bi bi-clipboard"></i> Copy</button>
+                <pre class="demo-code"><code id="docTree">qevora-ai-saas-ui/
+├── index.html                 Dashboard overview
+├── 404.html                   Hosting fallback, mirrored from utility/404.html
+├── pages/                     Application pages ({{COUNT_APPLICATIONS}})
+│   ├── analytics.html  crm.html  leads.html  customers.html
+│   ├── projects.html   tasks.html  calendar.html  chat.html
+│   ├── invoices.html   payments.html  subscriptions.html
+│   └── team.html       roles.html  reports.html  settings.html  …
+├── ai/                        AI workspace ({{COUNT_AI}})
+│   ├── dashboard.html  chat.html  content-generator.html
+│   └── image-generator.html  usage.html  history.html
+├── components/                UI kit ({{COUNT_COMPONENTS}})
+├── auth/                      Authentication ({{COUNT_AUTHENTICATION}})
+├── utility/                   Utility pages ({{COUNT_UTILITY}})
+├── documentation/             This guide + design system ({{COUNT_DOCUMENTATION}})
+├── assets/
+│   ├── css/    style.css  components.css  dark.css  rtl.css  fonts.css
+│   │           bootstrap.min.css  bootstrap.rtl.min.css
+│   ├── js/     theme.js  sidebar.js  app.js  components.js  demo-ui.js
+│   │           bootstrap.bundle.min.js  chart.umd.js
+│   │           pages/  charts.js  chat.js  auth.js
+│   ├── fonts/  inter/files/*.woff2
+│   ├── icons/  bootstrap-icons/
+│   └── images/ logo/  placeholder/  favicon.svg  og-cover.svg
+└── README.txt  CHANGELOG.txt  LICENSE.txt
+
+Optional developer source package (shipped separately from the item page)
+├── src/                       Source fragments the builder assembles
+│   ├── pages/    one body file per page (same paths as the output)
+│   ├── partials/ head.html  sidebar.html  header.html  footer.html  scripts.html
+│   ├── nav.mjs   sidebar navigation
+│   └── pages.mjs page inventory, titles, breadcrumbs and scripts
+└── tools/                     build.mjs  demo-samples.mjs  audit.mjs  smoke.mjs  package.sh</code></pre>
+              </div>
+            </div>
+          </div>
+
+          <div class="card mb-4" id="inventory">
+            <div class="card-header"><h2 class="card-title mb-0">2. Page inventory</h2></div>
+            <div class="table-responsive">
+              <table class="table table-hover align-middle mb-0">
+                <thead>
+                  <tr>
+                    <th scope="col">Section</th>
+                    <th scope="col">Folder</th>
+                    <th scope="col" class="text-end">Pages</th>
+                    <th scope="col">Highlights</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="fw-500 text-heading">Dashboard</td>
+                    <td><code>/</code></td>
+                    <td class="text-end">{{COUNT_DASHBOARD}}</td>
+                    <td class="fs-7 text-muted-2 text-wrap">KPI cards, revenue chart, AI usage, activity feed</td>
+                  </tr>
+                  <tr>
+                    <td class="fw-500 text-heading">AI workspace</td>
+                    <td><code>ai/</code></td>
+                    <td class="text-end">{{COUNT_AI}}</td>
+                    <td class="fs-7 text-muted-2 text-wrap">AI overview, chat, content and image generators, usage, history</td>
+                  </tr>
+                  <tr>
+                    <td class="fw-500 text-heading">Applications</td>
+                    <td><code>pages/</code></td>
+                    <td class="text-end">{{COUNT_APPLICATIONS}}</td>
+                    <td class="fs-7 text-muted-2 text-wrap">CRM, customers, projects, tasks, calendar, chat, billing, team, reports, settings</td>
+                  </tr>
+                  <tr>
+                    <td class="fw-500 text-heading">UI kit</td>
+                    <td><code>components/</code></td>
+                    <td class="text-end">{{COUNT_COMPONENTS}}</td>
+                    <td class="fs-7 text-muted-2 text-wrap">Colours, typography, grid, buttons, forms, tables, charts, feedback and more</td>
+                  </tr>
+                  <tr>
+                    <td class="fw-500 text-heading">Authentication</td>
+                    <td><code>auth/</code></td>
+                    <td class="text-end">{{COUNT_AUTHENTICATION}}</td>
+                    <td class="fs-7 text-muted-2 text-wrap">Login, register, forgot and reset password, verify email, two-factor</td>
+                  </tr>
+                  <tr>
+                    <td class="fw-500 text-heading">Utility</td>
+                    <td><code>utility/</code></td>
+                    <td class="text-end">{{COUNT_UTILITY}}</td>
+                    <td class="fs-7 text-muted-2 text-wrap">404, 500, maintenance, coming soon, terms, privacy, sitemap</td>
+                  </tr>
+                  <tr>
+                    <td class="fw-500 text-heading">Documentation</td>
+                    <td><code>documentation/</code></td>
+                    <td class="text-end">{{COUNT_DOCUMENTATION}}</td>
+                    <td class="fs-7 text-muted-2 text-wrap">This guide and the design system reference</td>
+                  </tr>
+                </tbody>
+                <tfoot>
+                  <tr>
+                    <th scope="row" class="fw-600 text-heading">Total</th>
+                    <td></td>
+                    <td class="text-end fw-600 text-heading">{{PAGE_COUNT}}</td>
+                    <td class="fs-7 text-muted-2">Every page is listed and linked below</td>
+                  </tr>
+                </tfoot>
+              </table>
+            </div>
+            <div class="card-body border-top">
+              <h3 class="h6 text-heading d-flex flex-wrap align-items-center gap-2 mb-2">Every page
+                <span class="badge badge-soft-neutral">{{PAGE_COUNT}} pages</span>
+              </h3>
+              <p class="fs-8 text-muted-2 mb-3">
+                The list below is generated from the same page inventory the build reads, so a page cannot be
+                added to the package without appearing here. Each entry is a link to the page itself.
+              </p>
+              <!-- q-doc-inventory:start — generated from src/pages.mjs by tools/build.mjs -->
+{{DOCS_PAGE_LIST}}
+              <!-- q-doc-inventory:end -->
+            </div>
+          </div>
+
+          <div class="card mb-4" id="customise">
+            <div class="card-header"><h2 class="card-title mb-0">3. Customising the template</h2></div>
+            <div class="card-body">
+              <p class="fs-7 text-muted-2">
+                Almost every visual decision lives in one CSS variable block at the top of
+                <code>assets/css/style.css</code>. Change the value there and the whole template follows — buttons,
+                charts, badges, the sidebar and dark mode.
+              </p>
+
+              <div class="row g-4 mb-4">
+                <div class="col-md-6">
+                  <p class="fw-600 text-heading fs-7 mb-2">Brand colour</p>
+                  <div class="demo-code-wrap">
+                    <button class="copy-btn" data-copy-target="#docBrand" type="button"><i class="bi bi-clipboard"></i> Copy</button>
+                    <pre class="demo-code"><code id="docBrand">:root {
+  --q-primary: #4f46e5;
+  --q-primary-rgb: 79, 70, 229;   /* keep in sync */
+  --q-primary-hover: #4338ca;
+  --q-primary-soft: #eef0ff;
+}</code></pre>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <p class="fw-600 text-heading fs-7 mb-2">Layout measurements</p>
+                  <div class="demo-code-wrap">
+                    <button class="copy-btn" data-copy-target="#docLayout" type="button"><i class="bi bi-clipboard"></i> Copy</button>
+                    <pre class="demo-code"><code id="docLayout">:root {
+  --q-sidebar-width: 268px;
+  --q-sidebar-width-compact: 78px;
+  --q-header-height: 66px;
+  --q-content-max: 1560px;
+}</code></pre>
+                  </div>
+                </div>
+              </div>
+
+              <ul class="fs-7 text-muted-2 d-flex flex-column gap-2 mb-0">
+                <li><strong class="text-heading">Radius:</strong> <code>--q-radius-xs</code> to <code>--q-radius-xl</code> drive every rounded corner, including cards and inputs.</li>
+                <li><strong class="text-heading">Fonts:</strong> Inter is self-hosted in <code>assets/fonts/inter/</code>. Swap the <code>@font-face</code> block in <code>assets/css/fonts.css</code> and the <code>--q-font-sans</code> token to change it.</li>
+                <li><strong class="text-heading">Logo:</strong> replace <code>assets/images/logo/logo.svg</code> and <code>logo-white.svg</code> (used on the auth pages), and <code>favicon.svg</code> for the browser tab.</li>
+                <li><strong class="text-heading">Sidebar menu:</strong> edit the <code>&lt;aside class="q-sidebar"&gt;</code> block at the top of each page — the markup is identical in every file, so one find-and-replace updates all of them. If you also have the developer source package, edit <code>src/nav.mjs</code> once and run the builder instead (section 5).</li>
+                <li><strong class="text-heading">Dark mode:</strong> toggle with any <code>[data-theme-toggle]</code> button — the choice is stored under the <code>qevora-theme</code> key in localStorage.</li>
+                <li><strong class="text-heading">RTL:</strong> click the translate icon in the header (or add <code>dir="rtl"</code> to the <code>&lt;html&gt;</code> tag) — the sidebar script swaps in <code>bootstrap.rtl.min.css</code> automatically.</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="card mb-4" id="javascript">
+            <div class="card-header"><h2 class="card-title mb-0">4. JavaScript reference</h2></div>
+            <div class="table-responsive">
+              <table class="table table-hover align-middle mb-0">
+                <thead>
+                  <tr>
+                    <th scope="col">File</th>
+                    <th scope="col">Responsibility</th>
+                    <th scope="col">Public API / hooks</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><code>theme.js</code></td>
+                    <td class="fs-7 text-muted-2 text-wrap">Light/dark switching, saved preference, system default</td>
+                    <td class="fs-7 text-wrap"><code>QevoraTheme.set()</code>, <code>.toggle()</code>, <code>[data-theme-toggle]</code></td>
+                  </tr>
+                  <tr>
+                    <td><code>sidebar.js</code></td>
+                    <td class="fs-7 text-muted-2 text-wrap">Mobile drawer, icon-only compact rail with hover hints, RTL switching</td>
+                    <td class="fs-7 text-wrap"><code>QevoraSidebar.toggle()</code>, <code>[data-sidebar-toggle]</code>, <code>[data-sidebar-compact]</code>, <code>[data-dir-toggle]</code></td>
+                  </tr>
+                  <tr>
+                    <td><code>app.js</code></td>
+                    <td class="fs-7 text-muted-2 text-wrap">Toasts, counters, tooltips, table search, demo actions, active nav</td>
+                    <td class="fs-7 text-wrap"><code>Qevora.toast()</code>, <code>Qevora.copyText()</code>, <code>[data-counter]</code>, <code>[data-table-filter]</code>, <code>[data-demo-action]</code></td>
+                  </tr>
+                  <tr>
+                    <td><code>components.js</code></td>
+                    <td class="fs-7 text-muted-2 text-wrap">Preview / HTML / CSS / JS demo tabs, copy buttons, syntax highlighting, table sort, pagination, kanban, upload zones</td>
+                    <td class="fs-7 text-wrap"><code>QevoraComponents.init()</code>, <code>[data-demo-tab]</code>, <code>[data-copy-target]</code>, <code>th[data-sort]</code>, <code>[data-paginate]</code>, <code>[data-upload-zone]</code></td>
+                  </tr>
+                  <tr>
+                    <td><code>demo-ui.js</code></td>
+                    <td class="fs-7 text-muted-2 text-wrap">
+                      The demo interactions: dialogs that add and edit records, delete with undo, live filters that keep the
+                      pagination and the counters in step, loading buttons, exports that write a real CSV — of a table, of a
+                      page area (KPI tiles plus tables, or a whole chat transcript) or of one row — file downloads, and a safe
+                      fallback for any control without a handler. Every one of them is a few lines you can point at your own API.
+                    </td>
+                    <td class="fs-7 text-wrap">
+                      <code>[data-demo-open]</code>, <code>[data-demo-form]</code>, <code>[data-demo-field]</code>,
+                      <code>[data-demo-delete]</code>, <code>[data-demo-filter]</code>, <code>[data-demo-count]</code>,
+                      <code>[data-demo-column]</code>, <code>[data-demo-load]</code>, <code>[data-demo-export]</code>
+                      (+ <code>-export-name</code>, or <code>"closest"</code> with <code>-export-scope</code>),
+                      <code>[data-demo-download]</code>, <code>[data-demo-print="pdf"]</code>,
+                      <code>[data-demo-new]</code> (+ <code>-table</code>, <code>-label</code>) for the create/edit dialog,
+                      <code>[data-demo-import]</code> for pasted or uploaded CSV,
+                      <code>[data-demo-add-card]</code>, <code>[data-demo-add-column]</code>,
+                      <code>[data-demo-upload]</code>, <code>[data-demo-new-chat]</code>,
+                      <code>[data-demo-reuse]</code> with <code>[data-demo-prefill]</code> for handing a prompt to the next
+                      page, <code>[data-demo-clear-rows]</code>, <code>[data-demo-attach]</code>,
+                      <code>[data-demo-message]</code> for the shared message dialog (with
+                      <code>[data-demo-message-send]</code> inside <code>#q-demo-message</code>),
+                      <code>[data-demo-pick]</code> for dropdown menus, button groups and lists where one item is
+                      current (plus <code>-group</code>, <code>-active-class</code>, <code>-idle-class</code>,
+                      <code>-label</code>, <code>-done</code>),
+                      <code>[data-demo-delete]</code> with <code>-label</code>, <code>-verb</code>,
+                      <code>-name</code> and <code>-target</code> to word the confirmation and to name what is removed,
+                      <code>[data-demo-edit]</code> with <code>-fields</code>, <code>-options</code> and
+                      <code>-label</code> to edit the page itself — every <code>[data-slot]</code> inside the named
+                      scope is read into the dialog and written back on save (a <code>[data-demo-initials]</code>
+                      avatar follows the new name),
+                      <code>[data-demo-log]</code> with <code>-text</code>, <code>-variant</code> and
+                      <code>-done</code> to add a dated timeline entry,
+                      <code>[data-demo-message-to]</code> to fill the recipient and
+                      <code>[data-demo-message-log]</code> to note a sent message in the activity feed.
+                      The card boards are pure markup: a <code>[data-kanban]</code> wrapper with
+                      <code>.kanban__col</code> columns holding <code>.kanban__card</code> articles gives you
+                      dragging, the landing outline, the counters, the empty-column note, the ⠿ handle and
+                      its move-to-stage menu — add <code>data-kanban-label</code> to name what a card is.
+                      A board filter is markup as well: a dropdown carrying
+                      <code>[data-demo-board-filters]</code>, chips with
+                      <code>[data-demo-board-filter]</code> and <code>[data-demo-board-value]</code>
+                      (matched against the badges, avatars and tooltips inside a card), a
+                      <code>[data-demo-board-count]</code> badge, a <code>[data-demo-board-summary]</code>
+                      line and a <code>[data-demo-board-clear]</code> button,
+                      <code>QevoraDemo.refresh()</code>.
+                      Give the panel <code>.dropdown-menu-filter</code> with a
+                      <code>.dropdown-menu-filter__head</code> (a title and a close button on
+                      <code>[data-demo-board-close]</code>), a <code>.dropdown-menu-filter__body</code>
+                      (the groups) and a <code>.dropdown-menu-filter__foot</code> (the summary and
+                      Clear): the body scrolls, the footer stays pinned and opaque, and the panel is
+                      capped against the viewport — width and height both — so it opens under the
+                      Filter button, or above it, but never off the screen.
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><code>pages/charts.js</code></td>
+                    <td class="fs-7 text-muted-2 text-wrap">Chart.js registry, progress rings, re-theming</td>
+                    <td class="fs-7 text-wrap"><code>QevoraCharts.rebuild()</code>, <code>canvas[data-chart]</code>, <code>[data-ring]</code></td>
+                  </tr>
+                  <tr>
+                    <td><code>pages/chat.js</code></td>
+                    <td class="fs-7 text-muted-2 text-wrap">Chat composer, canned replies, conversation filter (team chat and AI chat)</td>
+                    <td class="fs-7 text-wrap"><code>[data-chat-composer]</code>, <code>[data-chat-thread]</code>, <code>[data-conversation-search]</code></td>
+                  </tr>
+                  <tr>
+                    <td><code>pages/calendar.js</code></td>
+                    <td class="fs-7 text-muted-2 text-wrap">
+                      The month, week and day calendar: the grid, month navigation, the four calendars that filter it,
+                      the day-by-day agenda beside it and the event dialog (add, edit, delete — each one announced and
+                      undoable). The demo events are seeded against the month the page opens on, so the calendar looks
+                      alive whatever the date on the viewer's machine is; swap the <code>SEEDS</code> list at the top of
+                      the file for your own data and the grid, the counters, the agenda and the dialog all follow.
+                    </td>
+                    <td class="fs-7 text-wrap">
+                      <code>[data-cal-view-host]</code> with <code>[data-cal-title]</code>, <code>[data-cal-subtitle]</code>,
+                      <code>[data-cal-count]</code> and <code>[data-cal-visible]</code> for the headline and the counters;
+                      <code>[data-cal-btn]</code> (month / week / day), <code>[data-cal-prev]</code>,
+                      <code>[data-cal-today]</code>, <code>[data-cal-next]</code> to move;
+                      <code>[data-cal-filter]</code> dots and <code>[data-cal-switch]</code> checkboxes for the four
+                      calendars; <code>[data-cal-agenda]</code> with <code>[data-cal-agenda-title]</code>,
+                      <code>[data-cal-agenda-date]</code> and <code>[data-cal-agenda-today]</code> for the sidebar;
+                      <code>[data-cal-new]</code> (an optional <code>YYYY-MM-DD</code> value starts the dialog on that
+                      day), <code>[data-cal-event]</code> on any chip or agenda line to open its detail dialog with
+                      <code>[data-cal-edit]</code> and <code>[data-cal-delete]</code>, and the form hooks
+                      <code>[data-cal-form]</code>, <code>[data-cal-field="title|date|time|end|type|place"]</code> and
+                      <code>[data-cal-submit]</code>; <code>QevoraCalendar.events()</code>,
+                      <code>.state()</code> and <code>.refresh()</code> to read the list and repaint
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><code>pages/auth.js</code></td>
+                    <td class="fs-7 text-muted-2 text-wrap">One-time-code inputs and live countdowns</td>
+                    <td class="fs-7 text-wrap"><code>[data-otp]</code>, <code>[data-countdown]</code></td>
+                  </tr>
+                </tbody>
+              </table>
+              <p class="fs-7 text-muted-2 mb-0">
+                On screens 992px and wider the header button collapses the sidebar to a 78px icon rail: the brand keeps
+                its mark, every item shows its name as a tooltip on hover or focus, and the labels stay in the markup so
+                screen readers still announce each link. Clicking a section icon expands the sidebar with that section
+                already open — the rail never opens a panel of its own, because the navigation column clips anything
+                wider than itself. Press the header button — now a chevron — to collapse it again; the choice is
+                remembered in <code>localStorage</code>.
+              </p>
+            </div>
+          </div>
+
+          <div class="card mb-4" id="builder">
+            <div class="card-header"><h2 class="card-title mb-0">5. Optional developer source package</h2></div>
+            <div class="card-body">
+              <div class="alert alert-warning d-flex align-items-start gap-2 mb-4" role="alert">
+                <i class="bi bi-cone-striped alert-icon"></i>
+                <div class="fs-8">
+                  <strong class="d-block fs-7">Developer package only</strong>
+                  The commands on this page read <code>src/</code> and <code>tools/</code>, which are not part of the
+                  standard buyer download. If your package has no <code>src/</code> folder, skip this section — every
+                  other section works on the finished HTML files alone.
+                </div>
+              </div>
+
+              <p class="fs-7 text-muted-2">
+                Editing {{PAGE_COUNT}} files every time the header changes is tedious, so the developer package adds a tiny
+                builder. It stitches the shell partials and each page body into the final HTML files. It has no
+                dependencies and needs Node 18 or newer.
+              </p>
+
+              <div class="demo-code-wrap mb-4">
+                <button class="copy-btn" data-copy-target="#docBuild" type="button"><i class="bi bi-clipboard"></i> Copy</button>
+                <pre class="demo-code"><code id="docBuild">node tools/build.mjs             # write every page in src/pages.mjs
+node tools/build.mjs --check     # validate only: report missing bodies and dead links
+node tools/audit.mjs             # 21 static QA checks per page, plus light/dark theme contrast
+node tools/audit.mjs --part ai   # audit one section at a time
+npm i --no-save jsdom            # one-off, for the optional runtime check
+node tools/smoke.mjs             # run every page and click key controls: console errors, missing assets</code></pre>
+              </div>
+
+              <p class="fw-600 text-heading fs-7 mb-2">How a page is assembled</p>
+              <p class="fs-7 text-muted-2">
+                Each entry in <code>src/pages.mjs</code> declares the output path, the page title and description, the
+                breadcrumb trail, an optional layout (<code>app</code> for the dashboard shell, <code>blank</code> for
+                auth and utility pages) and any extra scripts. The builder then replaces these tokens inside the
+                partials and the body:
+              </p>
+
+              <div class="table-responsive mb-4">
+                <table class="table table-sm align-middle mb-0">
+                  <thead>
+                    <tr><th scope="col">Token</th><th scope="col">Replaced with</th></tr>
+                  </thead>
+                  <tbody class="fs-7">
+                    <tr><td><code>&#123;&#123;META_TITLE&#125;&#125;</code></td><td class="text-muted-2">The page <code>&lt;title&gt;</code></td></tr>
+                    <tr><td><code>&#123;&#123;META_DESC&#125;&#125;</code></td><td class="text-muted-2">The meta description</td></tr>
+                    <tr><td><code>&#123;&#123;DEPTH&#125;&#125;</code></td><td class="text-muted-2 text-wrap">Relative prefix (<code>../</code>) so every asset path stays correct at any folder depth</td></tr>
+                    <tr><td><code>&#123;&#123;NAV&#125;&#125;</code></td><td class="text-muted-2 text-wrap">The full sidebar menu, built from <code>src/nav.mjs</code></td></tr>
+                    <tr><td><code>&#123;&#123;BREADCRUMB&#125;&#125;</code></td><td class="text-muted-2">The page-header breadcrumb</td></tr>
+                    <tr><td><code>&#123;&#123;CONTENT&#125;&#125;</code></td><td class="text-muted-2 text-wrap">The body file from <code>src/pages/</code></td></tr>
+                    <tr><td><code>&#123;&#123;PAGE_SCRIPTS&#125;&#125;</code></td><td class="text-muted-2 text-wrap">Extra scripts such as Chart.js for chart pages</td></tr>
+                    <tr><td><code>&#123;&#123;HEAD_EXTRA&#125;&#125;</code></td><td class="text-muted-2 text-wrap">Optional extra tags for the <code>&lt;head&gt;</code></td></tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <p class="fw-600 text-heading fs-7 mb-2">How the component pages are built</p>
+              <p class="fs-7 text-muted-2">
+                Every demo block on a component page carries four panes: <strong>Preview</strong>,
+                <strong>HTML</strong>, <strong>CSS</strong> and <strong>JS</strong>. You author the preview and the
+                HTML sample; the builder writes the other two from what actually ships — the CSS rules are lifted out
+                of <code>assets/css/style.css</code> and <code>components.css</code> for the exact classes used in that
+                block, and the JS pane lists the hooks the block relies on (Bootstrap data attributes are reported as
+                "no custom script required"). That way the samples can never drift from the code.
+              </p>
+
+              <p class="fw-600 text-heading fs-7 mb-2">Adding a new page in four steps</p>
+              <ol class="fs-7 text-muted-2 d-flex flex-column gap-2 mb-0">
+                <li>Create the body file, for example <code>src/pages/pages/roadmap.html</code>.</li>
+                <li>Add an entry to <code>src/pages.mjs</code> with its <code>out</code> path, metadata and breadcrumb.</li>
+                <li>Add the menu link to <code>src/nav.mjs</code>.</li>
+                <li>Run <code>node tools/build.mjs</code> — the new page appears with the correct title, breadcrumb and navigation in every other page.</li>
+                <li>Run <code>node tools/audit.mjs</code> — it checks headings, labels, ids, anchors, class names, data hooks, chart wiring, link targets and the four-pane demo contract before you ship, and it measures the light/dark contrast of the palette tokens (tooltips, cards, toasts) once for the whole theme.</li>
+              </ol>
+
+              <div class="alert alert-warning d-flex align-items-start gap-2 mt-4 mb-0" role="alert">
+                <i class="bi bi-exclamation-triangle alert-icon"></i>
+                <div class="fs-8">
+                  <strong class="d-block fs-7">If you edit the HTML directly, stop using the builder</strong>
+                  The build script overwrites the generated files at the repository root. Either work in
+                  <code>src/</code> and rebuild, or edit the generated HTML and ignore <code>src/</code> — mixing both
+                  will lose work.
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="card mb-4" id="accessibility">
+            <div class="card-header"><h2 class="card-title mb-0">6. Accessibility &amp; browser support</h2></div>
+            <div class="card-body">
+              <ul class="fs-7 text-muted-2 d-flex flex-column gap-2 mb-0">
+                <li>Skip links, landmarks, labelled forms and <code>aria-*</code> states are included on every page.</li>
+                <li>Icon-only controls always carry an <code>aria-label</code>; decorative icons use <code>aria-hidden="true"</code>.</li>
+                <li>Colour contrast targets WCAG AA in both themes — the dark palette re-tunes the brand colour rather than only inverting it.</li>
+                <li>Animated counters respect <code>prefers-reduced-motion</code> and print the final value immediately.</li>
+                <li>Tables, pagination and cards are keyboard reachable; the mobile drawer closes on <code>Esc</code>.</li>
+                <li>Tested in Chrome, Edge, Firefox and Safari (last two major versions) plus iOS Safari and Chrome on Android.</li>
+                <li>Every overlay fits the narrowest phone: the board filter opens anchored to its button, keeps its
+                  own close button in the header, scrolls its groups and pins its summary and Clear — and it only
+                  exists while it is open. The header holds one even row of 40px controls below 768px, with the profile
+                  as a circle there, because the name and role are hidden and a pill around a circle reads as an oval.</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="card" id="credits">
+            <div class="card-header"><h2 class="card-title mb-0">7. Credits &amp; licences</h2></div>
+            <div class="table-responsive">
+              <table class="table align-middle mb-0">
+                <thead>
+                  <tr><th scope="col">Resource</th><th scope="col">Version</th><th scope="col">Licence</th></tr>
+                </thead>
+                <tbody class="fs-7">
+                  <tr>
+                    <td><a href="https://getbootstrap.com" target="_blank" rel="noopener">Bootstrap</a></td>
+                    <td>5.3.3</td>
+                    <td class="text-muted-2">MIT — <a href="https://github.com/twbs/bootstrap/blob/main/LICENSE" target="_blank" rel="noopener">licence text</a></td>
+                  </tr>
+                  <tr>
+                    <td><a href="https://icons.getbootstrap.com" target="_blank" rel="noopener">Bootstrap Icons</a></td>
+                    <td>1.11.3</td>
+                    <td class="text-muted-2">MIT — <a href="https://github.com/twbs/icons/blob/main/LICENSE.md" target="_blank" rel="noopener">licence text</a></td>
+                  </tr>
+                  <tr>
+                    <td><a href="https://www.chartjs.org" target="_blank" rel="noopener">Chart.js</a></td>
+                    <td>4.4.3</td>
+                    <td class="text-muted-2">MIT — <a href="https://github.com/chartjs/Chart.js/blob/master/LICENSE.md" target="_blank" rel="noopener">licence text</a></td>
+                  </tr>
+                  <tr>
+                    <td><a href="https://fonts.google.com/specimen/Inter" target="_blank" rel="noopener">Inter</a> (font)</td>
+                    <td>5.0.18</td>
+                    <td class="text-muted-2 text-wrap">SIL Open Font License 1.1 — shipped with the font as <code>assets/fonts/inter/LICENSE.txt</code></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="card-body">
+              <p class="fs-8 text-muted-2 mb-2">
+                All images in this template are CSS or SVG placeholders created for the kit — no third-party photography
+                is bundled, so you can ship the template commercially without extra attribution. Every library is
+                vendored inside <code>assets/</code> at the pinned version above; the package never calls a CDN.
+              </p>
+              <p class="fs-8 text-muted-2 mb-0">
+                The full licence of this template, including these third-party attributions, is in
+                <code>LICENSE.txt</code> next to <code>README.txt</code>. Support is handled through the item page on
+                the marketplace where you purchased the template.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-xl-3">
+          <div class="card sticky-lg-top" style="top: 86px;">
+            <div class="card-header"><h2 class="card-title mb-0">On this page</h2></div>
+            <div class="card-body">
+              <nav aria-label="Documentation sections">
+                <ul class="list-unstyled d-flex flex-column gap-2 fs-7 mb-0">
+                  <li><a href="#quick-start"><i class="bi bi-arrow-right-short"></i> Quick start</a></li>
+                  <li><a href="#inventory"><i class="bi bi-arrow-right-short"></i> Page inventory</a></li>
+                  <li><a href="#customise"><i class="bi bi-arrow-right-short"></i> Customising</a></li>
+                  <li><a href="#javascript"><i class="bi bi-arrow-right-short"></i> JavaScript reference</a></li>
+                  <li><a href="#builder"><i class="bi bi-arrow-right-short"></i> Build script</a></li>
+                  <li><a href="#accessibility"><i class="bi bi-arrow-right-short"></i> Accessibility</a></li>
+                  <li><a href="#credits"><i class="bi bi-arrow-right-short"></i> Credits</a></li>
+                </ul>
+              </nav>
+            </div>
+            <div class="card-footer">
+              <a class="btn btn-sm btn-soft-primary w-100" href="design-system.html"><i class="bi bi-palette"></i> Design system</a>
+            </div>
+          </div>
+        </div>
+      </div>

@@ -1,0 +1,186 @@
+      <div class="q-page-head">
+        <div>
+          {{BREADCRUMB}}
+          <h1 class="q-page-head__title mt-2">AI chat</h1>
+          <p class="q-page-head__subtitle">Ask questions, draft content and analyse data. Replies are canned demo content.</p>
+        </div>
+        <div class="d-flex flex-wrap gap-2">
+          <div class="dropdown">
+            <button class="btn btn-white dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <i class="bi bi-cpu"></i> Nova-4 Turbo
+            </button>
+            <ul class="dropdown-menu dropdown-menu-end">
+              <li><a class="dropdown-item active" href="#" data-demo-pick="menu" data-demo-pick-active-class="active" data-demo-pick-done="Nova-4 Turbo — best quality selected.">Nova-4 Turbo — best quality</a></li>
+              <li><a class="dropdown-item" href="#" data-demo-pick="menu" data-demo-pick-active-class="active" data-demo-pick-done="Nova-4 — balanced selected.">Nova-4 — balanced</a></li>
+              <li><a class="dropdown-item" href="#" data-demo-pick="menu" data-demo-pick-active-class="active" data-demo-pick-done="Vertex Flash — fastest selected.">Vertex Flash — fastest</a></li>
+            </ul>
+          </div>
+          <button type="button" class="btn btn-primary" data-demo-new-chat="[data-chat-thread]"><i class="bi bi-plus-lg"></i> New chat</button>
+        </div>
+      </div>
+
+      <div class="chat-layout">
+        <aside class="chat-layout__aside" aria-label="Conversations">
+          <div class="p-3 border-bottom border-q">
+            <div class="search-field">
+              <i class="bi bi-search search-field__icon" aria-hidden="true"></i>
+              <label class="visually-hidden" for="ai-conversation-search">Search conversations</label>
+              <input type="search" class="form-control form-control-sm" id="ai-conversation-search"
+                     placeholder="Search conversations…" data-conversation-search>
+            </div>
+          </div>
+
+          <div class="q-scroll flex-grow-1 p-2">
+            <p class="fs-9 fw-600 text-uppercase text-faint px-2 mt-2 mb-1" style="letter-spacing: .08em;">Today</p>
+            <div class="nav flex-column nav-pills" role="tablist">
+              <a class="nav-link active d-flex align-items-start gap-2" href="#" data-conversation data-demo-pick="conversation" data-demo-pick-active-class="active" data-demo-pick-done="Conversation “Product update announcement” opened — the transcript below is the demo one." data-conversation-title="Product update announcement" data-conversation-meta="Draft a 600-word launch post">
+                <i class="bi bi-chat-square-text mt-1"></i>
+                <span class="min-w-0 text-start">
+                  <span class="d-block fs-7 fw-600 text-truncate">Product update announcement</span>
+                  <span class="d-block fs-8 text-truncate opacity-75">Draft a 600-word launch post</span>
+                </span>
+              </a>
+              <a class="nav-link d-flex align-items-start gap-2" href="#" data-conversation data-demo-pick="conversation" data-demo-pick-active-class="active" data-demo-pick-done="Conversation “Q3 revenue summary” opened — the transcript below is the demo one." data-conversation-title="Q3 revenue summary" data-conversation-meta="Key drivers for the board deck">
+                <i class="bi bi-chat-square-text mt-1"></i>
+                <span class="min-w-0 text-start">
+                  <span class="d-block fs-7 fw-600 text-truncate">Q3 revenue summary</span>
+                  <span class="d-block fs-8 text-truncate opacity-75">Key drivers for the board deck</span>
+                </span>
+              </a>
+              <a class="nav-link d-flex align-items-start gap-2" href="#" data-conversation data-demo-pick="conversation" data-demo-pick-active-class="active" data-demo-pick-done="Conversation “Churn cohort analysis” opened — the transcript below is the demo one." data-conversation-title="Churn cohort analysis" data-conversation-meta="Why the March cohort dropped off">
+                <i class="bi bi-chat-square-text mt-1"></i>
+                <span class="min-w-0 text-start">
+                  <span class="d-block fs-7 fw-600 text-truncate">Churn cohort analysis</span>
+                  <span class="d-block fs-8 text-truncate opacity-75">Why the March cohort dropped off</span>
+                </span>
+              </a>
+            </div>
+
+            <p class="fs-9 fw-600 text-uppercase text-faint px-2 mt-3 mb-1" style="letter-spacing: .08em;">Previous 7 days</p>
+            <div class="nav flex-column nav-pills" role="tablist">
+              <a class="nav-link d-flex align-items-start gap-2" href="#" data-conversation data-demo-pick="conversation" data-demo-pick-active-class="active" data-demo-pick-done="Conversation “Renewal email sequence” opened — the transcript below is the demo one." data-conversation-title="Renewal email sequence" data-conversation-meta="Three-step recovery campaign">
+                <i class="bi bi-chat-square-text mt-1"></i>
+                <span class="min-w-0 text-start">
+                  <span class="d-block fs-7 fw-600 text-truncate">Renewal email sequence</span>
+                  <span class="d-block fs-8 text-truncate opacity-75">Three-step recovery campaign</span>
+                </span>
+              </a>
+              <a class="nav-link d-flex align-items-start gap-2" href="#" data-conversation data-demo-pick="conversation" data-demo-pick-active-class="active" data-demo-pick-done="Conversation “API rate limit policy” opened — the transcript below is the demo one." data-conversation-title="API rate limit policy" data-conversation-meta="Summarise the new limits page">
+                <i class="bi bi-chat-square-text mt-1"></i>
+                <span class="min-w-0 text-start">
+                  <span class="d-block fs-7 fw-600 text-truncate">API rate limit policy</span>
+                  <span class="d-block fs-8 text-truncate opacity-75">Summarise the new limits page</span>
+                </span>
+              </a>
+              <a class="nav-link d-flex align-items-start gap-2" href="#" data-conversation data-demo-pick="conversation" data-demo-pick-active-class="active" data-demo-pick-done="Conversation “Onboarding checklist rewrite” opened — the transcript below is the demo one." data-conversation-title="Onboarding checklist rewrite" data-conversation-meta="Shorter steps for self-serve users">
+                <i class="bi bi-chat-square-text mt-1"></i>
+                <span class="min-w-0 text-start">
+                  <span class="d-block fs-7 fw-600 text-truncate">Onboarding checklist rewrite</span>
+                  <span class="d-block fs-8 text-truncate opacity-75">Shorter steps for self-serve users</span>
+                </span>
+              </a>
+            </div>
+          </div>
+
+          <div class="p-3 border-top border-q">
+            <div class="d-flex align-items-center gap-2 mb-2">
+              <span class="fs-8 text-muted-2 flex-grow-1">Nova-4 Turbo</span>
+              <span class="badge badge-soft-neutral badge-pill">1.4s avg</span>
+            </div>
+            <div class="progress progress-sm mb-2"><div class="progress-bar bg-warning" style="width: 82%"></div></div>
+            <p class="fs-9 text-muted-2 mb-0">820K of 1M tokens used this cycle</p>
+          </div>
+        </aside>
+
+        <section class="chat-layout__main" aria-label="AI conversation">
+          <header class="d-flex align-items-center gap-3 p-3 border-bottom border-q">
+            <span class="avatar avatar-md bg-avatar-1"><i class="bi bi-stars"></i></span>
+            <div class="min-w-0 flex-grow-1">
+              <p class="mb-0 fs-7 fw-600 text-heading" data-conversation-head>Product update announcement</p>
+              <p class="mb-0 fs-8 text-muted-2" data-conversation-sub>Nova-4 Turbo · 8 messages</p>
+            </div>
+            <button type="button" class="btn btn-icon btn-sm btn-ghost" aria-label="Share conversation" title="Share" data-demo-copy="[data-chat-thread]" data-demo-copy-label="Conversation"><i class="bi bi-share"></i></button>
+            <button type="button" class="btn btn-icon btn-sm btn-ghost" aria-label="Export conversation" title="Export" data-demo-export="closest" data-demo-export-scope="[data-chat-thread]" data-demo-export-name="qevora-conversation-2026-10-03.csv"><i class="bi bi-download"></i></button>
+            <button type="button" class="btn btn-icon btn-sm btn-ghost" aria-label="Clear conversation" title="Clear" data-demo-new-chat="[data-chat-thread]"><i class="bi bi-trash3"></i></button>
+          </header>
+
+          <div class="chat-thread q-scroll" data-chat-thread>
+            <article class="msg msg--out">
+              <span class="avatar avatar-sm bg-avatar-1" aria-hidden="true">AR</span>
+              <div>
+                <div class="msg__bubble">Draft a 600-word product update announcement for v2.4. Friendly tone, no hype, mention the new component library and dark mode.</div>
+                <p class="msg__meta">You · 09:41</p>
+              </div>
+            </article>
+
+            <article class="msg">
+              <span class="avatar avatar-sm bg-avatar-1" aria-hidden="true"><i class="bi bi-stars"></i></span>
+              <div>
+                <div class="msg__bubble">
+                  <strong>v2.4 is here — a faster, friendlier workspace</strong><br><br>
+                  This release focuses on two things your team asked for most: a reusable component library and a proper
+                  dark mode. The library ships with copy-ready markup for 60+ elements, so building a new page now takes
+                  minutes instead of hours. Dark mode follows the system preference by default and remembers your choice.
+                  <br><br>
+                  Alongside those, we tightened table toolbars, improved keyboard focus states and fixed a handful of
+                  spacing issues in the sidebar. Nothing changes in your data or permissions.
+                  <br><br>
+                  Update today and tell us what you would like to see next.
+                </div>
+                <p class="msg__meta">Qevora AI · 09:41 · 1,240 tokens</p>
+                <div class="msg__actions">
+                  <button class="btn btn-sm btn-ghost" type="button" data-copy-text><i class="bi bi-clipboard" aria-hidden="true"></i> Copy</button>
+                  <button class="btn btn-sm btn-ghost" type="button" data-demo-regenerate="[data-chat-thread]"><i class="bi bi-arrow-repeat" aria-hidden="true"></i> Regenerate</button>
+                  <button class="btn btn-sm btn-ghost" type="button" aria-label="Mark this response as helpful" title="Helpful" data-demo-toggle data-demo-toggle-done="Thanks — your feedback was recorded."><i class="bi bi-hand-thumbs-up" aria-hidden="true"></i></button>
+                  <button class="btn btn-sm btn-ghost" type="button" aria-label="Mark this response as not helpful" title="Not helpful" data-demo-toggle data-demo-toggle-done="Thanks — your feedback was recorded."><i class="bi bi-hand-thumbs-down" aria-hidden="true"></i></button>
+                </div>
+              </div>
+            </article>
+
+            <article class="msg msg--out">
+              <span class="avatar avatar-sm bg-avatar-1" aria-hidden="true">AR</span>
+              <div>
+                <div class="msg__bubble">Make the second paragraph shorter and add a line about the RTL support.</div>
+                <p class="msg__meta">You · 09:43</p>
+              </div>
+            </article>
+
+            <article class="msg">
+              <span class="avatar avatar-sm bg-avatar-1" aria-hidden="true"><i class="bi bi-stars"></i></span>
+              <div>
+                <div class="msg__bubble">
+                  Done. Here is the tightened version:<br><br>
+                  <strong>v2.4 is here — a faster, friendlier workspace</strong><br><br>
+                  Two long-standing requests are in this release: a reusable component library with copy-ready markup for
+                  60+ elements, and a proper dark mode. RTL layouts are now supported end to end, so right-to-left locales
+                  flip navigation, tables and forms correctly.
+                </div>
+                <p class="msg__meta">Qevora AI · 09:43 · 640 tokens</p>
+                <div class="msg__actions">
+                  <button class="btn btn-sm btn-ghost" type="button" data-copy-text><i class="bi bi-clipboard" aria-hidden="true"></i> Copy</button>
+                  <button class="btn btn-sm btn-ghost" type="button" data-demo-regenerate="[data-chat-thread]"><i class="bi bi-arrow-repeat" aria-hidden="true"></i> Regenerate</button>
+                </div>
+              </div>
+            </article>
+          </div>
+
+          <form class="composer" data-chat-composer data-demo-form data-demo-chat-thread="[data-chat-thread]">
+            <div class="d-flex flex-wrap gap-2 mb-2">
+              <button class="chip" type="button" data-demo-chat="[data-chat-thread]" data-demo-chat-input="#ai-chat-input">Summarise this page</button>
+              <button class="chip" type="button" data-demo-chat="[data-chat-thread]" data-demo-chat-input="#ai-chat-input">Rewrite for clarity</button>
+              <button class="chip" type="button" data-demo-chat="[data-chat-thread]" data-demo-chat-input="#ai-chat-input">Draft an email</button>
+              <button class="chip" type="button" data-demo-chat="[data-chat-thread]" data-demo-chat-input="#ai-chat-input">Analyse a dataset</button>
+            </div>
+            <div class="d-flex align-items-end gap-2">
+              <button class="btn btn-icon btn-ghost" type="button" aria-label="Attach file" data-demo-attach="[data-demo-attach-list]"><i class="bi bi-paperclip"></i></button>
+              <label class="visually-hidden" for="ai-chat-input">Ask the assistant</label>
+              <textarea class="form-control" id="ai-chat-input" rows="1" placeholder="Ask anything…" style="resize: none;" data-demo-chat-input data-demo-prefill="prompt"></textarea>
+              <button class="btn btn-primary" type="submit"><i class="bi bi-send"></i> Send</button>
+            </div>
+            <div class="d-flex flex-wrap gap-2 mt-2" data-demo-attach-list></div>
+            <p class="fs-9 text-muted-2 mt-2 mb-0">
+              Demo assistant — replies are written in <code>assets/js/pages/chat.js</code>. No API key, no external request.
+            </p>
+          </form>
+        </section>
+      </div>

@@ -1,0 +1,272 @@
+      <div class="q-page-head">
+        <div>
+          {{BREADCRUMB}}
+          <h1 class="q-page-head__title mt-2">Form controls</h1>
+          <p class="q-page-head__subtitle">
+            Inputs, labels, selects, checks, switches and validation. Forms are the backbone of this admin — the settings,
+            CRM and billing screens are all built from these blocks.
+          </p>
+        </div>
+        <div class="d-flex flex-wrap gap-2">
+          <a class="btn btn-white" href="../documentation/index.html"><i class="bi bi-book"></i> Docs</a>
+        </div>
+      </div>
+
+      <div class="demo-block" data-demo>
+        <div class="demo-block__head">
+          <div>
+            <h2 class="demo-block__title">Text inputs</h2>
+            <p class="demo-block__desc">Default, small, large, read-only and disabled states with helper text.</p>
+          </div>
+        </div>
+        <div class="demo-block__tabs">
+          <button type="button" class="demo-tab is-active" data-demo-tab="preview" aria-selected="true">Preview</button>
+          <button type="button" class="demo-tab" data-demo-tab="html" aria-selected="false">HTML</button>
+        </div>
+        <div class="demo-block__pane is-active" data-demo-pane="preview">
+          <div class="demo-preview" id="formInputs">
+            <div class="row g-3">
+              <div class="col-md-6">
+                <label class="form-label" for="fcName">Full name</label>
+                <input type="text" class="form-control" id="fcName" placeholder="Ava Reynolds" value="Ava Reynolds">
+              </div>
+              <div class="col-md-6">
+                <label class="form-label" for="fcEmail">Work email</label>
+                <input type="email" class="form-control" id="fcEmail" placeholder="ava@example.com" value="ava@example.com">
+                <div class="form-text">We only use this for account and billing emails.</div>
+              </div>
+              <div class="col-md-6">
+                <label class="form-label" for="fcCompany">Company</label>
+                <input type="text" class="form-control form-control-sm" id="fcCompany" value="Nova Labs">
+              </div>
+              <div class="col-md-6">
+                <label class="form-label" for="fcWorkspace">Workspace URL</label>
+                <input type="text" class="form-control form-control-lg" id="fcWorkspace" value="qevora.app/nova-labs">
+              </div>
+              <div class="col-md-6">
+                <label class="form-label" for="fcReadonly">Plan</label>
+                <input type="text" class="form-control" id="fcReadonly" value="Growth — $99 / month" readonly>
+              </div>
+              <div class="col-md-6">
+                <label class="form-label" for="fcDisabled">Billing contact</label>
+                <input type="text" class="form-control" id="fcDisabled" value="Managed by the workspace owner" disabled>
+              </div>
+              <div class="col-12">
+                <label class="form-label" for="fcNote">Internal note <span class="text-muted-2 fw-400">(optional)</span></label>
+                <textarea class="form-control" id="fcNote" rows="3" placeholder="Visible to admins only"></textarea>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="demo-block__pane" data-demo-pane="html">
+          <div class="demo-code-wrap">
+            <button class="copy-btn" data-copy-target="#codeFormInputs" type="button"><i class="bi bi-clipboard"></i> Copy HTML</button>
+            <pre class="demo-code"><code id="codeFormInputs" data-auto-code="#formInputs"></code></pre>
+          </div>
+        </div>
+      </div>
+
+      <div class="demo-block" data-demo>
+        <div class="demo-block__head">
+          <div>
+            <h2 class="demo-block__title">Checks, radios and switches</h2>
+            <p class="demo-block__desc">Use switches for settings that apply immediately, checkboxes for selections in a form.</p>
+          </div>
+        </div>
+        <div class="demo-block__tabs">
+          <button type="button" class="demo-tab is-active" data-demo-tab="preview" aria-selected="true">Preview</button>
+          <button type="button" class="demo-tab" data-demo-tab="html" aria-selected="false">HTML</button>
+        </div>
+        <div class="demo-block__pane is-active" data-demo-pane="preview">
+          <div class="demo-preview" id="formChecks">
+            <div class="row g-4">
+              <div class="col-md-4">
+                <p class="fw-600 text-heading fs-7 mb-2">Checkboxes</p>
+                <div class="form-check mb-2">
+                  <input class="form-check-input" type="checkbox" id="chkInvoices" checked>
+                  <label class="form-check-label" for="chkInvoices">Invoice emails</label>
+                </div>
+                <div class="form-check mb-2">
+                  <input class="form-check-input" type="checkbox" id="chkDeadlines" checked>
+                  <label class="form-check-label" for="chkDeadlines">Project deadlines</label>
+                </div>
+                <div class="form-check mb-2">
+                  <input class="form-check-input" type="checkbox" id="chkQuota">
+                  <label class="form-check-label" for="chkQuota">AI quota alerts</label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" id="chkDisabled" disabled>
+                  <label class="form-check-label text-muted-2" for="chkDisabled">Weekly digest (Pro)</label>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <p class="fw-600 text-heading fs-7 mb-2">Radio group</p>
+                <div class="form-check mb-2">
+                  <input class="form-check-input" type="radio" name="fcPlan" id="planStarter">
+                  <label class="form-check-label" for="planStarter">Starter — $29</label>
+                </div>
+                <div class="form-check mb-2">
+                  <input class="form-check-input" type="radio" name="fcPlan" id="planGrowth" checked>
+                  <label class="form-check-label" for="planGrowth">Growth — $99</label>
+                </div>
+                <div class="form-check mb-2">
+                  <input class="form-check-input" type="radio" name="fcPlan" id="planScale">
+                  <label class="form-check-label" for="planScale">Scale — $400</label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="fcPlan" id="planEnterprise">
+                  <label class="form-check-label" for="planEnterprise">Enterprise — custom</label>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <p class="fw-600 text-heading fs-7 mb-2">Switches</p>
+                <div class="form-check form-switch mb-2">
+                  <input class="form-check-input" type="checkbox" role="switch" id="swTwoFactor" checked>
+                  <label class="form-check-label" for="swTwoFactor">Two-factor auth</label>
+                </div>
+                <div class="form-check form-switch mb-2">
+                  <input class="form-check-input" type="checkbox" role="switch" id="swAutopay" checked>
+                  <label class="form-check-label" for="swAutopay">Auto-pay invoices</label>
+                </div>
+                <div class="form-check form-switch mb-2">
+                  <input class="form-check-input" type="checkbox" role="switch" id="swBeta">
+                  <label class="form-check-label" for="swBeta">Beta features</label>
+                </div>
+                <div class="form-check form-switch">
+                  <input class="form-check-input" type="checkbox" role="switch" id="swMaintenance" disabled>
+                  <label class="form-check-label text-muted-2" for="swMaintenance">Maintenance mode</label>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="demo-block__pane" data-demo-pane="html">
+          <div class="demo-code-wrap">
+            <button class="copy-btn" data-copy-target="#codeFormChecks" type="button"><i class="bi bi-clipboard"></i> Copy HTML</button>
+            <pre class="demo-code"><code id="codeFormChecks" data-auto-code="#formChecks"></code></pre>
+          </div>
+        </div>
+      </div>
+
+      <div class="demo-block" data-demo>
+        <div class="demo-block__head">
+          <div>
+            <h2 class="demo-block__title">Validation states</h2>
+            <p class="demo-block__desc">Valid and invalid feedback is placed directly under the field and always names the problem.</p>
+          </div>
+        </div>
+        <div class="demo-block__tabs">
+          <button type="button" class="demo-tab is-active" data-demo-tab="preview" aria-selected="true">Preview</button>
+          <button type="button" class="demo-tab" data-demo-tab="html" aria-selected="false">HTML</button>
+        </div>
+        <div class="demo-block__pane is-active" data-demo-pane="preview">
+          <div class="demo-preview" id="formValidation">
+            <div class="row g-3">
+              <div class="col-md-6">
+                <label class="form-label" for="valEmail">Billing email</label>
+                <input type="email" class="form-control is-valid" id="valEmail" value="finance@example.com">
+                <div class="valid-feedback">Looks good — invoices will be sent here.</div>
+              </div>
+              <div class="col-md-6">
+                <label class="form-label" for="valTax">Tax ID</label>
+                <input type="text" class="form-control is-invalid" id="valTax" value="XX-000" aria-describedby="valTaxError">
+                <div class="invalid-feedback" id="valTaxError">Enter a valid tax ID — 8 to 14 characters, digits and dashes only.</div>
+              </div>
+              <div class="col-md-6">
+                <label class="form-label" for="valSeats">Seats</label>
+                <input type="number" class="form-control" id="valSeats" value="25" min="3" max="250">
+                <div class="form-text">Between 3 and 250 seats on the Growth plan.</div>
+              </div>
+              <div class="col-md-6">
+                <label class="form-label" for="valBudget">Monthly budget</label>
+                <input type="range" class="form-range mt-2" id="valBudget" min="29" max="400" step="1" value="99">
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="demo-block__pane" data-demo-pane="html">
+          <div class="demo-code-wrap">
+            <button class="copy-btn" data-copy-target="#codeFormValidation" type="button"><i class="bi bi-clipboard"></i> Copy HTML</button>
+            <pre class="demo-code"><code id="codeFormValidation" data-auto-code="#formValidation"></code></pre>
+          </div>
+        </div>
+      </div>
+
+      <div class="demo-block" data-demo>
+        <div class="demo-block__head">
+          <div>
+            <h2 class="demo-block__title">Floating labels &amp; a full form</h2>
+            <p class="demo-block__desc">Floating labels save vertical space in dialogs — this block is a complete, ready-to-copy form.</p>
+          </div>
+        </div>
+        <div class="demo-block__tabs">
+          <button type="button" class="demo-tab is-active" data-demo-tab="preview" aria-selected="true">Preview</button>
+          <button type="button" class="demo-tab" data-demo-tab="html" aria-selected="false">HTML</button>
+        </div>
+        <div class="demo-block__pane is-active" data-demo-pane="preview">
+          <div class="demo-preview" id="formFloating">
+            <form class="row g-3" novalidate>
+              <div class="col-md-6">
+                <div class="form-floating">
+                  <input type="text" class="form-control" id="flCompany" placeholder="Company" value="Orbit Systems">
+                  <label for="flCompany">Company name</label>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-floating">
+                  <input type="email" class="form-control" id="flEmail" placeholder="Email" value="ops@example.com">
+                  <label for="flEmail">Billing email</label>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="form-floating">
+                  <select class="form-select" id="flCountry" data-demo-echo="Country" aria-label="Country">
+                    <option>United Kingdom</option>
+                    <option selected>Singapore</option>
+                    <option>Germany</option>
+                    <option>Japan</option>
+                  </select>
+                  <label for="flCountry">Country</label>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="form-floating">
+                  <input type="text" class="form-control" id="flCity" placeholder="City" value="Singapore">
+                  <label for="flCity">City</label>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="form-floating">
+                  <input type="text" class="form-control" id="flZip" placeholder="Postal code" value="018956">
+                  <label for="flZip">Postal code</label>
+                </div>
+              </div>
+              <div class="col-12 d-flex gap-2">
+                <button class="btn btn-primary" type="button" data-demo-action="Company profile saved — demo only." data-demo-variant="success">Save changes</button>
+                <button class="btn btn-white" type="reset">Reset</button>
+              </div>
+            </form>
+          </div>
+        </div>
+        <div class="demo-block__pane" data-demo-pane="html">
+          <div class="demo-code-wrap">
+            <button class="copy-btn" data-copy-target="#codeFormFloating" type="button"><i class="bi bi-clipboard"></i> Copy HTML</button>
+            <pre class="demo-code"><code id="codeFormFloating" data-auto-code="#formFloating"></code></pre>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <h2 class="card-title mb-0">Usage notes</h2>
+        </div>
+        <div class="card-body">
+          <ul class="fs-7 text-muted-2 mb-0 d-flex flex-column gap-2">
+            <li>Every input needs a <code>&lt;label&gt;</code> tied to it by <code>for</code>/<code>id</code>. Placeholders are examples, never labels.</li>
+            <li>Use <code>.form-control-sm</code> inside table toolbars and <code>.form-control-lg</code> for single-field pages such as auth screens.</li>
+            <li>Keep helper text in <code>.form-text</code> and error text in <code>.invalid-feedback</code> — do not mix them.</li>
+            <li>Validate on submit (and on blur for long forms), never on every keystroke.</li>
+            <li>Group related fields in <code>.row g-3</code> so form spacing stays identical on every page.</li>
+          </ul>
+        </div>
+      </div>

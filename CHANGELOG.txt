@@ -1,0 +1,760 @@
+================================================================================
+  QEVORA AI SAAS — CHANGELOG
+================================================================================
+
+--------------------------------------------------------------------------------
+1.0.0  ·  October 2026  ·  Initial ThemeForest release
+--------------------------------------------------------------------------------
+
+RELEASE HIGHLIGHTS
+
+  · 84 ready-to-use HTML pages, all static and framework-free
+  · Bootstrap 5.3.3 based — no jQuery, no build step, no CDN
+  · Light and dark mode with a saved preference
+  · Full RTL support (Bootstrap's RTL build ships in the package)
+  · Responsive layouts from desktop down to 375 px
+  · AI/SaaS dashboard set: overview, AI workspace, chat, content and image
+    generators, usage and prompt history
+  · CRM, project, billing and team modules (leads, customers, pipeline,
+    projects, kanban, tasks, invoices, payments, subscriptions, reports, roles)
+  · 31-page UI component library with Preview / HTML / CSS / JS panes and copy
+    buttons, plus a design-system reference
+  · 6 authentication pages and 7 utility pages (404, 500, maintenance, soon,
+    terms, privacy, sitemap)
+  · 15+ theme-aware Chart.js charts, all libraries vendored locally
+  · Working demo interactions: create/edit dialogs, live filters and search,
+    pagination, CSV import and export, file pickers, undo, toasts
+  · Written documentation, README and licence inside the package
+
+  Packaging for this release
+    release/qevora-ai-saas-ui-1.0.0.zip              buyer package (this item)
+    release/qevora-ai-saas-ui-1.0.0-developer.zip    optional source package
+    marketplace/                                     cover, 14 previews,
+                                                     metadata and this checklist
+
+  84 pages: 1 dashboard · 6 AI workspace · 31 applications · 31 UI kit ·
+  6 authentication · 7 utility · 2 documentation
+
+NEW PAGES (84 total)
+
+  Dashboard
+    index.html — KPI cards, revenue chart, AI usage, project and task
+    overview, recent invoices, activity feed.
+
+  AI workspace (6)
+    ai/dashboard.html          AI overview: requests, tokens, cost, latency,
+                               plan limits, model usage, recent generations.
+    ai/chat.html               Chat workspace with conversation list, message
+                               thread, copy and regenerate actions.
+    ai/content-generator.html  Writing workspace with templates, tone and
+                               length controls, reference upload, output card.
+    ai/image-generator.html    Prompt, style presets, aspect ratio, credits
+                               and a generated gallery of placeholders.
+    ai/usage.html              Token consumption, cost breakdown, per-model
+                               usage and quota reporting.
+    ai/history.html            Prompt history with model, tokens, latency,
+                               cost, filters and reuse actions.
+
+  Applications (31)
+    CRM dashboard, leads, customers, customer details, pipeline, projects,
+    project details, kanban, tasks, calendar, team chat, notifications,
+    products, product details, orders, order details, invoices, invoice
+    details, payments, transactions, subscriptions, team, roles, activity,
+    reports, profile, settings, pricing, FAQ, help.
+
+  UI kit (31)
+    Overview, colours, typography, spacing, grid, icons, buttons, badges,
+    avatars, alerts, breadcrumbs, cards, pricing blocks, timeline, empty
+    states, dropdowns, modals, tabs, accordions, tooltips and popovers,
+    toasts, forms, input groups, select and search, file upload, date and
+    time, tables, pagination, charts, progress, spinners, documentation.
+
+  Authentication (6)
+    Login, register, forgot password, reset password, verify email,
+    two-factor verification — split-screen layout with a marketing aside.
+
+  Utility (7)
+    404, 500 (with incident snapshot), maintenance (deployment progress),
+    coming soon (live countdown), terms and conditions, privacy policy,
+    sitemap.
+
+    utility/terms.html               terms of service: agreement, accounts,
+                                     plans and billing, acceptable use, AI
+                                     output, intellectual property, third-party
+                                     services, availability, termination,
+                                     liability and governing law, with an "on
+                                     this page" outline and a print action.
+    utility/sitemap.html             the whole package on one page: every
+                                     page grouped by module, one line each,
+                                     module counters and jump links.
+    utility/privacy.html             privacy policy: what is collected and why,
+                                     legal bases, cookies and local storage, how
+                                     AI prompts and files are handled, sharing
+                                     and transfers, retention, security and the
+                                     rights a reader can exercise.
+
+  Documentation (2)
+    documentation/index.html         quick start, folder structure, page
+                                     inventory, customisation, JavaScript
+                                     reference, build script, accessibility,
+                                     credits.
+    documentation/design-system.html colour, type, spacing, radius, elevation,
+                                     dark-mode and RTL token reference.
+
+NEW COMPONENTS
+
+  Buttons: primary, secondary, soft, ghost, gradient, white, icon, sizes.
+  Status: soft badges, solid text-bg badges, dot badges, counter chips,
+          trend up/down/flat indicators.
+  Avatars: six sizes, photo and initials, status dots, groups with overflow
+           counter.
+  Containers: cards (base, stat, KPI tile, feature, profile, glass, hover),
+              pricing cards with a featured plan, timeline, activity feed,
+              kanban board, empty states, skeletons.
+  Navigation: sidebar with nested groups, header with global search,
+              notifications, breadcrumbs, tabs, pills, pagination, list
+              groups, accordions.
+  Feedback: alerts, toasts, modals, tooltips, popovers, spinners, progress
+            bars, stacked progress, SVG rings, animated counters.
+  Data: tables with toolbar, filtering, sorting, selection, pagination and an
+        empty state; 15+ Chart.js configurations.
+  Forms: inputs, selects, checks, switches, ranges, floating labels,
+         validation states, input groups, file upload drop zones, date and
+         time inputs, one-time-code inputs.
+
+FEATURES
+
+  · Light and dark themes, saved in localStorage, following the system
+    preference by default.
+  · Full RTL support: logical CSS properties plus an RTL stylesheet and a
+    runtime Bootstrap RTL swap.
+  · Responsive down to 375 px: collapsible sidebar, off-canvas drawer,
+    responsive tables and card grids.
+  · Component pages with Preview and HTML tabs, syntax highlighting and copy
+    buttons.
+  · All libraries vendored locally — no CDN requests at runtime.
+  · Relative asset paths only, so the template works from any folder or
+    subdirectory.
+  · Optional zero-dependency build script (Node 18+) that assembles pages
+    from shared partials.
+  · Accessibility pass: landmarks, skip links, labelled controls, aria
+    states, reduced-motion support, WCAG AA colour targets.
+
+COMPONENT DEMOS — FOUR PANES
+
+  · Every demo block on the 31 UI kit pages now offers Preview / HTML / CSS / JS
+    tabs, each with its own copy button (86 blocks in total).
+  · The CSS sample is generated at build time: the real rules for the classes used
+    in that block are lifted from assets/css/style.css and components.css, and
+    classes that come from stock Bootstrap are listed instead of pasted.
+  · The JS sample is generated too: it reports the hooks that block actually uses
+    — a short API snippet for Qevora's own behaviour, or a clear "no custom
+    JavaScript required" note where Bootstrap's data API does the work.
+  · components.js gained dependency-free CSS and JavaScript tokenisers, so all
+    four panes are highlighted with the same tok-* palette.
+  · tools/demo-samples.mjs holds the generator; tools/audit.mjs gained a
+    four-pane contract check (86 blocks verified).
+
+HOSTING
+
+  · tools/build.mjs mirrors utility/404.html to the repository root as 404.html
+    (root-relative paths, robots noindex) because GitHub Pages serves /404.html
+    from the site root. 85 HTML files ship: 84 pages plus that hosting fallback.
+
+QUALITY TOOLING
+
+  · tools/check-add-card.mjs — regression check for the "+ New …" controls and
+    the "just added" highlight (projects grid columns, numbering, kanban
+    counters, calendar and report placement). Needs jsdom.
+
+  · tools/check-states.mjs — interaction-state check. Resolves what a filled
+    control actually shows in each state (active pill, active pill hover) for
+    both palettes by reading the shipped stylesheets in load order and applying
+    the cascade itself — the one thing jsdom cannot do for :hover. Fails if a
+    label drops under 4.5:1, if a hover rule repaints the active pill, if a
+    .form-select loses the padding its caret needs, or if a badge stops being
+    centred in a stretched row. 10 checks.
+
+  · tools/check-controls.mjs — "every click answers" check. Clicks the
+    dashboard row actions (message dialog, options menu, copy email, remove
+    with undo), the chat conversation menu and list, a tooltip-only button and
+    the auth legal links, and fails if a click leaves the page silent.
+    Needs jsdom.
+
+  · tools/check-dropdowns.mjs — regression check for every dropdown and pick
+    group in the template (one selected item only, the button shows the current
+    choice, icons kept, aria-current / aria-pressed, locked items refused) plus a
+    sweep of all eight pages that carry pick controls. Needs jsdom.
+
+  · tools/audit.mjs — static QA gate: 19 checks over all 82 generated
+    pages: document head, duplicate ids, anchor targets, aria/label references,
+    image alt text, accessible names on buttons and icon links, form labels,
+    class existence against the shipped stylesheets, data-hook coverage,
+    chart registry and script wiring, heading outline, tag balance, paragraph
+    nesting, interactive nesting, placeholder markers and the four-pane demo
+    contract.
+      node tools/audit.mjs            report
+      node tools/audit.mjs --part ai  audit one section
+      node tools/audit.mjs --strict   non-zero exit when anything is found
+
+FIXES DURING DEVELOPMENT
+
+  Demo interactions — the buttons and forms now work
+    · The template ships a small client-side layer (assets/js/demo-ui.js) so no
+      control is a dead end, and pages/leads.html is the reference: "+ Add lead"
+      opens a real dialog with validation, saving appends the row (badge,
+      avatar, money column and all), the row's view and edit buttons open that
+      record, delete asks first and offers an undo, and the status and source
+      selects, the live search, the column picker and the pagination all work
+      together while the "x of y" counters follow every change.
+    · The layer is driven by data attributes and documented under
+      documentation/index.html → 4. JavaScript reference: data-demo-open,
+      data-demo-form, data-demo-field, data-slot, data-slot-badge,
+      data-slot-avatar, data-demo-delete, data-demo-filter, data-demo-count,
+      data-demo-column and data-demo-load. Record values live on the row itself
+      (data-lead-name, data-lead-status …), so connecting a real API means
+      replacing the handlers, not the markup.
+    · List pages filter for real: the status pills on invoices and orders are
+      chip groups driven by the same engine as the selects (data-demo-chips on
+      the group, data-demo-chip on each button, data-demo-chip-field when a chip
+      filters on a different column), and the rows carry their record values
+      (data-invoice-status …) for the filters to read.
+    · Any control that still has no handler answers with a toast that names it —
+      and a control inside a component demo says that it is a style demo —
+      instead of appearing to do nothing.
+    · The runtime smoke test clicks through the new flows on every run, and the
+      audit learned two things: a wrapping <label> labels a control that has no
+      id, and data-<record>-<field> attributes are valid on any table that
+      declares data-demo-record.
+
+    · Every list page is a real list now, not a picture of one. Invoices,
+      orders, payments, products, subscriptions, tasks, team, transactions and
+      activity each carry their record values on the rows, so the toolbar
+      filters (gateway, category, status, plan, role, browser, date range), the
+      live search, the generated pager, the "Showing x of y" footer and the KPI
+      tiles all read the same five or six rows and can never disagree with them.
+    · Create, edit and delete work from anywhere: "New invoice", "Record
+      payment", "Add product", "New subscription", "New task", "Invite member"
+      and the rest open the shared dialog, which builds its fields from the
+      table (text, number or a short list of choices) and writes the row back,
+      and every row gained an edit and a delete button beside its existing
+      actions. A record added while a filter is active clears that filter, jumps
+      to page one and flashes, so it is never invisible.
+    · Export is real: the CSV buttons write a file from the rows on screen (a
+      download icon inside a row exports just that row), the export buttons on
+      cards work off the table inside the card, and the KPI tiles are computed
+      from the same data (sum of paid invoices, captured payments, MRR, active
+      products, open tasks …).
+    · A new row keeps the shape of the table: it is cloned from the first row
+      (checkbox, avatar, badge, money formatting and row actions included)
+      instead of being a bare set of cells.
+    · Small actions got real behaviour too: data-demo-print opens the print
+      dialog, data-demo-copy copies to the clipboard, data-demo-save and
+      data-demo-discard persist a form in localStorage, data-demo-toggle flips a
+      two-state button, data-demo-go follows a link, data-demo-gen runs the
+      offline "AI" demo on the AI screens, data-demo-chat writes a message and
+      an answer into the chat thread, and data-demo-export-row exports one row.
+
+    · Dropdowns and menus are menus now, not decoration. The caret buttons in
+      the page header, the card headers and the tables open a real Bootstrap
+      menu; the 38 menu items that were href="#" placeholders became choices
+      (data-demo-pick moves the tick, e.g. the AI model, the dashboard period,
+      the analytics channel, the customer filter), actions with a confirmation
+      toast, copy-to-clipboard items or links, so a menu never closes on
+      nothing.
+    · Pagination is generated from the rows, on every table that carries
+      data-paginate: the pager is rebuilt when the row count changes, the first
+      and last pages dim the prev/next arrows, and the "Showing x of y" text
+      follows the page — including ai/history.html, which now holds ten prompt
+      rows over two pages instead of claiming "5 of 48,260".
+    · Every remaining control answers: the date-range presets (Today, Last 7
+      days, This month, Q3 2026, Year to date) write real ISO dates into the
+      From/To inputs and highlight themselves, the filter-chip ✕ removes its own
+      chip with an undo toast, the showcase selects echo their choice, the
+      content generator prints the template, tone, length, language and model it
+      used under the draft, the plan cards mark the chosen plan, the card menu
+      can archive a card with an undo, and the pricing "Contact sales" copies
+      the sales address. components/pricing.html button check reports zero
+      controls left without behaviour.
+
+    · Every export and download button hands over a real file. A control with
+      data-demo-export can point at a table (a CSV of the visible rows), at a
+      page area (the KPI tiles and every table inside it, or a chat transcript)
+      or at "closest" — the card or component demo it sits in — and
+      data-demo-export-name sets the file name; a component demo with nothing
+      numeric exports its own markup. That covers the dashboard "Export report",
+      the analytics report, the AI usage export, ai/history (ten prompt rows),
+      the conversation export on ai/chat, the permission matrix on roles, the
+      audit log inside the modals page and the UI Kit's own Export buttons.
+    · data-demo-download writes a real file — a text placeholder or a generated
+      SVG for image downloads — so the attachment icons on file-upload, the
+      project files, the report rows and the four image-generator variations all
+      save something. "Download PDF" buttons open the print dialog and say to
+      pick "Save as PDF", because that is how a browser writes a PDF.
+    · The runtime test suite gained export coverage: 50 checks click every
+      export, download and print control on 16 pages and assert that a file with
+      the right name and content arrives.
+
+  Records, imports and the AI workspace
+    · pages/crm.html is a working dashboard, not a picture of one: "New lead"
+      opens the shared dialog and writes a real row (name, company, source,
+      status, value, owner) into a new "Recent leads" table, "Import leads"
+      opens the importer, and the row's edit and delete buttons, the status
+      select, the live search and the pager all read the same five rows. The
+      status field becomes a select built from the statuses already in the
+      table, so the row that comes out matches the rows that are there.
+    · The importer is shared by every table: paste comma, semicolon or
+      tab-separated rows (quoted fields included), or choose a .csv file whose
+      header names the columns; the rows land in the table, the "x of y"
+      counter follows, and the toast says how many arrived.
+    · The same round of work gave eleven more controls their real job:
+      "New report" and "Add schedule" on reports, "Add task" on
+      pages/project-details.html, "Create invoice" on customer-details,
+      "Create role" (a new column in the permission matrix, with undo) on
+      pages/roles.html, "New project" on projects, "New task" / "Add deal" on
+      the kanban and pipeline boards, "New event" on the calendar, and "Upload
+      photo" / "Remove photo" on settings — the last one writes a real preview
+      of the file you picked.
+    · ai/history.html stopped being decorative: "Clear history" empties the
+      table with an undo, "Copy prompt" copies that row's prompt, and "Reuse
+      prompt" carries the prompt to ai/chat.html (or the image generator) in the
+      query string, where the composer or the prompt box picks it up and says
+      where it came from.
+    · ai/chat.html and pages/chat.html: the suggestion chips send a real
+      message and get a canned reply, the rating buttons toggle with a
+      confirmation, "Attach file" opens a real file picker and turns each chosen
+      name into a removable chip, "Share" copies the transcript, "Clear" empties
+      the thread with an undo, and the two composers post what you typed.
+    · Three new engine hooks keep it honest: data-demo-clear-rows (empty a body,
+      restore it from the toast), data-demo-reuse + data-demo-prefill (hand a
+      value to the next page), and data-demo-attach (a file picker whose chosen
+      names become chips).
+    · pages/crm.html and every list page now agree with themselves: the footer
+      counter shows the page window ("1–5 of 5 leads") whenever the table has a
+      pager, so the same number appears in the footer, the pager and the export.
+    · The "just added" highlight no longer paints a block of colour behind a
+      card: a grid column (or any wrapper) is left alone and the new card gets a
+      soft ring instead, while a new table row keeps the familiar background
+      tint. The ring fades out after a moment, exactly like the tint did, and
+      nothing else about the highlight changed.
+    · "+ New project" keeps the grid it lands in: inside a Bootstrap grid the new
+      project is added as its own column at the end of the grid (it used to drop
+      a second card inside the first column, which stretched every card in the
+      row), the card keeps its link and its classes, and the numbering counts the
+      cards instead of counting cards plus the badges inside them ("New project
+      7", not "New project 13"). Kanban cards, calendar chips and schedule list
+      items are placed exactly as before.
+    · Choosing from a dropdown menu (or any group of buttons that works like one)
+      now leaves exactly one item selected: the engine looks up from the clicked
+      item to the box that owns the whole list, instead of trusting the item's
+      own <li>, which is where every choice used to keep its highlight and the
+      menu ended up looking fully selected. The button that opened the menu takes
+      the chosen label ("Last 6 months", "Vertex Flash — fastest", "Active"), the
+      icon and any visually-hidden text on that button stay where they are, an
+      <a> menu item is marked with aria-current instead of aria-pressed, and a
+      disabled item is refused instead of becoming the choice. Works for menus in
+      .dropdown, menus inside .input-group, split buttons and plain button groups.
+    · Icon buttons that used to do nothing now work. On the overview page the
+      message icon opens the shared message dialog (#q-demo-message) with the
+      member already in the "To" field, and the "…" button opens a real menu:
+      View profile, Send message, Copy email and Remove member — the removal
+      asks first, says "Member removed.", and the toast puts the row back.
+      The chat page's conversation options menu gained Pin, Mark as unread,
+      Mute, Copy conversation and Delete conversation (which removes the open
+      conversation, with undo), and the conversation list itself now switches
+      the open item instead of ignoring the click.
+    · The reason those buttons stayed silent: a control whose only attribute was
+      data-bs-toggle="tooltip" ran nothing, and because a data-* attribute
+      counted as "has behaviour", the demo fallback stayed quiet as well.
+      Tooltips are now treated as decoration — a tooltip-only button answers
+      with the usual demo note (and Bootstrap's runtime data-bs-original-title
+      and data-popper-* attributes count as decoration too).
+    · New shared dialog, printed in the docs: <button data-demo-message="Name">
+      fills #q-demo-message, and its [data-demo-message-send] button refuses an
+      empty message and then confirms "Message sent to Name — demo only." The
+      delete dialog learned three optional words: data-demo-delete-verb (the
+      toast verb), data-demo-delete-name (the record the dialog names) and
+      data-demo-delete-target (remove a named element instead of the row).
+    · Hovering the selected tab no longer makes its label disappear. The idle
+      pill's hover tint also applied to the active pill — and because that rule
+      came after the .active rule with the same weight, the light hover surface
+      landed under the white label. The hover tint now excludes .active, the
+      active pill restates its own colours in every state, and the fill shades
+      come from two tokens (--q-fill-bg / --q-fill-hover-bg) so both palettes
+      stay readable: white on #4f46e5 = 6.3:1 in light and on #6a61f0 = 4.6:1
+      in dark, where the raised dark-mode brand colour alone only reached
+      3.6:1. Applies to tabs, pills and the filter chips that share the class.
+    · The filter selects printed their caret on top of the label ("All statuse▾s").
+      Bootstrap reserves room for that caret with padding on the inline end, and
+      the .form-select padding shorthand in components.css reset it; the rule now
+      sets padding-block plus padding-inline (2.1rem for the field, 2rem for the
+      small one) and pins the caret to the same 0.85rem offset in both
+      directions — rtl.css mirrors the numbers, so RTL keeps the same gap.
+    · pages/customer-details.html — the three header buttons each do real work
+      now. "Email" opens the shared message dialog with the account's billing
+      address in the To field (data-demo-message-to) and records the note in the
+      activity feed (data-demo-message-log); "Log call" writes a dated entry at
+      the top of the timeline (data-demo-log, -text, -variant, -done) instead of
+      only toasting; and "Edit customer" opens the record dialog prefilled from
+      the page itself (data-demo-edit="#customer-profile, .q-page-head"), saving
+      the new name, plan, seats, domain, email, phone and address back into the
+      profile card and the page title, and refreshing the avatar initials.
+      Blank cells in a page are skipped, so a dialog can never wipe a value the
+      page does not show.
+    · The card boards (pages/pipeline.html and pages/pages/kanban.html) became a
+      real drag & drop board. A card can be dropped in front of any card — the
+      engine inserts it in front of the one under the pointer instead of always
+      appending at the end of the column — and a dashed outline (on the card
+      it would take the place of, or on the column when the drop lands on open
+      space) shows where it will land before the mouse is up. Every move updates
+      the stage counters and the "Drop a card here" note of an emptied column,
+      can be taken back from the toast's Undo, and is announced in a polite live
+      region for screen readers. Each card carries a grip button (⠿) in its meta
+      row: it is the natural handle to drag by, and it opens a "move to stage"
+      menu with the current stage marked — which is also the only way to move
+      a card with the keyboard or on a touch screen, where an HTML5 drag never
+      starts. The boards are labelled (data-kanban-label="Deal" / "Task") so the
+      toast and the announcements use the page's own word.
+    · pages/pages/kanban.html — the Filter button opened a toast and nothing else. It
+      is a real filter panel now: one dropdown with three groups (Priority,
+      Label, Assignee) whose chips switch on and off, one choice per group. A
+      card matches when a badge, an avatar or a tooltip inside it carries the
+      value, so "High" finds the priority badge, "Ava Reynolds" the tooltip on
+      her avatar and "Shipped" the label — no per-page wiring. While a filter
+      is on: the cards that do not match are hidden, the trigger wears the number
+      of active filters, the panel's summary says "Showing 3 of 9 tasks", a
+      column counter honestly reads "0 / 2" (visible / total) instead of "2", an
+      emptied column says "No matching cards" instead of pretending it is empty,
+      and the change is announced in a live region for screen readers. Clear
+      switches everything back, the new card a user adds while a filter is on is
+      counted but stays hidden until the filter clears, and a drop that lands on
+      a card the filters hide says so in the toast. Both modules agree on one
+      hook — data-filtered, the same attribute the tables use.
+    · pages/pages/pipeline.html — the Board / Forecast switch is a real segmented
+      control now (one active button, aria-pressed in step, each choice explains
+      what it shows) instead of two buttons that only toasted, and "Add deal"
+      writes the new card into the first stage at the top of the column, tells
+      the board to repaint its counters and handles, and names the stage it went
+      to in the confirmation ("New deal 4 was added to Discovery"). Undo removes
+      it again and the counters follow.
+    · The customer directory's grid view was rebuilt as a proper card set. Each
+      card now reads its subtitle from the row (the domain line), prints the
+      facts as labelled pairs instead of a run of loose text, keeps the health
+      column as a real progress bar, and copies the plan badge straight out of
+      the table cell so the card and the table can never disagree on colour.
+      The empty "Health:" text the old builder printed for a progress cell is
+      The card grid also stopped borrowing the table's Bootstrap .row: it is a
+      plain CSS grid now (auto-fill, minmax(min(20rem, 100%), 1fr)) with the
+      same 1.25rem inset as the toolbar above it, so the cards keep one width,
+      one gap and stay clear of the card's border on all four sides — the rule
+      also resets margin to zero, because the Bootstrap .row class the earlier
+      build put on the same element carries negative gutters that cancel exactly
+      that padding, and it drops the inset to 1rem on phone widths. A search that
+      matches nothing
+      answers with a short "No customers match the current filters." card
+      instead of an empty hole.
+      The empty "Health:" text the old builder printed for a progress cell is
+      gone, and the old builder asked for a badge-soft-secondary class that the
+      stylesheet never painted — soft badges now cover every variant the
+      JavaScript can ask for (secondary aliases neutral) and a state check guards
+      it. The cards also carry the row's own action buttons now: open, edit and
+      delete work from a card exactly as they do from the row, and the grid
+      follows the search box, the plan filter, every save, every new customer and
+      every delete without a second click.
+    · A badge sitting next to a chip in a flex row had its label stuck to the top
+      of the taller pill (the row stretches both to one height): .badge is now an
+      inline-flex box that centres its content, and the icon inside a badge gets
+      a gap instead of touching the text. The chip icon also lost the extra
+      leading that pushed it off the text line.
+
+    · A full sweep of every button and link in the package
+      (tools/check-buttons.mjs: every page, every control clicked, the page
+      watched for a reaction) found four controls that answered nothing, all
+      fixed:
+        · the middle links of every breadcrumb pointed at "#", so clicking
+          "Applications" or "CRM" jumped to the top of the page. Each crumb now
+          points at the first real page of the section it names (the sidebar
+          navigation decides which) and a label with no page behind it is
+          printed as plain text instead of pretending to be a link.
+        · "Copy" on a row of the prompt history table copied nothing and
+          answered "There was nothing to copy here." The cell reader took
+          "td:nth-child(2)", which is the empty checkbox column on every table
+          that starts with a select column; it now prefers a cell marked
+          data-demo-copy-block-text and otherwise takes the first cell that
+          really holds text, stepping over checkboxes, buttons and action
+          columns.
+        · the conversation list on ai/chat.html did nothing — its items carried
+          data-conversation but no behaviour. They are a real chooser now (the
+          same data-demo-pick wiring the team chat uses): the picked row goes
+          active, the thread header takes that conversation's name, the
+          transcript gains a line naming the open conversation and the toast
+          confirms it.
+        · the Delete button of the shared confirm dialog was blank when the
+          dialog had not been handed a row. It now says "Nothing is selected to
+          remove. Open this dialog from a Delete button." and closes itself.
+      Two smaller things came out of the same sweep: a Copy button in a chat
+      message raised two toasts (assets/js/pages/chat.js listened for the same
+      attribute demo-ui.js already owns — the second listener is gone and
+      messages the chat writes itself now use the engine's own hooks), and
+      hideModal() only hid dialogs Bootstrap believed it had opened, so one put
+      on screen another way stayed up; it always leaves the screen now.
+
+    · The calendar on pages/calendar.html is a working calendar now, not a
+      picture of one. Month, week and day views are all drawn from one list of
+      events; Previous / Next / Today move by a month, a week or a day depending
+      on the view, and today is always marked in the grid. Clicking a day loads
+      it into the sidebar agenda (which is headed "Today's agenda" only when it
+      really is today, and offers a "Back to today" button when it is not);
+      double-clicking a day opens the event dialog on that day.
+      The four calendars filter the grid: the legend dots in the header and the
+      switches in the sidebar are two views of the same state and always agree,
+      the badge beside the title counts the events on screen, the sidebar says
+      "Showing X of Y events", and switching everything off is met with an
+      honest empty grid and a "Show all calendars" button instead of a blank
+      table. A day with more than three events folds the rest into "+N more",
+      which opens that day.
+      "New event" opens a real dialog — title, date, time, end, calendar and
+      place — with the same inline validation, announcements and undo the rest of
+      the template uses: the saved event is drawn into the cell of the day it was
+      given, its calendar is switched back on rather than swallowing it, and the
+      chip is ringed briefly (never the whole card). Clicking any chip opens the
+      event, where it can be edited (the form comes back filled, and the edit is
+      announced and undoable) or deleted (also undoable). The demo events are
+      seeded against the month the page opens on, so the calendar is never empty
+      and "Today" always lands on a real day, whatever the date on the buyer's
+      machine. assets/js/pages/calendar.js is 100% client-side; swapping the
+      SEEDS list at the top of the file for your own data is the whole
+      integration, and window.QevoraCalendar exposes events(), state() and
+      refresh() for anything the markup does not cover.
+
+    · The board filter panel and the header profile were the last two places
+      where a narrow screen broke the design.
+      The filter panel on pages/kanban.html keeps its desktop dropdown but no
+      longer runs off the bottom of a phone: the panel is a column with a
+      scrolling body (the three groups) and a pinned, opaque footer (the
+      "Showing X of Y tasks" line and Clear), its width is capped against the
+      viewport (½ the phone²s width at 320px, no horizontal scrollbar at any
+      size) with 36px per chip on a phone, so the last row is reachable at any
+      height. The panel stays anchored to the Filter button on every screen — a
+      panel pinned to the bottom of a phone sits a thumb's journey away from the
+      control that opened it — and it carries its own close button in the header
+      ([data-demo-board-close]), so it can be dismissed without hunting for a
+      piece of the page to tap. Closing it that way hands focus back to the
+      Filter button. Give any panel the same classes and it behaves the same
+      way; the structure is documented with the board hooks.
+      The panel is also closed until it is asked for. Declaring its own display
+      in the base rule overrode Bootstrap's hidden state: the panel was on
+      screen the moment the page loaded, and it jumped into place on the first
+      click, because Popper only positions a menu it is showing. Only the open
+      panel (.dropdown-menu-filter.show) is a column now, so it opens where the
+      Filter button is and closes on a click outside.
+      The header profile button is a perfect circle below 768px (40px, no
+      padding, centred avatar). It used to be a pill around the avatar: with the
+      name and role hidden on a phone that left an oval ring hugging a round
+      avatar. Avatars also carry aspect-ratio: 1 / 1 and a min-width per size, so
+      a flex row that wants more width than it has can never stretch one into an
+      oval either. On a phone the header is one even row: the drawer button, the
+      colour mode, the notifications and the profile are the same 40px square
+      with one optical icon size (the drawer glyph used to be 1.15rem against
+      the 1.05rem of the buttons beside it), and every icon is centred by
+      line-height instead of by baseline luck.
+
+    · Every row of the products table in pages/products.html carried TWO Edit
+      pencils: the actions cell had been edited twice, leaving a duplicate
+      button (and on the AI Token Pack row the half-renamed copy still said
+      "Edit AI Token Pack" while the row is "AI Token Pack — 1M"). Each row is
+      now view / edit / delete once, the duplicated row keeps the name it
+      actually has, and the table's static "Showing 1–5 of …" line counts the
+      six rows in it. The audit grew two checks so this cannot come back: an
+      actions cell may not hold the same control twice (the same icon doing the
+      same job), and a control that names its row may not name a different one
+      — "View AI Token Pack" on the "AI Token Pack — 1M" row is caught even
+      though the two labels are not identical. Menu items inside a dropdown are
+      left alone: the dashboard row legitimately offers "Message" both as a
+      shortcut and inside its "…" menu.
+
+    · Tapping the dimmed page behind an open drawer on a phone does nothing
+      any more. The backdrop ships in the markup of every page, and sidebar.js
+      only bound its click listener inside the branch that CREATES the element
+      — so the listener was never attached on a real page, and the only ways out
+      of the drawer were the Esc key and a navigation link. The click is bound
+      once now, whether the backdrop was found or made.
+
+    · Wide tables stay readable on a phone. A .table-responsive wrapper scrolls,
+      but a table only scrolls once it is given something to scroll, and with no
+      floor a table hugs the wrapper and every column is squeezed to the width of
+      its longest word. On pages/products.html the SKU broke into "QV- / SCALE- /
+      01" — a hyphen is a legal break — the customer names on pages/orders.html
+      stacked over two lines ("Northstar / Labs"), an invoice number on
+      pages/customer-details.html split in three, and a status badge was cut in
+      half; when a column is squeezed below the width of its content the text
+      leaves the cell altogether and runs over the column beside it, which reads
+      as everything running together. Below 992px a data cell now keeps its value
+      on one line and the table takes the width it needs — min-width: min-content
+      guarantees it is never narrower than its own content — so the wrapper does
+      the scrolling. A status badge never breaks in half, the muted second line
+      inside a cell ("Annual subscription", "Oct 2, 2026 · 09:24") is an
+      annotation and may wrap, and a whole column of prose opts out with
+      Bootstrap's .text-wrap (the documentation tables do; their inline code
+      still stays whole). The older .table-min and .table-min-lg classes are
+      gone, because a floor that has to be maintained per table is a floor that
+      will be wrong the first time a column is added. Nothing here applies on a
+      desktop: every table has the room it needs and nothing scrolls that did not
+      scroll before. The behaviour is documented on the Tables component page.
+    · The phone header is opaque. It was a frosted strip at 85% opacity with a
+      backdrop blur, which is a nice effect on a wide screen and a muddy one on a
+      40px-tall row of controls: a card's gradient cover scrolling under it showed
+      through between the icons. Below 768px the header uses the new solid
+      --q-header-bg-solid token (white in the light palette, the sidebar ink in
+      the dark one) and drops the blur; the desktop header is unchanged.
+
+  Documentation and static pages
+    · Two new utility pages ship with the template: utility/terms.html and
+      utility/privacy.html. Both are written as complete, plain-English
+      documents rather than placeholder text — agreement, billing, acceptable
+      use, AI output, intellectual property, liability and governing law on the
+      terms page; what is collected, legal bases, cookies, AI prompts, sharing,
+      retention, security and user rights on the privacy page. Each page carries
+      an "on this page" outline, a related-documents card, a print action and
+      breadcrumbs, works in light, dark and RTL, and is linked from the sidebar
+      and the footer of every page. On a phone the outline and related-documents
+      cards sit above the article — a reader who opens the page on a small screen
+      gets the map of the document before the document — while the desktop
+      arrangement is unchanged. The page count in the documentation, README,
+      CHANGELOG, marketplace metadata and cover art moves from 81 to 83, and the
+      release ZIP now ships 83 pages plus the host 404 mirror.
+    · Both READMEs now carry the complete inventory too. README.md (the project
+      readme on the repository) gains a "Page inventory" section, and the buyer
+      README.txt gains section 13, "Every page in this package" — all 84 pages
+      with their paths and one-line purposes, generated by tools/build.mjs from
+      the same inventory the template is built from, written between markers so
+      the rest of each file stays hand-written. The counts printed around them
+      (the buyer README's folder table, the folder-tree line, the guide's intro
+      and table) are filled from that inventory as well. README.txt's page list
+      was also wrong before: the applications list was missing pages/analytics.html
+      and the UI-kit list named a documentation page that does not exist. The
+      release tool re-opens both files to check that each lists every page
+      exactly once, and tools/build.mjs --check fails the moment they drift.
+    · A sitemap page ships as utility/sitemap.html, and it is generated, not
+      hand-written. The body is built from the same page inventory the build
+      reads (src/pages.mjs), grouped into the seven modules the sidebar uses —
+      dashboard, applications, AI workspace, UI kit, authentication, utility and
+      documentation — with the sidebar's own label for each page, its file path
+      and its one-line description, a module counter, jump links and four KPI
+      tiles that are counted in the same pass. A page that is added, renamed or
+      removed therefore appears, moves or disappears here on the next build, and
+      tools/release.mjs re-checks the shipped file from the other side: every
+      page in the inventory must be listed exactly once, nothing may be listed
+      that the ZIP does not contain, and the printed totals must match. The page
+      is reachable from the sidebar's Utility group and from the footer of every
+      page. The page count moves from 83 to 84, and the release ZIP now ships
+      84 pages plus the host 404 mirror.
+
+  Links, buttons and runtime behaviour
+    · The light/dark toggle did nothing when localStorage is unavailable —
+      private-mode windows, sandboxed frames and, most importantly, opening the
+      template straight from disk (file://), which is exactly what a buyer does
+      with the ZIP. The choice is now also held in memory, so the button always
+      applies the theme for the session; the sidebar rail and the RTL switch
+      share the same fallback.
+    · Sortable table headers reordered the rows but never announced the sort
+      state; the active column now carries aria-sort and the others are cleared.
+    · The copy buttons read innerText, which needs layout — they fall back to
+      textContent in embedded webviews where innerText is missing.
+    · pages/projects.html — the "All / My projects" pills pointed at
+      #projects-all and #projects-active, but no such panes existed, so clicking
+      them did nothing. The grid is a real tab set now: every project, or the
+      three Ava Reynolds is part of, with role/aria-controls wired up.
+    · components/typography.html — "Change the font" linked to a #typography
+      anchor the documentation page does not have; it points at the customise
+      section that documents the font swap.
+    · Every button in the template now carries an explicit type="button" (or
+      type="submit" inside a form) instead of relying on the HTML default, which
+      also stops a demo button from submitting a form it is dropped into.
+    · Addresses printed as links are real mailto: links and the status link on
+      the 500/maintenance pages is a real external link; the remaining
+      placeholder menus keep href="#" and app.js already suppresses their jump.
+    · Two audit checks cover this class of bug from now on: 18 validates every
+      in-page anchor, cross-page anchor, data-bs-target and aria-controls, and
+      19 requires an explicit button type and a real href on links.
+    · All 82 pages were run in a scripted DOM smoke test (tools/smoke.mjs) —
+      no console errors, no missing assets, no exceptions — and the same script
+      clicks through the demo tabs, copy buttons, table sorting, pagination, a
+      modal, the theme toggle, the collapsed-rail button and the chat composer.
+      It ships in tools/; it is the only script that needs jsdom
+      (npm install --no-save jsdom).
+
+  Theme
+    · Tooltips were unreadable in dark mode: the bubble colour was hardcoded to
+      a dark navy while Bootstrap derives the tooltip text colour from
+      --bs-body-bg, which is #0b0f1c in this palette — dark text on a dark
+      bubble, measured at 1.05:1. Both colours are now tokens
+      (--q-tooltip-bg / --q-tooltip-color), so dark mode shows Bootstrap's
+      familiar inverted bubble (light surface, dark label) and the light theme
+      is unchanged.
+    · The audit gained a theme pass that resolves the token cascade of both
+      themes and measures real WCAG contrast for tooltips, cards/popovers,
+      dropdown menus, modal dialogs and toasts — the failure above would have
+      been caught by it (it reports 1.05:1 for the old bubble).
+
+  Shell — collapsed sidebar
+    · Clicking a section icon in the collapsed rail used to open a fly-out
+      submenu panel, but the navigation column is a scroll container
+      (overflow-x: hidden), so the panel was clipped to the width of the rail
+      and all the reader saw was an empty white sliver. The rail no longer opens
+      a panel at all: a click expands the sidebar and opens that section, and
+      hovering shows the section name as a tooltip.
+    · The 78px icon rail used to hold both the brand mark and the inline
+      collapse button, so the two overflowed the rail and the logo was clipped
+      against the left edge. The rail now centres the mark on its own and the
+      inline button steps aside: the header button collapses and expands the
+      sidebar (it is now labelled "Expand navigation" / "Collapse navigation"
+      and swaps to a chevron while collapsed).
+    · Compact labels were hidden with display:none, which stripped the
+      accessible name from every icon-only link and left the fly-out submenus
+      showing empty rows. Labels are clipped instead of removed, the submenu
+      popovers show their text again, and each rail icon gets a tooltip on
+      hover or focus.
+    · Both sidebar togglers now report aria-expanded together, and tooltip
+      instances are created through getOrCreateInstance so no duplicate
+      Bootstrap instance is ever registered.
+
+  Core and design system
+    · Four classes used by the pages were never defined in CSS: .min-w-0 (used
+      on 71 pages for header and sidebar truncation), .fw-400, .fw-700 and
+      .bg-accent. All four are now shipped as utilities.
+    · .kanban__col-body — the drag & drop target handled by components.js —
+      had no styling; it now has a minimum height so empty columns stay usable.
+
+  Pages
+    · Product details and transactions rendered a chart canvas but did not load
+      Chart.js, so the widgets would have stayed blank; both now load
+      CHART_SCRIPTS.
+    · The AI chat rating button had no accessible name; it gained an aria-label
+      and a matching thumbs-down action, and decorative icons are now
+      aria-hidden.
+    · The content generator's reference-material <label for> pointed at an id
+      that did not exist; the hidden file input now carries that id.
+    · The dropdown menu group label was an <h6>, which skipped heading levels;
+      it is a standard list item now.
+    · The typography preview rendered a second <h1> beside the page title; the
+      sample uses the .h1 utility and the printed sample matches the preview.
+    · The rich tooltip example carried raw tags inside a title attribute; it is
+      escaped and uses data-bs-title.
+
+  Earlier fixes
+    · Corrected the Bootstrap Icons font path in the shared <head> partial.
+    · Fixed asset depth on the AI image generator page.
+    · Aligned the AI overview "tokens used" counter with its formatted value.
+    · Replaced an invalid sticky utility on the FAQ page.
+    · Corrected table row links and a stale copy-button target in the UI kit.
+    · Registered the chat script only on the two chat pages and the chart
+      script only on pages that render charts.
+
+--------------------------------------------------------------------------------
+Planned for a future release
+--------------------------------------------------------------------------------
+  · Email template set (welcome, invoice, password reset)
+  · Additional chart types (scatter, radar, mixed bar/line)
+  · Optional jQuery-free data-table plugin integration guide
+================================================================================

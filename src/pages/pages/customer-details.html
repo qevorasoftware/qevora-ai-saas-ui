@@ -1,0 +1,183 @@
+      <div class="q-page-head">
+        <div>
+          {{BREADCRUMB}}
+          <h1 class="q-page-head__title mt-2" data-slot="name">Northstar Labs</h1>
+          <p class="q-page-head__subtitle"><span data-slot="plan">Scale</span> plan · <span data-slot="seats">142</span> seats · customer since February 2023</p>
+        </div>
+        <div class="d-flex flex-wrap gap-2">
+          <button type="button" class="btn btn-white" data-demo-message="Northstar Labs" data-demo-message-to="billing@example.com"
+                  data-demo-message-log="Email sent to {to}"><i class="bi bi-envelope"></i> Email</button>
+          <button type="button" class="btn btn-white" data-demo-log="Call logged: renewal, seats and onboarding"
+                  data-demo-log-text="Spoke with the account team about the renewal date and the seat count." data-demo-log-variant="success"
+                  data-demo-log-done="Call logged — demo only."><i class="bi bi-telephone"></i> Log call</button>
+          <button type="button" class="btn btn-primary" data-demo-edit="#customer-profile, .q-page-head" data-demo-label="Customer"
+                  data-demo-fields="name:Customer,plan:Plan,seats:Seats,domain:Domain,email:Billing email,phone:Phone,address:Address"
+                  data-demo-options="plan:Scale|Growth|Starter"><i class="bi bi-pencil-square"></i> Edit customer</button>
+        </div>
+      </div>
+
+      <div class="row g-3 q-section">
+        <div class="col-xl-4">
+          <div class="card" id="customer-profile">
+            <div class="card-profile__cover"></div>
+            <div class="card-body pt-0">
+              <div class="d-flex align-items-end justify-content-between">
+                <span class="avatar avatar-xl bg-avatar-1 card-profile__avatar" data-demo-initials="name">NL</span>
+                <span class="badge badge-soft-success badge-pill mb-2">Active</span>
+              </div>
+              <h2 class="h5 fw-600 mt-3 mb-1" data-slot="name">Northstar Labs</h2>
+              <p class="fs-7 text-muted-2 mb-3">Enterprise AI platform · San Francisco, CA</p>
+
+              <div class="d-flex flex-wrap gap-2 mb-3">
+                <span class="chip"><i class="bi bi-building"></i> <span data-slot="seats">142</span> seats</span>
+                <span class="chip"><i class="bi bi-star"></i> <span data-slot="plan">Scale</span> plan</span>
+              </div>
+
+              <ul class="list-unstyled d-flex flex-column gap-3 mb-4">
+                <li class="d-flex gap-2 fs-7">
+                  <i class="bi bi-globe2 text-muted-2"></i>
+                  <span data-slot="domain">northstarlabs.com</span>
+                </li>
+                <li class="d-flex gap-2 fs-7">
+                  <i class="bi bi-envelope text-muted-2"></i>
+                  <a href="#" class="text-truncate" data-slot="email">billing@example.com</a>
+                </li>
+                <li class="d-flex gap-2 fs-7">
+                  <i class="bi bi-telephone text-muted-2"></i>
+                  <span data-slot="phone">+1 (415) 555-0134</span>
+                </li>
+                <li class="d-flex gap-2 fs-7">
+                  <i class="bi bi-geo-alt text-muted-2"></i>
+                  <span data-slot="address">548 Market Street, San Francisco, CA 94104</span>
+                </li>
+              </ul>
+
+              <div class="divider-y"></div>
+
+              <h3 class="fs-7 fw-600 text-heading mb-2">Account owner</h3>
+              <div class="d-flex align-items-center gap-2">
+                <span class="avatar avatar-sm bg-avatar-1">AR</span>
+                <span>
+                  <span class="d-block fs-7 fw-500 text-heading">Ava Reynolds</span>
+                  <span class="d-block fs-8 text-muted-2">ava@example.com</span>
+                </span>
+              </div>
+
+              <div class="divider-y"></div>
+
+              <div class="d-grid gap-2">
+                <button type="button" class="btn btn-soft-primary" data-demo-new="#q-demo-record" data-demo-table="#customer-invoices-table" data-demo-label="Invoice"><i class="bi bi-receipt"></i> Create invoice</button>
+                <button type="button" class="btn btn-ghost text-danger" data-demo-action="Customer archived — demo interaction only." data-demo-variant="danger"><i class="bi bi-archive"></i> Archive customer</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-xl-8 d-flex flex-column gap-3">
+          <div class="row g-3">
+            <div class="col-sm-4">
+              <div class="kpi-tile">
+                <div class="kpi-tile__body">
+                  <p class="kpi-tile__label mb-0">Lifetime value</p>
+                  <p class="kpi-tile__value">$248,400</p>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-4">
+              <div class="kpi-tile">
+                <div class="kpi-tile__body">
+                  <p class="kpi-tile__label mb-0">Open invoices</p>
+                  <p class="kpi-tile__value">$12,400</p>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-4">
+              <div class="kpi-tile">
+                <div class="kpi-tile__body">
+                  <p class="kpi-tile__label mb-0">AI tokens used</p>
+                  <p class="kpi-tile__value">420K</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-header">
+              <div>
+                <h2 class="card-title">Revenue trend</h2>
+                <p class="card-subtitle">Billed amount per quarter</p>
+              </div>
+            </div>
+            <div class="card-body">
+              <div class="chart-holder chart-holder--md">
+                <canvas data-chart="sales" data-labels="2023,2024,2025,2026" data-series="Billed|48,86,124,168"></canvas>
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-header">
+              <div>
+                <h2 class="card-title">Recent invoices</h2>
+                <p class="card-subtitle">Last four billing cycles</p>
+              </div>
+              <a href="invoices.html" class="btn btn-sm btn-soft-secondary">All invoices</a>
+            </div>
+            <div class="table-responsive">
+              <table class="table table-hover align-middle" id="customer-invoices-table" data-demo-record="invoice"
+                     data-demo-fields="id:Invoice,issued:Issued,amount:Amount,status:Status">
+                <thead>
+                  <tr>
+                    <th scope="col">Invoice</th>
+                    <th scope="col">Issued</th>
+                    <th scope="col" class="text-end">Amount</th>
+                    <th scope="col">Status</th>
+                    <th scope="col" class="text-end"></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr data-invoice-id="INV-2026-0184" data-invoice-issued="Sep 28, 2026" data-invoice-amount="12400.00" data-invoice-status="Paid"><td class="fw-500 text-heading">INV-2026-0184</td><td class="text-muted-2">Sep 28, 2026</td><td class="text-end fw-600 text-heading">$12,400.00</td><td><span class="badge badge-soft-success badge-pill">Paid</span></td><td class="text-end"><a class="btn btn-icon btn-sm btn-ghost" href="invoice-details.html" aria-label="View invoice"><i class="bi bi-arrow-right"></i></a></td></tr>
+                  <tr data-invoice-id="INV-2026-0147" data-invoice-issued="Aug 28, 2026" data-invoice-amount="12400.00" data-invoice-status="Paid"><td class="fw-500 text-heading">INV-2026-0147</td><td class="text-muted-2">Aug 28, 2026</td><td class="text-end fw-600 text-heading">$12,400.00</td><td><span class="badge badge-soft-success badge-pill">Paid</span></td><td class="text-end"><a class="btn btn-icon btn-sm btn-ghost" href="invoice-details.html" aria-label="View invoice"><i class="bi bi-arrow-right"></i></a></td></tr>
+                  <tr data-invoice-id="INV-2026-0112" data-invoice-issued="Jul 28, 2026" data-invoice-amount="11200.00" data-invoice-status="Paid"><td class="fw-500 text-heading">INV-2026-0112</td><td class="text-muted-2">Jul 28, 2026</td><td class="text-end fw-600 text-heading">$11,200.00</td><td><span class="badge badge-soft-success badge-pill">Paid</span></td><td class="text-end"><a class="btn btn-icon btn-sm btn-ghost" href="invoice-details.html" aria-label="View invoice"><i class="bi bi-arrow-right"></i></a></td></tr>
+                  <tr data-invoice-id="INV-2026-0078" data-invoice-issued="Jun 28, 2026" data-invoice-amount="10800.00" data-invoice-status="Overdue"><td class="fw-500 text-heading">INV-2026-0078</td><td class="text-muted-2">Jun 28, 2026</td><td class="text-end fw-600 text-heading">$10,800.00</td><td><span class="badge badge-soft-danger badge-pill">Overdue</span></td><td class="text-end"><a class="btn btn-icon btn-sm btn-ghost" href="invoice-details.html" aria-label="View invoice"><i class="bi bi-arrow-right"></i></a></td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-header">
+              <div>
+                <h2 class="card-title">Activity</h2>
+                <p class="card-subtitle">Every interaction with this account</p>
+              </div>
+            </div>
+            <div class="card-body">
+              <ul class="timeline">
+                <li class="timeline__item">
+                  <span class="timeline__dot timeline__dot--success"></span>
+                  <p class="timeline__title">Invoice INV-2026-0184 paid</p>
+                  <p class="timeline__meta">$12,400 · 2 hours ago</p>
+                  <p class="timeline__text">Payment settled from the saved corporate card ending in 4242.</p>
+                </li>
+                <li class="timeline__item">
+                  <span class="timeline__dot"></span>
+                  <p class="timeline__title">Seats increased from 120 to 142</p>
+                  <p class="timeline__meta">Ava Reynolds · 3 days ago</p>
+                </li>
+                <li class="timeline__item">
+                  <span class="timeline__dot timeline__dot--warning"></span>
+                  <p class="timeline__title">AI quota at 82%</p>
+                  <p class="timeline__meta">Automated alert · 5 days ago</p>
+                  <p class="timeline__text">Consider recommending the Enterprise plan before the next cycle.</p>
+                </li>
+                <li class="timeline__item">
+                  <span class="timeline__dot timeline__dot--muted"></span>
+                  <p class="timeline__title">Support ticket #4821 resolved</p>
+                  <p class="timeline__meta">Closed in 4h 12m · Sep 21, 2026</p>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>

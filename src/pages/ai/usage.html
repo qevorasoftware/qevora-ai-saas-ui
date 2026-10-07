@@ -1,0 +1,229 @@
+      <div class="q-page-head">
+        <div>
+          {{BREADCRUMB}}
+          <h1 class="q-page-head__title mt-2">AI usage</h1>
+          <p class="q-page-head__subtitle">Token consumption, cost and quota health for the current cycle.</p>
+        </div>
+        <div class="d-flex flex-wrap gap-2">
+          <select class="form-select" style="width: auto;" aria-label="Select billing period" data-demo-echo="Billing period">
+            <option selected>October 2026</option>
+            <option>September 2026</option>
+            <option>August 2026</option>
+          </select>
+          <button type="button" class="btn btn-primary" data-demo-export data-demo-export-name="qevora-ai-usage-2026-10-03.csv"><i class="bi bi-download"></i> Export usage</button>
+        </div>
+      </div>
+
+      <div class="row g-3 q-section">
+        <div class="col-sm-6 col-xl-3">
+          <div class="kpi-tile">
+            <span class="card-stat__icon bg-primary-soft text-primary-2"><i class="bi bi-cpu"></i></span>
+            <div class="kpi-tile__body">
+              <p class="kpi-tile__label mb-0">Tokens used</p>
+              <p class="kpi-tile__value">680,420</p>
+              <span class="trend trend-up"><i class="bi bi-arrow-up-short"></i> 18.2%</span>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-6 col-xl-3">
+          <div class="kpi-tile">
+            <span class="card-stat__icon bg-info-soft text-info"><i class="bi bi-stars"></i></span>
+            <div class="kpi-tile__body">
+              <p class="kpi-tile__label mb-0">Requests</p>
+              <p class="kpi-tile__value">48,260</p>
+              <span class="trend trend-up"><i class="bi bi-arrow-up-short"></i> 22.4%</span>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-6 col-xl-3">
+          <div class="kpi-tile">
+            <span class="card-stat__icon bg-warning-soft text-warning"><i class="bi bi-currency-dollar"></i></span>
+            <div class="kpi-tile__body">
+              <p class="kpi-tile__label mb-0">Estimated cost</p>
+              <p class="kpi-tile__value">$1,842</p>
+              <span class="trend trend-flat"><i class="bi bi-dash-lg"></i> $0.0027 per request</span>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-6 col-xl-3">
+          <div class="kpi-tile">
+            <span class="card-stat__icon bg-danger-soft text-danger"><i class="bi bi-speedometer2"></i></span>
+            <div class="kpi-tile__body">
+              <p class="kpi-tile__label mb-0">Quota used</p>
+              <p class="kpi-tile__value">68%</p>
+              <span class="trend trend-up"><i class="bi bi-arrow-up-short"></i> 8 days remaining</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row g-3 q-section">
+        <div class="col-xl-8">
+          <div class="card h-100">
+            <div class="card-header">
+              <div>
+                <h2 class="card-title">Daily token consumption</h2>
+                <p class="card-subtitle">Prompt against completion tokens</p>
+              </div>
+            </div>
+            <div class="card-body">
+              <div class="chart-holder chart-holder--lg">
+                <canvas data-chart="tokens" data-labels="Oct 1,Oct 2,Oct 3,Oct 4" data-series="Prompt tokens|18,24,22,28;Completion tokens|9,14,11,16"></canvas>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-xl-4">
+          <div class="card h-100">
+            <div class="card-header">
+              <div>
+                <h2 class="card-title">Quota health</h2>
+                <p class="card-subtitle">Scale plan · 1M tokens</p>
+              </div>
+            </div>
+            <div class="card-body text-center">
+              <div class="d-inline-block" data-ring="68" data-ring-size="150" data-ring-stroke="13"></div>
+              <p class="fs-7 fw-600 text-heading mt-3 mb-1">680K of 1M tokens</p>
+              <p class="fs-8 text-muted-2 mb-3">At the current pace, the quota runs out in about 8 days.</p>
+              <a href="../pages/pricing.html" class="btn btn-soft-primary w-100">Add a token pack</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row g-3 q-section">
+        <div class="col-xl-5">
+          <div class="card h-100">
+            <div class="card-header">
+              <div>
+                <h2 class="card-title">Spend by model</h2>
+                <p class="card-subtitle">Cost distribution this month</p>
+              </div>
+            </div>
+            <div class="table-responsive">
+              <table class="table table-hover align-middle">
+                <thead>
+                  <tr>
+                    <th scope="col">Model</th>
+                    <th scope="col" class="text-end">Requests</th>
+                    <th scope="col" class="text-end">Tokens</th>
+                    <th scope="col" class="text-end">Cost</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="fw-500 text-heading">Nova-4 Turbo</td>
+                    <td class="text-end">20,269</td>
+                    <td class="text-end">285,800</td>
+                    <td class="text-end fw-600 text-heading">$1,020.40</td>
+                  </tr>
+                  <tr>
+                    <td class="fw-500 text-heading">Nova-4</td>
+                    <td class="text-end">12,548</td>
+                    <td class="text-end">176,900</td>
+                    <td class="text-end fw-600 text-heading">$398.02</td>
+                  </tr>
+                  <tr>
+                    <td class="fw-500 text-heading">Vertex Flash</td>
+                    <td class="text-end">9,169</td>
+                    <td class="text-end">129,300</td>
+                    <td class="text-end fw-600 text-heading">$281.64</td>
+                  </tr>
+                  <tr>
+                    <td class="fw-500 text-heading">Orbit Vision</td>
+                    <td class="text-end">6,274</td>
+                    <td class="text-end">88,420</td>
+                    <td class="text-end fw-600 text-heading">$141.94</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-xl-7">
+          <div class="card h-100">
+            <div class="card-header">
+              <div>
+                <h2 class="card-title">Usage by team</h2>
+                <p class="card-subtitle">Which teams drive consumption</p>
+              </div>
+            </div>
+            <div class="card-body d-flex flex-column gap-3">
+              <div>
+                <div class="d-flex justify-content-between fs-8 mb-2"><span class="fw-500 text-heading">Product &amp; design</span><span class="text-muted-2">284K tokens · 42%</span></div>
+                <div class="progress progress-sm"><div class="progress-bar" style="width: 42%"></div></div>
+              </div>
+              <div>
+                <div class="d-flex justify-content-between fs-8 mb-2"><span class="fw-500 text-heading">Engineering</span><span class="text-muted-2">196K tokens · 29%</span></div>
+                <div class="progress progress-sm"><div class="progress-bar bg-info" style="width: 29%"></div></div>
+              </div>
+              <div>
+                <div class="d-flex justify-content-between fs-8 mb-2"><span class="fw-500 text-heading">Marketing</span><span class="text-muted-2">122K tokens · 18%</span></div>
+                <div class="progress progress-sm"><div class="progress-bar bg-success" style="width: 18%"></div></div>
+              </div>
+              <div>
+                <div class="d-flex justify-content-between fs-8 mb-2"><span class="fw-500 text-heading">Customer success</span><span class="text-muted-2">78K tokens · 11%</span></div>
+                <div class="progress progress-sm"><div class="progress-bar bg-warning" style="width: 11%"></div></div>
+              </div>
+
+              <div class="alert alert-info mt-2 mb-0" role="alert">
+                <i class="bi bi-info-circle alert-icon"></i>
+                <span class="fs-8">Set a per-team limit in <a href="../pages/settings.html" class="fw-500">workspace settings</a> to keep consumption predictable.</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <div>
+            <h2 class="card-title">Heaviest users</h2>
+            <p class="card-subtitle">Top consumers this cycle</p>
+          </div>
+        </div>
+        <div class="table-responsive">
+          <table class="table table-hover align-middle">
+            <thead>
+              <tr>
+                <th scope="col">Member</th>
+                <th scope="col">Team</th>
+                <th scope="col" class="text-end">Requests</th>
+                <th scope="col" class="text-end">Tokens</th>
+                <th scope="col" style="min-width: 140px;">Share of quota</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><div class="d-flex align-items-center gap-2"><span class="avatar avatar-xs bg-avatar-6">LN</span><span class="fs-7">Lea Novak</span></div></td>
+                <td>Data</td>
+                <td class="text-end">8,420</td>
+                <td class="text-end fw-600 text-heading">124,600</td>
+                <td><div class="progress progress-sm"><div class="progress-bar" style="width: 62%"></div></div></td>
+              </tr>
+              <tr>
+                <td><div class="d-flex align-items-center gap-2"><span class="avatar avatar-xs bg-avatar-1">AR</span><span class="fs-7">Ava Reynolds</span></div></td>
+                <td>Product</td>
+                <td class="text-end">7,180</td>
+                <td class="text-end fw-600 text-heading">98,400</td>
+                <td><div class="progress progress-sm"><div class="progress-bar" style="width: 48%"></div></div></td>
+              </tr>
+              <tr>
+                <td><div class="d-flex align-items-center gap-2"><span class="avatar avatar-xs bg-avatar-3">MC</span><span class="fs-7">Marcus Chen</span></div></td>
+                <td>Engineering</td>
+                <td class="text-end">6,940</td>
+                <td class="text-end fw-600 text-heading">82,100</td>
+                <td><div class="progress progress-sm"><div class="progress-bar" style="width: 41%"></div></div></td>
+              </tr>
+              <tr>
+                <td><div class="d-flex align-items-center gap-2"><span class="avatar avatar-xs bg-avatar-4">DO</span><span class="fs-7">Daniel Okafor</span></div></td>
+                <td>Engineering</td>
+                <td class="text-end">5,210</td>
+                <td class="text-end fw-600 text-heading">64,800</td>
+                <td><div class="progress progress-sm"><div class="progress-bar" style="width: 32%"></div></div></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>

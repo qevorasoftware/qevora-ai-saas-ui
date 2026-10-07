@@ -1,0 +1,373 @@
+================================================================================
+  QEVORA AI SAAS UI — THEMEFOREST FINALIZATION CHECKLIST
+  Version 1.0.0  ·  every item from the review, with its state and where to look
+================================================================================
+
+  Legend
+    DONE      finished and verified in this repository
+    YOURS     only you can do it (marketplace account, upload button)
+    NOTE      decided differently on purpose — the reason is written out
+
+--------------------------------------------------------------------------------
+ 1. FINALIZE LICENSE.TXT                                        [DONE]
+--------------------------------------------------------------------------------
+  · The "NOTE FOR THE SELLER / Replace the Template licence section" wording is
+    gone. LICENSE.txt now opens with the real Envato terms:
+      - Regular and Extended licence, in plain words
+      - the four official licence URLs (regular, extended, comparison)
+      - what a buyer may and may not do
+      - the standard "as is" warranty paragraph
+  · Sections 2–5 keep the third-party attributions (Bootstrap, Bootstrap Icons,
+    Chart.js, Inter), the template-asset statement, the fictional-demo-data
+    notice and the documentation/support block.
+  · No internal instruction, no placeholder marker and no mailto: address
+    remains anywhere in the file — checked by tools/release.mjs.
+
+--------------------------------------------------------------------------------
+ 2. CREATE A CLEAN BUYER / PUBLIC ZIP                           [DONE]
+--------------------------------------------------------------------------------
+  File:  release/qevora-ai-saas-ui-1.0.0.zip
+
+  Structure (exactly the recommended shape, inside one top-level folder so
+  extracting never litters the customer's disk):
+
+    qevora-ai-saas-ui/
+    ├── index.html  404.html
+    ├── pages/  ai/  components/  auth/  utility/  documentation/
+    ├── assets/                       css, js, fonts, icons, images
+    └── README.txt  CHANGELOG.txt  LICENSE.txt
+
+  Kept OUT of the buyer ZIP: src/, tools/, .gitignore, PROJECT-STATUS.md,
+  README.md, marketplace/, .tmp/, release/, node_modules, project notes.
+  Automatically enforced — tools/release.mjs fails if any of those appear.
+
+  Developer package (not uploaded, kept for maintenance):
+    release/qevora-ai-saas-ui-1.0.0-developer.zip  (buyer files + src/ + tools/)
+
+--------------------------------------------------------------------------------
+ 3. CLEAN UP DOCUMENTATION FOR BUYERS                           [DONE]
+--------------------------------------------------------------------------------
+  · documentation/index.html:
+      - the folder tree now shows the buyer package and marks src/ + tools/ as
+        the separate developer package
+      - section 5 is retitled "Optional developer source package" and carries a
+        warning banner: "the commands on this page read src/ and tools/ … skip
+        this section if your package has no src/ folder"
+      - the sidebar customisation bullet leads with the buyer path (edit the
+        <aside class="q-sidebar"> markup) and mentions the builder as the
+        optional second route
+      - section 7 (Credits & licences) now links every library to its project
+        page and its licence text, and points to LICENSE.txt
+  · README.txt: every instruction works on the extracted buyer ZIP alone; the
+    optional builder is described in section 12 as a separate download.
+  · No page in the buyer ZIP tells a buyer to edit src/nav.mjs, tools/build.mjs
+    or package.sh as part of normal use.
+
+--------------------------------------------------------------------------------
+ 4. VERSION CONSISTENCY                                         [DONE]
+--------------------------------------------------------------------------------
+  Single release version: 1.0.0
+
+  · tools/build.mjs declares  const VERSION = "1.0.0"  and derives the
+    cache-busting query from it, so every page loads its assets as ?v=1.0.0.
+  · README.txt, CHANGELOG.txt and LICENSE.txt all state 1.0.0.
+  · tools/package.sh reads VERSION out of build.mjs, so the ZIP names carry the
+    same number: qevora-ai-saas-ui-1.0.0.zip and …-developer.zip.
+  · tools/release.mjs re-reads the built pages and fails if any page still
+    carries another version. Result: "every page carries ?v=1.0.0 — ok".
+  · The development-era numbers (1.2.0 / 1.3.0) no longer appear anywhere. The
+    only remaining 1.x strings in the package are the library versions
+    (Bootstrap Icons 1.11.3, Bootstrap 5.3.3, Chart.js 4.4.3, Inter 5.0.18).
+
+--------------------------------------------------------------------------------
+ 5. CREATE THEMEFOREST MARKETPLACE COVER                        [DONE]
+--------------------------------------------------------------------------------
+  · marketplace/cover-2340x1560.png   (3:2, recommended size)  + .jpg
+  · marketplace/cover-1170x780.png    (3:2, minimum size)      + .jpg
+  · The cover shows the real dashboard UI large and clear, a dark-mode pipeline
+    board inset, the product name, one supporting line and four hard facts
+    (84 pages · light & dark · RTL · 15+ charts). No marketing paragraph.
+  · assets/images/og-cover.svg is kept for OpenGraph/social sharing only.
+  · Both covers are generated from the template's own tokens and demo data by
+    marketplace/build-images.mjs, so they can be re-rendered after any redesign.
+
+--------------------------------------------------------------------------------
+ 6. PREPARE MARKETPLACE PREVIEW IMAGES                          [DONE]
+--------------------------------------------------------------------------------
+  marketplace/previews/ — 14 images, 1800×1200 each, PNG + JPG, one consistent
+  frame (window screenshot + caption bar). Suggested upload order:
+
+    01 dashboard light          08 billing / invoices
+    02 dashboard dark           09 notifications
+    03 CRM leads                10 component library
+    04 CRM customers            11 AI chat
+    05 sales pipeline           12 documentation
+    06 projects / kanban        13 responsive / mobile
+    07 AI content generator     14 analytics dark
+
+  Subject coverage from the checklist (CRM, pipeline, kanban, AI workspace,
+  billing, team/notifications, light, dark, components, responsive, docs) is
+  complete. These are accurate vector mock-ups of the shipped layouts and demo
+  data, not screenshots — see NOTE A at the end of this file.
+
+--------------------------------------------------------------------------------
+ 7. REVIEW EXTERNAL / DEMO LINKS                                [DONE]
+--------------------------------------------------------------------------------
+  Removed / replaced:
+    · support@qevora.io (forgot-password page) → an in-template help link
+    · status.qevora.io (500 page, maintenance page) → in-page status wording
+    · app.qevora.io demo links (cards, dropdowns "Copy link") → app.example.com
+  Kept (all verified intentional):
+    · https://getbootstrap.com, https://icons.getbootstrap.com,
+      https://www.chartjs.org, https://fonts.google.com/specimen/Inter
+    · the four github.com licence links for Bootstrap, Icons, Chart.js and Inter
+    · localhost (only inside the documentation's local-server tip)
+  · No mailto: link and no telephone link exists in any page.
+  · tools/release.mjs scans every href/src on every page and fails on any host
+    outside that list.
+  · All demo e-mail addresses now use example.com, the domain reserved by
+    RFC 2606 for documentation and examples.
+  · Per your instruction: no external support address, no product URL and no
+    unverified Qevora domain is referenced anywhere in the release.
+
+--------------------------------------------------------------------------------
+ 8. CHECK BRAND / PRODUCT NAMING                                [DONE]
+--------------------------------------------------------------------------------
+  · Product name: "Qevora AI SaaS UI" — used in every page title, the OG tag,
+    the footer line, README, CHANGELOG, LICENSE, the docs and the metadata.
+  · Vendor: "Qevora Software" (footer, meta author, license copyright).
+  · The development-era suffix "Qevora AI SaaS Admin & UI Kit" was replaced in
+    all 82 titles and the docs; tools/release.mjs fails if it ever returns.
+  · Sidebar brand block stays "Qevora / AI SaaS Suite" as an in-product mark.
+
+--------------------------------------------------------------------------------
+ 9. FINAL CONTENT / DEMO DATA REVIEW                            [DONE]
+--------------------------------------------------------------------------------
+  · Companies, people, avatars (initials only), amounts, dates and metrics are
+    fictional. No photo, no real person, no third-party brand.
+  · E-mail addresses: 70 addresses moved to example.com this round; a scan finds
+    no other non-reserved domain in any page.
+  · Phone numbers use the 555-01xx range reserved for fiction.
+  · LICENSE.txt section 4 states plainly that the demo data is fictional.
+
+--------------------------------------------------------------------------------
+10. IMAGE / ICON / FONT LICENSE AUDIT                           [DONE]
+--------------------------------------------------------------------------------
+  Bootstrap 5.3.3 (MIT) · Bootstrap Icons 1.11.3 (MIT) · Chart.js 4.4.3 (MIT) ·
+  Inter 5.0.18 (SIL OFL 1.1). All four permit redistribution inside a template,
+  all four ship with their licence text (assets/fonts/inter/LICENSE.txt holds
+  the font licence; LICENSE.txt section 2 holds the MIT texts and links).
+  Every image in the package is an SVG or a CSS placeholder created for this
+  template — no stock photography, no icon set beyond Bootstrap Icons.
+  The marketplace imagery is drawn with the bundled Inter font only.
+
+--------------------------------------------------------------------------------
+11. FINAL HTML / CSS / JS QUALITY CHECK                         [DONE]
+--------------------------------------------------------------------------------
+  · node tools/audit.mjs --strict      19 checks × 82 pages   → 0 findings
+  · node tools/smoke.mjs --strict      82 pages, 8 interaction flows → 0 issues
+  · node tools/check-add-card.mjs      "+ New …" controls and the "just added"
+    highlight — 34 checks, green (needs jsdom)
+  · node tools/check-states.mjs        interaction states in both palettes:
+    white on the active pill and on its hover shade resolve through the shipped
+    cascade to 6.3:1 / 7.9:1 (light) and 4.6:1 / 5.0:1 (dark), the selects keep
+    the room their caret needs (2.1rem / 2rem, LTR and RTL), a badge stays
+    centred in a stretched row and every soft badge variant a script can ask for
+    is actually painted, the table's card view keeps its own inset and even
+    columns, a switched-on filter chip uses the readable fill tokens — 15 checks,
+    green
+    · node tools/check-controls.mjs      "every click answers": the dashboard row
+    actions (message dialog, options menu, copy email, remove member with undo),
+    the chat conversation menu and list, a tooltip-only button and the auth legal
+    links, plus pages/customer-details.html (Email, Log call, Edit customer) and the
+    customer directory grid cards (same customers as the table, same badge colour,
+    labelled facts, a real health bar, edit and delete from a card, cards follow the
+    search, the empty result and every save), the four blank controls the folder
+    sweep found (the history table's Copy, the delete dialog with nothing
+    selected, the AI chat conversation picker and its single copy toast) — 100 checks, green (needs jsdom)
+  · node tools/check-buttons.mjs       the blank-button sweep: every page in the
+    built package is opened, every button and link is classified (real link,
+    in-page link, disabled, submit, Bootstrap toggle, demo behaviour) and every
+    remaining control is really clicked while a MutationObserver watches the
+    page — a control that changes nothing and says nothing is a FAIL. Link
+    targets are checked too (missing files, missing #id on the page). Controls
+    inside a closed dialog, menu or drawer are opened first through Bootstrap,
+    so a Cancel button is tested where a user would find it. 82 pages, 0 blank
+    controls (needs jsdom; a full sweep takes a few minutes)
+  · node tools/check-responsive.mjs    the parts of the design only a phone shows: the board filter
+    panel (closed until it is opened; never positions itself, width and height both capped
+    against the viewport, header with its own close button, groups scroll, pinned opaque
+    footer), the mobile header row (one 40px square per control, one icon size, profile circle
+    below 768px), every avatar square with a 50% radius, the header controls still fitting a
+    320px screen, the mobile drawer driven end to end (hamburger opens it, the dimmed backdrop
+    closes it, Escape closes it, a nav link closes it, widening the window closes it, and a
+    desktop click collapses the rail instead), and the filter panel driven end to end (closed on
+    load, opened by the Filter click, kept open by a chip, closed by its × or by a click
+    outside, focus handed back); the phone header is opaque; and every table in the package
+    keeps its values on one line below 992px with min-width: min-content as the floor, an
+    annotation free to wrap and a column of prose opted out with .text-wrap — 89 checks,
+    green (needs jsdom). The same contract is checked on the rendered page by
+    tools/visual-check.mjs, which drives a real browser over all 82 pages at 382px and
+    fails on a value broken over two lines or a cell spilling over its neighbour (48
+    tables, green; it skips itself when no browser is installed)
+  · node tools/check-calendar.mjs      the calendar in pages/calendar.html: month, week and day views,
+    month navigation that always lands on the month in the header, every event drawn into
+    the cell of its own day, the four calendars on and off (the legend dots and the sidebar
+    switches stay in step, and "Showing X of Y events" follows), the agenda describing the
+    selected day, and the event dialog from add to edit to delete with undo — 76 checks,
+    green (needs jsdom)
+  · node tools/check-kanban.mjs        the card boards on pages/pipeline.html and
+    pages/pages/kanban.html: every card draggable and handled, a drop landing in
+    front of the card it was dropped on, the dashed landing cue, counters and the
+    empty-column note, the screen-reader announcement, Undo from the toast, the
+    handle's stage menu, the Board / Forecast switch, "Add deal" (first stage
+    only, at the top) and the filter panel (one choice per group, hidden cards,
+    visible / total counters, the empty-column note, the summary, Clear and the
+    add-while-filtered case) — 94 checks, green (needs jsdom)
+  · node tools/check-dropdowns.mjs     every dropdown and pick group in the
+    template: one selected item only, the button shows the current choice, icons
+    kept, aria-current / aria-pressed correct, locked items refused, plus a sweep
+    of all eight pages that carry pick controls — 81 checks, green (needs jsdom)
+  · an earlier development-only sweep of the list/export/CRM flows (461 checks)
+    ran green before the final round; those scratch runners are not part of the
+    release, the tools above are.
+  · tools/release.mjs --runtime loads pages out of the extracted buyer ZIP over
+    file:// and reports console errors or missing assets.
+
+--------------------------------------------------------------------------------
+12. BROWSER / RESPONSIVE SMOKE TEST                            [DONE]
+--------------------------------------------------------------------------------
+  Desktop, tablet and 375 px behaviour, light + dark, RTL and the mobile drawer
+  are covered by the runtime suites, by audit check 19 (explicit button types
+  and hrefs), by the theme pass measuring WCAG contrast in both palettes and by
+  preview 13 (responsive) plus previews 01/02 and 14 (light/dark).
+
+--------------------------------------------------------------------------------
+13. 404 / EMPTY / UTILITY STATES                               [DONE]
+--------------------------------------------------------------------------------
+  404, 500, maintenance and coming-soon pages share the product's visual system
+  and use buyer-facing copy; empty states, empty search results, loading and
+  progress states and form validation states ship in the UI kit and on the list
+  pages (components/empty-states.html, session-expired and lock flows in auth/).
+
+--------------------------------------------------------------------------------
+14. README.TXT FINAL PASS                                      [DONE]
+--------------------------------------------------------------------------------
+  Rewritten for the 1.0.0 release. It now carries: product name, version, what
+  is included (84 pages by module), quick start, folder structure, changing the
+  look (tokens, logo, fonts, menu, colours), the JavaScript/demo-interaction
+  API, dark mode and RTL, component overview, browser support and
+  accessibility, credits and licences, documentation and support, version and
+  changelog reference, and the optional developer package. No development-only
+  instruction is left in the buyer path.
+
+--------------------------------------------------------------------------------
+15. CHANGELOG.TXT                                              [DONE]
+--------------------------------------------------------------------------------
+  CHANGELOG.txt opens with the concise 1.0.0 release entry (initial ThemeForest
+  release, page counts, Bootstrap 5, light/dark, RTL, responsive, AI/SaaS
+  dashboard, CRM/project/billing/team modules, component library, docs and
+  design system) and then keeps the complete build history below it.
+
+--------------------------------------------------------------------------------
+16. REMOVE DEVELOPMENT ARTIFACTS FROM THE PUBLIC ZIP           [DONE]
+--------------------------------------------------------------------------------
+  Not in the buyer ZIP: src/, tools/, .tmp/, release/, node_modules/, .gitignore,
+  PROJECT-STATUS.md, README.md, marketplace/, logs, editor files, screenshots.
+  The package holds only the finished pages, the assets they load and the three
+  text documents. Two audit rules guard it: no development file may appear, and
+  no page may reference src/ or tools/.
+
+--------------------------------------------------------------------------------
+17. FINAL FILE / FOLDER NAME REVIEW                            [DONE]
+--------------------------------------------------------------------------------
+  Folder and file names are lowercase kebab-case, contain no spaces and no
+  duplicate or backup copies (no file-old, file-final, backup/, *-copy). The
+  buyer ZIP also passes the same check automatically.
+
+--------------------------------------------------------------------------------
+18. FINAL MARKETPLACE METADATA                                 [DONE]
+--------------------------------------------------------------------------------
+  marketplace/METADATA.txt      title, short description, tags, attributes and
+                                links, ready to copy into the upload form
+  marketplace/item-metadata.json the same data in machine-readable form
+  marketplace/README.txt        the long description (HTML, ready to paste),
+                                feature list, upload order and the license audit
+  Title:
+    Qevora AI SaaS UI — Bootstrap 5 Admin Dashboard & HTML Template
+  Live preview: https://qevorasoftware.github.io/qevora-ai-saas-ui/
+
+--------------------------------------------------------------------------------
+19. LIVE PREVIEW FINAL CHECK                                   [YOURS]
+--------------------------------------------------------------------------------
+  Open https://qevorasoftware.github.io/qevora-ai-saas-ui/ after the final push
+  and confirm: homepage, navigation, one page per module, light/dark, RTL, the
+  mobile drawer and that no development/debug UI is visible (there is none in
+  the pages themselves — the audit fails the build if a placeholder marker,
+  inline <script> or a missing asset appears).
+
+--------------------------------------------------------------------------------
+20. FINAL ZIP VALIDATION                                       [DONE]
+--------------------------------------------------------------------------------
+  bash tools/package.sh extracts nothing itself, but node tools/release.mjs
+  unzips the buyer ZIP into an empty temporary folder and then:
+    · lists every HTML file (84 pages + the host 404 mirror)
+    · follows every href/src and every CSS url() to confirm the file exists
+    · fails on any reference to src/ or tools/
+    · fails if a development file, a name with a space or a backup copy is found
+    · fails if a required file (README/CHANGELOG/LICENSE/assets/…) is missing
+    · --runtime additionally loads 8 sampled pages out of the extraction over
+      file:// and reports console errors or unloadable assets
+  Current result: 20/20 checks pass (21/21 with --runtime) — "The release is
+  clean and the buyer ZIP can be uploaded."
+
+  Manual empty-folder run (the checklist's "extract and test in a clean folder"):
+  the buyer ZIP was unpacked into an empty directory, moved under a nested
+  sub-folder (…/sub/qevora-ai-saas-ui/) and served over HTTP, i.e. the way a
+  buyer on shared hosting or in a sub-directory sees it. All 82 HTML files
+  returned 200 and every local src/href on every page resolved inside the
+  extracted tree — no root-relative path, no missing asset, no reference outside
+  the package. The only "missing" hit was the escaped sample path
+  path/to/photo.jpg inside a <pre><code> snippet on components/avatars.html,
+  which the browser never requests.
+
+================================================================================
+ FINAL RELEASE CHECKLIST
+================================================================================
+  [x] License finalized                     [x] Marketplace title/description/tags
+  [x] Buyer/public ZIP created              [x] Main cover image (3:2)
+  [x] Developer files removed from ZIP      [x] 14 preview images
+  [x] Documentation cleaned                 [x] External links verified
+  [x] Version numbers synchronized (1.0.0)  [x] Brand/product names checked
+  [x] Demo data reviewed                    [x] Fonts/icons/images licenses checked
+  [x] HTML/CSS/JS smoke tested              [x] Responsive testing completed
+  [x] Light/Dark tested                     [x] RTL tested
+  [x] README finalized                      [x] CHANGELOG finalized
+  [x] Development artifacts removed         [x] File/folder names cleaned
+  [ ] Live preview final check (yours)      [x] Clean ZIP extracted and tested
+
+================================================================================
+ NOTES
+================================================================================
+
+  NOTE A — preview images are renders, not photographs of a browser
+    The sandbox that produced this release cannot open a real browser, so the
+    cover and the 14 previews are generated as vector mock-ups by
+    marketplace/build-images.mjs: same tokens, same layout, same demo data as
+    the shipped pages. They are accurate, sharp at any size and free of any
+    third-party content. If you prefer real screenshots, open the live preview
+    (or the extracted ZIP) at 1600 px wide, capture the same 14 pages in light
+    and dark mode, and replace the files in marketplace/previews/ — the caption
+    bar in the mock-ups is the only decorative element you would lose.
+
+  NOTE B — support details
+    Following your instruction, no external e-mail address, website or product
+    URL ships with the template.README.txt, LICENSE.txt, the documentation page
+    and the metadata all route support to the ThemeForest item's support tab.
+
+  NOTE C — what is still only yours
+    Merge the session branch into main, upload release/qevora-ai-saas-ui-1.0.0.zip
+    with the cover and previews from marketplace/, and paste the description
+    from marketplace/README.txt. Everything else in this checklist is already
+    done and verified in the repository.
+================================================================================

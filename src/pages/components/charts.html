@@ -1,0 +1,258 @@
+      <div class="q-page-head">
+        <div>
+          {{BREADCRUMB}}
+          <h1 class="q-page-head__title mt-2">Charts</h1>
+          <p class="q-page-head__subtitle">
+            Line, area, bar and doughnut charts built on Chart.js. Every chart is theme-aware: colours are read from the
+            CSS variables, so switching to dark mode re-draws them automatically.
+          </p>
+        </div>
+        <div class="d-flex flex-wrap gap-2">
+          <a class="btn btn-white" href="../documentation/design-system.html"><i class="bi bi-palette"></i> Design tokens</a>
+        </div>
+      </div>
+
+      <div class="alert alert-info d-flex align-items-start gap-2" role="alert">
+        <i class="bi bi-info-circle alert-icon"></i>
+        <div class="fs-7">
+          Charts are loaded from <code>assets/js/chart.umd.js</code> plus <code>assets/js/pages/charts.js</code> — nothing
+          is fetched from a CDN. A page only loads them when its entry in <code>src/pages.mjs</code> includes
+          <code>CHART_SCRIPTS</code>.
+        </div>
+      </div>
+
+      <div class="demo-block" data-demo>
+        <div class="demo-block__head">
+          <div>
+            <h2 class="demo-block__title">Area chart with target line</h2>
+            <p class="demo-block__desc">The revenue chart from the dashboard — a filled series plus a dashed target, with a gradient fill.</p>
+          </div>
+        </div>
+        <div class="demo-block__tabs">
+          <button type="button" class="demo-tab is-active" data-demo-tab="preview" aria-selected="true">Preview</button>
+          <button type="button" class="demo-tab" data-demo-tab="html" aria-selected="false">HTML</button>
+        </div>
+        <div class="demo-block__pane is-active" data-demo-pane="preview">
+          <div class="demo-preview demo-preview--plain" id="chartArea">
+            <div class="card">
+              <div class="card-header">
+                <div>
+                  <h3 class="card-title mb-0">Revenue vs target</h3>
+                  <p class="card-subtitle">MRR in thousands of USD · Jan–Dec 2026</p>
+                </div>
+                <span class="badge badge-soft-success"><i class="bi bi-arrow-up-right"></i> 12.4%</span>
+              </div>
+              <div class="card-body">
+                <div class="chart-holder chart-holder--lg">
+                  <canvas data-chart="revenue" aria-label="Revenue against target for 2026" role="img"></canvas>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="demo-block__pane" data-demo-pane="html">
+          <div class="demo-code-wrap">
+            <button class="copy-btn" data-copy-target="#codeChartArea" type="button"><i class="bi bi-clipboard"></i> Copy HTML</button>
+            <pre class="demo-code"><code id="codeChartArea" data-auto-code="#chartArea"></code></pre>
+          </div>
+        </div>
+      </div>
+
+      <div class="demo-block" data-demo>
+        <div class="demo-block__head">
+          <div>
+            <h2 class="demo-block__title">Bar and stacked bar</h2>
+            <p class="demo-block__desc">Sales by month and AI requests by day — bar charts for counts, stacked when a total splits into parts.</p>
+          </div>
+        </div>
+        <div class="demo-block__tabs">
+          <button type="button" class="demo-tab is-active" data-demo-tab="preview" aria-selected="true">Preview</button>
+          <button type="button" class="demo-tab" data-demo-tab="html" aria-selected="false">HTML</button>
+        </div>
+        <div class="demo-block__pane is-active" data-demo-pane="preview">
+          <div class="demo-preview demo-preview--plain" id="chartBar">
+            <div class="row g-3">
+              <div class="col-lg-6">
+                <div class="card h-100">
+                  <div class="card-header"><h3 class="card-title mb-0">Sales by month</h3></div>
+                  <div class="card-body">
+                    <div class="chart-holder chart-holder--md">
+                      <canvas data-chart="sales" aria-label="Sales per month" role="img"></canvas>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-6">
+                <div class="card h-100">
+                  <div class="card-header"><h3 class="card-title mb-0">AI requests by day</h3></div>
+                  <div class="card-body">
+                    <div class="chart-holder chart-holder--md">
+                      <canvas data-chart="aiUsage" aria-label="AI requests per day" role="img"></canvas>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="demo-block__pane" data-demo-pane="html">
+          <div class="demo-code-wrap">
+            <button class="copy-btn" data-copy-target="#codeChartBar" type="button"><i class="bi bi-clipboard"></i> Copy HTML</button>
+            <pre class="demo-code"><code id="codeChartBar" data-auto-code="#chartBar"></code></pre>
+          </div>
+        </div>
+      </div>
+
+      <div class="demo-block" data-demo>
+        <div class="demo-block__head">
+          <div>
+            <h2 class="demo-block__title">Doughnut with a custom legend</h2>
+            <p class="demo-block__desc">Model and traffic splits. The built-in legend is hidden and replaced with <code>.legend</code> markup for exact control.</p>
+          </div>
+        </div>
+        <div class="demo-block__tabs">
+          <button type="button" class="demo-tab is-active" data-demo-tab="preview" aria-selected="true">Preview</button>
+          <button type="button" class="demo-tab" data-demo-tab="html" aria-selected="false">HTML</button>
+        </div>
+        <div class="demo-block__pane is-active" data-demo-pane="preview">
+          <div class="demo-preview demo-preview--plain" id="chartDoughnut">
+            <div class="row g-3">
+              <div class="col-lg-6">
+                <div class="card h-100">
+                  <div class="card-header"><h3 class="card-title mb-0">Requests by model</h3></div>
+                  <div class="card-body">
+                    <div class="chart-holder chart-holder--sm">
+                      <canvas data-chart="modelUsage" data-no-legend="true" aria-label="Requests split by AI model" role="img"></canvas>
+                    </div>
+                    <div class="legend mt-3">
+                      <span class="legend__item"><span class="legend__dot" style="background: var(--q-primary);"></span> Nova-4 Turbo 42%</span>
+                      <span class="legend__item"><span class="legend__dot" style="background: var(--q-accent);"></span> Nova-4 29%</span>
+                      <span class="legend__item"><span class="legend__dot" style="background: var(--q-success);"></span> Vertex Flash 18%</span>
+                      <span class="legend__item"><span class="legend__dot" style="background: var(--q-warning);"></span> Orbit Vision 11%</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-6">
+                <div class="card h-100">
+                  <div class="card-header"><h3 class="card-title mb-0">Traffic sources</h3></div>
+                  <div class="card-body">
+                    <div class="chart-holder chart-holder--sm">
+                      <canvas data-chart="traffic" aria-label="Traffic split by source" role="img"></canvas>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="demo-block__pane" data-demo-pane="html">
+          <div class="demo-code-wrap">
+            <button class="copy-btn" data-copy-target="#codeChartDoughnut" type="button"><i class="bi bi-clipboard"></i> Copy HTML</button>
+            <pre class="demo-code"><code id="codeChartDoughnut" data-auto-code="#chartDoughnut"></code></pre>
+          </div>
+        </div>
+      </div>
+
+      <div class="demo-block" data-demo>
+        <div class="demo-block__head">
+          <div>
+            <h2 class="demo-block__title">Sparklines</h2>
+            <p class="demo-block__desc">Tiny charts for KPI cards — no axes, no legend, no tooltip. Five colour variants ship with the kit.</p>
+          </div>
+        </div>
+        <div class="demo-block__tabs">
+          <button type="button" class="demo-tab is-active" data-demo-tab="preview" aria-selected="true">Preview</button>
+          <button type="button" class="demo-tab" data-demo-tab="html" aria-selected="false">HTML</button>
+        </div>
+        <div class="demo-block__pane is-active" data-demo-pane="preview">
+          <div class="demo-preview" id="chartSpark">
+            <div class="row g-3">
+              <div class="col-sm-6 col-lg-4">
+                <div class="card-stat">
+                  <div>
+                    <p class="card-stat__label">MRR</p>
+                    <p class="card-stat__value" data-counter="107040" data-prefix="$">$107,040</p>
+                  </div>
+                  <div class="card-stat__spark"><canvas data-chart="sparkline-primary" data-no-legend="true" aria-label="MRR trend" role="img"></canvas></div>
+                </div>
+              </div>
+              <div class="col-sm-6 col-lg-4">
+                <div class="card-stat">
+                  <div>
+                    <p class="card-stat__label">Active users</p>
+                    <p class="card-stat__value" data-counter="8420">8,420</p>
+                  </div>
+                  <div class="card-stat__spark"><canvas data-chart="sparkline-success" data-no-legend="true" aria-label="Active users trend" role="img"></canvas></div>
+                </div>
+              </div>
+              <div class="col-sm-6 col-lg-4">
+                <div class="card-stat">
+                  <div>
+                    <p class="card-stat__label">AI cost</p>
+                    <p class="card-stat__value" data-counter="1842" data-prefix="$">$1,842</p>
+                  </div>
+                  <div class="card-stat__spark"><canvas data-chart="sparkline-warning" data-no-legend="true" aria-label="AI cost trend" role="img"></canvas></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="demo-block__pane" data-demo-pane="html">
+          <div class="demo-code-wrap">
+            <button class="copy-btn" data-copy-target="#codeChartSpark" type="button"><i class="bi bi-clipboard"></i> Copy HTML</button>
+            <pre class="demo-code"><code id="codeChartSpark" data-auto-code="#chartSpark"></code></pre>
+          </div>
+        </div>
+      </div>
+
+      <div class="demo-block" data-demo>
+        <div class="demo-block__head">
+          <div>
+            <h2 class="demo-block__title">Your own data</h2>
+            <p class="demo-block__desc">Override labels and series straight from the markup — no JavaScript file needed. Series use <code>Name|1,2,3</code> groups separated by <code>;</code>.</p>
+          </div>
+        </div>
+        <div class="demo-block__tabs">
+          <button type="button" class="demo-tab is-active" data-demo-tab="preview" aria-selected="true">Preview</button>
+          <button type="button" class="demo-tab" data-demo-tab="html" aria-selected="false">HTML</button>
+        </div>
+        <div class="demo-block__pane is-active" data-demo-pane="preview">
+          <div class="demo-preview demo-preview--plain" id="chartCustom">
+            <div class="card">
+              <div class="card-header"><h3 class="card-title mb-0">Token spend — last 6 months</h3></div>
+              <div class="card-body">
+                <div class="chart-holder chart-holder--md">
+                  <canvas data-chart="tokens"
+                          data-labels="May,Jun,Jul,Aug,Sep,Oct"
+                          data-series="Input tokens|210,240,268,295,330,348;Output tokens|120,138,150,176,198,214"
+                          aria-label="Input and output token spend over six months"
+                          role="img"></canvas>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="demo-block__pane" data-demo-pane="html">
+          <div class="demo-code-wrap">
+            <button class="copy-btn" data-copy-target="#codeChartCustom" type="button"><i class="bi bi-clipboard"></i> Copy HTML</button>
+            <pre class="demo-code"><code id="codeChartCustom" data-auto-code="#chartCustom"></code></pre>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <h2 class="card-title mb-0">Usage notes</h2>
+        </div>
+        <div class="card-body">
+          <ul class="fs-7 text-muted-2 mb-0 d-flex flex-column gap-2">
+            <li>Wrap every canvas in a <code>.chart-holder</code> with <code>--sm</code>, <code>--md</code> or <code>--lg</code> — that fixed height stops the chart from growing on every redraw.</li>
+            <li>Registry keys: <code>revenue</code>, <code>users</code>, <code>aiUsage</code>, <code>tokens</code>, <code>modelUsage</code>, <code>traffic</code>, <code>sales</code>, <code>conversion</code>, and <code>sparkline-primary|success|warning|danger|info</code>.</li>
+            <li>Data attribute overrides: <code>data-labels</code>, <code>data-values</code>, <code>data-series</code> (with <code>;</code> between series) and <code>data-no-legend="true"</code>.</li>
+            <li>Charts re-render on <code>qevora:themechange</code> through <code>QevoraCharts.rebuild()</code> — call it yourself after replacing chart markup with JavaScript.</li>
+            <li>Add <code>role="img"</code> and an <code>aria-label</code> describing what the chart shows; charts are invisible to screen readers otherwise.</li>
+            <li>Never chart more than about six series or twelve categories in a dashboard widget — switch to a table beyond that.</li>
+          </ul>
+        </div>
+      </div>

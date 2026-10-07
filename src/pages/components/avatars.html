@@ -1,0 +1,146 @@
+      <div class="q-page-head">
+        <div>
+          {{BREADCRUMB}}
+          <h1 class="q-page-head__title mt-2">Avatars</h1>
+          <p class="q-page-head__subtitle">
+            Initials, gradient fills, status indicators and stacked groups. No avatar photography is bundled, so there
+            are no image-licensing questions for buyers.
+          </p>
+        </div>
+      </div>
+
+      <div class="demo-block" data-demo>
+        <div class="demo-block__head">
+          <div>
+            <h2 class="demo-block__title">Sizes</h2>
+            <p class="demo-block__desc">Six sizes from xs to xxl. The default size is md (40px).</p>
+          </div>
+        </div>
+        <div class="demo-block__tabs">
+          <button type="button" class="demo-tab is-active" data-demo-tab="preview" aria-selected="true">Preview</button>
+          <button type="button" class="demo-tab" data-demo-tab="html" aria-selected="false">HTML</button>
+        </div>
+        <div class="demo-block__pane is-active" data-demo-pane="preview">
+          <div class="demo-preview">
+            <div class="d-flex flex-wrap align-items-end gap-3">
+              <span class="avatar avatar-xs bg-avatar-1">AR</span>
+              <span class="avatar avatar-sm bg-avatar-2">AR</span>
+              <span class="avatar avatar-md bg-avatar-3">AR</span>
+              <span class="avatar avatar-lg bg-avatar-4">AR</span>
+              <span class="avatar avatar-xl bg-avatar-6">AR</span>
+              <span class="avatar avatar-xxl bg-avatar-7">AR</span>
+            </div>
+          </div>
+        </div>
+        <div class="demo-block__pane" data-demo-pane="html">
+          <div class="demo-code-wrap">
+            <button type="button" class="copy-btn" data-copy-target="#avatarSizes"><i class="bi bi-clipboard"></i> Copy HTML</button>
+            <pre class="demo-code"><code id="avatarSizes">&lt;span class="avatar avatar-xs bg-avatar-1"&gt;AR&lt;/span&gt;
+&lt;span class="avatar avatar-sm bg-avatar-2"&gt;AR&lt;/span&gt;
+&lt;span class="avatar avatar-md bg-avatar-3"&gt;AR&lt;/span&gt;
+&lt;span class="avatar avatar-lg bg-avatar-4"&gt;AR&lt;/span&gt;
+&lt;span class="avatar avatar-xl bg-avatar-6"&gt;AR&lt;/span&gt;
+&lt;span class="avatar avatar-xxl bg-avatar-7"&gt;AR&lt;/span&gt;
+
+&lt;!-- With a photo instead of initials --&gt;
+&lt;span class="avatar avatar-lg"&gt;
+  &lt;img src="path/to/photo.jpg" alt="Ava Reynolds"&gt;
+&lt;/span&gt;</code></pre>
+          </div>
+        </div>
+      </div>
+
+      <div class="demo-block" data-demo>
+        <div class="demo-block__head">
+          <div>
+            <h2 class="demo-block__title">Status, shapes and groups</h2>
+            <p class="demo-block__desc">Status dots sit inside the avatar. Groups stack members with a negative inline margin so they work in RTL too.</p>
+          </div>
+        </div>
+        <div class="demo-block__tabs">
+          <button type="button" class="demo-tab is-active" data-demo-tab="preview" aria-selected="true">Preview</button>
+          <button type="button" class="demo-tab" data-demo-tab="html" aria-selected="false">HTML</button>
+        </div>
+        <div class="demo-block__pane is-active" data-demo-pane="preview">
+          <div class="demo-preview">
+            <div class="d-flex flex-wrap align-items-center gap-3 mb-4">
+              <span class="avatar avatar-md bg-avatar-1">AR<span class="avatar-status online"></span></span>
+              <span class="avatar avatar-md bg-avatar-3">MC<span class="avatar-status busy"></span></span>
+              <span class="avatar avatar-md bg-avatar-6">LN<span class="avatar-status away"></span></span>
+              <span class="avatar avatar-md bg-avatar-4">DO<span class="avatar-status offline"></span></span>
+            </div>
+
+            <div class="d-flex flex-wrap align-items-center gap-3 mb-4">
+              <span class="avatar avatar-md avatar-rounded bg-avatar-1">AR</span>
+              <span class="avatar avatar-md avatar-square bg-avatar-2">VL</span>
+              <span class="avatar avatar-md bg-avatar-3">NL</span>
+            </div>
+
+            <div class="d-flex flex-wrap align-items-center gap-4">
+              <div class="avatar-group">
+                <span class="avatar avatar-sm bg-avatar-1" data-bs-toggle="tooltip" title="Ava Reynolds">AR</span>
+                <span class="avatar avatar-sm bg-avatar-3" data-bs-toggle="tooltip" title="Marcus Chen">MC</span>
+                <span class="avatar avatar-sm bg-avatar-6" data-bs-toggle="tooltip" title="Lea Novak">LN</span>
+                <span class="avatar avatar-sm avatar-more" data-bs-toggle="tooltip" title="4 more members">+4</span>
+              </div>
+              <div class="d-flex align-items-center gap-2">
+                <span class="avatar avatar-sm bg-avatar-4">DO</span>
+                <span>
+                  <span class="d-block fs-7 fw-500 text-heading">Daniel Okafor</span>
+                  <span class="d-block fs-8 text-muted-2">Frontend engineer</span>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="demo-block__pane" data-demo-pane="html">
+          <div class="demo-code-wrap">
+            <button type="button" class="copy-btn" data-copy-target="#avatarStates"><i class="bi bi-clipboard"></i> Copy HTML</button>
+            <pre class="demo-code"><code id="avatarStates">&lt;!-- Status indicators --&gt;
+&lt;span class="avatar avatar-md bg-avatar-1"&gt;
+  AR
+  &lt;span class="avatar-status online"&gt;&lt;/span&gt;
+&lt;/span&gt;
+
+&lt;!-- Shapes --&gt;
+&lt;span class="avatar avatar-md avatar-rounded bg-avatar-1"&gt;AR&lt;/span&gt;
+&lt;span class="avatar avatar-md avatar-square bg-avatar-2"&gt;VL&lt;/span&gt;
+
+&lt;!-- Stacked group --&gt;
+&lt;div class="avatar-group"&gt;
+  &lt;span class="avatar avatar-sm bg-avatar-1"&gt;AR&lt;/span&gt;
+  &lt;span class="avatar avatar-sm bg-avatar-3"&gt;MC&lt;/span&gt;
+  &lt;span class="avatar avatar-sm bg-avatar-6"&gt;LN&lt;/span&gt;
+  &lt;span class="avatar avatar-sm avatar-more"&gt;+4&lt;/span&gt;
+&lt;/div&gt;
+
+&lt;!-- Name and role beside an avatar --&gt;
+&lt;div class="d-flex align-items-center gap-2"&gt;
+  &lt;span class="avatar avatar-sm bg-avatar-4"&gt;DO&lt;/span&gt;
+  &lt;span&gt;
+    &lt;span class="d-block fs-7 fw-500 text-heading"&gt;Daniel Okafor&lt;/span&gt;
+    &lt;span class="d-block fs-8 text-muted-2"&gt;Frontend engineer&lt;/span&gt;
+  &lt;/span&gt;
+&lt;/div&gt;</code></pre>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <h2 class="card-title mb-0">Gradient fills</h2>
+        </div>
+        <div class="card-body">
+          <p class="fs-7 text-muted-2">Eight gradient classes ship with the template: <code>.bg-avatar-1</code> through <code>.bg-avatar-8</code>. They are deterministic, so the same person always gets the same colour if you map the class in your own data layer.</p>
+          <div class="d-flex flex-wrap gap-2">
+            <span class="avatar avatar-md bg-avatar-1">1</span>
+            <span class="avatar avatar-md bg-avatar-2">2</span>
+            <span class="avatar avatar-md bg-avatar-3">3</span>
+            <span class="avatar avatar-md bg-avatar-4">4</span>
+            <span class="avatar avatar-md bg-avatar-5">5</span>
+            <span class="avatar avatar-md bg-avatar-6">6</span>
+            <span class="avatar avatar-md bg-avatar-7">7</span>
+            <span class="avatar avatar-md bg-avatar-8">8</span>
+          </div>
+        </div>
+      </div>

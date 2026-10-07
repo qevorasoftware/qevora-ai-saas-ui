@@ -1,0 +1,122 @@
+      <div class="auth-shell">
+        <aside class="auth-aside">
+          <a href="../index.html" class="d-flex align-items-center gap-2 text-decoration-none">
+            <span class="q-brand__mark" aria-hidden="true">Q</span>
+            <span class="d-flex flex-column lh-1">
+              <span class="fw-bold fs-6 text-white">Qevora</span>
+              <span class="fs-9 text-uppercase opacity-75">AI SaaS Suite</span>
+            </span>
+          </a>
+
+          <div>
+            <p class="auth-aside__quote">
+              "From trial to 250 seats in seven months. The workspace scales with us instead of getting in the way."
+            </p>
+            <div class="d-flex align-items-center gap-3 mt-4">
+              <span class="avatar avatar-sm bg-avatar-5 text-white" aria-hidden="true">MC</span>
+              <div class="fs-7">
+                <span class="d-block fw-600 text-white">Marcus Chen</span>
+                <span class="d-block opacity-75">Engineering Manager · Vertex Labs</span>
+              </div>
+            </div>
+          </div>
+
+          <ul class="list-unstyled d-flex flex-column gap-3 mb-0 fs-7">
+            <li class="d-flex align-items-center gap-2"><i class="bi bi-check-circle"></i> 14-day trial, no card required</li>
+            <li class="d-flex align-items-center gap-2"><i class="bi bi-check-circle"></i> 50,000 AI tokens included</li>
+            <li class="d-flex align-items-center gap-2"><i class="bi bi-check-circle"></i> Cancel or change plans any time</li>
+          </ul>
+        </aside>
+
+        <div class="auth-main position-relative">
+          <div class="position-absolute top-0 end-0 p-3 d-flex gap-2">
+            <button class="btn btn-icon btn-white" type="button" data-dir-toggle aria-pressed="false" aria-label="Toggle text direction" title="Toggle RTL layout">
+              <i class="bi bi-translate"></i>
+            </button>
+            <button class="btn btn-icon btn-white" type="button" data-theme-toggle aria-pressed="false" aria-label="Toggle dark mode" title="Switch to dark mode">
+              <i class="bi bi-moon-stars" data-theme-icon></i>
+            </button>
+          </div>
+
+          <div class="auth-card">
+            <a class="auth-logo" href="../index.html">
+              <span class="q-brand__mark" aria-hidden="true">Q</span>
+              <span class="q-brand__text">
+                <span class="q-brand__name">Qevora</span>
+                <span class="q-brand__sub">AI SaaS Suite</span>
+              </span>
+            </a>
+
+            <h1 class="h4 text-heading mb-1">Create your workspace</h1>
+            <p class="fs-7 text-muted-2 mb-4">Start free — upgrade whenever the team is ready.</p>
+
+            <form novalidate>
+              <div class="row g-3">
+                <div class="col-sm-6">
+                  <label class="form-label" for="regFirst">First name</label>
+                  <input type="text" class="form-control" id="regFirst" placeholder="Ava" autocomplete="given-name">
+                </div>
+                <div class="col-sm-6">
+                  <label class="form-label" for="regLast">Last name</label>
+                  <input type="text" class="form-control" id="regLast" placeholder="Reynolds" autocomplete="family-name">
+                </div>
+              </div>
+
+              <div class="mt-3">
+                <label class="form-label" for="regEmail">Work email</label>
+                <div class="input-group">
+                  <span class="input-group-text"><i class="bi bi-envelope"></i></span>
+                  <input type="email" class="form-control" id="regEmail" placeholder="you@example.com" autocomplete="email">
+                </div>
+                <div class="form-text">We send the verification link here — a work address unlocks team features.</div>
+              </div>
+
+              <div class="mt-3">
+                <label class="form-label" for="regCompany">Company</label>
+                <input type="text" class="form-control" id="regCompany" placeholder="Nova AI" autocomplete="organization">
+              </div>
+
+              <div class="mt-3">
+                <label class="form-label" for="regPassword">Password</label>
+                <div class="input-group">
+                  <span class="input-group-text"><i class="bi bi-lock"></i></span>
+                  <input type="password" class="form-control" id="regPassword" placeholder="At least 8 characters" autocomplete="new-password">
+                </div>
+                <div class="progress progress-sm mt-2" role="progressbar" aria-label="Password strength" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100">
+                  <div class="progress-bar bg-success" style="width: 65%;"></div>
+                </div>
+                <div class="d-flex flex-wrap gap-3 fs-8 text-muted-2 mt-2">
+                  <span><i class="bi bi-check2 text-success"></i> 8+ characters</span>
+                  <span><i class="bi bi-check2 text-success"></i> One number</span>
+                  <span><i class="bi bi-dot"></i> One symbol</span>
+                </div>
+              </div>
+
+              <div class="mt-3">
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" id="regTerms">
+                  <label class="form-check-label fs-7" for="regTerms">
+                    I agree to the <a href="#" data-demo-action="Terms of Service — point this link at your own legal page.">Terms of Service</a>
+                    and <a href="#" data-demo-action="Privacy Policy — point this link at your own legal page.">Privacy Policy</a>.
+                  </label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" id="regUpdates" checked>
+                  <label class="form-check-label fs-7" for="regUpdates">Send me product updates once a month.</label>
+                </div>
+              </div>
+
+              <button class="btn btn-primary btn-lg w-100 mt-4" type="button" data-demo-action="Account created — demo only, no request is sent." data-demo-variant="success">
+                <i class="bi bi-person-plus"></i> Create account
+              </button>
+            </form>
+
+            <p class="fs-7 text-muted-2 text-center mt-4 mb-0">
+              Already have an account? <a href="login.html">Sign in</a>
+            </p>
+            <p class="fs-8 text-muted-2 text-center mt-3 mb-0">
+              <a href="../index.html"><i class="bi bi-arrow-left"></i> Back to the dashboard</a>
+            </p>
+          </div>
+        </div>
+      </div>

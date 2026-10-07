@@ -1,0 +1,83 @@
+      <div class="q-page-head" id="q-sitemap-top">
+        <div>
+          {{BREADCRUMB}}
+          <h1 class="q-page-head__title mt-2">Sitemap</h1>
+          <p class="q-page-head__subtitle">Every page this package ships, grouped the way the sidebar groups them. If a file is not on this page, it is not in the template.</p>
+        </div>
+        <div class="d-flex flex-wrap gap-2">
+          <button type="button" class="btn btn-white" data-demo-print><i class="bi bi-printer"></i> Print</button>
+          <a class="btn btn-primary" href="../documentation/index.html"><i class="bi bi-book"></i> Documentation</a>
+        </div>
+      </div>
+
+      <div class="row g-3 q-section">
+        <div class="col-sm-6 col-xl-3">
+          <div class="kpi-tile">
+            <div class="kpi-tile__body">
+              <p class="kpi-tile__label mb-0">Pages in this build</p>
+              <p class="kpi-tile__value">{{SITEMAP_TOTAL}}</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-6 col-xl-3">
+          <div class="kpi-tile">
+            <div class="kpi-tile__body">
+              <p class="kpi-tile__label mb-0">Modules</p>
+              <p class="kpi-tile__value">{{SITEMAP_MODULES}}</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-6 col-xl-3">
+          <div class="kpi-tile">
+            <div class="kpi-tile__body">
+              <p class="kpi-tile__label mb-0">Application pages</p>
+              <p class="kpi-tile__value">{{SITEMAP_APPS}}</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-6 col-xl-3">
+          <div class="kpi-tile">
+            <div class="kpi-tile__body">
+              <p class="kpi-tile__label mb-0">UI kit pages</p>
+              <p class="kpi-tile__value">{{SITEMAP_UIKIT}}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card q-section">
+        <div class="card-body d-flex flex-wrap align-items-center gap-2">
+          <span class="fs-8 text-muted-2">Jump to a module:</span>
+          {{SITEMAP_JUMPS}}
+        </div>
+      </div>
+
+      <!-- q-sitemap:start — generated from src/pages.mjs by tools/build.mjs -->
+{{SITEMAP}}
+      <!-- q-sitemap:end -->
+
+      <div class="card q-section">
+        <div class="card-body">
+          <h2 class="h6 mb-2">About this list</h2>
+          <ul class="fs-7 text-muted-2 mb-0 ps-3 d-grid gap-2">
+            <li>
+              The list above is generated from the same page inventory the build reads, so it cannot go stale: every
+              file in <code>src/pages.mjs</code> appears exactly once, and every link resolves to a page that ships.
+            </li>
+            <li>
+              <code>404.html</code> at the project root is not a separate page. It is a copy of
+              <a href="404.html">utility/404.html</a> with root-relative asset paths, written for hosting platforms
+              that serve a site-root fallback document.
+            </li>
+            <li>
+              Development-only folders — <code>src/</code>, <code>tools/</code> and <code>marketplace/</code> — are
+              not part of the buyer package and are intentionally absent from this list.
+            </li>
+            <li>
+              Every page is reachable from the sidebar or from the <a href="../documentation/index.html">documentation</a>,
+              and the <a href="terms.html">terms</a> and <a href="privacy.html">privacy</a> pages are linked from the
+              footer of every page as well.
+            </li>
+          </ul>
+        </div>
+      </div>

@@ -1,0 +1,166 @@
+      <div class="q-page-head">
+        <div>
+          {{BREADCRUMB}}
+          <h1 class="q-page-head__title mt-2">Pricing blocks</h1>
+          <p class="q-page-head__subtitle">Reusable plan cards with a featured state, billing toggle and feature lists. The full page lives at <a href="../pages/pricing.html">Pricing</a>.</p>
+        </div>
+      </div>
+
+      <div class="demo-block" data-demo>
+        <div class="demo-block__head">
+          <div>
+            <h2 class="demo-block__title">Plan cards</h2>
+            <p class="demo-block__desc">Three-column layout with the middle plan highlighted. Excluded features stay visible but muted so buyers can compare at a glance.</p>
+          </div>
+        </div>
+        <div class="demo-block__tabs">
+          <button type="button" class="demo-tab is-active" data-demo-tab="preview" aria-selected="true">Preview</button>
+          <button type="button" class="demo-tab" data-demo-tab="html" aria-selected="false">HTML</button>
+        </div>
+        <div class="demo-block__pane is-active" data-demo-pane="preview">
+          <div class="demo-preview">
+            <div class="row g-3">
+              <div class="col-md-4">
+                <div class="pricing-card">
+                  <p class="fw-600 text-heading mb-1">Starter</p>
+                  <p class="fs-8 text-muted-2 mb-3">For individuals validating an idea</p>
+                  <div class="d-flex align-items-baseline gap-1 mb-4">
+                    <span class="pricing-card__price">$29</span>
+                    <span class="pricing-card__period">/ month</span>
+                  </div>
+                  <ul class="pricing-features mb-4">
+                    <li><i class="bi bi-check-circle-fill"></i> 3 projects</li>
+                    <li><i class="bi bi-check-circle-fill"></i> 50K AI tokens / month</li>
+                    <li class="is-off"><i class="bi bi-x-circle"></i> SSO and SCIM</li>
+                  </ul>
+                  <button type="button" class="btn btn-white w-100" data-demo-select data-demo-select-label="Starter">Choose Starter</button>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="pricing-card pricing-card--featured">
+                  <span class="badge badge-soft-primary badge-pill position-absolute top-0 start-50 translate-middle">Most popular</span>
+                  <p class="fw-600 text-heading mb-1">Scale</p>
+                  <p class="fs-8 text-muted-2 mb-3">For product teams with compliance needs</p>
+                  <div class="d-flex align-items-baseline gap-1 mb-4">
+                    <span class="pricing-card__price">$400</span>
+                    <span class="pricing-card__period">/ month</span>
+                  </div>
+                  <ul class="pricing-features mb-4">
+                    <li><i class="bi bi-check-circle-fill"></i> Unlimited projects</li>
+                    <li><i class="bi bi-check-circle-fill"></i> 1M AI tokens / month</li>
+                    <li><i class="bi bi-check-circle-fill"></i> SSO and audit logs</li>
+                  </ul>
+                  <button type="button" class="btn btn-primary w-100" data-demo-select data-demo-select-label="Scale">Choose Scale</button>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="pricing-card">
+                  <p class="fw-600 text-heading mb-1">Enterprise</p>
+                  <p class="fs-8 text-muted-2 mb-3">For global organisations</p>
+                  <div class="d-flex align-items-baseline gap-1 mb-4">
+                    <span class="pricing-card__price">Custom</span>
+                  </div>
+                  <ul class="pricing-features mb-4">
+                    <li><i class="bi bi-check-circle-fill"></i> Unlimited AI tokens</li>
+                    <li><i class="bi bi-check-circle-fill"></i> Dedicated environment</li>
+                    <li><i class="bi bi-check-circle-fill"></i> 99.95% uptime SLA</li>
+                  </ul>
+                  <button type="button" class="btn btn-white w-100" data-copy-text="sales@example.com" data-demo-copy-label="Sales email">Contact sales</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="demo-block__pane" data-demo-pane="html">
+          <div class="demo-code-wrap">
+            <button type="button" class="copy-btn" data-copy-target="#pricingCards"><i class="bi bi-clipboard"></i> Copy HTML</button>
+            <pre class="demo-code"><code id="pricingCards">&lt;div class="row g-3"&gt;
+  &lt;div class="col-md-4"&gt;
+    &lt;div class="pricing-card"&gt;
+      &lt;p class="fw-600 text-heading mb-1"&gt;Starter&lt;/p&gt;
+      &lt;p class="fs-8 text-muted-2 mb-3"&gt;For individuals validating an idea&lt;/p&gt;
+      &lt;div class="d-flex align-items-baseline gap-1 mb-4"&gt;
+        &lt;span class="pricing-card__price"&gt;$29&lt;/span&gt;
+        &lt;span class="pricing-card__period"&gt;/ month&lt;/span&gt;
+      &lt;/div&gt;
+      &lt;ul class="pricing-features mb-4"&gt;
+        &lt;li&gt;&lt;i class="bi bi-check-circle-fill"&gt;&lt;/i&gt; 3 projects&lt;/li&gt;
+        &lt;li class="is-off"&gt;&lt;i class="bi bi-x-circle"&gt;&lt;/i&gt; SSO and SCIM&lt;/li&gt;
+      &lt;/ul&gt;
+      &lt;button class="btn btn-white w-100"&gt;Choose Starter&lt;/button&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+
+  &lt;div class="col-md-4"&gt;
+    &lt;div class="pricing-card pricing-card--featured"&gt;
+      &lt;span class="badge badge-soft-primary badge-pill position-absolute top-0 start-50 translate-middle"&gt;
+        Most popular
+      &lt;/span&gt;
+      …
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+          </div>
+        </div>
+      </div>
+
+      <div class="demo-block" data-demo>
+        <div class="demo-block__head">
+          <div>
+            <h2 class="demo-block__title">Billing toggle and comparison table</h2>
+            <p class="demo-block__desc">A switch for monthly and annual billing, plus the comparison table used on the pricing page.</p>
+          </div>
+        </div>
+        <div class="demo-block__tabs">
+          <button type="button" class="demo-tab is-active" data-demo-tab="preview" aria-selected="true">Preview</button>
+          <button type="button" class="demo-tab" data-demo-tab="html" aria-selected="false">HTML</button>
+        </div>
+        <div class="demo-block__pane is-active" data-demo-pane="preview">
+          <div class="demo-preview">
+            <div class="d-flex align-items-center justify-content-center gap-2 mb-4">
+              <span class="fs-7 text-muted-2">Monthly</span>
+              <div class="form-check form-switch mb-0">
+                <input class="form-check-input" type="checkbox" id="pricingDemoToggle" checked>
+                <label class="form-check-label visually-hidden" for="pricingDemoToggle">Toggle annual billing</label>
+              </div>
+              <span class="fs-7 text-muted-2">Annual <span class="badge badge-soft-success badge-pill">Save 20%</span></span>
+            </div>
+
+            <div class="table-responsive">
+              <table class="table align-middle perm-table mb-0">
+                <thead>
+                  <tr>
+                    <th scope="col">Feature</th>
+                    <th scope="col">Starter</th>
+                    <th scope="col">Growth</th>
+                    <th scope="col">Scale</th>
+                    <th scope="col">Enterprise</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr><td>AI tokens / month</td><td>50K</td><td>250K</td><td>1M</td><td>Unlimited</td></tr>
+                  <tr><td>SSO and SCIM</td><td><i class="bi bi-dash-circle text-faint" aria-label="Not included"></i></td><td><i class="bi bi-dash-circle text-faint" aria-label="Not included"></i></td><td><i class="bi bi-check-circle-fill text-success" aria-label="Included"></i></td><td><i class="bi bi-check-circle-fill text-success" aria-label="Included"></i></td></tr>
+                  <tr><td>Audit logs</td><td><i class="bi bi-dash-circle text-faint" aria-label="Not included"></i></td><td><i class="bi bi-dash-circle text-faint" aria-label="Not included"></i></td><td><i class="bi bi-check-circle-fill text-success" aria-label="Included"></i></td><td><i class="bi bi-check-circle-fill text-success" aria-label="Included"></i></td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+        <div class="demo-block__pane" data-demo-pane="html">
+          <div class="demo-code-wrap">
+            <button type="button" class="copy-btn" data-copy-target="#pricingToggle"><i class="bi bi-clipboard"></i> Copy HTML</button>
+            <pre class="demo-code"><code id="pricingToggle">&lt;div class="d-flex align-items-center justify-content-center gap-2"&gt;
+  &lt;span class="fs-7 text-muted-2"&gt;Monthly&lt;/span&gt;
+  &lt;div class="form-check form-switch mb-0"&gt;
+    &lt;input class="form-check-input" type="checkbox" id="billingToggle" checked&gt;
+    &lt;label class="form-check-label visually-hidden" for="billingToggle"&gt;Toggle annual billing&lt;/label&gt;
+  &lt;/div&gt;
+  &lt;span class="fs-7 text-muted-2"&gt;Annual &lt;span class="badge badge-soft-success badge-pill"&gt;Save 20%&lt;/span&gt;&lt;/span&gt;
+&lt;/div&gt;
+
+&lt;!-- Comparison table: use aria-label on icons, never colour alone --&gt;
+&lt;i class="bi bi-check-circle-fill text-success" aria-label="Included"&gt;&lt;/i&gt;
+&lt;i class="bi bi-dash-circle text-faint" aria-label="Not included"&gt;&lt;/i&gt;</code></pre>
+          </div>
+        </div>
+      </div>

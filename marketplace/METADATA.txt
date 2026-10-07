@@ -1,0 +1,41 @@
+QEVORA AI SAAS UI — MARKETPLACE METADATA
+ThemeForest (Envato Market) · Admin Templates → Bootstrap · Version 1.0.0
+
+Title
+  Qevora AI SaaS UI — Bootstrap 5 Admin Dashboard & HTML Template
+
+Short description
+  Modern AI & SaaS admin dashboard template — 84 responsive Bootstrap 5 pages, AI workspace, CRM, billing, UI kit, light & dark, RTL, 15+ charts.
+
+Tags
+  admin, admin dashboard, admin template, bootstrap, bootstrap 5, bootstrap 5 admin, html template, dashboard, saas, ai dashboard, ai saas, analytics, crm, crm dashboard, kanban, project management, invoice, billing, charts, chartjs, responsive, dark mode, dark theme, rtl, rtl support, ui kit, component library, clean, modern, minimal, documentation, static html, no jquery
+
+Item attributes
+  layout:                Responsive, Fluid, Fixed
+  theme:                 Light, Dark
+  rtl support:           True
+  columns:               12
+  documentation:         Well documented
+  layout type:           Static HTML (no build step)
+  framework:             Bootstrap 5.3.3
+  preprocessor:          None (CSS custom properties)
+  compatible browsers:   Chrome, Edge, Firefox, Safari, iOS Safari, Chrome for Android
+  compatible with:       Bootstrap 5.x
+  icons:                 Bootstrap Icons 1.11.3 (MIT, bundled)
+  images:                SVG placeholders created for the template
+  fonts:                 Inter (SIL OFL 1.1, self-hosted)
+  files included:        HTML, CSS, JS, SVG, WOFF2, TXT
+
+Links
+  live preview            https://qevorasoftware.github.io/qevora-ai-saas-ui/
+  documentation           documentation/index.html (inside the buyer package)
+  support                 ThemeForest item support tab
+
+Files to upload
+  item ZIP                release/qevora-ai-saas-ui-1.0.0.zip
+  main cover              marketplace/cover-2340x1560.png  (3:2, recommended size)
+  minimum cover           marketplace/cover-1170x780.png
+  previews                marketplace/previews/01-…14-*.png  (upload in this order)
+
+See README.txt in this folder for the full description, the upload checklist
+and the license audit.

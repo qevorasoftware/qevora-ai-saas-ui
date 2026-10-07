@@ -1,0 +1,75 @@
+================================================================================
+  QEVORA AI SAAS UI — RELEASE NOTES
+  Version 1.0.0  ·  October 2026  ·  Initial ThemeForest release
+================================================================================
+
+  This file is the marketplace-facing summary of the 1.0.0 release. The full
+  build history lives in CHANGELOG.txt inside the item.
+
+--------------------------------------------------------------------------------
+ INITIAL RELEASE — 1.0.0
+--------------------------------------------------------------------------------
+
+  · 84 ready-to-use HTML pages
+      Dashboard (1) · AI workspace (6) · Applications (31) · UI kit (31) ·
+      Authentication (6) · Utility (4) · Documentation (2)
+
+  · Bootstrap 5.3 based UI — static HTML, no jQuery, no build step, no CDN
+  · Light and dark mode, saved in localStorage and following the OS by default
+  · Full RTL support; the header switch swaps in Bootstrap's RTL build
+  · Responsive layouts: desktop, tablet and mobile off-canvas navigation
+  · AI workspace: overview, chat, content generator, image generator, token
+    usage and prompt history
+  · CRM and business modules: dashboard, leads, customers, customer details,
+    pipeline, projects, project details, kanban, tasks, calendar, chat,
+    notifications, products, orders, invoices, payments, transactions,
+    subscriptions, team, roles, activity, reports, profile, settings, pricing,
+    FAQ and help
+  · UI component library: 31 pages, every demo with Preview / HTML / CSS / JS
+    panes and a copy button, plus a design-system reference
+  · 15+ Chart.js charts, theme-aware and rebuilt on theme change
+  · Working demo interactions: create/edit dialogs, delete with undo, live
+    search, filters, pagination, CSV import and export, file pickers, toasts
+    and confirmations — all documented and data-attribute driven
+  · Accessibility: landmarks, skip links, labelled controls, aria states,
+    reduced-motion support, WCAG AA colour targets in both themes
+  · Documentation and design system shipped inside the package
+  · Every library vendored locally: Bootstrap 5.3.3, Bootstrap Icons 1.11.3,
+    Chart.js 4.4.3 and the Inter font (SIL OFL 1.1)
+
+--------------------------------------------------------------------------------
+ FIXES INCLUDED IN 1.0.0
+--------------------------------------------------------------------------------
+
+  The template went through several review passes before submission; every fix
+  is part of this first release rather than a later update. The highlights:
+
+  · Every button, dropdown, tab, pager and filter on all 82 pages responds —
+    no dead controls, and the demo interactions keep their numbers honest
+  · Every export, download and print control writes a real file (CSV of the
+    visible rows, generated SVG, or the print-to-PDF flow)
+  · The CRM dashboard's "New lead" and "Import leads" write real rows, and the
+    footer counter, pager and KPI tiles always agree with the table
+  · Dark-mode tooltips are readable (tokens fixed, contrast measured)
+  · The collapsed sidebar rail is usable and its labels stay accessible
+  · Stale-cache protection: every asset URL carries ?v=<version>
+
+  Read CHANGELOG.txt for the complete, dated list.
+
+--------------------------------------------------------------------------------
+ COMPATIBILITY
+--------------------------------------------------------------------------------
+
+  Chrome, Edge, Firefox and Safari (last two major versions), iOS Safari and
+  Chrome for Android. Bootstrap 5.3.x layouts; plain CSS with custom
+  properties, so no preprocessor is required.
+
+--------------------------------------------------------------------------------
+ SUPPORT
+--------------------------------------------------------------------------------
+
+  Support and updates are handled through the item's support tab on the
+  marketplace. Start with README.txt and documentation/index.html — they cover
+  the folder layout, the design tokens, the JavaScript API and the common
+  customisation questions.
+================================================================================

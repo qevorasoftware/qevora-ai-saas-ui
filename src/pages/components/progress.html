@@ -1,0 +1,244 @@
+      <div class="q-page-head">
+        <div>
+          {{BREADCRUMB}}
+          <h1 class="q-page-head__title mt-2">Progress</h1>
+          <p class="q-page-head__subtitle">
+            Progress bars, stacked bars, circular rings and animated counters. Use bars for goal completion, rings for
+            quota usage, and counters for headline numbers.
+          </p>
+        </div>
+        <div class="d-flex flex-wrap gap-2">
+          <a class="btn btn-white" href="../documentation/index.html"><i class="bi bi-book"></i> Docs</a>
+        </div>
+      </div>
+
+      <div class="demo-block" data-demo>
+        <div class="demo-block__head">
+          <div>
+            <h2 class="demo-block__title">Progress bars</h2>
+            <p class="demo-block__desc">Sizes, colour variants and labels. The height comes from <code>--bs-progress-height</code>, so <code>.progress-sm</code> and <code>.progress-lg</code> are one token each.</p>
+          </div>
+        </div>
+        <div class="demo-block__tabs">
+          <button type="button" class="demo-tab is-active" data-demo-tab="preview" aria-selected="true">Preview</button>
+          <button type="button" class="demo-tab" data-demo-tab="html" aria-selected="false">HTML</button>
+        </div>
+        <div class="demo-block__pane is-active" data-demo-pane="preview">
+          <div class="demo-preview" id="prBars">
+            <div class="mb-3">
+              <div class="d-flex justify-content-between fs-8 mb-1"><span class="text-muted-2">Project completion</span><span class="fw-500 text-heading">76%</span></div>
+              <div class="progress" role="progressbar" aria-label="Project completion" aria-valuenow="76" aria-valuemin="0" aria-valuemax="100">
+                <div class="progress-bar" style="width: 76%;"></div>
+              </div>
+            </div>
+
+            <div class="mb-3">
+              <div class="d-flex justify-content-between fs-8 mb-1"><span class="text-muted-2">Monthly AI quota</span><span class="fw-500 text-heading">680K of 1M tokens</span></div>
+              <div class="progress progress-lg" role="progressbar" aria-label="Monthly AI quota used" aria-valuenow="68" aria-valuemin="0" aria-valuemax="100">
+                <div class="progress-bar bg-warning" style="width: 68%;"></div>
+              </div>
+            </div>
+
+            <div class="mb-3">
+              <div class="d-flex justify-content-between fs-8 mb-1"><span class="text-muted-2">Seats in use</span><span class="fw-500 text-heading">48 of 60</span></div>
+              <div class="progress progress-sm" role="progressbar" aria-label="Seats in use" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100">
+                <div class="progress-bar bg-success" style="width: 80%;"></div>
+              </div>
+            </div>
+
+            <div class="row g-3">
+              <div class="col-md-6">
+                <div class="progress mb-2" role="progressbar" aria-label="Primary bar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100"><div class="progress-bar" style="width: 45%;">45%</div></div>
+                <div class="progress mb-2" role="progressbar" aria-label="Success bar" aria-valuenow="62" aria-valuemin="0" aria-valuemax="100"><div class="progress-bar bg-success" style="width: 62%;">62%</div></div>
+                <div class="progress mb-2" role="progressbar" aria-label="Info bar" aria-valuenow="38" aria-valuemin="0" aria-valuemax="100"><div class="progress-bar bg-info" style="width: 38%;">38%</div></div>
+              </div>
+              <div class="col-md-6">
+                <div class="progress mb-2" role="progressbar" aria-label="Warning bar" aria-valuenow="88" aria-valuemin="0" aria-valuemax="100"><div class="progress-bar bg-warning" style="width: 88%;">88%</div></div>
+                <div class="progress mb-2" role="progressbar" aria-label="Danger bar" aria-valuenow="24" aria-valuemin="0" aria-valuemax="100"><div class="progress-bar bg-danger" style="width: 24%;">24%</div></div>
+                <div class="progress" role="progressbar" aria-label="Striped bar" aria-valuenow="55" aria-valuemin="0" aria-valuemax="100"><div class="progress-bar progress-bar-striped progress-bar-animated" style="width: 55%;">55%</div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="demo-block__pane" data-demo-pane="html">
+          <div class="demo-code-wrap">
+            <button class="copy-btn" data-copy-target="#codePrBars" type="button"><i class="bi bi-clipboard"></i> Copy HTML</button>
+            <pre class="demo-code"><code id="codePrBars" data-auto-code="#prBars"></code></pre>
+          </div>
+        </div>
+      </div>
+
+      <div class="demo-block" data-demo>
+        <div class="demo-block__head">
+          <div>
+            <h2 class="demo-block__title">Stacked progress</h2>
+            <p class="demo-block__desc">One bar that shows how a total splits — plan mix, storage breakdown or token spend by model.</p>
+          </div>
+        </div>
+        <div class="demo-block__tabs">
+          <button type="button" class="demo-tab is-active" data-demo-tab="preview" aria-selected="true">Preview</button>
+          <button type="button" class="demo-tab" data-demo-tab="html" aria-selected="false">HTML</button>
+        </div>
+        <div class="demo-block__pane is-active" data-demo-pane="preview">
+          <div class="demo-preview" id="prStacked">
+            <div class="card mb-3">
+              <div class="card-header">
+                <div>
+                  <h3 class="card-title mb-0">Plan mix</h3>
+                  <p class="card-subtitle">128 active customers</p>
+                </div>
+              </div>
+              <div class="card-body">
+                <div class="progress progress-lg mb-3" role="progressbar" aria-label="Customers by plan" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">
+                  <div class="progress-bar" style="width: 42%;"></div>
+                  <div class="progress-bar bg-accent" style="width: 29%;"></div>
+                  <div class="progress-bar bg-success" style="width: 18%;"></div>
+                  <div class="progress-bar bg-warning" style="width: 11%;"></div>
+                </div>
+                <div class="legend">
+                  <span class="legend__item"><span class="legend__dot"></span> Scale 42%</span>
+                  <span class="legend__item"><span class="legend__dot" style="background: var(--q-accent);"></span> Growth 29%</span>
+                  <span class="legend__item"><span class="legend__dot" style="background: var(--q-success);"></span> Starter 18%</span>
+                  <span class="legend__item"><span class="legend__dot" style="background: var(--q-warning);"></span> Trial 11%</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="card">
+              <div class="card-header"><h3 class="card-title mb-0">Storage used</h3></div>
+              <div class="card-body">
+                <div class="progress progress-sm mb-3" role="progressbar" aria-label="Storage used by media type" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">
+                  <div class="progress-bar bg-danger" style="width: 34%;"></div>
+                  <div class="progress-bar bg-info" style="width: 26%;"></div>
+                  <div class="progress-bar bg-success" style="width: 22%;"></div>
+                  <div class="progress-bar bg-warning" style="width: 18%;"></div>
+                </div>
+                <div class="d-flex flex-wrap gap-4 fs-8 text-muted-2">
+                  <span><strong class="text-heading">34%</strong> images</span>
+                  <span><strong class="text-heading">26%</strong> video</span>
+                  <span><strong class="text-heading">22%</strong> documents</span>
+                  <span><strong class="text-heading">18%</strong> attachments</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="demo-block__pane" data-demo-pane="html">
+          <div class="demo-code-wrap">
+            <button class="copy-btn" data-copy-target="#codePrStacked" type="button"><i class="bi bi-clipboard"></i> Copy HTML</button>
+            <pre class="demo-code"><code id="codePrStacked" data-auto-code="#prStacked"></code></pre>
+          </div>
+        </div>
+      </div>
+
+      <div class="demo-block" data-demo>
+        <div class="demo-block__head">
+          <div>
+            <h2 class="demo-block__title">Circular rings</h2>
+            <p class="demo-block__desc">
+              SVG rings drawn from a single attribute: <code>data-ring="68"</code> for the percentage, plus optional
+              <code>data-ring-size</code>, <code>data-ring-stroke</code> and <code>data-ring-color</code>.
+            </p>
+          </div>
+        </div>
+        <div class="demo-block__tabs">
+          <button type="button" class="demo-tab is-active" data-demo-tab="preview" aria-selected="true">Preview</button>
+          <button type="button" class="demo-tab" data-demo-tab="html" aria-selected="false">HTML</button>
+        </div>
+        <div class="demo-block__pane is-active" data-demo-pane="preview">
+          <div class="demo-preview" id="prRings">
+            <div class="row g-4 align-items-center">
+              <div class="col-6 col-md-3 text-center">
+                <div data-ring="68" data-ring-size="120" data-ring-stroke="11" aria-label="68 percent of quota used"></div>
+                <p class="fs-8 text-muted-2 mt-2 mb-0">AI quota used</p>
+              </div>
+              <div class="col-6 col-md-3 text-center">
+                <div data-ring="42" data-ring-size="120" data-ring-stroke="11" data-ring-color="#10b981" aria-label="42 percent of storage used"></div>
+                <p class="fs-8 text-muted-2 mt-2 mb-0">Storage used</p>
+              </div>
+              <div class="col-6 col-md-3 text-center">
+                <div data-ring="92" data-ring-size="120" data-ring-stroke="11" data-ring-color="#f59e0b" aria-label="92 percent of seats used"></div>
+                <p class="fs-8 text-muted-2 mt-2 mb-0">Seats used</p>
+              </div>
+              <div class="col-6 col-md-3 text-center">
+                <div data-ring="12" data-ring-size="120" data-ring-stroke="11" data-ring-color="#ef4444" aria-label="12 percent of overage used"></div>
+                <p class="fs-8 text-muted-2 mt-2 mb-0">Overage tier</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="demo-block__pane" data-demo-pane="html">
+          <div class="demo-code-wrap">
+            <button class="copy-btn" data-copy-target="#codePrRings" type="button"><i class="bi bi-clipboard"></i> Copy HTML</button>
+            <pre class="demo-code"><code id="codePrRings" data-auto-code="#prRings"></code></pre>
+          </div>
+        </div>
+      </div>
+
+      <div class="demo-block" data-demo>
+        <div class="demo-block__head">
+          <div>
+            <h2 class="demo-block__title">Animated counters</h2>
+            <p class="demo-block__desc">Numbers that count up when the page loads. Set the target in <code>data-counter</code> and add a prefix or suffix.</p>
+          </div>
+        </div>
+        <div class="demo-block__tabs">
+          <button type="button" class="demo-tab is-active" data-demo-tab="preview" aria-selected="true">Preview</button>
+          <button type="button" class="demo-tab" data-demo-tab="html" aria-selected="false">HTML</button>
+        </div>
+        <div class="demo-block__pane is-active" data-demo-pane="preview">
+          <div class="demo-preview demo-preview--plain" id="prCounters">
+            <div class="row g-3">
+              <div class="col-sm-6 col-lg-3">
+                <div class="kpi-tile h-100">
+                  <p class="kpi-tile__label">Monthly revenue</p>
+                  <p class="kpi-tile__value" data-counter="107040" data-prefix="$">$107,040</p>
+                  <span class="trend trend-up"><i class="bi bi-arrow-up-right"></i> 12.4%</span>
+                </div>
+              </div>
+              <div class="col-sm-6 col-lg-3">
+                <div class="kpi-tile h-100">
+                  <p class="kpi-tile__label">AI requests</p>
+                  <p class="kpi-tile__value" data-counter="48260">48,260</p>
+                  <span class="trend trend-up"><i class="bi bi-arrow-up-right"></i> 8.1%</span>
+                </div>
+              </div>
+              <div class="col-sm-6 col-lg-3">
+                <div class="kpi-tile h-100">
+                  <p class="kpi-tile__label">Avg. latency</p>
+                  <p class="kpi-tile__value" data-counter="1.4" data-decimals="1" data-suffix="s">1.4s</p>
+                  <span class="trend trend-flat"><i class="bi bi-dash"></i> 0.0%</span>
+                </div>
+              </div>
+              <div class="col-sm-6 col-lg-3">
+                <div class="kpi-tile h-100">
+                  <p class="kpi-tile__label">Churn rate</p>
+                  <p class="kpi-tile__value" data-counter="1.8" data-decimals="1" data-suffix="%">1.8%</p>
+                  <span class="trend trend-down"><i class="bi bi-arrow-down-right"></i> 0.4%</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="demo-block__pane" data-demo-pane="html">
+          <div class="demo-code-wrap">
+            <button class="copy-btn" data-copy-target="#codePrCounters" type="button"><i class="bi bi-clipboard"></i> Copy HTML</button>
+            <pre class="demo-code"><code id="codePrCounters" data-auto-code="#prCounters"></code></pre>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <h2 class="card-title mb-0">Usage notes</h2>
+        </div>
+        <div class="card-body">
+          <ul class="fs-7 text-muted-2 mb-0 d-flex flex-column gap-2">
+            <li>Every progress bar needs <code>role="progressbar"</code> with <code>aria-valuenow</code>, <code>aria-valuemin</code> and <code>aria-valuemax</code>.</li>
+            <li>Show the number as text next to the bar — a bar alone cannot tell the user whether 68% is good or bad.</li>
+            <li>Reserve amber for "close to a limit" and red for "at or over a limit" so the colours keep their meaning.</li>
+            <li>Rings update on theme change because they are drawn from the same colour tokens as the charts.</li>
+            <li>Counters respect <code>prefers-reduced-motion</code>: the final value is written immediately for those users.</li>
+          </ul>
+        </div>
+      </div>

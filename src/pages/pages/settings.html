@@ -1,0 +1,399 @@
+      <div class="q-page-head">
+        <div>
+          {{BREADCRUMB}}
+          <h1 class="q-page-head__title mt-2">Settings</h1>
+          <p class="q-page-head__subtitle">Account, workspace, appearance and notification preferences.</p>
+        </div>
+        <div class="d-flex flex-wrap gap-2">
+          <button type="button" class="btn btn-white" data-demo-action="Changes discarded — demo only."><i class="bi bi-arrow-counterclockwise"></i> Discard</button>
+          <button type="button" class="btn btn-primary" data-demo-action="Settings saved — demo interaction only." data-demo-variant="success"><i class="bi bi-check2"></i> Save changes</button>
+        </div>
+      </div>
+
+      <div class="row g-3">
+        <div class="col-lg-3">
+          <div class="card">
+            <div class="card-body">
+              <div class="nav flex-column nav-pills" role="tablist" aria-label="Settings sections">
+                <a class="nav-link active d-flex align-items-center gap-2" href="#settings-profile" data-bs-toggle="tab" role="tab" aria-selected="true"><i class="bi bi-person"></i> Profile</a>
+                <a class="nav-link d-flex align-items-center gap-2" href="#settings-workspace" data-bs-toggle="tab" role="tab" aria-selected="false"><i class="bi bi-building"></i> Workspace</a>
+                <a class="nav-link d-flex align-items-center gap-2" href="#settings-appearance" data-bs-toggle="tab" role="tab" aria-selected="false"><i class="bi bi-palette"></i> Appearance</a>
+                <a class="nav-link d-flex align-items-center gap-2" href="#settings-notifications" data-bs-toggle="tab" role="tab" aria-selected="false"><i class="bi bi-bell"></i> Notifications</a>
+                <a class="nav-link d-flex align-items-center gap-2" href="#settings-security" data-bs-toggle="tab" role="tab" aria-selected="false"><i class="bi bi-shield-lock"></i> Security</a>
+                <a class="nav-link d-flex align-items-center gap-2" href="#settings-billing" data-bs-toggle="tab" role="tab" aria-selected="false"><i class="bi bi-credit-card"></i> Billing</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="alert alert-warning mt-3" role="alert">
+            <i class="bi bi-info-circle alert-icon"></i>
+            <span class="fs-8">This is a front-end template — settings save to the interface only, nothing is sent to a server.</span>
+          </div>
+        </div>
+
+        <div class="col-lg-9">
+          <div class="tab-content">
+            <!-- Profile -->
+            <div class="tab-pane fade show active" id="settings-profile" role="tabpanel">
+              <div class="card">
+                <div class="card-header">
+                  <div>
+                    <h2 class="card-title">Profile</h2>
+                    <p class="card-subtitle">How you appear across the workspace</p>
+                  </div>
+                </div>
+                <div class="card-body">
+                  <div class="d-flex flex-wrap align-items-center gap-3 mb-4">
+                    <span class="avatar avatar-xl bg-avatar-1" id="settings-avatar">AR</span>
+                    <div>
+                      <button type="button" class="btn btn-white btn-sm" data-demo-upload="#settings-avatar"><i class="bi bi-upload"></i> Upload photo</button>
+                      <button type="button" class="btn btn-ghost btn-sm text-danger" data-demo-remove-photo="#settings-avatar">Remove</button>
+                      <p class="fs-8 text-muted-2 mb-0 mt-1">PNG or JPG, at least 400 × 400 px.</p>
+                    </div>
+                  </div>
+
+                  <div class="row g-3">
+                    <div class="col-md-6">
+                      <label class="form-label" for="settings-first-name">First name</label>
+                      <input type="text" class="form-control" id="settings-first-name" value="Ava">
+                    </div>
+                    <div class="col-md-6">
+                      <label class="form-label" for="settings-last-name">Last name</label>
+                      <input type="text" class="form-control" id="settings-last-name" value="Reynolds">
+                    </div>
+                    <div class="col-md-6">
+                      <label class="form-label" for="settings-email">Work email</label>
+                      <input type="email" class="form-control" id="settings-email" value="ava@example.com">
+                      <p class="form-text mb-0">Used for sign-in and notifications.</p>
+                    </div>
+                    <div class="col-md-6">
+                      <label class="form-label" for="settings-role">Job title</label>
+                      <input type="text" class="form-control" id="settings-role" value="Product lead">
+                    </div>
+                    <div class="col-12">
+                      <label class="form-label" for="settings-bio">Bio</label>
+                      <textarea class="form-control" id="settings-bio" rows="3">Building AI-assisted workflows for distributed product teams.</textarea>
+                    </div>
+                    <div class="col-md-6">
+                      <label class="form-label" for="settings-timezone">Time zone</label>
+                      <select class="form-select" id="settings-timezone" data-demo-echo="Timezone">
+                        <option>(GMT+00:00) London</option>
+                        <option>(GMT+01:00) Berlin</option>
+                        <option selected>(GMT+05:30) Mumbai</option>
+                        <option>(GMT+09:00) Tokyo</option>
+                        <option>(GMT−08:00) Los Angeles</option>
+                      </select>
+                    </div>
+                    <div class="col-md-6">
+                      <label class="form-label" for="settings-language">Language</label>
+                      <select class="form-select" id="settings-language" data-demo-echo="Language">
+                        <option selected>English (US)</option>
+                        <option>English (UK)</option>
+                        <option>Deutsch</option>
+                        <option>日本語</option>
+                        <option>العربية</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Workspace -->
+            <div class="tab-pane fade" id="settings-workspace" role="tabpanel">
+              <div class="card">
+                <div class="card-header">
+                  <div>
+                    <h2 class="card-title">Workspace</h2>
+                    <p class="card-subtitle">Shared defaults for every member</p>
+                  </div>
+                </div>
+                <div class="card-body">
+                  <div class="row g-3">
+                    <div class="col-md-6">
+                      <label class="form-label" for="settings-ws-name">Workspace name</label>
+                      <input type="text" class="form-control" id="settings-ws-name" value="Qevora Software">
+                    </div>
+                    <div class="col-md-6">
+                      <label class="form-label" for="settings-ws-slug">Workspace URL</label>
+                      <div class="input-group">
+                        <span class="input-group-text">qevora.io/</span>
+                        <input type="text" class="form-control" id="settings-ws-slug" value="qevora">
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <label class="form-label" for="settings-ws-currency">Default currency</label>
+                      <select class="form-select" id="settings-ws-currency" data-demo-echo="Currency">
+                        <option selected>USD — US Dollar</option>
+                        <option>EUR — Euro</option>
+                        <option>GBP — Pound Sterling</option>
+                        <option>JPY — Japanese Yen</option>
+                      </select>
+                    </div>
+                    <div class="col-md-6">
+                      <label class="form-label" for="settings-ws-date">Date format</label>
+                      <select class="form-select" id="settings-ws-date" data-demo-echo="Date format">
+                        <option selected>MMM D, YYYY</option>
+                        <option>DD/MM/YYYY</option>
+                        <option>YYYY-MM-DD</option>
+                      </select>
+                    </div>
+                    <div class="col-12">
+                      <label class="form-label" for="settings-ws-domain">Custom domain</label>
+                      <input type="text" class="form-control" id="settings-ws-domain" value="app.northstarlabs.com">
+                      <p class="form-text mb-0">Point a CNAME record to <code>cname.qevora.io</code>.</p>
+                    </div>
+                  </div>
+
+                  <hr class="divider-y">
+
+                  <div class="form-check form-switch mb-2">
+                    <input class="form-check-input" type="checkbox" id="ws-sso" checked>
+                    <label class="form-check-label" for="ws-sso">Enforce single sign-on for all members</label>
+                  </div>
+                  <div class="form-check form-switch mb-2">
+                    <input class="form-check-input" type="checkbox" id="ws-2fa" checked>
+                    <label class="form-check-label" for="ws-2fa">Require two-factor authentication</label>
+                  </div>
+                  <div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" id="ws-guest">
+                    <label class="form-check-label" for="ws-guest">Allow guest access to shared projects</label>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Appearance -->
+            <div class="tab-pane fade" id="settings-appearance" role="tabpanel">
+              <div class="card">
+                <div class="card-header">
+                  <div>
+                    <h2 class="card-title">Appearance</h2>
+                    <p class="card-subtitle">Colour mode, direction and density</p>
+                  </div>
+                </div>
+                <div class="card-body">
+                  <h3 class="fs-7 fw-600 text-heading mb-2">Colour mode</h3>
+                  <div class="row g-3 mb-4">
+                    <div class="col-sm-4">
+                      <button class="component-tile w-100 text-start" type="button" onclick="window.QevoraTheme.set('light')">
+                        <span class="component-tile__icon"><i class="bi bi-sun"></i></span>
+                        <span class="component-tile__title">Light</span>
+                        <span class="component-tile__text">Default daytime theme</span>
+                      </button>
+                    </div>
+                    <div class="col-sm-4">
+                      <button class="component-tile w-100 text-start" type="button" onclick="window.QevoraTheme.set('dark')">
+                        <span class="component-tile__icon"><i class="bi bi-moon-stars"></i></span>
+                        <span class="component-tile__title">Dark</span>
+                        <span class="component-tile__text">Low-light interface</span>
+                      </button>
+                    </div>
+                    <div class="col-sm-4">
+                      <button class="component-tile w-100 text-start" type="button" onclick="window.QevoraTheme.setPreference('system')">
+                        <span class="component-tile__icon"><i class="bi bi-circle-half"></i></span>
+                        <span class="component-tile__title">System</span>
+                        <span class="component-tile__text">Follow the operating system</span>
+                      </button>
+                    </div>
+                  </div>
+
+                  <h3 class="fs-7 fw-600 text-heading mb-2">Text direction</h3>
+                  <div class="row g-3 mb-4">
+                    <div class="col-sm-6">
+                      <button class="component-tile w-100 text-start" type="button" onclick="window.QevoraSidebar.setDirection('ltr')">
+                        <span class="component-tile__title">Left to right (LTR)</span>
+                        <span class="component-tile__text">English, German, Japanese…</span>
+                      </button>
+                    </div>
+                    <div class="col-sm-6">
+                      <button class="component-tile w-100 text-start" type="button" onclick="window.QevoraSidebar.setDirection('rtl')">
+                        <span class="component-tile__title">Right to left (RTL)</span>
+                        <span class="component-tile__text">Arabic, Hebrew, Persian, Urdu…</span>
+                      </button>
+                    </div>
+                  </div>
+
+                  <h3 class="fs-7 fw-600 text-heading mb-2">Sidebar</h3>
+                  <div class="form-check form-switch mb-2">
+                    <input class="form-check-input" type="checkbox" id="app-compact" onchange="window.QevoraSidebar.setCompact(this.checked)">
+                    <label class="form-check-label" for="app-compact">Use compact sidebar on desktop</label>
+                  </div>
+                  <div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" id="app-motion" checked>
+                    <label class="form-check-label" for="app-motion">Allow interface animations</label>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Notifications -->
+            <div class="tab-pane fade" id="settings-notifications" role="tabpanel">
+              <div class="card">
+                <div class="card-header">
+                  <div>
+                    <h2 class="card-title">Notifications</h2>
+                    <p class="card-subtitle">Choose what reaches your inbox</p>
+                  </div>
+                </div>
+                <div class="table-responsive">
+                  <table class="table align-middle perm-table">
+                    <thead>
+                      <tr>
+                        <th scope="col">Event</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Push</th>
+                        <th scope="col">In-app</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>New customer or lead assigned</td>
+                        <td><input class="form-check-input" type="checkbox" checked aria-label="Email for new lead"></td>
+                        <td><input class="form-check-input" type="checkbox" checked aria-label="Push for new lead"></td>
+                        <td><input class="form-check-input" type="checkbox" checked aria-label="In-app for new lead"></td>
+                      </tr>
+                      <tr>
+                        <td>Invoice paid or overdue</td>
+                        <td><input class="form-check-input" type="checkbox" checked aria-label="Email for invoice"></td>
+                        <td><input class="form-check-input" type="checkbox" aria-label="Push for invoice"></td>
+                        <td><input class="form-check-input" type="checkbox" checked aria-label="In-app for invoice"></td>
+                      </tr>
+                      <tr>
+                        <td>AI quota reaching its limit</td>
+                        <td><input class="form-check-input" type="checkbox" checked aria-label="Email for AI quota"></td>
+                        <td><input class="form-check-input" type="checkbox" checked aria-label="Push for AI quota"></td>
+                        <td><input class="form-check-input" type="checkbox" checked aria-label="In-app for AI quota"></td>
+                      </tr>
+                      <tr>
+                        <td>Project status changes</td>
+                        <td><input class="form-check-input" type="checkbox" aria-label="Email for project status"></td>
+                        <td><input class="form-check-input" type="checkbox" checked aria-label="Push for project status"></td>
+                        <td><input class="form-check-input" type="checkbox" checked aria-label="In-app for project status"></td>
+                      </tr>
+                      <tr>
+                        <td>Security alerts and new sign-ins</td>
+                        <td><input class="form-check-input" type="checkbox" checked aria-label="Email for security alerts"></td>
+                        <td><input class="form-check-input" type="checkbox" checked aria-label="Push for security alerts"></td>
+                        <td><input class="form-check-input" type="checkbox" checked aria-label="In-app for security alerts"></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+
+            <!-- Security -->
+            <div class="tab-pane fade" id="settings-security" role="tabpanel">
+              <div class="card">
+                <div class="card-header">
+                  <div>
+                    <h2 class="card-title">Security</h2>
+                    <p class="card-subtitle">Password, sessions and connected apps</p>
+                  </div>
+                  <span class="badge badge-soft-success badge-pill">Strong</span>
+                </div>
+                <div class="card-body">
+                  <div class="row g-3 mb-4">
+                    <div class="col-md-4">
+                      <label class="form-label" for="sec-current">Current password</label>
+                      <input type="password" class="form-control" id="sec-current" value="demo-password">
+                    </div>
+                    <div class="col-md-4">
+                      <label class="form-label" for="sec-new">New password</label>
+                      <input type="password" class="form-control" id="sec-new" placeholder="At least 12 characters">
+                    </div>
+                    <div class="col-md-4">
+                      <label class="form-label" for="sec-confirm">Confirm password</label>
+                      <input type="password" class="form-control" id="sec-confirm">
+                    </div>
+                  </div>
+
+                  <div class="form-check form-switch mb-2">
+                    <input class="form-check-input" type="checkbox" id="sec-2fa" checked>
+                    <label class="form-check-label" for="sec-2fa">Two-factor authentication (authenticator app)</label>
+                  </div>
+                  <div class="form-check form-switch mb-4">
+                    <input class="form-check-input" type="checkbox" id="sec-alerts" checked>
+                    <label class="form-check-label" for="sec-alerts">Email me about new sign-ins</label>
+                  </div>
+
+                  <h3 class="fs-7 fw-600 text-heading mb-2">Active sessions</h3>
+                  <div class="table-responsive">
+                    <table class="table align-middle">
+                      <thead>
+                        <tr>
+                          <th scope="col">Device</th>
+                          <th scope="col">Location</th>
+                          <th scope="col">Last active</th>
+                          <th scope="col" class="text-end"></th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td class="fw-500 text-heading">Chrome · macOS <span class="badge badge-soft-success badge-pill ms-1">This device</span></td>
+                          <td class="text-muted-2">London, UK</td>
+                          <td class="text-muted-2">Active now</td>
+                          <td class="text-end"><button type="button" class="btn btn-sm btn-ghost text-muted-2" disabled>Current</button></td>
+                        </tr>
+                        <tr>
+                          <td class="fw-500 text-heading">Safari · iPhone</td>
+                          <td class="text-muted-2">London, UK</td>
+                          <td class="text-muted-2">2 hours ago</td>
+                          <td class="text-end"><button type="button" class="btn btn-sm btn-soft-danger" data-demo-action="Session revoked — demo only.">Revoke</button></td>
+                        </tr>
+                        <tr>
+                          <td class="fw-500 text-heading">Edge · Windows</td>
+                          <td class="text-muted-2">Berlin, DE</td>
+                          <td class="text-muted-2">Yesterday</td>
+                          <td class="text-end"><button type="button" class="btn btn-sm btn-soft-danger" data-demo-action="Session revoked — demo only.">Revoke</button></td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Billing -->
+            <div class="tab-pane fade" id="settings-billing" role="tabpanel">
+              <div class="card">
+                <div class="card-header">
+                  <div>
+                    <h2 class="card-title">Billing</h2>
+                    <p class="card-subtitle">Plan, payment method and invoices</p>
+                  </div>
+                  <span class="badge badge-soft-primary badge-pill">Scale</span>
+                </div>
+                <div class="card-body">
+                  <div class="row g-3 mb-4">
+                    <div class="col-md-6">
+                      <div class="border border-q rounded-q p-3 h-100">
+                        <p class="fs-8 text-muted-2 mb-1">Current plan</p>
+                        <p class="h5 fw-600 text-heading mb-1">Scale — $4,800/year</p>
+                        <p class="fs-8 text-muted-2 mb-3">Renews on March 12, 2027 · 142 seats</p>
+                        <button type="button" class="btn btn-sm btn-soft-primary" data-demo-action="Plan change opened — demo only.">Change plan</button>
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="border border-q rounded-q p-3 h-100">
+                        <p class="fs-8 text-muted-2 mb-1">Payment method</p>
+                        <p class="h6 fw-600 text-heading mb-1"><i class="bi bi-credit-card-2-front"></i> Visa •••• 4242</p>
+                        <p class="fs-8 text-muted-2 mb-3">Expires 08/2029</p>
+                        <button type="button" class="btn btn-sm btn-soft-primary" data-demo-action="Payment method dialog opened — demo only.">Update card</button>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="alert alert-info" role="alert">
+                    <i class="bi bi-info-circle alert-icon"></i>
+                    <span class="fs-8">Billing is demonstration content only. No payment gateway is connected in this template.</span>
+                  </div>
+
+                  <a href="invoices.html" class="btn btn-white"><i class="bi bi-receipt"></i> View all invoices</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>

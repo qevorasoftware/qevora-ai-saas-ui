@@ -1,0 +1,124 @@
+      <div class="q-page-head">
+        <div>
+          {{BREADCRUMB}}
+          <h1 class="q-page-head__title mt-2">Breadcrumbs</h1>
+          <p class="q-page-head__subtitle">Page location indicators used at the top of every inner page, with the dashboard page-head pattern.</p>
+        </div>
+      </div>
+
+      <div class="demo-block" data-demo>
+        <div class="demo-block__head">
+          <div>
+            <h2 class="demo-block__title">Default breadcrumb</h2>
+            <p class="demo-block__desc">Wrapped in <code>&lt;nav aria-label="Breadcrumb"&gt;</code> with an ordered list, as recommended by the WAI-ARIA authoring practices.</p>
+          </div>
+        </div>
+        <div class="demo-block__tabs">
+          <button type="button" class="demo-tab is-active" data-demo-tab="preview" aria-selected="true">Preview</button>
+          <button type="button" class="demo-tab" data-demo-tab="html" aria-selected="false">HTML</button>
+        </div>
+        <div class="demo-block__pane is-active" data-demo-pane="preview">
+          <div class="demo-preview">
+            <nav aria-label="Breadcrumb example">
+              <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
+                <li class="breadcrumb-item"><a href="#">Applications</a></li>
+                <li class="breadcrumb-item"><a href="#">CRM</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Customers</li>
+              </ol>
+            </nav>
+            <hr class="divider-y">
+            <nav aria-label="Breadcrumb example two">
+              <ol class="breadcrumb mb-0">
+                <li class="breadcrumb-item"><a href="#"><i class="bi bi-house-door"></i> Home</a></li>
+                <li class="breadcrumb-item"><a href="#">Business</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Invoices</li>
+              </ol>
+            </nav>
+          </div>
+        </div>
+        <div class="demo-block__pane" data-demo-pane="html">
+          <div class="demo-code-wrap">
+            <button type="button" class="copy-btn" data-copy-target="#crumbBasic"><i class="bi bi-clipboard"></i> Copy HTML</button>
+            <pre class="demo-code"><code id="crumbBasic">&lt;nav aria-label="Breadcrumb"&gt;
+  &lt;ol class="breadcrumb"&gt;
+    &lt;li class="breadcrumb-item"&gt;&lt;a href="../index.html"&gt;Dashboard&lt;/a&gt;&lt;/li&gt;
+    &lt;li class="breadcrumb-item"&gt;&lt;a href="#"&gt;Applications&lt;/a&gt;&lt;/li&gt;
+    &lt;li class="breadcrumb-item"&gt;&lt;a href="#"&gt;CRM&lt;/a&gt;&lt;/li&gt;
+    &lt;li class="breadcrumb-item active" aria-current="page"&gt;Customers&lt;/li&gt;
+  &lt;/ol&gt;
+&lt;/nav&gt;</code></pre>
+          </div>
+        </div>
+      </div>
+
+      <div class="demo-block" data-demo>
+        <div class="demo-block__head">
+          <div>
+            <h2 class="demo-block__title">Page header with breadcrumb</h2>
+            <p class="demo-block__desc">The standard Qevora header used on every inner page: breadcrumb, title, subtitle and right-aligned actions.</p>
+          </div>
+        </div>
+        <div class="demo-block__tabs">
+          <button type="button" class="demo-tab is-active" data-demo-tab="preview" aria-selected="true">Preview</button>
+          <button type="button" class="demo-tab" data-demo-tab="html" aria-selected="false">HTML</button>
+        </div>
+        <div class="demo-block__pane is-active" data-demo-pane="preview">
+          <div class="demo-preview">
+            <div class="q-page-head mb-0">
+              <div>
+                <nav aria-label="Breadcrumb">
+                  <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="#">Business</a></li>
+                    <li class="breadcrumb-item"><a href="#">Finance</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Invoices</li>
+                  </ol>
+                </nav>
+                <h2 class="q-page-head__title mt-2">Invoices</h2>
+                <p class="q-page-head__subtitle">Issued invoices with payment state, totals and reminders.</p>
+              </div>
+              <div class="d-flex flex-wrap gap-2">
+                <button type="button" class="btn btn-white" data-demo-export="closest" data-demo-export-scope="[data-demo]" data-demo-export-name="qevora-breadcrumb-demo.txt"><i class="bi bi-download"></i> Export</button>
+                <button type="button" class="btn btn-primary" data-demo-action="New invoice — breadcrumb demo action."><i class="bi bi-plus-lg"></i> New invoice</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="demo-block__pane" data-demo-pane="html">
+          <div class="demo-code-wrap">
+            <button type="button" class="copy-btn" data-copy-target="#crumbPageHead"><i class="bi bi-clipboard"></i> Copy HTML</button>
+            <pre class="demo-code"><code id="crumbPageHead">&lt;div class="q-page-head"&gt;
+  &lt;div&gt;
+    &lt;nav aria-label="Breadcrumb"&gt;
+      &lt;ol class="breadcrumb"&gt;
+        &lt;li class="breadcrumb-item"&gt;&lt;a href="../index.html"&gt;Dashboard&lt;/a&gt;&lt;/li&gt;
+        &lt;li class="breadcrumb-item"&gt;&lt;a href="#"&gt;Business&lt;/a&gt;&lt;/li&gt;
+        &lt;li class="breadcrumb-item active" aria-current="page"&gt;Invoices&lt;/li&gt;
+      &lt;/ol&gt;
+    &lt;/nav&gt;
+    &lt;h1 class="q-page-head__title mt-2"&gt;Invoices&lt;/h1&gt;
+    &lt;p class="q-page-head__subtitle"&gt;Issued invoices with payment state.&lt;/p&gt;
+  &lt;/div&gt;
+
+  &lt;div class="d-flex flex-wrap gap-2"&gt;
+    &lt;button class="btn btn-white"&gt;&lt;i class="bi bi-download"&gt;&lt;/i&gt; Export&lt;/button&gt;
+    &lt;button class="btn btn-primary"&gt;&lt;i class="bi bi-plus-lg"&gt;&lt;/i&gt; New invoice&lt;/button&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <h2 class="card-title mb-0">Usage notes</h2>
+        </div>
+        <div class="card-body">
+          <ul class="fs-7 text-muted-2 mb-0 d-flex flex-column gap-2">
+            <li>The separator is drawn by Bootstrap's <code>--bs-breadcrumb-divider</code>, which Qevora sets to a muted token and mirrors automatically in RTL.</li>
+            <li>Keep the trail to four levels or fewer; deeper hierarchies are easier to navigate from the sidebar.</li>
+            <li>Only the final item gets <code>.active</code> and <code>aria-current="page"</code>.</li>
+            <li>On the dashboard page the first crumb points at <code>index.html</code>; in nested folders prefix it with <code>../</code>.</li>
+          </ul>
+        </div>
+      </div>

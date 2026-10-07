@@ -1,0 +1,165 @@
+      <div class="q-page-head">
+        <div>
+          {{BREADCRUMB}}
+          <h1 class="q-page-head__title mt-2">File upload</h1>
+          <p class="q-page-head__subtitle">
+            Drop zones, file lists and attachment rows. The demo zone is wired to <code>QevoraComponents</code> — files
+            are listed in the browser and are never uploaded anywhere.
+          </p>
+        </div>
+        <div class="d-flex flex-wrap gap-2">
+          <a class="btn btn-white" href="../documentation/index.html"><i class="bi bi-book"></i> Docs</a>
+        </div>
+      </div>
+
+      <div class="demo-block" data-demo>
+        <div class="demo-block__head">
+          <div>
+            <h2 class="demo-block__title">Drop zone</h2>
+            <p class="demo-block__desc">The upload zone used by the AI content generator. Click or drop files to see the list render below it.</p>
+          </div>
+        </div>
+        <div class="demo-block__tabs">
+          <button type="button" class="demo-tab is-active" data-demo-tab="preview" aria-selected="true">Preview</button>
+          <button type="button" class="demo-tab" data-demo-tab="html" aria-selected="false">HTML</button>
+        </div>
+        <div class="demo-block__pane is-active" data-demo-pane="preview">
+          <div class="demo-preview" id="fuDropzone">
+            <div class="upload-zone" data-upload-zone>
+              <i class="bi bi-cloud-arrow-up upload-zone__icon" aria-hidden="true"></i>
+              <p class="fs-7 fw-500 text-heading mb-1">Drop files here or click to browse</p>
+              <p class="fs-8 text-muted-2 mb-0">PNG, JPG, PDF or DOCX up to 10 MB — demo only, files never leave the browser.</p>
+              <input type="file" class="d-none" multiple aria-label="Choose files to upload">
+            </div>
+            <div class="mt-2" data-upload-list></div>
+          </div>
+        </div>
+        <div class="demo-block__pane" data-demo-pane="html">
+          <div class="demo-code-wrap">
+            <button class="copy-btn" data-copy-target="#codeFuDropzone" type="button"><i class="bi bi-clipboard"></i> Copy HTML</button>
+            <pre class="demo-code"><code id="codeFuDropzone" data-auto-code="#fuDropzone"></code></pre>
+          </div>
+        </div>
+      </div>
+
+      <div class="demo-block" data-demo>
+        <div class="demo-block__head">
+          <div>
+            <h2 class="demo-block__title">Attachment list</h2>
+            <p class="demo-block__desc">Static <code>.file-row</code> markup for files that already exist on a record — used on invoice and order details.</p>
+          </div>
+        </div>
+        <div class="demo-block__tabs">
+          <button type="button" class="demo-tab is-active" data-demo-tab="preview" aria-selected="true">Preview</button>
+          <button type="button" class="demo-tab" data-demo-tab="html" aria-selected="false">HTML</button>
+        </div>
+        <div class="demo-block__pane is-active" data-demo-pane="preview">
+          <div class="demo-preview" id="fuList">
+            <div class="file-row">
+              <span class="file-row__icon"><i class="bi bi-filetype-pdf"></i></span>
+              <span class="flex-grow-1 min-w-0">
+                <span class="d-block fs-7 fw-500 text-heading text-truncate">INV-2026-0184-northstar.pdf</span>
+                <span class="d-block fs-8 text-muted-2">1.2 MB · uploaded Sep 28, 2026</span>
+              </span>
+              <button class="btn btn-icon btn-sm btn-ghost" type="button" aria-label="Download INV-2026-0184-northstar.pdf" data-demo-download="INV-2026-0184-northstar.txt" data-demo-download-label="Invoice PDF (demo placeholder)"><i class="bi bi-download"></i></button>
+              <button class="btn btn-icon btn-sm btn-ghost" type="button" aria-label="Delete INV-2026-0184-northstar.pdf" data-demo-action="Delete is disabled in the demo." data-demo-variant="danger"><i class="bi bi-trash3"></i></button>
+            </div>
+            <div class="file-row">
+              <span class="file-row__icon"><i class="bi bi-file-earmark-spreadsheet"></i></span>
+              <span class="flex-grow-1 min-w-0">
+                <span class="d-block fs-7 fw-500 text-heading text-truncate">seats-breakdown-growth-plan.xlsx</span>
+                <span class="d-block fs-8 text-muted-2">86 KB · uploaded Sep 21, 2026</span>
+              </span>
+              <button class="btn btn-icon btn-sm btn-ghost" type="button" aria-label="Download seats-breakdown-growth-plan.xlsx" data-demo-download="seats-breakdown-growth-plan.txt" data-demo-download-label="Seats breakdown (demo placeholder)"><i class="bi bi-download"></i></button>
+              <button class="btn btn-icon btn-sm btn-ghost" type="button" aria-label="Delete seats-breakdown-growth-plan.xlsx" data-demo-action="Delete is disabled in the demo." data-demo-variant="danger"><i class="bi bi-trash3"></i></button>
+            </div>
+            <div class="file-row">
+              <span class="file-row__icon"><i class="bi bi-file-earmark-image"></i></span>
+              <span class="flex-grow-1 min-w-0">
+                <span class="d-block fs-7 fw-500 text-heading text-truncate">brand-hero-1920.png</span>
+                <span class="d-block fs-8 text-muted-2">640 KB · uploaded Sep 14, 2026</span>
+              </span>
+              <button class="btn btn-icon btn-sm btn-ghost" type="button" aria-label="Download brand-hero-1920.png" data-demo-download="brand-hero-1920.svg" data-demo-download-kind="svg" data-demo-download-label="Brand hero"><i class="bi bi-download"></i></button>
+              <button class="btn btn-icon btn-sm btn-ghost" type="button" aria-label="Delete brand-hero-1920.png" data-demo-action="Delete is disabled in the demo." data-demo-variant="danger"><i class="bi bi-trash3"></i></button>
+            </div>
+          </div>
+        </div>
+        <div class="demo-block__pane" data-demo-pane="html">
+          <div class="demo-code-wrap">
+            <button class="copy-btn" data-copy-target="#codeFuList" type="button"><i class="bi bi-clipboard"></i> Copy HTML</button>
+            <pre class="demo-code"><code id="codeFuList" data-auto-code="#fuList"></code></pre>
+          </div>
+        </div>
+      </div>
+
+      <div class="demo-block" data-demo>
+        <div class="demo-block__head">
+          <div>
+            <h2 class="demo-block__title">Avatar and logo upload</h2>
+            <p class="demo-block__desc">Single-file pickers with a required shape and size hint — mirrors the profile and branding settings screens.</p>
+          </div>
+        </div>
+        <div class="demo-block__tabs">
+          <button type="button" class="demo-tab is-active" data-demo-tab="preview" aria-selected="true">Preview</button>
+          <button type="button" class="demo-tab" data-demo-tab="html" aria-selected="false">HTML</button>
+        </div>
+        <div class="demo-block__pane is-active" data-demo-pane="preview">
+          <div class="demo-preview" id="fuAvatar">
+            <div class="row g-4 align-items-center">
+              <div class="col-md-6">
+                <p class="form-label">Profile photo</p>
+                <div class="d-flex align-items-center gap-3">
+                  <span class="avatar avatar-xl bg-avatar-2">AR</span>
+                  <div>
+                    <div class="d-flex gap-2 mb-1">
+                      <label class="btn btn-sm btn-soft-primary mb-0">
+                        <i class="bi bi-upload"></i> Upload
+                        <input type="file" class="d-none" accept="image/png,image/jpeg" aria-label="Upload profile photo">
+                      </label>
+                      <button class="btn btn-sm btn-white" type="button" data-demo-action="Photo removed — demo only.">Remove</button>
+                    </div>
+                    <p class="fs-8 text-muted-2 mb-0">Square PNG or JPG, at least 400 × 400 px, max 2 MB.</p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <p class="form-label">Workspace logo</p>
+                <div class="d-flex align-items-center gap-3">
+                  <span class="avatar avatar-xl avatar-square bg-white border p-2"><img src="../assets/images/logo/logo-mark.svg" alt="Current workspace logo" class="img-fluid"></span>
+                  <div>
+                    <div class="d-flex gap-2 mb-1">
+                      <label class="btn btn-sm btn-soft-primary mb-0">
+                        <i class="bi bi-upload"></i> Replace
+                        <input type="file" class="d-none" accept="image/svg+xml,image/png" aria-label="Replace workspace logo">
+                      </label>
+                      <button class="btn btn-sm btn-white" type="button" data-demo-action="Logo reset to default — demo only.">Reset</button>
+                    </div>
+                    <p class="fs-8 text-muted-2 mb-0">SVG or transparent PNG, max 1 MB. Displayed at 40 px.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="demo-block__pane" data-demo-pane="html">
+          <div class="demo-code-wrap">
+            <button class="copy-btn" data-copy-target="#codeFuAvatar" type="button"><i class="bi bi-clipboard"></i> Copy HTML</button>
+            <pre class="demo-code"><code id="codeFuAvatar" data-auto-code="#fuAvatar"></code></pre>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <h2 class="card-title mb-0">Usage notes</h2>
+        </div>
+        <div class="card-body">
+          <ul class="fs-7 text-muted-2 mb-0 d-flex flex-column gap-2">
+            <li>The demo zone only <em>lists</em> chosen files — connect the <code>change</code> event to your own endpoint for a real upload.</li>
+            <li>Always name the accepted formats and the size limit in the zone description; users should not discover limits from an error.</li>
+            <li>Set the <code>accept</code> attribute on the hidden input, but validate the file type on the server as well.</li>
+            <li>Keep destructive actions (delete) as ghost icon buttons with an explicit <code>aria-label</code> naming the file.</li>
+            <li>The drop zone adds <code>.is-dragover</code> while a file hovers over it, and removes it on drop and drag-leave.</li>
+          </ul>
+        </div>
+      </div>

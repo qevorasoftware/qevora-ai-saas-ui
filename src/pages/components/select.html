@@ -1,0 +1,176 @@
+      <div class="q-page-head">
+        <div>
+          {{BREADCRUMB}}
+          <h1 class="q-page-head__title mt-2">Select &amp; Search</h1>
+          <p class="q-page-head__subtitle">
+            Native selects, multi-select, search fields and tag pickers. Native <code>&lt;select&gt;</code> is the default —
+            it is keyboard-friendly and needs no extra script.
+          </p>
+        </div>
+        <div class="d-flex flex-wrap gap-2">
+          <a class="btn btn-white" href="../documentation/index.html"><i class="bi bi-book"></i> Docs</a>
+        </div>
+      </div>
+
+      <div class="demo-block" data-demo>
+        <div class="demo-block__head">
+          <div>
+            <h2 class="demo-block__title">Native select</h2>
+            <p class="demo-block__desc">Default, small and large sizing, plus a multi-row list for long option sets.</p>
+          </div>
+        </div>
+        <div class="demo-block__tabs">
+          <button type="button" class="demo-tab is-active" data-demo-tab="preview" aria-selected="true">Preview</button>
+          <button type="button" class="demo-tab" data-demo-tab="html" aria-selected="false">HTML</button>
+        </div>
+        <div class="demo-block__pane is-active" data-demo-pane="preview">
+          <div class="demo-preview" id="selNative">
+            <div class="row g-3">
+              <div class="col-md-6">
+                <label class="form-label" for="selOwner">Project owner</label>
+                <select class="form-select" id="selOwner" data-demo-echo="Owner">
+                  <option selected>Ava Reynolds — Admin</option>
+                  <option>Marcus Chen — Manager</option>
+                  <option>Lea Novak — Analyst</option>
+                  <option>Daniel Okafor — Engineer</option>
+                </select>
+              </div>
+              <div class="col-md-6">
+                <label class="form-label" for="selStatus">Status</label>
+                <select class="form-select form-select-sm" id="selStatus" data-demo-echo="Status">
+                  <option>All statuses</option>
+                  <option selected>Active</option>
+                  <option>On hold</option>
+                  <option>Completed</option>
+                </select>
+              </div>
+              <div class="col-md-6">
+                <label class="form-label" for="selPlan">Plan</label>
+                <select class="form-select form-select-lg" id="selPlan" data-demo-echo="Plan">
+                  <option>Starter</option>
+                  <option selected>Growth</option>
+                  <option>Scale</option>
+                  <option>Enterprise</option>
+                </select>
+              </div>
+              <div class="col-md-6">
+                <label class="form-label" for="selTimezone">Timezone</label>
+                <select class="form-select" id="selTimezone" data-demo-echo="Timezone" aria-describedby="selTimezoneHelp">
+                  <option>(UTC +00:00) London</option>
+                  <option selected>(UTC +08:00) Singapore</option>
+                  <option>(UTC +01:00) Berlin</option>
+                  <option>(UTC +09:00) Tokyo</option>
+                </select>
+                <div class="form-text" id="selTimezoneHelp">Used for report timestamps and scheduled emails.</div>
+              </div>
+              <div class="col-12">
+                <label class="form-label" for="selMulti">Assign reviewers</label>
+                <select class="form-select" id="selMulti" data-demo-echo="Teams" multiple size="4" aria-describedby="selMultiHelp">
+                  <option selected>Ava Reynolds</option>
+                  <option selected>Marcus Chen</option>
+                  <option>Lea Novak</option>
+                  <option>Daniel Okafor</option>
+                  <option>Yuki Tanaka</option>
+                  <option>Priya Sharma</option>
+                </select>
+                <div class="form-text" id="selMultiHelp">Hold <kbd>Ctrl</kbd> (or <kbd>Cmd</kbd>) to select more than one reviewer.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="demo-block__pane" data-demo-pane="html">
+          <div class="demo-code-wrap">
+            <button class="copy-btn" data-copy-target="#codeSelNative" type="button"><i class="bi bi-clipboard"></i> Copy HTML</button>
+            <pre class="demo-code"><code id="codeSelNative" data-auto-code="#selNative"></code></pre>
+          </div>
+        </div>
+      </div>
+
+      <div class="demo-block" data-demo>
+        <div class="demo-block__head">
+          <div>
+            <h2 class="demo-block__title">Search field with icon</h2>
+            <p class="demo-block__desc">The <code>.search-field</code> component — used in the header and in every table toolbar.</p>
+          </div>
+        </div>
+        <div class="demo-block__tabs">
+          <button type="button" class="demo-tab is-active" data-demo-tab="preview" aria-selected="true">Preview</button>
+          <button type="button" class="demo-tab" data-demo-tab="html" aria-selected="false">HTML</button>
+        </div>
+        <div class="demo-block__pane is-active" data-demo-pane="preview">
+          <div class="demo-preview" id="selSearch">
+            <div class="row g-3">
+              <div class="col-md-6">
+                <label class="form-label" for="searchBasic">Search</label>
+                <div class="search-field">
+                  <i class="bi bi-search search-field__icon"></i>
+                  <input type="search" class="form-control" id="searchBasic" placeholder="Search projects…" aria-label="Search projects">
+                </div>
+              </div>
+              <div class="col-md-6">
+                <label class="form-label" for="searchSm">Compact search</label>
+                <div class="search-field">
+                  <i class="bi bi-search search-field__icon"></i>
+                  <input type="search" class="form-control form-control-sm" id="searchSm" placeholder="Filter rows…" aria-label="Filter rows">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="demo-block__pane" data-demo-pane="html">
+          <div class="demo-code-wrap">
+            <button class="copy-btn" data-copy-target="#codeSelSearch" type="button"><i class="bi bi-clipboard"></i> Copy HTML</button>
+            <pre class="demo-code"><code id="codeSelSearch" data-auto-code="#selSearch"></code></pre>
+          </div>
+        </div>
+      </div>
+
+      <div class="demo-block" data-demo>
+        <div class="demo-block__head">
+          <div>
+            <h2 class="demo-block__title">Tag picker</h2>
+            <p class="demo-block__desc">Selected values as removable <code>.chip</code> elements — good for filters and labels.</p>
+          </div>
+        </div>
+        <div class="demo-block__tabs">
+          <button type="button" class="demo-tab is-active" data-demo-tab="preview" aria-selected="true">Preview</button>
+          <button type="button" class="demo-tab" data-demo-tab="html" aria-selected="false">HTML</button>
+        </div>
+        <div class="demo-block__pane is-active" data-demo-pane="preview">
+          <div class="demo-preview" id="selTags">
+            <label class="form-label d-block">Active filters</label>
+            <div class="d-flex flex-wrap gap-2 mb-3">
+              <span class="chip">Status: Active <button class="btn-close" type="button" aria-label="Remove Status filter" data-demo-remove data-demo-remove-label="Status filter"></button></span>
+              <span class="chip">Owner: Marcus Chen <button class="btn-close" type="button" aria-label="Remove Owner filter" data-demo-remove data-demo-remove-label="Owner filter"></button></span>
+              <span class="chip">Value: over $10K <button class="btn-close" type="button" aria-label="Remove Value filter" data-demo-remove data-demo-remove-label="Value filter"></button></span>
+              <span class="chip">Created: Q3 2026 <button class="btn-close" type="button" aria-label="Remove Created filter" data-demo-remove data-demo-remove-label="Created filter"></button></span>
+            </div>
+            <div class="input-group">
+              <span class="input-group-text"><i class="bi bi-tags"></i></span>
+              <input type="text" class="form-control" placeholder="Add a filter and press Enter…" aria-label="Add a filter">
+              <button class="btn btn-white" type="button" data-demo-action="Filter added — demo only.">Add filter</button>
+            </div>
+          </div>
+        </div>
+        <div class="demo-block__pane" data-demo-pane="html">
+          <div class="demo-code-wrap">
+            <button class="copy-btn" data-copy-target="#codeSelTags" type="button"><i class="bi bi-clipboard"></i> Copy HTML</button>
+            <pre class="demo-code"><code id="codeSelTags" data-auto-code="#selTags"></code></pre>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <h2 class="card-title mb-0">Usage notes</h2>
+        </div>
+        <div class="card-body">
+          <ul class="fs-7 text-muted-2 mb-0 d-flex flex-column gap-2">
+            <li>Prefer native selects — they render the operating system's own picker on mobile, which users already trust.</li>
+            <li>Keep the first option meaningful ("All statuses"), never an empty placeholder, when the select is a filter.</li>
+            <li>Add <code>size="4"</code> (or more) to a multi-select so the selected rows are visible without scrolling.</li>
+            <li>Search inputs should debounce at about 250 ms when they filter a table through JavaScript.</li>
+            <li>Removable chips need a descriptive <code>aria-label</code> on the close button — "Remove" alone is not enough.</li>
+          </ul>
+        </div>
+      </div>

@@ -1,0 +1,140 @@
+      <div class="q-page-head">
+        <div>
+          {{BREADCRUMB}}
+          <h1 class="q-page-head__title mt-2">Alerts</h1>
+          <p class="q-page-head__subtitle">Inline feedback for success, warning, error and information states, with an optional dismiss button.</p>
+        </div>
+      </div>
+
+      <div class="demo-block" data-demo>
+        <div class="demo-block__head">
+          <div>
+            <h2 class="demo-block__title">Soft alerts</h2>
+            <p class="demo-block__desc">The default style. Each alert pairs an icon with a title and a short explanation.</p>
+          </div>
+        </div>
+        <div class="demo-block__tabs">
+          <button type="button" class="demo-tab is-active" data-demo-tab="preview" aria-selected="true">Preview</button>
+          <button type="button" class="demo-tab" data-demo-tab="html" aria-selected="false">HTML</button>
+        </div>
+        <div class="demo-block__pane is-active" data-demo-pane="preview">
+          <div class="demo-preview d-flex flex-column gap-3">
+            <div class="alert alert-success mb-0" role="alert">
+              <i class="bi bi-check-circle alert-icon"></i>
+              <div>
+                <strong class="d-block">Payment captured</strong>
+                <span class="fs-8">Invoice INV-2026-0184 was paid in full.</span>
+              </div>
+            </div>
+            <div class="alert alert-warning mb-0" role="alert">
+              <i class="bi bi-exclamation-triangle alert-icon"></i>
+              <div>
+                <strong class="d-block">AI quota almost reached</strong>
+                <span class="fs-8">Nova-4 Turbo is at 82% of its monthly limit.</span>
+              </div>
+            </div>
+            <div class="alert alert-danger mb-0" role="alert">
+              <i class="bi bi-x-circle alert-icon"></i>
+              <div>
+                <strong class="d-block">Payment failed</strong>
+                <span class="fs-8">The card ending 1009 was declined by the issuer.</span>
+              </div>
+            </div>
+            <div class="alert alert-info mb-0" role="alert">
+              <i class="bi bi-info-circle alert-icon"></i>
+              <div>
+                <strong class="d-block">Scheduled maintenance</strong>
+                <span class="fs-8">Reporting exports pause on Oct 8 between 02:00 and 04:00 UTC.</span>
+              </div>
+            </div>
+            <div class="alert alert-primary mb-0" role="alert">
+              <i class="bi bi-stars alert-icon"></i>
+              <div>
+                <strong class="d-block">New component library</strong>
+                <span class="fs-8">31 component pages with copy-ready markup are ready to browse.</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="demo-block__pane" data-demo-pane="html">
+          <div class="demo-code-wrap">
+            <button type="button" class="copy-btn" data-copy-target="#alertSoft"><i class="bi bi-clipboard"></i> Copy HTML</button>
+            <pre class="demo-code"><code id="alertSoft">&lt;div class="alert alert-success" role="alert"&gt;
+  &lt;i class="bi bi-check-circle alert-icon"&gt;&lt;/i&gt;
+  &lt;div&gt;
+    &lt;strong class="d-block"&gt;Payment captured&lt;/strong&gt;
+    &lt;span class="fs-8"&gt;Invoice INV-2026-0184 was paid in full.&lt;/span&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class="alert alert-warning" role="alert"&gt;…&lt;/div&gt;
+&lt;div class="alert alert-danger" role="alert"&gt;…&lt;/div&gt;
+&lt;div class="alert alert-info" role="alert"&gt;…&lt;/div&gt;
+&lt;div class="alert alert-primary" role="alert"&gt;…&lt;/div&gt;</code></pre>
+          </div>
+        </div>
+      </div>
+
+      <div class="demo-block" data-demo>
+        <div class="demo-block__head">
+          <div>
+            <h2 class="demo-block__title">Dismissible and solid</h2>
+            <p class="demo-block__desc">Dismissible alerts include a close button with an accessible label. Solid alerts are reserved for high-emphasis page-level messages.</p>
+          </div>
+        </div>
+        <div class="demo-block__tabs">
+          <button type="button" class="demo-tab is-active" data-demo-tab="preview" aria-selected="true">Preview</button>
+          <button type="button" class="demo-tab" data-demo-tab="html" aria-selected="false">HTML</button>
+        </div>
+        <div class="demo-block__pane is-active" data-demo-pane="preview">
+          <div class="demo-preview d-flex flex-column gap-3">
+            <div class="alert alert-info alert-dismissible fade show mb-0" role="alert">
+              <i class="bi bi-info-circle alert-icon"></i>
+              <div class="flex-grow-1">Your export is being prepared. We will email you when it is ready.</div>
+              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Dismiss notification"></button>
+            </div>
+            <div class="alert alert-success alert-dismissible fade show mb-0" role="alert">
+              <i class="bi bi-check-circle alert-icon"></i>
+              <div class="flex-grow-1">Settings saved. Your workspace preferences are up to date.</div>
+              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Dismiss notification"></button>
+            </div>
+            <div class="alert alert-solid-primary mb-0" role="alert">
+              <i class="bi bi-megaphone alert-icon"></i>
+              <div class="flex-grow-1">Qevora v1.1 ships next month with new AI modules.</div>
+            </div>
+            <div class="alert alert-solid-warning mb-0" role="alert">
+              <i class="bi bi-exclamation-triangle alert-icon"></i>
+              <div class="flex-grow-1">Trial ends in three days for Acme Inc.</div>
+            </div>
+          </div>
+        </div>
+        <div class="demo-block__pane" data-demo-pane="html">
+          <div class="demo-code-wrap">
+            <button type="button" class="copy-btn" data-copy-target="#alertDismiss"><i class="bi bi-clipboard"></i> Copy HTML</button>
+            <pre class="demo-code"><code id="alertDismiss">&lt;div class="alert alert-info alert-dismissible fade show" role="alert"&gt;
+  &lt;i class="bi bi-info-circle alert-icon"&gt;&lt;/i&gt;
+  &lt;div class="flex-grow-1"&gt;Your export is being prepared.&lt;/div&gt;
+  &lt;button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Dismiss notification"&gt;&lt;/button&gt;
+&lt;/div&gt;
+
+&lt;div class="alert alert-solid-primary" role="alert"&gt;
+  &lt;i class="bi bi-megaphone alert-icon"&gt;&lt;/i&gt;
+  &lt;div class="flex-grow-1"&gt;Qevora v1.1 ships next month.&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <h2 class="card-title mb-0">Usage notes</h2>
+        </div>
+        <div class="card-body">
+          <ul class="fs-7 text-muted-2 mb-0 d-flex flex-column gap-2">
+            <li>Every alert uses <code>role="alert"</code> so assistive technology announces it when inserted.</li>
+            <li>The icon reflects the meaning, not just the colour — pair the two for accessibility.</li>
+            <li>Keep alert copy to two lines. Longer explanations belong in a modal or documentation.</li>
+            <li>Set <code>aria-live="polite"</code> on a container when you inject alerts dynamically.</li>
+          </ul>
+        </div>
+      </div>

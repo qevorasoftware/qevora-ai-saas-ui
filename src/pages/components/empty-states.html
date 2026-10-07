@@ -1,0 +1,167 @@
+      <div class="q-page-head">
+        <div>
+          {{BREADCRUMB}}
+          <h1 class="q-page-head__title mt-2">Empty, error and loading states</h1>
+          <p class="q-page-head__subtitle">Every list, table and chart in the template has a defined state for “nothing here yet”, “something broke” and “still loading”.</p>
+        </div>
+      </div>
+
+      <div class="demo-block" data-demo>
+        <div class="demo-block__head">
+          <div>
+            <h2 class="demo-block__title">Empty state</h2>
+            <p class="demo-block__desc">Explain what is missing, why, and the one action that fixes it. Used by tables, kanban boards and AI history.</p>
+          </div>
+        </div>
+        <div class="demo-block__tabs">
+          <button type="button" class="demo-tab is-active" data-demo-tab="preview" aria-selected="true">Preview</button>
+          <button type="button" class="demo-tab" data-demo-tab="html" aria-selected="false">HTML</button>
+        </div>
+        <div class="demo-block__pane is-active" data-demo-pane="preview">
+          <div class="demo-preview">
+            <div class="state-block">
+              <div class="state-block__icon"><i class="bi bi-kanban"></i></div>
+              <p class="state-block__title">No projects yet</p>
+              <p class="state-block__text">Create your first project to start tracking tasks, budgets and delivery dates.</p>
+              <div class="d-flex justify-content-center gap-2">
+                <button type="button" class="btn btn-primary" data-demo-action="New project — the empty state's call to action; point it at your own flow."><i class="bi bi-plus-lg"></i> New project</button>
+                <button type="button" class="btn btn-white" data-demo-action="Import from CSV — the empty state's call to action; point it at your own flow.">Import from CSV</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="demo-block__pane" data-demo-pane="html">
+          <div class="demo-code-wrap">
+            <button type="button" class="copy-btn" data-copy-target="#emptyState"><i class="bi bi-clipboard"></i> Copy HTML</button>
+            <pre class="demo-code"><code id="emptyState">&lt;div class="state-block"&gt;
+  &lt;div class="state-block__icon"&gt;&lt;i class="bi bi-kanban"&gt;&lt;/i&gt;&lt;/div&gt;
+  &lt;p class="state-block__title"&gt;No projects yet&lt;/p&gt;
+  &lt;p class="state-block__text"&gt;Create your first project to start tracking tasks and delivery dates.&lt;/p&gt;
+  &lt;div class="d-flex justify-content-center gap-2"&gt;
+    &lt;button class="btn btn-primary"&gt;&lt;i class="bi bi-plus-lg"&gt;&lt;/i&gt; New project&lt;/button&gt;
+    &lt;button class="btn btn-white"&gt;Import from CSV&lt;/button&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+          </div>
+        </div>
+      </div>
+
+      <div class="demo-block" data-demo>
+        <div class="demo-block__head">
+          <div>
+            <h2 class="demo-block__title">Error and search states</h2>
+            <p class="demo-block__desc">Distinguish “no results for this filter” from “this failed”. The recovery action differs for each.</p>
+          </div>
+        </div>
+        <div class="demo-block__tabs">
+          <button type="button" class="demo-tab is-active" data-demo-tab="preview" aria-selected="true">Preview</button>
+          <button type="button" class="demo-tab" data-demo-tab="html" aria-selected="false">HTML</button>
+        </div>
+        <div class="demo-block__pane is-active" data-demo-pane="preview">
+          <div class="demo-preview">
+            <div class="row g-3">
+              <div class="col-md-6">
+                <div class="border border-q rounded-q h-100">
+                  <div class="state-block">
+                    <div class="state-block__icon bg-surface-alt" style="color: var(--q-muted-color);"><i class="bi bi-search"></i></div>
+                    <p class="state-block__title">No results found</p>
+                    <p class="state-block__text">No invoices match “Orbit”. Try a different keyword or clear the filters.</p>
+                    <button type="button" class="btn btn-soft-primary" data-demo-action="Clear filters — the empty state's call to action; point it at your own flow.">Clear filters</button>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="border border-q rounded-q h-100">
+                  <div class="state-block">
+                    <div class="state-block__icon bg-danger-soft" style="color: var(--q-danger);"><i class="bi bi-exclamation-octagon"></i></div>
+                    <p class="state-block__title">Could not load analytics</p>
+                    <p class="state-block__text">The reporting service did not respond. Your data is safe — try again in a moment.</p>
+                    <button type="button" class="btn btn-soft-danger" data-demo-action="Retry — the empty state's call to action; point it at your own flow."><i class="bi bi-arrow-repeat"></i> Retry</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="demo-block__pane" data-demo-pane="html">
+          <div class="demo-code-wrap">
+            <button type="button" class="copy-btn" data-copy-target="#errorStates"><i class="bi bi-clipboard"></i> Copy HTML</button>
+            <pre class="demo-code"><code id="errorStates">&lt;!-- No results --&gt;
+&lt;div class="state-block"&gt;
+  &lt;div class="state-block__icon bg-surface-alt" style="color: var(--q-muted-color);"&gt;
+    &lt;i class="bi bi-search"&gt;&lt;/i&gt;
+  &lt;/div&gt;
+  &lt;p class="state-block__title"&gt;No results found&lt;/p&gt;
+  &lt;p class="state-block__text"&gt;No invoices match “Orbit”.&lt;/p&gt;
+  &lt;button class="btn btn-soft-primary"&gt;Clear filters&lt;/button&gt;
+&lt;/div&gt;
+
+&lt;!-- Error --&gt;
+&lt;div class="state-block"&gt;
+  &lt;div class="state-block__icon bg-danger-soft" style="color: var(--q-danger);"&gt;
+    &lt;i class="bi bi-exclamation-octagon"&gt;&lt;/i&gt;
+  &lt;/div&gt;
+  &lt;p class="state-block__title"&gt;Could not load analytics&lt;/p&gt;
+  &lt;p class="state-block__text"&gt;Your data is safe — try again in a moment.&lt;/p&gt;
+  &lt;button class="btn btn-soft-danger"&gt;&lt;i class="bi bi-arrow-repeat"&gt;&lt;/i&gt; Retry&lt;/button&gt;
+&lt;/div&gt;</code></pre>
+          </div>
+        </div>
+      </div>
+
+      <div class="demo-block" data-demo>
+        <div class="demo-block__head">
+          <div>
+            <h2 class="demo-block__title">Loading states</h2>
+            <p class="demo-block__desc">Skeletons for content that has a known shape; spinners for short, blocking actions.</p>
+          </div>
+        </div>
+        <div class="demo-block__tabs">
+          <button type="button" class="demo-tab is-active" data-demo-tab="preview" aria-selected="true">Preview</button>
+          <button type="button" class="demo-tab" data-demo-tab="html" aria-selected="false">HTML</button>
+        </div>
+        <div class="demo-block__pane is-active" data-demo-pane="preview">
+          <div class="demo-preview">
+            <div class="row g-3">
+              <div class="col-md-6">
+                <div class="card">
+                  <div class="card-body">
+                    <div class="skeleton mb-3" style="width: 40%; height: 16px;"></div>
+                    <div class="skeleton mb-2" style="width: 100%;"></div>
+                    <div class="skeleton mb-2" style="width: 92%;"></div>
+                    <div class="skeleton mb-3" style="width: 78%;"></div>
+                    <div class="skeleton" style="width: 120px; height: 34px; border-radius: var(--q-radius-sm);"></div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="card h-100">
+                  <div class="card-body d-flex flex-column align-items-center justify-content-center text-center" style="min-height: 200px;">
+                    <div class="spinner-q mb-3" role="status" aria-label="Loading"></div>
+                    <p class="fs-7 fw-500 text-heading mb-1">Loading analytics…</p>
+                    <p class="fs-8 text-muted-2 mb-0">Usually takes a couple of seconds.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="demo-block__pane" data-demo-pane="html">
+          <div class="demo-code-wrap">
+            <button type="button" class="copy-btn" data-copy-target="#loadingStates"><i class="bi bi-clipboard"></i> Copy HTML</button>
+            <pre class="demo-code"><code id="loadingStates">&lt;!-- Skeleton --&gt;
+&lt;div class="skeleton mb-3" style="width: 40%; height: 16px;"&gt;&lt;/div&gt;
+&lt;div class="skeleton mb-2"&gt;&lt;/div&gt;
+&lt;div class="skeleton" style="width: 92%;"&gt;&lt;/div&gt;
+
+&lt;!-- Blocking spinner --&gt;
+&lt;div class="spinner-q" role="status" aria-label="Loading"&gt;&lt;/div&gt;
+
+&lt;!-- Bootstrap spinner in a button --&gt;
+&lt;button class="btn btn-primary" disabled&gt;
+  &lt;span class="spinner-border spinner-border-sm" aria-hidden="true"&gt;&lt;/span&gt;
+  &lt;span role="status"&gt;Saving…&lt;/span&gt;
+&lt;/button&gt;</code></pre>
+          </div>
+        </div>
+      </div>

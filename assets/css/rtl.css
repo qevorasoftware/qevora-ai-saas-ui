@@ -1,0 +1,198 @@
+/* ==========================================================================
+   Qevora AI SaaS — Bootstrap 5 Admin & UI Kit
+   rtl.css — RTL compatibility layer
+   --------------------------------------------------------------------------
+   The template ships two Bootstrap builds:
+     assets/css/bootstrap.min.css      (LTR)
+     assets/css/bootstrap.rtl.min.css  (RTL)
+
+   app.js swaps the stylesheet at runtime when the direction is switched to
+   RTL, so Bootstrap's own logical properties handle the grid, spacing
+   utilities and offcanvas positioning.
+
+   This file only contains adjustments for Qevora's own components, which are
+   already written with logical properties (inset-inline / padding-inline /
+   margin-inline). The rules below cover the remaining physical values and
+   directional icons.
+   ========================================================================== */
+
+[dir="rtl"] {
+  text-align: start;
+}
+
+/* --- Directional icon flips --------------------------------------------- */
+
+[dir="rtl"] .q-flip-rtl,
+[dir="rtl"] .bi-arrow-right,
+[dir="rtl"] .bi-arrow-left,
+[dir="rtl"] .bi-arrow-right-short,
+[dir="rtl"] .bi-arrow-left-short,
+[dir="rtl"] .bi-chevron-right,
+[dir="rtl"] .bi-chevron-left,
+[dir="rtl"] .bi-box-arrow-right,
+[dir="rtl"] .bi-box-arrow-left,
+[dir="rtl"] .bi-send,
+[dir="rtl"] .bi-reply {
+  transform: scaleX(-1);
+  display: inline-block;
+}
+
+/* Keep icons that must not mirror */
+[dir="rtl"] .bi-chevron-down,
+[dir="rtl"] .bi-chevron-up,
+[dir="rtl"] .bi-check-lg,
+[dir="rtl"] .bi-plus-lg {
+  transform: none;
+}
+
+/* --- Sidebar ------------------------------------------------------------ */
+
+[dir="rtl"] .q-nav__caret {
+  transform: rotate(180deg);
+}
+
+[dir="rtl"] .q-nav__link[aria-expanded="true"] .q-nav__caret {
+  transform: rotate(90deg);
+}
+
+/* --- Forms -------------------------------------------------------------- */
+
+/* Mirrors the LTR numbers in components.css: the caret keeps ~0.4rem of air
+   between itself and the label in both directions. */
+[dir="rtl"] .form-select {
+  background-position: left 0.85rem center;
+  padding-inline-start: 2.1rem;
+  padding-inline-end: 0.85rem;
+}
+
+[dir="rtl"] .search-field .form-control,
+[dir="rtl"] .q-header__search .form-control {
+  padding-inline-start: 2.35rem;
+  padding-inline-end: 0.85rem;
+}
+
+[dir="rtl"] .q-header__kbd {
+  inset-inline-end: 0.6rem;
+  inset-inline-start: auto;
+}
+
+[dir="rtl"] .form-check {
+  padding-inline-start: 1.5em;
+  padding-inline-end: 0;
+}
+
+[dir="rtl"] .form-check .form-check-input {
+  float: right;
+  margin-inline-start: -1.5em;
+  margin-inline-end: 0;
+}
+
+[dir="rtl"] .form-switch {
+  padding-inline-start: 2.5em;
+}
+
+[dir="rtl"] .form-switch .form-check-input {
+  margin-inline-start: -2.5em;
+  background-position: right center;
+}
+
+[dir="rtl"] .form-switch .form-check-input:checked {
+  background-position: left center;
+}
+
+[dir="rtl"] .input-group > :not(:first-child):not(.dropdown-menu):not(.valid-tooltip):not(.valid-feedback):not(.invalid-tooltip):not(.invalid-feedback) {
+  border-start-start-radius: var(--q-radius-sm);
+  border-end-start-radius: var(--q-radius-sm);
+  border-start-end-radius: 0;
+  border-end-end-radius: 0;
+}
+
+/* --- Tables ------------------------------------------------------------- */
+
+[dir="rtl"] .table-sort i {
+  margin-inline-start: 0;
+  margin-inline-end: 0.25rem;
+}
+
+/* --- Chat --------------------------------------------------------------- */
+
+[dir="rtl"] .msg--out {
+  margin-inline-start: 0;
+  margin-inline-end: auto;
+}
+
+[dir="rtl"] .msg__bubble {
+  border-start-start-radius: 4px;
+  border-start-end-radius: var(--q-radius);
+}
+
+[dir="rtl"] .msg--out .msg__bubble {
+  border-start-start-radius: var(--q-radius);
+  border-start-end-radius: 4px;
+}
+
+/* --- Dropdowns / tooltips ---------------------------------------------- */
+
+[dir="rtl"] .dropdown-menu {
+  text-align: start;
+}
+
+[dir="rtl"] .dropdown-item i {
+  margin-inline-end: 0;
+}
+
+[dir="rtl"] .tooltip,
+[dir="rtl"] .popover {
+  text-align: start;
+}
+
+/* --- Code blocks stay LTR so markup reads correctly --------------------- */
+
+[dir="rtl"] .demo-code,
+[dir="rtl"] .demo-code code,
+[dir="rtl"] code,
+[dir="rtl"] pre {
+  direction: ltr;
+  text-align: left;
+  unicode-bidi: embed;
+}
+
+/* --- Timeline ----------------------------------------------------------- */
+
+[dir="rtl"] .timeline__item {
+  padding-inline-start: 0;
+  padding-inline-end: 2rem;
+}
+
+[dir="rtl"] .timeline__item::before {
+  inset-inline-start: auto;
+  inset-inline-end: 8px;
+}
+
+[dir="rtl"] .timeline__dot {
+  inset-inline-start: auto;
+  inset-inline-end: 0;
+}
+
+/* --- Misc --------------------------------------------------------------- */
+
+[dir="rtl"] .breadcrumb-item + .breadcrumb-item::before {
+  float: right;
+  padding-inline-start: 0.5rem;
+  padding-inline-end: 0;
+  transform: scaleX(-1);
+}
+
+[dir="rtl"] .avatar-group .avatar {
+  margin-inline-start: 0;
+  margin-inline-end: -10px;
+}
+
+[dir="rtl"] .avatar-group .avatar:first-child {
+  margin-inline-end: 0;
+}
+
+[dir="rtl"] .spinner-border,
+[dir="rtl"] .spinner-grow {
+  animation-direction: reverse;
+}

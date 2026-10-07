@@ -1,0 +1,152 @@
+      <div class="q-page-head">
+        <div>
+          {{BREADCRUMB}}
+          <h1 class="q-page-head__title mt-2">Reports</h1>
+          <p class="q-page-head__subtitle">Saved reports, scheduled deliveries and download history.</p>
+        </div>
+        <div class="d-flex flex-wrap gap-2">
+          <button type="button" class="btn btn-white" data-demo-action="Report builder opened — demo only."><i class="bi bi-sliders"></i> Builder</button>
+          <button type="button" class="btn btn-primary" data-demo-new="#q-demo-record" data-demo-table="#reports-table" data-demo-label="Report"><i class="bi bi-plus-lg"></i> New report</button>
+        </div>
+      </div>
+
+      <div class="row g-3 q-section">
+        <div class="col-md-6 col-xl-3">
+          <a class="component-tile h-100" href="#" data-demo-action="Revenue report opened — demo only.">
+            <span class="component-tile__icon"><i class="bi bi-currency-dollar"></i></span>
+            <span class="component-tile__title">Revenue report</span>
+            <span class="component-tile__text">Booked and recurring revenue by segment</span>
+          </a>
+        </div>
+        <div class="col-md-6 col-xl-3">
+          <a class="component-tile h-100" href="#" data-demo-action="Churn report opened — demo only.">
+            <span class="component-tile__icon"><i class="bi bi-arrow-repeat"></i></span>
+            <span class="component-tile__title">Churn &amp; retention</span>
+            <span class="component-tile__text">Cohort retention and cancellation reasons</span>
+          </a>
+        </div>
+        <div class="col-md-6 col-xl-3">
+          <a class="component-tile h-100" href="#" data-demo-action="AI usage report opened — demo only.">
+            <span class="component-tile__icon"><i class="bi bi-stars"></i></span>
+            <span class="component-tile__title">AI usage</span>
+            <span class="component-tile__text">Tokens, models and cost per workspace</span>
+          </a>
+        </div>
+        <div class="col-md-6 col-xl-3">
+          <a class="component-tile h-100" href="#" data-demo-action="Project delivery report opened — demo only.">
+            <span class="component-tile__icon"><i class="bi bi-kanban"></i></span>
+            <span class="component-tile__title">Project delivery</span>
+            <span class="component-tile__text">Throughput, cycle time and blockers</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="row g-3 q-section">
+        <div class="col-xl-8">
+          <div class="card h-100">
+            <div class="card-header">
+              <div>
+                <h2 class="card-title">Revenue by plan</h2>
+                <p class="card-subtitle">Last four quarters</p>
+              </div>
+            </div>
+            <div class="card-body">
+              <div class="chart-holder chart-holder--md">
+                <canvas data-chart="sales" data-labels="Q1,Q2,Q3,Q4" data-series="Scale|148,172,168,204;Growth|96,118,126,142;Starter|42,48,52,58"></canvas>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-xl-4">
+          <div class="card h-100">
+            <div class="card-header">
+              <h2 class="card-title mb-0">Scheduled deliveries</h2>
+            </div>
+            <ul id="report-schedules" class="list-group list-group-flush">
+              <li class="list-group-item">
+                <div class="list-item-row">
+                  <span class="avatar avatar-sm bg-avatar-1"><i class="bi bi-envelope-paper"></i></span>
+                  <span class="flex-grow-1">
+                    <span class="d-block fs-7 fw-500 text-heading">Weekly revenue digest</span>
+                    <span class="d-block fs-8 text-muted-2">Mondays · 08:00 UTC</span>
+                  </span>
+                  <span class="badge badge-soft-success badge-pill">Active</span>
+                </div>
+              </li>
+              <li class="list-group-item">
+                <div class="list-item-row">
+                  <span class="avatar avatar-sm bg-avatar-3"><i class="bi bi-file-earmark-spreadsheet"></i></span>
+                  <span class="flex-grow-1">
+                    <span class="d-block fs-7 fw-500 text-heading">Monthly finance export</span>
+                    <span class="d-block fs-8 text-muted-2">1st of month · CSV</span>
+                  </span>
+                  <span class="badge badge-soft-success badge-pill">Active</span>
+                </div>
+              </li>
+              <li class="list-group-item">
+                <div class="list-item-row">
+                  <span class="avatar avatar-sm bg-avatar-6"><i class="bi bi-stars"></i></span>
+                  <span class="flex-grow-1">
+                    <span class="d-block fs-7 fw-500 text-heading">AI cost review</span>
+                    <span class="d-block fs-8 text-muted-2">Every Friday · 16:00 UTC</span>
+                  </span>
+                  <span class="badge badge-soft-neutral badge-pill">Paused</span>
+                </div>
+              </li>
+            </ul>
+            <div class="card-body">
+              <button type="button" class="btn btn-soft-primary w-100" data-demo-add-card="#report-schedules" data-demo-card-title="Scheduled report"><i class="bi bi-plus-lg"></i> Add schedule</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <div>
+            <h2 class="card-title">Download history</h2>
+            <p class="card-subtitle">Reports generated by your team</p>
+          </div>
+        </div>
+        <div class="table-responsive">
+          <table class="table table-hover align-middle" id="reports-table" data-demo-record="report"
+                     data-demo-fields="name:Report,owner:Requested by,format:Format,size:Size,generated:Generated">
+            <thead>
+              <tr>
+                <th scope="col">Report</th>
+                <th scope="col">Requested by</th>
+                <th scope="col">Format</th>
+                <th scope="col" class="text-end">Size</th>
+                <th scope="col">Generated</th>
+                <th scope="col" class="text-end">Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr data-report-name="Q3 revenue summary" data-report-owner="Lea Novak" data-report-format="PDF" data-report-size="2.1 MB" data-report-generated="Oct 3, 08:16">
+                <td class="fw-500 text-heading">Q3 revenue summary</td>
+                <td>Lea Novak</td>
+                <td><span class="badge badge-soft-neutral badge-pill">PDF</span></td>
+                <td class="text-end text-muted-2">2.1 MB</td>
+                <td class="text-muted-2">Oct 3, 08:16</td>
+                <td class="text-end"><button type="button" class="btn btn-icon btn-sm btn-ghost" aria-label="Download Q3 revenue summary" data-demo-export-row><i class="bi bi-download"></i></button></td>
+              </tr>
+              <tr data-report-name="Customer churn — September" data-report-owner="Ava Reynolds" data-report-format="XLSX" data-report-size="864 KB" data-report-generated="Oct 1, 17:02">
+                <td class="fw-500 text-heading">Customer churn — September</td>
+                <td>Ava Reynolds</td>
+                <td><span class="badge badge-soft-neutral badge-pill">XLSX</span></td>
+                <td class="text-end text-muted-2">864 KB</td>
+                <td class="text-muted-2">Oct 1, 17:02</td>
+                <td class="text-end"><button type="button" class="btn btn-icon btn-sm btn-ghost" aria-label="Download churn report" data-demo-export-row><i class="bi bi-download"></i></button></td>
+              </tr>
+              <tr data-report-name="AI usage by workspace" data-report-owner="Priya Sharma" data-report-format="CSV" data-report-size="148 KB" data-report-generated="Sep 29, 09:40">
+                <td class="fw-500 text-heading">AI usage by workspace</td>
+                <td>Priya Sharma</td>
+                <td><span class="badge badge-soft-neutral badge-pill">CSV</span></td>
+                <td class="text-end text-muted-2">148 KB</td>
+                <td class="text-muted-2">Sep 29, 09:40</td>
+                <td class="text-end"><button type="button" class="btn btn-icon btn-sm btn-ghost" aria-label="Download AI usage report" data-demo-export-row><i class="bi bi-download"></i></button></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>

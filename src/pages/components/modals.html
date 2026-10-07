@@ -1,0 +1,235 @@
+      <div class="q-page-head">
+        <div>
+          {{BREADCRUMB}}
+          <h1 class="q-page-head__title mt-2">Modals</h1>
+          <p class="q-page-head__subtitle">
+            Dialog patterns for confirmations, forms and detail previews. Markup is standard Bootstrap 5 — Qevora styles
+            the surface, header and footer spacing.
+          </p>
+        </div>
+        <div class="d-flex flex-wrap gap-2">
+          <a class="btn btn-white" href="../documentation/index.html"><i class="bi bi-book"></i> Docs</a>
+        </div>
+      </div>
+
+      <div class="alert alert-info d-flex align-items-start gap-2" role="alert">
+        <i class="bi bi-info-circle alert-icon"></i>
+        <div class="fs-7">
+          These dialogs are live demos. On this showcase page the triggers work exactly as they do in the dashboard —
+          open one and press <kbd>Esc</kbd> to close it.
+        </div>
+      </div>
+
+      <div class="demo-block" data-demo>
+        <div class="demo-block__head">
+          <div>
+            <h2 class="demo-block__title">Basic modal</h2>
+            <p class="demo-block__desc">Trigger button, dialog, header with close button, body, and a footer with a secondary and primary action.</p>
+          </div>
+        </div>
+        <div class="demo-block__tabs">
+          <button type="button" class="demo-tab is-active" data-demo-tab="preview" aria-selected="true">Preview</button>
+          <button type="button" class="demo-tab" data-demo-tab="html" aria-selected="false">HTML</button>
+        </div>
+        <div class="demo-block__pane is-active" data-demo-pane="preview">
+          <div class="demo-preview" id="modalBasic">
+            <button class="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#demoBasicModal">
+              <i class="bi bi-plus-lg"></i> New project
+            </button>
+
+            <div class="modal fade" id="demoBasicModal" tabindex="-1" aria-labelledby="demoBasicModalLabel" aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h2 class="modal-title fs-6" id="demoBasicModalLabel">Create project</h2>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close dialog"></button>
+                  </div>
+                  <div class="modal-body">
+                    <div class="mb-3">
+                      <label class="form-label" for="demoProjectName">Project name</label>
+                      <input type="text" class="form-control" id="demoProjectName" placeholder="Website redesign" value="Website redesign">
+                    </div>
+                    <div class="mb-3">
+                      <label class="form-label" for="demoProjectOwner">Owner</label>
+                      <select class="form-select" id="demoProjectOwner" data-demo-echo="Project owner">
+                        <option>Ava Reynolds</option>
+                        <option>Marcus Chen</option>
+                        <option>Lea Novak</option>
+                      </select>
+                    </div>
+                    <div class="mb-0">
+                      <label class="form-label" for="demoProjectDesc">Description <span class="text-muted-2 fw-400">(optional)</span></label>
+                      <textarea class="form-control" id="demoProjectDesc" rows="3" placeholder="What is this project for?"></textarea>
+                    </div>
+                  </div>
+                  <div class="modal-footer">
+                    <button class="btn btn-white" type="button" data-bs-dismiss="modal">Cancel</button>
+                    <button class="btn btn-primary" type="button" data-demo-action data-demo-variant="success">Create project</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="demo-block__pane" data-demo-pane="html">
+          <div class="demo-code-wrap">
+            <button class="copy-btn" data-copy-target="#codeModalBasic" type="button"><i class="bi bi-clipboard"></i> Copy HTML</button>
+            <pre class="demo-code"><code id="codeModalBasic" data-auto-code="#modalBasic"></code></pre>
+          </div>
+        </div>
+      </div>
+
+      <div class="demo-block" data-demo>
+        <div class="demo-block__head">
+          <div>
+            <h2 class="demo-block__title">Sizes, centering and scroll</h2>
+            <p class="demo-block__desc">Add one modifier class to <code>.modal-dialog</code> — no extra markup needed.</p>
+          </div>
+        </div>
+        <div class="demo-block__tabs">
+          <button type="button" class="demo-tab is-active" data-demo-tab="preview" aria-selected="true">Preview</button>
+          <button type="button" class="demo-tab" data-demo-tab="html" aria-selected="false">HTML</button>
+        </div>
+        <div class="demo-block__pane is-active" data-demo-pane="preview">
+          <div class="demo-preview" id="modalSizes">
+            <button class="btn btn-soft-primary" type="button" data-bs-toggle="modal" data-bs-target="#demoSmallModal">Small dialog</button>
+            <button class="btn btn-soft-primary" type="button" data-bs-toggle="modal" data-bs-target="#demoCenteredModal">Centered</button>
+            <button class="btn btn-soft-primary" type="button" data-bs-toggle="modal" data-bs-target="#demoScrollModal">Long content</button>
+
+            <div class="modal fade" id="demoSmallModal" tabindex="-1" aria-labelledby="demoSmallModalLabel" aria-hidden="true">
+              <div class="modal-dialog modal-sm">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h2 class="modal-title fs-6" id="demoSmallModalLabel">Quick note</h2>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close dialog"></button>
+                  </div>
+                  <div class="modal-body fs-7">Small dialogs fit short confirmations and single-field forms.</div>
+                  <div class="modal-footer">
+                    <button class="btn btn-white btn-sm" type="button" data-bs-dismiss="modal">Close</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="modal fade" id="demoCenteredModal" tabindex="-1" aria-labelledby="demoCenteredModalLabel" aria-hidden="true">
+              <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content text-center">
+                  <div class="modal-body p-4">
+                    <span class="state-block__icon bg-success-subtle text-success mx-auto mb-3"><i class="bi bi-check2-circle"></i></span>
+                    <h2 class="fs-5 text-heading mb-1" id="demoCenteredModalLabel">Payment approved</h2>
+                    <p class="fs-7 text-muted-2 mb-0">Invoice INV-2026-0186 has been marked as paid.</p>
+                  </div>
+                  <div class="modal-footer justify-content-center border-0 pt-0">
+                    <button class="btn btn-primary" type="button" data-bs-dismiss="modal">Done</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="modal fade" id="demoScrollModal" tabindex="-1" aria-labelledby="demoScrollModalLabel" aria-hidden="true">
+              <div class="modal-dialog modal-dialog-scrollable modal-lg">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h2 class="modal-title fs-6" id="demoScrollModalLabel">Audit log — Acme Inc.</h2>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close dialog"></button>
+                  </div>
+                  <div class="modal-body fs-7">
+                    <p class="text-muted-2">Scrollable dialogs keep a long body inside a fixed maximum height. The header and footer stay visible while the middle scrolls.</p>
+                    <ul class="timeline mb-0">
+                      <li class="timeline__item">
+                        <span class="timeline__dot timeline__dot--success"></span>
+                        <p class="timeline__title">Subscription renewed</p>
+                        <p class="timeline__meta">Growth plan · Sep 30, 2026</p>
+                      </li>
+                      <li class="timeline__item">
+                        <span class="timeline__dot"></span>
+                        <p class="timeline__title">Seats increased to 25</p>
+                        <p class="timeline__meta">Marcus Chen · Sep 18, 2026</p>
+                      </li>
+                      <li class="timeline__item">
+                        <span class="timeline__dot timeline__dot--muted"></span>
+                        <p class="timeline__title">Payment method updated</p>
+                        <p class="timeline__meta">Finance · Sep 04, 2026</p>
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="modal-footer">
+                    <button class="btn btn-white" type="button" data-bs-dismiss="modal">Close</button>
+                    <button class="btn btn-soft-primary" type="button" data-demo-export="closest" data-demo-export-scope=".modal" data-demo-export-name="qevora-audit-log-2026-10-03.csv">Export log</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="demo-block__pane" data-demo-pane="html">
+          <div class="demo-code-wrap">
+            <button class="copy-btn" data-copy-target="#codeModalSizes" type="button"><i class="bi bi-clipboard"></i> Copy HTML</button>
+            <pre class="demo-code"><code id="codeModalSizes" data-auto-code="#modalSizes"></code></pre>
+          </div>
+        </div>
+      </div>
+
+      <div class="demo-block" data-demo>
+        <div class="demo-block__head">
+          <div>
+            <h2 class="demo-block__title">Destructive confirmation</h2>
+            <p class="demo-block__desc">A danger-accented dialog for irreversible actions. Always name the record in the body text.</p>
+          </div>
+        </div>
+        <div class="demo-block__tabs">
+          <button type="button" class="demo-tab is-active" data-demo-tab="preview" aria-selected="true">Preview</button>
+          <button type="button" class="demo-tab" data-demo-tab="html" aria-selected="false">HTML</button>
+        </div>
+        <div class="demo-block__pane is-active" data-demo-pane="preview">
+          <div class="demo-preview" id="modalDanger">
+            <button class="btn btn-soft-danger" type="button" data-bs-toggle="modal" data-bs-target="#demoDeleteModal">
+              <i class="bi bi-trash3"></i> Delete record
+            </button>
+
+            <div class="modal fade" id="demoDeleteModal" tabindex="-1" aria-labelledby="demoDeleteModalLabel" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
+              <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h2 class="modal-title fs-6" id="demoDeleteModalLabel">Delete customer</h2>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close dialog"></button>
+                  </div>
+                  <div class="modal-body">
+                    <div class="alert alert-danger d-flex align-items-start gap-2 mb-3" role="alert">
+                      <i class="bi bi-exclamation-triangle alert-icon"></i>
+                      <span class="fs-7"><strong>Horizon Labs</strong> has 4 active projects and 12 invoices. Deleting the customer hides all of them.</span>
+                    </div>
+                    <label class="form-label" for="demoDeleteConfirm">Type <strong>Horizon Labs</strong> to confirm</label>
+                    <input type="text" class="form-control" id="demoDeleteConfirm" placeholder="Horizon Labs">
+                  </div>
+                  <div class="modal-footer">
+                    <button class="btn btn-white" type="button" data-bs-dismiss="modal">Keep customer</button>
+                    <button class="btn btn-danger" type="button" data-demo-action data-demo-variant="danger">Delete permanently</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="demo-block__pane" data-demo-pane="html">
+          <div class="demo-code-wrap">
+            <button class="copy-btn" data-copy-target="#codeModalDanger" type="button"><i class="bi bi-clipboard"></i> Copy HTML</button>
+            <pre class="demo-code"><code id="codeModalDanger" data-auto-code="#modalDanger"></code></pre>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <h2 class="card-title mb-0">Usage notes</h2>
+        </div>
+        <div class="card-body">
+          <ul class="fs-7 text-muted-2 mb-0 d-flex flex-column gap-2">
+            <li>Always give the dialog <code>aria-labelledby</code> pointing at the visible <code>.modal-title</code> and an <code>aria-label</code> on the close button.</li>
+            <li>Add <code>data-bs-backdrop="static"</code> only for destructive confirmations — users must not lose the dialog by accident.</li>
+            <li>Keep footers to two buttons: a white or ghost cancel on the left, one primary action on the right.</li>
+            <li>Use <code>.modal-dialog-scrollable</code> for logs and activity lists instead of inventing a custom maximum height.</li>
+            <li>Focus is handled by Bootstrap: the first focusable element receives it on open and returns on close.</li>
+          </ul>
+        </div>
+      </div>

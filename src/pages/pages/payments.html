@@ -1,0 +1,141 @@
+      <div class="q-page-head">
+        <div>
+          {{BREADCRUMB}}
+          <h1 class="q-page-head__title mt-2">Payments</h1>
+          <p class="q-page-head__subtitle">Captured payments, gateway references and settlement state.</p>
+        </div>
+        <div class="d-flex flex-wrap gap-2">
+          <button type="button" class="btn btn-white" data-demo-export="#payments-table"><i class="bi bi-file-earmark-bar-graph"></i> Settlement report</button>
+          <button type="button" class="btn btn-primary" data-demo-new="#q-demo-record" data-demo-table="#payments-table" data-demo-label="Payment"><i class="bi bi-plus-lg"></i> Record payment</button>
+        </div>
+      </div>
+
+      <div class="row g-3 q-section">
+        <div class="col-md-6 col-xl-3">
+          <div class="card card-stat h-100">
+            <div class="card-body">
+              <p class="card-stat__label">Captured this month</p>
+              <p class="card-stat__value" data-counter="186400" data-prefix="$" data-demo-stat="sum:amount" data-demo-stat-table="#payments-table" data-demo-stat-where="status=Captured">$186,400</p>
+              <span class="trend trend-up"><i class="bi bi-arrow-up-short"></i> 9.2%</span>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-xl-3">
+          <div class="card card-stat h-100">
+            <div class="card-body">
+              <p class="card-stat__label">Refunded</p>
+              <p class="card-stat__value">$3,180</p>
+              <span class="trend trend-down"><i class="bi bi-arrow-down-short"></i> 1.7% of volume</span>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-xl-3">
+          <div class="card card-stat h-100">
+            <div class="card-body">
+              <p class="card-stat__label">Failed attempts</p>
+              <p class="card-stat__value">24</p>
+              <span class="trend trend-flat"><i class="bi bi-dash-lg"></i> 1.9%</span>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-xl-3">
+          <div class="card card-stat h-100">
+            <div class="card-body">
+              <p class="card-stat__label">Payout schedule</p>
+              <p class="card-stat__value fs-4">Weekly</p>
+              <span class="trend trend-up"><i class="bi bi-check2"></i> Next: Oct 7</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="table-toolbar">
+          <div class="search-field" style="max-width: 280px;">
+            <i class="bi bi-search search-field__icon" aria-hidden="true"></i>
+            <label class="visually-hidden" for="payment-search">Search payments</label>
+            <input type="search" class="form-control" id="payment-search" placeholder="Search payments…" data-table-filter="#payments-table">
+          </div>
+          <select class="form-select form-select-sm" style="width: auto;" aria-label="Filter by gateway" data-demo-filter="gateway" data-demo-filter-table="#payments-table">
+            <option>All gateways</option>
+            <option>Stripe</option>
+            <option>Adyen</option>
+            <option>Bank transfer</option>
+          </select>
+        </div>
+
+        <div class="table-responsive">
+          <table class="table table-hover align-middle" id="payments-table" data-demo-record="payment" data-demo-fields="id:Payment,customer:Customer,method:Method,gateway:Gateway,amount:Amount,status:Status,settled:Settled">
+            <thead>
+              <tr>
+                <th scope="col">Payment</th>
+                <th scope="col">Customer</th>
+                <th scope="col">Method</th>
+                <th scope="col">Gateway</th>
+                <th scope="col" data-sort="number" class="text-end">Amount <i class="bi bi-arrow-down-up"></i></th>
+                <th scope="col">Status</th>
+                <th scope="col">Settled</th>
+                <th scope="col" class="text-end">Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr data-payment-id="PAY-90412" data-payment-customer="Northstar Labs" data-payment-method="Visa •••• 4242" data-payment-gateway="Stripe" data-payment-amount="12400" data-payment-status="Captured" data-payment-settled="Oct 4, 2026">
+                <td class="fw-500 text-heading">PAY-90412</td>
+                <td>Northstar Labs</td>
+                <td>Visa •••• 4242</td>
+                <td>Stripe</td>
+                <td class="text-end fw-600 text-heading">$12,400.00</td>
+                <td><span class="badge badge-soft-success badge-pill">Captured</span></td>
+                <td class="text-muted-2">Oct 4, 2026</td><td class="text-end"><div class="table-actions justify-content-end"><button type="button" class="btn btn-icon btn-sm btn-ghost" aria-label="Edit PAY-90412" data-demo-new="#q-demo-record" data-demo-table="#payments-table" data-demo-label="Payment"><i class="bi bi-pencil"></i></button><button type="button" class="btn btn-icon btn-sm btn-ghost" aria-label="Delete PAY-90412" data-demo-delete data-demo-delete-label="Payment"><i class="bi bi-trash"></i></button></div></td>
+              </tr>
+              <tr data-payment-id="PAY-90411" data-payment-customer="Vertex Labs" data-payment-method="Mastercard •••• 5581" data-payment-gateway="Stripe" data-payment-amount="1250" data-payment-status="Pending" data-payment-settled="—">
+                <td class="fw-500 text-heading">PAY-90411</td>
+                <td>Vertex Labs</td>
+                <td>Mastercard •••• 5581</td>
+                <td>Stripe</td>
+                <td class="text-end fw-600 text-heading">$1,250.00</td>
+                <td><span class="badge badge-soft-warning badge-pill">Pending</span></td>
+                <td class="text-muted-2">—</td><td class="text-end"><div class="table-actions justify-content-end"><button type="button" class="btn btn-icon btn-sm btn-ghost" aria-label="Edit PAY-90411" data-demo-new="#q-demo-record" data-demo-table="#payments-table" data-demo-label="Payment"><i class="bi bi-pencil"></i></button><button type="button" class="btn btn-icon btn-sm btn-ghost" aria-label="Delete PAY-90411" data-demo-delete data-demo-delete-label="Payment"><i class="bi bi-trash"></i></button></div></td>
+              </tr>
+              <tr data-payment-id="PAY-90408" data-payment-customer="Horizon Labs" data-payment-method="Bank transfer" data-payment-gateway="Adyen" data-payment-amount="9640" data-payment-status="Captured" data-payment-settled="Oct 4, 2026">
+                <td class="fw-500 text-heading">PAY-90408</td>
+                <td>Horizon Labs</td>
+                <td>Bank transfer</td>
+                <td>Adyen</td>
+                <td class="text-end fw-600 text-heading">$9,640.00</td>
+                <td><span class="badge badge-soft-success badge-pill">Captured</span></td>
+                <td class="text-muted-2">Oct 4, 2026</td><td class="text-end"><div class="table-actions justify-content-end"><button type="button" class="btn btn-icon btn-sm btn-ghost" aria-label="Edit PAY-90408" data-demo-new="#q-demo-record" data-demo-table="#payments-table" data-demo-label="Payment"><i class="bi bi-pencil"></i></button><button type="button" class="btn btn-icon btn-sm btn-ghost" aria-label="Delete PAY-90408" data-demo-delete data-demo-delete-label="Payment"><i class="bi bi-trash"></i></button></div></td>
+              </tr>
+              <tr data-payment-id="PAY-90405" data-payment-customer="Acme Inc." data-payment-method="Amex •••• 1009" data-payment-gateway="Stripe" data-payment-amount="290" data-payment-status="Failed" data-payment-settled="—">
+                <td class="fw-500 text-heading">PAY-90405</td>
+                <td>Acme Inc.</td>
+                <td>Amex •••• 1009</td>
+                <td>Stripe</td>
+                <td class="text-end fw-600 text-heading">$290.00</td>
+                <td><span class="badge badge-soft-danger badge-pill">Failed</span></td>
+                <td class="text-muted-2">—</td><td class="text-end"><div class="table-actions justify-content-end"><button type="button" class="btn btn-icon btn-sm btn-ghost" aria-label="Edit PAY-90405" data-demo-new="#q-demo-record" data-demo-table="#payments-table" data-demo-label="Payment"><i class="bi bi-pencil"></i></button><button type="button" class="btn btn-icon btn-sm btn-ghost" aria-label="Delete PAY-90405" data-demo-delete data-demo-delete-label="Payment"><i class="bi bi-trash"></i></button></div></td>
+              </tr>
+              <tr data-payment-id="PAY-90401" data-payment-customer="Orbit Systems" data-payment-method="Visa •••• 7731" data-payment-gateway="Adyen" data-payment-amount="4800" data-payment-status="Refunded" data-payment-settled="Sep 28, 2026">
+                <td class="fw-500 text-heading">PAY-90401</td>
+                <td>Orbit Systems</td>
+                <td>Visa •••• 7731</td>
+                <td>Adyen</td>
+                <td class="text-end fw-600 text-heading">$4,800.00</td>
+                <td><span class="badge badge-soft-info badge-pill">Refunded</span></td>
+                <td class="text-muted-2">Sep 28, 2026</td><td class="text-end"><div class="table-actions justify-content-end"><button type="button" class="btn btn-icon btn-sm btn-ghost" aria-label="Edit PAY-90401" data-demo-new="#q-demo-record" data-demo-table="#payments-table" data-demo-label="Payment"><i class="bi bi-pencil"></i></button><button type="button" class="btn btn-icon btn-sm btn-ghost" aria-label="Delete PAY-90401" data-demo-delete data-demo-delete-label="Payment"><i class="bi bi-trash"></i></button></div></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="table-footer" data-paginate="#payments-table" data-per-page="5">
+          <span class="fs-8 text-muted-2" data-page-info>Showing 1–5 of 5</span>
+          <nav aria-label="Payment pagination">
+            <ul class="pagination pagination-sm mb-0">
+              <li class="page-item"><a class="page-link" href="#" data-page="prev" aria-label="Previous page"><i class="bi bi-chevron-left"></i></a></li>
+              <li class="page-item active"><a class="page-link active" href="#" data-page="1">1</a></li>
+              <li class="page-item"><a class="page-link" href="#" data-page="next" aria-label="Next page"><i class="bi bi-chevron-right"></i></a></li>
+            </ul>
+          </nav>
+        </div>
+      </div>

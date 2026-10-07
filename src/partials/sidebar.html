@@ -1,0 +1,39 @@
+    <!-- ================= Sidebar ================= -->
+    <aside class="q-sidebar" id="qevora-sidebar" aria-label="Main navigation">
+      <div class="q-sidebar__brand">
+        <a href="{{DEPTH}}index.html" class="d-flex align-items-center gap-2 min-w-0 text-decoration-none">
+          <span class="q-brand__mark" aria-hidden="true">Q</span>
+          <span class="q-brand__text">
+            <span class="q-brand__name">Qevora</span>
+            <span class="q-brand__sub">AI SaaS Suite</span>
+          </span>
+        </a>
+        <button class="btn btn-icon btn-sm btn-ghost ms-auto d-none d-lg-inline-grid" type="button"
+                data-sidebar-compact aria-pressed="false" aria-label="Collapse sidebar" title="Collapse sidebar">
+          <i class="bi bi-chevron-double-left"></i>
+        </button>
+        <button class="btn btn-icon btn-sm btn-ghost ms-auto d-lg-none" type="button"
+                data-sidebar-toggle aria-expanded="false" aria-controls="qevora-sidebar" aria-label="Close navigation">
+          <i class="bi bi-x-lg"></i>
+        </button>
+      </div>
+
+      <nav class="q-sidebar__body q-scroll">
+{{NAV}}
+      </nav>
+
+      <div class="q-sidebar__footer">
+        <div class="d-flex align-items-center gap-2">
+          <span class="avatar avatar-sm bg-avatar-2" aria-hidden="true">AR</span>
+          <span class="flex-grow-1 min-w-0 q-sidebar__footer-detail">
+            <span class="d-block fs-8 fw-600 text-heading text-truncate">Ava Reynolds</span>
+            <span class="d-block fs-9 text-muted-2 text-truncate">Workspace admin</span>
+          </span>
+          <a href="{{DEPTH}}pages/settings.html" class="btn btn-icon btn-sm btn-ghost q-sidebar__footer-detail"
+             aria-label="Account settings" title="Account settings">
+            <i class="bi bi-sliders"></i>
+          </a>
+        </div>
+      </div>
+    </aside>
+    <div class="q-sidebar-backdrop" aria-hidden="true"></div>

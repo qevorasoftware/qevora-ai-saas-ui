@@ -1,0 +1,423 @@
+      <div class="q-page-head">
+        <div>
+          {{BREADCRUMB}}
+          <h1 class="q-page-head__title mt-2">Leads</h1>
+          <p class="q-page-head__subtitle">Inbound and outbound leads with score, source and owner.</p>
+        </div>
+        <div class="d-flex flex-wrap gap-2">
+          <div class="dropdown">
+            <button type="button" class="btn btn-white dropdown-toggle" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">
+              <i class="bi bi-sliders"></i> Columns
+            </button>
+            <ul class="dropdown-menu dropdown-menu-end" data-demo-columns="#leads-table">
+              <li><label class="dropdown-item d-flex align-items-center gap-2"><input class="form-check-input mt-0" type="checkbox" data-demo-column="0" checked> Select</label></li>
+              <li><label class="dropdown-item d-flex align-items-center gap-2"><input class="form-check-input mt-0" type="checkbox" data-demo-column="1" checked> Lead</label></li>
+              <li><label class="dropdown-item d-flex align-items-center gap-2"><input class="form-check-input mt-0" type="checkbox" data-demo-column="2" checked> Company</label></li>
+              <li><label class="dropdown-item d-flex align-items-center gap-2"><input class="form-check-input mt-0" type="checkbox" data-demo-column="3" checked> Source</label></li>
+              <li><label class="dropdown-item d-flex align-items-center gap-2"><input class="form-check-input mt-0" type="checkbox" data-demo-column="4" checked> Status</label></li>
+              <li><label class="dropdown-item d-flex align-items-center gap-2"><input class="form-check-input mt-0" type="checkbox" data-demo-column="5" checked> Value</label></li>
+              <li><label class="dropdown-item d-flex align-items-center gap-2"><input class="form-check-input mt-0" type="checkbox" data-demo-column="6" checked> Owner</label></li>
+              <li><label class="dropdown-item d-flex align-items-center gap-2"><input class="form-check-input mt-0" type="checkbox" data-demo-column="7" checked> Actions</label></li>
+            </ul>
+          </div>
+          <button type="button" class="btn btn-primary" data-demo-open="#lead-modal"><i class="bi bi-plus-lg"></i> Add lead</button>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="table-toolbar">
+          <div class="search-field" style="max-width: 280px;">
+            <i class="bi bi-search search-field__icon" aria-hidden="true"></i>
+            <label class="visually-hidden" for="lead-search">Search leads</label>
+            <input type="search" class="form-control" id="lead-search" placeholder="Search leads…" data-table-filter="#leads-table">
+          </div>
+          <select class="form-select form-select-sm" style="width: auto;" aria-label="Filter by status"
+                  data-demo-filter="status" data-demo-filter-table="#leads-table">
+            <option value="">All statuses</option>
+            <option value="New" data-badge="warning">New</option>
+            <option value="Qualified" data-badge="success">Qualified</option>
+            <option value="Contacted" data-badge="primary">Contacted</option>
+            <option value="Lost" data-badge="danger">Lost</option>
+          </select>
+          <select class="form-select form-select-sm" style="width: auto;" aria-label="Filter by source"
+                  data-demo-filter="source" data-demo-filter-table="#leads-table">
+            <option value="">All sources</option>
+            <option value="Inbound">Inbound</option>
+            <option value="Outbound">Outbound</option>
+            <option value="Partner">Partner</option>
+            <option value="Referral">Referral</option>
+          </select>
+          <span class="ms-auto fs-8 text-muted-2" data-demo-count="#leads-table" data-demo-count-noun="leads">1–5 of 8</span>
+        </div>
+
+        <div class="table-responsive">
+          <table class="table table-hover align-middle" id="leads-table" data-demo-record="lead">
+            <thead>
+              <tr>
+                <th scope="col" style="width: 40px;">
+                  <input class="form-check-input" type="checkbox" data-select-all="#leads-table" aria-label="Select all leads">
+                </th>
+                <th scope="col" data-sort="text">Lead <i class="bi bi-arrow-down-up"></i></th>
+                <th scope="col">Company</th>
+                <th scope="col">Source</th>
+                <th scope="col" data-sort="text">Status</th>
+                <th scope="col" data-sort="number" class="text-end">Value <i class="bi bi-arrow-down-up"></i></th>
+                <th scope="col">Owner</th>
+                <th scope="col" class="text-end">Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr data-lead-name="Summit Digital" data-lead-company="Summit Digital" data-lead-source="Inbound" data-lead-status="Qualified" data-lead-value="48000" data-lead-owner="AR" data-lead-email="hello@example.com">
+                <td><input class="form-check-input" type="checkbox" data-row-select aria-label="Select Summit Digital"></td>
+                <td>
+                  <div class="d-flex align-items-center gap-2">
+                    <span class="avatar avatar-sm bg-avatar-1" data-slot-avatar="name">SD</span>
+                    <span>
+                      <span class="d-block fs-7 fw-500 text-heading" data-slot="name">Summit Digital</span>
+                      <span class="d-block fs-8 text-muted-2" data-slot="email">hello@example.com</span>
+                    </span>
+                  </div>
+                </td>
+                <td data-slot="company">Summit Digital</td>
+                <td data-slot="source">Inbound</td>
+                <td><span class="badge badge-soft-success badge-pill" data-slot-badge="status">Qualified</span></td>
+                <td class="text-end fw-600 text-heading" data-slot="value" data-slot-money>48000</td>
+                <td><span class="avatar avatar-xs bg-avatar-1" data-bs-toggle="tooltip" data-slot-avatar="owner" title="Ava Reynolds">AR</span></td>
+                <td class="text-end">
+                  <div class="table-actions justify-content-end">
+                    <button type="button" class="btn btn-icon btn-sm btn-ghost" aria-label="View lead" data-demo-open="#lead-view-modal"><i class="bi bi-eye"></i></button>
+                    <button type="button" class="btn btn-icon btn-sm btn-ghost" aria-label="Edit lead" data-demo-open="#lead-modal"><i class="bi bi-pencil"></i></button>
+                    <button type="button" class="btn btn-icon btn-sm btn-ghost" aria-label="Delete lead" data-demo-delete data-demo-delete-label="Lead"><i class="bi bi-trash"></i></button>
+                  </div>
+                </td>
+              </tr>
+              <tr data-lead-name="Beacon Health" data-lead-company="Beacon Health" data-lead-source="Outbound" data-lead-status="Contacted" data-lead-value="22400" data-lead-owner="MC" data-lead-email="team@example.com">
+                <td><input class="form-check-input" type="checkbox" data-row-select aria-label="Select Beacon Health"></td>
+                <td>
+                  <div class="d-flex align-items-center gap-2">
+                    <span class="avatar avatar-sm bg-avatar-3" data-slot-avatar="name">BH</span>
+                    <span>
+                      <span class="d-block fs-7 fw-500 text-heading" data-slot="name">Beacon Health</span>
+                      <span class="d-block fs-8 text-muted-2" data-slot="email">team@example.com</span>
+                    </span>
+                  </div>
+                </td>
+                <td data-slot="company">Beacon Health</td>
+                <td data-slot="source">Outbound</td>
+                <td><span class="badge badge-soft-primary badge-pill" data-slot-badge="status">Contacted</span></td>
+                <td class="text-end fw-600 text-heading" data-slot="value" data-slot-money>22400</td>
+                <td><span class="avatar avatar-xs bg-avatar-3" data-bs-toggle="tooltip" data-slot-avatar="owner" title="Marcus Chen">MC</span></td>
+                <td class="text-end">
+                  <div class="table-actions justify-content-end">
+                    <button type="button" class="btn btn-icon btn-sm btn-ghost" aria-label="View lead" data-demo-open="#lead-view-modal"><i class="bi bi-eye"></i></button>
+                    <button type="button" class="btn btn-icon btn-sm btn-ghost" aria-label="Edit lead" data-demo-open="#lead-modal"><i class="bi bi-pencil"></i></button>
+                    <button type="button" class="btn btn-icon btn-sm btn-ghost" aria-label="Delete lead" data-demo-delete data-demo-delete-label="Lead"><i class="bi bi-trash"></i></button>
+                  </div>
+                </td>
+              </tr>
+              <tr data-lead-name="Kite Analytics" data-lead-company="Kite Analytics" data-lead-source="Partner" data-lead-status="New" data-lead-value="12900" data-lead-owner="LN" data-lead-email="ops@example.com">
+                <td><input class="form-check-input" type="checkbox" data-row-select aria-label="Select Kite Analytics"></td>
+                <td>
+                  <div class="d-flex align-items-center gap-2">
+                    <span class="avatar avatar-sm bg-avatar-6" data-slot-avatar="name">KA</span>
+                    <span>
+                      <span class="d-block fs-7 fw-500 text-heading" data-slot="name">Kite Analytics</span>
+                      <span class="d-block fs-8 text-muted-2" data-slot="email">ops@example.com</span>
+                    </span>
+                  </div>
+                </td>
+                <td data-slot="company">Kite Analytics</td>
+                <td data-slot="source">Partner</td>
+                <td><span class="badge badge-soft-warning badge-pill" data-slot-badge="status">New</span></td>
+                <td class="text-end fw-600 text-heading" data-slot="value" data-slot-money>12900</td>
+                <td><span class="avatar avatar-xs bg-avatar-6" data-bs-toggle="tooltip" data-slot-avatar="owner" title="Lea Novak">LN</span></td>
+                <td class="text-end">
+                  <div class="table-actions justify-content-end">
+                    <button type="button" class="btn btn-icon btn-sm btn-ghost" aria-label="View lead" data-demo-open="#lead-view-modal"><i class="bi bi-eye"></i></button>
+                    <button type="button" class="btn btn-icon btn-sm btn-ghost" aria-label="Edit lead" data-demo-open="#lead-modal"><i class="bi bi-pencil"></i></button>
+                    <button type="button" class="btn btn-icon btn-sm btn-ghost" aria-label="Delete lead" data-demo-delete data-demo-delete-label="Lead"><i class="bi bi-trash"></i></button>
+                  </div>
+                </td>
+              </tr>
+              <tr data-lead-name="Silverline Group" data-lead-company="Silverline Group" data-lead-source="Referral" data-lead-status="Qualified" data-lead-value="64000" data-lead-owner="DO" data-lead-email="contact@example.com">
+                <td><input class="form-check-input" type="checkbox" data-row-select aria-label="Select Silverline Group"></td>
+                <td>
+                  <div class="d-flex align-items-center gap-2">
+                    <span class="avatar avatar-sm bg-avatar-4" data-slot-avatar="name">SG</span>
+                    <span>
+                      <span class="d-block fs-7 fw-500 text-heading" data-slot="name">Silverline Group</span>
+                      <span class="d-block fs-8 text-muted-2" data-slot="email">contact@example.com</span>
+                    </span>
+                  </div>
+                </td>
+                <td data-slot="company">Silverline Group</td>
+                <td data-slot="source">Referral</td>
+                <td><span class="badge badge-soft-success badge-pill" data-slot-badge="status">Qualified</span></td>
+                <td class="text-end fw-600 text-heading" data-slot="value" data-slot-money>64000</td>
+                <td><span class="avatar avatar-xs bg-avatar-4" data-bs-toggle="tooltip" data-slot-avatar="owner" title="Daniel Okafor">DO</span></td>
+                <td class="text-end">
+                  <div class="table-actions justify-content-end">
+                    <button type="button" class="btn btn-icon btn-sm btn-ghost" aria-label="View lead" data-demo-open="#lead-view-modal"><i class="bi bi-eye"></i></button>
+                    <button type="button" class="btn btn-icon btn-sm btn-ghost" aria-label="Edit lead" data-demo-open="#lead-modal"><i class="bi bi-pencil"></i></button>
+                    <button type="button" class="btn btn-icon btn-sm btn-ghost" aria-label="Delete lead" data-demo-delete data-demo-delete-label="Lead"><i class="bi bi-trash"></i></button>
+                  </div>
+                </td>
+              </tr>
+              <tr data-lead-name="Lumen Works" data-lead-company="Lumen Works" data-lead-source="Inbound" data-lead-status="Lost" data-lead-value="8500" data-lead-owner="AR" data-lead-email="hi@example.com">
+                <td><input class="form-check-input" type="checkbox" data-row-select aria-label="Select Lumen Works"></td>
+                <td>
+                  <div class="d-flex align-items-center gap-2">
+                    <span class="avatar avatar-sm bg-avatar-5" data-slot-avatar="name">LW</span>
+                    <span>
+                      <span class="d-block fs-7 fw-500 text-heading" data-slot="name">Lumen Works</span>
+                      <span class="d-block fs-8 text-muted-2" data-slot="email">hi@example.com</span>
+                    </span>
+                  </div>
+                </td>
+                <td data-slot="company">Lumen Works</td>
+                <td data-slot="source">Inbound</td>
+                <td><span class="badge badge-soft-danger badge-pill" data-slot-badge="status">Lost</span></td>
+                <td class="text-end fw-600 text-heading" data-slot="value" data-slot-money>8500</td>
+                <td><span class="avatar avatar-xs bg-avatar-1" data-bs-toggle="tooltip" data-slot-avatar="owner" title="Ava Reynolds">AR</span></td>
+                <td class="text-end">
+                  <div class="table-actions justify-content-end">
+                    <button type="button" class="btn btn-icon btn-sm btn-ghost" aria-label="View lead" data-demo-open="#lead-view-modal"><i class="bi bi-eye"></i></button>
+                    <button type="button" class="btn btn-icon btn-sm btn-ghost" aria-label="Edit lead" data-demo-open="#lead-modal"><i class="bi bi-pencil"></i></button>
+                    <button type="button" class="btn btn-icon btn-sm btn-ghost" aria-label="Delete lead" data-demo-delete data-demo-delete-label="Lead"><i class="bi bi-trash"></i></button>
+                  </div>
+                </td>
+              </tr>
+              <tr data-lead-name="Orbit Systems" data-lead-company="Orbit Systems" data-lead-source="Outbound" data-lead-status="New" data-lead-value="31500" data-lead-owner="MC" data-lead-email="hello@example.com">
+                <td><input class="form-check-input" type="checkbox" data-row-select aria-label="Select Orbit Systems"></td>
+                <td>
+                  <div class="d-flex align-items-center gap-2">
+                    <span class="avatar avatar-sm bg-avatar-2" data-slot-avatar="name">OS</span>
+                    <span>
+                      <span class="d-block fs-7 fw-500 text-heading" data-slot="name">Orbit Systems</span>
+                      <span class="d-block fs-8 text-muted-2" data-slot="email">hello@example.com</span>
+                    </span>
+                  </div>
+                </td>
+                <td data-slot="company">Orbit Systems</td>
+                <td data-slot="source">Outbound</td>
+                <td><span class="badge badge-soft-warning badge-pill" data-slot-badge="status">New</span></td>
+                <td class="text-end fw-600 text-heading" data-slot="value" data-slot-money>31500</td>
+                <td><span class="avatar avatar-xs bg-avatar-2" data-bs-toggle="tooltip" data-slot-avatar="owner" title="Marcus Chen">MC</span></td>
+                <td class="text-end">
+                  <div class="table-actions justify-content-end">
+                    <button type="button" class="btn btn-icon btn-sm btn-ghost" aria-label="View lead" data-demo-open="#lead-view-modal"><i class="bi bi-eye"></i></button>
+                    <button type="button" class="btn btn-icon btn-sm btn-ghost" aria-label="Edit lead" data-demo-open="#lead-modal"><i class="bi bi-pencil"></i></button>
+                    <button type="button" class="btn btn-icon btn-sm btn-ghost" aria-label="Delete lead" data-demo-delete data-demo-delete-label="Lead"><i class="bi bi-trash"></i></button>
+                  </div>
+                </td>
+              </tr>
+              <tr data-lead-name="Northstar Retail" data-lead-company="Northstar Retail" data-lead-source="Referral" data-lead-status="Contacted" data-lead-value="18900" data-lead-owner="LN" data-lead-email="sales@example.com">
+                <td><input class="form-check-input" type="checkbox" data-row-select aria-label="Select Northstar Retail"></td>
+                <td>
+                  <div class="d-flex align-items-center gap-2">
+                    <span class="avatar avatar-sm bg-avatar-7" data-slot-avatar="name">NR</span>
+                    <span>
+                      <span class="d-block fs-7 fw-500 text-heading" data-slot="name">Northstar Retail</span>
+                      <span class="d-block fs-8 text-muted-2" data-slot="email">sales@example.com</span>
+                    </span>
+                  </div>
+                </td>
+                <td data-slot="company">Northstar Retail</td>
+                <td data-slot="source">Referral</td>
+                <td><span class="badge badge-soft-primary badge-pill" data-slot-badge="status">Contacted</span></td>
+                <td class="text-end fw-600 text-heading" data-slot="value" data-slot-money>18900</td>
+                <td><span class="avatar avatar-xs bg-avatar-7" data-bs-toggle="tooltip" data-slot-avatar="owner" title="Lea Novak">LN</span></td>
+                <td class="text-end">
+                  <div class="table-actions justify-content-end">
+                    <button type="button" class="btn btn-icon btn-sm btn-ghost" aria-label="View lead" data-demo-open="#lead-view-modal"><i class="bi bi-eye"></i></button>
+                    <button type="button" class="btn btn-icon btn-sm btn-ghost" aria-label="Edit lead" data-demo-open="#lead-modal"><i class="bi bi-pencil"></i></button>
+                    <button type="button" class="btn btn-icon btn-sm btn-ghost" aria-label="Delete lead" data-demo-delete data-demo-delete-label="Lead"><i class="bi bi-trash"></i></button>
+                  </div>
+                </td>
+              </tr>
+              <tr data-lead-name="Horizon Labs" data-lead-company="Horizon Labs" data-lead-source="Partner" data-lead-status="Qualified" data-lead-value="52750" data-lead-owner="DO" data-lead-email="hi@example.com">
+                <td><input class="form-check-input" type="checkbox" data-row-select aria-label="Select Horizon Labs"></td>
+                <td>
+                  <div class="d-flex align-items-center gap-2">
+                    <span class="avatar avatar-sm bg-avatar-8" data-slot-avatar="name">HL</span>
+                    <span>
+                      <span class="d-block fs-7 fw-500 text-heading" data-slot="name">Horizon Labs</span>
+                      <span class="d-block fs-8 text-muted-2" data-slot="email">hi@example.com</span>
+                    </span>
+                  </div>
+                </td>
+                <td data-slot="company">Horizon Labs</td>
+                <td data-slot="source">Partner</td>
+                <td><span class="badge badge-soft-success badge-pill" data-slot-badge="status">Qualified</span></td>
+                <td class="text-end fw-600 text-heading" data-slot="value" data-slot-money>52750</td>
+                <td><span class="avatar avatar-xs bg-avatar-8" data-bs-toggle="tooltip" data-slot-avatar="owner" title="Daniel Okafor">DO</span></td>
+                <td class="text-end">
+                  <div class="table-actions justify-content-end">
+                    <button type="button" class="btn btn-icon btn-sm btn-ghost" aria-label="View lead" data-demo-open="#lead-view-modal"><i class="bi bi-eye"></i></button>
+                    <button type="button" class="btn btn-icon btn-sm btn-ghost" aria-label="Edit lead" data-demo-open="#lead-modal"><i class="bi bi-pencil"></i></button>
+                    <button type="button" class="btn btn-icon btn-sm btn-ghost" aria-label="Delete lead" data-demo-delete data-demo-delete-label="Lead"><i class="bi bi-trash"></i></button>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="state-block d-none" data-table-empty>
+            <div class="state-block__icon"><i class="bi bi-search"></i></div>
+            <p class="state-block__title">No leads match your search</p>
+            <p class="state-block__text">Try a different keyword or clear the filters to see every lead again.</p>
+            <button type="button" class="btn btn-soft-primary" data-demo-reset="#leads-table">Clear filters</button>
+          </div>
+        </div>
+
+        <div class="table-footer" data-paginate="#leads-table" data-per-page="5">
+          <span class="fs-8 text-muted-2" data-page-info>Showing 1–5 of 8</span>
+          <nav aria-label="Lead pagination">
+            <ul class="pagination pagination-sm mb-0">
+              <li class="page-item"><a class="page-link" href="#" data-page="prev" aria-label="Previous page"><i class="bi bi-chevron-left"></i></a></li>
+              <li class="page-item active"><a class="page-link" href="#" data-page="1">1</a></li>
+              <li class="page-item"><a class="page-link" href="#" data-page="2">2</a></li>
+              <li class="page-item"><a class="page-link" href="#" data-page="next" aria-label="Next page"><i class="bi bi-chevron-right"></i></a></li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+
+      <!-- Row template: new leads are cloned from here (see js/demo-ui.js) -->
+      <template data-demo-row>
+        <tr>
+          <td><input class="form-check-input" type="checkbox" data-row-select aria-label="Select lead"></td>
+          <td>
+            <div class="d-flex align-items-center gap-2">
+              <span class="avatar avatar-sm" data-slot-avatar="name">NL</span>
+              <span>
+                <span class="d-block fs-7 fw-500 text-heading" data-slot="name">New lead</span>
+                <span class="d-block fs-8 text-muted-2" data-slot="email">name@example.com</span>
+              </span>
+            </div>
+          </td>
+          <td data-slot="company">Company</td>
+          <td data-slot="source">Source</td>
+          <td><span class="badge badge-pill" data-slot-badge="status">New</span></td>
+          <td class="text-end fw-600 text-heading" data-slot="value" data-slot-money>0</td>
+          <td><span class="avatar avatar-xs" data-bs-toggle="tooltip" data-slot-avatar="owner">QA</span></td>
+          <td class="text-end">
+            <div class="table-actions justify-content-end">
+              <button type="button" class="btn btn-icon btn-sm btn-ghost" aria-label="View lead" data-demo-open="#lead-view-modal"><i class="bi bi-eye"></i></button>
+              <button type="button" class="btn btn-icon btn-sm btn-ghost" aria-label="Edit lead" data-demo-open="#lead-modal"><i class="bi bi-pencil"></i></button>
+              <button type="button" class="btn btn-icon btn-sm btn-ghost" aria-label="Delete lead" data-demo-delete data-demo-delete-label="Lead"><i class="bi bi-trash"></i></button>
+            </div>
+          </td>
+        </tr>
+      </template>
+
+      <!-- ================= Lead dialogs ================= -->
+      <div class="modal fade" id="lead-modal" tabindex="-1" aria-labelledby="lead-modal-title" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+            <form data-demo-form data-demo-table="#leads-table" data-demo-label="Lead" novalidate>
+              <div class="modal-header">
+                <h2 class="modal-title fs-6" id="lead-modal-title" data-demo-title="Edit {name}" data-demo-title-new="Add a lead">Add a lead</h2>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close dialog"></button>
+              </div>
+              <div class="modal-body">
+                <div class="row g-3">
+                  <div class="col-md-6">
+                    <label class="form-label" for="lead-name">Lead name</label>
+                    <input type="text" class="form-control" id="lead-name" data-demo-field="name" placeholder="Summit Digital" required>
+                    <div class="invalid-feedback">Give the lead a name.</div>
+                  </div>
+                  <div class="col-md-6">
+                    <label class="form-label" for="lead-email">Email</label>
+                    <input type="email" class="form-control" id="lead-email" data-demo-field="email" placeholder="hello@example.com" required>
+                    <div class="invalid-feedback">Add a valid email address.</div>
+                  </div>
+                  <div class="col-md-6">
+                    <label class="form-label" for="lead-company">Company</label>
+                    <input type="text" class="form-control" id="lead-company" data-demo-field="company" placeholder="Company name">
+                  </div>
+                  <div class="col-md-6">
+                    <label class="form-label" for="lead-source">Source</label>
+                    <select class="form-select" id="lead-source" data-demo-field="source">
+                      <option value="Inbound">Inbound</option>
+                      <option value="Outbound">Outbound</option>
+                      <option value="Partner">Partner</option>
+                      <option value="Referral">Referral</option>
+                    </select>
+                  </div>
+                  <div class="col-md-6">
+                    <label class="form-label" for="lead-status">Status</label>
+                    <select class="form-select" id="lead-status" data-demo-field="status">
+                      <option value="New" data-badge="warning" selected>New</option>
+                      <option value="Qualified" data-badge="success">Qualified</option>
+                      <option value="Contacted" data-badge="primary">Contacted</option>
+                      <option value="Lost" data-badge="danger">Lost</option>
+                    </select>
+                  </div>
+                  <div class="col-md-6">
+                    <label class="form-label" for="lead-value">Deal value</label>
+                    <div class="input-group">
+                      <span class="input-group-text">$</span>
+                      <input type="number" class="form-control" id="lead-value" data-demo-field="value" value="0" min="0" step="100">
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <label class="form-label" for="lead-owner">Owner</label>
+                    <select class="form-select" id="lead-owner" data-demo-field="owner">
+                      <option value="Ava Reynolds">Ava Reynolds</option>
+                      <option value="Marcus Chen">Marcus Chen</option>
+                      <option value="Lea Novak">Lea Novak</option>
+                      <option value="Daniel Okafor">Daniel Okafor</option>
+                    </select>
+                  </div>
+                  <div class="col-12">
+                    <label class="form-label" for="lead-notes">Notes <span class="text-muted-2 fw-400">(optional)</span></label>
+                    <textarea class="form-control" id="lead-notes" rows="3" data-demo-field="notes" placeholder="Context for the next call…"></textarea>
+                  </div>
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-white" data-bs-dismiss="modal">Cancel</button>
+                <button type="submit" class="btn btn-primary" data-demo-submit data-demo-submit-new="Add lead" data-demo-submit-edit="Save changes">Add lead</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal fade" id="lead-view-modal" tabindex="-1" aria-labelledby="lead-view-title" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h2 class="modal-title fs-6" id="lead-view-title" data-demo-title="{name}">Lead details</h2>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close dialog"></button>
+            </div>
+            <div class="modal-body">
+              <div class="d-flex align-items-center gap-3 mb-3">
+                <span class="avatar avatar-lg" data-slot-avatar="name">SD</span>
+                <div class="min-w-0">
+                  <p class="mb-0 fw-600 text-heading" data-slot="name">Summit Digital</p>
+                  <p class="mb-0 fs-8 text-muted-2" data-slot="email">hello@example.com</p>
+                </div>
+                <span class="badge badge-pill ms-auto" data-slot-badge="status">Qualified</span>
+              </div>
+              <dl class="row g-2 fs-7 mb-0">
+                <dt class="col-5 fw-400 text-muted-2">Company</dt>
+                <dd class="col-7 mb-0" data-slot="company">Summit Digital</dd>
+                <dt class="col-5 fw-400 text-muted-2">Source</dt>
+                <dd class="col-7 mb-0" data-slot="source">Inbound</dd>
+                <dt class="col-5 fw-400 text-muted-2">Deal value</dt>
+                <dd class="col-7 mb-0 fw-600 text-heading" data-slot="value" data-slot-money>48000</dd>
+                <dt class="col-5 fw-400 text-muted-2">Owner</dt>
+                <dd class="col-7 mb-0 d-flex align-items-center gap-2">
+                  <span class="avatar avatar-xs" data-slot-avatar="owner">AR</span>
+                  <span data-slot="owner">Ava Reynolds</span>
+                </dd>
+              </dl>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-white" data-bs-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary" data-demo-open="#lead-modal"><i class="bi bi-pencil"></i> Edit lead</button>
+            </div>
+          </div>
+        </div>
+      </div>

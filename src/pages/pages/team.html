@@ -1,0 +1,196 @@
+      <div class="q-page-head">
+        <div>
+          {{BREADCRUMB}}
+          <h1 class="q-page-head__title mt-2">Team</h1>
+          <p class="q-page-head__subtitle">Workspace members, roles and workload distribution.</p>
+        </div>
+        <div class="d-flex flex-wrap gap-2">
+          <button type="button" class="btn btn-white" data-demo-export="#team-table"><i class="bi bi-download"></i> Export</button>
+          <button type="button" class="btn btn-primary" data-demo-new="#q-demo-record" data-demo-table="#team-table" data-demo-label="Member"><i class="bi bi-person-plus"></i> Invite member</button>
+        </div>
+      </div>
+
+      <div class="row g-3 q-section">
+        <div class="col-6 col-xl-3">
+          <div class="kpi-tile">
+            <div class="kpi-tile__body">
+              <p class="kpi-tile__label mb-0">Members</p>
+              <p class="kpi-tile__value" data-counter="48" data-demo-stat="rows" data-demo-stat-table="#team-table">48</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-6 col-xl-3">
+          <div class="kpi-tile">
+            <div class="kpi-tile__body">
+              <p class="kpi-tile__label mb-0">Seats used</p>
+              <p class="kpi-tile__value">48<span class="fs-5 text-muted-2">/60</span></p>
+            </div>
+          </div>
+        </div>
+        <div class="col-6 col-xl-3">
+          <div class="kpi-tile">
+            <div class="kpi-tile__body">
+              <p class="kpi-tile__label mb-0">Departments</p>
+              <p class="kpi-tile__value">6</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-6 col-xl-3">
+          <div class="kpi-tile">
+            <div class="kpi-tile__body">
+              <p class="kpi-tile__label mb-0">Pending invites</p>
+              <p class="kpi-tile__value text-warning">3</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card q-section">
+        <div class="table-toolbar">
+          <div class="search-field" style="max-width: 300px;">
+            <i class="bi bi-search search-field__icon" aria-hidden="true"></i>
+            <label class="visually-hidden" for="team-search">Search members</label>
+            <input type="search" class="form-control" id="team-search" placeholder="Search members…" data-table-filter="#team-table">
+          </div>
+          <select class="form-select form-select-sm" style="width: auto;" aria-label="Filter by role" data-demo-filter="role" data-demo-filter-table="#team-table">
+            <option>All roles</option>
+            <option>Admin</option>
+            <option>Manager</option>
+            <option>Analyst</option>
+            <option>Support</option>
+            <option>Engineer</option>
+          </select>
+          <span class="ms-auto fs-8 text-muted-2">6 of 48 members</span>
+        </div>
+
+        <div class="table-responsive">
+          <table class="table table-hover align-middle" id="team-table" data-demo-record="member" data-demo-fields="name:Member,role:Role,department:Department,location:Location,status:Status">
+            <thead>
+              <tr>
+                <th scope="col">Member</th>
+                <th scope="col">Role</th>
+                <th scope="col">Department</th>
+                <th scope="col">Location</th>
+                <th scope="col" style="min-width: 130px;">Workload</th>
+                <th scope="col">Status</th>
+                <th scope="col" class="text-end">Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr data-member-name="Ava Reynolds" data-member-role="Admin" data-member-department="Product" data-member-location="London, UK" data-member-status="Active" data-member-email="ava@example.com">
+                <td>
+                  <div class="d-flex align-items-center gap-2">
+                    <span class="avatar avatar-sm bg-avatar-1">AR</span>
+                    <span>
+                      <span class="d-block fs-7 fw-500 text-heading">Ava Reynolds</span>
+                      <span class="d-block fs-8 text-muted-2">ava@example.com</span>
+                    </span>
+                  </div>
+                </td>
+                <td><span class="badge badge-soft-primary badge-pill">Admin</span></td>
+                <td>Product</td>
+                <td class="text-muted-2">London, UK</td>
+                <td><div class="progress progress-sm"><div class="progress-bar" style="width: 72%"></div></div></td>
+                <td><span class="badge badge-soft-success badge-pill">Active</span></td>
+                <td class="text-end"><div class="table-actions justify-content-end"><button type="button" class="btn btn-icon btn-sm btn-ghost" aria-label="Edit Ava Reynolds" data-demo-new="#q-demo-record" data-demo-table="#team-table" data-demo-label="Member"><i class="bi bi-pencil"></i></button><button type="button" class="btn btn-icon btn-sm btn-ghost" aria-label="Delete Ava Reynolds" data-demo-delete data-demo-delete-label="Member"><i class="bi bi-trash"></i></button></div></td>
+              </tr>
+              <tr data-member-name="Marcus Chen" data-member-role="Manager" data-member-department="Engineering" data-member-location="Singapore" data-member-status="Active" data-member-email="marcus@example.com">
+                <td>
+                  <div class="d-flex align-items-center gap-2">
+                    <span class="avatar avatar-sm bg-avatar-3">MC</span>
+                    <span>
+                      <span class="d-block fs-7 fw-500 text-heading">Marcus Chen</span>
+                      <span class="d-block fs-8 text-muted-2">marcus@example.com</span>
+                    </span>
+                  </div>
+                </td>
+                <td><span class="badge badge-soft-info badge-pill">Manager</span></td>
+                <td>Engineering</td>
+                <td class="text-muted-2">Singapore</td>
+                <td><div class="progress progress-sm"><div class="progress-bar bg-info" style="width: 48%"></div></div></td>
+                <td><span class="badge badge-soft-success badge-pill">Active</span></td>
+                <td class="text-end"><div class="table-actions justify-content-end"><button type="button" class="btn btn-icon btn-sm btn-ghost" aria-label="Edit Marcus Chen" data-demo-new="#q-demo-record" data-demo-table="#team-table" data-demo-label="Member"><i class="bi bi-pencil"></i></button><button type="button" class="btn btn-icon btn-sm btn-ghost" aria-label="Delete Marcus Chen" data-demo-delete data-demo-delete-label="Member"><i class="bi bi-trash"></i></button></div></td>
+              </tr>
+              <tr data-member-name="Lea Novak" data-member-role="Analyst" data-member-department="Data" data-member-location="Berlin, DE" data-member-status="Active" data-member-email="lea@example.com">
+                <td>
+                  <div class="d-flex align-items-center gap-2">
+                    <span class="avatar avatar-sm bg-avatar-6">LN</span>
+                    <span>
+                      <span class="d-block fs-7 fw-500 text-heading">Lea Novak</span>
+                      <span class="d-block fs-8 text-muted-2">lea@example.com</span>
+                    </span>
+                  </div>
+                </td>
+                <td><span class="badge badge-soft-neutral badge-pill">Analyst</span></td>
+                <td>Data</td>
+                <td class="text-muted-2">Berlin, DE</td>
+                <td><div class="progress progress-sm"><div class="progress-bar bg-warning" style="width: 86%"></div></div></td>
+                <td><span class="badge badge-soft-success badge-pill">Active</span></td>
+                <td class="text-end"><div class="table-actions justify-content-end"><button type="button" class="btn btn-icon btn-sm btn-ghost" aria-label="Edit Lea Novak" data-demo-new="#q-demo-record" data-demo-table="#team-table" data-demo-label="Member"><i class="bi bi-pencil"></i></button><button type="button" class="btn btn-icon btn-sm btn-ghost" aria-label="Delete Lea Novak" data-demo-delete data-demo-delete-label="Member"><i class="bi bi-trash"></i></button></div></td>
+              </tr>
+              <tr data-member-name="Daniel Okafor" data-member-role="Engineer" data-member-department="Engineering" data-member-location="Lagos, NG" data-member-status="Active" data-member-email="daniel@example.com">
+                <td>
+                  <div class="d-flex align-items-center gap-2">
+                    <span class="avatar avatar-sm bg-avatar-4">DO</span>
+                    <span>
+                      <span class="d-block fs-7 fw-500 text-heading">Daniel Okafor</span>
+                      <span class="d-block fs-8 text-muted-2">daniel@example.com</span>
+                    </span>
+                  </div>
+                </td>
+                <td><span class="badge badge-soft-neutral badge-pill">Engineer</span></td>
+                <td>Engineering</td>
+                <td class="text-muted-2">Lagos, NG</td>
+                <td><div class="progress progress-sm"><div class="progress-bar bg-success" style="width: 64%"></div></div></td>
+                <td><span class="badge badge-soft-success badge-pill">Active</span></td>
+                <td class="text-end"><div class="table-actions justify-content-end"><button type="button" class="btn btn-icon btn-sm btn-ghost" aria-label="Edit Daniel Okafor" data-demo-new="#q-demo-record" data-demo-table="#team-table" data-demo-label="Member"><i class="bi bi-pencil"></i></button><button type="button" class="btn btn-icon btn-sm btn-ghost" aria-label="Delete Daniel Okafor" data-demo-delete data-demo-delete-label="Member"><i class="bi bi-trash"></i></button></div></td>
+              </tr>
+              <tr data-member-name="Yuki Tanaka" data-member-role="Support" data-member-department="Customer success" data-member-location="Tokyo, JP" data-member-status="Away" data-member-email="yuki@example.com">
+                <td>
+                  <div class="d-flex align-items-center gap-2">
+                    <span class="avatar avatar-sm bg-avatar-5">YT</span>
+                    <span>
+                      <span class="d-block fs-7 fw-500 text-heading">Yuki Tanaka</span>
+                      <span class="d-block fs-8 text-muted-2">yuki@example.com</span>
+                    </span>
+                  </div>
+                </td>
+                <td><span class="badge badge-soft-neutral badge-pill">Support</span></td>
+                <td>Customer success</td>
+                <td class="text-muted-2">Tokyo, JP</td>
+                <td><div class="progress progress-sm"><div class="progress-bar bg-info" style="width: 52%"></div></div></td>
+                <td><span class="badge badge-soft-warning badge-pill">Away</span></td>
+                <td class="text-end"><div class="table-actions justify-content-end"><button type="button" class="btn btn-icon btn-sm btn-ghost" aria-label="Edit Yuki Tanaka" data-demo-new="#q-demo-record" data-demo-table="#team-table" data-demo-label="Member"><i class="bi bi-pencil"></i></button><button type="button" class="btn btn-icon btn-sm btn-ghost" aria-label="Delete Yuki Tanaka" data-demo-delete data-demo-delete-label="Member"><i class="bi bi-trash"></i></button></div></td>
+              </tr>
+              <tr data-member-name="Priya Sharma" data-member-role="Manager" data-member-department="Finance" data-member-location="Toronto, CA" data-member-status="Invited" data-member-email="priya@example.com">
+                <td>
+                  <div class="d-flex align-items-center gap-2">
+                    <span class="avatar avatar-sm bg-avatar-2">PS</span>
+                    <span>
+                      <span class="d-block fs-7 fw-500 text-heading">Priya Sharma</span>
+                      <span class="d-block fs-8 text-muted-2">priya@example.com</span>
+                    </span>
+                  </div>
+                </td>
+                <td><span class="badge badge-soft-info badge-pill">Manager</span></td>
+                <td>Finance</td>
+                <td class="text-muted-2">Toronto, CA</td>
+                <td><div class="progress progress-sm"><div class="progress-bar" style="width: 41%"></div></div></td>
+                <td><span class="badge badge-soft-neutral badge-pill">Invited</span></td>
+                <td class="text-end"><div class="table-actions justify-content-end"><button type="button" class="btn btn-icon btn-sm btn-ghost" aria-label="Edit Priya Sharma" data-demo-new="#q-demo-record" data-demo-table="#team-table" data-demo-label="Member"><i class="bi bi-pencil"></i></button><button type="button" class="btn btn-icon btn-sm btn-ghost" aria-label="Delete Priya Sharma" data-demo-delete data-demo-delete-label="Member"><i class="bi bi-trash"></i></button></div></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="table-footer" data-paginate="#team-table" data-per-page="5">
+          <span class="fs-8 text-muted-2" data-page-info>Showing 1–5 of 5</span>
+          <nav aria-label="Member pagination">
+            <ul class="pagination pagination-sm mb-0">
+              <li class="page-item"><a class="page-link" href="#" data-page="prev" aria-label="Previous page"><i class="bi bi-chevron-left"></i></a></li>
+              <li class="page-item active"><a class="page-link active" href="#" data-page="1">1</a></li>
+              <li class="page-item"><a class="page-link" href="#" data-page="next" aria-label="Next page"><i class="bi bi-chevron-right"></i></a></li>
+            </ul>
+          </nav>
+        </div>
+      </div>

@@ -1,0 +1,187 @@
+      <div class="q-page-head">
+        <div>
+          {{BREADCRUMB}}
+          <h1 class="q-page-head__title mt-2">Profile</h1>
+          <p class="q-page-head__subtitle">Public profile, projects and recent activity.</p>
+        </div>
+        <div class="d-flex flex-wrap gap-2">
+          <button type="button" class="btn btn-white" data-demo-action="Profile link copied — demo only."><i class="bi bi-link-45deg"></i> Copy link</button>
+          <button type="button" class="btn btn-primary" data-demo-action="Profile edit opened — demo interaction only."><i class="bi bi-pencil"></i> Edit profile</button>
+        </div>
+      </div>
+
+      <div class="row g-3">
+        <div class="col-lg-4">
+          <div class="card">
+            <div class="card-profile__cover"></div>
+            <div class="card-body pt-0 text-center">
+              <span class="avatar avatar-xxl bg-avatar-1 card-profile__avatar mx-auto">AR</span>
+              <h2 class="h5 fw-600 mt-3 mb-1">Ava Reynolds</h2>
+              <p class="fs-7 text-muted-2 mb-2">Workspace admin · Product lead</p>
+              <p class="fs-8 text-muted-2 mb-3"><i class="bi bi-geo-alt"></i> London, United Kingdom</p>
+
+              <div class="d-flex justify-content-center gap-2 mb-3">
+                <span class="badge badge-soft-primary badge-pill">Scale plan</span>
+                <span class="badge badge-soft-success badge-pill">Verified</span>
+              </div>
+
+              <p class="fs-7 text-muted-2">Building AI-assisted workflows for distributed product teams. Currently focused on the Qevora component library.</p>
+
+              <div class="d-flex justify-content-center gap-3 mb-3">
+                <a href="#" class="q-icon-btn" aria-label="LinkedIn profile" data-demo-action="External profile link — demo only."><i class="bi bi-linkedin"></i></a>
+                <a href="#" class="q-icon-btn" aria-label="X profile" data-demo-action="External profile link — demo only."><i class="bi bi-twitter-x"></i></a>
+                <a href="#" class="q-icon-btn" aria-label="GitHub profile" data-demo-action="External profile link — demo only."><i class="bi bi-github"></i></a>
+                <a href="#" class="q-icon-btn" aria-label="Personal site" data-demo-action="External profile link — demo only."><i class="bi bi-globe2"></i></a>
+              </div>
+
+              <div class="row g-0 border-top border-q pt-3">
+                <div class="col-4">
+                  <p class="h6 fw-700 text-heading mb-0">184</p>
+                  <p class="fs-8 text-muted-2 mb-0">Projects</p>
+                </div>
+                <div class="col-4">
+                  <p class="h6 fw-700 text-heading mb-0">2.4K</p>
+                  <p class="fs-8 text-muted-2 mb-0">Tasks done</p>
+                </div>
+                <div class="col-4">
+                  <p class="h6 fw-700 text-heading mb-0">98%</p>
+                  <p class="fs-8 text-muted-2 mb-0">On time</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="card mt-3">
+            <div class="card-header">
+              <h2 class="card-title mb-0">Skills</h2>
+            </div>
+            <div class="card-body d-flex flex-wrap gap-2">
+              <span class="chip"><i class="bi bi-check2"></i> Product strategy</span>
+              <span class="chip"><i class="bi bi-check2"></i> Design systems</span>
+              <span class="chip"><i class="bi bi-check2"></i> Bootstrap 5</span>
+              <span class="chip"><i class="bi bi-check2"></i> Accessibility</span>
+              <span class="chip"><i class="bi bi-check2"></i> Data analysis</span>
+              <span class="chip"><i class="bi bi-check2"></i> RTL localisation</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-8 d-flex flex-column gap-3">
+          <div class="row g-3">
+            <div class="col-sm-4">
+              <div class="card h-100">
+                <div class="card-body">
+                  <p class="fs-8 text-muted-2 mb-1">Tasks completed</p>
+                  <p class="h4 fw-700 text-heading mb-2">312</p>
+                  <div class="progress progress-sm"><div class="progress-bar" style="width: 78%"></div></div>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-4">
+              <div class="card h-100">
+                <div class="card-body">
+                  <p class="fs-8 text-muted-2 mb-1">AI prompts this month</p>
+                  <p class="h4 fw-700 text-heading mb-2">1,248</p>
+                  <div class="progress progress-sm"><div class="progress-bar bg-info" style="width: 62%"></div></div>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-4">
+              <div class="card h-100">
+                <div class="card-body">
+                  <p class="fs-8 text-muted-2 mb-1">Review score</p>
+                  <p class="h4 fw-700 text-heading mb-2">4.9</p>
+                  <div class="progress progress-sm"><div class="progress-bar bg-success" style="width: 98%"></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-header">
+              <div>
+                <h2 class="card-title">Contribution activity</h2>
+                <p class="card-subtitle">Tasks and reviews per week</p>
+              </div>
+            </div>
+            <div class="card-body">
+              <div class="chart-holder chart-holder--sm">
+                <canvas data-chart="users" data-labels="W1,W2,W3,W4,W5,W6,W7,W8" data-series="Tasks|18,24,20,28,26,32,29,36;Reviews|6,9,7,12,10,14,11,16"></canvas>
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-header">
+              <div>
+                <h2 class="card-title">Recent projects</h2>
+                <p class="card-subtitle">Where Ava spends most of her time</p>
+              </div>
+              <a href="../pages/projects.html" class="btn btn-sm btn-soft-secondary">All projects</a>
+            </div>
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item">
+                <div class="list-item-row">
+                  <span class="file-row__icon"><i class="bi bi-diagram-3"></i></span>
+                  <span class="flex-grow-1 min-w-0">
+                    <a class="d-block fs-7 fw-500 text-heading" href="project-details.html">Atlas platform migration</a>
+                    <span class="d-block fs-8 text-muted-2">76% complete · due Nov 18</span>
+                  </span>
+                  <div class="progress progress-sm" style="width: 90px;"><div class="progress-bar" style="width: 76%"></div></div>
+                </div>
+              </li>
+              <li class="list-group-item">
+                <div class="list-item-row">
+                  <span class="file-row__icon"><i class="bi bi-receipt"></i></span>
+                  <span class="flex-grow-1 min-w-0">
+                    <a class="d-block fs-7 fw-500 text-heading" href="project-details.html">Billing revamp</a>
+                    <span class="d-block fs-8 text-muted-2">92% complete · due Oct 30</span>
+                  </span>
+                  <div class="progress progress-sm" style="width: 90px;"><div class="progress-bar bg-success" style="width: 92%"></div></div>
+                </div>
+              </li>
+              <li class="list-group-item">
+                <div class="list-item-row">
+                  <span class="file-row__icon"><i class="bi bi-stars"></i></span>
+                  <span class="flex-grow-1 min-w-0">
+                    <a class="d-block fs-7 fw-500 text-heading" href="project-details.html">Nova AI assistant</a>
+                    <span class="d-block fs-8 text-muted-2">54% complete · due Dec 05</span>
+                  </span>
+                  <div class="progress progress-sm" style="width: 90px;"><div class="progress-bar bg-info" style="width: 54%"></div></div>
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          <div class="card">
+            <div class="card-header">
+              <h2 class="card-title mb-0">Activity</h2>
+            </div>
+            <div class="card-body">
+              <ul class="activity">
+                <li class="activity__item">
+                  <span class="avatar avatar-sm bg-avatar-1">AR</span>
+                  <div class="activity__body">
+                    <p class="activity__text">Shipped the <strong>dark mode</strong> token refactor</p>
+                    <p class="activity__time">2 hours ago</p>
+                  </div>
+                </li>
+                <li class="activity__item">
+                  <span class="avatar avatar-sm bg-avatar-1">AR</span>
+                  <div class="activity__body">
+                    <p class="activity__text">Reviewed the <strong>RTL compatibility</strong> checklist</p>
+                    <p class="activity__time">Yesterday</p>
+                  </div>
+                </li>
+                <li class="activity__item">
+                  <span class="avatar avatar-sm bg-avatar-1">AR</span>
+                  <div class="activity__body">
+                    <p class="activity__text">Published <strong>v1.0.0</strong> of the component library</p>
+                    <p class="activity__time">Sep 28, 2026</p>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>

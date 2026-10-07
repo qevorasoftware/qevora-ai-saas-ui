@@ -1,0 +1,376 @@
+      <div class="q-page-head">
+        <div>
+          {{BREADCRUMB}}
+          <h1 class="q-page-head__title mt-2">Design system</h1>
+          <p class="q-page-head__subtitle">
+            One token layer drives the whole template. Change a value here in <code>assets/css/style.css</code> and every
+            page, chart, badge and dark-mode surface follows automatically.
+          </p>
+        </div>
+        <div class="d-flex flex-wrap gap-2">
+          <a class="btn btn-white" href="index.html"><i class="bi bi-book"></i> Documentation</a>
+          <a class="btn btn-primary" href="../components/colors.html"><i class="bi bi-palette2"></i> Colour page</a>
+        </div>
+      </div>
+
+      <div class="alert alert-info d-flex align-items-start gap-2" role="alert">
+        <i class="bi bi-info-circle alert-icon"></i>
+        <div class="fs-7">
+          Tokens are declared as CSS custom properties on <code>:root</code> and re-declared under
+          <code>[data-bs-theme="dark"]</code>. Bootstrap's own <code>--bs-*</code> variables are bridged to them, so
+          Bootstrap components inherit the palette without overrides.
+        </div>
+      </div>
+
+      <div class="card mb-4">
+        <div class="card-header">
+          <div>
+            <h2 class="card-title mb-0">Brand &amp; semantic colours</h2>
+            <p class="card-subtitle">Five families, each with a solid, hover and soft tone</p>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="row g-3">
+            <div class="col-6 col-md-4 col-xl-2">
+              <div class="swatch" style="background: var(--q-primary);">
+                <span class="swatch__name">Primary</span>
+                <span class="swatch__hex">#4f46e5 · --q-primary</span>
+              </div>
+            </div>
+            <div class="col-6 col-md-4 col-xl-2">
+              <div class="swatch" style="background: var(--q-accent);">
+                <span class="swatch__name">Accent</span>
+                <span class="swatch__hex">#06b6d4 · --q-accent</span>
+              </div>
+            </div>
+            <div class="col-6 col-md-4 col-xl-2">
+              <div class="swatch" style="background: var(--q-success);">
+                <span class="swatch__name">Success</span>
+                <span class="swatch__hex">#10b981 · --q-success</span>
+              </div>
+            </div>
+            <div class="col-6 col-md-4 col-xl-2">
+              <div class="swatch" style="background: var(--q-warning);">
+                <span class="swatch__name">Warning</span>
+                <span class="swatch__hex">#f59e0b · --q-warning</span>
+              </div>
+            </div>
+            <div class="col-6 col-md-4 col-xl-2">
+              <div class="swatch" style="background: var(--q-danger);">
+                <span class="swatch__name">Danger</span>
+                <span class="swatch__hex">#ef4444 · --q-danger</span>
+              </div>
+            </div>
+            <div class="col-6 col-md-4 col-xl-2">
+              <div class="swatch" style="background: var(--q-info);">
+                <span class="swatch__name">Info</span>
+                <span class="swatch__hex">#0ea5e9 · --q-info</span>
+              </div>
+            </div>
+          </div>
+
+          <p class="fw-600 text-heading fs-7 mt-4 mb-2">Soft tints</p>
+          <div class="row g-3">
+            <div class="col-6 col-md-4 col-xl-2">
+              <div class="swatch text-heading" style="background: var(--q-primary-soft);">
+                <span class="swatch__name">Primary soft</span>
+                <span class="swatch__hex">#eef0ff</span>
+              </div>
+            </div>
+            <div class="col-6 col-md-4 col-xl-2">
+              <div class="swatch text-heading" style="background: var(--q-accent-soft);">
+                <span class="swatch__name">Accent soft</span>
+                <span class="swatch__hex">#e0f7fb</span>
+              </div>
+            </div>
+            <div class="col-6 col-md-4 col-xl-2">
+              <div class="swatch text-heading" style="background: var(--q-success-soft);">
+                <span class="swatch__name">Success soft</span>
+                <span class="swatch__hex">#e6f8f2</span>
+              </div>
+            </div>
+            <div class="col-6 col-md-4 col-xl-2">
+              <div class="swatch text-heading" style="background: var(--q-warning-soft);">
+                <span class="swatch__name">Warning soft</span>
+                <span class="swatch__hex">#fef4e3</span>
+              </div>
+            </div>
+            <div class="col-6 col-md-4 col-xl-2">
+              <div class="swatch text-heading" style="background: var(--q-danger-soft);">
+                <span class="swatch__name">Danger soft</span>
+                <span class="swatch__hex">#fdecec</span>
+              </div>
+            </div>
+            <div class="col-6 col-md-4 col-xl-2">
+              <div class="swatch text-heading" style="background: var(--q-info-soft);">
+                <span class="swatch__name">Info soft</span>
+                <span class="swatch__hex">#e5f4fe</span>
+              </div>
+            </div>
+          </div>
+
+          <p class="fw-600 text-heading fs-7 mt-4 mb-2">Surfaces &amp; text</p>
+          <div class="table-responsive">
+            <table class="table table-sm align-middle mb-0">
+              <thead>
+                <tr><th scope="col">Token</th><th scope="col">Light</th><th scope="col">Dark</th><th scope="col">Used for</th></tr>
+              </thead>
+              <tbody class="fs-7">
+                <tr><td><code>--q-body-bg</code></td><td>#f6f7fb</td><td>#0b0f1c</td><td class="text-muted-2">Page background</td></tr>
+                <tr><td><code>--q-surface</code></td><td>#ffffff</td><td>—</td><td class="text-muted-2">Cards, sidebar, menus</td></tr>
+                <tr><td><code>--q-surface-alt</code></td><td>#fbfbfe</td><td>—</td><td class="text-muted-2">Card headers, inputs in dark mode</td></tr>
+                <tr><td><code>--q-surface-hover</code></td><td>#f3f4f9</td><td>—</td><td class="text-muted-2">Row hover, dropdown hover</td></tr>
+                <tr><td><code>--q-border-color</code></td><td>#e7e9f2</td><td>—</td><td class="text-muted-2">All hairlines and dividers</td></tr>
+                <tr><td><code>--q-heading-color</code></td><td>#101426</td><td>—</td><td class="text-muted-2">Titles and emphasised numbers</td></tr>
+                <tr><td><code>--q-body-color</code></td><td>#3b4257</td><td>—</td><td class="text-muted-2">Default paragraph text</td></tr>
+                <tr><td><code>--q-muted-color</code></td><td>#737b93</td><td>—</td><td class="text-muted-2">Secondary text via <code>.text-muted-2</code></td></tr>
+                <tr><td><code>--q-faint-color</code></td><td>#9aa1b5</td><td>—</td><td class="text-muted-2">Timestamps and hints</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <div class="card mb-4">
+        <div class="card-header">
+          <div>
+            <h2 class="card-title mb-0">Typography</h2>
+            <p class="card-subtitle">Inter, self-hosted in four weights</p>
+          </div>
+        </div>
+        <div class="table-responsive">
+          <table class="table align-middle mb-0">
+            <thead>
+              <tr><th scope="col" style="width: 34%;">Class</th><th scope="col">Sample</th><th scope="col">Size / weight</th></tr>
+            </thead>
+            <tbody>
+              <tr><td class="text-wrap"><code>h1</code> / <code>.h1</code></td><td><span class="h1 mb-0 d-block">Dashboard</span></td><td class="fs-7 text-muted-2">1.875rem · 700</td></tr>
+              <tr><td class="text-wrap"><code>h2</code> / <code>.h2</code></td><td><span class="h2 mb-0 d-block">Revenue</span></td><td class="fs-7 text-muted-2">1.5rem · 700</td></tr>
+              <tr><td><code>.q-page-head__title</code></td><td><span class="q-page-head__title d-block">Page title</span></td><td class="fs-7 text-muted-2">1.5rem · 650 <span class="badge badge-soft-primary">page header</span></td></tr>
+              <tr><td><code>.card-title</code></td><td><span class="card-title d-block">Card heading</span></td><td class="fs-7 text-muted-2">1rem · 600</td></tr>
+              <tr><td><code>body</code></td><td><span class="d-block">Body copy at the default size.</span></td><td class="fs-7 text-muted-2">0.9375rem · 400</td></tr>
+              <tr><td><code>.fs-7</code></td><td><span class="fs-7 d-block">Dense text used in tables and cards.</span></td><td class="fs-7 text-muted-2">0.8125rem</td></tr>
+              <tr><td><code>.fs-8</code></td><td><span class="fs-8 d-block">Hints, helper text and metadata.</span></td><td class="fs-7 text-muted-2">0.75rem</td></tr>
+              <tr><td><code>.fs-9</code></td><td><span class="fs-9 d-block">Uppercase labels and eyebrow text.</span></td><td class="fs-7 text-muted-2">0.6875rem</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="card-body">
+          <p class="fs-8 text-muted-2 mb-0">
+            Read more on the <a href="../components/typography.html">typography component page</a>, which also covers
+            headings, lists, blockquotes and inline code.
+          </p>
+        </div>
+      </div>
+
+      <div class="row g-4 mb-4">
+        <div class="col-lg-6">
+          <div class="card h-100">
+            <div class="card-header"><h2 class="card-title mb-0">Spacing scale</h2></div>
+            <div class="card-body">
+              <ul class="list-unstyled d-flex flex-column gap-3 mb-0 fs-7">
+                <li class="d-flex align-items-center gap-3">
+                  <code class="text-nowrap">--q-space-xs · 4px</code>
+                  <span class="d-block bg-primary rounded-q" style="width: 4px; height: 14px;"></span>
+                </li>
+                <li class="d-flex align-items-center gap-3">
+                  <code class="text-nowrap">--q-space-sm · 8px</code>
+                  <span class="d-block bg-primary rounded-q" style="width: 8px; height: 14px;"></span>
+                </li>
+                <li class="d-flex align-items-center gap-3">
+                  <code class="text-nowrap">--q-space-md · 16px</code>
+                  <span class="d-block bg-primary rounded-q" style="width: 16px; height: 14px;"></span>
+                </li>
+                <li class="d-flex align-items-center gap-3">
+                  <code class="text-nowrap">--q-space-lg · 24px</code>
+                  <span class="d-block bg-primary rounded-q" style="width: 24px; height: 14px;"></span>
+                </li>
+                <li class="d-flex align-items-center gap-3">
+                  <code class="text-nowrap">--q-space-xl · 32px</code>
+                  <span class="d-block bg-primary rounded-q" style="width: 32px; height: 14px;"></span>
+                </li>
+                <li class="d-flex align-items-center gap-3">
+                  <code class="text-nowrap">--q-space-xxl · 48px</code>
+                  <span class="d-block bg-primary rounded-q" style="width: 48px; height: 14px;"></span>
+                </li>
+              </ul>
+            </div>
+            <div class="card-footer fs-8 text-muted-2">
+              Layout itself uses Bootstrap's spacing utilities (<code>g-3</code>, <code>p-4</code>, <code>mb-3</code>);
+              these tokens document the intended rhythm.
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-6">
+          <div class="card h-100">
+            <div class="card-header"><h2 class="card-title mb-0">Radius &amp; elevation</h2></div>
+            <div class="card-body">
+              <div class="row g-3 mb-4">
+                <div class="col-6 col-sm-4">
+                  <div class="p-3 bg-primary-subtle text-center" style="border-radius: var(--q-radius-xs);">
+                    <span class="fs-8">xs · 6px</span>
+                  </div>
+                </div>
+                <div class="col-6 col-sm-4">
+                  <div class="p-3 bg-primary-subtle text-center" style="border-radius: var(--q-radius-sm);">
+                    <span class="fs-8">sm · 8px</span>
+                  </div>
+                </div>
+                <div class="col-6 col-sm-4">
+                  <div class="p-3 bg-primary-subtle text-center" style="border-radius: var(--q-radius);">
+                    <span class="fs-8">base · 12px</span>
+                  </div>
+                </div>
+                <div class="col-6 col-sm-4">
+                  <div class="p-3 bg-primary-subtle text-center" style="border-radius: var(--q-radius-lg);">
+                    <span class="fs-8">lg · 16px</span>
+                  </div>
+                </div>
+                <div class="col-6 col-sm-4">
+                  <div class="p-3 bg-primary-subtle text-center" style="border-radius: var(--q-radius-xl);">
+                    <span class="fs-8">xl · 22px</span>
+                  </div>
+                </div>
+                <div class="col-6 col-sm-4">
+                  <div class="p-3 bg-primary-subtle text-center" style="border-radius: var(--q-radius-pill);">
+                    <span class="fs-8">pill</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row g-3">
+                <div class="col-6">
+                  <div class="p-3 bg-body text-center" style="box-shadow: var(--q-shadow-sm); border-radius: var(--q-radius);">
+                    <span class="fs-8">--q-shadow-sm</span>
+                  </div>
+                </div>
+                <div class="col-6">
+                  <div class="p-3 bg-body text-center" style="box-shadow: var(--q-shadow); border-radius: var(--q-radius);">
+                    <span class="fs-8">--q-shadow</span>
+                  </div>
+                </div>
+                <div class="col-12">
+                  <div class="p-3 bg-body text-center" style="box-shadow: var(--q-shadow-lg); border-radius: var(--q-radius);">
+                    <span class="fs-8">--q-shadow-lg · popovers, dropdowns, modals</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card mb-4">
+        <div class="card-header">
+          <div>
+            <h2 class="card-title mb-0">Component conventions</h2>
+            <p class="card-subtitle">Which variant to reach for, and when</p>
+          </div>
+        </div>
+        <div class="table-responsive">
+          <table class="table align-middle mb-0">
+            <thead>
+              <tr><th scope="col">Element</th><th scope="col">Primary choice</th><th scope="col">Quiet alternative</th><th scope="col">Notes</th></tr>
+            </thead>
+            <tbody class="fs-7">
+              <tr>
+                <td class="fw-500 text-heading">Button</td>
+                <td><button class="btn btn-sm btn-primary" type="button" data-demo-action="Primary button — style demo.">Primary</button></td>
+                <td><button class="btn btn-sm btn-soft-primary" type="button" data-demo-action="Soft button — style demo.">Soft</button> <button class="btn btn-sm btn-white" type="button" data-demo-action="White button — style demo.">White</button></td>
+                <td class="text-muted-2 text-wrap">One primary per view; soft for table rows, white for toolbars</td>
+              </tr>
+              <tr>
+                <td class="fw-500 text-heading">Status</td>
+                <td><span class="badge badge-soft-success">Active</span></td>
+                <td><span class="badge badge-soft-neutral">Draft</span></td>
+                <td class="text-muted-2 text-wrap"><code>.badge-soft-*</code> for tables and lists, solid <code>.text-bg-*</code> for counters</td>
+              </tr>
+              <tr>
+                <td class="fw-500 text-heading">Alert</td>
+                <td><span class="badge badge-soft-info">Soft</span></td>
+                <td><span class="badge badge-soft-danger">Solid</span></td>
+                <td class="text-muted-2 text-wrap">Soft for inline guidance, solid for blocking messages</td>
+              </tr>
+              <tr>
+                <td class="fw-500 text-heading">Data</td>
+                <td><span class="badge badge-soft-primary">Table</span></td>
+                <td><span class="badge badge-soft-primary">Cards</span></td>
+                <td class="text-muted-2 text-wrap">Tables for scanning, card grids for browsing with images</td>
+              </tr>
+              <tr>
+                <td class="fw-500 text-heading">Trend</td>
+                <td><span class="trend trend-up"><i class="bi bi-arrow-up-right"></i> 12.4%</span></td>
+                <td><span class="trend trend-down"><i class="bi bi-arrow-down-right"></i> 0.4%</span></td>
+                <td class="text-muted-2 text-wrap">Always pair with the value it describes, never colour alone</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="card-body">
+          <p class="fs-8 text-muted-2 mb-0">
+            Full markup for each of these lives in the <a href="../components/index.html">UI kit</a>, with copy buttons
+            on every example.
+          </p>
+        </div>
+      </div>
+
+      <div class="row g-4 mb-4">
+        <div class="col-lg-6">
+          <div class="card h-100">
+            <div class="card-header"><h2 class="card-title mb-0">Dark mode</h2></div>
+            <div class="card-body">
+              <ul class="fs-7 text-muted-2 d-flex flex-column gap-2 mb-0">
+                <li>Dark mode is an attribute, not a separate stylesheet: <code>&lt;html data-bs-theme="dark"&gt;</code>.</li>
+                <li>Colour tokens are re-declared under that selector with higher-contrast values — the brand indigo moves from <code>#4f46e5</code> to a lighter tint so it stays readable on dark surfaces.</li>
+                <li><code>assets/css/dark.css</code> only holds component-level polish: input backgrounds, image dimming, sidebar hairlines and modal edges.</li>
+                <li>Charts and progress rings listen for the <code>qevora:themechange</code> event and redraw with the new palette.</li>
+                <li>The choice is stored in localStorage under <code>qevora-theme</code>; <code>system</code> follows the operating system setting.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-6">
+          <div class="card h-100">
+            <div class="card-header"><h2 class="card-title mb-0">RTL rules</h2></div>
+            <div class="card-body">
+              <ul class="fs-7 text-muted-2 d-flex flex-column gap-2 mb-0">
+                <li>Set <code>dir="rtl"</code> on <code>&lt;html&gt;</code>; the sidebar script also swaps <code>bootstrap.min.css</code> for <code>bootstrap.rtl.min.css</code> at runtime.</li>
+                <li>Layout uses logical properties (<code>padding-inline-start</code>, <code>inset-inline-end</code>), so the shell mirrors without extra CSS.</li>
+                <li><code>assets/css/rtl.css</code> corrects the few cases that cannot be logical — icon rotations, timeline rails, progress origin and chart legends.</li>
+                <li>Charts keep left-to-right data order, which is correct for time series in every locale.</li>
+                <li>Test any new component at <code>dir="rtl"</code> before shipping it — the header has a toggle for exactly this.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header"><h2 class="card-title mb-0">Do &amp; don't</h2></div>
+        <div class="card-body">
+          <div class="row g-4">
+            <div class="col-md-6">
+              <p class="fw-600 text-heading fs-7 mb-2"><i class="bi bi-check-circle text-success"></i> Do</p>
+              <ul class="fs-7 text-muted-2 d-flex flex-column gap-2 mb-0">
+                <li>Change tokens first — a colour asked for twice is a token that is missing.</li>
+                <li>Reuse <code>.card</code>, <code>.btn-soft-*</code> and <code>.badge-soft-*</code> instead of inventing new surfaces.</li>
+                <li>Keep one primary action per screen and one accent colour per chart.</li>
+                <li>Check every new block in light, dark, RTL and at 375 px width.</li>
+                <li>Write the label first, then attach the icon — never the other way round.</li>
+              </ul>
+            </div>
+            <div class="col-md-6">
+              <p class="fw-600 text-heading fs-7 mb-2"><i class="bi bi-x-circle text-danger"></i> Don't</p>
+              <ul class="fs-7 text-muted-2 d-flex flex-column gap-2 mb-0">
+                <li>Hard-code hex values in page markup — use the token or a Bootstrap text/bg utility.</li>
+                <li>Add a second font family or a heavier weight than 700.</li>
+                <li>Stack more than two shadow levels in one view.</li>
+                <li>Use colour alone to communicate state — always pair it with text or an icon.</li>
+                <li>Override Bootstrap variables inline; extend the token block instead.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>

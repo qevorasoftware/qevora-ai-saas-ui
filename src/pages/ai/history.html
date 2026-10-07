@@ -1,0 +1,269 @@
+      <div class="q-page-head">
+        <div>
+          {{BREADCRUMB}}
+          <h1 class="q-page-head__title mt-2">AI history</h1>
+          <p class="q-page-head__subtitle">Every prompt across the workspace with model, tokens, latency and cost.</p>
+        </div>
+        <div class="d-flex flex-wrap gap-2">
+          <button type="button" class="btn btn-white" data-demo-clear-rows="#history-table" data-demo-variant="warning"><i class="bi bi-trash3"></i> Clear history</button>
+          <button type="button" class="btn btn-primary" data-demo-export="#history-table" data-demo-export-name="qevora-prompts-2026-10-03.csv"><i class="bi bi-download"></i> Export CSV</button>
+        </div>
+      </div>
+
+      <div class="row g-3 q-section">
+        <div class="col-sm-6 col-xl-3">
+          <div class="kpi-tile">
+            <div class="kpi-tile__body">
+              <p class="kpi-tile__label mb-0">Prompts this month</p>
+              <p class="kpi-tile__value" data-counter="48260">48,260</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-6 col-xl-3">
+          <div class="kpi-tile">
+            <div class="kpi-tile__body">
+              <p class="kpi-tile__label mb-0">Avg. latency</p>
+              <p class="kpi-tile__value">1.4s</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-6 col-xl-3">
+          <div class="kpi-tile">
+            <div class="kpi-tile__body">
+              <p class="kpi-tile__label mb-0">Total tokens</p>
+              <p class="kpi-tile__value">680K</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-6 col-xl-3">
+          <div class="kpi-tile">
+            <div class="kpi-tile__body">
+              <p class="kpi-tile__label mb-0">Total cost</p>
+              <p class="kpi-tile__value">$1,842</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card q-section">
+        <div class="card-header">
+          <div>
+            <h2 class="card-title">Activity</h2>
+            <p class="card-subtitle">Token usage per month</p>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="chart-holder chart-holder--sm">
+            <canvas data-chart="aiUsage" data-labels="Apr,May,Jun,Jul,Aug,Sep,Oct" data-series="Requests|28400,31200,29800,36400,42100,45600,48260"></canvas>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="table-toolbar">
+          <div class="search-field" style="max-width: 300px;">
+            <i class="bi bi-search search-field__icon" aria-hidden="true"></i>
+            <label class="visually-hidden" for="history-search">Search prompts</label>
+            <input type="search" class="form-control" id="history-search" placeholder="Search prompts…" data-table-filter="#history-table">
+          </div>
+          <select class="form-select form-select-sm" style="width: auto;" aria-label="Filter by model"
+                  data-demo-filter="model" data-demo-filter-table="#history-table" data-demo-filter-mode="contains">
+            <option value="">All models</option>
+            <option value="Nova-4 Turbo">Nova-4 Turbo</option>
+            <option value="Nova-4">Nova-4</option>
+            <option value="Vertex Flash">Vertex Flash</option>
+            <option value="Orbit Vision">Orbit Vision</option>
+          </select>
+          <select class="form-select form-select-sm" style="width: auto;" aria-label="Filter by type"
+                  data-demo-filter="type" data-demo-filter-table="#history-table">
+            <option value="">All types</option>
+            <option value="Text">Text</option>
+            <option value="Image">Image</option>
+            <option value="Analysis">Analysis</option>
+          </select>
+        </div>
+
+        <div class="table-responsive">
+          <table class="table table-hover align-middle" id="history-table" data-demo-record="prompt" data-demo-fields="prompt:Prompt,model:Model,type:Type,tokens:Tokens,user:User">
+            <thead>
+              <tr>
+                <th scope="col" style="width: 40px;"><input class="form-check-input" type="checkbox" data-select-all="#history-table" aria-label="Select all prompts"></th>
+                <th scope="col">Prompt</th>
+                <th scope="col">Model</th>
+                <th scope="col">Type</th>
+                <th scope="col" class="text-end" data-sort="number">Tokens <i class="bi bi-arrow-down-up"></i></th>
+                <th scope="col" class="text-end">Latency</th>
+                <th scope="col" class="text-end">Cost</th>
+                <th scope="col">User</th>
+                <th scope="col" class="text-end">Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr data-prompt-model="Nova-4 Turbo" data-prompt-type="Text" data-prompt-tokens="1240" data-prompt-user="Ava Reynolds">
+                <td><input class="form-check-input" type="checkbox" data-row-select aria-label="Select prompt"></td>
+                <td><span class="d-block fs-7 fw-500 text-heading text-truncate" style="max-width: 280px;" data-demo-copy-block-text>Draft a product update announcement for v2.4</span><span class="d-block fs-8 text-muted-2">32 seconds ago</span></td>
+                <td><span class="badge badge-soft-primary badge-pill">Nova-4 Turbo</span></td>
+                <td>Text</td>
+                <td class="text-end">1,240</td>
+                <td class="text-end text-muted-2">1.2s</td>
+                <td class="text-end fw-600 text-heading">$0.0044</td>
+                <td><span class="avatar avatar-xs bg-avatar-1" data-bs-toggle="tooltip" title="Ava Reynolds">AR</span></td>
+                <td class="text-end">
+                  <div class="table-actions justify-content-end">
+                    <button type="button" class="btn btn-icon btn-sm btn-ghost" aria-label="Reuse prompt" data-demo-reuse="chat.html"><i class="bi bi-arrow-repeat"></i></button>
+                    <button type="button" class="btn btn-icon btn-sm btn-ghost" aria-label="Copy prompt" data-copy-text data-demo-copy-label="Prompt"><i class="bi bi-clipboard"></i></button>
+                  </div>
+                </td>
+              </tr>
+              <tr data-prompt-model="Vertex Flash" data-prompt-type="Analysis" data-prompt-tokens="2180" data-prompt-user="Lea Novak">
+                <td><input class="form-check-input" type="checkbox" data-row-select aria-label="Select prompt"></td>
+                <td><span class="d-block fs-7 fw-500 text-heading text-truncate" style="max-width: 280px;" data-demo-copy-block-text>Summarise Q3 revenue drivers for the board deck</span><span class="d-block fs-8 text-muted-2">18 minutes ago</span></td>
+                <td><span class="badge badge-soft-info badge-pill">Vertex Flash</span></td>
+                <td>Analysis</td>
+                <td class="text-end">2,180</td>
+                <td class="text-end text-muted-2">0.6s</td>
+                <td class="text-end fw-600 text-heading">$0.0031</td>
+                <td><span class="avatar avatar-xs bg-avatar-6" data-bs-toggle="tooltip" title="Lea Novak">LN</span></td>
+                <td class="text-end">
+                  <div class="table-actions justify-content-end">
+                    <button type="button" class="btn btn-icon btn-sm btn-ghost" aria-label="Reuse prompt" data-demo-reuse="chat.html"><i class="bi bi-arrow-repeat"></i></button>
+                    <button type="button" class="btn btn-icon btn-sm btn-ghost" aria-label="Copy prompt" data-copy-text data-demo-copy-label="Prompt"><i class="bi bi-clipboard"></i></button>
+                  </div>
+                </td>
+              </tr>
+              <tr data-prompt-model="Nova-4" data-prompt-type="Analysis" data-prompt-tokens="860" data-prompt-user="Marcus Chen">
+                <td><input class="form-check-input" type="checkbox" data-row-select aria-label="Select prompt"></td>
+                <td><span class="d-block fs-7 fw-500 text-heading text-truncate" style="max-width: 280px;" data-demo-copy-block-text>Explain this churn cohort chart to a non-technical reader</span><span class="d-block fs-8 text-muted-2">1 hour ago</span></td>
+                <td><span class="badge badge-soft-primary badge-pill">Nova-4</span></td>
+                <td>Analysis</td>
+                <td class="text-end">860</td>
+                <td class="text-end text-muted-2">1.8s</td>
+                <td class="text-end fw-600 text-heading">$0.0019</td>
+                <td><span class="avatar avatar-xs bg-avatar-3" data-bs-toggle="tooltip" title="Marcus Chen">MC</span></td>
+                <td class="text-end">
+                  <div class="table-actions justify-content-end">
+                    <button type="button" class="btn btn-icon btn-sm btn-ghost" aria-label="Reuse prompt" data-demo-reuse="chat.html"><i class="bi bi-arrow-repeat"></i></button>
+                    <button type="button" class="btn btn-icon btn-sm btn-ghost" aria-label="Copy prompt" data-copy-text data-demo-copy-label="Prompt"><i class="bi bi-clipboard"></i></button>
+                  </div>
+                </td>
+              </tr>
+              <tr data-prompt-model="Orbit Vision" data-prompt-type="Image" data-prompt-tokens="0" data-prompt-user="Ava Reynolds">
+                <td><input class="form-check-input" type="checkbox" data-row-select aria-label="Select prompt"></td>
+                <td><span class="d-block fs-7 fw-500 text-heading text-truncate" style="max-width: 280px;" data-demo-copy-block-text>Minimal abstract gradient background for the dashboard hero</span><span class="d-block fs-8 text-muted-2">3 hours ago</span></td>
+                <td><span class="badge badge-soft-warning badge-pill">Orbit Vision</span></td>
+                <td>Image</td>
+                <td class="text-end">—</td>
+                <td class="text-end text-muted-2">8.4s</td>
+                <td class="text-end fw-600 text-heading">$0.0400</td>
+                <td><span class="avatar avatar-xs bg-avatar-1" data-bs-toggle="tooltip" title="Ava Reynolds">AR</span></td>
+                <td class="text-end">
+                  <div class="table-actions justify-content-end">
+                    <button type="button" class="btn btn-icon btn-sm btn-ghost" aria-label="Regenerate image" data-demo-reuse="image-generator.html"><i class="bi bi-arrow-repeat"></i></button>
+                    <button type="button" class="btn btn-icon btn-sm btn-ghost" aria-label="Download prompt" data-demo-download="qevora-prompt.csv" data-demo-download-content="Prompt export"><i class="bi bi-download"></i></button>
+                  </div>
+                </td>
+              </tr>
+              <tr data-prompt-model="Nova-4 Turbo" data-prompt-type="Text" data-prompt-tokens="540" data-prompt-user="Daniel Okafor">
+                <td><input class="form-check-input" type="checkbox" data-row-select aria-label="Select prompt"></td>
+                <td><span class="d-block fs-7 fw-500 text-heading text-truncate" style="max-width: 280px;" data-demo-copy-block-text>Generate five email subject lines for the renewal campaign</span><span class="d-block fs-8 text-muted-2">5 hours ago</span></td>
+                <td><span class="badge badge-soft-primary badge-pill">Nova-4 Turbo</span></td>
+                <td>Text</td>
+                <td class="text-end">540</td>
+                <td class="text-end text-muted-2">1.1s</td>
+                <td class="text-end fw-600 text-heading">$0.0019</td>
+                <td><span class="avatar avatar-xs bg-avatar-4" data-bs-toggle="tooltip" title="Daniel Okafor">DO</span></td>
+                <td class="text-end">
+                  <div class="table-actions justify-content-end">
+                    <button type="button" class="btn btn-icon btn-sm btn-ghost" aria-label="Reuse prompt" data-demo-reuse="chat.html"><i class="bi bi-arrow-repeat"></i></button>
+                    <button type="button" class="btn btn-icon btn-sm btn-ghost" aria-label="Copy prompt" data-copy-text data-demo-copy-label="Prompt"><i class="bi bi-clipboard"></i></button>
+                  </div>
+                </td>
+              </tr>
+              <tr data-prompt-model="Nova-4" data-prompt-type="Text" data-prompt-tokens="980" data-prompt-user="Marcus Bell">
+                <td><input class="form-check-input" type="checkbox" data-row-select aria-label="Select prompt"></td>
+                <td><span class="d-block fs-7 fw-500 text-heading text-truncate" style="max-width: 280px;" data-demo-copy-block-text>Turn these release notes into a changelog entry</span><span class="d-block fs-8 text-muted-2">1 hour ago</span></td>
+                <td><span class="badge badge-soft-primary badge-pill">Nova-4</span></td>
+                <td>Text</td>
+                <td class="text-end">980</td>
+                <td class="text-end text-muted-2">0.9s</td>
+                <td class="text-end fw-600 text-heading">$0.0031</td>
+                <td><span class="avatar avatar-xs bg-avatar-2" data-bs-toggle="tooltip" title="Marcus Bell">MB</span></td>
+                <td class="text-end">
+                  <div class="table-actions justify-content-end">
+                    <button type="button" class="btn btn-icon btn-sm btn-ghost" aria-label="Reuse prompt" data-demo-reuse="chat.html"><i class="bi bi-arrow-repeat"></i></button>
+                    <button type="button" class="btn btn-icon btn-sm btn-ghost" aria-label="Copy prompt" data-copy-text data-demo-copy-label="Prompt"><i class="bi bi-clipboard"></i></button>
+                  </div>
+                </td>
+              </tr>
+              <tr data-prompt-model="Orbit Vision" data-prompt-type="Analysis" data-prompt-tokens="2150" data-prompt-user="Elena Petrova">
+                <td><input class="form-check-input" type="checkbox" data-row-select aria-label="Select prompt"></td>
+                <td><span class="d-block fs-7 fw-500 text-heading text-truncate" style="max-width: 280px;" data-demo-copy-block-text>Summarise this support thread and draft a reply</span><span class="d-block fs-8 text-muted-2">2 hours ago</span></td>
+                <td><span class="badge badge-soft-warning badge-pill">Orbit Vision</span></td>
+                <td>Analysis</td>
+                <td class="text-end">2,150</td>
+                <td class="text-end text-muted-2">2.4s</td>
+                <td class="text-end fw-600 text-heading">$0.0088</td>
+                <td><span class="avatar avatar-xs bg-avatar-5" data-bs-toggle="tooltip" title="Elena Petrova">EP</span></td>
+                <td class="text-end">
+                  <div class="table-actions justify-content-end">
+                    <button type="button" class="btn btn-icon btn-sm btn-ghost" aria-label="Reuse prompt" data-demo-reuse="chat.html"><i class="bi bi-arrow-repeat"></i></button>
+                    <button type="button" class="btn btn-icon btn-sm btn-ghost" aria-label="Copy prompt" data-copy-text data-demo-copy-label="Prompt"><i class="bi bi-clipboard"></i></button>
+                  </div>
+                </td>
+              </tr>
+              <tr data-prompt-model="Vertex Flash" data-prompt-type="Image" data-prompt-tokens="460" data-prompt-user="Liam Chen">
+                <td><input class="form-check-input" type="checkbox" data-row-select aria-label="Select prompt"></td>
+                <td><span class="d-block fs-7 fw-500 text-heading text-truncate" style="max-width: 280px;" data-demo-copy-block-text>Write alt text for the onboarding illustration</span><span class="d-block fs-8 text-muted-2">Yesterday</span></td>
+                <td><span class="badge badge-soft-info badge-pill">Vertex Flash</span></td>
+                <td>Image</td>
+                <td class="text-end">460</td>
+                <td class="text-end text-muted-2">1.1s</td>
+                <td class="text-end fw-600 text-heading">$0.0019</td>
+                <td><span class="avatar avatar-xs bg-avatar-6" data-bs-toggle="tooltip" title="Liam Chen">LC</span></td>
+                <td class="text-end">
+                  <div class="table-actions justify-content-end">
+                    <button type="button" class="btn btn-icon btn-sm btn-ghost" aria-label="Reuse prompt" data-demo-reuse="chat.html"><i class="bi bi-arrow-repeat"></i></button>
+                    <button type="button" class="btn btn-icon btn-sm btn-ghost" aria-label="Copy prompt" data-copy-text data-demo-copy-label="Prompt"><i class="bi bi-clipboard"></i></button>
+                  </div>
+                </td>
+              </tr>
+              <tr data-prompt-model="Nova-4 Turbo" data-prompt-type="Text" data-prompt-tokens="1780" data-prompt-user="Sofia Marino">
+                <td><input class="form-check-input" type="checkbox" data-row-select aria-label="Select prompt"></td>
+                <td><span class="d-block fs-7 fw-500 text-heading text-truncate" style="max-width: 280px;" data-demo-copy-block-text>Rewrite the pricing FAQ in plain English</span><span class="d-block fs-8 text-muted-2">Yesterday</span></td>
+                <td><span class="badge badge-soft-primary badge-pill">Nova-4 Turbo</span></td>
+                <td>Text</td>
+                <td class="text-end">1,780</td>
+                <td class="text-end text-muted-2">1.6s</td>
+                <td class="text-end fw-600 text-heading">$0.0064</td>
+                <td><span class="avatar avatar-xs bg-avatar-3" data-bs-toggle="tooltip" title="Sofia Marino">SM</span></td>
+                <td class="text-end">
+                  <div class="table-actions justify-content-end">
+                    <button type="button" class="btn btn-icon btn-sm btn-ghost" aria-label="Reuse prompt" data-demo-reuse="chat.html"><i class="bi bi-arrow-repeat"></i></button>
+                    <button type="button" class="btn btn-icon btn-sm btn-ghost" aria-label="Copy prompt" data-copy-text data-demo-copy-label="Prompt"><i class="bi bi-clipboard"></i></button>
+                  </div>
+                </td>
+              </tr>
+              <tr data-prompt-model="Nova-4" data-prompt-type="Analysis" data-prompt-tokens="3240" data-prompt-user="Noah Bennett">
+                <td><input class="form-check-input" type="checkbox" data-row-select aria-label="Select prompt"></td>
+                <td><span class="d-block fs-7 fw-500 text-heading text-truncate" style="max-width: 280px;" data-demo-copy-block-text>Classify these 40 support tickets by sentiment</span><span class="d-block fs-8 text-muted-2">2 days ago</span></td>
+                <td><span class="badge badge-soft-primary badge-pill">Nova-4</span></td>
+                <td>Analysis</td>
+                <td class="text-end">3,240</td>
+                <td class="text-end text-muted-2">3.2s</td>
+                <td class="text-end fw-600 text-heading">$0.0121</td>
+                <td><span class="avatar avatar-xs bg-avatar-4" data-bs-toggle="tooltip" title="Noah Bennett">NB</span></td>
+                <td class="text-end">
+                  <div class="table-actions justify-content-end">
+                    <button type="button" class="btn btn-icon btn-sm btn-ghost" aria-label="Reuse prompt" data-demo-reuse="chat.html"><i class="bi bi-arrow-repeat"></i></button>
+                    <button type="button" class="btn btn-icon btn-sm btn-ghost" aria-label="Copy prompt" data-copy-text data-demo-copy-label="Prompt"><i class="bi bi-clipboard"></i></button>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="table-footer" data-paginate="#history-table" data-per-page="5">
+          <span class="fs-8 text-muted-2" data-demo-count="#history-table" data-demo-count-noun="prompts">1–5 of 10 prompts</span>
+        </div>
+      </div>

@@ -1,0 +1,124 @@
+      <div class="q-page-head">
+        <div>
+          {{BREADCRUMB}}
+          <h1 class="q-page-head__title mt-2">Badges</h1>
+          <p class="q-page-head__subtitle">Status pills, soft badges and counters. Status is always written as text — colour is never the only signal.</p>
+        </div>
+      </div>
+
+      <div class="demo-block" data-demo>
+        <div class="demo-block__head">
+          <div>
+            <h2 class="demo-block__title">Status badges</h2>
+            <p class="demo-block__desc">The five states used across orders, invoices, payments, subscriptions and tasks.</p>
+          </div>
+        </div>
+        <div class="demo-block__tabs">
+          <button type="button" class="demo-tab is-active" data-demo-tab="preview" aria-selected="true">Preview</button>
+          <button type="button" class="demo-tab" data-demo-tab="html" aria-selected="false">HTML</button>
+        </div>
+        <div class="demo-block__pane is-active" data-demo-pane="preview">
+          <div class="demo-preview">
+            <div class="d-flex flex-wrap gap-2">
+              <span class="badge badge-soft-success badge-pill">Paid</span>
+              <span class="badge badge-soft-warning badge-pill">Pending</span>
+              <span class="badge badge-soft-danger badge-pill">Overdue</span>
+              <span class="badge badge-soft-info badge-pill">Processing</span>
+              <span class="badge badge-soft-primary badge-pill">Active</span>
+              <span class="badge badge-soft-neutral badge-pill">Draft</span>
+            </div>
+            <div class="d-flex flex-wrap gap-2 mt-3">
+              <span class="badge text-bg-success">Solid success</span>
+              <span class="badge text-bg-warning">Solid warning</span>
+              <span class="badge text-bg-danger">Solid danger</span>
+              <span class="badge text-bg-primary">Solid primary</span>
+            </div>
+          </div>
+        </div>
+        <div class="demo-block__pane" data-demo-pane="html">
+          <div class="demo-code-wrap">
+            <button type="button" class="copy-btn" data-copy-target="#badgeStatus"><i class="bi bi-clipboard"></i> Copy HTML</button>
+            <pre class="demo-code"><code id="badgeStatus">&lt;span class="badge badge-soft-success badge-pill"&gt;Paid&lt;/span&gt;
+&lt;span class="badge badge-soft-warning badge-pill"&gt;Pending&lt;/span&gt;
+&lt;span class="badge badge-soft-danger badge-pill"&gt;Overdue&lt;/span&gt;
+&lt;span class="badge badge-soft-info badge-pill"&gt;Processing&lt;/span&gt;
+&lt;span class="badge badge-soft-primary badge-pill"&gt;Active&lt;/span&gt;
+&lt;span class="badge badge-soft-neutral badge-pill"&gt;Draft&lt;/span&gt;
+
+&lt;span class="badge text-bg-success"&gt;Solid success&lt;/span&gt;</code></pre>
+          </div>
+        </div>
+      </div>
+
+      <div class="demo-block" data-demo>
+        <div class="demo-block__head">
+          <div>
+            <h2 class="demo-block__title">Dot badges and counters</h2>
+            <p class="demo-block__desc">Dot badges pair a coloured dot with a label. Counters are used in navigation and tabs.</p>
+          </div>
+        </div>
+        <div class="demo-block__tabs">
+          <button type="button" class="demo-tab is-active" data-demo-tab="preview" aria-selected="true">Preview</button>
+          <button type="button" class="demo-tab" data-demo-tab="html" aria-selected="false">HTML</button>
+        </div>
+        <div class="demo-block__pane is-active" data-demo-pane="preview">
+          <div class="demo-preview">
+            <div class="d-flex flex-wrap gap-3 align-items-center">
+              <span class="badge badge-soft-success badge-dot">Online</span>
+              <span class="badge badge-soft-danger badge-dot">Busy</span>
+              <span class="badge badge-soft-warning badge-dot">Away</span>
+              <span class="badge badge-soft-neutral badge-dot">Offline</span>
+            </div>
+            <div class="d-flex flex-wrap gap-3 align-items-center mt-3">
+              <span class="chip"><i class="bi bi-bell"></i> Notifications <span class="badge badge-soft-danger badge-pill">4</span></span>
+              <span class="chip"><i class="bi bi-envelope"></i> Inbox <span class="badge badge-soft-primary badge-pill">12</span></span>
+              <span class="q-nav__badge badge badge-soft-success">New</span>
+              <span class="badge rounded-pill text-bg-primary">99+</span>
+            </div>
+          </div>
+        </div>
+        <div class="demo-block__pane" data-demo-pane="html">
+          <div class="demo-code-wrap">
+            <button type="button" class="copy-btn" data-copy-target="#badgeDot"><i class="bi bi-clipboard"></i> Copy HTML</button>
+            <pre class="demo-code"><code id="badgeDot">&lt;span class="badge badge-soft-success badge-dot"&gt;Online&lt;/span&gt;
+&lt;span class="badge badge-soft-danger badge-dot"&gt;Busy&lt;/span&gt;
+&lt;span class="badge badge-soft-warning badge-dot"&gt;Away&lt;/span&gt;
+&lt;span class="badge badge-soft-neutral badge-dot"&gt;Offline&lt;/span&gt;
+
+&lt;span class="chip"&gt;
+  &lt;i class="bi bi-bell"&gt;&lt;/i&gt; Notifications
+  &lt;span class="badge badge-soft-danger badge-pill"&gt;4&lt;/span&gt;
+&lt;/span&gt;</code></pre>
+          </div>
+        </div>
+      </div>
+
+      <div class="demo-block" data-demo>
+        <div class="demo-block__head">
+          <div>
+            <h2 class="demo-block__title">Trend indicators</h2>
+            <p class="demo-block__desc">Used inside KPI cards. Each one includes an arrow icon plus the value so the direction is never colour-only.</p>
+          </div>
+        </div>
+        <div class="demo-block__tabs">
+          <button type="button" class="demo-tab is-active" data-demo-tab="preview" aria-selected="true">Preview</button>
+          <button type="button" class="demo-tab" data-demo-tab="html" aria-selected="false">HTML</button>
+        </div>
+        <div class="demo-block__pane is-active" data-demo-pane="preview">
+          <div class="demo-preview">
+            <div class="d-flex flex-wrap gap-3 align-items-center">
+              <span class="trend trend-up"><i class="bi bi-arrow-up-short"></i> 12.4%</span>
+              <span class="trend trend-down"><i class="bi bi-arrow-down-short"></i> 0.4%</span>
+              <span class="trend trend-flat"><i class="bi bi-dash-lg"></i> steady</span>
+            </div>
+          </div>
+        </div>
+        <div class="demo-block__pane" data-demo-pane="html">
+          <div class="demo-code-wrap">
+            <button type="button" class="copy-btn" data-copy-target="#badgeTrend"><i class="bi bi-clipboard"></i> Copy HTML</button>
+            <pre class="demo-code"><code id="badgeTrend">&lt;span class="trend trend-up"&gt;&lt;i class="bi bi-arrow-up-short"&gt;&lt;/i&gt; 12.4%&lt;/span&gt;
+&lt;span class="trend trend-down"&gt;&lt;i class="bi bi-arrow-down-short"&gt;&lt;/i&gt; 0.4%&lt;/span&gt;
+&lt;span class="trend trend-flat"&gt;&lt;i class="bi bi-dash-lg"&gt;&lt;/i&gt; steady&lt;/span&gt;</code></pre>
+          </div>
+        </div>
+      </div>

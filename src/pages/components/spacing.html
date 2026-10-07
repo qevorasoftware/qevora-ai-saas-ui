@@ -1,0 +1,195 @@
+      <div class="q-page-head">
+        <div>
+          {{BREADCRUMB}}
+          <h1 class="q-page-head__title mt-2">Spacing</h1>
+          <p class="q-page-head__subtitle">
+            A six-step spacing scale keeps dashboard density consistent. Bootstrap's spacing utilities map directly onto it.
+          </p>
+        </div>
+      </div>
+
+      <div class="card q-section">
+        <div class="card-header">
+          <div>
+            <h2 class="card-title">Spacing tokens</h2>
+            <p class="card-subtitle">Defined in <code>style.css</code> as <code>--q-space-*</code></p>
+          </div>
+        </div>
+        <div class="table-responsive">
+          <table class="table align-middle">
+            <thead>
+              <tr>
+                <th scope="col">Token</th>
+                <th scope="col">Value</th>
+                <th scope="col">Bootstrap utility</th>
+                <th scope="col">Typical use</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td><code>--q-space-xs</code></td><td>4px</td><td><code>.gap-1</code></td><td>Icon to label inside buttons and badges</td></tr>
+              <tr><td><code>--q-space-sm</code></td><td>8px</td><td><code>.gap-2</code></td><td>Between inline controls</td></tr>
+              <tr><td><code>--q-space-md</code></td><td>16px</td><td><code>.gap-3</code></td><td>Grid gutters, card padding on mobile</td></tr>
+              <tr><td><code>--q-space-lg</code></td><td>24px</td><td><code>.gap-4</code></td><td>Space between dashboard sections</td></tr>
+              <tr><td><code>--q-space-xl</code></td><td>32px</td><td><code>.p-4</code></td><td>Card padding on desktop</td></tr>
+              <tr><td><code>--q-space-xxl</code></td><td>48px</td><td><code>.py-5</code></td><td>Marketing-style page sections</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="demo-block" data-demo>
+        <div class="demo-block__head">
+          <div>
+            <h2 class="demo-block__title">Visual scale</h2>
+            <p class="demo-block__desc">Each bar represents one step of the scale at real size.</p>
+          </div>
+        </div>
+        <div class="demo-block__tabs">
+          <button type="button" class="demo-tab is-active" data-demo-tab="preview" aria-selected="true">Preview</button>
+          <button type="button" class="demo-tab" data-demo-tab="html" aria-selected="false">HTML</button>
+        </div>
+        <div class="demo-block__pane is-active" data-demo-pane="preview">
+          <div class="demo-preview">
+            <div class="d-flex flex-column gap-3">
+              <div class="d-flex align-items-center gap-3">
+                <span class="fs-8 text-muted-2" style="width: 96px;">xs · 4px</span>
+                <span class="bg-primary-soft rounded" style="width: 4px; height: 20px;"></span>
+              </div>
+              <div class="d-flex align-items-center gap-3">
+                <span class="fs-8 text-muted-2" style="width: 96px;">sm · 8px</span>
+                <span class="bg-primary-soft rounded" style="width: 8px; height: 20px;"></span>
+              </div>
+              <div class="d-flex align-items-center gap-3">
+                <span class="fs-8 text-muted-2" style="width: 96px;">md · 16px</span>
+                <span class="bg-primary-soft rounded" style="width: 16px; height: 20px;"></span>
+              </div>
+              <div class="d-flex align-items-center gap-3">
+                <span class="fs-8 text-muted-2" style="width: 96px;">lg · 24px</span>
+                <span class="bg-primary-soft rounded" style="width: 24px; height: 20px;"></span>
+              </div>
+              <div class="d-flex align-items-center gap-3">
+                <span class="fs-8 text-muted-2" style="width: 96px;">xl · 32px</span>
+                <span class="bg-primary-soft rounded" style="width: 32px; height: 20px;"></span>
+              </div>
+              <div class="d-flex align-items-center gap-3">
+                <span class="fs-8 text-muted-2" style="width: 96px;">xxl · 48px</span>
+                <span class="bg-primary-soft rounded" style="width: 48px; height: 20px;"></span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="demo-block__pane" data-demo-pane="html">
+          <div class="demo-code-wrap">
+            <button type="button" class="copy-btn" data-copy-target="#spacingVars"><i class="bi bi-clipboard"></i> Copy CSS</button>
+            <pre class="demo-code"><code id="spacingVars">:root {
+  --q-space-xs: 4px;
+  --q-space-sm: 8px;
+  --q-space-md: 16px;
+  --q-space-lg: 24px;
+  --q-space-xl: 32px;
+  --q-space-xxl: 48px;
+}
+
+/* Use them in your own rules */
+.my-panel {
+  padding: var(--q-space-lg);
+  margin-bottom: var(--q-space-xl);
+}</code></pre>
+          </div>
+        </div>
+      </div>
+
+      <div class="row g-3">
+        <div class="col-md-6">
+          <div class="demo-block h-100" data-demo>
+            <div class="demo-block__head">
+              <div>
+                <h2 class="demo-block__title">Section rhythm</h2>
+                <p class="demo-block__desc"><code>.q-section</code> adds consistent vertical rhythm between dashboard blocks.</p>
+              </div>
+            </div>
+            <div class="demo-block__tabs">
+              <button type="button" class="demo-tab is-active" data-demo-tab="preview" aria-selected="true">Preview</button>
+              <button type="button" class="demo-tab" data-demo-tab="html" aria-selected="false">HTML</button>
+            </div>
+            <div class="demo-block__pane is-active" data-demo-pane="preview">
+              <div class="demo-preview">
+                <div class="q-section">
+                  <div class="card"><div class="card-body"><p class="mb-0 fs-7">First section</p></div></div>
+                </div>
+                <div class="q-section">
+                  <div class="card"><div class="card-body"><p class="mb-0 fs-7">Second section</p></div></div>
+                </div>
+                <div class="card"><div class="card-body"><p class="mb-0 fs-7">Last section — no trailing margin</p></div></div>
+              </div>
+            </div>
+            <div class="demo-block__pane" data-demo-pane="html">
+              <div class="demo-code-wrap">
+                <button type="button" class="copy-btn" data-copy-target="#sectionRhythm"><i class="bi bi-clipboard"></i> Copy HTML</button>
+                <pre class="demo-code"><code id="sectionRhythm">&lt;div class="card q-section"&gt;…&lt;/div&gt;
+&lt;div class="card q-section"&gt;…&lt;/div&gt;
+&lt;div class="card"&gt;…&lt;/div&gt;</code></pre>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <div class="demo-block h-100" data-demo>
+            <div class="demo-block__head">
+              <div>
+                <h2 class="demo-block__title">Radius and shadow</h2>
+                <p class="demo-block__desc">Rounded corners and shadows are tokenised the same way as spacing.</p>
+              </div>
+            </div>
+            <div class="demo-block__tabs">
+              <button type="button" class="demo-tab is-active" data-demo-tab="preview" aria-selected="true">Preview</button>
+              <button type="button" class="demo-tab" data-demo-tab="html" aria-selected="false">HTML</button>
+            </div>
+            <div class="demo-block__pane is-active" data-demo-pane="preview">
+              <div class="demo-preview">
+                <div class="row g-3">
+                  <div class="col-6">
+                    <div class="bg-surface border border-q p-3 text-center" style="border-radius: var(--q-radius-sm); box-shadow: var(--q-shadow-xs);">
+                      <span class="fs-8 text-muted-2">sm · 8px</span>
+                    </div>
+                  </div>
+                  <div class="col-6">
+                    <div class="bg-surface border border-q p-3 text-center" style="border-radius: var(--q-radius); box-shadow: var(--q-shadow-sm);">
+                      <span class="fs-8 text-muted-2">base · 12px</span>
+                    </div>
+                  </div>
+                  <div class="col-6">
+                    <div class="bg-surface border border-q p-3 text-center" style="border-radius: var(--q-radius-lg); box-shadow: var(--q-shadow);">
+                      <span class="fs-8 text-muted-2">lg · 16px</span>
+                    </div>
+                  </div>
+                  <div class="col-6">
+                    <div class="bg-surface border border-q p-3 text-center" style="border-radius: var(--q-radius-pill); box-shadow: var(--q-shadow-lg);">
+                      <span class="fs-8 text-muted-2">pill</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="demo-block__pane" data-demo-pane="html">
+              <div class="demo-code-wrap">
+                <button type="button" class="copy-btn" data-copy-target="#radiusTokens"><i class="bi bi-clipboard"></i> Copy CSS</button>
+                <pre class="demo-code"><code id="radiusTokens">:root {
+  --q-radius-xs: 6px;
+  --q-radius-sm: 8px;
+  --q-radius: 12px;
+  --q-radius-lg: 16px;
+  --q-radius-xl: 22px;
+  --q-radius-pill: 999px;
+
+  --q-shadow-xs: 0 1px 2px rgba(16, 20, 38, .05);
+  --q-shadow-sm: 0 2px 8px rgba(16, 20, 38, .06);
+  --q-shadow: 0 6px 22px rgba(16, 20, 38, .07);
+  --q-shadow-lg: 0 18px 48px rgba(16, 20, 38, .12);
+}</code></pre>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>

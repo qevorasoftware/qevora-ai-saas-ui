@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en" data-bs-theme="light" dir="ltr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#4f46e5">
+  <title>{{META_TITLE}}</title>
+  <meta name="description" content="{{META_DESC}}">
+  <meta name="author" content="Qevora Software">
+  <meta name="robots" content="index, follow">
+
+  <!-- Open Graph / social preview -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="{{META_TITLE}}">
+  <meta property="og:description" content="{{META_DESC}}">
+  <meta property="og:site_name" content="Qevora AI SaaS UI">
+
+  <link rel="icon" type="image/svg+xml" href="{{DEPTH}}assets/images/favicon.svg">
+  <link rel="apple-touch-icon" href="{{DEPTH}}assets/images/favicon.svg">
+
+  <!-- Apply the stored colour mode before first paint to avoid a theme flash -->
+  <script>
+    (function () {
+      try {
+        var stored = localStorage.getItem("qevora-theme");
+        var prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+        var theme = (stored === "dark" || stored === "light") ? stored : (prefersDark ? "dark" : "light");
+        document.documentElement.setAttribute("data-bs-theme", theme);
+      } catch (e) { /* storage blocked — fall back to the default theme */ }
+    })();
+  </script>
+
+  <!-- Vendor styles (bundled locally, see documentation/index.html → Credits) -->
+  <link rel="stylesheet" href="{{DEPTH}}assets/css/fonts.css?v={{ASSET_VERSION}}">
+  <link rel="stylesheet" href="{{DEPTH}}assets/css/bootstrap.min.css?v={{ASSET_VERSION}}">
+  <link rel="stylesheet" href="{{DEPTH}}assets/icons/bootstrap-icons/bootstrap-icons.min.css?v={{ASSET_VERSION}}">
+
+  <!-- Qevora theme -->
+  <link rel="stylesheet" href="{{DEPTH}}assets/css/style.css?v={{ASSET_VERSION}}">
+  <link rel="stylesheet" href="{{DEPTH}}assets/css/components.css?v={{ASSET_VERSION}}">
+  <link rel="stylesheet" href="{{DEPTH}}assets/css/dark.css?v={{ASSET_VERSION}}">
+  <link rel="stylesheet" href="{{DEPTH}}assets/css/rtl.css?v={{ASSET_VERSION}}">
+{{HEAD_EXTRA}}</head>

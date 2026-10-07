@@ -1,0 +1,146 @@
+      <div class="q-page-head">
+        <div>
+          {{BREADCRUMB}}
+          <h1 class="q-page-head__title mt-2">Transactions</h1>
+          <p class="q-page-head__subtitle">Ledger of charges, refunds and fees with a running balance.</p>
+        </div>
+        <div class="d-flex flex-wrap gap-2">
+          <button type="button" class="btn btn-white" data-demo-export="#txn-table"><i class="bi bi-download"></i> Export ledger</button>
+          <button type="button" class="btn btn-primary" data-demo-load="1500" data-demo-load-done="Reconciliation finished — every settled row matches the ledger."><i class="bi bi-arrow-repeat"></i> Reconcile</button>
+        </div>
+      </div>
+
+      <div class="row g-3 q-section">
+        <div class="col-xl-8">
+          <div class="card h-100">
+            <div class="card-header">
+              <div>
+                <h2 class="card-title">Cash movement</h2>
+                <p class="card-subtitle">Charges against refunds and fees</p>
+              </div>
+            </div>
+            <div class="card-body">
+              <div class="chart-holder chart-holder--md">
+                <canvas data-chart="tokens" data-labels="Week 1,Week 2,Week 3,Week 4" data-series="Charges|420,510,468,596;Refunds &amp; fees|38,44,31,52"></canvas>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-xl-4">
+          <div class="card h-100">
+            <div class="card-body d-flex flex-column gap-3">
+              <div>
+                <p class="fs-8 text-muted-2 mb-1">Opening balance</p>
+                <p class="h5 fw-600 text-heading mb-0">$48,120.00</p>
+              </div>
+              <div class="divider-y"></div>
+              <div>
+                <p class="fs-8 text-muted-2 mb-1">Charges</p>
+                <p class="h5 fw-600 text-success mb-0">+$186,400.00</p>
+              </div>
+              <div class="divider-y"></div>
+              <div>
+                <p class="fs-8 text-muted-2 mb-1">Refunds and fees</p>
+                <p class="h5 fw-600 text-danger mb-0">−$3,180.00</p>
+              </div>
+              <div class="divider-y"></div>
+              <div>
+                <p class="fs-8 text-muted-2 mb-1">Closing balance</p>
+                <p class="h4 fw-700 text-heading mb-0">$231,340.00</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="table-toolbar">
+          <div class="search-field" style="max-width: 280px;">
+            <i class="bi bi-search search-field__icon" aria-hidden="true"></i>
+            <label class="visually-hidden" for="txn-search">Search transactions</label>
+            <input type="search" class="form-control" id="txn-search" placeholder="Search transactions…" data-table-filter="#txn-table">
+          </div>
+          <div class="d-flex gap-2 ms-auto align-items-center">
+            <label class="visually-hidden" for="txn-date-from">From date</label>
+            <input type="date" class="form-control form-control-sm" id="txn-date-from" value="2026-09-30" data-demo-filter-date="day" data-demo-filter-role="from" data-demo-filter-table="#txn-table">
+            <span class="text-muted-2 fs-8">to</span>
+            <label class="visually-hidden" for="txn-date-to">To date</label>
+            <input type="date" class="form-control form-control-sm" id="txn-date-to" value="2026-10-03" data-demo-filter-date="day" data-demo-filter-role="to" data-demo-filter-table="#txn-table">
+          </div>
+        </div>
+
+        <div class="table-responsive">
+          <table class="table table-hover align-middle" id="txn-table" data-demo-record="transaction" data-demo-hide-fields="day" data-demo-fields="id:Transaction,day:Day,customer:Customer,type:Type,amount:Amount,fee:Fee,balance:Balance,status:Status">
+            <thead>
+              <tr>
+                <th scope="col">Transaction</th>
+                <th scope="col">Customer</th>
+                <th scope="col">Type</th>
+                <th scope="col" class="text-end">Amount</th>
+                <th scope="col" class="text-end">Fee</th>
+                <th scope="col" class="text-end">Balance</th>
+                <th scope="col">Status</th>
+                <th scope="col" class="text-end">Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr data-transaction-id="#TXN-90412" data-transaction-day="2026-10-02" data-transaction-customer="Northstar Labs" data-transaction-type="Charge" data-transaction-amount="12400" data-transaction-fee="359.6" data-transaction-balance="231340" data-transaction-status="Settled">
+                <td><span class="fw-500 text-heading">#TXN-90412</span><span class="d-block fs-8 text-muted-2">Oct 2, 2026 · 09:24</span></td>
+                <td>Northstar Labs</td>
+                <td><span class="badge badge-soft-success badge-pill">Charge</span></td>
+                <td class="text-end fw-600 text-heading">$12,400.00</td>
+                <td class="text-end text-muted-2">$359.60</td>
+                <td class="text-end">$231,340.00</td>
+                <td><span class="badge badge-soft-neutral badge-pill">Settled</span></td><td class="text-end"><div class="table-actions justify-content-end"><button type="button" class="btn btn-icon btn-sm btn-ghost" aria-label="Edit #TXN-90412" data-demo-new="#q-demo-record" data-demo-table="#txn-table" data-demo-label="Transaction"><i class="bi bi-pencil"></i></button><button type="button" class="btn btn-icon btn-sm btn-ghost" aria-label="Delete #TXN-90412" data-demo-delete data-demo-delete-label="Transaction"><i class="bi bi-trash"></i></button></div></td>
+              </tr>
+              <tr data-transaction-id="#TXN-90411" data-transaction-day="2026-10-02" data-transaction-customer="Vertex Labs" data-transaction-type="Charge" data-transaction-amount="1250" data-transaction-fee="36.25" data-transaction-balance="218940" data-transaction-status="Pending">
+                <td><span class="fw-500 text-heading">#TXN-90411</span><span class="d-block fs-8 text-muted-2">Oct 2, 2026 · 08:11</span></td>
+                <td>Vertex Labs</td>
+                <td><span class="badge badge-soft-warning badge-pill">Charge</span></td>
+                <td class="text-end fw-600 text-heading">$1,250.00</td>
+                <td class="text-end text-muted-2">$36.25</td>
+                <td class="text-end">$218,940.00</td>
+                <td><span class="badge badge-soft-warning badge-pill">Pending</span></td><td class="text-end"><div class="table-actions justify-content-end"><button type="button" class="btn btn-icon btn-sm btn-ghost" aria-label="Edit #TXN-90411" data-demo-new="#q-demo-record" data-demo-table="#txn-table" data-demo-label="Transaction"><i class="bi bi-pencil"></i></button><button type="button" class="btn btn-icon btn-sm btn-ghost" aria-label="Delete #TXN-90411" data-demo-delete data-demo-delete-label="Transaction"><i class="bi bi-trash"></i></button></div></td>
+              </tr>
+              <tr data-transaction-id="#TXN-90409" data-transaction-day="2026-10-01" data-transaction-customer="Orbit Systems" data-transaction-type="Refund" data-transaction-amount="1200" data-transaction-fee="0" data-transaction-balance="217690" data-transaction-status="Settled">
+                <td><span class="fw-500 text-heading">#TXN-90409</span><span class="d-block fs-8 text-muted-2">Oct 1, 2026 · 15:02</span></td>
+                <td>Orbit Systems</td>
+                <td><span class="badge badge-soft-info badge-pill">Refund</span></td>
+                <td class="text-end fw-600 text-danger">−$1,200.00</td>
+                <td class="text-end text-muted-2">$0.00</td>
+                <td class="text-end">$217,690.00</td>
+                <td><span class="badge badge-soft-neutral badge-pill">Settled</span></td><td class="text-end"><div class="table-actions justify-content-end"><button type="button" class="btn btn-icon btn-sm btn-ghost" aria-label="Edit #TXN-90409" data-demo-new="#q-demo-record" data-demo-table="#txn-table" data-demo-label="Transaction"><i class="bi bi-pencil"></i></button><button type="button" class="btn btn-icon btn-sm btn-ghost" aria-label="Delete #TXN-90409" data-demo-delete data-demo-delete-label="Transaction"><i class="bi bi-trash"></i></button></div></td>
+              </tr>
+              <tr data-transaction-id="#TXN-90407" data-transaction-day="2026-10-01" data-transaction-customer="Horizon Labs" data-transaction-type="Charge" data-transaction-amount="9640" data-transaction-fee="279.56" data-transaction-balance="218890" data-transaction-status="Settled">
+                <td><span class="fw-500 text-heading">#TXN-90407</span><span class="d-block fs-8 text-muted-2">Oct 1, 2026 · 10:48</span></td>
+                <td>Horizon Labs</td>
+                <td><span class="badge badge-soft-success badge-pill">Charge</span></td>
+                <td class="text-end fw-600 text-heading">$9,640.00</td>
+                <td class="text-end text-muted-2">$279.56</td>
+                <td class="text-end">$218,890.00</td>
+                <td><span class="badge badge-soft-neutral badge-pill">Settled</span></td><td class="text-end"><div class="table-actions justify-content-end"><button type="button" class="btn btn-icon btn-sm btn-ghost" aria-label="Edit #TXN-90407" data-demo-new="#q-demo-record" data-demo-table="#txn-table" data-demo-label="Transaction"><i class="bi bi-pencil"></i></button><button type="button" class="btn btn-icon btn-sm btn-ghost" aria-label="Delete #TXN-90407" data-demo-delete data-demo-delete-label="Transaction"><i class="bi bi-trash"></i></button></div></td>
+              </tr>
+              <tr data-transaction-id="#TXN-90404" data-transaction-day="2026-09-30" data-transaction-customer="Acme Inc." data-transaction-type="Fee" data-transaction-amount="29" data-transaction-fee="0" data-transaction-balance="209250" data-transaction-status="Settled">
+                <td><span class="fw-500 text-heading">#TXN-90404</span><span class="d-block fs-8 text-muted-2">Sep 30, 2026 · 16:20</span></td>
+                <td>Acme Inc.</td>
+                <td><span class="badge badge-soft-danger badge-pill">Fee</span></td>
+                <td class="text-end fw-600 text-danger">−$29.00</td>
+                <td class="text-end text-muted-2">—</td>
+                <td class="text-end">$209,250.00</td>
+                <td><span class="badge badge-soft-neutral badge-pill">Settled</span></td><td class="text-end"><div class="table-actions justify-content-end"><button type="button" class="btn btn-icon btn-sm btn-ghost" aria-label="Edit #TXN-90404" data-demo-new="#q-demo-record" data-demo-table="#txn-table" data-demo-label="Transaction"><i class="bi bi-pencil"></i></button><button type="button" class="btn btn-icon btn-sm btn-ghost" aria-label="Delete #TXN-90404" data-demo-delete data-demo-delete-label="Transaction"><i class="bi bi-trash"></i></button></div></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="table-footer" data-paginate="#txn-table" data-per-page="5">
+          <span class="fs-8 text-muted-2" data-page-info>Showing 1–5 of 5</span>
+          <nav aria-label="Transaction pagination">
+            <ul class="pagination pagination-sm mb-0">
+              <li class="page-item"><a class="page-link" href="#" data-page="prev" aria-label="Previous page"><i class="bi bi-chevron-left"></i></a></li>
+              <li class="page-item active"><a class="page-link active" href="#" data-page="1">1</a></li>
+              <li class="page-item"><a class="page-link" href="#" data-page="next" aria-label="Next page"><i class="bi bi-chevron-right"></i></a></li>
+            </ul>
+          </nav>
+        </div>
+      </div>

@@ -1,0 +1,2045 @@
+<!doctype html>
+<html lang="en" data-bs-theme="light" dir="ltr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#4f46e5">
+  <title>Documentation | Qevora AI SaaS UI</title>
+  <meta name="description" content="Installation, folder structure, customisation and component usage guide for the Qevora AI SaaS UI template.">
+  <meta name="author" content="Qevora Software">
+  <meta name="robots" content="index, follow">
+
+  <!-- Open Graph / social preview -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Documentation | Qevora AI SaaS UI">
+  <meta property="og:description" content="Installation, folder structure, customisation and component usage guide for the Qevora AI SaaS UI template.">
+  <meta property="og:site_name" content="Qevora AI SaaS UI">
+
+  <link rel="icon" type="image/svg+xml" href="../assets/images/favicon.svg">
+  <link rel="apple-touch-icon" href="../assets/images/favicon.svg">
+
+  <!-- Apply the stored colour mode before first paint to avoid a theme flash -->
+  <script>
+    (function () {
+      try {
+        var stored = localStorage.getItem("qevora-theme");
+        var prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+        var theme = (stored === "dark" || stored === "light") ? stored : (prefersDark ? "dark" : "light");
+        document.documentElement.setAttribute("data-bs-theme", theme);
+      } catch (e) { /* storage blocked — fall back to the default theme */ }
+    })();
+  </script>
+
+  <!-- Vendor styles (bundled locally, see documentation/index.html → Credits) -->
+  <link rel="stylesheet" href="../assets/css/fonts.css?v=1.0.0">
+  <link rel="stylesheet" href="../assets/css/bootstrap.min.css?v=1.0.0">
+  <link rel="stylesheet" href="../assets/icons/bootstrap-icons/bootstrap-icons.min.css?v=1.0.0">
+
+  <!-- Qevora theme -->
+  <link rel="stylesheet" href="../assets/css/style.css?v=1.0.0">
+  <link rel="stylesheet" href="../assets/css/components.css?v=1.0.0">
+  <link rel="stylesheet" href="../assets/css/dark.css?v=1.0.0">
+  <link rel="stylesheet" href="../assets/css/rtl.css?v=1.0.0">
+</head>
+
+<body class="q-app">
+  <a class="visually-hidden-focusable" href="#q-content">Skip to main content</a>
+
+    <!-- ================= Sidebar ================= -->
+    <aside class="q-sidebar" id="qevora-sidebar" aria-label="Main navigation">
+      <div class="q-sidebar__brand">
+        <a href="../index.html" class="d-flex align-items-center gap-2 min-w-0 text-decoration-none">
+          <span class="q-brand__mark" aria-hidden="true">Q</span>
+          <span class="q-brand__text">
+            <span class="q-brand__name">Qevora</span>
+            <span class="q-brand__sub">AI SaaS Suite</span>
+          </span>
+        </a>
+        <button class="btn btn-icon btn-sm btn-ghost ms-auto d-none d-lg-inline-grid" type="button"
+                data-sidebar-compact aria-pressed="false" aria-label="Collapse sidebar" title="Collapse sidebar">
+          <i class="bi bi-chevron-double-left"></i>
+        </button>
+        <button class="btn btn-icon btn-sm btn-ghost ms-auto d-lg-none" type="button"
+                data-sidebar-toggle aria-expanded="false" aria-controls="qevora-sidebar" aria-label="Close navigation">
+          <i class="bi bi-x-lg"></i>
+        </button>
+      </div>
+
+      <nav class="q-sidebar__body q-scroll">
+        <p class="q-sidebar__group-label">Dashboard</p>
+        <ul class="q-nav">
+        <li class="q-nav-item">
+          <a class="q-nav__link" href="../index.html">
+            <i class="q-nav__icon bi bi-grid-1x2" aria-hidden="true"></i>
+            <span class="q-nav__text">Overview</span>
+            
+          </a>
+        </li>
+        <li class="q-nav-item">
+          <a class="q-nav__link" href="../pages/analytics.html">
+            <i class="q-nav__icon bi bi-graph-up-arrow" aria-hidden="true"></i>
+            <span class="q-nav__text">Analytics</span>
+            
+          </a>
+        </li>
+        </ul>
+
+        <p class="q-sidebar__group-label">Applications</p>
+        <ul class="q-nav">
+        <li class="q-nav-item">
+          <button class="q-nav__link w-100 border-0 bg-transparent text-start" type="button"
+                  data-bs-toggle="collapse" data-bs-target="#nav-1-0-crm" aria-expanded="false" aria-controls="nav-1-0-crm">
+            <i class="q-nav__icon bi bi-people" aria-hidden="true"></i>
+            <span class="q-nav__text">CRM</span>
+            <i class="q-nav__caret bi bi-chevron-right" aria-hidden="true"></i>
+          </button>
+          <ul class="q-nav__sub collapse" id="nav-1-0-crm">
+            <li><a class="q-nav__link" href="../pages/crm.html"><span class="q-nav__text">CRM Dashboard</span></a></li>
+            <li><a class="q-nav__link" href="../pages/leads.html"><span class="q-nav__text">Leads</span></a></li>
+            <li><a class="q-nav__link" href="../pages/customers.html"><span class="q-nav__text">Customers</span></a></li>
+            <li><a class="q-nav__link" href="../pages/customer-details.html"><span class="q-nav__text">Customer Details</span></a></li>
+            <li><a class="q-nav__link" href="../pages/pipeline.html"><span class="q-nav__text">Pipeline</span></a></li>
+          </ul>
+        </li>
+        <li class="q-nav-item">
+          <button class="q-nav__link w-100 border-0 bg-transparent text-start" type="button"
+                  data-bs-toggle="collapse" data-bs-target="#nav-1-1-projects" aria-expanded="false" aria-controls="nav-1-1-projects">
+            <i class="q-nav__icon bi bi-kanban" aria-hidden="true"></i>
+            <span class="q-nav__text">Projects</span>
+            <i class="q-nav__caret bi bi-chevron-right" aria-hidden="true"></i>
+          </button>
+          <ul class="q-nav__sub collapse" id="nav-1-1-projects">
+            <li><a class="q-nav__link" href="../pages/projects.html"><span class="q-nav__text">All Projects</span></a></li>
+            <li><a class="q-nav__link" href="../pages/project-details.html"><span class="q-nav__text">Project Details</span></a></li>
+            <li><a class="q-nav__link" href="../pages/kanban.html"><span class="q-nav__text">Kanban Board</span></a></li>
+            <li><a class="q-nav__link" href="../pages/tasks.html"><span class="q-nav__text">Task List</span></a></li>
+          </ul>
+        </li>
+        <li class="q-nav-item">
+          <a class="q-nav__link" href="../pages/calendar.html">
+            <i class="q-nav__icon bi bi-calendar3" aria-hidden="true"></i>
+            <span class="q-nav__text">Calendar</span>
+            
+          </a>
+        </li>
+        <li class="q-nav-item">
+          <a class="q-nav__link" href="../pages/chat.html">
+            <i class="q-nav__icon bi bi-chat-dots" aria-hidden="true"></i>
+            <span class="q-nav__text">Chat</span>
+            <span class="badge badge-soft-primary q-nav__badge">4</span>
+          </a>
+        </li>
+        <li class="q-nav-item">
+          <a class="q-nav__link" href="../pages/notifications.html">
+            <i class="q-nav__icon bi bi-bell" aria-hidden="true"></i>
+            <span class="q-nav__text">Notifications</span>
+            
+          </a>
+        </li>
+        </ul>
+
+        <p class="q-sidebar__group-label">Business</p>
+        <ul class="q-nav">
+        <li class="q-nav-item">
+          <button class="q-nav__link w-100 border-0 bg-transparent text-start" type="button"
+                  data-bs-toggle="collapse" data-bs-target="#nav-2-0-catalog" aria-expanded="false" aria-controls="nav-2-0-catalog">
+            <i class="q-nav__icon bi bi-box-seam" aria-hidden="true"></i>
+            <span class="q-nav__text">Catalog</span>
+            <i class="q-nav__caret bi bi-chevron-right" aria-hidden="true"></i>
+          </button>
+          <ul class="q-nav__sub collapse" id="nav-2-0-catalog">
+            <li><a class="q-nav__link" href="../pages/products.html"><span class="q-nav__text">Products</span></a></li>
+            <li><a class="q-nav__link" href="../pages/product-details.html"><span class="q-nav__text">Product Details</span></a></li>
+          </ul>
+        </li>
+        <li class="q-nav-item">
+          <button class="q-nav__link w-100 border-0 bg-transparent text-start" type="button"
+                  data-bs-toggle="collapse" data-bs-target="#nav-2-1-sales" aria-expanded="false" aria-controls="nav-2-1-sales">
+            <i class="q-nav__icon bi bi-cart3" aria-hidden="true"></i>
+            <span class="q-nav__text">Sales</span>
+            <i class="q-nav__caret bi bi-chevron-right" aria-hidden="true"></i>
+          </button>
+          <ul class="q-nav__sub collapse" id="nav-2-1-sales">
+            <li><a class="q-nav__link" href="../pages/orders.html"><span class="q-nav__text">Orders</span></a></li>
+            <li><a class="q-nav__link" href="../pages/order-details.html"><span class="q-nav__text">Order Details</span></a></li>
+          </ul>
+        </li>
+        <li class="q-nav-item">
+          <button class="q-nav__link w-100 border-0 bg-transparent text-start" type="button"
+                  data-bs-toggle="collapse" data-bs-target="#nav-2-2-finance" aria-expanded="false" aria-controls="nav-2-2-finance">
+            <i class="q-nav__icon bi bi-cash-stack" aria-hidden="true"></i>
+            <span class="q-nav__text">Finance</span>
+            <i class="q-nav__caret bi bi-chevron-right" aria-hidden="true"></i>
+          </button>
+          <ul class="q-nav__sub collapse" id="nav-2-2-finance">
+            <li><a class="q-nav__link" href="../pages/invoices.html"><span class="q-nav__text">Invoices</span></a></li>
+            <li><a class="q-nav__link" href="../pages/invoice-details.html"><span class="q-nav__text">Invoice Details</span></a></li>
+            <li><a class="q-nav__link" href="../pages/payments.html"><span class="q-nav__text">Payments</span></a></li>
+            <li><a class="q-nav__link" href="../pages/transactions.html"><span class="q-nav__text">Transactions</span></a></li>
+          </ul>
+        </li>
+        <li class="q-nav-item">
+          <a class="q-nav__link" href="../pages/subscriptions.html">
+            <i class="q-nav__icon bi bi-arrow-repeat" aria-hidden="true"></i>
+            <span class="q-nav__text">Subscriptions</span>
+            
+          </a>
+        </li>
+        </ul>
+
+        <p class="q-sidebar__group-label">AI Workspace</p>
+        <ul class="q-nav">
+        <li class="q-nav-item">
+          <a class="q-nav__link" href="../ai/dashboard.html">
+            <i class="q-nav__icon bi bi-stars" aria-hidden="true"></i>
+            <span class="q-nav__text">AI Overview</span>
+            
+          </a>
+        </li>
+        <li class="q-nav-item">
+          <a class="q-nav__link" href="../ai/chat.html">
+            <i class="q-nav__icon bi bi-chat-square-text" aria-hidden="true"></i>
+            <span class="q-nav__text">AI Chat</span>
+            <span class="badge badge-soft-success q-nav__badge">New</span>
+          </a>
+        </li>
+        <li class="q-nav-item">
+          <a class="q-nav__link" href="../ai/content-generator.html">
+            <i class="q-nav__icon bi bi-pencil-square" aria-hidden="true"></i>
+            <span class="q-nav__text">Content Generator</span>
+            
+          </a>
+        </li>
+        <li class="q-nav-item">
+          <a class="q-nav__link" href="../ai/image-generator.html">
+            <i class="q-nav__icon bi bi-image" aria-hidden="true"></i>
+            <span class="q-nav__text">Image Generator</span>
+            
+          </a>
+        </li>
+        <li class="q-nav-item">
+          <a class="q-nav__link" href="../ai/usage.html">
+            <i class="q-nav__icon bi bi-speedometer2" aria-hidden="true"></i>
+            <span class="q-nav__text">AI Usage</span>
+            
+          </a>
+        </li>
+        <li class="q-nav-item">
+          <a class="q-nav__link" href="../ai/history.html">
+            <i class="q-nav__icon bi bi-clock-history" aria-hidden="true"></i>
+            <span class="q-nav__text">AI History</span>
+            
+          </a>
+        </li>
+        </ul>
+
+        <p class="q-sidebar__group-label">Management</p>
+        <ul class="q-nav">
+        <li class="q-nav-item">
+          <a class="q-nav__link" href="../pages/team.html">
+            <i class="q-nav__icon bi bi-person-badge" aria-hidden="true"></i>
+            <span class="q-nav__text">Team</span>
+            
+          </a>
+        </li>
+        <li class="q-nav-item">
+          <a class="q-nav__link" href="../pages/roles.html">
+            <i class="q-nav__icon bi bi-shield-lock" aria-hidden="true"></i>
+            <span class="q-nav__text">Roles & Permissions</span>
+            
+          </a>
+        </li>
+        <li class="q-nav-item">
+          <a class="q-nav__link" href="../pages/activity.html">
+            <i class="q-nav__icon bi bi-list-check" aria-hidden="true"></i>
+            <span class="q-nav__text">Activity Logs</span>
+            
+          </a>
+        </li>
+        <li class="q-nav-item">
+          <a class="q-nav__link" href="../pages/reports.html">
+            <i class="q-nav__icon bi bi-file-earmark-bar-graph" aria-hidden="true"></i>
+            <span class="q-nav__text">Reports</span>
+            
+          </a>
+        </li>
+        </ul>
+
+        <p class="q-sidebar__group-label">Workspace</p>
+        <ul class="q-nav">
+        <li class="q-nav-item">
+          <a class="q-nav__link" href="../pages/profile.html">
+            <i class="q-nav__icon bi bi-person-circle" aria-hidden="true"></i>
+            <span class="q-nav__text">Profile</span>
+            
+          </a>
+        </li>
+        <li class="q-nav-item">
+          <a class="q-nav__link" href="../pages/settings.html">
+            <i class="q-nav__icon bi bi-gear" aria-hidden="true"></i>
+            <span class="q-nav__text">Settings</span>
+            
+          </a>
+        </li>
+        <li class="q-nav-item">
+          <a class="q-nav__link" href="../pages/pricing.html">
+            <i class="q-nav__icon bi bi-tags" aria-hidden="true"></i>
+            <span class="q-nav__text">Pricing</span>
+            
+          </a>
+        </li>
+        <li class="q-nav-item">
+          <a class="q-nav__link" href="../pages/faq.html">
+            <i class="q-nav__icon bi bi-question-circle" aria-hidden="true"></i>
+            <span class="q-nav__text">FAQ</span>
+            
+          </a>
+        </li>
+        <li class="q-nav-item">
+          <a class="q-nav__link" href="../pages/help.html">
+            <i class="q-nav__icon bi bi-life-preserver" aria-hidden="true"></i>
+            <span class="q-nav__text">Help Center</span>
+            
+          </a>
+        </li>
+        </ul>
+
+        <p class="q-sidebar__group-label">UI Kit</p>
+        <ul class="q-nav">
+        <li class="q-nav-item">
+          <a class="q-nav__link" href="../components/index.html">
+            <i class="q-nav__icon bi bi-collection" aria-hidden="true"></i>
+            <span class="q-nav__text">Components Index</span>
+            
+          </a>
+        </li>
+        <li class="q-nav-item">
+          <button class="q-nav__link w-100 border-0 bg-transparent text-start" type="button"
+                  data-bs-toggle="collapse" data-bs-target="#nav-6-1-foundation" aria-expanded="false" aria-controls="nav-6-1-foundation">
+            <i class="q-nav__icon bi bi-palette" aria-hidden="true"></i>
+            <span class="q-nav__text">Foundation</span>
+            <i class="q-nav__caret bi bi-chevron-right" aria-hidden="true"></i>
+          </button>
+          <ul class="q-nav__sub collapse" id="nav-6-1-foundation">
+            <li><a class="q-nav__link" href="../components/colors.html"><span class="q-nav__text">Colors</span></a></li>
+            <li><a class="q-nav__link" href="../components/typography.html"><span class="q-nav__text">Typography</span></a></li>
+            <li><a class="q-nav__link" href="../components/spacing.html"><span class="q-nav__text">Spacing</span></a></li>
+            <li><a class="q-nav__link" href="../components/grid.html"><span class="q-nav__text">Grid</span></a></li>
+            <li><a class="q-nav__link" href="../components/icons.html"><span class="q-nav__text">Icons</span></a></li>
+          </ul>
+        </li>
+        <li class="q-nav-item">
+          <button class="q-nav__link w-100 border-0 bg-transparent text-start" type="button"
+                  data-bs-toggle="collapse" data-bs-target="#nav-6-2-basic" aria-expanded="false" aria-controls="nav-6-2-basic">
+            <i class="q-nav__icon bi bi-ui-checks" aria-hidden="true"></i>
+            <span class="q-nav__text">Basic</span>
+            <i class="q-nav__caret bi bi-chevron-right" aria-hidden="true"></i>
+          </button>
+          <ul class="q-nav__sub collapse" id="nav-6-2-basic">
+            <li><a class="q-nav__link" href="../components/buttons.html"><span class="q-nav__text">Buttons</span></a></li>
+            <li><a class="q-nav__link" href="../components/badges.html"><span class="q-nav__text">Badges</span></a></li>
+            <li><a class="q-nav__link" href="../components/avatars.html"><span class="q-nav__text">Avatars</span></a></li>
+            <li><a class="q-nav__link" href="../components/alerts.html"><span class="q-nav__text">Alerts</span></a></li>
+            <li><a class="q-nav__link" href="../components/breadcrumbs.html"><span class="q-nav__text">Breadcrumbs</span></a></li>
+          </ul>
+        </li>
+        <li class="q-nav-item">
+          <button class="q-nav__link w-100 border-0 bg-transparent text-start" type="button"
+                  data-bs-toggle="collapse" data-bs-target="#nav-6-3-containers" aria-expanded="false" aria-controls="nav-6-3-containers">
+            <i class="q-nav__icon bi bi-square" aria-hidden="true"></i>
+            <span class="q-nav__text">Containers</span>
+            <i class="q-nav__caret bi bi-chevron-right" aria-hidden="true"></i>
+          </button>
+          <ul class="q-nav__sub collapse" id="nav-6-3-containers">
+            <li><a class="q-nav__link" href="../components/cards.html"><span class="q-nav__text">Cards</span></a></li>
+            <li><a class="q-nav__link" href="../components/pricing.html"><span class="q-nav__text">Pricing</span></a></li>
+            <li><a class="q-nav__link" href="../components/timeline.html"><span class="q-nav__text">Timeline</span></a></li>
+            <li><a class="q-nav__link" href="../components/empty-states.html"><span class="q-nav__text">Empty States</span></a></li>
+          </ul>
+        </li>
+        <li class="q-nav-item">
+          <button class="q-nav__link w-100 border-0 bg-transparent text-start" type="button"
+                  data-bs-toggle="collapse" data-bs-target="#nav-6-4-interaction" aria-expanded="false" aria-controls="nav-6-4-interaction">
+            <i class="q-nav__icon bi bi-mouse2" aria-hidden="true"></i>
+            <span class="q-nav__text">Interaction</span>
+            <i class="q-nav__caret bi bi-chevron-right" aria-hidden="true"></i>
+          </button>
+          <ul class="q-nav__sub collapse" id="nav-6-4-interaction">
+            <li><a class="q-nav__link" href="../components/dropdowns.html"><span class="q-nav__text">Dropdowns</span></a></li>
+            <li><a class="q-nav__link" href="../components/modals.html"><span class="q-nav__text">Modals</span></a></li>
+            <li><a class="q-nav__link" href="../components/tabs.html"><span class="q-nav__text">Tabs</span></a></li>
+            <li><a class="q-nav__link" href="../components/accordions.html"><span class="q-nav__text">Accordions</span></a></li>
+            <li><a class="q-nav__link" href="../components/tooltips.html"><span class="q-nav__text">Tooltips</span></a></li>
+            <li><a class="q-nav__link" href="../components/toasts.html"><span class="q-nav__text">Toasts</span></a></li>
+          </ul>
+        </li>
+        <li class="q-nav-item">
+          <button class="q-nav__link w-100 border-0 bg-transparent text-start" type="button"
+                  data-bs-toggle="collapse" data-bs-target="#nav-6-5-forms" aria-expanded="false" aria-controls="nav-6-5-forms">
+            <i class="q-nav__icon bi bi-input-cursor-text" aria-hidden="true"></i>
+            <span class="q-nav__text">Forms</span>
+            <i class="q-nav__caret bi bi-chevron-right" aria-hidden="true"></i>
+          </button>
+          <ul class="q-nav__sub collapse" id="nav-6-5-forms">
+            <li><a class="q-nav__link" href="../components/forms.html"><span class="q-nav__text">Form Controls</span></a></li>
+            <li><a class="q-nav__link" href="../components/input-groups.html"><span class="q-nav__text">Input Groups</span></a></li>
+            <li><a class="q-nav__link" href="../components/select.html"><span class="q-nav__text">Select</span></a></li>
+            <li><a class="q-nav__link" href="../components/file-upload.html"><span class="q-nav__text">File Upload</span></a></li>
+            <li><a class="q-nav__link" href="../components/date-time.html"><span class="q-nav__text">Date & Time</span></a></li>
+          </ul>
+        </li>
+        <li class="q-nav-item">
+          <button class="q-nav__link w-100 border-0 bg-transparent text-start" type="button"
+                  data-bs-toggle="collapse" data-bs-target="#nav-6-6-data" aria-expanded="false" aria-controls="nav-6-6-data">
+            <i class="q-nav__icon bi bi-table" aria-hidden="true"></i>
+            <span class="q-nav__text">Data</span>
+            <i class="q-nav__caret bi bi-chevron-right" aria-hidden="true"></i>
+          </button>
+          <ul class="q-nav__sub collapse" id="nav-6-6-data">
+            <li><a class="q-nav__link" href="../components/tables.html"><span class="q-nav__text">Tables</span></a></li>
+            <li><a class="q-nav__link" href="../components/pagination.html"><span class="q-nav__text">Pagination</span></a></li>
+            <li><a class="q-nav__link" href="../components/charts.html"><span class="q-nav__text">Charts</span></a></li>
+          </ul>
+        </li>
+        <li class="q-nav-item">
+          <button class="q-nav__link w-100 border-0 bg-transparent text-start" type="button"
+                  data-bs-toggle="collapse" data-bs-target="#nav-6-7-feedback" aria-expanded="false" aria-controls="nav-6-7-feedback">
+            <i class="q-nav__icon bi bi-activity" aria-hidden="true"></i>
+            <span class="q-nav__text">Feedback</span>
+            <i class="q-nav__caret bi bi-chevron-right" aria-hidden="true"></i>
+          </button>
+          <ul class="q-nav__sub collapse" id="nav-6-7-feedback">
+            <li><a class="q-nav__link" href="../components/progress.html"><span class="q-nav__text">Progress</span></a></li>
+            <li><a class="q-nav__link" href="../components/spinners.html"><span class="q-nav__text">Spinners</span></a></li>
+          </ul>
+        </li>
+        </ul>
+
+        <p class="q-sidebar__group-label">Authentication</p>
+        <ul class="q-nav">
+        <li class="q-nav-item">
+          <a class="q-nav__link" href="../auth/login.html">
+            <i class="q-nav__icon bi bi-box-arrow-in-right" aria-hidden="true"></i>
+            <span class="q-nav__text">Login</span>
+            
+          </a>
+        </li>
+        <li class="q-nav-item">
+          <a class="q-nav__link" href="../auth/register.html">
+            <i class="q-nav__icon bi bi-person-plus" aria-hidden="true"></i>
+            <span class="q-nav__text">Register</span>
+            
+          </a>
+        </li>
+        <li class="q-nav-item">
+          <a class="q-nav__link" href="../auth/forgot-password.html">
+            <i class="q-nav__icon bi bi-key" aria-hidden="true"></i>
+            <span class="q-nav__text">Forgot Password</span>
+            
+          </a>
+        </li>
+        <li class="q-nav-item">
+          <a class="q-nav__link" href="../auth/reset-password.html">
+            <i class="q-nav__icon bi bi-shield-lock" aria-hidden="true"></i>
+            <span class="q-nav__text">Reset Password</span>
+            
+          </a>
+        </li>
+        <li class="q-nav-item">
+          <a class="q-nav__link" href="../auth/verify-email.html">
+            <i class="q-nav__icon bi bi-envelope-check" aria-hidden="true"></i>
+            <span class="q-nav__text">Verify Email</span>
+            
+          </a>
+        </li>
+        <li class="q-nav-item">
+          <a class="q-nav__link" href="../auth/two-factor.html">
+            <i class="q-nav__icon bi bi-phone" aria-hidden="true"></i>
+            <span class="q-nav__text">Two Factor</span>
+            
+          </a>
+        </li>
+        </ul>
+
+        <p class="q-sidebar__group-label">Utility</p>
+        <ul class="q-nav">
+        <li class="q-nav-item">
+          <a class="q-nav__link" href="../utility/404.html">
+            <i class="q-nav__icon bi bi-signpost-split" aria-hidden="true"></i>
+            <span class="q-nav__text">404 Not Found</span>
+            
+          </a>
+        </li>
+        <li class="q-nav-item">
+          <a class="q-nav__link" href="../utility/500.html">
+            <i class="q-nav__icon bi bi-exclamation-octagon" aria-hidden="true"></i>
+            <span class="q-nav__text">500 Server Error</span>
+            
+          </a>
+        </li>
+        <li class="q-nav-item">
+          <a class="q-nav__link" href="../utility/maintenance.html">
+            <i class="q-nav__icon bi bi-tools" aria-hidden="true"></i>
+            <span class="q-nav__text">Maintenance</span>
+            
+          </a>
+        </li>
+        <li class="q-nav-item">
+          <a class="q-nav__link" href="../utility/coming-soon.html">
+            <i class="q-nav__icon bi bi-hourglass-split" aria-hidden="true"></i>
+            <span class="q-nav__text">Coming Soon</span>
+            
+          </a>
+        </li>
+        <li class="q-nav-item">
+          <a class="q-nav__link" href="../utility/terms.html">
+            <i class="q-nav__icon bi bi-file-earmark-text" aria-hidden="true"></i>
+            <span class="q-nav__text">Terms & Conditions</span>
+            
+          </a>
+        </li>
+        <li class="q-nav-item">
+          <a class="q-nav__link" href="../utility/privacy.html">
+            <i class="q-nav__icon bi bi-shield-check" aria-hidden="true"></i>
+            <span class="q-nav__text">Privacy Policy</span>
+            
+          </a>
+        </li>
+        <li class="q-nav-item">
+          <a class="q-nav__link" href="../utility/sitemap.html">
+            <i class="q-nav__icon bi bi-diagram-3" aria-hidden="true"></i>
+            <span class="q-nav__text">Sitemap</span>
+            
+          </a>
+        </li>
+        </ul>
+
+        <p class="q-sidebar__group-label">Documentation</p>
+        <ul class="q-nav">
+        <li class="q-nav-item">
+          <a class="q-nav__link" href="../documentation/index.html">
+            <i class="q-nav__icon bi bi-book" aria-hidden="true"></i>
+            <span class="q-nav__text">Documentation</span>
+            
+          </a>
+        </li>
+        <li class="q-nav-item">
+          <a class="q-nav__link" href="../documentation/design-system.html">
+            <i class="q-nav__icon bi bi-layers" aria-hidden="true"></i>
+            <span class="q-nav__text">Design System</span>
+            
+          </a>
+        </li>
+        </ul>
+      </nav>
+
+      <div class="q-sidebar__footer">
+        <div class="d-flex align-items-center gap-2">
+          <span class="avatar avatar-sm bg-avatar-2" aria-hidden="true">AR</span>
+          <span class="flex-grow-1 min-w-0 q-sidebar__footer-detail">
+            <span class="d-block fs-8 fw-600 text-heading text-truncate">Ava Reynolds</span>
+            <span class="d-block fs-9 text-muted-2 text-truncate">Workspace admin</span>
+          </span>
+          <a href="../pages/settings.html" class="btn btn-icon btn-sm btn-ghost q-sidebar__footer-detail"
+             aria-label="Account settings" title="Account settings">
+            <i class="bi bi-sliders"></i>
+          </a>
+        </div>
+      </div>
+    </aside>
+    <div class="q-sidebar-backdrop" aria-hidden="true"></div>
+
+
+  <div class="q-main">
+      <!-- ================= Header ================= -->
+      <header class="q-header">
+        <button class="q-header__toggle" type="button" data-sidebar-toggle
+                aria-expanded="false" aria-controls="qevora-sidebar" aria-label="Toggle navigation">
+          <i class="bi bi-list"></i>
+        </button>
+
+        <div class="q-header__search d-none d-md-block">
+          <i class="bi bi-search q-header__search-icon" aria-hidden="true"></i>
+          <label class="visually-hidden" for="q-header-search">Search the workspace</label>
+          <input type="search" class="form-control" id="q-header-search" placeholder="Search…" autocomplete="off">
+          <span class="q-header__kbd" aria-hidden="true">⌘K</span>
+        </div>
+
+        <div class="q-header__actions">
+          <!-- RTL toggle -->
+          <button class="q-icon-btn d-none d-sm-inline-grid" type="button" data-dir-toggle
+                  aria-pressed="false" title="Switch to RTL layout" aria-label="Toggle text direction">
+            <span class="fs-8 fw-600" data-dir-label>RTL</span>
+          </button>
+
+          <!-- Colour mode -->
+          <button class="q-icon-btn" type="button" data-theme-toggle aria-pressed="false"
+                  title="Switch to dark mode" aria-label="Toggle colour mode">
+            <i class="bi bi-moon-stars" data-theme-icon aria-hidden="true"></i>
+          </button>
+
+          <!-- Apps -->
+          <div class="dropdown d-none d-sm-block">
+            <button class="q-icon-btn" type="button" data-bs-toggle="dropdown" aria-expanded="false"
+                    aria-label="Quick apps" title="Quick apps">
+              <i class="bi bi-grid-3x3-gap" aria-hidden="true"></i>
+            </button>
+            <div class="dropdown-menu dropdown-menu-end p-3" style="width: 280px;">
+              <p class="fs-8 fw-600 text-uppercase text-faint mb-2">Quick access</p>
+              <div class="row g-2">
+                <div class="col-4">
+                  <a class="component-tile text-center p-2" href="../index.html">
+                    <i class="bi bi-grid-1x2 fs-5 text-primary-2 d-block mb-1"></i>
+                    <span class="fs-9">Home</span>
+                  </a>
+                </div>
+                <div class="col-4">
+                  <a class="component-tile text-center p-2" href="../ai/dashboard.html">
+                    <i class="bi bi-stars fs-5 text-primary-2 d-block mb-1"></i>
+                    <span class="fs-9">AI</span>
+                  </a>
+                </div>
+                <div class="col-4">
+                  <a class="component-tile text-center p-2" href="../pages/crm.html">
+                    <i class="bi bi-people fs-5 text-primary-2 d-block mb-1"></i>
+                    <span class="fs-9">CRM</span>
+                  </a>
+                </div>
+                <div class="col-4">
+                  <a class="component-tile text-center p-2" href="../pages/invoices.html">
+                    <i class="bi bi-receipt fs-5 text-primary-2 d-block mb-1"></i>
+                    <span class="fs-9">Finance</span>
+                  </a>
+                </div>
+                <div class="col-4">
+                  <a class="component-tile text-center p-2" href="../components/index.html">
+                    <i class="bi bi-collection fs-5 text-primary-2 d-block mb-1"></i>
+                    <span class="fs-9">UI Kit</span>
+                  </a>
+                </div>
+                <div class="col-4">
+                  <a class="component-tile text-center p-2" href="../documentation/index.html">
+                    <i class="bi bi-book fs-5 text-primary-2 d-block mb-1"></i>
+                    <span class="fs-9">Docs</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Notifications -->
+          <div class="dropdown">
+            <button class="q-icon-btn" type="button" data-bs-toggle="dropdown" aria-expanded="false"
+                    aria-label="Notifications" title="Notifications">
+              <i class="bi bi-bell" aria-hidden="true"></i>
+              <span class="q-icon-btn__dot" aria-hidden="true"></span>
+            </button>
+            <div class="dropdown-menu dropdown-menu-end dropdown-notify">
+              <div class="dropdown-notify__head">
+                <span class="fw-600 text-heading">Notifications</span>
+                <span class="badge badge-soft-primary badge-pill">3 new</span>
+              </div>
+              <div class="dropdown-notify__list q-scroll">
+                <a class="dropdown-notify__item" href="../ai/history.html">
+                  <span class="avatar avatar-sm bg-avatar-1"><i class="bi bi-stars"></i></span>
+                  <span class="min-w-0">
+                    <span class="d-block dropdown-notify__title">Content generation finished</span>
+                    <span class="d-block dropdown-notify__meta">32 seconds ago</span>
+                  </span>
+                </a>
+                <a class="dropdown-notify__item" href="../pages/invoices.html">
+                  <span class="avatar avatar-sm bg-avatar-3"><i class="bi bi-receipt"></i></span>
+                  <span class="min-w-0">
+                    <span class="d-block dropdown-notify__title">Invoice INV-2026-0184 was paid</span>
+                    <span class="d-block dropdown-notify__meta">2 hours ago</span>
+                  </span>
+                </a>
+                <a class="dropdown-notify__item" href="../pages/team.html">
+                  <span class="avatar avatar-sm bg-avatar-6"><i class="bi bi-person-plus"></i></span>
+                  <span class="min-w-0">
+                    <span class="d-block dropdown-notify__title">Ava Reynolds invited a teammate</span>
+                    <span class="d-block dropdown-notify__meta">Yesterday</span>
+                  </span>
+                </a>
+              </div>
+              <div class="dropdown-notify__foot">
+                <a href="../pages/notifications.html" class="fw-500">View all notifications</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- User -->
+          <div class="dropdown">
+            <button class="q-header__user" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <span class="avatar avatar-sm bg-avatar-1" aria-hidden="true">AR</span>
+              <span class="q-header__user-meta">
+                <span class="d-block q-header__user-name">Ava Reynolds</span>
+                <span class="d-block q-header__user-role">Workspace admin</span>
+              </span>
+              <i class="bi bi-chevron-down fs-8 text-muted-2 d-none d-md-block" aria-hidden="true"></i>
+            </button>
+            <ul class="dropdown-menu dropdown-menu-end">
+              <li class="dropdown-header">Signed in as ava@example.com</li>
+              <li><a class="dropdown-item" href="../pages/profile.html"><i class="bi bi-person"></i> My profile</a></li>
+              <li><a class="dropdown-item" href="../pages/settings.html"><i class="bi bi-gear"></i> Account settings</a></li>
+              <li><a class="dropdown-item" href="../ai/usage.html"><i class="bi bi-speedometer2"></i> AI usage</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" href="../documentation/index.html"><i class="bi bi-book"></i> Documentation</a></li>
+              <li><a class="dropdown-item" href="../pages/help.html"><i class="bi bi-life-preserver"></i> Help center</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item text-danger" href="../auth/login.html"><i class="bi bi-box-arrow-right"></i> Sign out</a></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+
+
+    <!-- ================= Content ================= -->
+    <main class="q-content" id="q-content">
+      <div class="q-page-head">
+        <div>
+                  <nav aria-label="Breadcrumb">
+          <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="../documentation/index.html">Documentation</a></li>
+          <li class="breadcrumb-item active" aria-current="page">Getting Started</li>
+          </ol>
+        </nav>
+          <h1 class="q-page-head__title mt-2">Documentation</h1>
+          <p class="q-page-head__subtitle">
+            Everything you need to open, edit and ship Qevora AI SaaS UI. No prior build-tool knowledge is required — the
+            template works as plain HTML, and the optional build script simply saves you copy-paste work.
+          </p>
+        </div>
+        <div class="d-flex flex-wrap gap-2">
+          <a class="btn btn-white" href="design-system.html"><i class="bi bi-palette"></i> Design system</a>
+          <a class="btn btn-primary" href="../components/index.html"><i class="bi bi-grid-1x2"></i> Browse components</a>
+        </div>
+      </div>
+
+      <div class="row g-4">
+        <div class="col-xl-9">
+          <div class="card mb-4">
+            <div class="card-body">
+              <div class="row g-4 align-items-center">
+                <div class="col-md-8">
+                  <h2 class="h5 text-heading mb-2">What you received</h2>
+                  <p class="fs-7 text-muted-2 mb-3">
+                    A complete static admin template: <strong class="text-heading">84 HTML pages</strong>, a component
+                    library with copy-ready snippets, light and dark themes, RTL support and every library vendored
+                    locally — the template never calls a CDN at runtime.
+                  </p>
+                  <div class="d-flex flex-wrap gap-2">
+                    <span class="badge badge-soft-primary">Bootstrap 5.3.3</span>
+                    <span class="badge badge-soft-primary">Bootstrap Icons 1.11.3</span>
+                    <span class="badge badge-soft-primary">Chart.js 4.4.3</span>
+                    <span class="badge badge-soft-primary">Inter (self-hosted)</span>
+                    <span class="badge badge-soft-success">Light + dark</span>
+                    <span class="badge badge-soft-success">RTL ready</span>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="card bg-body-tertiary border mb-0">
+                    <div class="card-body py-3">
+                      <p class="fs-8 text-muted-2 mb-1 text-uppercase">Version</p>
+                      <p class="fw-600 text-heading mb-2">1.0.0 · October 2026</p>
+                      <p class="fs-8 text-muted-2 mb-0">Verified in Chrome, Edge, Firefox and Safari (last two major versions).</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="card mb-4" id="quick-start">
+            <div class="card-header"><h2 class="card-title mb-0">1. Quick start</h2></div>
+            <div class="card-body">
+              <ol class="fs-7 text-muted-2 d-flex flex-column gap-2 mb-4">
+                <li>Unzip the package anywhere on your computer.</li>
+                <li>Double-click <code>index.html</code> — the dashboard opens in your browser immediately.</li>
+                <li>Use the search box in the component pages, toggle the theme from the header, and explore.</li>
+                <li>To edit, open the HTML file you want in any code editor (VS Code, Notepad++, Sublime Text).</li>
+              </ol>
+
+              <div class="alert alert-info d-flex align-items-start gap-2 mb-4" role="alert">
+                <i class="bi bi-info-circle alert-icon"></i>
+                <div class="fs-8">
+                  <strong class="d-block fs-7">Do you need a local server?</strong>
+                  No. Every path in the template is relative, so opening the files directly from disk works. A local
+                  server is only handy if you want to test on a phone: run
+                  <code>python3 -m http.server 5500</code> inside the folder and open
+                  <code>http://localhost:5500</code>.
+                </div>
+              </div>
+
+              <div class="alert alert-secondary d-flex align-items-start gap-2 mb-4" role="note">
+                <i class="bi bi-box-seam alert-icon"></i>
+                <div class="fs-8">
+                  <strong class="d-block fs-7">This download needs no build step</strong>
+                  Everything you were given is finished HTML: open it, edit it, upload it. The
+                  <code>src/</code> fragments and the <code>tools/</code> scripts belong to the separate
+                  <em>developer source package</em>; section 5 is the only part of this guide that uses them, and
+                  it says so at the top.
+                </div>
+              </div>
+
+              <p class="fw-600 text-heading fs-7 mb-2">Folder structure</p>
+              <div class="demo-code-wrap">
+                <button class="copy-btn" data-copy-target="#docTree" type="button"><i class="bi bi-clipboard"></i> Copy</button>
+                <pre class="demo-code"><code id="docTree">qevora-ai-saas-ui/
+├── index.html                 Dashboard overview
+├── 404.html                   Hosting fallback, mirrored from utility/404.html
+├── pages/                     Application pages (31)
+│   ├── analytics.html  crm.html  leads.html  customers.html
+│   ├── projects.html   tasks.html  calendar.html  chat.html
+│   ├── invoices.html   payments.html  subscriptions.html
+│   └── team.html       roles.html  reports.html  settings.html  …
+├── ai/                        AI workspace (6)
+│   ├── dashboard.html  chat.html  content-generator.html
+│   └── image-generator.html  usage.html  history.html
+├── components/                UI kit (31)
+├── auth/                      Authentication (6)
+├── utility/                   Utility pages (7)
+├── documentation/             This guide + design system (2)
+├── assets/
+│   ├── css/    style.css  components.css  dark.css  rtl.css  fonts.css
+│   │           bootstrap.min.css  bootstrap.rtl.min.css
+│   ├── js/     theme.js  sidebar.js  app.js  components.js  demo-ui.js
+│   │           bootstrap.bundle.min.js  chart.umd.js
+│   │           pages/  charts.js  chat.js  auth.js
+│   ├── fonts/  inter/files/*.woff2
+│   ├── icons/  bootstrap-icons/
+│   └── images/ logo/  placeholder/  favicon.svg  og-cover.svg
+└── README.txt  CHANGELOG.txt  LICENSE.txt
+
+Optional developer source package (shipped separately from the item page)
+├── src/                       Source fragments the builder assembles
+│   ├── pages/    one body file per page (same paths as the output)
+│   ├── partials/ head.html  sidebar.html  header.html  footer.html  scripts.html
+│   ├── nav.mjs   sidebar navigation
+│   └── pages.mjs page inventory, titles, breadcrumbs and scripts
+└── tools/                     build.mjs  demo-samples.mjs  audit.mjs  smoke.mjs  package.sh</code></pre>
+              </div>
+            </div>
+          </div>
+
+          <div class="card mb-4" id="inventory">
+            <div class="card-header"><h2 class="card-title mb-0">2. Page inventory</h2></div>
+            <div class="table-responsive">
+              <table class="table table-hover align-middle mb-0">
+                <thead>
+                  <tr>
+                    <th scope="col">Section</th>
+                    <th scope="col">Folder</th>
+                    <th scope="col" class="text-end">Pages</th>
+                    <th scope="col">Highlights</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="fw-500 text-heading">Dashboard</td>
+                    <td><code>/</code></td>
+                    <td class="text-end">1</td>
+                    <td class="fs-7 text-muted-2 text-wrap">KPI cards, revenue chart, AI usage, activity feed</td>
+                  </tr>
+                  <tr>
+                    <td class="fw-500 text-heading">AI workspace</td>
+                    <td><code>ai/</code></td>
+                    <td class="text-end">6</td>
+                    <td class="fs-7 text-muted-2 text-wrap">AI overview, chat, content and image generators, usage, history</td>
+                  </tr>
+                  <tr>
+                    <td class="fw-500 text-heading">Applications</td>
+                    <td><code>pages/</code></td>
+                    <td class="text-end">31</td>
+                    <td class="fs-7 text-muted-2 text-wrap">CRM, customers, projects, tasks, calendar, chat, billing, team, reports, settings</td>
+                  </tr>
+                  <tr>
+                    <td class="fw-500 text-heading">UI kit</td>
+                    <td><code>components/</code></td>
+                    <td class="text-end">31</td>
+                    <td class="fs-7 text-muted-2 text-wrap">Colours, typography, grid, buttons, forms, tables, charts, feedback and more</td>
+                  </tr>
+                  <tr>
+                    <td class="fw-500 text-heading">Authentication</td>
+                    <td><code>auth/</code></td>
+                    <td class="text-end">6</td>
+                    <td class="fs-7 text-muted-2 text-wrap">Login, register, forgot and reset password, verify email, two-factor</td>
+                  </tr>
+                  <tr>
+                    <td class="fw-500 text-heading">Utility</td>
+                    <td><code>utility/</code></td>
+                    <td class="text-end">7</td>
+                    <td class="fs-7 text-muted-2 text-wrap">404, 500, maintenance, coming soon, terms, privacy, sitemap</td>
+                  </tr>
+                  <tr>
+                    <td class="fw-500 text-heading">Documentation</td>
+                    <td><code>documentation/</code></td>
+                    <td class="text-end">2</td>
+                    <td class="fs-7 text-muted-2 text-wrap">This guide and the design system reference</td>
+                  </tr>
+                </tbody>
+                <tfoot>
+                  <tr>
+                    <th scope="row" class="fw-600 text-heading">Total</th>
+                    <td></td>
+                    <td class="text-end fw-600 text-heading">84</td>
+                    <td class="fs-7 text-muted-2">Every page is listed and linked below</td>
+                  </tr>
+                </tfoot>
+              </table>
+            </div>
+            <div class="card-body border-top">
+              <h3 class="h6 text-heading d-flex flex-wrap align-items-center gap-2 mb-2">Every page
+                <span class="badge badge-soft-neutral">84 pages</span>
+              </h3>
+              <p class="fs-8 text-muted-2 mb-3">
+                The list below is generated from the same page inventory the build reads, so a page cannot be
+                added to the package without appearing here. Each entry is a link to the page itself.
+              </p>
+              <!-- q-doc-inventory:start — generated from src/pages.mjs by tools/build.mjs -->
+          <div class="mb-4">
+            <h3 class="h6 text-heading d-flex flex-wrap align-items-center gap-2 mb-2">Dashboard
+              <span class="badge badge-soft-neutral">1 page</span>
+            </h3>
+            <p class="fs-8 text-muted-2 mb-2">The landing page of the template: KPIs, revenue chart, AI usage, projects and team activity.</p>
+            <ul class="row g-3 list-unstyled mb-0">
+            <li class="col-md-6 col-xl-4">
+              <a class="d-block h-100 text-decoration-none" href="../index.html">
+                <span class="d-block fw-500 text-heading fs-7">Dashboard Overview</span>
+                <span class="d-block fs-8 text-muted-2"><code>index.html</code></span>
+                <span class="d-block fs-8 text-muted-2">Qevora AI SaaS UI dashboard overview — revenue, active users, AI usage, projects and team activity in one Bootstrap 5 admin view.</span>
+              </a>
+            </li>
+            </ul>
+          </div>
+          <div class="mb-4">
+            <h3 class="h6 text-heading d-flex flex-wrap align-items-center gap-2 mb-2">Applications
+              <span class="badge badge-soft-neutral">31 pages</span>
+            </h3>
+            <p class="fs-8 text-muted-2 mb-2">The product modules a SaaS admin lives in: CRM, customers, projects, tasks, calendar, chat, billing, team, reports and settings.</p>
+            <ul class="row g-3 list-unstyled mb-0">
+            <li class="col-md-6 col-xl-4">
+              <a class="d-block h-100 text-decoration-none" href="../pages/analytics.html">
+                <span class="d-block fw-500 text-heading fs-7">Analytics</span>
+                <span class="d-block fs-8 text-muted-2"><code>pages/analytics.html</code></span>
+                <span class="d-block fs-8 text-muted-2">Traffic, conversion, revenue and channel analytics with reusable Chart.js components.</span>
+              </a>
+            </li>
+            <li class="col-md-6 col-xl-4">
+              <a class="d-block h-100 text-decoration-none" href="../pages/crm.html">
+                <span class="d-block fw-500 text-heading fs-7">CRM Dashboard</span>
+                <span class="d-block fs-8 text-muted-2"><code>pages/crm.html</code></span>
+                <span class="d-block fs-8 text-muted-2">CRM dashboard with pipeline value, lead sources, deals closing soon and recent customer activity.</span>
+              </a>
+            </li>
+            <li class="col-md-6 col-xl-4">
+              <a class="d-block h-100 text-decoration-none" href="../pages/leads.html">
+                <span class="d-block fw-500 text-heading fs-7">Leads</span>
+                <span class="d-block fs-8 text-muted-2"><code>pages/leads.html</code></span>
+                <span class="d-block fs-8 text-muted-2">Lead list with status, owner, source, score and value — includes filtering and a data table.</span>
+              </a>
+            </li>
+            <li class="col-md-6 col-xl-4">
+              <a class="d-block h-100 text-decoration-none" href="../pages/customers.html">
+                <span class="d-block fw-500 text-heading fs-7">Customers</span>
+                <span class="d-block fs-8 text-muted-2"><code>pages/customers.html</code></span>
+                <span class="d-block fs-8 text-muted-2">Customer directory with company, plan, lifetime value, status and detail-page navigation.</span>
+              </a>
+            </li>
+            <li class="col-md-6 col-xl-4">
+              <a class="d-block h-100 text-decoration-none" href="../pages/customer-details.html">
+                <span class="d-block fw-500 text-heading fs-7">Customer Details</span>
+                <span class="d-block fs-8 text-muted-2"><code>pages/customer-details.html</code></span>
+                <span class="d-block fs-8 text-muted-2">Customer profile with contact details, subscription, invoices, activity timeline and notes.</span>
+              </a>
+            </li>
+            <li class="col-md-6 col-xl-4">
+              <a class="d-block h-100 text-decoration-none" href="../pages/pipeline.html">
+                <span class="d-block fw-500 text-heading fs-7">Sales Pipeline</span>
+                <span class="d-block fs-8 text-muted-2"><code>pages/pipeline.html</code></span>
+                <span class="d-block fs-8 text-muted-2">Deal pipeline board with stage totals, weighted forecast and draggable deal cards.</span>
+              </a>
+            </li>
+            <li class="col-md-6 col-xl-4">
+              <a class="d-block h-100 text-decoration-none" href="../pages/projects.html">
+                <span class="d-block fw-500 text-heading fs-7">Projects</span>
+                <span class="d-block fs-8 text-muted-2"><code>pages/projects.html</code></span>
+                <span class="d-block fs-8 text-muted-2">Project portfolio with progress, team members, budget, deadline and status filters.</span>
+              </a>
+            </li>
+            <li class="col-md-6 col-xl-4">
+              <a class="d-block h-100 text-decoration-none" href="../pages/project-details.html">
+                <span class="d-block fw-500 text-heading fs-7">Project Details</span>
+                <span class="d-block fs-8 text-muted-2"><code>pages/project-details.html</code></span>
+                <span class="d-block fs-8 text-muted-2">Project overview with progress, tasks, files, team and activity timeline.</span>
+              </a>
+            </li>
+            <li class="col-md-6 col-xl-4">
+              <a class="d-block h-100 text-decoration-none" href="../pages/kanban.html">
+                <span class="d-block fw-500 text-heading fs-7">Kanban Board</span>
+                <span class="d-block fs-8 text-muted-2"><code>pages/kanban.html</code></span>
+                <span class="d-block fs-8 text-muted-2">Drag-and-drop Kanban board for task planning across backlog, in progress, review and done.</span>
+              </a>
+            </li>
+            <li class="col-md-6 col-xl-4">
+              <a class="d-block h-100 text-decoration-none" href="../pages/tasks.html">
+                <span class="d-block fw-500 text-heading fs-7">Tasks</span>
+                <span class="d-block fs-8 text-muted-2"><code>pages/tasks.html</code></span>
+                <span class="d-block fs-8 text-muted-2">Task list with priority, assignee, due date, labels and completion state.</span>
+              </a>
+            </li>
+            <li class="col-md-6 col-xl-4">
+              <a class="d-block h-100 text-decoration-none" href="../pages/calendar.html">
+                <span class="d-block fw-500 text-heading fs-7">Calendar</span>
+                <span class="d-block fs-8 text-muted-2"><code>pages/calendar.html</code></span>
+                <span class="d-block fs-8 text-muted-2">Month calendar view with scheduled meetings, deadlines and agenda sidebar.</span>
+              </a>
+            </li>
+            <li class="col-md-6 col-xl-4">
+              <a class="d-block h-100 text-decoration-none" href="../pages/chat.html">
+                <span class="d-block fw-500 text-heading fs-7">Team Chat</span>
+                <span class="d-block fs-8 text-muted-2"><code>pages/chat.html</code></span>
+                <span class="d-block fs-8 text-muted-2">Team chat workspace with conversation list, message thread and composer.</span>
+              </a>
+            </li>
+            <li class="col-md-6 col-xl-4">
+              <a class="d-block h-100 text-decoration-none" href="../pages/notifications.html">
+                <span class="d-block fw-500 text-heading fs-7">Notifications</span>
+                <span class="d-block fs-8 text-muted-2"><code>pages/notifications.html</code></span>
+                <span class="d-block fs-8 text-muted-2">Notification center with filters, read states and grouped activity.</span>
+              </a>
+            </li>
+            <li class="col-md-6 col-xl-4">
+              <a class="d-block h-100 text-decoration-none" href="../pages/products.html">
+                <span class="d-block fw-500 text-heading fs-7">Products</span>
+                <span class="d-block fs-8 text-muted-2"><code>pages/products.html</code></span>
+                <span class="d-block fs-8 text-muted-2">Product catalog with grid and table views, stock, price and category management.</span>
+              </a>
+            </li>
+            <li class="col-md-6 col-xl-4">
+              <a class="d-block h-100 text-decoration-none" href="../pages/product-details.html">
+                <span class="d-block fw-500 text-heading fs-7">Product Details</span>
+                <span class="d-block fs-8 text-muted-2"><code>pages/product-details.html</code></span>
+                <span class="d-block fs-8 text-muted-2">Product detail view with pricing, inventory, variants and related items.</span>
+              </a>
+            </li>
+            <li class="col-md-6 col-xl-4">
+              <a class="d-block h-100 text-decoration-none" href="../pages/orders.html">
+                <span class="d-block fw-500 text-heading fs-7">Orders</span>
+                <span class="d-block fs-8 text-muted-2"><code>pages/orders.html</code></span>
+                <span class="d-block fs-8 text-muted-2">Order management table with payment status, fulfilment state and totals.</span>
+              </a>
+            </li>
+            <li class="col-md-6 col-xl-4">
+              <a class="d-block h-100 text-decoration-none" href="../pages/order-details.html">
+                <span class="d-block fw-500 text-heading fs-7">Order Details</span>
+                <span class="d-block fs-8 text-muted-2"><code>pages/order-details.html</code></span>
+                <span class="d-block fs-8 text-muted-2">Order detail view with line items, customer, shipping and payment summary.</span>
+              </a>
+            </li>
+            <li class="col-md-6 col-xl-4">
+              <a class="d-block h-100 text-decoration-none" href="../pages/invoices.html">
+                <span class="d-block fw-500 text-heading fs-7">Invoices</span>
+                <span class="d-block fs-8 text-muted-2"><code>pages/invoices.html</code></span>
+                <span class="d-block fs-8 text-muted-2">Invoice list with paid, pending and overdue states plus downloadable invoice detail view.</span>
+              </a>
+            </li>
+            <li class="col-md-6 col-xl-4">
+              <a class="d-block h-100 text-decoration-none" href="../pages/invoice-details.html">
+                <span class="d-block fw-500 text-heading fs-7">Invoice Details</span>
+                <span class="d-block fs-8 text-muted-2"><code>pages/invoice-details.html</code></span>
+                <span class="d-block fs-8 text-muted-2">Printable invoice layout with line items, tax summary, totals and payment history.</span>
+              </a>
+            </li>
+            <li class="col-md-6 col-xl-4">
+              <a class="d-block h-100 text-decoration-none" href="../pages/payments.html">
+                <span class="d-block fw-500 text-heading fs-7">Payments</span>
+                <span class="d-block fs-8 text-muted-2"><code>pages/payments.html</code></span>
+                <span class="d-block fs-8 text-muted-2">Payment records with method, gateway, status and settlement information.</span>
+              </a>
+            </li>
+            <li class="col-md-6 col-xl-4">
+              <a class="d-block h-100 text-decoration-none" href="../pages/transactions.html">
+                <span class="d-block fw-500 text-heading fs-7">Transactions</span>
+                <span class="d-block fs-8 text-muted-2"><code>pages/transactions.html</code></span>
+                <span class="d-block fs-8 text-muted-2">Transaction ledger with credits, refunds, fees and running balance.</span>
+              </a>
+            </li>
+            <li class="col-md-6 col-xl-4">
+              <a class="d-block h-100 text-decoration-none" href="../pages/subscriptions.html">
+                <span class="d-block fw-500 text-heading fs-7">Subscriptions</span>
+                <span class="d-block fs-8 text-muted-2"><code>pages/subscriptions.html</code></span>
+                <span class="d-block fs-8 text-muted-2">Subscription management with plans, billing cycles, seats, renewals and churn metrics.</span>
+              </a>
+            </li>
+            <li class="col-md-6 col-xl-4">
+              <a class="d-block h-100 text-decoration-none" href="../pages/team.html">
+                <span class="d-block fw-500 text-heading fs-7">Team</span>
+                <span class="d-block fs-8 text-muted-2"><code>pages/team.html</code></span>
+                <span class="d-block fs-8 text-muted-2">Team directory with roles, departments, workload and member detail cards.</span>
+              </a>
+            </li>
+            <li class="col-md-6 col-xl-4">
+              <a class="d-block h-100 text-decoration-none" href="../pages/roles.html">
+                <span class="d-block fw-500 text-heading fs-7">Roles & Permissions</span>
+                <span class="d-block fs-8 text-muted-2"><code>pages/roles.html</code></span>
+                <span class="d-block fs-8 text-muted-2">Role management with a permission matrix for admin, manager, analyst and support roles.</span>
+              </a>
+            </li>
+            <li class="col-md-6 col-xl-4">
+              <a class="d-block h-100 text-decoration-none" href="../pages/activity.html">
+                <span class="d-block fw-500 text-heading fs-7">Activity Logs</span>
+                <span class="d-block fs-8 text-muted-2"><code>pages/activity.html</code></span>
+                <span class="d-block fs-8 text-muted-2">Audit log with actor, action, target, IP and timestamp filters.</span>
+              </a>
+            </li>
+            <li class="col-md-6 col-xl-4">
+              <a class="d-block h-100 text-decoration-none" href="../pages/reports.html">
+                <span class="d-block fw-500 text-heading fs-7">Reports</span>
+                <span class="d-block fs-8 text-muted-2"><code>pages/reports.html</code></span>
+                <span class="d-block fs-8 text-muted-2">Report library with saved reports, scheduled exports and download history.</span>
+              </a>
+            </li>
+            <li class="col-md-6 col-xl-4">
+              <a class="d-block h-100 text-decoration-none" href="../pages/profile.html">
+                <span class="d-block fw-500 text-heading fs-7">Profile</span>
+                <span class="d-block fs-8 text-muted-2"><code>pages/profile.html</code></span>
+                <span class="d-block fs-8 text-muted-2">User profile with header card, activity, projects and contact information.</span>
+              </a>
+            </li>
+            <li class="col-md-6 col-xl-4">
+              <a class="d-block h-100 text-decoration-none" href="../pages/settings.html">
+                <span class="d-block fw-500 text-heading fs-7">Settings</span>
+                <span class="d-block fs-8 text-muted-2"><code>pages/settings.html</code></span>
+                <span class="d-block fs-8 text-muted-2">Account settings with profile, workspace, notifications, security and appearance sections.</span>
+              </a>
+            </li>
+            <li class="col-md-6 col-xl-4">
+              <a class="d-block h-100 text-decoration-none" href="../pages/pricing.html">
+                <span class="d-block fw-500 text-heading fs-7">Pricing</span>
+                <span class="d-block fs-8 text-muted-2"><code>pages/pricing.html</code></span>
+                <span class="d-block fs-8 text-muted-2">Pricing plans with monthly and annual toggle, feature comparison and FAQ.</span>
+              </a>
+            </li>
+            <li class="col-md-6 col-xl-4">
+              <a class="d-block h-100 text-decoration-none" href="../pages/faq.html">
+                <span class="d-block fw-500 text-heading fs-7">FAQ</span>
+                <span class="d-block fs-8 text-muted-2"><code>pages/faq.html</code></span>
+                <span class="d-block fs-8 text-muted-2">Frequently asked questions grouped by billing, workspace, AI usage and security.</span>
+              </a>
+            </li>
+            <li class="col-md-6 col-xl-4">
+              <a class="d-block h-100 text-decoration-none" href="../pages/help.html">
+                <span class="d-block fw-500 text-heading fs-7">Help Center</span>
+                <span class="d-block fs-8 text-muted-2"><code>pages/help.html</code></span>
+                <span class="d-block fs-8 text-muted-2">Help center with search, topic categories, popular articles and support contact options.</span>
+              </a>
+            </li>
+            </ul>
+          </div>
+          <div class="mb-4">
+            <h3 class="h6 text-heading d-flex flex-wrap align-items-center gap-2 mb-2">AI workspace
+              <span class="badge badge-soft-neutral">6 pages</span>
+            </h3>
+            <p class="fs-8 text-muted-2 mb-2">The assistant side of the template: overview, chat, content and image generators, usage and prompt history.</p>
+            <ul class="row g-3 list-unstyled mb-0">
+            <li class="col-md-6 col-xl-4">
+              <a class="d-block h-100 text-decoration-none" href="../ai/dashboard.html">
+                <span class="d-block fw-500 text-heading fs-7">AI Overview</span>
+                <span class="d-block fs-8 text-muted-2"><code>ai/dashboard.html</code></span>
+                <span class="d-block fs-8 text-muted-2">AI workspace overview with requests, tokens, model usage, plan limits and recent generations.</span>
+              </a>
+            </li>
+            <li class="col-md-6 col-xl-4">
+              <a class="d-block h-100 text-decoration-none" href="../ai/chat.html">
+                <span class="d-block fw-500 text-heading fs-7">AI Chat</span>
+                <span class="d-block fs-8 text-muted-2"><code>ai/chat.html</code></span>
+                <span class="d-block fs-8 text-muted-2">AI chat interface with conversation sidebar, prompt composer, regenerate and copy actions.</span>
+              </a>
+            </li>
+            <li class="col-md-6 col-xl-4">
+              <a class="d-block h-100 text-decoration-none" href="../ai/content-generator.html">
+                <span class="d-block fw-500 text-heading fs-7">AI Content Generator</span>
+                <span class="d-block fs-8 text-muted-2"><code>ai/content-generator.html</code></span>
+                <span class="d-block fs-8 text-muted-2">AI writing workspace with templates, tone controls, prompt settings and generated output.</span>
+              </a>
+            </li>
+            <li class="col-md-6 col-xl-4">
+              <a class="d-block h-100 text-decoration-none" href="../ai/image-generator.html">
+                <span class="d-block fw-500 text-heading fs-7">AI Image Generator</span>
+                <span class="d-block fs-8 text-muted-2"><code>ai/image-generator.html</code></span>
+                <span class="d-block fs-8 text-muted-2">AI image generation UI with prompt, style presets, aspect ratio and generated gallery.</span>
+              </a>
+            </li>
+            <li class="col-md-6 col-xl-4">
+              <a class="d-block h-100 text-decoration-none" href="../ai/usage.html">
+                <span class="d-block fw-500 text-heading fs-7">AI Usage</span>
+                <span class="d-block fs-8 text-muted-2"><code>ai/usage.html</code></span>
+                <span class="d-block fs-8 text-muted-2">AI usage and quota reporting with token consumption, cost breakdown and per-model usage.</span>
+              </a>
+            </li>
+            <li class="col-md-6 col-xl-4">
+              <a class="d-block h-100 text-decoration-none" href="../ai/history.html">
+                <span class="d-block fw-500 text-heading fs-7">AI History</span>
+                <span class="d-block fs-8 text-muted-2"><code>ai/history.html</code></span>
+                <span class="d-block fs-8 text-muted-2">Prompt history with model, tokens, latency, cost and reuse actions.</span>
+              </a>
+            </li>
+            </ul>
+          </div>
+          <div class="mb-4">
+            <h3 class="h6 text-heading d-flex flex-wrap align-items-center gap-2 mb-2">UI kit
+              <span class="badge badge-soft-neutral">31 pages</span>
+            </h3>
+            <p class="fs-8 text-muted-2 mb-2">Every component page, each demo block with Preview / HTML / CSS / JS panes and a copy button.</p>
+            <ul class="row g-3 list-unstyled mb-0">
+            <li class="col-md-6 col-xl-4">
+              <a class="d-block h-100 text-decoration-none" href="../components/index.html">
+                <span class="d-block fw-500 text-heading fs-7">Component Library</span>
+                <span class="d-block fs-8 text-muted-2"><code>components/index.html</code></span>
+                <span class="d-block fs-8 text-muted-2">Browse every Qevora Bootstrap 5 component with live previews, copy-ready HTML and usage notes.</span>
+              </a>
+            </li>
+            <li class="col-md-6 col-xl-4">
+              <a class="d-block h-100 text-decoration-none" href="../components/colors.html">
+                <span class="d-block fw-500 text-heading fs-7">Colors</span>
+                <span class="d-block fs-8 text-muted-2"><code>components/colors.html</code></span>
+                <span class="d-block fs-8 text-muted-2">Colour tokens for the Qevora design system, including light and dark theme values.</span>
+              </a>
+            </li>
+            <li class="col-md-6 col-xl-4">
+              <a class="d-block h-100 text-decoration-none" href="../components/typography.html">
+                <span class="d-block fw-500 text-heading fs-7">Typography</span>
+                <span class="d-block fs-8 text-muted-2"><code>components/typography.html</code></span>
+                <span class="d-block fs-8 text-muted-2">Heading scale, body text, muted text, links and code styling used across the template.</span>
+              </a>
+            </li>
+            <li class="col-md-6 col-xl-4">
+              <a class="d-block h-100 text-decoration-none" href="../components/spacing.html">
+                <span class="d-block fw-500 text-heading fs-7">Spacing</span>
+                <span class="d-block fs-8 text-muted-2"><code>components/spacing.html</code></span>
+                <span class="d-block fs-8 text-muted-2">Spacing scale and layout rhythm used by the Qevora design system.</span>
+              </a>
+            </li>
+            <li class="col-md-6 col-xl-4">
+              <a class="d-block h-100 text-decoration-none" href="../components/grid.html">
+                <span class="d-block fw-500 text-heading fs-7">Grid</span>
+                <span class="d-block fs-8 text-muted-2"><code>components/grid.html</code></span>
+                <span class="d-block fs-8 text-muted-2">Bootstrap 5 grid examples used for dashboard layouts, cards and forms.</span>
+              </a>
+            </li>
+            <li class="col-md-6 col-xl-4">
+              <a class="d-block h-100 text-decoration-none" href="../components/icons.html">
+                <span class="d-block fw-500 text-heading fs-7">Icons</span>
+                <span class="d-block fs-8 text-muted-2"><code>components/icons.html</code></span>
+                <span class="d-block fs-8 text-muted-2">Bootstrap Icons usage, sizing, colour and a curated icon gallery.</span>
+              </a>
+            </li>
+            <li class="col-md-6 col-xl-4">
+              <a class="d-block h-100 text-decoration-none" href="../components/buttons.html">
+                <span class="d-block fw-500 text-heading fs-7">Buttons</span>
+                <span class="d-block fs-8 text-muted-2"><code>components/buttons.html</code></span>
+                <span class="d-block fs-8 text-muted-2">Solid, outline, soft, ghost, gradient, icon and loading button variations with copy-ready code.</span>
+              </a>
+            </li>
+            <li class="col-md-6 col-xl-4">
+              <a class="d-block h-100 text-decoration-none" href="../components/badges.html">
+                <span class="d-block fw-500 text-heading fs-7">Badges</span>
+                <span class="d-block fs-8 text-muted-2"><code>components/badges.html</code></span>
+                <span class="d-block fs-8 text-muted-2">Status badges, soft badges, dot badges and counters with copy-ready HTML.</span>
+              </a>
+            </li>
+            <li class="col-md-6 col-xl-4">
+              <a class="d-block h-100 text-decoration-none" href="../components/avatars.html">
+                <span class="d-block fw-500 text-heading fs-7">Avatars</span>
+                <span class="d-block fs-8 text-muted-2"><code>components/avatars.html</code></span>
+                <span class="d-block fs-8 text-muted-2">Avatar sizes, shapes, gradients, status indicators and avatar groups.</span>
+              </a>
+            </li>
+            <li class="col-md-6 col-xl-4">
+              <a class="d-block h-100 text-decoration-none" href="../components/alerts.html">
+                <span class="d-block fw-500 text-heading fs-7">Alerts</span>
+                <span class="d-block fs-8 text-muted-2"><code>components/alerts.html</code></span>
+                <span class="d-block fs-8 text-muted-2">Soft, solid and dismissible alerts for success, warning, error and info states.</span>
+              </a>
+            </li>
+            <li class="col-md-6 col-xl-4">
+              <a class="d-block h-100 text-decoration-none" href="../components/breadcrumbs.html">
+                <span class="d-block fw-500 text-heading fs-7">Breadcrumbs</span>
+                <span class="d-block fs-8 text-muted-2"><code>components/breadcrumbs.html</code></span>
+                <span class="d-block fs-8 text-muted-2">Breadcrumb styles including icon separators and the dashboard page header bar.</span>
+              </a>
+            </li>
+            <li class="col-md-6 col-xl-4">
+              <a class="d-block h-100 text-decoration-none" href="../components/cards.html">
+                <span class="d-block fw-500 text-heading fs-7">Cards</span>
+                <span class="d-block fs-8 text-muted-2"><code>components/cards.html</code></span>
+                <span class="d-block fs-8 text-muted-2">Base cards, KPI cards, profile cards, feature cards and hoverable card layouts.</span>
+              </a>
+            </li>
+            <li class="col-md-6 col-xl-4">
+              <a class="d-block h-100 text-decoration-none" href="../components/pricing.html">
+                <span class="d-block fw-500 text-heading fs-7">Pricing Blocks</span>
+                <span class="d-block fs-8 text-muted-2"><code>components/pricing.html</code></span>
+                <span class="d-block fs-8 text-muted-2">Pricing card layout with featured plan, billing toggle and feature lists.</span>
+              </a>
+            </li>
+            <li class="col-md-6 col-xl-4">
+              <a class="d-block h-100 text-decoration-none" href="../components/timeline.html">
+                <span class="d-block fw-500 text-heading fs-7">Timeline</span>
+                <span class="d-block fs-8 text-muted-2"><code>components/timeline.html</code></span>
+                <span class="d-block fs-8 text-muted-2">Vertical timeline and activity feed components used across detail pages.</span>
+              </a>
+            </li>
+            <li class="col-md-6 col-xl-4">
+              <a class="d-block h-100 text-decoration-none" href="../components/empty-states.html">
+                <span class="d-block fw-500 text-heading fs-7">Empty States</span>
+                <span class="d-block fs-8 text-muted-2"><code>components/empty-states.html</code></span>
+                <span class="d-block fs-8 text-muted-2">Empty, error and loading state blocks with icons, copy and actions.</span>
+              </a>
+            </li>
+            <li class="col-md-6 col-xl-4">
+              <a class="d-block h-100 text-decoration-none" href="../components/dropdowns.html">
+                <span class="d-block fw-500 text-heading fs-7">Dropdowns</span>
+                <span class="d-block fs-8 text-muted-2"><code>components/dropdowns.html</code></span>
+                <span class="d-block fs-8 text-muted-2">Dropdown menus, split buttons, notification panels and user menus.</span>
+              </a>
+            </li>
+            <li class="col-md-6 col-xl-4">
+              <a class="d-block h-100 text-decoration-none" href="../components/modals.html">
+                <span class="d-block fw-500 text-heading fs-7">Modals</span>
+                <span class="d-block fs-8 text-muted-2"><code>components/modals.html</code></span>
+                <span class="d-block fs-8 text-muted-2">Modal dialogs, sizes, confirmation dialogs and scrollable content.</span>
+              </a>
+            </li>
+            <li class="col-md-6 col-xl-4">
+              <a class="d-block h-100 text-decoration-none" href="../components/tabs.html">
+                <span class="d-block fw-500 text-heading fs-7">Tabs</span>
+                <span class="d-block fs-8 text-muted-2"><code>components/tabs.html</code></span>
+                <span class="d-block fs-8 text-muted-2">Tabs, pills and vertical navigation patterns with copy-ready markup.</span>
+              </a>
+            </li>
+            <li class="col-md-6 col-xl-4">
+              <a class="d-block h-100 text-decoration-none" href="../components/accordions.html">
+                <span class="d-block fw-500 text-heading fs-7">Accordions</span>
+                <span class="d-block fs-8 text-muted-2"><code>components/accordions.html</code></span>
+                <span class="d-block fs-8 text-muted-2">Accordion and collapse components with flush and separated variants.</span>
+              </a>
+            </li>
+            <li class="col-md-6 col-xl-4">
+              <a class="d-block h-100 text-decoration-none" href="../components/tooltips.html">
+                <span class="d-block fw-500 text-heading fs-7">Tooltips & Popovers</span>
+                <span class="d-block fs-8 text-muted-2"><code>components/tooltips.html</code></span>
+                <span class="d-block fs-8 text-muted-2">Tooltip and popover placement options with accessible trigger markup.</span>
+              </a>
+            </li>
+            <li class="col-md-6 col-xl-4">
+              <a class="d-block h-100 text-decoration-none" href="../components/toasts.html">
+                <span class="d-block fw-500 text-heading fs-7">Toasts</span>
+                <span class="d-block fs-8 text-muted-2"><code>components/toasts.html</code></span>
+                <span class="d-block fs-8 text-muted-2">Toast notifications for success, warning, error and info feedback.</span>
+              </a>
+            </li>
+            <li class="col-md-6 col-xl-4">
+              <a class="d-block h-100 text-decoration-none" href="../components/forms.html">
+                <span class="d-block fw-500 text-heading fs-7">Form Controls</span>
+                <span class="d-block fs-8 text-muted-2"><code>components/forms.html</code></span>
+                <span class="d-block fs-8 text-muted-2">Inputs, textareas, checks, radios, switches, range and validation states.</span>
+              </a>
+            </li>
+            <li class="col-md-6 col-xl-4">
+              <a class="d-block h-100 text-decoration-none" href="../components/input-groups.html">
+                <span class="d-block fw-500 text-heading fs-7">Input Groups</span>
+                <span class="d-block fs-8 text-muted-2"><code>components/input-groups.html</code></span>
+                <span class="d-block fs-8 text-muted-2">Input groups with icons, buttons, prefixes and suffixes.</span>
+              </a>
+            </li>
+            <li class="col-md-6 col-xl-4">
+              <a class="d-block h-100 text-decoration-none" href="../components/select.html">
+                <span class="d-block fw-500 text-heading fs-7">Select & Multiselect</span>
+                <span class="d-block fs-8 text-muted-2"><code>components/select.html</code></span>
+                <span class="d-block fs-8 text-muted-2">Native selects, sizing, multiple selection, search field and tag selectors.</span>
+              </a>
+            </li>
+            <li class="col-md-6 col-xl-4">
+              <a class="d-block h-100 text-decoration-none" href="../components/file-upload.html">
+                <span class="d-block fw-500 text-heading fs-7">File Upload</span>
+                <span class="d-block fs-8 text-muted-2"><code>components/file-upload.html</code></span>
+                <span class="d-block fs-8 text-muted-2">Dropzone, file list and attachment components.</span>
+              </a>
+            </li>
+            <li class="col-md-6 col-xl-4">
+              <a class="d-block h-100 text-decoration-none" href="../components/date-time.html">
+                <span class="d-block fw-500 text-heading fs-7">Date & Time Inputs</span>
+                <span class="d-block fs-8 text-muted-2"><code>components/date-time.html</code></span>
+                <span class="d-block fs-8 text-muted-2">Date, time, month and datetime-local inputs with helper text and validation.</span>
+              </a>
+            </li>
+            <li class="col-md-6 col-xl-4">
+              <a class="d-block h-100 text-decoration-none" href="../components/tables.html">
+                <span class="d-block fw-500 text-heading fs-7">Tables</span>
+                <span class="d-block fs-8 text-muted-2"><code>components/tables.html</code></span>
+                <span class="d-block fs-8 text-muted-2">Tables with toolbar, selection, sorting, pagination and empty state.</span>
+              </a>
+            </li>
+            <li class="col-md-6 col-xl-4">
+              <a class="d-block h-100 text-decoration-none" href="../components/pagination.html">
+                <span class="d-block fw-500 text-heading fs-7">Pagination</span>
+                <span class="d-block fs-8 text-muted-2"><code>components/pagination.html</code></span>
+                <span class="d-block fs-8 text-muted-2">Pagination styles, page size selectors and table footers.</span>
+              </a>
+            </li>
+            <li class="col-md-6 col-xl-4">
+              <a class="d-block h-100 text-decoration-none" href="../components/charts.html">
+                <span class="d-block fw-500 text-heading fs-7">Charts</span>
+                <span class="d-block fs-8 text-muted-2"><code>components/charts.html</code></span>
+                <span class="d-block fs-8 text-muted-2">Line, area, bar, stacked bar and doughnut charts built on Chart.js with theme support.</span>
+              </a>
+            </li>
+            <li class="col-md-6 col-xl-4">
+              <a class="d-block h-100 text-decoration-none" href="../components/progress.html">
+                <span class="d-block fw-500 text-heading fs-7">Progress</span>
+                <span class="d-block fs-8 text-muted-2"><code>components/progress.html</code></span>
+                <span class="d-block fs-8 text-muted-2">Progress bars, stacked progress, circular rings, skeletons and counters.</span>
+              </a>
+            </li>
+            <li class="col-md-6 col-xl-4">
+              <a class="d-block h-100 text-decoration-none" href="../components/spinners.html">
+                <span class="d-block fw-500 text-heading fs-7">Spinners</span>
+                <span class="d-block fs-8 text-muted-2"><code>components/spinners.html</code></span>
+                <span class="d-block fs-8 text-muted-2">Bootstrap spinners and the Qevora loading spinner in every size and colour.</span>
+              </a>
+            </li>
+            </ul>
+          </div>
+          <div class="mb-4">
+            <h3 class="h6 text-heading d-flex flex-wrap align-items-center gap-2 mb-2">Authentication
+              <span class="badge badge-soft-neutral">6 pages</span>
+            </h3>
+            <p class="fs-8 text-muted-2 mb-2">Sign-in flows on the blank layout: login, register, forgot and reset password, verify email, two-factor.</p>
+            <ul class="row g-3 list-unstyled mb-0">
+            <li class="col-md-6 col-xl-4">
+              <a class="d-block h-100 text-decoration-none" href="../auth/login.html">
+                <span class="d-block fw-500 text-heading fs-7">Login</span>
+                <span class="d-block fs-8 text-muted-2"><code>auth/login.html</code></span>
+                <span class="d-block fs-8 text-muted-2">Sign-in page with email and password fields, remember me, social sign-in and demo validation.</span>
+              </a>
+            </li>
+            <li class="col-md-6 col-xl-4">
+              <a class="d-block h-100 text-decoration-none" href="../auth/register.html">
+                <span class="d-block fw-500 text-heading fs-7">Create Account</span>
+                <span class="d-block fs-8 text-muted-2"><code>auth/register.html</code></span>
+                <span class="d-block fs-8 text-muted-2">Registration page with name, work email, password strength meter and terms checkbox.</span>
+              </a>
+            </li>
+            <li class="col-md-6 col-xl-4">
+              <a class="d-block h-100 text-decoration-none" href="../auth/forgot-password.html">
+                <span class="d-block fw-500 text-heading fs-7">Forgot Password</span>
+                <span class="d-block fs-8 text-muted-2"><code>auth/forgot-password.html</code></span>
+                <span class="d-block fs-8 text-muted-2">Password recovery page that requests a reset link by email.</span>
+              </a>
+            </li>
+            <li class="col-md-6 col-xl-4">
+              <a class="d-block h-100 text-decoration-none" href="../auth/reset-password.html">
+                <span class="d-block fw-500 text-heading fs-7">Reset Password</span>
+                <span class="d-block fs-8 text-muted-2"><code>auth/reset-password.html</code></span>
+                <span class="d-block fs-8 text-muted-2">Set a new password with strength meter and confirmation field.</span>
+              </a>
+            </li>
+            <li class="col-md-6 col-xl-4">
+              <a class="d-block h-100 text-decoration-none" href="../auth/verify-email.html">
+                <span class="d-block fw-500 text-heading fs-7">Verify Email</span>
+                <span class="d-block fs-8 text-muted-2"><code>auth/verify-email.html</code></span>
+                <span class="d-block fs-8 text-muted-2">Email verification page with six-digit code input and resend action.</span>
+              </a>
+            </li>
+            <li class="col-md-6 col-xl-4">
+              <a class="d-block h-100 text-decoration-none" href="../auth/two-factor.html">
+                <span class="d-block fw-500 text-heading fs-7">Two Factor Authentication</span>
+                <span class="d-block fs-8 text-muted-2"><code>auth/two-factor.html</code></span>
+                <span class="d-block fs-8 text-muted-2">Two-factor authentication page with authenticator code input and recovery option.</span>
+              </a>
+            </li>
+            </ul>
+          </div>
+          <div class="mb-4">
+            <h3 class="h6 text-heading d-flex flex-wrap align-items-center gap-2 mb-2">Utility
+              <span class="badge badge-soft-neutral">7 pages</span>
+            </h3>
+            <p class="fs-8 text-muted-2 mb-2">Pages that sit outside the product: the 404 and 500 states, maintenance and coming-soon screens, the terms and privacy documents, and the sitemap.</p>
+            <ul class="row g-3 list-unstyled mb-0">
+            <li class="col-md-6 col-xl-4">
+              <a class="d-block h-100 text-decoration-none" href="../utility/404.html">
+                <span class="d-block fw-500 text-heading fs-7">404 Not Found</span>
+                <span class="d-block fs-8 text-muted-2"><code>utility/404.html</code></span>
+                <span class="d-block fs-8 text-muted-2">Not found page with search suggestion and navigation back to the dashboard.</span>
+              </a>
+            </li>
+            <li class="col-md-6 col-xl-4">
+              <a class="d-block h-100 text-decoration-none" href="../utility/500.html">
+                <span class="d-block fw-500 text-heading fs-7">500 Server Error</span>
+                <span class="d-block fs-8 text-muted-2"><code>utility/500.html</code></span>
+                <span class="d-block fs-8 text-muted-2">Server error page with status line, retry action and support link.</span>
+              </a>
+            </li>
+            <li class="col-md-6 col-xl-4">
+              <a class="d-block h-100 text-decoration-none" href="../utility/maintenance.html">
+                <span class="d-block fw-500 text-heading fs-7">Maintenance</span>
+                <span class="d-block fs-8 text-muted-2"><code>utility/maintenance.html</code></span>
+                <span class="d-block fs-8 text-muted-2">Scheduled maintenance page with status details and notification signup.</span>
+              </a>
+            </li>
+            <li class="col-md-6 col-xl-4">
+              <a class="d-block h-100 text-decoration-none" href="../utility/terms.html">
+                <span class="d-block fw-500 text-heading fs-7">Terms & Conditions</span>
+                <span class="d-block fs-8 text-muted-2"><code>utility/terms.html</code></span>
+                <span class="d-block fs-8 text-muted-2">Sample terms of service for a SaaS product: accounts, billing, acceptable use, AI output, liability and dispute terms.</span>
+              </a>
+            </li>
+            <li class="col-md-6 col-xl-4">
+              <a class="d-block h-100 text-decoration-none" href="../utility/privacy.html">
+                <span class="d-block fw-500 text-heading fs-7">Privacy Policy</span>
+                <span class="d-block fs-8 text-muted-2"><code>utility/privacy.html</code></span>
+                <span class="d-block fs-8 text-muted-2">Sample privacy policy for a SaaS product: what is collected, how AI prompts are handled, retention, security and user rights.</span>
+              </a>
+            </li>
+            <li class="col-md-6 col-xl-4">
+              <a class="d-block h-100 text-decoration-none" href="../utility/sitemap.html">
+                <span class="d-block fw-500 text-heading fs-7">Sitemap</span>
+                <span class="d-block fs-8 text-muted-2"><code>utility/sitemap.html</code></span>
+                <span class="d-block fs-8 text-muted-2">Every page in the package on one screen, grouped by module with a one-line description of each.</span>
+              </a>
+            </li>
+            <li class="col-md-6 col-xl-4">
+              <a class="d-block h-100 text-decoration-none" href="../utility/coming-soon.html">
+                <span class="d-block fw-500 text-heading fs-7">Coming Soon</span>
+                <span class="d-block fs-8 text-muted-2"><code>utility/coming-soon.html</code></span>
+                <span class="d-block fs-8 text-muted-2">Coming soon page with launch countdown and email capture.</span>
+              </a>
+            </li>
+            </ul>
+          </div>
+          <div class="mb-4">
+            <h3 class="h6 text-heading d-flex flex-wrap align-items-center gap-2 mb-2">Documentation
+              <span class="badge badge-soft-neutral">2 pages</span>
+            </h3>
+            <p class="fs-8 text-muted-2 mb-2">The written guide and the design-system reference that document the shell, the tokens and the build.</p>
+            <ul class="row g-3 list-unstyled mb-0">
+            <li class="col-md-6 col-xl-4">
+              <a class="d-block h-100 text-decoration-none" href="../documentation/index.html">
+                <span class="d-block fw-500 text-heading fs-7">Documentation</span>
+                <span class="d-block fs-8 text-muted-2"><code>documentation/index.html</code></span>
+                <span class="d-block fs-8 text-muted-2">Installation, folder structure, customisation and component usage guide for the Qevora AI SaaS UI template.</span>
+              </a>
+            </li>
+            <li class="col-md-6 col-xl-4">
+              <a class="d-block h-100 text-decoration-none" href="../documentation/design-system.html">
+                <span class="d-block fw-500 text-heading fs-7">Design System</span>
+                <span class="d-block fs-8 text-muted-2"><code>documentation/design-system.html</code></span>
+                <span class="d-block fs-8 text-muted-2">Colour, typography, spacing, radius, shadow and breakpoint specification for the Qevora design system.</span>
+              </a>
+            </li>
+            </ul>
+          </div>
+              <!-- q-doc-inventory:end -->
+            </div>
+          </div>
+
+          <div class="card mb-4" id="customise">
+            <div class="card-header"><h2 class="card-title mb-0">3. Customising the template</h2></div>
+            <div class="card-body">
+              <p class="fs-7 text-muted-2">
+                Almost every visual decision lives in one CSS variable block at the top of
+                <code>assets/css/style.css</code>. Change the value there and the whole template follows — buttons,
+                charts, badges, the sidebar and dark mode.
+              </p>
+
+              <div class="row g-4 mb-4">
+                <div class="col-md-6">
+                  <p class="fw-600 text-heading fs-7 mb-2">Brand colour</p>
+                  <div class="demo-code-wrap">
+                    <button class="copy-btn" data-copy-target="#docBrand" type="button"><i class="bi bi-clipboard"></i> Copy</button>
+                    <pre class="demo-code"><code id="docBrand">:root {
+  --q-primary: #4f46e5;
+  --q-primary-rgb: 79, 70, 229;   /* keep in sync */
+  --q-primary-hover: #4338ca;
+  --q-primary-soft: #eef0ff;
+}</code></pre>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <p class="fw-600 text-heading fs-7 mb-2">Layout measurements</p>
+                  <div class="demo-code-wrap">
+                    <button class="copy-btn" data-copy-target="#docLayout" type="button"><i class="bi bi-clipboard"></i> Copy</button>
+                    <pre class="demo-code"><code id="docLayout">:root {
+  --q-sidebar-width: 268px;
+  --q-sidebar-width-compact: 78px;
+  --q-header-height: 66px;
+  --q-content-max: 1560px;
+}</code></pre>
+                  </div>
+                </div>
+              </div>
+
+              <ul class="fs-7 text-muted-2 d-flex flex-column gap-2 mb-0">
+                <li><strong class="text-heading">Radius:</strong> <code>--q-radius-xs</code> to <code>--q-radius-xl</code> drive every rounded corner, including cards and inputs.</li>
+                <li><strong class="text-heading">Fonts:</strong> Inter is self-hosted in <code>assets/fonts/inter/</code>. Swap the <code>@font-face</code> block in <code>assets/css/fonts.css</code> and the <code>--q-font-sans</code> token to change it.</li>
+                <li><strong class="text-heading">Logo:</strong> replace <code>assets/images/logo/logo.svg</code> and <code>logo-white.svg</code> (used on the auth pages), and <code>favicon.svg</code> for the browser tab.</li>
+                <li><strong class="text-heading">Sidebar menu:</strong> edit the <code>&lt;aside class="q-sidebar"&gt;</code> block at the top of each page — the markup is identical in every file, so one find-and-replace updates all of them. If you also have the developer source package, edit <code>src/nav.mjs</code> once and run the builder instead (section 5).</li>
+                <li><strong class="text-heading">Dark mode:</strong> toggle with any <code>[data-theme-toggle]</code> button — the choice is stored under the <code>qevora-theme</code> key in localStorage.</li>
+                <li><strong class="text-heading">RTL:</strong> click the translate icon in the header (or add <code>dir="rtl"</code> to the <code>&lt;html&gt;</code> tag) — the sidebar script swaps in <code>bootstrap.rtl.min.css</code> automatically.</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="card mb-4" id="javascript">
+            <div class="card-header"><h2 class="card-title mb-0">4. JavaScript reference</h2></div>
+            <div class="table-responsive">
+              <table class="table table-hover align-middle mb-0">
+                <thead>
+                  <tr>
+                    <th scope="col">File</th>
+                    <th scope="col">Responsibility</th>
+                    <th scope="col">Public API / hooks</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><code>theme.js</code></td>
+                    <td class="fs-7 text-muted-2 text-wrap">Light/dark switching, saved preference, system default</td>
+                    <td class="fs-7 text-wrap"><code>QevoraTheme.set()</code>, <code>.toggle()</code>, <code>[data-theme-toggle]</code></td>
+                  </tr>
+                  <tr>
+                    <td><code>sidebar.js</code></td>
+                    <td class="fs-7 text-muted-2 text-wrap">Mobile drawer, icon-only compact rail with hover hints, RTL switching</td>
+                    <td class="fs-7 text-wrap"><code>QevoraSidebar.toggle()</code>, <code>[data-sidebar-toggle]</code>, <code>[data-sidebar-compact]</code>, <code>[data-dir-toggle]</code></td>
+                  </tr>
+                  <tr>
+                    <td><code>app.js</code></td>
+                    <td class="fs-7 text-muted-2 text-wrap">Toasts, counters, tooltips, table search, demo actions, active nav</td>
+                    <td class="fs-7 text-wrap"><code>Qevora.toast()</code>, <code>Qevora.copyText()</code>, <code>[data-counter]</code>, <code>[data-table-filter]</code>, <code>[data-demo-action]</code></td>
+                  </tr>
+                  <tr>
+                    <td><code>components.js</code></td>
+                    <td class="fs-7 text-muted-2 text-wrap">Preview / HTML / CSS / JS demo tabs, copy buttons, syntax highlighting, table sort, pagination, kanban, upload zones</td>
+                    <td class="fs-7 text-wrap"><code>QevoraComponents.init()</code>, <code>[data-demo-tab]</code>, <code>[data-copy-target]</code>, <code>th[data-sort]</code>, <code>[data-paginate]</code>, <code>[data-upload-zone]</code></td>
+                  </tr>
+                  <tr>
+                    <td><code>demo-ui.js</code></td>
+                    <td class="fs-7 text-muted-2 text-wrap">
+                      The demo interactions: dialogs that add and edit records, delete with undo, live filters that keep the
+                      pagination and the counters in step, loading buttons, exports that write a real CSV — of a table, of a
+                      page area (KPI tiles plus tables, or a whole chat transcript) or of one row — file downloads, and a safe
+                      fallback for any control without a handler. Every one of them is a few lines you can point at your own API.
+                    </td>
+                    <td class="fs-7 text-wrap">
+                      <code>[data-demo-open]</code>, <code>[data-demo-form]</code>, <code>[data-demo-field]</code>,
+                      <code>[data-demo-delete]</code>, <code>[data-demo-filter]</code>, <code>[data-demo-count]</code>,
+                      <code>[data-demo-column]</code>, <code>[data-demo-load]</code>, <code>[data-demo-export]</code>
+                      (+ <code>-export-name</code>, or <code>"closest"</code> with <code>-export-scope</code>),
+                      <code>[data-demo-download]</code>, <code>[data-demo-print="pdf"]</code>,
+                      <code>[data-demo-new]</code> (+ <code>-table</code>, <code>-label</code>) for the create/edit dialog,
+                      <code>[data-demo-import]</code> for pasted or uploaded CSV,
+                      <code>[data-demo-add-card]</code>, <code>[data-demo-add-column]</code>,
+                      <code>[data-demo-upload]</code>, <code>[data-demo-new-chat]</code>,
+                      <code>[data-demo-reuse]</code> with <code>[data-demo-prefill]</code> for handing a prompt to the next
+                      page, <code>[data-demo-clear-rows]</code>, <code>[data-demo-attach]</code>,
+                      <code>[data-demo-message]</code> for the shared message dialog (with
+                      <code>[data-demo-message-send]</code> inside <code>#q-demo-message</code>),
+                      <code>[data-demo-pick]</code> for dropdown menus, button groups and lists where one item is
+                      current (plus <code>-group</code>, <code>-active-class</code>, <code>-idle-class</code>,
+                      <code>-label</code>, <code>-done</code>),
+                      <code>[data-demo-delete]</code> with <code>-label</code>, <code>-verb</code>,
+                      <code>-name</code> and <code>-target</code> to word the confirmation and to name what is removed,
+                      <code>[data-demo-edit]</code> with <code>-fields</code>, <code>-options</code> and
+                      <code>-label</code> to edit the page itself — every <code>[data-slot]</code> inside the named
+                      scope is read into the dialog and written back on save (a <code>[data-demo-initials]</code>
+                      avatar follows the new name),
+                      <code>[data-demo-log]</code> with <code>-text</code>, <code>-variant</code> and
+                      <code>-done</code> to add a dated timeline entry,
+                      <code>[data-demo-message-to]</code> to fill the recipient and
+                      <code>[data-demo-message-log]</code> to note a sent message in the activity feed.
+                      The card boards are pure markup: a <code>[data-kanban]</code> wrapper with
+                      <code>.kanban__col</code> columns holding <code>.kanban__card</code> articles gives you
+                      dragging, the landing outline, the counters, the empty-column note, the ⠿ handle and
+                      its move-to-stage menu — add <code>data-kanban-label</code> to name what a card is.
+                      A board filter is markup as well: a dropdown carrying
+                      <code>[data-demo-board-filters]</code>, chips with
+                      <code>[data-demo-board-filter]</code> and <code>[data-demo-board-value]</code>
+                      (matched against the badges, avatars and tooltips inside a card), a
+                      <code>[data-demo-board-count]</code> badge, a <code>[data-demo-board-summary]</code>
+                      line and a <code>[data-demo-board-clear]</code> button,
+                      <code>QevoraDemo.refresh()</code>.
+                      Give the panel <code>.dropdown-menu-filter</code> with a
+                      <code>.dropdown-menu-filter__head</code> (a title and a close button on
+                      <code>[data-demo-board-close]</code>), a <code>.dropdown-menu-filter__body</code>
+                      (the groups) and a <code>.dropdown-menu-filter__foot</code> (the summary and
+                      Clear): the body scrolls, the footer stays pinned and opaque, and the panel is
+                      capped against the viewport — width and height both — so it opens under the
+                      Filter button, or above it, but never off the screen.
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><code>pages/charts.js</code></td>
+                    <td class="fs-7 text-muted-2 text-wrap">Chart.js registry, progress rings, re-theming</td>
+                    <td class="fs-7 text-wrap"><code>QevoraCharts.rebuild()</code>, <code>canvas[data-chart]</code>, <code>[data-ring]</code></td>
+                  </tr>
+                  <tr>
+                    <td><code>pages/chat.js</code></td>
+                    <td class="fs-7 text-muted-2 text-wrap">Chat composer, canned replies, conversation filter (team chat and AI chat)</td>
+                    <td class="fs-7 text-wrap"><code>[data-chat-composer]</code>, <code>[data-chat-thread]</code>, <code>[data-conversation-search]</code></td>
+                  </tr>
+                  <tr>
+                    <td><code>pages/calendar.js</code></td>
+                    <td class="fs-7 text-muted-2 text-wrap">
+                      The month, week and day calendar: the grid, month navigation, the four calendars that filter it,
+                      the day-by-day agenda beside it and the event dialog (add, edit, delete — each one announced and
+                      undoable). The demo events are seeded against the month the page opens on, so the calendar looks
+                      alive whatever the date on the viewer's machine is; swap the <code>SEEDS</code> list at the top of
+                      the file for your own data and the grid, the counters, the agenda and the dialog all follow.
+                    </td>
+                    <td class="fs-7 text-wrap">
+                      <code>[data-cal-view-host]</code> with <code>[data-cal-title]</code>, <code>[data-cal-subtitle]</code>,
+                      <code>[data-cal-count]</code> and <code>[data-cal-visible]</code> for the headline and the counters;
+                      <code>[data-cal-btn]</code> (month / week / day), <code>[data-cal-prev]</code>,
+                      <code>[data-cal-today]</code>, <code>[data-cal-next]</code> to move;
+                      <code>[data-cal-filter]</code> dots and <code>[data-cal-switch]</code> checkboxes for the four
+                      calendars; <code>[data-cal-agenda]</code> with <code>[data-cal-agenda-title]</code>,
+                      <code>[data-cal-agenda-date]</code> and <code>[data-cal-agenda-today]</code> for the sidebar;
+                      <code>[data-cal-new]</code> (an optional <code>YYYY-MM-DD</code> value starts the dialog on that
+                      day), <code>[data-cal-event]</code> on any chip or agenda line to open its detail dialog with
+                      <code>[data-cal-edit]</code> and <code>[data-cal-delete]</code>, and the form hooks
+                      <code>[data-cal-form]</code>, <code>[data-cal-field="title|date|time|end|type|place"]</code> and
+                      <code>[data-cal-submit]</code>; <code>QevoraCalendar.events()</code>,
+                      <code>.state()</code> and <code>.refresh()</code> to read the list and repaint
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><code>pages/auth.js</code></td>
+                    <td class="fs-7 text-muted-2 text-wrap">One-time-code inputs and live countdowns</td>
+                    <td class="fs-7 text-wrap"><code>[data-otp]</code>, <code>[data-countdown]</code></td>
+                  </tr>
+                </tbody>
+              </table>
+              <p class="fs-7 text-muted-2 mb-0">
+                On screens 992px and wider the header button collapses the sidebar to a 78px icon rail: the brand keeps
+                its mark, every item shows its name as a tooltip on hover or focus, and the labels stay in the markup so
+                screen readers still announce each link. Clicking a section icon expands the sidebar with that section
+                already open — the rail never opens a panel of its own, because the navigation column clips anything
+                wider than itself. Press the header button — now a chevron — to collapse it again; the choice is
+                remembered in <code>localStorage</code>.
+              </p>
+            </div>
+          </div>
+
+          <div class="card mb-4" id="builder">
+            <div class="card-header"><h2 class="card-title mb-0">5. Optional developer source package</h2></div>
+            <div class="card-body">
+              <div class="alert alert-warning d-flex align-items-start gap-2 mb-4" role="alert">
+                <i class="bi bi-cone-striped alert-icon"></i>
+                <div class="fs-8">
+                  <strong class="d-block fs-7">Developer package only</strong>
+                  The commands on this page read <code>src/</code> and <code>tools/</code>, which are not part of the
+                  standard buyer download. If your package has no <code>src/</code> folder, skip this section — every
+                  other section works on the finished HTML files alone.
+                </div>
+              </div>
+
+              <p class="fs-7 text-muted-2">
+                Editing 84 files every time the header changes is tedious, so the developer package adds a tiny
+                builder. It stitches the shell partials and each page body into the final HTML files. It has no
+                dependencies and needs Node 18 or newer.
+              </p>
+
+              <div class="demo-code-wrap mb-4">
+                <button class="copy-btn" data-copy-target="#docBuild" type="button"><i class="bi bi-clipboard"></i> Copy</button>
+                <pre class="demo-code"><code id="docBuild">node tools/build.mjs             # write every page in src/pages.mjs
+node tools/build.mjs --check     # validate only: report missing bodies and dead links
+node tools/audit.mjs             # 21 static QA checks per page, plus light/dark theme contrast
+node tools/audit.mjs --part ai   # audit one section at a time
+npm i --no-save jsdom            # one-off, for the optional runtime check
+node tools/smoke.mjs             # run every page and click key controls: console errors, missing assets</code></pre>
+              </div>
+
+              <p class="fw-600 text-heading fs-7 mb-2">How a page is assembled</p>
+              <p class="fs-7 text-muted-2">
+                Each entry in <code>src/pages.mjs</code> declares the output path, the page title and description, the
+                breadcrumb trail, an optional layout (<code>app</code> for the dashboard shell, <code>blank</code> for
+                auth and utility pages) and any extra scripts. The builder then replaces these tokens inside the
+                partials and the body:
+              </p>
+
+              <div class="table-responsive mb-4">
+                <table class="table table-sm align-middle mb-0">
+                  <thead>
+                    <tr><th scope="col">Token</th><th scope="col">Replaced with</th></tr>
+                  </thead>
+                  <tbody class="fs-7">
+                    <tr><td><code>&#123;&#123;META_TITLE&#125;&#125;</code></td><td class="text-muted-2">The page <code>&lt;title&gt;</code></td></tr>
+                    <tr><td><code>&#123;&#123;META_DESC&#125;&#125;</code></td><td class="text-muted-2">The meta description</td></tr>
+                    <tr><td><code>&#123;&#123;DEPTH&#125;&#125;</code></td><td class="text-muted-2 text-wrap">Relative prefix (<code>../</code>) so every asset path stays correct at any folder depth</td></tr>
+                    <tr><td><code>&#123;&#123;NAV&#125;&#125;</code></td><td class="text-muted-2 text-wrap">The full sidebar menu, built from <code>src/nav.mjs</code></td></tr>
+                    <tr><td><code>&#123;&#123;BREADCRUMB&#125;&#125;</code></td><td class="text-muted-2">The page-header breadcrumb</td></tr>
+                    <tr><td><code>&#123;&#123;CONTENT&#125;&#125;</code></td><td class="text-muted-2 text-wrap">The body file from <code>src/pages/</code></td></tr>
+                    <tr><td><code>&#123;&#123;PAGE_SCRIPTS&#125;&#125;</code></td><td class="text-muted-2 text-wrap">Extra scripts such as Chart.js for chart pages</td></tr>
+                    <tr><td><code>&#123;&#123;HEAD_EXTRA&#125;&#125;</code></td><td class="text-muted-2 text-wrap">Optional extra tags for the <code>&lt;head&gt;</code></td></tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <p class="fw-600 text-heading fs-7 mb-2">How the component pages are built</p>
+              <p class="fs-7 text-muted-2">
+                Every demo block on a component page carries four panes: <strong>Preview</strong>,
+                <strong>HTML</strong>, <strong>CSS</strong> and <strong>JS</strong>. You author the preview and the
+                HTML sample; the builder writes the other two from what actually ships — the CSS rules are lifted out
+                of <code>assets/css/style.css</code> and <code>components.css</code> for the exact classes used in that
+                block, and the JS pane lists the hooks the block relies on (Bootstrap data attributes are reported as
+                "no custom script required"). That way the samples can never drift from the code.
+              </p>
+
+              <p class="fw-600 text-heading fs-7 mb-2">Adding a new page in four steps</p>
+              <ol class="fs-7 text-muted-2 d-flex flex-column gap-2 mb-0">
+                <li>Create the body file, for example <code>src/pages/pages/roadmap.html</code>.</li>
+                <li>Add an entry to <code>src/pages.mjs</code> with its <code>out</code> path, metadata and breadcrumb.</li>
+                <li>Add the menu link to <code>src/nav.mjs</code>.</li>
+                <li>Run <code>node tools/build.mjs</code> — the new page appears with the correct title, breadcrumb and navigation in every other page.</li>
+                <li>Run <code>node tools/audit.mjs</code> — it checks headings, labels, ids, anchors, class names, data hooks, chart wiring, link targets and the four-pane demo contract before you ship, and it measures the light/dark contrast of the palette tokens (tooltips, cards, toasts) once for the whole theme.</li>
+              </ol>
+
+              <div class="alert alert-warning d-flex align-items-start gap-2 mt-4 mb-0" role="alert">
+                <i class="bi bi-exclamation-triangle alert-icon"></i>
+                <div class="fs-8">
+                  <strong class="d-block fs-7">If you edit the HTML directly, stop using the builder</strong>
+                  The build script overwrites the generated files at the repository root. Either work in
+                  <code>src/</code> and rebuild, or edit the generated HTML and ignore <code>src/</code> — mixing both
+                  will lose work.
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="card mb-4" id="accessibility">
+            <div class="card-header"><h2 class="card-title mb-0">6. Accessibility &amp; browser support</h2></div>
+            <div class="card-body">
+              <ul class="fs-7 text-muted-2 d-flex flex-column gap-2 mb-0">
+                <li>Skip links, landmarks, labelled forms and <code>aria-*</code> states are included on every page.</li>
+                <li>Icon-only controls always carry an <code>aria-label</code>; decorative icons use <code>aria-hidden="true"</code>.</li>
+                <li>Colour contrast targets WCAG AA in both themes — the dark palette re-tunes the brand colour rather than only inverting it.</li>
+                <li>Animated counters respect <code>prefers-reduced-motion</code> and print the final value immediately.</li>
+                <li>Tables, pagination and cards are keyboard reachable; the mobile drawer closes on <code>Esc</code>.</li>
+                <li>Tested in Chrome, Edge, Firefox and Safari (last two major versions) plus iOS Safari and Chrome on Android.</li>
+                <li>Every overlay fits the narrowest phone: the board filter opens anchored to its button, keeps its
+                  own close button in the header, scrolls its groups and pins its summary and Clear — and it only
+                  exists while it is open. The header holds one even row of 40px controls below 768px, with the profile
+                  as a circle there, because the name and role are hidden and a pill around a circle reads as an oval.</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="card" id="credits">
+            <div class="card-header"><h2 class="card-title mb-0">7. Credits &amp; licences</h2></div>
+            <div class="table-responsive">
+              <table class="table align-middle mb-0">
+                <thead>
+                  <tr><th scope="col">Resource</th><th scope="col">Version</th><th scope="col">Licence</th></tr>
+                </thead>
+                <tbody class="fs-7">
+                  <tr>
+                    <td><a href="https://getbootstrap.com" target="_blank" rel="noopener">Bootstrap</a></td>
+                    <td>5.3.3</td>
+                    <td class="text-muted-2">MIT — <a href="https://github.com/twbs/bootstrap/blob/main/LICENSE" target="_blank" rel="noopener">licence text</a></td>
+                  </tr>
+                  <tr>
+                    <td><a href="https://icons.getbootstrap.com" target="_blank" rel="noopener">Bootstrap Icons</a></td>
+                    <td>1.11.3</td>
+                    <td class="text-muted-2">MIT — <a href="https://github.com/twbs/icons/blob/main/LICENSE.md" target="_blank" rel="noopener">licence text</a></td>
+                  </tr>
+                  <tr>
+                    <td><a href="https://www.chartjs.org" target="_blank" rel="noopener">Chart.js</a></td>
+                    <td>4.4.3</td>
+                    <td class="text-muted-2">MIT — <a href="https://github.com/chartjs/Chart.js/blob/master/LICENSE.md" target="_blank" rel="noopener">licence text</a></td>
+                  </tr>
+                  <tr>
+                    <td><a href="https://fonts.google.com/specimen/Inter" target="_blank" rel="noopener">Inter</a> (font)</td>
+                    <td>5.0.18</td>
+                    <td class="text-muted-2 text-wrap">SIL Open Font License 1.1 — shipped with the font as <code>assets/fonts/inter/LICENSE.txt</code></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="card-body">
+              <p class="fs-8 text-muted-2 mb-2">
+                All images in this template are CSS or SVG placeholders created for the kit — no third-party photography
+                is bundled, so you can ship the template commercially without extra attribution. Every library is
+                vendored inside <code>assets/</code> at the pinned version above; the package never calls a CDN.
+              </p>
+              <p class="fs-8 text-muted-2 mb-0">
+                The full licence of this template, including these third-party attributions, is in
+                <code>LICENSE.txt</code> next to <code>README.txt</code>. Support is handled through the item page on
+                the marketplace where you purchased the template.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-xl-3">
+          <div class="card sticky-lg-top" style="top: 86px;">
+            <div class="card-header"><h2 class="card-title mb-0">On this page</h2></div>
+            <div class="card-body">
+              <nav aria-label="Documentation sections">
+                <ul class="list-unstyled d-flex flex-column gap-2 fs-7 mb-0">
+                  <li><a href="#quick-start"><i class="bi bi-arrow-right-short"></i> Quick start</a></li>
+                  <li><a href="#inventory"><i class="bi bi-arrow-right-short"></i> Page inventory</a></li>
+                  <li><a href="#customise"><i class="bi bi-arrow-right-short"></i> Customising</a></li>
+                  <li><a href="#javascript"><i class="bi bi-arrow-right-short"></i> JavaScript reference</a></li>
+                  <li><a href="#builder"><i class="bi bi-arrow-right-short"></i> Build script</a></li>
+                  <li><a href="#accessibility"><i class="bi bi-arrow-right-short"></i> Accessibility</a></li>
+                  <li><a href="#credits"><i class="bi bi-arrow-right-short"></i> Credits</a></li>
+                </ul>
+              </nav>
+            </div>
+            <div class="card-footer">
+              <a class="btn btn-sm btn-soft-primary w-100" href="design-system.html"><i class="bi bi-palette"></i> Design system</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+      <!-- ================= Footer ================= -->
+      <footer class="q-footer">
+        <div class="q-footer__inner">
+          <span>© <span data-current-year>2026</span> Qevora Software — Qevora AI SaaS UI · Bootstrap 5 Admin Dashboard &amp; UI Kit.</span>
+          <nav class="d-flex flex-wrap gap-3" aria-label="Footer">
+            <a href="../documentation/index.html">Documentation</a>
+            <a href="../documentation/design-system.html">Design System</a>
+            <a href="../pages/help.html">Support</a>
+            <a href="../pages/pricing.html">Pricing</a>
+            <a href="../utility/terms.html">Terms</a>
+            <a href="../utility/privacy.html">Privacy</a>
+            <a href="../utility/sitemap.html">Sitemap</a>
+          </nav>
+        </div>
+      </footer>
+
+  </div>
+
+
+  <!-- ================= Shared demo dialogs ================= -->
+  <!-- Used by any <button data-demo-delete> in the template: it confirms first
+       and offers an undo afterwards. -->
+  <div class="modal fade" id="q-demo-confirm" tabindex="-1" aria-labelledby="q-demo-confirm-title" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-sm">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2 class="modal-title fs-6" id="q-demo-confirm-title" data-demo-title="Delete {name}?">Delete this record?</h2>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close dialog"></button>
+        </div>
+        <div class="modal-body">
+          <p class="fs-7 text-muted-2 mb-0">
+            <strong class="text-heading" data-slot="name"></strong>
+            will be removed from the table. This is a front-end demo — press <strong>Undo</strong> on the confirmation to
+            put it back.
+          </p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-white" data-bs-dismiss="modal">Cancel</button>
+          <button type="button" class="btn btn-danger" data-demo-confirm>Delete</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Used by every "Add …" button: demo-ui.js builds the fields from the table
+       the button points at, so a new list page needs no extra markup. -->
+  <div class="modal fade" id="q-demo-record" tabindex="-1" aria-labelledby="q-demo-record-title" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <form data-demo-form novalidate>
+          <div class="modal-header">
+            <h2 class="modal-title fs-6" id="q-demo-record-title" data-demo-title="Add record">Add record</h2>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close dialog"></button>
+          </div>
+          <div class="modal-body">
+            <div class="row g-3" data-demo-record-fields></div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-white" data-bs-dismiss="modal">Cancel</button>
+            <button type="submit" class="btn btn-primary" data-demo-submit>Add record</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Opened by any <button data-demo-message="Ava Reynolds">: the message icon
+       buttons in dashboards and lists open this dialog with the recipient
+       filled in. Nothing is sent — it is a front-end demo. -->
+  <div class="modal fade" id="q-demo-message" tabindex="-1" aria-labelledby="q-demo-message-title" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2 class="modal-title fs-6" id="q-demo-message-title" data-demo-message-title="Message {name}">New message</h2>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close dialog"></button>
+        </div>
+        <div class="modal-body">
+          <div class="mb-3">
+            <label class="form-label" for="q-demo-message-to">To</label>
+            <input class="form-control" type="text" id="q-demo-message-to" data-demo-message-to readonly>
+          </div>
+          <label class="form-label" for="q-demo-message-body">Message</label>
+          <textarea class="form-control" id="q-demo-message-body" data-demo-message-body rows="4"
+                    placeholder="Write a short message…"></textarea>
+          <p class="fs-8 text-muted-2 mt-2 mb-0">Front-end demo — the message is not sent anywhere.</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-white" data-bs-dismiss="modal">Cancel</button>
+          <button type="button" class="btn btn-primary" data-demo-message-send><i class="bi bi-send"></i> Send message</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Opened by data-demo-import="#table": the pasted rows (or a chosen .csv
+       file) become rows of that table, one record per line. -->
+  <div class="modal fade" id="q-demo-import" tabindex="-1" aria-labelledby="q-demo-import-title" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2 class="modal-title fs-6" id="q-demo-import-title" data-demo-import-title>Import</h2>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close dialog"></button>
+        </div>
+        <div class="modal-body">
+          <p class="fs-8 text-muted-2">
+            One record per line, in this column order:
+            <span class="fw-600 text-heading" data-demo-import-columns></span>
+          </p>
+          <div class="mb-3">
+            <label class="form-label" for="q-demo-import-file">Choose a .csv file</label>
+            <input class="form-control" type="file" id="q-demo-import-file" accept=".csv,.txt,text/csv" data-demo-import-file>
+          </div>
+          <label class="form-label" for="q-demo-import-text">…or paste the rows here</label>
+          <textarea class="form-control font-monospace fs-8" id="q-demo-import-text" rows="6" spellcheck="false"
+                    data-demo-import-text placeholder="Northstar Labs,Enterprise,Negotiation,48000,AR"></textarea>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-white" data-bs-dismiss="modal">Cancel</button>
+          <button type="button" class="btn btn-primary" data-demo-import-run><i class="bi bi-upload"></i> Import rows</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+    <!-- ================= Scripts ================= -->
+    <!-- Vendor: Bootstrap 5 bundle (includes Popper) -->
+    <script src="../assets/js/bootstrap.bundle.min.js?v=1.0.0"></script>
+
+    <!-- Qevora core -->
+    <script src="../assets/js/theme.js?v=1.0.0"></script>
+    <script src="../assets/js/sidebar.js?v=1.0.0"></script>
+    <script src="../assets/js/app.js?v=1.0.0"></script>
+    <script src="../assets/js/components.js?v=1.0.0"></script>
+    <script src="../assets/js/demo-ui.js?v=1.0.0"></script>
+
+</body>
+</html>

@@ -1,0 +1,232 @@
+      <div class="q-page-head">
+        <div>
+          {{BREADCRUMB}}
+          <h1 class="q-page-head__title mt-2">Buttons</h1>
+          <p class="q-page-head__subtitle">
+            Bootstrap's button system plus Qevora's soft, ghost and gradient variations. Every button in the template
+            comes from this page — nothing is styled per screen.
+          </p>
+        </div>
+        <div class="d-flex flex-wrap gap-2">
+          <a class="btn btn-white" href="../documentation/index.html"><i class="bi bi-book"></i> Docs</a>
+        </div>
+      </div>
+
+      <div class="demo-block" data-demo>
+        <div class="demo-block__head">
+          <div>
+            <h2 class="demo-block__title">Solid buttons</h2>
+            <p class="demo-block__desc">The default action style. Use one primary button per view to keep the main action obvious.</p>
+          </div>
+        </div>
+        <div class="demo-block__tabs">
+          <button type="button" class="demo-tab is-active" data-demo-tab="preview" aria-selected="true">Preview</button>
+          <button type="button" class="demo-tab" data-demo-tab="html" aria-selected="false">HTML</button>
+        </div>
+        <div class="demo-block__pane is-active" data-demo-pane="preview">
+          <div class="demo-preview">
+            <div class="d-flex flex-wrap gap-2 align-items-center">
+              <button type="button" class="btn btn-primary" data-demo-action="Primary button clicked — this is a style demo; wire the click to your own handler.">Primary</button>
+              <button type="button" class="btn btn-secondary" data-demo-action="Secondary button clicked — this is a style demo; wire the click to your own handler.">Secondary</button>
+              <button type="button" class="btn btn-success" data-demo-action="Success button clicked — this is a style demo; wire the click to your own handler.">Success</button>
+              <button type="button" class="btn btn-warning" data-demo-action="Warning button clicked — this is a style demo; wire the click to your own handler.">Warning</button>
+              <button type="button" class="btn btn-danger" data-demo-action="Danger button clicked — this is a style demo; wire the click to your own handler.">Danger</button>
+              <button type="button" class="btn btn-info" data-demo-action="Info button clicked — this is a style demo; wire the click to your own handler.">Info</button>
+              <button type="button" class="btn btn-dark" data-demo-action="Dark button clicked — this is a style demo; wire the click to your own handler.">Dark</button>
+              <button type="button" class="btn btn-white" data-demo-action="White button clicked — this is a style demo; wire the click to your own handler.">White</button>
+            </div>
+            <div class="d-flex flex-wrap gap-2 align-items-center mt-3">
+              <button type="button" class="btn btn-primary" disabled>Disabled</button>
+              <button type="button" class="btn btn-gradient" data-demo-action="Gradient button clicked — this is a style demo; wire the click to your own handler."><i class="bi bi-stars"></i> Gradient</button>
+            </div>
+          </div>
+        </div>
+        <div class="demo-block__pane" data-demo-pane="html">
+          <div class="demo-code-wrap">
+            <button type="button" class="copy-btn" data-copy-target="#btnSolidCode"><i class="bi bi-clipboard"></i> Copy HTML</button>
+            <pre class="demo-code"><code id="btnSolidCode">&lt;button class="btn btn-primary"&gt;Primary&lt;/button&gt;
+&lt;button class="btn btn-secondary"&gt;Secondary&lt;/button&gt;
+&lt;button class="btn btn-success"&gt;Success&lt;/button&gt;
+&lt;button class="btn btn-warning"&gt;Warning&lt;/button&gt;
+&lt;button class="btn btn-danger"&gt;Danger&lt;/button&gt;
+&lt;button class="btn btn-info"&gt;Info&lt;/button&gt;
+&lt;button class="btn btn-dark"&gt;Dark&lt;/button&gt;
+&lt;button class="btn btn-white"&gt;White&lt;/button&gt;
+&lt;button class="btn btn-primary" disabled&gt;Disabled&lt;/button&gt;
+
+&lt;!-- Qevora gradient button --&gt;
+&lt;button class="btn btn-gradient"&gt;&lt;i class="bi bi-stars"&gt;&lt;/i&gt; Gradient&lt;/button&gt;</code></pre>
+          </div>
+        </div>
+      </div>
+
+      <div class="demo-block" data-demo>
+        <div class="demo-block__head">
+          <div>
+            <h2 class="demo-block__title">Soft and outline variants</h2>
+            <p class="demo-block__desc">Soft buttons are used for secondary actions inside cards and table toolbars — they stay quiet next to a solid primary button.</p>
+          </div>
+        </div>
+        <div class="demo-block__tabs">
+          <button type="button" class="demo-tab is-active" data-demo-tab="preview" aria-selected="true">Preview</button>
+          <button type="button" class="demo-tab" data-demo-tab="html" aria-selected="false">HTML</button>
+        </div>
+        <div class="demo-block__pane is-active" data-demo-pane="preview">
+          <div class="demo-preview">
+            <div class="d-flex flex-wrap gap-2">
+              <button type="button" class="btn btn-soft-primary" data-demo-action="Soft primary button clicked — this is a style demo; wire the click to your own handler.">Soft primary</button>
+              <button type="button" class="btn btn-soft-success" data-demo-action="Soft success button clicked — this is a style demo; wire the click to your own handler.">Soft success</button>
+              <button type="button" class="btn btn-soft-warning" data-demo-action="Soft warning button clicked — this is a style demo; wire the click to your own handler.">Soft warning</button>
+              <button type="button" class="btn btn-soft-danger" data-demo-action="Soft danger button clicked — this is a style demo; wire the click to your own handler.">Soft danger</button>
+              <button type="button" class="btn btn-soft-info" data-demo-action="Soft info button clicked — this is a style demo; wire the click to your own handler.">Soft info</button>
+              <button type="button" class="btn btn-soft-secondary" data-demo-action="Soft neutral button clicked — this is a style demo; wire the click to your own handler.">Soft neutral</button>
+              <button type="button" class="btn btn-ghost" data-demo-action="Ghost button clicked — this is a style demo; wire the click to your own handler.">Ghost</button>
+            </div>
+            <div class="d-flex flex-wrap gap-2 mt-3">
+              <button type="button" class="btn btn-outline-primary" data-demo-action="Outline primary button clicked — this is a style demo; wire the click to your own handler.">Outline primary</button>
+              <button type="button" class="btn btn-outline-secondary" data-demo-action="Outline secondary button clicked — this is a style demo; wire the click to your own handler.">Outline secondary</button>
+              <button type="button" class="btn btn-outline-danger" data-demo-action="Outline danger button clicked — this is a style demo; wire the click to your own handler.">Outline danger</button>
+            </div>
+          </div>
+        </div>
+        <div class="demo-block__pane" data-demo-pane="html">
+          <div class="demo-code-wrap">
+            <button type="button" class="copy-btn" data-copy-target="#btnSoftCode"><i class="bi bi-clipboard"></i> Copy HTML</button>
+            <pre class="demo-code"><code id="btnSoftCode">&lt;button class="btn btn-soft-primary"&gt;Soft primary&lt;/button&gt;
+&lt;button class="btn btn-soft-success"&gt;Soft success&lt;/button&gt;
+&lt;button class="btn btn-soft-warning"&gt;Soft warning&lt;/button&gt;
+&lt;button class="btn btn-soft-danger"&gt;Soft danger&lt;/button&gt;
+&lt;button class="btn btn-soft-info"&gt;Soft info&lt;/button&gt;
+&lt;button class="btn btn-soft-secondary"&gt;Soft neutral&lt;/button&gt;
+&lt;button class="btn btn-ghost"&gt;Ghost&lt;/button&gt;
+
+&lt;button class="btn btn-outline-primary"&gt;Outline primary&lt;/button&gt;</code></pre>
+          </div>
+        </div>
+      </div>
+
+      <div class="demo-block" data-demo>
+        <div class="demo-block__head">
+          <div>
+            <h2 class="demo-block__title">Sizes and icons</h2>
+            <p class="demo-block__desc">Icon-only buttons always need an <code>aria-label</code> so screen readers can announce them.</p>
+          </div>
+        </div>
+        <div class="demo-block__tabs">
+          <button type="button" class="demo-tab is-active" data-demo-tab="preview" aria-selected="true">Preview</button>
+          <button type="button" class="demo-tab" data-demo-tab="html" aria-selected="false">HTML</button>
+        </div>
+        <div class="demo-block__pane is-active" data-demo-pane="preview">
+          <div class="demo-preview">
+            <div class="d-flex flex-wrap align-items-center gap-2 mb-3">
+              <button type="button" class="btn btn-primary btn-sm" data-demo-action="Small button clicked — this is a style demo; wire the click to your own handler.">Small</button>
+              <button type="button" class="btn btn-primary" data-demo-action="Default button clicked — this is a style demo; wire the click to your own handler.">Default</button>
+              <button type="button" class="btn btn-primary btn-lg" data-demo-action="Large button clicked — this is a style demo; wire the click to your own handler.">Large</button>
+            </div>
+            <div class="d-flex flex-wrap align-items-center gap-2 mb-3">
+              <button type="button" class="btn btn-primary" data-demo-action="New project button clicked — this is a style demo; wire the click to your own handler."><i class="bi bi-plus-lg"></i> New project</button>
+              <button type="button" class="btn btn-soft-primary" data-demo-export="closest" data-demo-export-scope="[data-demo]" data-demo-export-name="qevora-button-demo.txt"><i class="bi bi-download"></i> Export</button>
+              <button type="button" class="btn btn-white" data-demo-action="Filter button clicked — this is a style demo; wire the click to your own handler."><i class="bi bi-funnel"></i> Filter</button>
+              <button type="button" class="btn btn-primary" data-demo-action="Continue button clicked — this is a style demo; wire the click to your own handler.">Continue <i class="bi bi-arrow-right"></i></button>
+            </div>
+            <div class="d-flex flex-wrap align-items-center gap-2">
+              <button type="button" class="btn btn-icon btn-primary" aria-label="Add item" data-demo-action="Add item button clicked — this is a style demo; wire the click to your own handler."><i class="bi bi-plus-lg"></i></button>
+              <button type="button" class="btn btn-icon btn-soft-primary" aria-label="Edit item" data-demo-action="Edit item button clicked — this is a style demo; wire the click to your own handler."><i class="bi bi-pencil"></i></button>
+              <button type="button" class="btn btn-icon btn-ghost" aria-label="More options" data-demo-action="More options button clicked — this is a style demo; wire the click to your own handler."><i class="bi bi-three-dots"></i></button>
+              <button type="button" class="btn btn-icon btn-sm btn-ghost" aria-label="Small icon button" data-demo-action="Small icon button button clicked — this is a style demo; wire the click to your own handler."><i class="bi bi-gear"></i></button>
+            </div>
+          </div>
+        </div>
+        <div class="demo-block__pane" data-demo-pane="html">
+          <div class="demo-code-wrap">
+            <button type="button" class="copy-btn" data-copy-target="#btnSizeCode"><i class="bi bi-clipboard"></i> Copy HTML</button>
+            <pre class="demo-code"><code id="btnSizeCode">&lt;button class="btn btn-primary btn-sm"&gt;Small&lt;/button&gt;
+&lt;button class="btn btn-primary"&gt;Default&lt;/button&gt;
+&lt;button class="btn btn-primary btn-lg"&gt;Large&lt;/button&gt;
+
+&lt;button class="btn btn-primary"&gt;&lt;i class="bi bi-plus-lg"&gt;&lt;/i&gt; New project&lt;/button&gt;
+&lt;button class="btn btn-primary"&gt;Continue &lt;i class="bi bi-arrow-right"&gt;&lt;/i&gt;&lt;/button&gt;
+
+&lt;button class="btn btn-icon btn-primary" aria-label="Add item"&gt;
+  &lt;i class="bi bi-plus-lg"&gt;&lt;/i&gt;
+&lt;/button&gt;</code></pre>
+          </div>
+        </div>
+      </div>
+
+      <div class="demo-block" data-demo>
+        <div class="demo-block__head">
+          <div>
+            <h2 class="demo-block__title">Buttons with state</h2>
+            <p class="demo-block__desc">Loading, toggled and grouped buttons. Toggle buttons use <code>aria-pressed</code>.</p>
+          </div>
+        </div>
+        <div class="demo-block__tabs">
+          <button type="button" class="demo-tab is-active" data-demo-tab="preview" aria-selected="true">Preview</button>
+          <button type="button" class="demo-tab" data-demo-tab="html" aria-selected="false">HTML</button>
+        </div>
+        <div class="demo-block__pane is-active" data-demo-pane="preview">
+          <div class="demo-preview">
+            <div class="d-flex flex-wrap align-items-center gap-3 mb-3">
+              <button type="button" class="btn btn-primary" disabled>
+                <span class="spinner-border spinner-border-sm" aria-hidden="true"></span>
+                <span role="status">Saving…</span>
+              </button>
+              <button type="button" class="btn btn-primary" data-demo-action="Action completed — demo only." data-demo-variant="success">
+                <i class="bi bi-check2"></i> Save changes
+              </button>
+            </div>
+            <div class="d-flex flex-wrap align-items-center gap-3">
+              <div class="btn-group" role="group" aria-label="View mode">
+                <button type="button" class="btn btn-white active" data-demo-action="Day button clicked — this is a style demo; wire the click to your own handler.">Day</button>
+                <button type="button" class="btn btn-white" data-demo-action="Week button clicked — this is a style demo; wire the click to your own handler.">Week</button>
+                <button type="button" class="btn btn-white" data-demo-action="Month button clicked — this is a style demo; wire the click to your own handler.">Month</button>
+              </div>
+              <div class="btn-group" role="group" aria-label="Alignment">
+                <button type="button" class="btn btn-icon btn-white" aria-label="Align left" data-demo-action="Align left button clicked — this is a style demo; wire the click to your own handler."><i class="bi bi-text-left"></i></button>
+                <button type="button" class="btn btn-icon btn-white active" aria-label="Align centre" data-demo-action="Align centre button clicked — this is a style demo; wire the click to your own handler."><i class="bi bi-text-center"></i></button>
+                <button type="button" class="btn btn-icon btn-white" aria-label="Align right" data-demo-action="Align right button clicked — this is a style demo; wire the click to your own handler."><i class="bi bi-text-right"></i></button>
+              </div>
+              <button type="button" class="btn btn-soft-primary" aria-pressed="true" data-demo-action="Toggle state changed — demo only.">
+                <i class="bi bi-bookmark-check"></i> Following
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="demo-block__pane" data-demo-pane="html">
+          <div class="demo-code-wrap">
+            <button type="button" class="copy-btn" data-copy-target="#btnStateCode"><i class="bi bi-clipboard"></i> Copy HTML</button>
+            <pre class="demo-code"><code id="btnStateCode">&lt;!-- Loading state --&gt;
+&lt;button class="btn btn-primary" disabled&gt;
+  &lt;span class="spinner-border spinner-border-sm" aria-hidden="true"&gt;&lt;/span&gt;
+  &lt;span role="status"&gt;Saving…&lt;/span&gt;
+&lt;/button&gt;
+
+&lt;!-- Button group --&gt;
+&lt;div class="btn-group" role="group" aria-label="View mode"&gt;
+  &lt;button class="btn btn-white active"&gt;Day&lt;/button&gt;
+  &lt;button class="btn btn-white"&gt;Week&lt;/button&gt;
+  &lt;button class="btn btn-white"&gt;Month&lt;/button&gt;
+&lt;/div&gt;
+
+&lt;!-- Toggle button --&gt;
+&lt;button class="btn btn-soft-primary" aria-pressed="true"&gt;
+  &lt;i class="bi bi-bookmark-check"&gt;&lt;/i&gt; Following
+&lt;/button&gt;</code></pre>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <h2 class="card-title mb-0">Usage notes</h2>
+        </div>
+        <div class="card-body">
+          <ul class="fs-7 text-muted-2 mb-0 d-flex flex-column gap-2">
+            <li>Use <code>.btn-primary</code> once per view for the main action; everything else should be soft, ghost or white.</li>
+            <li>Prefer <code>.btn-icon</code> with an <code>aria-label</code> instead of text-only icon links in tables.</li>
+            <li><code>.btn-soft-*</code> uses the matching soft background token, so it adapts to dark mode automatically.</li>
+            <li>Buttons inherit the 8px radius from <code>--q-radius-sm</code>; change the token to restyle every button at once.</li>
+          </ul>
+        </div>
+      </div>

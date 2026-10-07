@@ -1,0 +1,119 @@
+      <div class="q-page-head">
+        <div>
+          {{BREADCRUMB}}
+          <h1 class="q-page-head__title mt-2">Qevora Scale Plan</h1>
+          <p class="q-page-head__subtitle">SKU QV-SCALE-01 · Software · annual subscription</p>
+        </div>
+        <div class="d-flex flex-wrap gap-2">
+          <button type="button" class="btn btn-white" data-demo-action="Product preview opened — demo only."><i class="bi bi-eye"></i> Preview</button>
+          <button type="button" class="btn btn-primary" data-demo-action="Product saved — demo interaction only."><i class="bi bi-check2"></i> Save changes</button>
+        </div>
+      </div>
+
+      <div class="row g-3">
+        <div class="col-lg-5">
+          <div class="card">
+            <img src="../assets/images/placeholder/product-1.svg" alt="Qevora Scale Plan cover artwork" class="card-img-top" style="height: 240px; object-fit: cover;">
+            <div class="card-body">
+              <div class="row g-2">
+                <div class="col-3">
+                  <img src="../assets/images/placeholder/product-2.svg" alt="" class="img-fluid rounded-q">
+                </div>
+                <div class="col-3">
+                  <img src="../assets/images/placeholder/product-3.svg" alt="" class="img-fluid rounded-q">
+                </div>
+                <div class="col-3">
+                  <img src="../assets/images/placeholder/product-4.svg" alt="" class="img-fluid rounded-q">
+                </div>
+                <div class="col-3">
+                  <div class="bg-surface-alt rounded-q d-grid h-100" style="place-items: center;">
+                    <span class="fs-8 text-muted-2">+4</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="card mt-3">
+            <div class="card-header">
+              <h2 class="card-title mb-0">Inventory</h2>
+            </div>
+            <div class="card-body">
+              <div class="d-flex justify-content-between fs-7 mb-2"><span class="text-muted-2">Stock status</span><span class="badge badge-soft-success badge-pill">Digital delivery</span></div>
+              <div class="d-flex justify-content-between fs-7 mb-2"><span class="text-muted-2">Active seats</span><span class="fw-600 text-heading">4,182</span></div>
+              <div class="d-flex justify-content-between fs-7 mb-2"><span class="text-muted-2">Renewals this month</span><span class="fw-600 text-heading">36</span></div>
+              <div class="d-flex justify-content-between fs-7"><span class="text-muted-2">Churn risk</span><span class="badge badge-soft-warning badge-pill">Low</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-7">
+          <div class="card">
+            <div class="card-body">
+              <div class="d-flex flex-wrap align-items-center gap-2 mb-3">
+                <span class="badge badge-soft-success badge-pill">Active</span>
+                <span class="chip"><i class="bi bi-star"></i> Best seller</span>
+                <span class="chip"><i class="bi bi-globe2"></i> Global availability</span>
+              </div>
+
+              <div class="d-flex align-items-baseline gap-2 mb-3">
+                <span class="h2 fw-700 text-heading mb-0">$4,800.00</span>
+                <span class="fs-7 text-muted-2">/ year</span>
+              </div>
+
+              <p class="fs-7 text-muted-2 mb-4">
+                The Scale plan includes unlimited projects, advanced AI usage limits, SSO, audit logs and
+                priority support. Pricing shown is demo data for the template preview.
+              </p>
+
+              <h3 class="fs-7 fw-600 text-heading mb-2">Included features</h3>
+              <ul class="pricing-features mb-4">
+                <li><i class="bi bi-check-circle-fill"></i> Unlimited projects and workspaces</li>
+                <li><i class="bi bi-check-circle-fill"></i> 1M AI tokens per month</li>
+                <li><i class="bi bi-check-circle-fill"></i> Single sign-on and SCIM provisioning</li>
+                <li><i class="bi bi-check-circle-fill"></i> Audit logs and data residency options</li>
+                <li><i class="bi bi-check-circle-fill"></i> Priority support with a 4-hour response target</li>
+              </ul>
+
+              <div class="row g-3">
+                <div class="col-sm-6">
+                  <label class="form-label" for="product-price">Price (USD)</label>
+                  <div class="input-group">
+                    <span class="input-group-text">$</span>
+                    <input type="number" class="form-control" id="product-price" value="4800">
+                    <span class="input-group-text">/ year</span>
+                  </div>
+                </div>
+                <div class="col-sm-6">
+                  <label class="form-label" for="product-category">Category</label>
+                  <select class="form-select" id="product-category" data-demo-echo="Category">
+                    <option selected>Software</option>
+                    <option>Add-on</option>
+                    <option>Hardware</option>
+                    <option>Service</option>
+                  </select>
+                </div>
+                <div class="col-12">
+                  <label class="form-label" for="product-description">Description</label>
+                  <textarea class="form-control" id="product-description" rows="3">The Scale plan includes unlimited projects, advanced AI usage limits, SSO, audit logs and priority support.</textarea>
+                  <p class="form-text mb-0">Shown on the pricing page and in checkout.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="card mt-3">
+            <div class="card-header">
+              <div>
+                <h2 class="card-title">Revenue for this product</h2>
+                <p class="card-subtitle">Booked revenue by quarter</p>
+              </div>
+            </div>
+            <div class="card-body">
+              <div class="chart-holder chart-holder--md">
+                <canvas data-chart="sales" data-labels="Q1,Q2,Q3,Q4" data-series="New|128,156,142,189;Renewals|86,102,118,134"></canvas>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>

@@ -1,0 +1,75 @@
+      <div class="util-shell">
+        <div class="position-absolute top-0 end-0 p-3 d-flex gap-2">
+          <button class="btn btn-icon btn-white" type="button" data-dir-toggle aria-pressed="false" aria-label="Toggle text direction" title="Toggle RTL layout">
+            <i class="bi bi-translate"></i>
+          </button>
+          <button class="btn btn-icon btn-white" type="button" data-theme-toggle aria-pressed="false" aria-label="Toggle dark mode" title="Switch to dark mode">
+            <i class="bi bi-moon-stars" data-theme-icon></i>
+          </button>
+        </div>
+
+        <div style="max-width: 640px;">
+          <a class="d-inline-flex align-items-center gap-2 text-decoration-none mb-4" href="../index.html">
+            <span class="q-brand__mark" aria-hidden="true">Q</span>
+            <span class="q-brand__text text-start">
+              <span class="q-brand__name">Qevora</span>
+              <span class="q-brand__sub">AI SaaS Suite</span>
+            </span>
+          </a>
+
+          <span class="state-block__icon bg-warning-subtle text-warning mx-auto d-grid mb-3"><i class="bi bi-tools"></i></span>
+
+          <h1 class="h3 text-heading mb-2">We are upgrading Qevora</h1>
+          <p class="fs-7 text-muted-2 mb-4">
+            Scheduled maintenance is running now. Billing, AI generations and data exports are paused — the dashboard
+            remains read-only, and nothing is lost. Expected back online by <strong class="text-heading">11:30 UTC</strong>.
+          </p>
+
+          <div class="card text-start mb-4">
+            <div class="card-body">
+              <div class="d-flex justify-content-between fs-8 mb-2">
+                <span class="text-muted-2">Deployment progress</span>
+                <span class="fw-500 text-heading">72%</span>
+              </div>
+              <div class="progress progress-lg mb-4" role="progressbar" aria-label="Deployment progress" aria-valuenow="72" aria-valuemin="0" aria-valuemax="100">
+                <div class="progress-bar progress-bar-striped progress-bar-animated" style="width: 72%;"></div>
+              </div>
+
+              <ul class="list-unstyled d-flex flex-column gap-2 fs-7 mb-0">
+                <li class="d-flex align-items-center justify-content-between">
+                  <span><i class="bi bi-check-circle-fill text-success me-2"></i> Database migration</span>
+                  <span class="badge badge-soft-success">Done</span>
+                </li>
+                <li class="d-flex align-items-center justify-content-between">
+                  <span><i class="bi bi-arrow-repeat text-warning me-2"></i> Search index rebuild</span>
+                  <span class="badge badge-soft-warning">Running</span>
+                </li>
+                <li class="d-flex align-items-center justify-content-between">
+                  <span><i class="bi bi-dot me-2"></i> Cache warm-up</span>
+                  <span class="badge badge-soft-neutral">Queued</span>
+                </li>
+                <li class="d-flex align-items-center justify-content-between">
+                  <span><i class="bi bi-dot me-2"></i> Health checks</span>
+                  <span class="badge badge-soft-neutral">Queued</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <form class="row g-2 justify-content-center mb-3">
+            <div class="col-sm-7">
+              <label class="visually-hidden" for="maintEmail">Email address</label>
+              <input type="email" class="form-control" id="maintEmail" placeholder="you@example.com" autocomplete="email">
+            </div>
+            <div class="col-sm-auto">
+              <button class="btn btn-primary w-100" type="button" data-demo-action="You are on the notify list — demo only." data-demo-variant="success">
+                <i class="bi bi-bell"></i> Notify me
+              </button>
+            </div>
+          </form>
+
+          <p class="fs-8 text-muted-2 mb-0">
+            Live updates are posted on this page · Contact your workspace administrator for urgent help.
+          </p>
+        </div>
+      </div>

@@ -1,0 +1,187 @@
+      <div class="q-page-head">
+        <div>
+          {{BREADCRUMB}}
+          <h1 class="q-page-head__title mt-2">Content generator</h1>
+          <p class="q-page-head__subtitle">Turn a short brief into on-brand copy. Output is demo content.</p>
+        </div>
+        <div class="d-flex flex-wrap gap-2">
+          <button type="button" class="btn btn-white" data-demo-action="Prompt saved as template — demo only."><i class="bi bi-bookmark"></i> Save template</button>
+          <a class="btn btn-primary" href="history.html"><i class="bi bi-clock-history"></i> View history</a>
+        </div>
+      </div>
+
+      <div class="row g-3">
+        <div class="col-xl-5">
+          <div class="card">
+            <div class="card-header">
+              <div>
+                <h2 class="card-title">Brief</h2>
+                <p class="card-subtitle">Describe what you need written</p>
+              </div>
+            </div>
+            <div class="card-body">
+              <div class="mb-3">
+                <label class="form-label" for="cg-template">Template</label>
+                <select class="form-select" id="cg-template" data-demo-gen-opt-label="Template">
+                  <option selected>Product announcement</option>
+                  <option>Blog outline</option>
+                  <option>Landing page hero</option>
+                  <option>Release notes</option>
+                  <option>Email campaign</option>
+                  <option>Social post</option>
+                </select>
+              </div>
+
+              <div class="mb-3">
+                <label class="form-label" for="cg-prompt">Prompt</label>
+                <textarea class="form-control" id="cg-prompt" rows="5">Write a 600-word product announcement for Qevora v2.4 covering the new component library, dark mode and RTL support. Friendly tone, no hype words, end with a clear call to action.</textarea>
+                <p class="form-text mb-0">Be specific about audience, length and tone for better results.</p>
+              </div>
+
+              <div class="row g-3 mb-3">
+                <div class="col-sm-6">
+                  <label class="form-label" for="cg-tone">Tone</label>
+                  <select class="form-select" id="cg-tone" data-demo-gen-opt-label="Tone">
+                    <option selected>Friendly</option>
+                    <option>Professional</option>
+                    <option>Direct</option>
+                    <option>Playful</option>
+                    <option>Technical</option>
+                  </select>
+                </div>
+                <div class="col-sm-6">
+                  <label class="form-label" for="cg-length">Length</label>
+                  <select class="form-select" id="cg-length" data-demo-gen-opt-label="Length">
+                    <option>Short (200 words)</option>
+                    <option selected>Medium (600 words)</option>
+                    <option>Long (1,200 words)</option>
+                  </select>
+                </div>
+                <div class="col-sm-6">
+                  <label class="form-label" for="cg-language">Language</label>
+                  <select class="form-select" id="cg-language" data-demo-gen-opt-label="Language">
+                    <option selected>English (US)</option>
+                    <option>English (UK)</option>
+                    <option>Deutsch</option>
+                    <option>Français</option>
+                    <option>日本語</option>
+                  </select>
+                </div>
+                <div class="col-sm-6">
+                  <label class="form-label" for="cg-model">Model</label>
+                  <select class="form-select" id="cg-model" data-demo-gen-opt-label="Model">
+                    <option selected>Nova-4 Turbo</option>
+                    <option>Nova-4</option>
+                    <option>Vertex Flash</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="mb-3">
+                <label class="form-label" for="cg-context">Reference material <span class="text-muted-2 fw-400">(optional)</span></label>
+                <div class="upload-zone" data-upload-zone>
+                  <i class="bi bi-cloud-arrow-up upload-zone__icon" aria-hidden="true"></i>
+                  <p class="fs-7 fw-500 text-heading mb-1">Drop files here or click to browse</p>
+                  <p class="fs-8 text-muted-2 mb-0">PDF, DOCX or TXT up to 10 MB — demo only, files never leave the browser.</p>
+                  <input type="file" class="d-none" id="cg-context" multiple>
+                </div>
+                <div class="mt-2" data-upload-list></div>
+              </div>
+
+              <div class="d-flex flex-wrap gap-2 align-items-center mb-3">
+                <div class="form-check form-switch mb-0">
+                  <input class="form-check-input" type="checkbox" id="cg-variants" checked>
+                  <label class="form-check-label" for="cg-variants">Generate 2 variants</label>
+                </div>
+                <div class="form-check form-switch mb-0">
+                  <input class="form-check-input" type="checkbox" id="cg-seo">
+                  <label class="form-check-label" for="cg-seo">Optimise for search</label>
+                </div>
+              </div>
+
+              <button type="button" class="btn btn-gradient w-100" data-demo-gen="#cg-output" data-demo-gen-type="text" data-demo-gen-opt="cg-template,cg-tone,cg-length,cg-language,cg-model" data-demo-gen-working="Generating…">
+                <i class="bi bi-stars"></i> Generate content
+              </button>
+              <p class="fs-8 text-muted-2 text-center mt-2 mb-0">Estimated 1,250 tokens · about 3 seconds</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-xl-7">
+          <div class="card mb-3">
+            <div class="card-header">
+              <div>
+                <h2 class="card-title">Output</h2>
+                <p class="card-subtitle">Variant 1 of 2 · Nova-4 Turbo</p>
+              </div>
+              <div class="d-flex gap-2">
+                <button type="button" class="btn btn-sm btn-white" data-copy-target="#cg-output"><i class="bi bi-clipboard"></i> Copy</button>
+                <button type="button" class="btn btn-sm btn-soft-primary" data-demo-gen="#cg-output" data-demo-gen-type="text" data-demo-gen-index="1" data-demo-gen-opt="cg-template,cg-tone,cg-length,cg-language,cg-model" data-demo-gen-working="Rewriting…"><i class="bi bi-arrow-repeat"></i> Regenerate</button>
+              </div>
+            </div>
+            <div class="card-body">
+              <div class="border border-q rounded-q p-3 p-lg-4 bg-surface-alt" id="cg-output">
+                <h3 class="h5 fw-600 mb-3">v2.4 is here — a faster, friendlier workspace</h3>
+                <p class="fs-7 text-muted-2">
+                  Two long-standing requests are in this release: a reusable component library with copy-ready markup for
+                  more than sixty elements, and a proper dark mode. RTL layouts are supported end to end, so
+                  right-to-left locales flip navigation, tables and forms correctly.
+                </p>
+                <p class="fs-7 text-muted-2">
+                  Building a new dashboard page used to mean stitching together styles from three or four older screens.
+                  Now you copy a block, paste it, and it matches everything else in the product. The library covers the
+                  full range — alerts, buttons, cards, tables, charts, forms and empty states — and every block ships
+                  with usage notes so new teammates can onboard quickly.
+                </p>
+                <p class="fs-7 text-muted-2 mb-0">
+                  Nothing about your data, permissions or integrations changes in this update. Open the component library
+                  in your workspace and pick the blocks you need next.
+                </p>
+              </div>
+
+              <div class="d-flex flex-wrap gap-2 mt-3">
+                <span class="chip"><i class="bi bi-type"></i> 612 words</span>
+                <span class="chip"><i class="bi bi-clock"></i> 42s read time</span>
+                <span class="chip"><i class="bi bi-cpu"></i> 1,248 tokens</span>
+                <span class="chip"><i class="bi bi-check2-circle"></i> Readability: good</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="row g-3">
+            <div class="col-md-6">
+              <div class="card h-100">
+                <div class="card-header">
+                  <h3 class="card-title mb-0">Variant 2</h3>
+                </div>
+                <div class="card-body">
+                  <p class="fs-7 text-muted-2 mb-2"><strong class="text-heading">Headline:</strong> Ship faster with the Qevora v2.4 component library</p>
+                  <p class="fs-7 text-muted-2 mb-3">A shorter, benefit-first alternative aimed at existing customers who already know the product.</p>
+                  <button type="button" class="btn btn-sm btn-soft-primary" data-demo-action="Variant 2 loaded into the editor — demo only.">Use this variant</button>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="card h-100">
+                <div class="card-header">
+                  <h3 class="card-title mb-0">Tone analysis</h3>
+                </div>
+                <div class="card-body d-flex flex-column gap-3">
+                  <div>
+                    <div class="d-flex justify-content-between fs-8 mb-2"><span class="text-muted-2">Clarity</span><span class="fw-600 text-heading">92</span></div>
+                    <div class="progress progress-sm"><div class="progress-bar bg-success" style="width: 92%"></div></div>
+                  </div>
+                  <div>
+                    <div class="d-flex justify-content-between fs-8 mb-2"><span class="text-muted-2">Brand voice</span><span class="fw-600 text-heading">86</span></div>
+                    <div class="progress progress-sm"><div class="progress-bar bg-success" style="width: 86%"></div></div>
+                  </div>
+                  <div>
+                    <div class="d-flex justify-content-between fs-8 mb-2"><span class="text-muted-2">Uniqueness</span><span class="fw-600 text-heading">74</span></div>
+                    <div class="progress progress-sm"><div class="progress-bar bg-warning" style="width: 74%"></div></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
