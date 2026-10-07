@@ -429,7 +429,7 @@ function generatorPage(t, options = {}) {
     text(610, y + 742, "Generate draft", { size: 21, weight: 700, fill: "#ffffff", anchor: "middle" });
   out += card(920, y, 700, 780, t, "Draft", "Copy  ·  Regenerate");
   out += rect(946, y + 70, 648, 470, { fill: t.surfaceAlt, r: 14, stroke: t.border });
-  ["Qevora AI SaaS UI 2.4 is here.", "", "Faster dashboards, a cleaner AI workspace", "and 81 ready pages for your next launch.",
+  ["Qevora AI SaaS UI 2.4 is here.", "", "Faster dashboards, a cleaner AI workspace", "and 83 ready pages for your next launch.",
    "", "What's new", "· AI usage reporting across every model", "· Import leads from CSV in one click", "· Light, dark and RTL layouts"].forEach((row, index) => {
     out += text(972, y + 118 + index * 40, row, { size: 20, weight: index === 0 ? 600 : 400, fill: index === 0 ? t.heading : t.text });
   });
@@ -526,7 +526,7 @@ function docsPage(t) {
   out += card(340, y, 820, 760, t, "1. Quick start");
   ["Unzip the package anywhere on your computer.",
    "Double-click index.html — the dashboard opens in your browser.",
-   "Use the sidebar to explore the 81 pages.",
+   "Use the sidebar to explore the 83 pages.",
    "Edit any HTML file in your code editor of choice."].forEach((row, index) => {
     out += circle(376, y + 96 + index * 54, 12, { fill: P.primarySoft }) +
       text(376, y + 103 + index * 54, String(index + 1), { size: 15, weight: 700, fill: P.primary, anchor: "middle" }) +
@@ -687,10 +687,10 @@ function cover(width, height) {
   out += rect(124, 398, 340, 8, { fill: "url(#brand-line)", r: 4 });
   out += text(120, 476, "AI workspace, CRM, projects, billing", { size: 36, weight: 500, fill: "#dbe3ff" });
   out += text(120, 524, "and a complete UI kit", { size: 36, weight: 500, fill: "#dbe3ff" });
-  out += text(120, 584, "81 responsive pages · light & dark · RTL ready · 15+ charts", { size: 29, fill: "#a5b4fc" });
+  out += text(120, 584, "83 responsive pages · light & dark · RTL ready · 15+ charts", { size: 29, fill: "#a5b4fc" });
 
   /* feature counters ------------------------------------------------------- */
-  [["81", "HTML pages"], ["2", "Colour modes"], ["RTL", "layout support"], ["100%", "vendored assets"]].forEach(([value, label], index) => {
+  [["83", "HTML pages"], ["2", "Colour modes"], ["RTL", "layout support"], ["100%", "vendored assets"]].forEach(([value, label], index) => {
     const x = 120 + (index % 2) * 292;
     const y = 656 + Math.floor(index / 2) * 132;
     out += rect(x, y, 272, 120, { fill: "#ffffff", r: 18, opacity: 0.10 }) +

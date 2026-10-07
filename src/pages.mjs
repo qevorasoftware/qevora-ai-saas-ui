@@ -707,6 +707,22 @@ export const pages = [
     }
   },
   {
+    out: "utility/terms.html",
+    breadcrumb: ["Utility", "Terms & Conditions"],
+    meta: {
+      title: "Terms & Conditions | Qevora AI SaaS UI",
+      desc: "Sample terms of service for a SaaS product: accounts, billing, acceptable use, AI output, liability and dispute terms."
+    }
+  },
+  {
+    out: "utility/privacy.html",
+    breadcrumb: ["Utility", "Privacy Policy"],
+    meta: {
+      title: "Privacy Policy | Qevora AI SaaS UI",
+      desc: "Sample privacy policy for a SaaS product: what is collected, how AI prompts are handled, retention, security and user rights."
+    }
+  },
+  {
     out: "utility/coming-soon.html",
     layout: "blank",
     scripts: AUTH_SCRIPTS,

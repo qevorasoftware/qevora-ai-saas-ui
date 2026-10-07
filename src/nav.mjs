@@ -208,7 +208,9 @@ export const nav = [
       { text: "404 Not Found", href: "utility/404.html", icon: "bi-signpost-split" },
       { text: "500 Server Error", href: "utility/500.html", icon: "bi-exclamation-octagon" },
       { text: "Maintenance", href: "utility/maintenance.html", icon: "bi-tools" },
-      { text: "Coming Soon", href: "utility/coming-soon.html", icon: "bi-hourglass-split" }
+      { text: "Coming Soon", href: "utility/coming-soon.html", icon: "bi-hourglass-split" },
+      { text: "Terms & Conditions", href: "utility/terms.html", icon: "bi-file-earmark-text" },
+      { text: "Privacy Policy", href: "utility/privacy.html", icon: "bi-shield-check" }
     ]
   },
   {

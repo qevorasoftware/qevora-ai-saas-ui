@@ -15,7 +15,7 @@ folder, double-click index.html and the dashboard runs.
 1. WHAT YOU RECEIVED
 --------------------------------------------------------------------------------
 
-  · 81 ready HTML pages
+  · 83 ready HTML pages
 
       Dashboard               1 page   (overview: KPIs, revenue chart, AI usage,
                                         projects, invoices, activity)

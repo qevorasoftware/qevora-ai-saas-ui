@@ -20,7 +20,7 @@
      6. buyer ZIP tree hygiene        lowercase, no spaces, no backup copies
      7. every referenced asset        exists inside the extracted buyer ZIP
      8. no build tooling in the ZIP   nothing points at src/ or tools/
-     9. page count                    81 pages plus the host 404 mirror
+     9. page count                    83 pages plus the host 404 mirror
    ========================================================================== */
 
 import { readFileSync, existsSync, readdirSync, statSync, mkdtempSync, rmSync } from "node:fs";

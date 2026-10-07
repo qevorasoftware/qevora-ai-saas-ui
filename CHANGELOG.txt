@@ -8,7 +8,7 @@
 
 RELEASE HIGHLIGHTS
 
-  · 81 ready-to-use HTML pages, all static and framework-free
+  · 83 ready-to-use HTML pages, all static and framework-free
   · Bootstrap 5.3.3 based — no jQuery, no build step, no CDN
   · Light and dark mode with a saved preference
   · Full RTL support (Bootstrap's RTL build ships in the package)
@@ -31,10 +31,10 @@ RELEASE HIGHLIGHTS
     marketplace/                                     cover, 14 previews,
                                                      metadata and this checklist
 
-  81 pages: 1 dashboard · 6 AI workspace · 31 applications · 31 UI kit ·
-  6 authentication · 4 utility · 2 documentation
+  83 pages: 1 dashboard · 6 AI workspace · 31 applications · 31 UI kit ·
+  6 authentication · 6 utility · 2 documentation
 
-NEW PAGES (81 total)
+NEW PAGES (83 total)
 
   Dashboard
     index.html — KPI cards, revenue chart, AI usage, project and task
@@ -72,9 +72,21 @@ NEW PAGES (81 total)
     Login, register, forgot password, reset password, verify email,
     two-factor verification — split-screen layout with a marketing aside.
 
-  Utility (4)
+  Utility (6)
     404, 500 (with incident snapshot), maintenance (deployment progress),
-    coming soon (live countdown).
+    coming soon (live countdown), terms and conditions, privacy policy.
+
+    utility/terms.html               terms of service: agreement, accounts,
+                                     plans and billing, acceptable use, AI
+                                     output, intellectual property, third-party
+                                     services, availability, termination,
+                                     liability and governing law, with an "on
+                                     this page" outline and a print action.
+    utility/privacy.html             privacy policy: what is collected and why,
+                                     legal bases, cookies and local storage, how
+                                     AI prompts and files are handled, sharing
+                                     and transfers, retention, security and the
+                                     rights a reader can exercise.
 
   Documentation (2)
     documentation/index.html         quick start, folder structure, page
@@ -142,7 +154,7 @@ HOSTING
 
   · tools/build.mjs mirrors utility/404.html to the repository root as 404.html
     (root-relative paths, robots noindex) because GitHub Pages serves /404.html
-    from the site root. 82 HTML files ship: 81 pages plus that hosting fallback.
+    from the site root. 84 HTML files ship: 83 pages plus that hosting fallback.
 
 QUALITY TOOLING
 
@@ -590,6 +602,19 @@ FIXES DURING DEVELOPMENT
       through between the icons. Below 768px the header uses the new solid
       --q-header-bg-solid token (white in the light palette, the sidebar ink in
       the dark one) and drops the blur; the desktop header is unchanged.
+
+  Documentation and static pages
+    · Two new utility pages ship with the template: utility/terms.html and
+      utility/privacy.html. Both are written as complete, plain-English
+      documents rather than placeholder text — agreement, billing, acceptable
+      use, AI output, intellectual property, liability and governing law on the
+      terms page; what is collected, legal bases, cookies, AI prompts, sharing,
+      retention, security and user rights on the privacy page. Each page carries
+      an "on this page" outline, a related-documents card, a print action and
+      breadcrumbs, works in light, dark and RTL, and is linked from the sidebar
+      and the footer of every page. The page count in the documentation, README,
+      CHANGELOG, marketplace metadata and cover art moves from 81 to 83, and the
+      release ZIP now ships 83 pages plus the host 404 mirror.
 
   Links, buttons and runtime behaviour
     · The light/dark toggle did nothing when localStorage is unavailable —

@@ -23,7 +23,7 @@
     Qevora AI SaaS UI — Bootstrap 5 Admin Dashboard & HTML Template
 
   Short description (one line, used in listings and search)
-    Modern AI & SaaS admin dashboard template — 81 responsive Bootstrap 5 pages,
+    Modern AI & SaaS admin dashboard template — 83 responsive Bootstrap 5 pages,
     AI workspace, CRM, billing, UI kit, light & dark, RTL, 15+ charts.
 
 --------------------------------------------------------------------------------
@@ -34,7 +34,7 @@
 
   <h3>Qevora AI SaaS UI — a complete Bootstrap 5 admin dashboard for AI and SaaS products</h3>
 
-  <p>Qevora is a hand-built, framework-free HTML template: 81 responsive pages,
+  <p>Qevora is a hand-built, framework-free HTML template: 83 responsive pages,
   a full AI workspace, CRM, projects, billing, team and reporting modules, and a
   component library where every example ships with Preview / HTML / CSS / JS
   panes and a copy button. Open <code>index.html</code> and it runs — no npm, no
@@ -42,7 +42,7 @@
 
   <h4>What makes it useful</h4>
   <ul>
-    <li><strong>81 pages</strong> — dashboard and analytics, an AI workspace (chat,
+    <li><strong>83 pages</strong> — dashboard and analytics, an AI workspace (chat,
       content generator, image generator, usage, history), 31 application pages,
       31 UI-kit pages, 6 authentication pages, 4 utility pages and the docs.</li>
     <li><strong>Light &amp; dark mode</strong> with a saved preference that follows the
@@ -90,7 +90,7 @@
 3. FEATURE LIST (for the feature bullet field of the upload form)
 --------------------------------------------------------------------------------
 
-  81 ready HTML pages          ·  Bootstrap 5.3 based, no jQuery
+  83 ready HTML pages          ·  Bootstrap 5.3 based, no jQuery
   AI workspace (6 pages)       ·  Content and image generators, chat, history
   Business modules             ·  CRM, leads, customers, pipeline, projects
   Billing and reporting        ·  Invoices, payments, subscriptions, reports

@@ -29,7 +29,7 @@ original guide text (re-paste it and this line is closed in one pass).
 | 2.3 | Business modules — CRM, customers, projects, tasks, calendar, chat, products, orders, invoices, payments, subscriptions, transactions, team, roles, reports | **Done** | all present in `pages/` (31 pages), plus leads, pipeline, kanban, products/orders/invoices detail views, activity, profile, settings, pricing, FAQ, help |
 | 2.4 | Auth pages — login, register, forgot, reset, verify, 2FA | **Done** | `auth/` (6 pages) |
 | 2.5 | Utility pages — 404, 500, maintenance, coming soon | **Done** | `utility/` (4 pages) |
-| 2.6 | **Exact page inventory matches the guide's list** | **Needs guide** | Repository ships **81 content pages + 1 hosting fallback (`404.html`) = 82 HTML files**. The guide's list cannot be re-verified because the file was never saved to this workspace — re-paste it and every extra/missing page is reconciled |
+| 2.6 | **Exact page inventory matches the guide's list** | **Needs guide** | Repository ships **83 content pages + 1 hosting fallback (`404.html`) = 84 HTML files**. The guide's list cannot be re-verified because the file was never saved to this workspace — re-paste it and every extra/missing page is reconciled |
 
 ## 3. Structure, naming and content rules
 
@@ -58,7 +58,7 @@ original guide text (re-paste it and this line is closed in one pass).
 
 | # | Requirement | Status | Evidence |
 |---|---|---|---|
-| 5.1 | Page generator | **Done** | `node tools/build.mjs` (zero dependencies, Node 18+), `node tools/build.mjs --check` → 81/81 synced |
+| 5.1 | Page generator | **Done** | `node tools/build.mjs` (zero dependencies, Node 18+), `node tools/build.mjs --check` → 83/83 synced |
 | 5.2 | Static QA gate | **Done** | `node tools/audit.mjs` (19 checks: head meta, ids, anchors, aria, images, labels, class existence, data hooks, chart wiring, headings, tag balance, nesting, placeholders, demo-pane contract, link targets) |
 | 5.3 | Buyer-facing docs in the ZIP | **Done** | `README.txt`, `CHANGELOG.txt`, `LICENSE.txt` (template licence + MIT/OFL attributions) |
 | 5.4 | Reproducible release builds | **Done** | `bash tools/package.sh` → `release/*.zip` (full + html-only) |
@@ -111,9 +111,9 @@ generated pagers, the AI history table, the content generator and the plan cards
 | 8 | Brand/product naming | **Done** | "Qevora AI SaaS UI" everywhere; old suffix banned by a release check |
 | 9 | Demo data reviewed | **Done** | fictional names, 555-01xx phone range, all addresses on `example.com` |
 | 10 | License audit | **Done** | Bootstrap/Icons/Chart.js MIT, Inter OFL 1.1, all images original SVGs |
-| 11 | HTML/CSS/JS quality | **Done** | audit `--strict` 0 findings; runtime suites green (`check-controls` 100, `check-kanban` 94, `check-dropdowns` 81, `check-add-card` 34, `check-calendar` 76, `check-states` 15, `check-buttons` 82 pages / 0 blank controls, `check-responsive` 89 + `visual-check` (rendered, 48 tables at 382px), `smoke` 82 pages) |
+| 11 | HTML/CSS/JS quality | **Done** | audit `--strict` 0 findings; runtime suites green (`check-controls` 100, `check-kanban` 94, `check-dropdowns` 81, `check-add-card` 34, `check-calendar` 76, `check-states` 15, `check-buttons` 84 pages / 0 blank controls, `check-responsive` 89 + `visual-check` (rendered, 48 tables at 382px), `smoke` 84 pages) |
 | 12 | Responsive/light/dark/RTL | **Done** | smoke + theme pass + previews 01/02/13/14 |
-| 13 | 404/empty/utility states | **Done** | 404, 500, maintenance, coming soon, empty states, loading and validation states |
+| 13 | 404/empty/utility states | **Done** | 404, 500, maintenance, coming soon, terms and conditions, privacy policy, empty states, loading and validation states |
 | 14 | README.txt final pass | **Done** | rewritten for buyers, no development-only instructions |
 | 15 | CHANGELOG.txt | **Done** | release entry for 1.0.0 plus the full build history |
 | 16 | Development artifacts removed | **Done** | enforced by `tools/release.mjs` against the extracted ZIP |

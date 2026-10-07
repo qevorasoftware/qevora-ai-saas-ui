@@ -1,6 +1,6 @@
 # Qevora AI SaaS — Bootstrap 5 Admin & UI Kit
 
-A complete, static **Bootstrap 5.3 admin dashboard + UI kit** for AI and SaaS products. 81 HTML pages,
+A complete, static **Bootstrap 5.3 admin dashboard + UI kit** for AI and SaaS products. 83 HTML pages,
 light and dark themes, RTL support, an AI workspace (overview, chat, generators, usage, history),
 business modules (CRM, projects, billing, team, reports) and a component library whose examples can be
 copied with one click.
@@ -13,7 +13,7 @@ No framework, no build step and no CDN required — open `index.html` and the da
 
 | | |
 |---|---|
-| **Pages** | 81 — dashboard (1), AI workspace (6), applications (31), UI kit (31), auth (6), utility (4), documentation (2) |
+| **Pages** | 83 — dashboard (1), AI workspace (6), applications (31), UI kit (31), auth (6), utility (6), documentation (2) |
 | **Themes** | Light + dark, saved in `localStorage`, follows the system preference by default |
 | **RTL** | Full right-to-left support via logical CSS + `bootstrap.rtl.min.css` swap at runtime |
 | **Responsive** | Desktop, tablet and mobile off-canvas navigation; tables and grids adapt down to 375 px |
@@ -100,7 +100,7 @@ follow automatically.
 
 ## Optional build script
 
-The 81 pages share one shell. To change the sidebar or header once instead of 81 times:
+The 83 pages share one shell. To change the sidebar or header once instead of 83 times:
 
 ```bash
 node tools/build.mjs            # regenerate every page from src/
