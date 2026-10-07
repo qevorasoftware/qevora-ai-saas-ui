@@ -110,10 +110,14 @@ check("calendar: the summary counts every calendar", summary() === `Showing ${ap
 /* --------------------------------------------------------------- agenda --- */
 check("calendar: the agenda is today's", text(pick("[data-cal-agenda-title]")) === "Today's agenda", text(pick("[data-cal-agenda-title]")));
 check("calendar: the agenda is dated", text(pick("[data-cal-agenda-date]")).length > 4, text(pick("[data-cal-agenda-date]")));
+/* The seed data is written as day numbers inside the month the page opens on,
+   so the current day may legitimately hold nothing — in which case the agenda
+   has to say so rather than show a stale or empty list. */
 const todayEvents = eventsOn(TODAY);
-check("calendar: the agenda lists today's events (hidden calendars included)",
-  agendaTitles().join("|") === todayEvents.map((event) => event.title).join("|"),
-  `${agendaTitles().join(" | ")} / expected ${todayEvents.map((e) => e.title).join(" | ")}`);
+const agendaExpected = todayEvents.length ? todayEvents.map((event) => event.title) : ["Nothing scheduled"];
+check("calendar: the agenda lists today's events, or says there are none (hidden calendars included)",
+  agendaTitles().join("|") === agendaExpected.join("|"),
+  `${agendaTitles().join(" | ")} / expected ${agendaExpected.join(" | ")}`);
 
 /* -------------------------------------------------------------- filters --- */
 const legendState = all("[data-cal-filter]").map((button) => `${button.getAttribute("data-cal-filter")}:${button.getAttribute("aria-pressed")}`).join(" ");

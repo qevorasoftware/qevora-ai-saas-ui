@@ -64,6 +64,11 @@
   --q-surface-hover: #f3f4f9;
   --q-sidebar-bg: #ffffff;
   --q-header-bg: rgba(255, 255, 255, 0.85);
+  /* The phone header uses the solid variant: a frosted strip over content that
+     scrolls under it left the page title and a card's gradient cover showing
+     through between the header icons (there is no room for the blur to read as
+     glass on a 40px-tall row of controls). */
+  --q-header-bg-solid: #ffffff;
   --q-code-bg: #0f1424;
   --q-code-color: #e2e8f0;
 
@@ -191,6 +196,7 @@
   --q-surface-hover: #1c2340;
   --q-sidebar-bg: #0f1527;
   --q-header-bg: rgba(15, 21, 39, 0.85);
+  --q-header-bg-solid: #0f1527;
   --q-code-bg: #090d18;
   --q-code-color: #dbe3f4;
 
@@ -840,6 +846,8 @@ body.q-sidebar-open .q-sidebar-backdrop {
   .q-header {
     padding-inline: 0.75rem;
     gap: 0.5rem;
+    background: var(--q-header-bg-solid);
+    backdrop-filter: none;
   }
 
   .q-header__toggle,

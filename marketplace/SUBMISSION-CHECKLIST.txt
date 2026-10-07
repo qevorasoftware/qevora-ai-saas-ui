@@ -203,7 +203,8 @@
     closes it, Escape closes it, a nav link closes it, widening the window closes it, and a
     desktop click collapses the rail instead), and the filter panel driven end to end (closed on
     load, opened by the Filter click, kept open by a chip, closed by its × or by a click
-    outside, focus handed back) — 79 checks, green (needs jsdom)
+    outside, focus handed back); the phone header is opaque; and every wide table in the
+    package carries a floor so its columns stay readable — 86 checks, green (needs jsdom)
   · node tools/check-calendar.mjs      the calendar in pages/calendar.html: month, week and day views,
     month navigation that always lands on the month in the header, every event drawn into
     the cell of its own day, the four calendars on and off (the legend dots and the sidebar

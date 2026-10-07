@@ -22,6 +22,11 @@
      · the mobile drawer — below 992px the sidebar slides in over a dimmed
        backdrop, and that backdrop has to close it (the element ships in the
        markup, so nothing but the wiring was ever missing)
+     · wide tables — a .table-responsive wrapper scrolls, but a table with no
+       floor width still crushes its columns to fit; every data table in the
+       package carries .table-min or .table-min-lg below 992px
+     · the phone header — opaque instead of frosted, so content scrolling under
+       it cannot show through between the icons
      · avatars — every size a square with border-radius: 50%, so no flex row can
        ever stretch one into an oval
      · the header itself still fits on the narrowest phone this template claims
@@ -105,6 +110,8 @@ const hasDeclaration = (selector, property, pattern, mediaIncludes) => {
 const inMedia = (selector, mediaIncludes, property, pattern) => hasDeclaration(selector, property, pattern, mediaIncludes);
 
 const MEDIA_PHONE = "max-width: 575.98px";
+const MEDIA_TABLET = "max-width: 991.98px";
+const MEDIA_BELOW_LG = "max-width: 991.98px";
 const MEDIA_BELOW_MD = "max-width: 767.98px";
 
 /* ------------------------------------------------------- the filter panel --- */
@@ -288,6 +295,30 @@ const sizes = ["xs", "sm", "md", "lg", "xl", "xxl"].map((size) => {
 check("avatar: no size can be squashed by a narrow flex row", sizes.every((entry) => entry.ok),
   sizes.map((entry) => `${entry.size} ${entry.width}/${entry.min}`).join(" "));
 
+/* ------------------------------------------------------------ wide tables --- */
+/* A .table-responsive wrapper scrolls, but a table with no floor width still
+   crushes its columns to fit: an invoice number over three lines, a date in two
+   pieces, the last column cut off. Every table in the package has four or more
+   columns, so each one carries a floor and the wrapper does the scrolling. */
+check("tables: a 4-5 column table keeps a readable floor below 992px",
+  inMedia(".table-responsive > .table-min", MEDIA_TABLET, "min-width", /40rem/),
+  declarations(".table-responsive > .table-min", "min-width").map((entry) => `${entry.value} [${entry.media || "base"}]`).join(" | "));
+
+check("tables: a 6+ column table gets the wider floor",
+  inMedia(".table-responsive > .table-min-lg", MEDIA_TABLET, "min-width", /56rem/),
+  declarations(".table-responsive > .table-min-lg", "min-width").map((entry) => `${entry.value} [${entry.media || "base"}]`).join(" | "));
+
+check("tables: the floors are phone and tablet only, so a desktop table never scrolls",
+  declarations(".table-min", "min-width").every((entry) => entry.media.includes("991.98")) &&
+  declarations(".table-min-lg", "min-width").every((entry) => entry.media.includes("991.98")),
+  [...declarations(".table-min", "min-width"), ...declarations(".table-min-lg", "min-width")]
+    .map((entry) => `${entry.value} [${entry.media || "base"}]`).join(" | "));
+
+check("tables: the identifier column keeps its line",
+  inMedia(".table-responsive > .table-min > tbody > tr > td:first-child", MEDIA_TABLET, "white-space", /nowrap/) &&
+  inMedia(".table-responsive > .table-min-lg > tbody > tr > td:first-child", MEDIA_TABLET, "white-space", /nowrap/),
+  `${value(".table-responsive > .table-min > tbody > tr > td:first-child", "white-space")} / ${value(".table-responsive > .table-min-lg > tbody > tr > td:first-child", "white-space")}`);
+
 /* ------------------------------------------------- the mobile header row --- */
 check("header: the drawer button is the same square as the buttons beside it",
   hasDeclaration(".q-header__toggle", "width", "40px") &&
@@ -311,6 +342,16 @@ check("header: the icons are centred by line-height, not by baseline",
   hasDeclaration(".q-icon-btn i", "line-height", "1") &&
   hasDeclaration(".q-header__toggle i", "display", "block"),
   `${value(".q-header__toggle i", "line-height")} / ${value(".q-icon-btn i", "line-height")}`);
+
+check("header: the phone header is opaque, so content never shows between the icons",
+  inMedia(".q-header", MEDIA_BELOW_MD, "background", /var\(--q-header-bg-solid\)/) &&
+  inMedia(".q-header", MEDIA_BELOW_MD, "backdrop-filter", /none/),
+  declarations(".q-header", "background").map((entry) => `${entry.value} [${entry.media || "base"}]`).join(" | "));
+
+check("header: the solid token exists in both palettes",
+  hasDeclaration(":root", "--q-header-bg-solid", /#ffffff/) &&
+  hasDeclaration('[data-bs-theme="dark"]', "--q-header-bg-solid", /#0f1527/),
+  `${value(":root", "--q-header-bg-solid")} / ${value('[data-bs-theme="dark"]', "--q-header-bg-solid")}`);
 
 check("header: the actions row is centred, so nothing sits a pixel high",
   hasDeclaration(".q-header__actions", "display", "flex") &&
@@ -424,6 +465,31 @@ for (const page of shippedPages) {
   check(`markup: ${page} uses the panel with its body and footer`, hasBody && hasFoot, `body ${hasBody}, footer ${hasFoot}`);
 }
 check("markup: the shipped pages were all read", shippedPages.length >= 82, `${shippedPages.length} pages`);
+
+/* Every wide table, on every shipped page: a floor class or an inline width. */
+{
+  const bare = [];
+  let counted = 0;
+  for (const page of shippedPages) {
+    const html = readFileSync(join(ROOT, page), "utf8");
+    for (const wrapper of html.matchAll(/<div class="table-responsive[^"]*"/g)) {
+      const tail = html.slice(wrapper.index);
+      const end = tail.indexOf("</table>");
+      if (end === -1) continue;
+      const block = tail.slice(0, end);
+      const table = block.match(/<table\b[^>]*>/);
+      if (!table) continue;
+      const head = block.slice(table.index + table[0].length);
+      const thead = head.includes("</thead>") ? head.slice(0, head.indexOf("</thead>")) : head;
+      const cols = (thead.match(/<th\b/g) || []).length || (block.match(/<th\b/g) || []).length;
+      if (cols < 4) continue;
+      counted += 1;
+      if (!/table-min|min-width/.test(table[0])) bare.push(`${page} (${cols} cols)`);
+    }
+  }
+  check(`markup: every wide table carries its floor (${counted} tables checked)`, bare.length === 0,
+    bare.slice(0, 3).join(", "));
+}
 check("markup: the panel is only used where it is documented", panelPages.length > 0, panelPages.join(", "));
 
 /* The header user button across every page that has a header: an avatar and no

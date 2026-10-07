@@ -1198,6 +1198,35 @@
   grid-column: 1 / -1;
 }
 
+/* --------------------------------------------------------------------------
+   Tables on a small screen.
+
+   .table-responsive makes the wrapper scroll, but a table with no minimum
+   width still shrinks to fit the wrapper: an invoice number wraps over three
+   lines, a date breaks after the month and the last column is cut in half.
+   These floors keep the columns readable and let the wrapper scroll instead.
+   They only apply below 992px, where the content column is a single full-width
+   one — on a desktop the table has room and never scrolls.
+   -------------------------------------------------------------------------- */
+@media (max-width: 991.98px) {
+  /* 4–5 columns: an invoice id, an amount and a badge on one line each. */
+  .table-responsive > .table-min {
+    min-width: 40rem;
+  }
+
+  /* 6 or more: the wide CRUD tables (orders, payments, leads, tasks). */
+  .table-responsive > .table-min-lg {
+    min-width: 56rem;
+  }
+
+  /* The first column is the one that identifies the row, so it keeps its line
+     even when a value is long. */
+  .table-responsive > .table-min > tbody > tr > td:first-child,
+  .table-responsive > .table-min-lg > tbody > tr > td:first-child {
+    white-space: nowrap;
+  }
+}
+
 .table-footer {
   display: flex;
   flex-wrap: wrap;

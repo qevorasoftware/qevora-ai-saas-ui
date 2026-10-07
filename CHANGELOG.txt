@@ -563,6 +563,24 @@ FIXES DURING DEVELOPMENT
       of the drawer were the Esc key and a navigation link. The click is bound
       once now, whether the backdrop was found or made.
 
+    · Wide tables stay readable on a phone. A .table-responsive wrapper
+      scrolls, but a table with no floor width still shrank to fit it: on
+      pages/customer-details.html an invoice number wrapped over three lines, a
+      date broke in two, and the last column was cut in half. Every data table in
+      the package (all of them have four or more columns) now carries a floor and
+      lets the wrapper do the scrolling — .table-min (40rem) at four or five
+      columns, .table-min-lg (56rem) at six or more — with the first column kept
+      on one line, because that is the one that identifies the row. Both floors
+      only apply below 992px: on a desktop the table has room and nothing scrolls
+      that did not scroll before. The pattern is documented on the Tables
+      component page.
+    · The phone header is opaque. It was a frosted strip at 85% opacity with a
+      backdrop blur, which is a nice effect on a wide screen and a muddy one on a
+      40px-tall row of controls: a card's gradient cover scrolling under it showed
+      through between the icons. Below 768px the header uses the new solid
+      --q-header-bg-solid token (white in the light palette, the sidebar ink in
+      the dark one) and drops the blur; the desktop header is unchanged.
+
   Links, buttons and runtime behaviour
     · The light/dark toggle did nothing when localStorage is unavailable —
       private-mode windows, sandboxed frames and, most importantly, opening the

@@ -730,7 +730,7 @@
               </div>
 
               <div class="table-responsive">
-                <table class="table table-hover align-middle mb-0" id="tableFull">
+                <table class="table table-hover align-middle mb-0 table-min-lg" id="tableFull">
                   <thead>
                     <tr>
                       <th style="width: 40px;" scope="col">
@@ -991,6 +991,13 @@ Qevora.toast("Invoice INV-2026-0186 marked as paid", "success", "Payments");</co
           <div>
             <h2 class="demo-block__title">Table styles</h2>
             <p class="demo-block__desc">Striped, bordered and compact variants for denser screens such as reports and activity logs.</p>
+            <p class="demo-block__desc mb-0">
+              Below 992px a wide table would squeeze its columns until an invoice number wrapped over three lines, so the
+              data tables in this template carry a floor and let the <code>.table-responsive</code> wrapper scroll:
+              <code>.table-min</code> (40rem) for four or five columns, <code>.table-min-lg</code> (56rem) for six or
+              more, with the first cell kept on one line. On a desktop the floor is off, so nothing scrolls that did not
+              need to.
+            </p>
           </div>
         </div>
         <div class="demo-block__tabs">
@@ -1004,7 +1011,7 @@ Qevora.toast("Invoice INV-2026-0186 marked as paid", "success", "Payments");</co
             <div class="card mb-3">
               <div class="card-header"><h3 class="card-title mb-0">Striped</h3></div>
               <div class="table-responsive">
-                <table class="table table-striped align-middle mb-0">
+                <table class="table table-striped align-middle mb-0 table-min">
                   <thead>
                     <tr><th scope="col">Invoice</th><th scope="col">Customer</th><th scope="col">Issued</th><th scope="col" class="text-end">Amount</th></tr>
                   </thead>
@@ -1020,7 +1027,7 @@ Qevora.toast("Invoice INV-2026-0186 marked as paid", "success", "Payments");</co
             <div class="card mb-3">
               <div class="card-header"><h3 class="card-title mb-0">Bordered and compact</h3></div>
               <div class="table-responsive">
-                <table class="table table-bordered table-sm align-middle mb-0">
+                <table class="table table-bordered table-sm align-middle mb-0 table-min">
                   <thead>
                     <tr><th scope="col">Model</th><th scope="col">Requests</th><th scope="col">Tokens</th><th scope="col">Latency</th></tr>
                   </thead>
@@ -1056,7 +1063,7 @@ Qevora.toast("Invoice INV-2026-0186 marked as paid", "success", "Payments");</co
         <div class="demo-block__pane" data-demo-pane="css">
           <div class="demo-code-wrap">
             <button class="copy-btn" data-copy-target="#css-components-tables-2" type="button"><i class="bi bi-clipboard"></i> Copy CSS</button>
-            <pre class="demo-code"><code id="css-components-tables-2" data-lang="css">/* Qevora styles used by this block — from assets/css/components.css + assets/css/style.css */
+            <pre class="demo-code"><code id="css-components-tables-2" data-lang="css">/* Qevora styles used by this block — from assets/css/components.css */
 
 .card {
   --bs-card-bg: var(--q-surface);
@@ -1092,6 +1099,24 @@ Qevora.toast("Invoice INV-2026-0186 marked as paid", "success", "Payments");</co
   color: var(--q-heading-color);
 }
 
+@media (max-width: 991.98px) {
+  .table-responsive &gt; .table-min {
+    min-width: 40rem;
+  }
+}
+
+@media (max-width: 991.98px) {
+  .table-responsive &gt; .table-min-lg {
+    min-width: 56rem;
+  }
+}
+
+@media (max-width: 991.98px) {
+  .table-responsive &gt; .table-min &gt; tbody &gt; tr &gt; td:first-child, .table-responsive &gt; .table-min-lg &gt; tbody &gt; tr &gt; td:first-child {
+    white-space: nowrap;
+  }
+}
+
 .table-responsive {
   border-radius: 0 0 var(--q-radius-lg) var(--q-radius-lg);
 }
@@ -1102,24 +1127,6 @@ Qevora.toast("Invoice INV-2026-0186 marked as paid", "success", "Payments");</co
   --bs-table-hover-bg: var(--q-surface-hover);
   --bs-table-striped-bg: var(--q-surface-alt);
   --bs-table-color: var(--q-body-color);
-  margin-bottom: 0;
-  font-size: 0.875rem;
-  vertical-align: middle;
-}
-
-.table &gt; thead th {
-  font-size: 0.75rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  color: var(--q-muted-color);
-  background: var(--q-surface-alt);
-  border-bottom: 1px solid var(--q-border-color);
-  padding: 0.75rem 1rem;
-  white-space: nowrap;
-}
-
-.table &gt; tbody td {
 /* … sample trimmed for length */</code></pre>
           </div>
         </div>
