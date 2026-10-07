@@ -23,6 +23,8 @@
      9. page count                    84 pages plus the host 404 mirror
     10. sitemap                      every page listed once, and nothing extra
     11. documentation                the guide lists every page too
+    12. README.md                    the project readme lists every page
+    13. README.txt                   the buyer readme lists every page
    ========================================================================== */
 
 import { readFileSync, existsSync, readdirSync, statSync, mkdtempSync, rmSync } from "node:fs";
@@ -263,6 +265,37 @@ if (!existsSync(join(ROOT, BUYER_ZIP))) {
       docsRepeated.length ? `listed twice: ${docsRepeated.slice(0, 4).join(", ")}` : "",
       docsExtra.length ? `not in the package: ${docsExtra.slice(0, 4).join(", ")}` : ""
     ].filter(Boolean).join(" · ") || "no guide inventory found");
+
+  /* 12./13. the two READMEs ------------------------------------------------
+     README.md documents the project on the repository; README.txt ships inside
+     the buyer ZIP. Both carry a generated list of every page, and both are
+     checked the same way as the sitemap and the guide. */
+  const pageCount = PAGES.length;
+  const readmeChecks = [
+    { file: "README.md", path: join(ROOT, "README.md"), label: "README.md" },
+    { file: "README.txt", path: join(root, "README.txt"), label: "README.txt" }
+  ];
+  for (const entry of readmeChecks) {
+    const present = entry.file === "README.md" ? existsSync(entry.path) : files.includes(entry.file);
+    const text = present ? read(entry.path) : "";
+    const region = (text.match(/q-readme-(?:pages|inventory):start[\s\S]*?q-readme-(?:pages|inventory):end/) || [""])[0];
+    /* Both READMEs list plain paths — README.md inside backticks, README.txt as
+       an indented column — so any .html token in the region counts. */
+    const links = [...region.matchAll(/([a-z0-9][a-z0-9/-]*\.html)/g)].map((match) => match[1]);
+    const unique = new Set(links);
+    const missing = PAGES.filter((page) => !unique.has(page));
+    const extra = [...unique].filter((page) => !PAGES.includes(page));
+    const repeated = [...unique].filter((page) => links.filter((seen) => seen === page).length > 1);
+    check(`${entry.label} lists all ${pageCount} pages exactly once`,
+      present && region !== "" && missing.length === 0 && repeated.length === 0 && extra.length === 0,
+      [
+        !present ? "file missing" : "",
+        present && region === "" ? "no generated inventory region" : "",
+        missing.length ? `missing: ${missing.slice(0, 4).join(", ")}` : "",
+        repeated.length ? `listed twice: ${repeated.slice(0, 4).join(", ")}` : "",
+        extra.length ? `not in the package: ${extra.slice(0, 4).join(", ")}` : ""
+      ].filter(Boolean).join(" · "));
+  }
 
   const totals = [...sitemap.matchAll(/<p class="kpi-tile__value">(\d+)<\/p>/g)].map((match) => Number(match[1]));
   check("sitemap totals agree with the inventory",

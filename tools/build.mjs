@@ -145,7 +145,7 @@ const SITEMAP_MODULES = [
   {
     id: "utility",
     title: "Utility",
-    blurb: "Pages that sit outside the product: the 404 and 500 states, maintenance and coming-soon screens, the terms and privacy documents, and this sitemap.",
+    blurb: "Pages that sit outside the product: the 404 and 500 states, maintenance and coming-soon screens, the terms and privacy documents, and the sitemap.",
     match: (out) => out.startsWith("utility/")
   },
   {
@@ -240,6 +240,83 @@ ${items}
           </div>`;
     })
     .join("\n");
+}
+
+/* The README's page inventory. Markdown, one bullet per page, grouped by the
+   same modules. Written into README.md between two markers so the rest of the
+   file stays hand-written. */
+const README_START = "<!-- q-readme-inventory:start -->";
+const README_END = "<!-- q-readme-inventory:end -->";
+
+function renderReadmeInventory() {
+  const labels = navLabels();
+  return pagesByModule()
+    .map(({ module, pages: entries }) => {
+      const rows = entries
+        .map((page) => {
+          const label = labels.get(page.out) || page.meta.title.split(" | ")[0];
+          return `- **${label}** — \`${page.out}\` — ${page.meta.desc}`;
+        })
+        .join("\n");
+      return `### ${module.title} (${entries.length})\n\n${rows}`;
+    })
+    .join("\n\n");
+}
+
+/* The buyer README (README.txt) lists every page too, in the plain-text file
+   that ships inside the ZIP. Same inventory, same markers idea. */
+const README_TXT_START = "[q-readme-pages:start]";
+const README_TXT_END = "[q-readme-pages:end]";
+const README_TXT_SUMMARY_START = "[q-readme-summary:start]";
+const README_TXT_SUMMARY_END = "[q-readme-summary:end]";
+
+function wrapText(text, width) {
+  const words = text.split(/\s+/);
+  const lines = [];
+  let line = "";
+  for (const word of words) {
+    if (line && (line + " " + word).length > width) {
+      lines.push(line);
+      line = word;
+    } else {
+      line = line ? `${line} ${word}` : word;
+    }
+  }
+  if (line) lines.push(line);
+  return lines;
+}
+
+function renderReadmeTxtSummary() {
+  const pad = (text, width) => text + " ".repeat(Math.max(1, width - text.length));
+  return pagesByModule()
+    .flatMap(({ module, pages: entries }) => {
+      const count = `${entries.length} page${entries.length === 1 ? "" : "s"}`;
+      const indent = " ".repeat(37);
+      return wrapText(module.blurb, 52).map((line, index) =>
+        index === 0 ? `      ${pad(module.title, 24)}${pad(count, 9)}${line}` : indent + line
+      );
+    })
+    .join("\n");
+}
+
+function renderReadmeTxtInventory() {
+  const labels = navLabels();
+  const pad = (text, width) => text + " ".repeat(Math.max(1, width - text.length));
+  return pagesByModule()
+    .map(({ module, pages: entries }) => {
+      const rows = entries
+        .flatMap((page) => {
+          const label = labels.get(page.out) || page.meta.title.split(" | ")[0];
+          const indent = "        " + " ".repeat(36);
+          const wrapped = wrapText(`${label} — ${page.meta.desc}`, 44);
+          return wrapped.map((line, index) =>
+            index === 0 ? `        ${pad(page.out, 36)}${line}` : indent + line
+          );
+        })
+        .join("\n");
+      return `      ${module.title} (${entries.length})\n${rows}`;
+    })
+    .join("\n\n");
 }
 
 function renderSitemap(depth) {
@@ -386,6 +463,8 @@ async function build() {
   const missing = [];
   const unfilled = [];
   const buildPages = [];
+  let readmeError = null;
+  let readmeTxtError = null;
   let built = 0;
   let hostMirror = false;
   let cssIndex = null;
@@ -536,6 +615,71 @@ ${fill(scripts)}</body>
     }
   }
 
+  /* ------------------------------------------------------- README inventory */
+  /* README.md carries the same list as the guide and the sitemap, generated
+     from the same inventory. Markers keep the rest of the file hand-written. */
+  const README_TOKENS = { "{{PAGE_COUNT}}": String(pages.length), ...inventoryCountTokens() };
+  const readmePath = join(ROOT, "README.md");
+  const readme = await readMaybe(readmePath);
+  let readmeSynced = false;
+
+  if (readme === null) {
+    readmeError = "README.md is missing";
+  } else if (!readme.includes(README_START) || !readme.includes(README_END)) {
+    readmeError = "README.md lost its q-readme-inventory markers";
+  } else {
+    let next = readme.replace(
+      new RegExp(`${README_START}[\\s\\S]*?${README_END}`),
+      `${README_START}\n${renderReadmeInventory()}\n${README_END}`
+    );
+    for (const [token, value] of Object.entries(README_TOKENS)) next = next.split(token).join(value);
+    if (next !== readme) {
+      if (checkOnly) readmeError = "README.md page inventory is out of date — run node tools/build.mjs";
+      else {
+        await writeFile(readmePath, next, "utf8");
+        readmeSynced = true;
+      }
+    }
+  }
+
+  /* README.txt is the buyer's readme and travels inside the ZIP, so it gets the
+     same treatment: a generated list of every page plus generated counts. */
+  const readmeTxtPath = join(ROOT, "README.txt");
+  const readmeTxt = await readMaybe(readmeTxtPath);
+  let readmeTxtSynced = false;
+
+  if (readmeTxt === null) {
+    readmeTxtError = "README.txt is missing";
+  } else if (
+    !readmeTxt.includes(README_TXT_START) ||
+    !readmeTxt.includes(README_TXT_END) ||
+    !readmeTxt.includes(README_TXT_SUMMARY_START) ||
+    !readmeTxt.includes(README_TXT_SUMMARY_END)
+  ) {
+    readmeTxtError = "README.txt lost its q-readme markers";
+  } else {
+    const escapeRe = (text) => text.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+    const regions = [
+      [README_TXT_SUMMARY_START, README_TXT_SUMMARY_END, renderReadmeTxtSummary()],
+      [README_TXT_START, README_TXT_END, renderReadmeTxtInventory()]
+    ];
+    let next = readmeTxt;
+    for (const [from, to, body] of regions) {
+      next = next.replace(
+        new RegExp(`${escapeRe(from)}[\\s\\S]*?${escapeRe(to)}`),
+        `${from}\n${body}\n${to}`
+      );
+    }
+    for (const [token, value] of Object.entries(README_TOKENS)) next = next.split(token).join(value);
+    if (next !== readmeTxt) {
+      if (checkOnly) readmeTxtError = "README.txt page list is out of date — run node tools/build.mjs";
+      else {
+        await writeFile(readmeTxtPath, next, "utf8");
+        readmeTxtSynced = true;
+      }
+    }
+  }
+
   /* ---------------------------------------------------------------- checks */
 
   const problems = [];
@@ -545,6 +689,9 @@ ${fill(scripts)}</body>
       `Missing body content for ${missing.length} page(s):\n  - ${missing.join("\n  - ")}`
     );
   }
+
+  if (readmeError) problems.push(readmeError);
+  if (readmeTxtError) problems.push(readmeTxtError);
 
   if (unfilled.length) {
     problems.push(`Page(s) with a token nothing replaced:\n  - ${unfilled.join("\n  - ")}`);
@@ -579,6 +726,8 @@ ${fill(scripts)}</body>
   if (!checkOnly) console.log(`Pages written      : ${built}`);
   console.log(`Documentation only : ${unreachable.filter((o) => o.startsWith("documentation/")).join(", ") || "—"}`);
   if (!checkOnly) console.log(`Host 404 mirror    : ${hostMirror ? "404.html" : "—"}`);
+  if (!checkOnly) console.log(`README inventory   : ${readmeSynced ? "written" : "already in sync"}`);
+  if (!checkOnly) console.log(`README.txt list    : ${readmeTxtSynced ? "written" : "already in sync"}`);
   if (!checkOnly) console.log(`Demo blocks grown  : ${sampleStats.blocks} (CSS + JS panes)`);
   console.log("");
 
