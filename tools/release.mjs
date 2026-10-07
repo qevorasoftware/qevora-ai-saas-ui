@@ -22,6 +22,7 @@
      8. no build tooling in the ZIP   nothing points at src/ or tools/
      9. page count                    84 pages plus the host 404 mirror
     10. sitemap                      every page listed once, and nothing extra
+    11. documentation                the guide lists every page too
    ========================================================================== */
 
 import { readFileSync, existsSync, readdirSync, statSync, mkdtempSync, rmSync } from "node:fs";
@@ -243,6 +244,25 @@ if (!existsSync(join(ROOT, BUYER_ZIP))) {
       repeated.length ? `listed twice: ${repeated.slice(0, 4).join(", ")}` : "",
       unreachable.length ? `not in the package: ${unreachable.slice(0, 4).join(", ")}` : ""
     ].filter(Boolean).join(" · ") || "no sitemap page found");
+
+  /* 11. documentation completeness ----------------------------------------
+     The guide carries its own generated list of every page. Same test as the
+     sitemap: the shipped file must reach the whole package, once each. */
+  const docsFile = "documentation/index.html";
+  const docs = files.includes(docsFile) ? withoutCodeSamples(read(join(root, docsFile))) : "";
+  const docsRegion = (docs.match(/q-doc-inventory:start[\s\S]*?q-doc-inventory:end/) || [""])[0];
+  const docsListed = [...docsRegion.matchAll(/href="\.\.\/([^"#?]+\.html)"/g)].map((match) => match[1]);
+  const docsSet = new Set(docsListed);
+  const docsMissing = PAGES.filter((page) => !docsSet.has(page));
+  const docsExtra = [...docsSet].filter((page) => !PAGES.includes(page));
+  const docsRepeated = [...docsSet].filter((page) => docsListed.filter((entry) => entry === page).length > 1);
+  check(`documentation lists all ${PAGES.length} pages exactly once`,
+    docs !== "" && docsMissing.length === 0 && docsRepeated.length === 0 && docsExtra.length === 0,
+    [
+      docsMissing.length ? `missing: ${docsMissing.slice(0, 4).join(", ")}` : "",
+      docsRepeated.length ? `listed twice: ${docsRepeated.slice(0, 4).join(", ")}` : "",
+      docsExtra.length ? `not in the package: ${docsExtra.slice(0, 4).join(", ")}` : ""
+    ].filter(Boolean).join(" · ") || "no guide inventory found");
 
   const totals = [...sitemap.matchAll(/<p class="kpi-tile__value">(\d+)<\/p>/g)].map((match) => Number(match[1]));
   check("sitemap totals agree with the inventory",

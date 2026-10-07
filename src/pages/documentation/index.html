@@ -21,7 +21,7 @@
                 <div class="col-md-8">
                   <h2 class="h5 text-heading mb-2">What you received</h2>
                   <p class="fs-7 text-muted-2 mb-3">
-                    A complete static admin template: <strong class="text-heading">84 HTML pages</strong>, a component
+                    A complete static admin template: <strong class="text-heading">{{PAGE_COUNT}} HTML pages</strong>, a component
                     library with copy-ready snippets, light and dark themes, RTL support and every library vendored
                     locally — the template never calls a CDN at runtime.
                   </p>
@@ -85,18 +85,18 @@
                 <pre class="demo-code"><code id="docTree">qevora-ai-saas-ui/
 ├── index.html                 Dashboard overview
 ├── 404.html                   Hosting fallback, mirrored from utility/404.html
-├── pages/                     Application pages (31)
+├── pages/                     Application pages ({{COUNT_APPLICATIONS}})
 │   ├── analytics.html  crm.html  leads.html  customers.html
 │   ├── projects.html   tasks.html  calendar.html  chat.html
 │   ├── invoices.html   payments.html  subscriptions.html
 │   └── team.html       roles.html  reports.html  settings.html  …
-├── ai/                        AI workspace (6)
+├── ai/                        AI workspace ({{COUNT_AI}})
 │   ├── dashboard.html  chat.html  content-generator.html
 │   └── image-generator.html  usage.html  history.html
-├── components/                UI kit (31, includes this documentation)
-├── auth/                      Authentication (6)
-├── utility/                   Utility pages (6)
-├── documentation/             This guide + design system
+├── components/                UI kit ({{COUNT_COMPONENTS}})
+├── auth/                      Authentication ({{COUNT_AUTHENTICATION}})
+├── utility/                   Utility pages ({{COUNT_UTILITY}})
+├── documentation/             This guide + design system ({{COUNT_DOCUMENTATION}})
 ├── assets/
 │   ├── css/    style.css  components.css  dark.css  rtl.css  fonts.css
 │   │           bootstrap.min.css  bootstrap.rtl.min.css
@@ -135,43 +135,43 @@ Optional developer source package (shipped separately from the item page)
                   <tr>
                     <td class="fw-500 text-heading">Dashboard</td>
                     <td><code>/</code></td>
-                    <td class="text-end">1</td>
+                    <td class="text-end">{{COUNT_DASHBOARD}}</td>
                     <td class="fs-7 text-muted-2 text-wrap">KPI cards, revenue chart, AI usage, activity feed</td>
                   </tr>
                   <tr>
                     <td class="fw-500 text-heading">AI workspace</td>
                     <td><code>ai/</code></td>
-                    <td class="text-end">6</td>
+                    <td class="text-end">{{COUNT_AI}}</td>
                     <td class="fs-7 text-muted-2 text-wrap">AI overview, chat, content and image generators, usage, history</td>
                   </tr>
                   <tr>
                     <td class="fw-500 text-heading">Applications</td>
                     <td><code>pages/</code></td>
-                    <td class="text-end">31</td>
+                    <td class="text-end">{{COUNT_APPLICATIONS}}</td>
                     <td class="fs-7 text-muted-2 text-wrap">CRM, customers, projects, tasks, calendar, chat, billing, team, reports, settings</td>
                   </tr>
                   <tr>
                     <td class="fw-500 text-heading">UI kit</td>
                     <td><code>components/</code></td>
-                    <td class="text-end">31</td>
+                    <td class="text-end">{{COUNT_COMPONENTS}}</td>
                     <td class="fs-7 text-muted-2 text-wrap">Colours, typography, grid, buttons, forms, tables, charts, feedback and more</td>
                   </tr>
                   <tr>
                     <td class="fw-500 text-heading">Authentication</td>
                     <td><code>auth/</code></td>
-                    <td class="text-end">6</td>
+                    <td class="text-end">{{COUNT_AUTHENTICATION}}</td>
                     <td class="fs-7 text-muted-2 text-wrap">Login, register, forgot and reset password, verify email, two-factor</td>
                   </tr>
                   <tr>
                     <td class="fw-500 text-heading">Utility</td>
                     <td><code>utility/</code></td>
-                    <td class="text-end">7</td>
+                    <td class="text-end">{{COUNT_UTILITY}}</td>
                     <td class="fs-7 text-muted-2 text-wrap">404, 500, maintenance, coming soon, terms, privacy, sitemap</td>
                   </tr>
                   <tr>
                     <td class="fw-500 text-heading">Documentation</td>
                     <td><code>documentation/</code></td>
-                    <td class="text-end">2</td>
+                    <td class="text-end">{{COUNT_DOCUMENTATION}}</td>
                     <td class="fs-7 text-muted-2 text-wrap">This guide and the design system reference</td>
                   </tr>
                 </tbody>
@@ -179,11 +179,23 @@ Optional developer source package (shipped separately from the item page)
                   <tr>
                     <th scope="row" class="fw-600 text-heading">Total</th>
                     <td></td>
-                    <td class="text-end fw-600 text-heading">84</td>
-                    <td class="fs-7 text-muted-2">Every page is linked from the sidebar or this guide</td>
+                    <td class="text-end fw-600 text-heading">{{PAGE_COUNT}}</td>
+                    <td class="fs-7 text-muted-2">Every page is listed and linked below</td>
                   </tr>
                 </tfoot>
               </table>
+            </div>
+            <div class="card-body border-top">
+              <h3 class="h6 text-heading d-flex flex-wrap align-items-center gap-2 mb-2">Every page
+                <span class="badge badge-soft-neutral">{{PAGE_COUNT}} pages</span>
+              </h3>
+              <p class="fs-8 text-muted-2 mb-3">
+                The list below is generated from the same page inventory the build reads, so a page cannot be
+                added to the package without appearing here. Each entry is a link to the page itself.
+              </p>
+              <!-- q-doc-inventory:start — generated from src/pages.mjs by tools/build.mjs -->
+{{DOCS_PAGE_LIST}}
+              <!-- q-doc-inventory:end -->
             </div>
           </div>
 
@@ -388,7 +400,7 @@ Optional developer source package (shipped separately from the item page)
               </div>
 
               <p class="fs-7 text-muted-2">
-                Editing 84 files every time the header changes is tedious, so the developer package adds a tiny
+                Editing {{PAGE_COUNT}} files every time the header changes is tedious, so the developer package adds a tiny
                 builder. It stitches the shell partials and each page body into the final HTML files. It has no
                 dependencies and needs Node 18 or newer.
               </p>

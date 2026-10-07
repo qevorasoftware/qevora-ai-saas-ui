@@ -169,6 +169,24 @@ function navLabels() {
   return labels;
 }
 
+/* Pages grouped by the module both the sitemap page and the guide use. */
+function pagesByModule() {
+  return SITEMAP_MODULES
+    .map((module) => ({ module, pages: pages.filter((page) => module.match(page.out)) }))
+    .filter((entry) => entry.pages.length > 0);
+}
+
+/* Counts for the guide's inventory table and folder tree, so a number printed
+   next to a folder is never typed by hand. */
+function inventoryCountTokens() {
+  const tokens = { "{{PAGE_COUNT}}": String(pages.length) };
+  for (const module of SITEMAP_MODULES) {
+    tokens[`{{COUNT_${module.id.toUpperCase()}}}`] =
+      String(pages.filter((page) => module.match(page.out)).length);
+  }
+  return tokens;
+}
+
 /* Rendered once per folder depth, because every page asks for the same map. */
 const sitemapCache = new Map();
 function sitemapTokens(depth) {
@@ -184,6 +202,44 @@ function sitemapTokens(depth) {
     });
   }
   return sitemapCache.get(depth);
+}
+
+const docsCache = new Map();
+function docsTokens(depth) {
+  if (!docsCache.has(depth)) docsCache.set(depth, { "{{DOCS_PAGE_LIST}}": renderDocsPageList(depth) });
+  return docsCache.get(depth);
+}
+
+/* The guide's "every page" list: the same grouped inventory the sitemap page
+   renders, as sub-sections inside the page-inventory card. */
+function renderDocsPageList(depth) {
+  const labels = navLabels();
+  return pagesByModule()
+    .map(({ module, pages: entries }) => {
+      const items = entries
+        .map((page) => {
+          const label = labels.get(page.out) || page.meta.title.split(" | ")[0];
+          return `            <li class="col-md-6 col-xl-4">
+              <a class="d-block h-100 text-decoration-none" href="${depth}${page.out}">
+                <span class="d-block fw-500 text-heading fs-7">${label}</span>
+                <span class="d-block fs-8 text-muted-2"><code>${page.out}</code></span>
+                <span class="d-block fs-8 text-muted-2">${page.meta.desc}</span>
+              </a>
+            </li>`;
+        })
+        .join("\n");
+
+      return `          <div class="mb-4">
+            <h3 class="h6 text-heading d-flex flex-wrap align-items-center gap-2 mb-2">${module.title}
+              <span class="badge badge-soft-neutral">${entries.length} page${entries.length === 1 ? "" : "s"}</span>
+            </h3>
+            <p class="fs-8 text-muted-2 mb-2">${module.blurb}</p>
+            <ul class="row g-3 list-unstyled mb-0">
+${items}
+            </ul>
+          </div>`;
+    })
+    .join("\n");
 }
 
 function renderSitemap(depth) {
@@ -393,7 +449,9 @@ async function build() {
       "{{MODALS}}": modals,
       /* The sitemap page is generated from the inventory above, so it can never
          disagree with what the build actually ships. */
-      ...sitemapTokens(depth)
+      ...sitemapTokens(depth),
+      ...docsTokens(depth),
+      ...inventoryCountTokens()
     };
 
     function fill(template) {
