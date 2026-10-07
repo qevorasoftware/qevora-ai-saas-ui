@@ -1202,27 +1202,50 @@
    Tables on a small screen.
 
    .table-responsive makes the wrapper scroll, but a table with no minimum
-   width still shrinks to fit the wrapper: an invoice number wraps over three
-   lines, a date breaks after the month and the last column is cut in half.
-   These floors keep the columns readable and let the wrapper scroll instead.
-   They only apply below 992px, where the content column is a single full-width
-   one — on a desktop the table has room and never scrolls.
+   width still shrinks to fit that wrapper — and a table narrower than its own
+   content cannot lay its cells out properly: an invoice number wraps over three
+   lines, a date breaks after the month, and a value that must not break (a SKU,
+   a status badge) runs out of its cell and over the column beside it.
+
+   min-width: min-content is the floor the table asks for itself: the sum of the
+   narrowest its columns can be, measured with the parts that must not break
+   counted in full. Nothing to guess, nothing to tag, and a buyer's own table
+   gets the same treatment as these. The wrapper scrolls from there, which is
+   exactly what it is there for.
+
+   All of it sits below 992px, where the content column is a single full-width
+   one. On a desktop every table has room, so none of these rules apply and
+   nothing scrolls that did not scroll before.
    -------------------------------------------------------------------------- */
 @media (max-width: 991.98px) {
-  /* 4–5 columns: an invoice id, an amount and a badge on one line each. */
-  .table-responsive > .table-min {
-    min-width: 40rem;
+  .table-responsive > .table {
+    /* Line one is for a browser that cannot read the keyword on line two. */
+    min-width: 36rem;
+    min-width: min-content;
   }
 
-  /* 6 or more: the wide CRUD tables (orders, payments, leads, tasks). */
-  .table-responsive > .table-min-lg {
-    min-width: 56rem;
+  /* The cell that names the row keeps its line: an invoice number, an order id,
+     a product name — and the same cell in a table that leads with a checkbox
+     (orders, leads, prompts), where the name sits in the second column. */
+  .table-responsive > .table > tbody > tr > td:first-child,
+  .table-responsive > .table:has(thead th:first-child .form-check-input) > tbody > tr > td:nth-child(2) {
+    white-space: nowrap;
   }
 
-  /* The first column is the one that identifies the row, so it keeps its line
-     even when a value is long. */
-  .table-responsive > .table-min > tbody > tr > td:first-child,
-  .table-responsive > .table-min-lg > tbody > tr > td:first-child {
+  /* A muted second line is an annotation, not the row's name — "Annual
+     subscription", "Oct 2, 2026 · 09:24". It may wrap rather than widen the
+     whole table by another 40 pixels. */
+  .table-responsive > .table > tbody > tr > td:first-child .fs-8,
+  .table-responsive > .table > tbody > tr > td:first-child .text-muted-2,
+  .table-responsive > .table > tbody > tr > td:first-child small,
+  .table-responsive > .table:has(thead th:first-child .form-check-input) > tbody > tr > td:nth-child(2) .fs-8,
+  .table-responsive > .table:has(thead th:first-child .form-check-input) > tbody > tr > td:nth-child(2) .text-muted-2,
+  .table-responsive > .table:has(thead th:first-child .form-check-input) > tbody > tr > td:nth-child(2) small {
+    white-space: normal;
+  }
+
+  /* A badge is one token: "Low stock" must never break in half. */
+  .table-responsive > .table .badge {
     white-space: nowrap;
   }
 }

@@ -809,6 +809,12 @@
   font-size: 0.75rem !important;
 }
 
+@media (max-width: 991.98px) {
+  .table-responsive &gt; .table &gt; tbody &gt; tr &gt; td:first-child .fs-8, .table-responsive &gt; .table &gt; tbody &gt; tr &gt; td:first-child .text-muted-2, .table-responsive &gt; .table &gt; tbody &gt; tr &gt; td:first-child small, .table-responsive &gt; .table:has(thead th:first-child .form-check-input) &gt; tbody &gt; tr &gt; td:nth-child(2) .fs-8, .table-responsive &gt; .table:has(thead th:first-child .form-check-input) &gt; tbody &gt; tr &gt; td:nth-child(2) .text-muted-2, .table-responsive &gt; .table:has(thead th:first-child .form-check-input) &gt; tbody &gt; tr &gt; td:nth-child(2) small {
+    white-space: normal;
+  }
+}
+
 .text-muted-2 {
   color: var(--q-muted-color) !important;
 }</code></pre>
@@ -1055,7 +1061,7 @@
             <div class="card">
               <div class="card-header"><h3 class="card-title mb-0">Payments</h3></div>
               <div class="table-responsive">
-                <table class="table align-middle mb-0 table-min">
+                <table class="table align-middle mb-0">
                   <thead>
                     <tr>
                       <th scope="col">Reference</th>
@@ -1123,19 +1129,26 @@
 }
 
 @media (max-width: 991.98px) {
-  .table-responsive &gt; .table-min {
-    min-width: 40rem;
+  .table-responsive &gt; .table {
+    min-width: 36rem;
+    min-width: min-content;
   }
 }
 
 @media (max-width: 991.98px) {
-  .table-responsive &gt; .table-min-lg {
-    min-width: 56rem;
+  .table-responsive &gt; .table &gt; tbody &gt; tr &gt; td:first-child, .table-responsive &gt; .table:has(thead th:first-child .form-check-input) &gt; tbody &gt; tr &gt; td:nth-child(2) {
+    white-space: nowrap;
   }
 }
 
 @media (max-width: 991.98px) {
-  .table-responsive &gt; .table-min &gt; tbody &gt; tr &gt; td:first-child, .table-responsive &gt; .table-min-lg &gt; tbody &gt; tr &gt; td:first-child {
+  .table-responsive &gt; .table &gt; tbody &gt; tr &gt; td:first-child .fs-8, .table-responsive &gt; .table &gt; tbody &gt; tr &gt; td:first-child .text-muted-2, .table-responsive &gt; .table &gt; tbody &gt; tr &gt; td:first-child small, .table-responsive &gt; .table:has(thead th:first-child .form-check-input) &gt; tbody &gt; tr &gt; td:nth-child(2) .fs-8, .table-responsive &gt; .table:has(thead th:first-child .form-check-input) &gt; tbody &gt; tr &gt; td:nth-child(2) .text-muted-2, .table-responsive &gt; .table:has(thead th:first-child .form-check-input) &gt; tbody &gt; tr &gt; td:nth-child(2) small {
+    white-space: normal;
+  }
+}
+
+@media (max-width: 991.98px) {
+  .table-responsive &gt; .table .badge {
     white-space: nowrap;
   }
 }
@@ -1143,13 +1156,6 @@
 .table-responsive {
   border-radius: 0 0 var(--q-radius-lg) var(--q-radius-lg);
 }
-
-.table {
-  --bs-table-bg: transparent;
-  --bs-table-border-color: var(--q-border-color);
-  --bs-table-hover-bg: var(--q-surface-hover);
-  --bs-table-striped-bg: var(--q-surface-alt);
-  --bs-table-color: var(--q-body-color);
 /* … sample trimmed for length */</code></pre>
           </div>
         </div>

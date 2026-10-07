@@ -830,7 +830,7 @@
           </div>
         </div>
         <div class="table-responsive">
-          <table class="table align-middle table-min">
+          <table class="table align-middle">
             <thead>
               <tr>
                 <th scope="col">Token</th>
@@ -910,7 +910,7 @@
         <div class="demo-block__pane" data-demo-pane="css">
           <div class="demo-code-wrap">
             <button class="copy-btn" data-copy-target="#css-components-colors-2" type="button"><i class="bi bi-clipboard"></i> Copy CSS</button>
-            <pre class="demo-code"><code id="css-components-colors-2" data-lang="css">/* Qevora styles used by this block — from assets/css/style.css */
+            <pre class="demo-code"><code id="css-components-colors-2" data-lang="css">/* Qevora styles used by this block — from assets/css/style.css + assets/css/components.css */
 
 .rounded-q {
   border-radius: var(--q-radius) !important;
@@ -922,6 +922,12 @@
 
 .fs-8 {
   font-size: 0.75rem !important;
+}
+
+@media (max-width: 991.98px) {
+  .table-responsive &gt; .table &gt; tbody &gt; tr &gt; td:first-child .fs-8, .table-responsive &gt; .table &gt; tbody &gt; tr &gt; td:first-child .text-muted-2, .table-responsive &gt; .table &gt; tbody &gt; tr &gt; td:first-child small, .table-responsive &gt; .table:has(thead th:first-child .form-check-input) &gt; tbody &gt; tr &gt; td:nth-child(2) .fs-8, .table-responsive &gt; .table:has(thead th:first-child .form-check-input) &gt; tbody &gt; tr &gt; td:nth-child(2) .text-muted-2, .table-responsive &gt; .table:has(thead th:first-child .form-check-input) &gt; tbody &gt; tr &gt; td:nth-child(2) small {
+    white-space: normal;
+  }
 }
 
 .text-heading {

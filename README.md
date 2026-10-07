@@ -71,8 +71,8 @@ tools/check-buttons.mjs  Blank-button sweep: clicks every control on every page
 tools/check-calendar.mjs  Calendar behaviour: month/week/day, the four calendars,
                       the agenda and the event dialog, driven by real clicks
 tools/check-responsive.mjs  Phone-only design: the filter sheet, the drawer, the
-                      header profile circle, avatar shapes, wide-table floors
-                      and the maths behind the widths
+                      header profile circle, avatar shapes, the table floor that
+                      follows its own content, and the maths behind the widths
 tools/package.sh      Builds the buyer-facing release ZIPs into release/
 ```
 

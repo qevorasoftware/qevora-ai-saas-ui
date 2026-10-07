@@ -45,7 +45,7 @@
               </div>
 
               <div class="table-responsive">
-                <table class="table table-hover align-middle mb-0 table-min-lg" id="tableFull">
+                <table class="table table-hover align-middle mb-0" id="tableFull">
                   <thead>
                     <tr>
                       <th style="width: 40px;" scope="col">
@@ -210,11 +210,14 @@
             <h2 class="demo-block__title">Table styles</h2>
             <p class="demo-block__desc">Striped, bordered and compact variants for denser screens such as reports and activity logs.</p>
             <p class="demo-block__desc mb-0">
-              Below 992px a wide table would squeeze its columns until an invoice number wrapped over three lines, so the
-              data tables in this template carry a floor and let the <code>.table-responsive</code> wrapper scroll:
-              <code>.table-min</code> (40rem) for four or five columns, <code>.table-min-lg</code> (56rem) for six or
-              more, with the first cell kept on one line. On a desktop the floor is off, so nothing scrolls that did not
-              need to.
+              Below 992px a wide table would squeeze its columns until an invoice number wrapped over three lines, so
+              every table inside a <code>.table-responsive</code> wrapper takes a floor of
+              <code>min-width: min-content</code> — the narrowest the table can be with its columns still readable —
+              and the wrapper scrolls instead. The cell that names the row (an invoice number, an order id, a product
+              name) stays on one line, a status badge never breaks in half, and a muted second line inside the name
+              cell, such as “Annual subscription”, is free to wrap. Nothing to add to your own tables: wrap them in
+              <code>.table-responsive</code> and the floor follows the content. On a desktop the floor is off, so
+              nothing scrolls that did not need to.
             </p>
           </div>
         </div>
@@ -227,7 +230,7 @@
             <div class="card mb-3">
               <div class="card-header"><h3 class="card-title mb-0">Striped</h3></div>
               <div class="table-responsive">
-                <table class="table table-striped align-middle mb-0 table-min">
+                <table class="table table-striped align-middle mb-0">
                   <thead>
                     <tr><th scope="col">Invoice</th><th scope="col">Customer</th><th scope="col">Issued</th><th scope="col" class="text-end">Amount</th></tr>
                   </thead>
@@ -243,7 +246,7 @@
             <div class="card mb-3">
               <div class="card-header"><h3 class="card-title mb-0">Bordered and compact</h3></div>
               <div class="table-responsive">
-                <table class="table table-bordered table-sm align-middle mb-0 table-min">
+                <table class="table table-bordered table-sm align-middle mb-0">
                   <thead>
                     <tr><th scope="col">Model</th><th scope="col">Requests</th><th scope="col">Tokens</th><th scope="col">Latency</th></tr>
                   </thead>

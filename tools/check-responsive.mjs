@@ -23,8 +23,10 @@
        backdrop, and that backdrop has to close it (the element ships in the
        markup, so nothing but the wiring was ever missing)
      · wide tables — a .table-responsive wrapper scrolls, but a table with no
-       floor width still crushes its columns to fit; every data table in the
-       package carries .table-min or .table-min-lg below 992px
+       floor width still crushes its columns to fit, and a table narrower than
+       its own content spills a nowrap value over the column beside it; below
+       992px every table takes a floor of min-width: min-content, the row's name
+       cell keeps one line, and a badge never breaks in half
      · the phone header — opaque instead of frosted, so content scrolling under
        it cannot show through between the icons
      · avatars — every size a square with border-radius: 50%, so no flex row can
@@ -298,26 +300,40 @@ check("avatar: no size can be squashed by a narrow flex row", sizes.every((entry
 /* ------------------------------------------------------------ wide tables --- */
 /* A .table-responsive wrapper scrolls, but a table with no floor width still
    crushes its columns to fit: an invoice number over three lines, a date in two
-   pieces, the last column cut off. Every table in the package has four or more
-   columns, so each one carries a floor and the wrapper does the scrolling. */
-check("tables: a 4-5 column table keeps a readable floor below 992px",
-  inMedia(".table-responsive > .table-min", MEDIA_TABLET, "min-width", /40rem/),
-  declarations(".table-responsive > .table-min", "min-width").map((entry) => `${entry.value} [${entry.media || "base"}]`).join(" | "));
+   pieces, the last column cut off. And once a value is told not to break (the
+   row's name, a status badge) a table that is narrower than its own content
+   spills that value out of its cell and over the next column, which is the
+   "everything is mixed together" state. The floor is therefore not a number
+   chosen per table but min-width: min-content — the narrowest the table can be
+   with its columns laid out — and the wrapper scrolls from there. */
+const ID_BASE = ".table-responsive > .table > tbody > tr > td";
+const ID_CHECKBOX = ".table-responsive > .table:has(thead th:first-child .form-check-input) > tbody > tr > td:nth-child(2)";
 
-check("tables: a 6+ column table gets the wider floor",
-  inMedia(".table-responsive > .table-min-lg", MEDIA_TABLET, "min-width", /56rem/),
-  declarations(".table-responsive > .table-min-lg", "min-width").map((entry) => `${entry.value} [${entry.media || "base"}]`).join(" | "));
+check("tables: the floor is the table's own content, not a number we guessed",
+  inMedia(".table-responsive > .table", MEDIA_TABLET, "min-width", /min-content/) &&
+  inMedia(".table-responsive > .table", MEDIA_TABLET, "min-width", /36rem/),
+  declarations(".table-responsive > .table", "min-width").map((entry) => `${entry.value} [${entry.media || "base"}]`).join(" | "));
 
-check("tables: the floors are phone and tablet only, so a desktop table never scrolls",
-  declarations(".table-min", "min-width").every((entry) => entry.media.includes("991.98")) &&
-  declarations(".table-min-lg", "min-width").every((entry) => entry.media.includes("991.98")),
-  [...declarations(".table-min", "min-width"), ...declarations(".table-min-lg", "min-width")]
+check("tables: the floor is phone and tablet only, so a desktop table never scrolls",
+  declarations(".table-responsive > .table", "min-width").every((entry) => entry.media.includes("991.98")) &&
+  !declarations(".table-min", "min-width").length && !declarations(".table-min-lg", "min-width").length,
+  [...declarations(".table-responsive > .table", "min-width"), ...declarations(".table-min", "min-width")]
     .map((entry) => `${entry.value} [${entry.media || "base"}]`).join(" | "));
 
-check("tables: the identifier column keeps its line",
-  inMedia(".table-responsive > .table-min > tbody > tr > td:first-child", MEDIA_TABLET, "white-space", /nowrap/) &&
-  inMedia(".table-responsive > .table-min-lg > tbody > tr > td:first-child", MEDIA_TABLET, "white-space", /nowrap/),
-  `${value(".table-responsive > .table-min > tbody > tr > td:first-child", "white-space")} / ${value(".table-responsive > .table-min-lg > tbody > tr > td:first-child", "white-space")}`);
+check("tables: the cell that names the row keeps its line",
+  inMedia(`${ID_BASE}:first-child`, MEDIA_TABLET, "white-space", /nowrap/) &&
+  inMedia(`${ID_CHECKBOX}`, MEDIA_TABLET, "white-space", /nowrap/),
+  `${value(`${ID_BASE}:first-child`, "white-space")} / ${value(ID_CHECKBOX, "white-space")}`);
+
+check("tables: the muted second line inside that cell may wrap",
+  inMedia(`${ID_BASE}:first-child .fs-8`, MEDIA_TABLET, "white-space", /normal/) &&
+  inMedia(`${ID_BASE}:first-child .text-muted-2`, MEDIA_TABLET, "white-space", /normal/) &&
+  inMedia(`${ID_CHECKBOX} .fs-8`, MEDIA_TABLET, "white-space", /normal/),
+  `${value(`${ID_BASE}:first-child .fs-8`, "white-space")} / ${value(`${ID_BASE}:first-child .text-muted-2`, "white-space")}`);
+
+check("tables: a status badge never breaks in half below 992px",
+  inMedia(".table-responsive > .table .badge", MEDIA_TABLET, "white-space", /nowrap/),
+  value(".table-responsive > .table .badge", "white-space"));
 
 /* ------------------------------------------------- the mobile header row --- */
 check("header: the drawer button is the same square as the buttons beside it",
@@ -466,10 +482,15 @@ for (const page of shippedPages) {
 }
 check("markup: the shipped pages were all read", shippedPages.length >= 82, `${shippedPages.length} pages`);
 
-/* Every wide table, on every shipped page: a floor class or an inline width. */
+/* Every table on every shipped page sits in a .table-responsive wrapper, and no
+   page keeps a retired floor class: the floor follows the content now, so a
+   buyer has nothing to remember and no table can be left out of it. */
 {
   const bare = [];
-  let counted = 0;
+  const retired = [];
+  const stated = [];
+  let wrappers = 0;
+  let tables = 0;
   for (const page of shippedPages) {
     const html = readFileSync(join(ROOT, page), "utf8");
     for (const wrapper of html.matchAll(/<div class="table-responsive[^"]*"/g)) {
@@ -479,16 +500,18 @@ check("markup: the shipped pages were all read", shippedPages.length >= 82, `${s
       const block = tail.slice(0, end);
       const table = block.match(/<table\b[^>]*>/);
       if (!table) continue;
-      const head = block.slice(table.index + table[0].length);
-      const thead = head.includes("</thead>") ? head.slice(0, head.indexOf("</thead>")) : head;
-      const cols = (thead.match(/<th\b/g) || []).length || (block.match(/<th\b/g) || []).length;
-      if (cols < 4) continue;
-      counted += 1;
-      if (!/table-min|min-width/.test(table[0])) bare.push(`${page} (${cols} cols)`);
+      wrappers += 1;
+      tables += (block.match(/<table\b/g) || []).length;
+      if (/table-min/.test(table[0])) retired.push(page);
+      if (!/class="[^"]*\btable\b/.test(table[0])) bare.push(page);
+      if (/min-width/.test(table[0])) stated.push(page);
     }
   }
-  check(`markup: every wide table carries its floor (${counted} tables checked)`, bare.length === 0,
-    bare.slice(0, 3).join(", "));
+  check(`markup: every table is inside a .table-responsive wrapper, with no retired floor class (${wrappers} wrappers, ${tables} tables)`,
+    wrappers >= 45 && bare.length === 0 && retired.length === 0,
+    [...bare, ...retired].slice(0, 3).join(", ") || `${wrappers} wrappers`);
+  check("markup: no page fights the content floor with an inline min-width on a table",
+    stated.length === 0, stated.slice(0, 3).join(", ") || `${wrappers} tables checked`);
 }
 check("markup: the panel is only used where it is documented", panelPages.length > 0, panelPages.join(", "));
 

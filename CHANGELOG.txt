@@ -563,17 +563,25 @@ FIXES DURING DEVELOPMENT
       of the drawer were the Esc key and a navigation link. The click is bound
       once now, whether the backdrop was found or made.
 
-    · Wide tables stay readable on a phone. A .table-responsive wrapper
-      scrolls, but a table with no floor width still shrank to fit it: on
+    · Wide tables stay readable on a phone. A .table-responsive wrapper scrolls,
+      but a table with no floor width still shrank to fit it: on
       pages/customer-details.html an invoice number wrapped over three lines, a
-      date broke in two, and the last column was cut in half. Every data table in
-      the package (all of them have four or more columns) now carries a floor and
-      lets the wrapper do the scrolling — .table-min (40rem) at four or five
-      columns, .table-min-lg (56rem) at six or more — with the first column kept
-      on one line, because that is the one that identifies the row. Both floors
-      only apply below 992px: on a desktop the table has room and nothing scrolls
-      that did not scroll before. The pattern is documented on the Tables
-      component page.
+      date broke in two, and the last column was cut in half. A floor that is a
+      fixed number is only less wrong, though — pages/products.html is a seven
+      column table whose columns need more than the widest floor, so the cells
+      were still squeezed and the values that must not break spilled out of them
+      and over the column beside them, which reads as everything running
+      together. Every table inside a .table-responsive wrapper now takes the
+      floor it asks for itself: min-width: min-content, the narrowest the table
+      can be with its columns laid out, so nothing is guessed, nothing has to be
+      added to a table, and a buyer's own content gets the same treatment. The
+      cell that names the row (an invoice number, an order id, a product name,
+      and the same cell in a table that leads with a checkbox) keeps one line, a
+      status badge never breaks in half, and a muted second line inside the name
+      cell — "Annual subscription", "Oct 2, 2026 · 09:24" — may wrap rather than
+      widen the whole table. The floor only applies below 992px: on a desktop
+      every table has room and nothing scrolls that did not scroll before. The
+      behaviour is documented on the Tables component page.
     · The phone header is opaque. It was a frosted strip at 85% opacity with a
       backdrop blur, which is a nice effect on a wide screen and a muddy one on a
       40px-tall row of controls: a card's gradient cover scrolling under it showed

@@ -838,7 +838,7 @@
                 </div>
               </div>
               <div class="table-responsive">
-                <table class="table table-hover align-middle mb-0 table-min" id="tablePaginated">
+                <table class="table table-hover align-middle mb-0" id="tablePaginated">
                   <thead>
                     <tr>
                       <th scope="col">Invoice</th>
@@ -935,27 +935,27 @@
 }
 
 @media (max-width: 991.98px) {
-  .table-responsive &gt; .table-min {
-    min-width: 40rem;
+  .table-responsive &gt; .table {
+    min-width: 36rem;
+    min-width: min-content;
   }
 }
 
 @media (max-width: 991.98px) {
-  .table-responsive &gt; .table-min-lg {
-    min-width: 56rem;
-  }
-}
-
-@media (max-width: 991.98px) {
-  .table-responsive &gt; .table-min &gt; tbody &gt; tr &gt; td:first-child, .table-responsive &gt; .table-min-lg &gt; tbody &gt; tr &gt; td:first-child {
+  .table-responsive &gt; .table &gt; tbody &gt; tr &gt; td:first-child, .table-responsive &gt; .table:has(thead th:first-child .form-check-input) &gt; tbody &gt; tr &gt; td:nth-child(2) {
     white-space: nowrap;
   }
 }
 
-.table-responsive {
-  border-radius: 0 0 var(--q-radius-lg) var(--q-radius-lg);
+@media (max-width: 991.98px) {
+  .table-responsive &gt; .table &gt; tbody &gt; tr &gt; td:first-child .fs-8, .table-responsive &gt; .table &gt; tbody &gt; tr &gt; td:first-child .text-muted-2, .table-responsive &gt; .table &gt; tbody &gt; tr &gt; td:first-child small, .table-responsive &gt; .table:has(thead th:first-child .form-check-input) &gt; tbody &gt; tr &gt; td:nth-child(2) .fs-8, .table-responsive &gt; .table:has(thead th:first-child .form-check-input) &gt; tbody &gt; tr &gt; td:nth-child(2) .text-muted-2, .table-responsive &gt; .table:has(thead th:first-child .form-check-input) &gt; tbody &gt; tr &gt; td:nth-child(2) small {
+    white-space: normal;
+  }
 }
 
+@media (max-width: 991.98px) {
+  .table-responsive &gt; .table .badge {
+    white-space: nowrap;
 /* … sample trimmed for length */</code></pre>
           </div>
         </div>

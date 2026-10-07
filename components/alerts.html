@@ -794,6 +794,12 @@
   font-size: 0.75rem !important;
 }
 
+@media (max-width: 991.98px) {
+  .table-responsive &gt; .table &gt; tbody &gt; tr &gt; td:first-child .fs-8, .table-responsive &gt; .table &gt; tbody &gt; tr &gt; td:first-child .text-muted-2, .table-responsive &gt; .table &gt; tbody &gt; tr &gt; td:first-child small, .table-responsive &gt; .table:has(thead th:first-child .form-check-input) &gt; tbody &gt; tr &gt; td:nth-child(2) .fs-8, .table-responsive &gt; .table:has(thead th:first-child .form-check-input) &gt; tbody &gt; tr &gt; td:nth-child(2) .text-muted-2, .table-responsive &gt; .table:has(thead th:first-child .form-check-input) &gt; tbody &gt; tr &gt; td:nth-child(2) small {
+    white-space: normal;
+  }
+}
+
 .alert-warning {
   --bs-alert-bg: var(--q-warning-soft);
   --bs-alert-color: #8a5205;
@@ -819,12 +825,6 @@
   --bs-alert-color: #075985;
   --bs-alert-border-color: rgba(var(--q-info-rgb), 0.22);
 }
-
-[data-bs-theme="dark"] .alert-info {
-  --bs-alert-color: #7dd3fc;
-}
-
-.alert-primary {
 /* … sample trimmed for length */</code></pre>
           </div>
         </div>

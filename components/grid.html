@@ -700,7 +700,7 @@
           </div>
         </div>
         <div class="table-responsive">
-          <table class="table align-middle table-min">
+          <table class="table align-middle">
             <thead>
               <tr>
                 <th scope="col">Breakpoint</th>
@@ -883,6 +883,12 @@
 
 .fs-8 {
   font-size: 0.75rem !important;
+}
+
+@media (max-width: 991.98px) {
+  .table-responsive &gt; .table &gt; tbody &gt; tr &gt; td:first-child .fs-8, .table-responsive &gt; .table &gt; tbody &gt; tr &gt; td:first-child .text-muted-2, .table-responsive &gt; .table &gt; tbody &gt; tr &gt; td:first-child small, .table-responsive &gt; .table:has(thead th:first-child .form-check-input) &gt; tbody &gt; tr &gt; td:nth-child(2) .fs-8, .table-responsive &gt; .table:has(thead th:first-child .form-check-input) &gt; tbody &gt; tr &gt; td:nth-child(2) .text-muted-2, .table-responsive &gt; .table:has(thead th:first-child .form-check-input) &gt; tbody &gt; tr &gt; td:nth-child(2) small {
+    white-space: normal;
+  }
 }
 
 .text-muted-2 {

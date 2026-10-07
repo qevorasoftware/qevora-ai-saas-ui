@@ -811,8 +811,8 @@
   gap: 0.3rem;
 }
 
-.badge-soft-primary {
-  background: var(--q-primary-soft);
+@media (max-width: 991.98px) {
+  .table-responsive &gt; .table .badge {
 /* … sample trimmed for length */</code></pre>
           </div>
         </div>
@@ -940,11 +940,11 @@
   color: var(--q-muted-color) !important;
 }
 
-.btn {
-  --bs-btn-font-size: 0.875rem;
-  --bs-btn-font-weight: 500;
-  --bs-btn-padding-y: 0.5rem;
-  --bs-btn-padding-x: 1rem;
+@media (max-width: 991.98px) {
+  .table-responsive &gt; .table &gt; tbody &gt; tr &gt; td:first-child .fs-8, .table-responsive &gt; .table &gt; tbody &gt; tr &gt; td:first-child .text-muted-2, .table-responsive &gt; .table &gt; tbody &gt; tr &gt; td:first-child small, .table-responsive &gt; .table:has(thead th:first-child .form-check-input) &gt; tbody &gt; tr &gt; td:nth-child(2) .fs-8, .table-responsive &gt; .table:has(thead th:first-child .form-check-input) &gt; tbody &gt; tr &gt; td:nth-child(2) .text-muted-2, .table-responsive &gt; .table:has(thead th:first-child .form-check-input) &gt; tbody &gt; tr &gt; td:nth-child(2) small {
+    white-space: normal;
+  }
+}
 /* … sample trimmed for length */</code></pre>
           </div>
         </div>
@@ -1082,7 +1082,9 @@
 
 .text-muted-2 {
   color: var(--q-muted-color) !important;
-}</code></pre>
+}
+
+/* … 1 more rule(s) apply to these classes */</code></pre>
           </div>
         </div>
 
