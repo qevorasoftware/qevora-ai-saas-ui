@@ -22,11 +22,11 @@
      · the mobile drawer — below 992px the sidebar slides in over a dimmed
        backdrop, and that backdrop has to close it (the element ships in the
        markup, so nothing but the wiring was ever missing)
-     · wide tables — a .table-responsive wrapper scrolls, but a table with no
-       floor width still crushes its columns to fit, and a table narrower than
-       its own content spills a nowrap value over the column beside it; below
-       992px every table takes a floor of min-width: min-content, the row's name
-       cell keeps one line, and a badge never breaks in half
+     · wide tables — a .table-responsive wrapper only scrolls once the table is
+       given something to scroll, and a table with no floor crushes its columns
+       until a value breaks mid-word or spills over the column beside it; below
+       992px every data cell keeps one line, the table takes min-width:
+       min-content, and a column of prose opts out with .text-wrap
      · the phone header — opaque instead of frosted, so content scrolling under
        it cannot show through between the icons
      · avatars — every size a square with border-radius: 50%, so no flex row can
@@ -298,16 +298,22 @@ check("avatar: no size can be squashed by a narrow flex row", sizes.every((entry
   sizes.map((entry) => `${entry.size} ${entry.width}/${entry.min}`).join(" "));
 
 /* ------------------------------------------------------------ wide tables --- */
-/* A .table-responsive wrapper scrolls, but a table with no floor width still
-   crushes its columns to fit: an invoice number over three lines, a date in two
-   pieces, the last column cut off. And once a value is told not to break (the
-   row's name, a status badge) a table that is narrower than its own content
-   spills that value out of its cell and over the next column, which is the
-   "everything is mixed together" state. The floor is therefore not a number
-   chosen per table but min-width: min-content — the narrowest the table can be
-   with its columns laid out — and the wrapper scrolls from there. */
-const ID_BASE = ".table-responsive > .table > tbody > tr > td";
-const ID_CHECKBOX = ".table-responsive > .table:has(thead th:first-child .form-check-input) > tbody > tr > td:nth-child(2)";
+/* A .table-responsive wrapper only scrolls once the table inside it is given
+   something to scroll. With no floor it hugs the wrapper and every column is
+   squeezed to the width of its longest word — "Northstar Labs" stacked over two
+   lines, an invoice number broken into INV- / 2026- / 0184 because a hyphen is
+   a legal break, a status badge cut in half. A column squeezed below the width
+   of its content is worse: the text leaves the cell and runs over the column
+   beside it. So below 992px a data cell keeps one line and the table takes the
+   width it asks for (min-content), while the wrapper scrolls. */
+const DATA_CELL = ".table-responsive > .table > tbody > tr > td";
+const ANNOTATION = [
+  `${DATA_CELL} > .fs-8`,
+  `${DATA_CELL} > .text-muted-2`,
+  `${DATA_CELL} > small`
+];
+const PROSE = ".table-responsive > .table > tbody > tr > td.text-wrap";
+const PROSE_CODE = ".table-responsive > .table .text-wrap code";
 
 check("tables: the floor is the table's own content, not a number we guessed",
   inMedia(".table-responsive > .table", MEDIA_TABLET, "min-width", /min-content/) &&
@@ -320,20 +326,25 @@ check("tables: the floor is phone and tablet only, so a desktop table never scro
   [...declarations(".table-responsive > .table", "min-width"), ...declarations(".table-min", "min-width")]
     .map((entry) => `${entry.value} [${entry.media || "base"}]`).join(" | "));
 
-check("tables: the cell that names the row keeps its line",
-  inMedia(`${ID_BASE}:first-child`, MEDIA_TABLET, "white-space", /nowrap/) &&
-  inMedia(`${ID_CHECKBOX}`, MEDIA_TABLET, "white-space", /nowrap/),
-  `${value(`${ID_BASE}:first-child`, "white-space")} / ${value(ID_CHECKBOX, "white-space")}`);
+check("tables: a data cell on a phone keeps one line, so no value breaks mid-word",
+  inMedia(DATA_CELL, MEDIA_TABLET, "white-space", /nowrap/) &&
+  !declarations(DATA_CELL, "white-space").some((entry) => !/991\.98/.test(entry.media) && entry.value !== "nowrap"),
+  declarations(DATA_CELL, "white-space").map((entry) => `${entry.value} [${entry.media || "base"}]`).join(" | "));
 
-check("tables: the muted second line inside that cell may wrap",
-  inMedia(`${ID_BASE}:first-child .fs-8`, MEDIA_TABLET, "white-space", /normal/) &&
-  inMedia(`${ID_BASE}:first-child .text-muted-2`, MEDIA_TABLET, "white-space", /normal/) &&
-  inMedia(`${ID_CHECKBOX} .fs-8`, MEDIA_TABLET, "white-space", /normal/),
-  `${value(`${ID_BASE}:first-child .fs-8`, "white-space")} / ${value(`${ID_BASE}:first-child .text-muted-2`, "white-space")}`);
+check("tables: the annotation inside a cell still wraps (child selector, so a value keeps its line)",
+  ANNOTATION.every((selector) => inMedia(selector, MEDIA_TABLET, "white-space", /normal/)) &&
+  ANNOTATION.every((selector) => !selector.includes(" small .")),
+  ANNOTATION.map((selector) => `${selector} → ${value(selector, "white-space")}`).join(" · "));
 
 check("tables: a status badge never breaks in half below 992px",
   inMedia(".table-responsive > .table .badge", MEDIA_TABLET, "white-space", /nowrap/),
   value(".table-responsive > .table .badge", "white-space"));
+
+check("tables: a column of prose opts out and may wrap, and its inline code stays whole",
+  inMedia(PROSE, MEDIA_TABLET, "white-space", /normal/) &&
+  inMedia(PROSE_CODE, MEDIA_TABLET, "white-space", /nowrap/) &&
+  !declarations(DATA_CELL, "white-space").some((entry) => /important/.test(entry.value)),
+  `${value(PROSE, "white-space")} / ${value(PROSE_CODE, "white-space")} / !important: ${declarations(DATA_CELL, "white-space").some((entry) => /important/.test(entry.value))}`);
 
 /* ------------------------------------------------- the mobile header row --- */
 check("header: the drawer button is the same square as the buttons beside it",

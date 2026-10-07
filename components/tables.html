@@ -992,14 +992,16 @@ Qevora.toast("Invoice INV-2026-0186 marked as paid", "success", "Payments");</co
             <h2 class="demo-block__title">Table styles</h2>
             <p class="demo-block__desc">Striped, bordered and compact variants for denser screens such as reports and activity logs.</p>
             <p class="demo-block__desc mb-0">
-              Below 992px a wide table would squeeze its columns until an invoice number wrapped over three lines, so
-              every table inside a <code>.table-responsive</code> wrapper takes a floor of
-              <code>min-width: min-content</code> — the narrowest the table can be with its columns still readable —
-              and the wrapper scrolls instead. The cell that names the row (an invoice number, an order id, a product
-              name) stays on one line, a status badge never breaks in half, and a muted second line inside the name
-              cell, such as “Annual subscription”, is free to wrap. Nothing to add to your own tables: wrap them in
-              <code>.table-responsive</code> and the floor follows the content. On a desktop the floor is off, so
-              nothing scrolls that did not need to.
+              On a phone a column that has nothing to stand on gets squeezed to its longest word — “Northstar Labs”
+              stacked over two lines, an invoice number broken into <code>INV-</code> <code>2026-</code>
+              <code>0184</code>, a badge cut in half. Below 992px every table inside a
+              <code>.table-responsive</code> wrapper therefore keeps its cells on one line and takes the width it
+              needs: <code>min-width: min-content</code> guarantees it is never narrower than its own content, and
+              the wrapper scrolls instead. A status badge never breaks, and the muted second line inside a cell —
+              “Annual subscription”, “Oct 2, 2026 · 09:24” — is an annotation and may wrap. A whole column of prose
+              opts out with Bootstrap’s <code>.text-wrap</code> on its cells. Nothing to add to your own tables:
+              wrap them in <code>.table-responsive</code> and the behaviour follows the content. On a desktop none of
+              it applies, so nothing scrolls that did not need to.
             </p>
           </div>
         </div>
@@ -1110,13 +1112,13 @@ Qevora.toast("Invoice INV-2026-0186 marked as paid", "success", "Payments");</co
 }
 
 @media (max-width: 991.98px) {
-  .table-responsive &gt; .table &gt; tbody &gt; tr &gt; td:first-child, .table-responsive &gt; .table:has(thead th:first-child .form-check-input) &gt; tbody &gt; tr &gt; td:nth-child(2) {
+  .table-responsive &gt; .table &gt; tbody &gt; tr &gt; td {
     white-space: nowrap;
   }
 }
 
 @media (max-width: 991.98px) {
-  .table-responsive &gt; .table &gt; tbody &gt; tr &gt; td:first-child .fs-8, .table-responsive &gt; .table &gt; tbody &gt; tr &gt; td:first-child .text-muted-2, .table-responsive &gt; .table &gt; tbody &gt; tr &gt; td:first-child small, .table-responsive &gt; .table:has(thead th:first-child .form-check-input) &gt; tbody &gt; tr &gt; td:nth-child(2) .fs-8, .table-responsive &gt; .table:has(thead th:first-child .form-check-input) &gt; tbody &gt; tr &gt; td:nth-child(2) .text-muted-2, .table-responsive &gt; .table:has(thead th:first-child .form-check-input) &gt; tbody &gt; tr &gt; td:nth-child(2) small {
+  .table-responsive &gt; .table &gt; tbody &gt; tr &gt; td &gt; .fs-8, .table-responsive &gt; .table &gt; tbody &gt; tr &gt; td &gt; .text-muted-2, .table-responsive &gt; .table &gt; tbody &gt; tr &gt; td &gt; small {
     white-space: normal;
   }
 }
@@ -1127,9 +1129,9 @@ Qevora.toast("Invoice INV-2026-0186 marked as paid", "success", "Payments");</co
   }
 }
 
-.table-responsive {
-  border-radius: 0 0 var(--q-radius-lg) var(--q-radius-lg);
-}
+@media (max-width: 991.98px) {
+  .table-responsive &gt; .table &gt; tbody &gt; tr &gt; td.text-wrap {
+    white-space: normal;
 /* … sample trimmed for length */</code></pre>
           </div>
         </div>

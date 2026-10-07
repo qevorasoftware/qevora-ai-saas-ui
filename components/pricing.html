@@ -821,7 +821,7 @@
 }
 
 @media (max-width: 991.98px) {
-  .table-responsive &gt; .table &gt; tbody &gt; tr &gt; td:first-child .fs-8, .table-responsive &gt; .table &gt; tbody &gt; tr &gt; td:first-child .text-muted-2, .table-responsive &gt; .table &gt; tbody &gt; tr &gt; td:first-child small, .table-responsive &gt; .table:has(thead th:first-child .form-check-input) &gt; tbody &gt; tr &gt; td:nth-child(2) .fs-8, .table-responsive &gt; .table:has(thead th:first-child .form-check-input) &gt; tbody &gt; tr &gt; td:nth-child(2) .text-muted-2, .table-responsive &gt; .table:has(thead th:first-child .form-check-input) &gt; tbody &gt; tr &gt; td:nth-child(2) small {
+  .table-responsive &gt; .table &gt; tbody &gt; tr &gt; td &gt; .fs-8, .table-responsive &gt; .table &gt; tbody &gt; tr &gt; td &gt; .text-muted-2, .table-responsive &gt; .table &gt; tbody &gt; tr &gt; td &gt; small {
     white-space: normal;
   }
 }
@@ -943,7 +943,7 @@
 }
 
 @media (max-width: 991.98px) {
-  .table-responsive &gt; .table &gt; tbody &gt; tr &gt; td:first-child .fs-8, .table-responsive &gt; .table &gt; tbody &gt; tr &gt; td:first-child .text-muted-2, .table-responsive &gt; .table &gt; tbody &gt; tr &gt; td:first-child small, .table-responsive &gt; .table:has(thead th:first-child .form-check-input) &gt; tbody &gt; tr &gt; td:nth-child(2) .fs-8, .table-responsive &gt; .table:has(thead th:first-child .form-check-input) &gt; tbody &gt; tr &gt; td:nth-child(2) .text-muted-2, .table-responsive &gt; .table:has(thead th:first-child .form-check-input) &gt; tbody &gt; tr &gt; td:nth-child(2) small {
+  .table-responsive &gt; .table &gt; tbody &gt; tr &gt; td &gt; .fs-8, .table-responsive &gt; .table &gt; tbody &gt; tr &gt; td &gt; .text-muted-2, .table-responsive &gt; .table &gt; tbody &gt; tr &gt; td &gt; small {
     white-space: normal;
   }
 }
@@ -972,12 +972,6 @@
   box-shadow: 0 0 0 3px rgba(var(--q-primary-rgb), 0.16);
 }
 
-@media (max-width: 991.98px) {
-  .table-responsive &gt; .table &gt; tbody &gt; tr &gt; td:first-child, .table-responsive &gt; .table:has(thead th:first-child .form-check-input) &gt; tbody &gt; tr &gt; td:nth-child(2) {
-    white-space: nowrap;
-  }
-}
-
 .form-check-label {
   font-size: 0.875rem;
   color: var(--q-body-color);
@@ -996,6 +990,12 @@
   letter-spacing: 0.02em;
   line-height: 1.2;
   display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+@media (max-width: 991.98px) {
+  .table-responsive &gt; .table .badge {
 /* … sample trimmed for length */</code></pre>
           </div>
         </div>

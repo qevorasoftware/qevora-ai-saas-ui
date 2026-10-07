@@ -810,7 +810,7 @@
 }
 
 @media (max-width: 991.98px) {
-  .table-responsive &gt; .table &gt; tbody &gt; tr &gt; td:first-child .fs-8, .table-responsive &gt; .table &gt; tbody &gt; tr &gt; td:first-child .text-muted-2, .table-responsive &gt; .table &gt; tbody &gt; tr &gt; td:first-child small, .table-responsive &gt; .table:has(thead th:first-child .form-check-input) &gt; tbody &gt; tr &gt; td:nth-child(2) .fs-8, .table-responsive &gt; .table:has(thead th:first-child .form-check-input) &gt; tbody &gt; tr &gt; td:nth-child(2) .text-muted-2, .table-responsive &gt; .table:has(thead th:first-child .form-check-input) &gt; tbody &gt; tr &gt; td:nth-child(2) small {
+  .table-responsive &gt; .table &gt; tbody &gt; tr &gt; td &gt; .fs-8, .table-responsive &gt; .table &gt; tbody &gt; tr &gt; td &gt; .text-muted-2, .table-responsive &gt; .table &gt; tbody &gt; tr &gt; td &gt; small {
     white-space: normal;
   }
 }
@@ -1136,13 +1136,13 @@
 }
 
 @media (max-width: 991.98px) {
-  .table-responsive &gt; .table &gt; tbody &gt; tr &gt; td:first-child, .table-responsive &gt; .table:has(thead th:first-child .form-check-input) &gt; tbody &gt; tr &gt; td:nth-child(2) {
+  .table-responsive &gt; .table &gt; tbody &gt; tr &gt; td {
     white-space: nowrap;
   }
 }
 
 @media (max-width: 991.98px) {
-  .table-responsive &gt; .table &gt; tbody &gt; tr &gt; td:first-child .fs-8, .table-responsive &gt; .table &gt; tbody &gt; tr &gt; td:first-child .text-muted-2, .table-responsive &gt; .table &gt; tbody &gt; tr &gt; td:first-child small, .table-responsive &gt; .table:has(thead th:first-child .form-check-input) &gt; tbody &gt; tr &gt; td:nth-child(2) .fs-8, .table-responsive &gt; .table:has(thead th:first-child .form-check-input) &gt; tbody &gt; tr &gt; td:nth-child(2) .text-muted-2, .table-responsive &gt; .table:has(thead th:first-child .form-check-input) &gt; tbody &gt; tr &gt; td:nth-child(2) small {
+  .table-responsive &gt; .table &gt; tbody &gt; tr &gt; td &gt; .fs-8, .table-responsive &gt; .table &gt; tbody &gt; tr &gt; td &gt; .text-muted-2, .table-responsive &gt; .table &gt; tbody &gt; tr &gt; td &gt; small {
     white-space: normal;
   }
 }
@@ -1153,9 +1153,9 @@
   }
 }
 
-.table-responsive {
-  border-radius: 0 0 var(--q-radius-lg) var(--q-radius-lg);
-}
+@media (max-width: 991.98px) {
+  .table-responsive &gt; .table &gt; tbody &gt; tr &gt; td.text-wrap {
+    white-space: normal;
 /* … sample trimmed for length */</code></pre>
           </div>
         </div>

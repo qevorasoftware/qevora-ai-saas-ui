@@ -67,12 +67,17 @@ tools/smoke.mjs       Optional runtime gate (needs `npm i --no-save jsdom`): loa
                       every page with its scripts, clicks the key controls and
                       reports console errors or dead interactions
 tools/check-buttons.mjs  Blank-button sweep: clicks every control on every page
-                      and fails on any that changes nothing
+                      and fails on any that changes nothing twice in a row (a
+                      dialog Bootstrap opened late cannot make a Cancel look blank)
 tools/check-calendar.mjs  Calendar behaviour: month/week/day, the four calendars,
                       the agenda and the event dialog, driven by real clicks
 tools/check-responsive.mjs  Phone-only design: the filter sheet, the drawer, the
-                      header profile circle, avatar shapes, the table floor that
-                      follows its own content, and the maths behind the widths
+                      header profile circle, avatar shapes, the table rules that
+                      keep a phone table readable, and the maths behind the widths
+tools/visual-check.mjs  Renders every page in a real browser at a phone width and
+                      fails if a table value breaks over two lines or a cell
+                      spills over the column beside it; skips itself when no
+                      browser is available
 tools/package.sh      Builds the buyer-facing release ZIPs into release/
 ```
 
@@ -106,6 +111,7 @@ node tools/smoke.mjs --strict   # run every page in a scripted DOM, report runti
 node tools/check-buttons.mjs    # click every button and link on every page, report blanks
 node tools/check-calendar.mjs   # drive the calendar: views, filters, add/edit/delete
 node tools/check-responsive.mjs # check the phone layout: filter sheet, profile circle, avatars
+node tools/visual-check.mjs     # render every page at 382px: no broken value, no spilled cell
 ```
 
 `src/pages.mjs` is the single source of truth for the page inventory — titles, meta descriptions,

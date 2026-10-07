@@ -293,39 +293,53 @@ async function scan(page) {
       continue;
     }
 
-    reset(d);
-    await reveal(w, d, node);
-    const before = signature(d);
-    let mutations = 0;
-    const navigations = state.navigations;
-    const observer = new w.MutationObserver((list) => { mutations += list.length; });
-    observer.observe(d.documentElement, { attributes: true, childList: true, subtree: true, characterData: true });
+    /* Two passes: a button is only called blank when it does nothing twice.
+       Bootstrap shows a dialog through a chain of timers, and on a busy machine
+       that chain can outlast the reveal — a Cancel inside a dialog that never
+       opened does nothing, which is exactly the flake this retry removes. A
+       genuinely blank button produces no answer on either pass. */
+    let decided = false;
+    for (let pass = 0; pass < 2 && !decided; pass++) {
+      reset(d);
+      await reveal(w, d, node);
+      const before = signature(d);
+      let mutations = 0;
+      const navigations = state.navigations;
+      const observer = new w.MutationObserver((list) => { mutations += list.length; });
+      observer.observe(d.documentElement, { attributes: true, childList: true, subtree: true, characterData: true });
 
-    try {
-      node.dispatchEvent(new w.MouseEvent("click", { bubbles: true, cancelable: true }));
-    } catch (e) {
+      try {
+        node.dispatchEvent(new w.MouseEvent("click", { bubbles: true, cancelable: true }));
+      } catch (e) {
+        observer.disconnect();
+        dead.push(`${label} (click threw: ${String(e.message).slice(0, 40)})`);
+        decided = true;
+        break;
+      }
+
+      clicked += 1;
+      await wait(60);
+
+      /* Some answers take a moment (a "Regenerate" writes its new reply after a
+         typing pause), so a quiet first look is followed by a longer one before
+         the button is called blank. */
+      for (let attempt = 0; attempt < 10 && mutations === 0; attempt++) {
+        if (signature(d) !== before) break;
+        await wait(100);
+      }
       observer.disconnect();
-      dead.push(`${label} (click threw: ${String(e.message).slice(0, 40)})`);
-      continue;
-    }
 
-    clicked += 1;
-    await wait(60);
-
-    /* Some answers take a moment (a "Regenerate" writes its new reply after a
-       typing pause), so a quiet first look is followed by a longer one before
-       the button is called blank. */
-    for (let attempt = 0; attempt < 10 && mutations === 0; attempt++) {
-      if (signature(d) !== before) break;
-      await wait(100);
-    }
-    observer.disconnect();
-
-    const left = state.navigations > navigations;
-    if (before === signature(d) && mutations === 0 && !left) {
-      dead.push(label);
-      if (process.env.DEBUG) {
-        console.log(`     ⤷ blank: ${label}\n       ${node.outerHTML.replace(/\s+/g, " ").slice(0, 200)}`);
+      const left = state.navigations > navigations;
+      if (before !== signature(d) || mutations > 0 || left) {
+        decided = true;
+      } else if (pass === 1) {
+        dead.push(label);
+        decided = true;
+        if (process.env.DEBUG) {
+          console.log(`     ⤷ blank: ${label}\n       ${node.outerHTML.replace(/\s+/g, " ").slice(0, 200)}`);
+        }
+      } else if (process.env.DEBUG) {
+        console.log(`     ⤷ no answer on the first pass, trying again: ${label}`);
       }
     }
   }

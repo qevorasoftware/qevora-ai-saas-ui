@@ -564,24 +564,26 @@ FIXES DURING DEVELOPMENT
       once now, whether the backdrop was found or made.
 
     · Wide tables stay readable on a phone. A .table-responsive wrapper scrolls,
-      but a table with no floor width still shrank to fit it: on
-      pages/customer-details.html an invoice number wrapped over three lines, a
-      date broke in two, and the last column was cut in half. A floor that is a
-      fixed number is only less wrong, though — pages/products.html is a seven
-      column table whose columns need more than the widest floor, so the cells
-      were still squeezed and the values that must not break spilled out of them
-      and over the column beside them, which reads as everything running
-      together. Every table inside a .table-responsive wrapper now takes the
-      floor it asks for itself: min-width: min-content, the narrowest the table
-      can be with its columns laid out, so nothing is guessed, nothing has to be
-      added to a table, and a buyer's own content gets the same treatment. The
-      cell that names the row (an invoice number, an order id, a product name,
-      and the same cell in a table that leads with a checkbox) keeps one line, a
-      status badge never breaks in half, and a muted second line inside the name
-      cell — "Annual subscription", "Oct 2, 2026 · 09:24" — may wrap rather than
-      widen the whole table. The floor only applies below 992px: on a desktop
-      every table has room and nothing scrolls that did not scroll before. The
-      behaviour is documented on the Tables component page.
+      but a table only scrolls once it is given something to scroll, and with no
+      floor a table hugs the wrapper and every column is squeezed to the width of
+      its longest word. On pages/products.html the SKU broke into "QV- / SCALE- /
+      01" — a hyphen is a legal break — the customer names on pages/orders.html
+      stacked over two lines ("Northstar / Labs"), an invoice number on
+      pages/customer-details.html split in three, and a status badge was cut in
+      half; when a column is squeezed below the width of its content the text
+      leaves the cell altogether and runs over the column beside it, which reads
+      as everything running together. Below 992px a data cell now keeps its value
+      on one line and the table takes the width it needs — min-width: min-content
+      guarantees it is never narrower than its own content — so the wrapper does
+      the scrolling. A status badge never breaks in half, the muted second line
+      inside a cell ("Annual subscription", "Oct 2, 2026 · 09:24") is an
+      annotation and may wrap, and a whole column of prose opts out with
+      Bootstrap's .text-wrap (the documentation tables do; their inline code
+      still stays whole). The older .table-min and .table-min-lg classes are
+      gone, because a floor that has to be maintained per table is a floor that
+      will be wrong the first time a column is added. Nothing here applies on a
+      desktop: every table has the room it needs and nothing scrolls that did not
+      scroll before. The behaviour is documented on the Tables component page.
     · The phone header is opaque. It was a frosted strip at 85% opacity with a
       backdrop blur, which is a nice effect on a wide screen and a muddy one on a
       40px-tall row of controls: a card's gradient cover scrolling under it showed

@@ -1201,51 +1201,61 @@
 /* --------------------------------------------------------------------------
    Tables on a small screen.
 
-   .table-responsive makes the wrapper scroll, but a table with no minimum
-   width still shrinks to fit that wrapper — and a table narrower than its own
-   content cannot lay its cells out properly: an invoice number wraps over three
-   lines, a date breaks after the month, and a value that must not break (a SKU,
-   a status badge) runs out of its cell and over the column beside it.
+   A .table-responsive wrapper scrolls, but a table only scrolls once it is
+   given something to scroll. With no floor it hugs the wrapper and every column
+   is squeezed to the width of its longest word: "Northstar Labs" stacked over
+   two lines, an invoice number broken into "INV-" / "2026-" / "0184" — the
+   hyphen is a legal break — and a status badge cut in half. A column squeezed
+   below the width of its content is worse still: the text leaves the cell and
+   runs over the column beside it.
 
-   min-width: min-content is the floor the table asks for itself: the sum of the
-   narrowest its columns can be, measured with the parts that must not break
-   counted in full. Nothing to guess, nothing to tag, and a buyer's own table
-   gets the same treatment as these. The wrapper scrolls from there, which is
-   exactly what it is there for.
+   So below 992px a data table keeps its cells on one line and takes the width
+   it needs, while min-content guarantees it can never be narrower than its own
+   content and the wrapper scrolls. Two things are allowed to wrap: the muted
+   second line inside a cell — "Annual subscription", "Oct 2, 2026 · 09:24" — is
+   an annotation rather than the value, and a column of prose opts out with
+   Bootstrap's .text-wrap on its cells (the documentation tables do).
 
-   All of it sits below 992px, where the content column is a single full-width
-   one. On a desktop every table has room, so none of these rules apply and
-   nothing scrolls that did not scroll before.
+   Only the phone and tablet layouts are affected. On a desktop the table has
+   the room it needs and every one of these rules is off, so nothing scrolls
+   that did not scroll before.
    -------------------------------------------------------------------------- */
 @media (max-width: 991.98px) {
   .table-responsive > .table {
-    /* Line one is for a browser that cannot read the keyword on line two. */
+    /* First line: a browser that cannot read the keyword in the second. */
     min-width: 36rem;
     min-width: min-content;
   }
 
-  /* The cell that names the row keeps its line: an invoice number, an order id,
-     a product name — and the same cell in a table that leads with a checkbox
-     (orders, leads, prompts), where the name sits in the second column. */
-  .table-responsive > .table > tbody > tr > td:first-child,
-  .table-responsive > .table:has(thead th:first-child .form-check-input) > tbody > tr > td:nth-child(2) {
+  /* A cell holds a value, and a value reads on one line: it does not wrap at
+     its spaces and it does not break at its hyphens. */
+  .table-responsive > .table > tbody > tr > td {
     white-space: nowrap;
   }
 
-  /* A muted second line is an annotation, not the row's name — "Annual
-     subscription", "Oct 2, 2026 · 09:24". It may wrap rather than widen the
-     whole table by another 40 pixels. */
-  .table-responsive > .table > tbody > tr > td:first-child .fs-8,
-  .table-responsive > .table > tbody > tr > td:first-child .text-muted-2,
-  .table-responsive > .table > tbody > tr > td:first-child small,
-  .table-responsive > .table:has(thead th:first-child .form-check-input) > tbody > tr > td:nth-child(2) .fs-8,
-  .table-responsive > .table:has(thead th:first-child .form-check-input) > tbody > tr > td:nth-child(2) .text-muted-2,
-  .table-responsive > .table:has(thead th:first-child .form-check-input) > tbody > tr > td:nth-child(2) small {
+  /* …except the annotation inside it. Child selectors on purpose: a cell whose
+     own class is .text-muted-2 (a SKU, a payment id) is still a value. */
+  .table-responsive > .table > tbody > tr > td > .fs-8,
+  .table-responsive > .table > tbody > tr > td > .text-muted-2,
+  .table-responsive > .table > tbody > tr > td > small {
     white-space: normal;
   }
 
   /* A badge is one token: "Low stock" must never break in half. */
   .table-responsive > .table .badge {
+    white-space: nowrap;
+  }
+
+  /* A whole column of prose opts out with Bootstrap's .text-wrap (which sets the
+     newer text-wrap property); the classic declaration is repeated here so the
+     opt-out works in a browser that only knows white-space. */
+  .table-responsive > .table > tbody > tr > td.text-wrap {
+    white-space: normal;
+  }
+
+  /* …and the inline code inside that prose stays whole: the sentence wraps at
+     its spaces, [data-demo-upload] does not break at its hyphens. */
+  .table-responsive > .table .text-wrap code {
     white-space: nowrap;
   }
 }

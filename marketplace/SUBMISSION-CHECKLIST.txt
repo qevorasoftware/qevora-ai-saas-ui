@@ -204,8 +204,12 @@
     desktop click collapses the rail instead), and the filter panel driven end to end (closed on
     load, opened by the Filter click, kept open by a chip, closed by its × or by a click
     outside, focus handed back); the phone header is opaque; and every table in the package
-    takes a floor of min-width: min-content below 992px, with the row's name cell on one
-    line and no badge broken in half — 88 checks, green (needs jsdom)
+    keeps its values on one line below 992px with min-width: min-content as the floor, an
+    annotation free to wrap and a column of prose opted out with .text-wrap — 89 checks,
+    green (needs jsdom). The same contract is checked on the rendered page by
+    tools/visual-check.mjs, which drives a real browser over all 82 pages at 382px and
+    fails on a value broken over two lines or a cell spilling over its neighbour (48
+    tables, green; it skips itself when no browser is installed)
   · node tools/check-calendar.mjs      the calendar in pages/calendar.html: month, week and day views,
     month navigation that always lands on the month in the header, every event drawn into
     the cell of its own day, the four calendars on and off (the legend dots and the sidebar
