@@ -1,0 +1,51 @@
+PROJECT TITLE
+Qevora — AI SaaS Dashboard & UI Kit
+
+SHORT INTRO
+Complex work. Clear interfaces.
+An 84-page AI SaaS dashboard and UI kit by Qevora Software.
+
+PROJECT DESCRIPTION
+Qevora is an 84-page Bootstrap 5 admin dashboard and UI kit for AI and SaaS products, designed and developed by Qevora Software. The project connects business analytics, CRM, project management, billing and an AI workspace through one consistent visual language. This case study explores the interface hierarchy, responsive layouts, light/dark themes and reusable design system. It is a static front-end template; all figures and AI outputs shown are demonstration content.
+
+SUGGESTED CREATIVE FIELDS
+UI/UX
+Web Design
+Interaction Design
+Choose the matching fields available in the live Behance editor.
+
+SUGGESTED TAGS
+UI UX, SaaS, Dashboard, AI, Product Design, Design System, Bootstrap, Admin Panel, Responsive Design, Dark Mode
+
+TOOLS / IMPLEMENTATION
+HTML, CSS, JavaScript, Bootstrap 5.3.3, Chart.js 4.4.3, Bootstrap Icons 1.11.3, Inter
+Select only available tool labels that accurately reflect your actual workflow. Figma and research tools are not claimed for this deliverable.
+
+PROJECT SCOPE
+84 HTML pages: 1 dashboard, 31 application pages, 6 AI workspace pages, 31 UI kit pages, 6 authentication pages, 7 utility pages, 2 documentation pages.
+Desktop, tablet and mobile layouts; light and dark themes; RTL support.
+Static front-end template, not a connected production SaaS service.
+
+CREDITS
+Design & front-end development: Qevora Software
+Inter: Rasmus Andersson (SIL Open Font License)
+Bootstrap & Bootstrap Icons: Bootstrap team
+Chart.js: Chart.js contributors
+
+PROJECT SOURCE LINK
+https://github.com/qevorasoftware/qevora-ai-saas-ui
+Add your verified public live-demo URL separately if you deploy the repository. Local sandbox preview URLs are not permanent portfolio links.
+
+UPLOAD ORDER
+Cover: behance-cover.jpg
+1. 01-cover-story.jpg
+2. 02-project-overview.jpg
+3. 03-dashboard-experience.jpg
+4. 04-connected-workflows.jpg
+5. 05-responsive-design.jpg
+6. 06-design-system.jpg
+7. 07-delivery-and-scope.jpg
+8. 08-closing-and-credits.jpg
+
+BEFORE PUBLISHING
+Check cover crop, image sharpness, section ordering, mobile preview, creative fields, tags and attribution. Verify the current editor's format/size limits and required fields. Behance does not import this HTML layout; upload the JPG images and paste the text. No fabricated research findings, project duration, user metrics or impact claims are included. No Behance approval or reach is guaranteed.
